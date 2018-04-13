@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		18350890207F653600BCF7CE /* Net.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835088F207F653600BCF7CE /* Net.m */; };
+		18350895208086DE00BCF7CE /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 18350893208086DE00BCF7CE /* UIViewExt.m */; };
 		188CC64A207F5430007D749E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 188CC649207F5430007D749E /* AppDelegate.m */; };
 		188CC64D207F5431007D749E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188CC64C207F5431007D749E /* ViewController.m */; };
 		188CC650207F5431007D749E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188CC64E207F5431007D749E /* Main.storyboard */; };
@@ -22,6 +23,8 @@
 		1835088E207F653600BCF7CE /* Net.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Net.h; sourceTree = "<group>"; };
 		1835088F207F653600BCF7CE /* Net.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Net.m; sourceTree = "<group>"; };
 		18350891208059ED00BCF7CE /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		18350893208086DE00BCF7CE /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
+		18350894208086DE00BCF7CE /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
 		188CC645207F5430007D749E /* NSMall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSMall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188CC648207F5430007D749E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		188CC649207F5430007D749E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -60,8 +63,16 @@
 			children = (
 				1835088E207F653600BCF7CE /* Net.h */,
 				1835088F207F653600BCF7CE /* Net.m */,
+				183508922080817500BCF7CE /* ResultModel */,
 			);
 			path = Net;
+			sourceTree = "<group>";
+		};
+		183508922080817500BCF7CE /* ResultModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ResultModel;
 			sourceTree = "<group>";
 		};
 		188CC63C207F5430007D749E = {
@@ -96,6 +107,8 @@
 				188CC653207F5431007D749E /* LaunchScreen.storyboard */,
 				188CC656207F5431007D749E /* Info.plist */,
 				188CC657207F5431007D749E /* main.m */,
+				18350894208086DE00BCF7CE /* UIViewExt.h */,
+				18350893208086DE00BCF7CE /* UIViewExt.m */,
 				18350891208059ED00BCF7CE /* PrefixHeader.pch */,
 			);
 			path = NSMall;
@@ -248,6 +261,7 @@
 			files = (
 				188CC64D207F5431007D749E /* ViewController.m in Sources */,
 				188CC658207F5431007D749E /* main.m in Sources */,
+				18350895208086DE00BCF7CE /* UIViewExt.m in Sources */,
 				188CC64A207F5430007D749E /* AppDelegate.m in Sources */,
 				18350890207F653600BCF7CE /* Net.m in Sources */,
 			);
