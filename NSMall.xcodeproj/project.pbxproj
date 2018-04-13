@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		18350890207F653600BCF7CE /* Net.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835088F207F653600BCF7CE /* Net.m */; };
 		18350895208086DE00BCF7CE /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 18350893208086DE00BCF7CE /* UIViewExt.m */; };
+		1835089920808CCD00BCF7CE /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835089820808CCD00BCF7CE /* Common.m */; };
 		188CC64A207F5430007D749E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 188CC649207F5430007D749E /* AppDelegate.m */; };
 		188CC64D207F5431007D749E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188CC64C207F5431007D749E /* ViewController.m */; };
 		188CC650207F5431007D749E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188CC64E207F5431007D749E /* Main.storyboard */; };
@@ -25,6 +26,8 @@
 		18350891208059ED00BCF7CE /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		18350893208086DE00BCF7CE /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
 		18350894208086DE00BCF7CE /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
+		1835089720808CCD00BCF7CE /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		1835089820808CCD00BCF7CE /* Common.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
 		188CC645207F5430007D749E /* NSMall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSMall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188CC648207F5430007D749E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		188CC649207F5430007D749E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -75,6 +78,15 @@
 			path = ResultModel;
 			sourceTree = "<group>";
 		};
+		1835089620808CAA00BCF7CE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				1835089720808CCD00BCF7CE /* Common.h */,
+				1835089820808CCD00BCF7CE /* Common.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		188CC63C207F5430007D749E = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +119,7 @@
 				188CC653207F5431007D749E /* LaunchScreen.storyboard */,
 				188CC656207F5431007D749E /* Info.plist */,
 				188CC657207F5431007D749E /* main.m */,
+				1835089620808CAA00BCF7CE /* Common */,
 				18350894208086DE00BCF7CE /* UIViewExt.h */,
 				18350893208086DE00BCF7CE /* UIViewExt.m */,
 				18350891208059ED00BCF7CE /* PrefixHeader.pch */,
@@ -259,6 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1835089920808CCD00BCF7CE /* Common.m in Sources */,
 				188CC64D207F5431007D749E /* ViewController.m in Sources */,
 				188CC658207F5431007D749E /* main.m in Sources */,
 				18350895208086DE00BCF7CE /* UIViewExt.m in Sources */,
