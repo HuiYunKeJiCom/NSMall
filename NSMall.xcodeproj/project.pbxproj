@@ -22,6 +22,7 @@
 		184DE7A6208F081400E776F3 /* ADLMyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7A5208F081400E776F3 /* ADLMyInfoTableViewCell.m */; };
 		184DE7A9208F088E00E776F3 /* BaseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7A7208F088E00E776F3 /* BaseTableCell.m */; };
 		184DE7AC208F08B400E776F3 /* BaseRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7AB208F08B300E776F3 /* BaseRefreshGifHeader.m */; };
+		1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD6F208F0DD00094A594 /* NetBaseModel.m */; };
 		188CC64A207F5430007D749E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 188CC649207F5430007D749E /* AppDelegate.m */; };
 		188CC64D207F5431007D749E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188CC64C207F5431007D749E /* ViewController.m */; };
 		188CC650207F5431007D749E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188CC64E207F5431007D749E /* Main.storyboard */; };
@@ -82,6 +83,8 @@
 		184DE7A8208F088E00E776F3 /* BaseTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableCell.h; sourceTree = "<group>"; };
 		184DE7AA208F08B300E776F3 /* BaseRefreshGifHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRefreshGifHeader.h; sourceTree = "<group>"; };
 		184DE7AB208F08B300E776F3 /* BaseRefreshGifHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRefreshGifHeader.m; sourceTree = "<group>"; };
+		1851CD6E208F0DD00094A594 /* NetBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetBaseModel.h; sourceTree = "<group>"; };
+		1851CD6F208F0DD00094A594 /* NetBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetBaseModel.m; sourceTree = "<group>"; };
 		188CC645207F5430007D749E /* NSMall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSMall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188CC648207F5430007D749E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		188CC649207F5430007D749E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -253,6 +256,8 @@
 		183508922080817500BCF7CE /* ResultModel */ = {
 			isa = PBXGroup;
 			children = (
+				1851CD6E208F0DD00094A594 /* NetBaseModel.h */,
+				1851CD6F208F0DD00094A594 /* NetBaseModel.m */,
 			);
 			path = ResultModel;
 			sourceTree = "<group>";
@@ -600,6 +605,7 @@
 				188CC658207F5431007D749E /* main.m in Sources */,
 				18350895208086DE00BCF7CE /* UIViewExt.m in Sources */,
 				18DD1565208DCA000006475D /* UIBarButtonItem+DCBarButtonItem.m in Sources */,
+				1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */,
 				188CC64A207F5430007D749E /* AppDelegate.m in Sources */,
 				18DD1588208DEA960006475D /* ADLMyInfoModel.m in Sources */,
 				184DE7A6208F081400E776F3 /* ADLMyInfoTableViewCell.m in Sources */,

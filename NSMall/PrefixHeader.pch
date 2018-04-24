@@ -86,7 +86,8 @@ YYModelEqualImplementation\
 #define ALog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
 
 
-
+#import "Common.h"
+#import "NetBaseModel.h"
 #import "YYModel.h"
 #import "YYWebImage.h"
 #import "YYCategories.h"
