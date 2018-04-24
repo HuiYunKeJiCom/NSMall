@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "NSLoginController.h"
+#import "DCTabBarController.h"
 
 @interface AppDelegate ()
 
@@ -17,7 +19,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    [self setUpRootVC]; //跟控制器判断
+    [self.window makeKeyAndVisible];
+    
     return YES;
+}
+
+#pragma mark - 根控制器
+- (void)setUpRootVC
+{
+//    self.window.rootViewController = [[NSLoginController alloc] init];
+    self.window.rootViewController = [[DCTabBarController alloc] init];
 }
 
 
@@ -45,6 +59,29 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - private methord
+
+-(NSString *)showText:(NSString *)key
+{
+    
+    NSArray *languages = [NSLocale preferredLanguages];
+    NSString *currentLanguage = [languages objectAtIndex:0];
+    
+    NSString *localizableName ;
+    
+    if ([currentLanguage isEqualToString:@"zh-Hans-CN"]) {
+        
+        localizableName = @"Localizable_cn";
+        
+    } else {
+        
+        localizableName = @"Localizable_en";
+    }
+    
+    NSString *string  = NSLocalizedStringFromTable(key ,localizableName,  nil);
+    return  string;
 }
 
 
