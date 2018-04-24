@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "AFNetWorking.h"
 
+static const NSString * const NetNullStr = @"";
+
 extern AFHTTPSessionManager *httpManager;
 
 @interface Net : NSObject
