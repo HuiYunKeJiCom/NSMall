@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181D4A87208DC4EB00FA29E4 /* NetBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 181D4A86208DC4EB00FA29E4 /* NetBaseModel.m */; };
 		18350890207F653600BCF7CE /* Net.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835088F207F653600BCF7CE /* Net.m */; };
 		18350895208086DE00BCF7CE /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 18350893208086DE00BCF7CE /* UIViewExt.m */; };
 		1835089920808CCD00BCF7CE /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835089820808CCD00BCF7CE /* Common.m */; };
@@ -21,6 +22,8 @@
 
 /* Begin PBXFileReference section */
 		162AA1D6179FA2D4019BE742 /* Pods-NSMall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSMall.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NSMall/Pods-NSMall.debug.xcconfig"; sourceTree = "<group>"; };
+		181D4A85208DC4EB00FA29E4 /* NetBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetBaseModel.h; sourceTree = "<group>"; };
+		181D4A86208DC4EB00FA29E4 /* NetBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetBaseModel.m; sourceTree = "<group>"; };
 		1835088E207F653600BCF7CE /* Net.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Net.h; sourceTree = "<group>"; };
 		1835088F207F653600BCF7CE /* Net.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Net.m; sourceTree = "<group>"; };
 		18350891208059ED00BCF7CE /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -74,6 +77,8 @@
 		183508922080817500BCF7CE /* ResultModel */ = {
 			isa = PBXGroup;
 			children = (
+				181D4A85208DC4EB00FA29E4 /* NetBaseModel.h */,
+				181D4A86208DC4EB00FA29E4 /* NetBaseModel.m */,
 			);
 			path = ResultModel;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 				1835089920808CCD00BCF7CE /* Common.m in Sources */,
 				188CC64D207F5431007D749E /* ViewController.m in Sources */,
 				188CC658207F5431007D749E /* main.m in Sources */,
+				181D4A87208DC4EB00FA29E4 /* NetBaseModel.m in Sources */,
 				18350895208086DE00BCF7CE /* UIViewExt.m in Sources */,
 				188CC64A207F5430007D749E /* AppDelegate.m in Sources */,
 				18350890207F653600BCF7CE /* Net.m in Sources */,
