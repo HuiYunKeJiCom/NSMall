@@ -153,6 +153,9 @@
 
 #pragma mark - <UITabBarControllerDelegate>
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    
+    NSLog(@"viewController = %@",viewController);
+    
     //点击tabBarItem动画
     [self tabBarButtonClick:[self getTabBarButton]];
 //    if ([self.childViewControllers.firstObject isEqual:viewController]) { //根据tabBar的内存地址找到美信发通知jump
@@ -176,6 +179,7 @@
 #pragma mark - 点击动画
 - (void)tabBarButtonClick:(UIControl *)tabBarButton
 {
+    NSLog(@"点击了tabBarButton = %.2f",tabBarButton.x);
     for (UIView *imageView in tabBarButton.subviews) {
         if ([imageView isKindOfClass:NSClassFromString(@"UITabBarSwappableImageView")]) {
             //需要实现的帧动画,这里根据自己需求改动
@@ -208,7 +212,7 @@
     int i = 0;
     for (UITabBarItem *item in self.tabBarItems) {
         
-        if (i == 3) {  // 只在美信上添加
+        if (i == 3) {  // 只在消息上添加
             [self addBadgeViewWithBadgeValue:item.badgeValue atIndex:i];
             // 监听item的变化情况
             [item addObserver:self forKeyPath:@"badgeValue" options:NSKeyValueObservingOptionNew context:nil];

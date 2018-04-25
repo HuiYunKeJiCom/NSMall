@@ -8,6 +8,7 @@
 
 #import "ADLMyInfoTableView.h"
 #import "ADLMyInfoTableViewCell.h"
+#import "NSCustomHeadCell.h"//头像cell
 //#import "ADLMyInfoTableViewFooterCell.h"
 
 @interface ADLMyInfoTableView ()
@@ -29,6 +30,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(indexPath.section == 0){
+        NSCustomHeadCell *customCell = [tableView dequeueReusableCellWithIdentifier:@"NSCustomHeadCell"];
+        
+        if (!customCell) {
+            customCell = [[NSCustomHeadCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSCustomHeadCell"];
+            customCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        return customCell;
+    }else{
         ADLMyInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ADLMyInfoTableViewCell"];
         
         if (!cell) {
@@ -36,23 +46,28 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        if (self.data.count > indexPath.section) {
-            ADLMyInfoModel *infoModel = [self.data objectAtIndex:indexPath.section];
+        if (self.data.count > indexPath.section-1) {
+            ADLMyInfoModel *infoModel = [self.data objectAtIndex:indexPath.section-1];
             cell.myInfoModel = infoModel;
         }
         return cell;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 115*0.5;
+    if(indexPath.section == 0){
+        return 288*0.5;
+    }else{
+        return 144*0.5;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if(section == 0){
-        return 0;
-    }else{
+    if(section == 1 || section == 2 || section == 6){
         return 30*0.5;
+    }else{
+        return 0;
     }
 }
 
@@ -65,14 +80,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if(section == 0){
-        return GetScaleWidth(90);
-    }else if(section == 4){
-        return 85;
-    }
-    else{
      return 0.01f;
-    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {

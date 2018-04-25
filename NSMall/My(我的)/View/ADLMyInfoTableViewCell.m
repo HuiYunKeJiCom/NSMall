@@ -91,7 +91,7 @@
 - (UIImageView *)arrowImgView {
     
     if (!_arrowImgView) {
-        _arrowImgView = [[UIImageView alloc] initWithImage:IMAGE(@"ico_home_back_black")];
+        _arrowImgView = [[UIImageView alloc] initWithImage:IMAGE(@"my_ico_right_arrow")];
     }
     
     return _arrowImgView;
@@ -126,31 +126,30 @@
     [self.contentView addSubview:self.numLb];
     [self.contentView addSubview:self.arrowImgView];
     [self.contentView addSubview:self.bottomLineView];
-    
 }
 
 - (void)makeConstraints {
     
     WEAKSELF
     [self.leftImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.contentView).with.offset(15);
+        make.left.equalTo(weakSelf.contentView).with.offset(GetScaleWidth(29));
         make.centerY.equalTo(weakSelf.contentView);
-        make.size.mas_equalTo(CGSizeMake(75*0.5, 75*0.5));
+        make.size.mas_equalTo(CGSizeMake(60*0.5, 60*0.5));
     }];
     
     [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.leftImgView.mas_right).with.offset(10);
+        make.left.equalTo(weakSelf.leftImgView.mas_right).with.offset(GetScaleWidth(10));
         make.centerY.equalTo(weakSelf.contentView);
     }];
     
     [self.arrowImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(weakSelf.contentView).with.offset(-15);
+        make.right.equalTo(weakSelf.contentView).with.offset(-GetScaleWidth(27));
         make.centerY.equalTo(weakSelf.contentView);
-        make.size.mas_equalTo(CGSizeMake(40*0.5, 40*0.5));
+        make.size.mas_equalTo(CGSizeMake(16*0.5, 28*0.5));
     }];
     
     [self.numLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(weakSelf.arrowImgView.mas_left).with.offset(-10);
+        make.right.equalTo(weakSelf.arrowImgView.mas_left).with.offset(-GetScaleWidth(10));
         make.centerY.equalTo(weakSelf.contentView);
     }];
     
