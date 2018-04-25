@@ -16,6 +16,12 @@
 		18230F7F208D821A00D3E55F /* NSLImageField.m in Sources */ = {isa = PBXBuildFile; fileRef = 18230F7E208D821A00D3E55F /* NSLImageField.m */; };
 		18230F83208D8AA000D3E55F /* UILabel+LBExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 18230F82208D8A9F00D3E55F /* UILabel+LBExt.m */; };
 		18230F86208D8D7B00D3E55F /* UIView+animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18230F85208D8D7B00D3E55F /* UIView+animation.m */; };
+		182DC48C20905A240066E667 /* PublishMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DC48720905A230066E667 /* PublishMenuButton.m */; };
+		182DC48D20905A240066E667 /* XWPopMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DC48920905A230066E667 /* XWPopMenuController.m */; };
+		182DC48E20905A240066E667 /* UIImage+XW.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DC48B20905A230066E667 /* UIImage+XW.m */; };
+		182DC49120905E3C0066E667 /* ADOrderTopToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DC49020905E3C0066E667 /* ADOrderTopToolView.m */; };
+		182DC49520905EC60066E667 /* NSPersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DC49420905EC60066E667 /* NSPersonInfoViewController.m */; };
+		182DC49B209061610066E667 /* NSPersonInfoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DC49A209061610066E667 /* NSPersonInfoTableView.m */; };
 		18350890207F653600BCF7CE /* Net.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835088F207F653600BCF7CE /* Net.m */; };
 		18350895208086DE00BCF7CE /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 18350893208086DE00BCF7CE /* UIViewExt.m */; };
 		1835089920808CCD00BCF7CE /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835089820808CCD00BCF7CE /* Common.m */; };
@@ -30,6 +36,7 @@
 		188CC652207F5431007D749E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188CC651207F5431007D749E /* Assets.xcassets */; };
 		188CC655207F5431007D749E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188CC653207F5431007D749E /* LaunchScreen.storyboard */; };
 		188CC658207F5431007D749E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 188CC657207F5431007D749E /* main.m */; };
+		18CBB3AB20907AD300358E07 /* NSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CBB3AA20907AD300358E07 /* NSTabBarController.m */; };
 		18D71042208DC84C002BA6CD /* DCTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7103C208DC84C002BA6CD /* DCTabBarController.m */; };
 		18D71043208DC84C002BA6CD /* DCBaseSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7103D208DC84C002BA6CD /* DCBaseSetViewController.m */; };
 		18D71044208DC84C002BA6CD /* DCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7103E208DC84C002BA6CD /* DCNavigationController.m */; };
@@ -71,6 +78,18 @@
 		18230F82208D8A9F00D3E55F /* UILabel+LBExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+LBExt.m"; sourceTree = "<group>"; };
 		18230F84208D8D7B00D3E55F /* UIView+animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+animation.h"; sourceTree = "<group>"; };
 		18230F85208D8D7B00D3E55F /* UIView+animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+animation.m"; sourceTree = "<group>"; };
+		182DC48620905A230066E667 /* XWPopMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWPopMenuController.h; sourceTree = "<group>"; };
+		182DC48720905A230066E667 /* PublishMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishMenuButton.m; sourceTree = "<group>"; };
+		182DC48820905A230066E667 /* UIImage+XW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+XW.h"; sourceTree = "<group>"; };
+		182DC48920905A230066E667 /* XWPopMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWPopMenuController.m; sourceTree = "<group>"; };
+		182DC48A20905A230066E667 /* PublishMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishMenuButton.h; sourceTree = "<group>"; };
+		182DC48B20905A230066E667 /* UIImage+XW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+XW.m"; sourceTree = "<group>"; };
+		182DC48F20905E3C0066E667 /* ADOrderTopToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADOrderTopToolView.h; sourceTree = "<group>"; };
+		182DC49020905E3C0066E667 /* ADOrderTopToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADOrderTopToolView.m; sourceTree = "<group>"; };
+		182DC49320905EC60066E667 /* NSPersonInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSPersonInfoViewController.h; sourceTree = "<group>"; };
+		182DC49420905EC60066E667 /* NSPersonInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSPersonInfoViewController.m; sourceTree = "<group>"; };
+		182DC499209061610066E667 /* NSPersonInfoTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSPersonInfoTableView.h; sourceTree = "<group>"; };
+		182DC49A209061610066E667 /* NSPersonInfoTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSPersonInfoTableView.m; sourceTree = "<group>"; };
 		1835088E207F653600BCF7CE /* Net.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Net.h; sourceTree = "<group>"; };
 		1835088F207F653600BCF7CE /* Net.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Net.m; sourceTree = "<group>"; };
 		18350891208059ED00BCF7CE /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -98,6 +117,8 @@
 		188CC654207F5431007D749E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		188CC656207F5431007D749E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		188CC657207F5431007D749E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		18CBB3A920907AD300358E07 /* NSTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTabBarController.h; sourceTree = "<group>"; };
+		18CBB3AA20907AD300358E07 /* NSTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSTabBarController.m; sourceTree = "<group>"; };
 		18D71039208DC84C002BA6CD /* DCTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTabBarController.h; sourceTree = "<group>"; };
 		18D7103A208DC84C002BA6CD /* DCBaseSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCBaseSetViewController.h; sourceTree = "<group>"; };
 		18D7103B208DC84C002BA6CD /* DCNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCNavigationController.h; sourceTree = "<group>"; };
@@ -246,6 +267,54 @@
 			path = Ctrl;
 			sourceTree = "<group>";
 		};
+		182DC48520905A230066E667 /* XWPopMenu */ = {
+			isa = PBXGroup;
+			children = (
+				182DC48620905A230066E667 /* XWPopMenuController.h */,
+				182DC48920905A230066E667 /* XWPopMenuController.m */,
+				182DC48A20905A230066E667 /* PublishMenuButton.h */,
+				182DC48720905A230066E667 /* PublishMenuButton.m */,
+				182DC48820905A230066E667 /* UIImage+XW.h */,
+				182DC48B20905A230066E667 /* UIImage+XW.m */,
+			);
+			path = XWPopMenu;
+			sourceTree = "<group>";
+		};
+		182DC49220905E690066E667 /* PersonInfo(个人信息) */ = {
+			isa = PBXGroup;
+			children = (
+				182DC498209061270066E667 /* Ctrl */,
+				182DC497209061200066E667 /* Model */,
+				182DC496209061190066E667 /* View */,
+			);
+			path = "PersonInfo(个人信息)";
+			sourceTree = "<group>";
+		};
+		182DC496209061190066E667 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				182DC499209061610066E667 /* NSPersonInfoTableView.h */,
+				182DC49A209061610066E667 /* NSPersonInfoTableView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		182DC497209061200066E667 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		182DC498209061270066E667 /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				182DC49320905EC60066E667 /* NSPersonInfoViewController.h */,
+				182DC49420905EC60066E667 /* NSPersonInfoViewController.m */,
+			);
+			path = Ctrl;
+			sourceTree = "<group>";
+		};
 		1835088D207F651F00BCF7CE /* Net */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,6 +374,7 @@
 		188CC647207F5430007D749E /* NSMall */ = {
 			isa = PBXGroup;
 			children = (
+				182DC48520905A230066E667 /* XWPopMenu */,
 				18DD1574208DD3810006475D /* Publish(发布) */,
 				18DD1573208DD3740006475D /* My(我的) */,
 				18DD1572208DD35A0006475D /* Message(消息) */,
@@ -350,6 +420,8 @@
 				18D7103D208DC84C002BA6CD /* DCBaseSetViewController.m */,
 				18D7103B208DC84C002BA6CD /* DCNavigationController.h */,
 				18D7103E208DC84C002BA6CD /* DCNavigationController.m */,
+				18CBB3A920907AD300358E07 /* NSTabBarController.h */,
+				18CBB3AA20907AD300358E07 /* NSTabBarController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -357,6 +429,8 @@
 		18D7103F208DC84C002BA6CD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				182DC48F20905E3C0066E667 /* ADOrderTopToolView.h */,
+				182DC49020905E3C0066E667 /* ADOrderTopToolView.m */,
 				18D71040208DC84C002BA6CD /* DCTabBadgeView.h */,
 				18D71041208DC84C002BA6CD /* DCTabBadgeView.m */,
 			);
@@ -411,6 +485,7 @@
 		18DD1573208DD3740006475D /* My(我的) */ = {
 			isa = PBXGroup;
 			children = (
+				182DC49220905E690066E667 /* PersonInfo(个人信息) */,
 				1851CD74208F10000094A594 /* Ctrl */,
 				18DD1582208DEA780006475D /* Model */,
 				18DD1581208DEA700006475D /* View */,
@@ -602,24 +677,30 @@
 				18D71044208DC84C002BA6CD /* DCNavigationController.m in Sources */,
 				184DE7A9208F088E00E776F3 /* BaseTableCell.m in Sources */,
 				18D71045208DC84C002BA6CD /* DCTabBadgeView.m in Sources */,
+				182DC48C20905A240066E667 /* PublishMenuButton.m in Sources */,
 				18230F73208D7D3600D3E55F /* NSString+wrapper.m in Sources */,
 				18DD157A208DD5AA0006475D /* NSMessageViewController.m in Sources */,
 				18230F66208D793F00D3E55F /* BaseViewCtrl.m in Sources */,
+				182DC49120905E3C0066E667 /* ADOrderTopToolView.m in Sources */,
 				18230F7F208D821A00D3E55F /* NSLImageField.m in Sources */,
 				188CC64D207F5431007D749E /* ViewController.m in Sources */,
 				18D71043208DC84C002BA6CD /* DCBaseSetViewController.m in Sources */,
 				18D71042208DC84C002BA6CD /* DCTabBarController.m in Sources */,
 				18230F6F208D7A2D00D3E55F /* UIView+Frame.m in Sources */,
+				182DC48E20905A240066E667 /* UIImage+XW.m in Sources */,
 				18DD158B208DEAD80006475D /* BaseTableView.m in Sources */,
 				18DD156D208DCF3F0006475D /* NSHomePageViewController.m in Sources */,
 				18230F7C208D808300D3E55F /* NSLoginView.m in Sources */,
 				18DD1562208DC9AB0006475D /* GQGesVCTransition.m in Sources */,
+				182DC49B209061610066E667 /* NSPersonInfoTableView.m in Sources */,
 				18230F76208D7F8300D3E55F /* NSLoginController.m in Sources */,
 				188CC658207F5431007D749E /* main.m in Sources */,
 				18350895208086DE00BCF7CE /* UIViewExt.m in Sources */,
 				18DD1565208DCA000006475D /* UIBarButtonItem+DCBarButtonItem.m in Sources */,
 				1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */,
 				188CC64A207F5430007D749E /* AppDelegate.m in Sources */,
+				182DC49520905EC60066E667 /* NSPersonInfoViewController.m in Sources */,
+				182DC48D20905A240066E667 /* XWPopMenuController.m in Sources */,
 				18DD1588208DEA960006475D /* ADLMyInfoModel.m in Sources */,
 				1851CD77208F23530094A594 /* NSCustomHeadCell.m in Sources */,
 				184DE7A6208F081400E776F3 /* ADLMyInfoTableViewCell.m in Sources */,
@@ -629,6 +710,7 @@
 				18DD1585208DEA8D0006475D /* ADLMyInfoTableView.m in Sources */,
 				18230F86208D8D7B00D3E55F /* UIView+animation.m in Sources */,
 				184DE7AC208F08B400E776F3 /* BaseRefreshGifHeader.m in Sources */,
+				18CBB3AB20907AD300358E07 /* NSTabBarController.m in Sources */,
 				18DD1580208DD6BC0006475D /* NSPublishViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

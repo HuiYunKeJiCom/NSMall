@@ -8,10 +8,15 @@
 
 #import "AppDelegate.h"
 #import "NSLoginController.h"
-#import "DCTabBarController.h"
+#import "CYLTabBarController.h"
+#import "NSHomePageViewController.h"//首页
+#import "NSNearbyViewController.h"//附近
+#import "NSMyCenterViewController.h"//我的
+#import "NSMessageViewController.h"//消息
 
-@interface AppDelegate ()
-
+@interface AppDelegate ()<CYLPlusButtonSubclassing>
+/** tabbar */
+@property(nonatomic,strong)CYLTabBarController *tabBarController;
 @end
 
 @implementation AppDelegate
@@ -22,6 +27,7 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self setUpRootVC]; //跟控制器判断
+    [CYLPlusButton registerPlusButton];
     [self.window makeKeyAndVisible];
     
     return YES;
@@ -30,8 +36,79 @@
 #pragma mark - 根控制器
 - (void)setUpRootVC
 {
+    [self customizeTabBarForController:self.tabBarController];
+    [self setupViewControllers];
 //    self.window.rootViewController = [[NSLoginController alloc] init];
-    self.window.rootViewController = [[DCTabBarController alloc] init];
+    [self.window setRootViewController:self.tabBarController];
+}
+
+//设置数组
+- (void)setupViewControllers {
+    
+    NSHomePageViewController *firstViewController = [[NSHomePageViewController alloc] init];
+    UIViewController *firstNavigationController = [[UINavigationController alloc]
+                                                   initWithRootViewController:firstViewController];
+    
+    NSNearbyViewController *secondViewController = [[NSNearbyViewController alloc] init];
+    UIViewController *secondNavigationController = [[UINavigationController alloc]
+                                                    initWithRootViewController:secondViewController];
+    NSMessageViewController *thirdViewController = [[NSMessageViewController alloc] init];
+    UIViewController *thirdNavigationController = [[UINavigationController alloc]
+                                                   initWithRootViewController:thirdViewController];
+    
+    NSMyCenterViewController *fourthViewController = [[NSMyCenterViewController alloc] init];
+    UIViewController *fourthNavigationController = [[UINavigationController alloc]
+                                                    initWithRootViewController:fourthViewController];
+    
+    CYLTabBarController *tabBarController = [[CYLTabBarController alloc] init];
+    [self customizeTabBarForController:tabBarController];
+    
+    [tabBarController setViewControllers:@[
+                                           firstNavigationController,
+                                           secondNavigationController,
+                                           thirdNavigationController,
+                                           fourthNavigationController,
+                                           ]];
+    self.tabBarController = tabBarController;
+}
+
+
+/*
+ *
+ 在`-setViewControllers:`之前设置TabBar的属性，
+ *
+ */
+- (void)customizeTabBarForController:(CYLTabBarController *)tabBarController {
+    
+    NSDictionary *dict1 = @{
+                            CYLTabBarItemTitle : @"首页",
+                            CYLTabBarItemImage : @"main_ico_home",
+                            CYLTabBarItemSelectedImage : @"main_ico_home_selected",
+                            };
+    NSDictionary *dict2 = @{
+                            CYLTabBarItemTitle : @"附近",
+                            CYLTabBarItemImage : @"main_ico_nearby",
+                            CYLTabBarItemSelectedImage : @"main_ico_nearby_selected",
+                            };
+    NSDictionary *dict3 = @{
+                            CYLTabBarItemTitle : @"消息",
+                            CYLTabBarItemImage : @"main_ico_message",
+                            CYLTabBarItemSelectedImage : @"main_ico_message_selected",
+                            };
+    NSDictionary *dict4 = @{
+                            CYLTabBarItemTitle : @"我的",
+                            CYLTabBarItemImage : @"main_ico_myinfo",
+                            CYLTabBarItemSelectedImage : @"main_ico_myinfo_selected",
+                            };
+    
+    
+    //    @{MallClassKey  : @"XWPopMenuController",
+    //      MallTitleKey  : @"发布",
+    //      MallImgKey    : @"main_ico_add",
+    //      MallSelImgKey : @"main_ico_add"},
+    
+    NSArray *tabBarItemsAttributes = @[ dict1, dict2,dict3,dict4 ];
+    tabBarController.tabBarItemsAttributes = tabBarItemsAttributes;
 }
 
 

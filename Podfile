@@ -54,7 +54,7 @@ pod 'Masonry'
 
 pod 'JKCountDownButton'
 
-
+pod 'CYLTabBarController','~>1.17.6'
 
 
 

@@ -14,8 +14,9 @@
 #import "NSNearbyViewController.h"//附近
 #import "NSMyCenterViewController.h"//我的
 #import "NSMessageViewController.h"//消息
-#import "NSPublishViewController.h"//发布
+//#import "NSPublishViewController.h"//发布
 
+#import "XWPopMenuController.h"//发布
 // Views
 #import "DCTabBadgeView.h"
 // Vendors
@@ -92,7 +93,7 @@
                               MallImgKey    : @"main_ico_nearby",
                               MallSelImgKey : @"main_ico_nearby_selected"},
 
-                            @{MallClassKey  : @"NSPublishViewController",
+                            @{MallClassKey  : @"XWPopMenuController",
                               MallTitleKey  : @"发布",
                               MallImgKey    : @"main_ico_add",
                               MallSelImgKey : @"main_ico_add"},
@@ -112,17 +113,28 @@
         
         UIViewController *vc = [NSClassFromString(dict[MallClassKey]) new];
         DCNavigationController *nav = [[DCNavigationController alloc] initWithRootViewController:vc];
-        UITabBarItem *item = nav.tabBarItem;
-        item.image = [UIImage imageNamed:dict[MallImgKey]];
-        item.image = [item.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        item.selectedImage = [[UIImage imageNamed:dict[MallSelImgKey]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        item.title = dict[MallTitleKey];
-        if([item.title isEqualToString:@"发布"]){
+        
+        if([dict[MallTitleKey] isEqualToString:@"发布"]){
+            UITabBarItem *item = nav.tabBarItem;
+            item.image = [UIImage imageNamed:dict[MallImgKey]];
+            item.image = [item.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            item.selectedImage = [[UIImage imageNamed:dict[MallSelImgKey]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            item.title = dict[MallTitleKey];
             item.imageInsets = UIEdgeInsetsMake(-40, 0,0, 0);//（当只有图片的时候）需要自动调整
+            [item setTitlePositionAdjustment:UIOffsetMake(0,0)];
         }else{
-            item.imageInsets = UIEdgeInsetsMake(-4, 0,0, 0);//（当只有图片的时候）需要自动调整
+            UITabBarItem *item = nav.tabBarItem;
+            item.image = [UIImage imageNamed:dict[MallImgKey]];
+            item.image = [item.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            item.selectedImage = [[UIImage imageNamed:dict[MallSelImgKey]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            item.title = dict[MallTitleKey];
+//            if([item.title isEqualToString:@"发布"]){
+//                item.imageInsets = UIEdgeInsetsMake(-40, 0,0, 0);//（当只有图片的时候）需要自动调整
+//            }else{
+                item.imageInsets = UIEdgeInsetsMake(-4, 0,0, 0);//（当只有图片的时候）需要自动调整
+//            }
+            [item setTitlePositionAdjustment:UIOffsetMake(0,0)];
         }
-        [item setTitlePositionAdjustment:UIOffsetMake(0,0)];
         
         [self addChildViewController:nav];
 //        WEAKSELF
@@ -154,7 +166,9 @@
 #pragma mark - <UITabBarControllerDelegate>
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
     
-    NSLog(@"viewController = %@",viewController);
+//    NSLog(@"viewController = %@",[[(DCNavigationController *)viewController topViewController] className]);
+    
+    
     
     //点击tabBarItem动画
     [self tabBarButtonClick:[self getTabBarButton]];
@@ -209,17 +223,20 @@
     // 设置初始的badegValue
 //    _beautyMsgVc.tabBarItem.badgeValue = [DCObjManager dc_readUserDataForKey:@"isLogin"];
     
-    int i = 0;
-    for (UITabBarItem *item in self.tabBarItems) {
-        
-        if (i == 3) {  // 只在消息上添加
-            [self addBadgeViewWithBadgeValue:item.badgeValue atIndex:i];
+//    int i = 0;
+//    for (UITabBarItem *item in self.tabBarItems) {
+    
+//    NSLog(@"self.tabBarItems.count = %lu",self.tabBarItems.count);
+        if (self.tabBarItems.count > 0) {
+            UITabBarItem *item = self.tabBarItems[3];
+            // 只在消息上添加
+            [self addBadgeViewWithBadgeValue:item.badgeValue atIndex:3];
             // 监听item的变化情况
             [item addObserver:self forKeyPath:@"badgeValue" options:NSKeyValueObservingOptionNew context:nil];
             _item = item;
         }
-        i++;
-    }
+//        i++;
+//    }
 }
 
 - (void)addBadgeViewWithBadgeValue:(NSString *)badgeValue atIndex:(NSInteger)index {

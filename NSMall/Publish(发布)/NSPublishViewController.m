@@ -29,6 +29,7 @@
 }
 
 -(void)createUI{
+    
     self.onLineGoods  = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.onLineGoods addTarget:self action:@selector(getGoodsOrShop:) forControlEvents:UIControlEventTouchUpInside];
     self.onLineGoods.left = GetScaleWidth(65);

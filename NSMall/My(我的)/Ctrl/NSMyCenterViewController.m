@@ -7,6 +7,7 @@
 //
 
 #import "NSMyCenterViewController.h"
+#import "NSPersonInfoViewController.h"
 #import "ADLMyInfoTableView.h"
 
 @interface NSMyCenterViewController ()<ADLMyInfoTableViewDelegate>
@@ -78,6 +79,9 @@
     switch (index) {
         case 0:{
             NSLog(@"点击了头像");
+            //跳转至个人信息
+            NSPersonInfoViewController *personInfoVC = [[NSPersonInfoViewController alloc]init];
+            [self.navigationController pushViewController:personInfoVC animated:YES];
         }
             break;
         case 1:{
