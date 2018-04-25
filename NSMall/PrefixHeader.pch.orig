@@ -86,8 +86,9 @@ YYModelEqualImplementation\
 #define ALog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
 
 
-#import "Common.h"
+#define NetDomainADDR @""
 #import "NetBaseModel.h"
+
 #import "YYModel.h"
 #import "YYWebImage.h"
 #import "YYCategories.h"
@@ -105,6 +106,7 @@ YYModelEqualImplementation\
 #import "UIColor+Hex.h"
 #import "Colours.h"
 
+<<<<<<< HEAD
 #import "Global.h"
 #import "DCSpeedy.h"
 #import "GlobalColor.h"
@@ -113,9 +115,11 @@ YYModelEqualImplementation\
 #import "UILabel+LBExt.h"
 #import "UIView+animation.h"
 #import "UIView+DCRolling.h"
-#import "UIView+Frame.h"
 #import "BaseTableCell.h"
 #import <Masonry/Masonry.h>
+=======
+#import "Common.h"
+>>>>>>> Dev-CTO
 
 
 
