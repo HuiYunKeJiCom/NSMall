@@ -37,6 +37,18 @@
 
 @implementation DCTabBarController
 
++ (instancetype)sharedTabBarVC{
+    static DCTabBarController *sharedTabBarVC = nil;
+    if (!sharedTabBarVC) {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            sharedTabBarVC = [[DCTabBarController alloc]init];
+        });
+    }
+    return sharedTabBarVC;
+}
+
+
 #pragma mark - LazyLoad
 - (NSMutableArray *)tabBarItems {
     
