@@ -20,6 +20,10 @@
 /** 弱引用 */
 #define WEAKSELF __weak typeof(self) weakSelf = self;
 
+//屏幕的宽度，屏幕的高度
+#define kScreenHeight [[UIScreen mainScreen] bounds].size.height
+#define kScreenWidth  [[UIScreen mainScreen] bounds].size.width
+
 //屏幕宽度相对iPhone6屏幕宽度的比例
 #define kWidth_Iphone6_Scale    [UIScreen mainScreen].bounds.size.width/375.0
 
@@ -52,4 +56,11 @@ static inline BOOL IsEmpty(id thing) {
         
         && [(NSArray *)thing count] == 0);
 }
+
+#define k_UIColorFromRGB(rgbValue)\
+\
+[UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+blue:((float)(rgbValue & 0xFF))/255.0 \
+alpha:1.0]
 

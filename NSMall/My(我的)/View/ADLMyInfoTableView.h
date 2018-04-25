@@ -14,7 +14,7 @@
 @optional
 
 - (void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
+//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -25,6 +25,4 @@
 @property (strong , nonatomic)NSMutableArray<DCGridItem *> *orderItemArray;
 @property (strong,nonatomic) NSDictionary *personInfoDic;
 @property (assign,nonatomic) id<ADLMyInfoTableViewDelegate> tbDelegate;
-/** 收货地址 点击 查看 */
-@property (nonatomic, copy) dispatch_block_t viewBtnClickBlock;
 @end

@@ -94,15 +94,10 @@
     }
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    if (_tbDelegate && [_tbDelegate respondsToSelector:@selector(collectionView:didSelectItemAtIndexPath:)]) {
-        [_tbDelegate collectionView:collectionView didSelectItemAtIndexPath:indexPath];
-    }
-}
-
-#pragma mark - 查看 点击
-- (void)viewBtnButtonClick {
-    !_viewBtnClickBlock ? : _viewBtnClickBlock();
-}
+//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+//    if (_tbDelegate && [_tbDelegate respondsToSelector:@selector(collectionView:didSelectItemAtIndexPath:)]) {
+//        [_tbDelegate collectionView:collectionView didSelectItemAtIndexPath:indexPath];
+//    }
+//}
 
 @end
