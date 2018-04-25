@@ -31,7 +31,7 @@
 - (void)setUpRootVC
 {
 //    self.window.rootViewController = [[NSLoginController alloc] init];
-    self.window.rootViewController = [[DCTabBarController sharedTabBarVC];
+    self.window.rootViewController = [DCTabBarController sharedTabBarVC];
 }
 
 
