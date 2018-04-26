@@ -7,6 +7,7 @@
 //
 
 #import "DCTabBarCenterButton.h"
+#import "XWPopMenuController.h"
 
 @implementation DCTabBarCenterButton
 
@@ -28,7 +29,11 @@
 }
 
 - (void)centerBtnWasClicked:(id)sender{
-    DLog(@"点击了中央按钮，什么都没做")
+    DLog(@"点击了中央按钮，什么都没做");
+    
+    XWPopMenuController *vc = [[XWPopMenuController alloc]init];
+    
+    [[DCTabBarController sharedTabBarVC] presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)layoutSubviews{

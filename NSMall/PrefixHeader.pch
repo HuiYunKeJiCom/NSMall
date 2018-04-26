@@ -118,5 +118,6 @@ YYModelEqualImplementation\
 #import <Masonry/Masonry.h>
 
 
+#import "DCTabBarController.h"
 
 #endif /* PrefixHeader_pch */
