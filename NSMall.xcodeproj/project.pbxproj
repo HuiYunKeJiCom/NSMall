@@ -37,6 +37,7 @@
 		188CC655207F5431007D749E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188CC653207F5431007D749E /* LaunchScreen.storyboard */; };
 		188CC658207F5431007D749E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 188CC657207F5431007D749E /* main.m */; };
 		18CBB3AB20907AD300358E07 /* NSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CBB3AA20907AD300358E07 /* NSTabBarController.m */; };
+		18D092FE20917A1400E091E0 /* DCTabBarCenterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D092FD20917A1400E091E0 /* DCTabBarCenterButton.m */; };
 		18D71042208DC84C002BA6CD /* DCTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7103C208DC84C002BA6CD /* DCTabBarController.m */; };
 		18D71043208DC84C002BA6CD /* DCBaseSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7103D208DC84C002BA6CD /* DCBaseSetViewController.m */; };
 		18D71044208DC84C002BA6CD /* DCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7103E208DC84C002BA6CD /* DCNavigationController.m */; };
@@ -119,6 +120,8 @@
 		188CC657207F5431007D749E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18CBB3A920907AD300358E07 /* NSTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTabBarController.h; sourceTree = "<group>"; };
 		18CBB3AA20907AD300358E07 /* NSTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSTabBarController.m; sourceTree = "<group>"; };
+		18D092FC20917A1400E091E0 /* DCTabBarCenterButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCTabBarCenterButton.h; sourceTree = "<group>"; };
+		18D092FD20917A1400E091E0 /* DCTabBarCenterButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCTabBarCenterButton.m; sourceTree = "<group>"; };
 		18D71039208DC84C002BA6CD /* DCTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTabBarController.h; sourceTree = "<group>"; };
 		18D7103A208DC84C002BA6CD /* DCBaseSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCBaseSetViewController.h; sourceTree = "<group>"; };
 		18D7103B208DC84C002BA6CD /* DCNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCNavigationController.h; sourceTree = "<group>"; };
@@ -433,6 +436,8 @@
 				182DC49020905E3C0066E667 /* ADOrderTopToolView.m */,
 				18D71040208DC84C002BA6CD /* DCTabBadgeView.h */,
 				18D71041208DC84C002BA6CD /* DCTabBadgeView.m */,
+				18D092FC20917A1400E091E0 /* DCTabBarCenterButton.h */,
+				18D092FD20917A1400E091E0 /* DCTabBarCenterButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -672,7 +677,6 @@
 				18230F83208D8AA000D3E55F /* UILabel+LBExt.m in Sources */,
 				18DD157D208DD5F40006475D /* NSNearbyViewController.m in Sources */,
 				18DD1570208DD16A0006475D /* UIView+DCRolling.m in Sources */,
-                181D4A87208DC4EB00FA29E4 /* NetBaseModel.m in Sources */,
 				1835089920808CCD00BCF7CE /* Common.m in Sources */,
 				18DD1577208DD4140006475D /* NSMyCenterViewController.m in Sources */,
 				18D71044208DC84C002BA6CD /* DCNavigationController.m in Sources */,
@@ -691,12 +695,12 @@
 				182DC48E20905A240066E667 /* UIImage+XW.m in Sources */,
 				18DD158B208DEAD80006475D /* BaseTableView.m in Sources */,
 				18DD156D208DCF3F0006475D /* NSHomePageViewController.m in Sources */,
+				18D092FE20917A1400E091E0 /* DCTabBarCenterButton.m in Sources */,
 				18230F7C208D808300D3E55F /* NSLoginView.m in Sources */,
 				18DD1562208DC9AB0006475D /* GQGesVCTransition.m in Sources */,
 				182DC49B209061610066E667 /* NSPersonInfoTableView.m in Sources */,
 				18230F76208D7F8300D3E55F /* NSLoginController.m in Sources */,
 				188CC658207F5431007D749E /* main.m in Sources */,
-				181D4A87208DC4EB00FA29E4 /* NetBaseModel.m in Sources */,
 				18350895208086DE00BCF7CE /* UIViewExt.m in Sources */,
 				18DD1565208DCA000006475D /* UIBarButtonItem+DCBarButtonItem.m in Sources */,
 				1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */,

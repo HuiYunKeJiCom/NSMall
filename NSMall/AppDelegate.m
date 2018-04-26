@@ -14,6 +14,10 @@
 #import "NSMyCenterViewController.h"//我的
 #import "NSMessageViewController.h"//消息
 
+#import "DCTabBarController.h"
+#import "DCTabBarCenterButton.h"
+
+
 @interface AppDelegate ()<CYLPlusButtonSubclassing>
 /** tabbar */
 @property(nonatomic,strong)CYLTabBarController *tabBarController;
@@ -26,8 +30,8 @@
     // Override point for customization after application launch.
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    [DCTabBarCenterButton registerPlusButton];
     [self setUpRootVC]; //跟控制器判断
-    [CYLPlusButton registerPlusButton];
     [self.window makeKeyAndVisible];
     
     return YES;
@@ -36,10 +40,10 @@
 #pragma mark - 根控制器
 - (void)setUpRootVC
 {
-    [self customizeTabBarForController:self.tabBarController];
-    [self setupViewControllers];
+//    [self customizeTabBarForController:self.tabBarController];
+//    [self setupViewControllers];
 //    self.window.rootViewController = [[NSLoginController alloc] init];
-    [self.window setRootViewController:self.tabBarController];
+    [self.window setRootViewController:[DCTabBarController sharedTabBarVC]];
 }
 
 //设置数组
