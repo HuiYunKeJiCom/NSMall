@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CYLTabBarController.h"
 
-@interface DCTabBarController : UITabBarController
+@interface DCTabBarController : CYLTabBarController
 
 + (instancetype)sharedTabBarVC;//单例模式，直接取出可用
 

@@ -43,12 +43,42 @@
     if (!sharedTabBarVC) {
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            sharedTabBarVC = [[DCTabBarController alloc]init];
+            UIEdgeInsets imageInsets = UIEdgeInsetsZero;//UIEdgeInsetsMake(4.5, 0, -4.5, 0);
+            UIOffset titlePositionAdjustment = UIOffsetZero;//UIOffsetMake(0, MAXFLOAT);
+            static NSString *context = nil;
+            sharedTabBarVC = [self tabBarControllerWithViewControllers:[self ViewControllers] tabBarItemsAttributes:[self tabBarItemAttributes] imageInsets:imageInsets titlePositionAdjustment:titlePositionAdjustment context:context];
+            sharedTabBarVC.delegate = sharedTabBarVC;
         });
     }
     return sharedTabBarVC;
 }
 
++ (NSArray *)ViewControllers{
+    NSHomePageViewController *homeVC = [[NSHomePageViewController alloc]init];
+    UINavigationController *shellNav1 = [self.class shellNavOfViewController:homeVC title:@"首页"];
+    NSNearbyViewController *nearbyVC = [[NSNearbyViewController alloc]init];
+    UINavigationController *shellNav2 = [self.class shellNavOfViewController:nearbyVC title:@"发现"];
+    NSMessageViewController *messageVC = [[NSMessageViewController alloc]init];
+    UINavigationController *shellNav3 = [self.class shellNavOfViewController:messageVC title:@"商城"];
+    
+    NSMyCenterViewController *myCenterVC = [[NSMyCenterViewController alloc]init];
+    UINavigationController *shellNav4 = [self.class shellNavOfViewController:myCenterVC title:@"我"];
+    return @[shellNav1,shellNav2,shellNav3,shellNav4];
+}
+
++ (NSArray *)tabBarItemAttributes{
+    NSDictionary *format1 = @{CYLTabBarItemTitle:@"首页",CYLTabBarItemImage:kGetImage(@"main_ico_home"),CYLTabBarItemSelectedImage:@"main_ico_home_selected"};
+    NSDictionary *format2 = @{CYLTabBarItemTitle:@"附近",CYLTabBarItemImage:kGetImage(@"main_ico_nearby"),CYLTabBarItemSelectedImage:@"main_ico_nearby_selected"};
+    NSDictionary *format3 = @{CYLTabBarItemTitle:@"消息",CYLTabBarItemImage:kGetImage(@"main_ico_message"),CYLTabBarItemSelectedImage:@"main_ico_message_selected"};
+    NSDictionary *format4 = @{CYLTabBarItemTitle:@"我的",CYLTabBarItemImage:kGetImage(@"main_ico_myinfo"),CYLTabBarItemSelectedImage:@"main_ico_myinfo_selected"};
+    return @[format1,format2,format3,format4];
+}
+
++ (UINavigationController *)shellNavOfViewController:(UIViewController *)viewController title:(NSString *)title{
+    UINavigationController *shellNav = [[UINavigationController alloc]initWithRootViewController:viewController];
+    shellNav.tabBarItem.title = title;
+    return shellNav;
+}
 
 #pragma mark - LazyLoad
 - (NSMutableArray *)tabBarItems {
@@ -83,11 +113,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // 添加badgeView
-    [self addBadgeViewOnTabBarButtons];
-    self.delegate = self;
-    
-    [self addDcChildViewContorller];
+//    // 添加badgeView
+//    [self addBadgeViewOnTabBarButtons];
+//    self.delegate = self;
+//
+//    [self addDcChildViewContorller];
 }
 
 
