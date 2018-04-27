@@ -8,6 +8,10 @@
 
 #import <CYLTabBarController/CYLTabBarController.h>
 
+#define kCenterTabBarButtonHeight 52
+#define kCenterTabBarButtonWidth kCenterTabBarButtonHeight
+#define kCenterTabBarButtonSize CGSizeMake(kCenterTabBarButtonWidth,kCenterTabBarButtonHeight)
+
 @interface DCTabBarCenterButton : CYLPlusButton<CYLPlusButtonSubclassing>
 
 @end

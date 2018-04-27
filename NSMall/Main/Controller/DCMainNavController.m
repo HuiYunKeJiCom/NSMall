@@ -1,42 +1,33 @@
 //
-//  NSHomePageVC.m
+//  DCMainNavController.m
 //  NSMall
 //
-//  Created by apple on 2018/4/26.
+//  Created by apple on 2018/4/27.
 //  Copyright © 2018年 www. All rights reserved.
 //
 
-#import "NSHomePageVC.h"
+#import "DCMainNavController.h"
 
-@interface NSHomePageVC ()
-
-@property (nonatomic,strong)UITableView *tableView;//
-
+@interface DCMainNavController ()
 
 @end
 
-@implementation NSHomePageVC
+@implementation DCMainNavController
+
++ (instancetype)sharedRootNav{
+    static DCMainNavController *rootNav = nil;
+    if (!rootNav) {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            rootNav = [[DCMainNavController alloc]initWithRootViewController:[DCTabBarController sharedTabBarVC]];
+        });
+    }
+    return rootNav;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    
-    [self buildUI];
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self layoutUI];
-}
-
-- (void)buildUI{
-    _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
-    [self.view addSubview:_tableView];
-}
-
-- (void)layoutUI{
-    _tableView.size = CGSizeMake(AppWidth, AppHeight - TopBarHeight - TabBarHeight);
 }
 
 - (void)didReceiveMemoryWarning {

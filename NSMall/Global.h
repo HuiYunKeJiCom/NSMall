@@ -10,6 +10,86 @@
 
 #endif /* Global_h */
 
+#define AppWindow [UIApplication sharedApplication].keyWindow
+#define AppHeight AppWindow.height
+#define AppWidth AppWindow.width
+#define AppCenter CGPointMake(AppWidth,AppHeight)
+
+#define StatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height //状态栏高度
+#define NavBarHeight 44.f //导航栏高度
+#define TopBarHeight (StatusBarHeight + NavBarHeight)//总起始高度，使用这个
+
+#define TabBarHeight (((([[UIApplication sharedApplication] statusBarFrame].size.height>20?83:49)>kCenterTabBarButtonHeight)?([[UIApplication sharedApplication] statusBarFrame].size.height>20?83:49):kCenterTabBarButtonHeight) + 2.f) //底部tabbar高度
+
+#define kBlackColor [UIColor blackColor]
+#define kWhiteColor [UIColor whiteColor]
+
+#define kRedColor [UIColor redColor]
+#define kBlueColor [UIColor blueColor]
+#define kClearColor [UIColor clearColor]
+#define kGreyColor [UIColor colorWithHex:0x696969]
+
+
+#define kColorCSS(colorStr) [UIColor colorWithCSS:colorStr]
+#define kColorHex(colorHex) [UIColor colorWithHex:colorHex]
+
+#define kGetImage(imgName) [UIImage imageNamed:imgName]
+
+
+
+#define adjustsScrollViewInsets(scrollView)\
+do{\
+_Pragma("clang diagnostic push")\
+_Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"")\
+if([scrollView respondsToSelector:NSSelectorFromString(@"setContentInsetAdjustmentBehavior:")]) {\
+NSMethodSignature *signature = [UIScrollView instanceMethodSignatureForSelector:@selector(setContentInsetAdjustmentBehavior:)];\
+NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];\
+NSInteger argument = 2;\
+invocation.target = scrollView;\
+invocation.selector = @selector(setContentInsetAdjustmentBehavior:);\
+[invocation setArgument:&argument atIndex:2];\
+[invocation retainArguments];\
+[invocation invoke];\
+}\
+_Pragma("clang diagnostic pop")\
+} while(0)
+
+#define ExpandScrollViewHorizonContentSize(scrollView,horizonMax)\
+{\
+scrollView.contentSize = CGSizeMake(horizonMax,scrollView.contentSize.height);\
+}\
+
+#define ExpandScrollViewVerticalContentSize(scrollView,verticalMax)\
+{\
+scrollView.contentSize = CGSizeMake(scrollView.contentSize.width,verticalMax);\
+}\
+
+
+#define YYModelEqualImplementation \
+- (NSUInteger)hash { return [self yy_modelHash]; }\
+- (BOOL)isEqual:(id)object { return [self yy_modelIsEqual:object]; }\
+- (NSString *)description { return [self yy_modelDescription]; }\
+
+#define YYModelCodingImplementation \
+- (void)encodeWithCoder:(NSCoder *)aCoder { [self yy_modelEncodeWithCoder:aCoder]; }\
+- (id)initWithCoder:(NSCoder *)aDecoder { self = [super init]; return [self yy_modelInitWithCoder:aDecoder]; }\
+- (id)copyWithZone:(NSZone *)zone { return [self yy_modelCopy]; }\
+YYModelEqualImplementation\
+
+
+#ifdef DEBUG
+#define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#define DLog(...)
+#endif
+
+// ALog always displays output regardless of the DEBUG setting
+#define ALog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+
+
+
+
+
 #define CurrentHost @"://2008503qw3.51mypc.cn" //锡恩外网接口
 
 //用于替换查找
