@@ -119,5 +119,6 @@ YYModelEqualImplementation\
 
 
 #import "DCTabBarController.h"
+#import "DCNavigationController.h"
 
 #endif /* PrefixHeader_pch */

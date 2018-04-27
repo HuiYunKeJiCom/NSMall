@@ -43,7 +43,7 @@
 //    [self customizeTabBarForController:self.tabBarController];
 //    [self setupViewControllers];
 //    self.window.rootViewController = [[NSLoginController alloc] init];
-    [self.window setRootViewController:[DCTabBarController sharedTabBarVC]];
+    [self.window setRootViewController:[DCNavigationController sharedRootNavigationController]];
 }
 
 //设置数组

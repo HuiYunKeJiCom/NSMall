@@ -25,6 +25,17 @@
     [self setUpBase];
 }
 
++ (instancetype)sharedRootNavigationController{
+    static DCNavigationController *rootNav = nil;
+    if (!rootNav) {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            rootNav = [[DCNavigationController alloc]initWithRootViewController:[DCTabBarController sharedTabBarVC]];
+        });
+    }
+    return rootNav;
+}
+
 #pragma mark - LifeCyle
 - (void)viewDidLoad {
     [super viewDidLoad];

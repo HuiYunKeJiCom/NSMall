@@ -16,6 +16,8 @@
 #import "NSMessageViewController.h"//消息
 //#import "NSPublishViewController.h"//发布
 
+#import "NSHomePageVC.h"//新首页
+
 #import "XWPopMenuController.h"//发布
 // Views
 #import "DCTabBadgeView.h"
@@ -54,16 +56,29 @@
 }
 
 + (NSArray *)ViewControllers{
-    NSHomePageViewController *homeVC = [[NSHomePageViewController alloc]init];
-    UINavigationController *shellNav1 = [self.class shellNavOfViewController:homeVC title:@"首页"];
+//    NSHomePageViewController *homeVC = [[NSHomePageViewController alloc]init];
+//    UINavigationController *shellNav1 = [self.class shellNavOfViewController:homeVC title:@"首页"];
+//    NSHomePageVC *homeVC = [[NSHomePageVC alloc]init];
+//    UINavigationController *shellNav1 = [self.class shellNavOfViewController:homeVC title:@"首页"];
+//    NSNearbyViewController *nearbyVC = [[NSNearbyViewController alloc]init];
+//    UINavigationController *shellNav2 = [self.class shellNavOfViewController:nearbyVC title:@"发现"];
+//    NSMessageViewController *messageVC = [[NSMessageViewController alloc]init];
+//    UINavigationController *shellNav3 = [self.class shellNavOfViewController:messageVC title:@"商城"];
+//    NSMyCenterViewController *myCenterVC = [[NSMyCenterViewController alloc]init];
+//    UINavigationController *shellNav4 = [self.class shellNavOfViewController:myCenterVC title:@"我"];
+//    return @[shellNav1,shellNav2,shellNav3,shellNav4];
+    NSHomePageVC *homeVC = [[NSHomePageVC alloc]init];
+    homeVC.tabBarItem.title = @"首页";
+    
     NSNearbyViewController *nearbyVC = [[NSNearbyViewController alloc]init];
-    UINavigationController *shellNav2 = [self.class shellNavOfViewController:nearbyVC title:@"发现"];
+    nearbyVC.tabBarItem.title = @"附近";
+    
     NSMessageViewController *messageVC = [[NSMessageViewController alloc]init];
-    UINavigationController *shellNav3 = [self.class shellNavOfViewController:messageVC title:@"商城"];
+    messageVC.tabBarItem.title = @"消息";
     
     NSMyCenterViewController *myCenterVC = [[NSMyCenterViewController alloc]init];
-    UINavigationController *shellNav4 = [self.class shellNavOfViewController:myCenterVC title:@"我"];
-    return @[shellNav1,shellNav2,shellNav3,shellNav4];
+    myCenterVC.tabBarItem.title = @"我的";
+    return @[homeVC,nearbyVC,messageVC,myCenterVC];
 }
 
 + (NSArray *)tabBarItemAttributes{

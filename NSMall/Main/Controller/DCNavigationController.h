@@ -10,4 +10,6 @@
 
 @interface DCNavigationController : UINavigationController
 
++ (instancetype)sharedRootNavigationController;
+
 @end

@@ -12,6 +12,7 @@
 #import "NSMyCenterViewController.h"//我的
 #import "NSMessageViewController.h"//消息
 
+
 @interface NSTabBarController ()
 /** tabbar */
 @property(nonatomic,strong)CYLTabBarController *tabBarController;
