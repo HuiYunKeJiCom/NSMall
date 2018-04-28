@@ -88,15 +88,6 @@ YYModelEqualImplementation\
 
 
 
-
-
-#define CurrentHost @"://2008503qw3.51mypc.cn" //锡恩外网接口
-
-//用于替换查找
-#define TEMPHost @"://"
-
-#define NetDomainADDR @""
-
 /** 弱引用 */
 #define WEAKSELF __weak typeof(self) weakSelf = self;
 

@@ -15,7 +15,10 @@
 
 
 #import "Common.h"
+
 #import "NetBaseModel.h"
+#import "Net.h"
+
 #import "YYModel.h"
 #import "YYWebImage.h"
 #import "YYCategories.h"

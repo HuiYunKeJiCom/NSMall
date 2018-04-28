@@ -40,6 +40,9 @@
 		18D092FE20917A1400E091E0 /* DCTabBarCenterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D092FD20917A1400E091E0 /* DCTabBarCenterButton.m */; };
 		18D093012091BE9000E091E0 /* NSHomePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D093002091BE9000E091E0 /* NSHomePageVC.m */; };
 		18D09304209306B900E091E0 /* DCMainNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D09303209306B900E091E0 /* DCMainNavController.m */; };
+		18D093082094172F00E091E0 /* LoginAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D093072094172F00E091E0 /* LoginAPI.m */; };
+		18D0930C2094176500E091E0 /* LoginParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D0930B2094176500E091E0 /* LoginParam.m */; };
+		18D0931020941EE900E091E0 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D0930F20941EE900E091E0 /* UserModel.m */; };
 		18D71042208DC84C002BA6CD /* DCTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7103C208DC84C002BA6CD /* DCTabBarController.m */; };
 		18D71043208DC84C002BA6CD /* DCBaseSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7103D208DC84C002BA6CD /* DCBaseSetViewController.m */; };
 		18D71044208DC84C002BA6CD /* DCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7103E208DC84C002BA6CD /* DCNavigationController.m */; };
@@ -128,6 +131,13 @@
 		18D093002091BE9000E091E0 /* NSHomePageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSHomePageVC.m; sourceTree = "<group>"; };
 		18D09302209306B900E091E0 /* DCMainNavController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCMainNavController.h; sourceTree = "<group>"; };
 		18D09303209306B900E091E0 /* DCMainNavController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCMainNavController.m; sourceTree = "<group>"; };
+		18D093062094172F00E091E0 /* LoginAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginAPI.h; sourceTree = "<group>"; };
+		18D093072094172F00E091E0 /* LoginAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginAPI.m; sourceTree = "<group>"; };
+		18D0930A2094176500E091E0 /* LoginParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginParam.h; sourceTree = "<group>"; };
+		18D0930B2094176500E091E0 /* LoginParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginParam.m; sourceTree = "<group>"; };
+		18D0930D20941B7600E091E0 /* GlobalAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalAPI.h; sourceTree = "<group>"; };
+		18D0930E20941EE900E091E0 /* UserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		18D0930F20941EE900E091E0 /* UserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		18D71039208DC84C002BA6CD /* DCTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTabBarController.h; sourceTree = "<group>"; };
 		18D7103A208DC84C002BA6CD /* DCBaseSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCBaseSetViewController.h; sourceTree = "<group>"; };
 		18D7103B208DC84C002BA6CD /* DCNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCNavigationController.h; sourceTree = "<group>"; };
@@ -180,8 +190,10 @@
 			isa = PBXGroup;
 			children = (
 				18230F79208D803100D3E55F /* Ctrl */,
-				18230F78208D802C00D3E55F /* Model */,
 				18230F77208D802500D3E55F /* View */,
+				18230F78208D802C00D3E55F /* Model */,
+				18D093092094174100E091E0 /* Param */,
+				18D09305209416F900E091E0 /* API */,
 			);
 			path = "Login(登录)";
 			sourceTree = "<group>";
@@ -263,6 +275,8 @@
 		18230F78208D802C00D3E55F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18D0930E20941EE900E091E0 /* UserModel.h */,
+				18D0930F20941EE900E091E0 /* UserModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -406,9 +420,28 @@
 				18350893208086DE00BCF7CE /* UIViewExt.m */,
 				18350891208059ED00BCF7CE /* PrefixHeader.pch */,
 				18230F70208D7B4200D3E55F /* Global.h */,
+				18D0930D20941B7600E091E0 /* GlobalAPI.h */,
 				18230F80208D835300D3E55F /* GlobalColor.h */,
 			);
 			path = NSMall;
+			sourceTree = "<group>";
+		};
+		18D09305209416F900E091E0 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				18D093062094172F00E091E0 /* LoginAPI.h */,
+				18D093072094172F00E091E0 /* LoginAPI.m */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		18D093092094174100E091E0 /* Param */ = {
+			isa = PBXGroup;
+			children = (
+				18D0930A2094176500E091E0 /* LoginParam.h */,
+				18D0930B2094176500E091E0 /* LoginParam.m */,
+			);
+			path = Param;
 			sourceTree = "<group>";
 		};
 		18D71037208DC84C002BA6CD /* Main */ = {
@@ -704,6 +737,7 @@
 				18230F6F208D7A2D00D3E55F /* UIView+Frame.m in Sources */,
 				182DC48E20905A240066E667 /* UIImage+XW.m in Sources */,
 				18DD158B208DEAD80006475D /* BaseTableView.m in Sources */,
+				18D093082094172F00E091E0 /* LoginAPI.m in Sources */,
 				18DD156D208DCF3F0006475D /* NSHomePageViewController.m in Sources */,
 				18D092FE20917A1400E091E0 /* DCTabBarCenterButton.m in Sources */,
 				18230F7C208D808300D3E55F /* NSLoginView.m in Sources */,
@@ -713,9 +747,11 @@
 				188CC658207F5431007D749E /* main.m in Sources */,
 				18350895208086DE00BCF7CE /* UIViewExt.m in Sources */,
 				18DD1565208DCA000006475D /* UIBarButtonItem+DCBarButtonItem.m in Sources */,
+				18D0931020941EE900E091E0 /* UserModel.m in Sources */,
 				1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */,
 				188CC64A207F5430007D749E /* AppDelegate.m in Sources */,
 				182DC49520905EC60066E667 /* NSPersonInfoViewController.m in Sources */,
+				18D0930C2094176500E091E0 /* LoginParam.m in Sources */,
 				182DC48D20905A240066E667 /* XWPopMenuController.m in Sources */,
 				18DD1588208DEA960006475D /* ADLMyInfoModel.m in Sources */,
 				1851CD77208F23530094A594 /* NSCustomHeadCell.m in Sources */,
