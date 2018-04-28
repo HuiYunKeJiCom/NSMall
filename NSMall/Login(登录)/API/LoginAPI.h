@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LoginParam.h"
+#import "UserModel.h"
 
 @interface LoginAPI : NSObject
 

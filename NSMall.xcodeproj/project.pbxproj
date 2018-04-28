@@ -43,6 +43,7 @@
 		18D093082094172F00E091E0 /* LoginAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D093072094172F00E091E0 /* LoginAPI.m */; };
 		18D0930C2094176500E091E0 /* LoginParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D0930B2094176500E091E0 /* LoginParam.m */; };
 		18D0931020941EE900E091E0 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D0930F20941EE900E091E0 /* UserModel.m */; };
+		18D09316209469F200E091E0 /* HomePageAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D09315209469F200E091E0 /* HomePageAPI.m */; };
 		18D71042208DC84C002BA6CD /* DCTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7103C208DC84C002BA6CD /* DCTabBarController.m */; };
 		18D71043208DC84C002BA6CD /* DCBaseSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7103D208DC84C002BA6CD /* DCBaseSetViewController.m */; };
 		18D71044208DC84C002BA6CD /* DCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7103E208DC84C002BA6CD /* DCNavigationController.m */; };
@@ -138,6 +139,8 @@
 		18D0930D20941B7600E091E0 /* GlobalAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalAPI.h; sourceTree = "<group>"; };
 		18D0930E20941EE900E091E0 /* UserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		18D0930F20941EE900E091E0 /* UserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		18D09314209469F200E091E0 /* HomePageAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageAPI.h; sourceTree = "<group>"; };
+		18D09315209469F200E091E0 /* HomePageAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageAPI.m; sourceTree = "<group>"; };
 		18D71039208DC84C002BA6CD /* DCTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTabBarController.h; sourceTree = "<group>"; };
 		18D7103A208DC84C002BA6CD /* DCBaseSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCBaseSetViewController.h; sourceTree = "<group>"; };
 		18D7103B208DC84C002BA6CD /* DCNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCNavigationController.h; sourceTree = "<group>"; };
@@ -444,6 +447,29 @@
 			path = Param;
 			sourceTree = "<group>";
 		};
+		18D09311209469C600E091E0 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				18D09314209469F200E091E0 /* HomePageAPI.h */,
+				18D09315209469F200E091E0 /* HomePageAPI.m */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		18D09312209469D200E091E0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18D09313209469DB00E091E0 /* Param */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Param;
+			sourceTree = "<group>";
+		};
 		18D71037208DC84C002BA6CD /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -508,6 +534,9 @@
 				18DD156C208DCF3F0006475D /* NSHomePageViewController.m */,
 				18D092FF2091BE9000E091E0 /* NSHomePageVC.h */,
 				18D093002091BE9000E091E0 /* NSHomePageVC.m */,
+				18D09313209469DB00E091E0 /* Param */,
+				18D09312209469D200E091E0 /* Model */,
+				18D09311209469C600E091E0 /* API */,
 			);
 			path = "Home(首页)";
 			sourceTree = "<group>";
@@ -741,6 +770,7 @@
 				18DD156D208DCF3F0006475D /* NSHomePageViewController.m in Sources */,
 				18D092FE20917A1400E091E0 /* DCTabBarCenterButton.m in Sources */,
 				18230F7C208D808300D3E55F /* NSLoginView.m in Sources */,
+				18D09316209469F200E091E0 /* HomePageAPI.m in Sources */,
 				18DD1562208DC9AB0006475D /* GQGesVCTransition.m in Sources */,
 				182DC49B209061610066E667 /* NSPersonInfoTableView.m in Sources */,
 				18230F76208D7F8300D3E55F /* NSLoginController.m in Sources */,

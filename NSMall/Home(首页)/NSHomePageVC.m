@@ -7,6 +7,8 @@
 //
 
 #import "NSHomePageVC.h"
+#import "LoginAPI.h"
+#import "HomePageAPI.h"
 
 @interface NSHomePageVC ()
 
@@ -28,6 +30,24 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self layoutUI];
+    
+    LoginParam *param = [LoginParam new];
+    param.loginAccount = @"test4";
+    param.password = @"123456";
+    param.loginType = @"1";
+    [LoginAPI loginWithParam:param success:^{
+        DLog(@"登录成功");
+        
+        [HomePageAPI getProductList:nil success:^(NSDictionary *result) {
+            
+        } failure:^(NSError *error) {
+            
+        }];
+        
+    } faulre:^(NSError *error) {
+        DLog(@"登录失败");
+    }];
+    
 }
 
 - (void)buildUI{

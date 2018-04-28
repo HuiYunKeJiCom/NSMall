@@ -11,7 +11,14 @@
 @implementation LoginAPI
 
 + (void)loginWithParam:(LoginParam *)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure{
-    [Net requestWithGet:param function:<#(nullable NSString *)#> showHUD:<#(nullable NSString *)#> resultClass:<#(nullable Class)#> success:<#^(id  _Nullable resultObj)success#> failure:<#^(NSError * _Nullable error)failure#>];
+    [Net requestWithPost:param function:kLoginAPI showHUD:NetNullStr resultClass:[UserModel class] success:^(UserModel *userModel) {
+        [userModel archive];
+        DLog(@"userModel From Unarchive : %@",[UserModel userModel]);
+        [httpManager.requestSerializer setValue:userModel.app_token forHTTPHeaderField:@"app_token"];
+        success?success():nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
 }
 
 @end

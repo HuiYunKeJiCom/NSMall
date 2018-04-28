@@ -36,6 +36,9 @@
 @property (nonatomic,assign)NSInteger login_number;//登录号
 @property (nonatomic,copy)NSString *app_token;//登录token？
 
+
++ (instancetype)userModel;//供全局使用的userModel，如果为空则从硬盘中归档导出，如果硬盘中没有则返回为空
++ (instancetype)modelFromUnarchive;//从硬盘归档出模型数据（全局可取出）
 - (BOOL)archive;//将数据归档到硬盘
 + (BOOL)removeArchive;//移除硬盘上的归档
 

@@ -37,8 +37,10 @@
 #import "Colours.h"
 
 #import "Global.h"
-#import "DCSpeedy.h"
+#import "GlobalAPI.h"
 #import "GlobalColor.h"
+
+#import "DCSpeedy.h"
 #import "AppDelegate.h"
 #import "NSString+wrapper.h"
 #import "UILabel+LBExt.h"

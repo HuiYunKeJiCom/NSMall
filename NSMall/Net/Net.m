@@ -111,6 +111,7 @@ AFHTTPSessionManager *httpManager = nil;
             resultObj = responseObj;
         else
             resultObj = [resultClass yy_modelWithDictionary:responseObj];
+        success?success(resultObj):nil;
     } failure:failure];
 }
 
