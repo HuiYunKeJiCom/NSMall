@@ -35,6 +35,8 @@
 
 #define kGetImage(imgName) [UIImage imageNamed:imgName]
 
+#define kDocumentPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) lastObject]
+#define kLoginUserInfoPath [kDocumentPath stringByAppendingPathComponent:@"loginUserInfo.archiver"]
 
 
 #define adjustsScrollViewInsets(scrollView)\
