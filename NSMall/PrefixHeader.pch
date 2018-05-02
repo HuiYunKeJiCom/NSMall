@@ -48,6 +48,10 @@
 #import "UIView+Frame.h"
 #import "BaseTableCell.h"
 #import <Masonry/Masonry.h>
+#import "MBProgressHUD+MJ.h"
+#import "UserModel.h"
+#import "FFSpearteLineView.h"
+#import "BaseTableView.h"
 
 //#import <HyphenateLite/HyphenateLite.h>
 #import <Hyphenate/Hyphenate.h>//环信

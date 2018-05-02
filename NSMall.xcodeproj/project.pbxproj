@@ -22,6 +22,21 @@
 		18350890207F653600BCF7CE /* Net.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835088F207F653600BCF7CE /* Net.m */; };
 		18350895208086DE00BCF7CE /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 18350893208086DE00BCF7CE /* UIViewExt.m */; };
 		1835089920808CCD00BCF7CE /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835089820808CCD00BCF7CE /* Common.m */; };
+		1840432F2099FA5D00685F80 /* ADLUpdateUserInformCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1840432D2099FA5C00685F80 /* ADLUpdateUserInformCtrl.m */; };
+		184043322099FA8D00685F80 /* ADLUpdateUserTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184043312099FA8D00685F80 /* ADLUpdateUserTableCell.m */; };
+		184043352099FAA200685F80 /* ADLUpdateUserPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184043342099FAA200685F80 /* ADLUpdateUserPhotoCell.m */; };
+		184043382099FABE00685F80 /* ADLEditUserInformCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 184043372099FABD00685F80 /* ADLEditUserInformCtrl.m */; };
+		1840433B2099FAD800685F80 /* ADLFixUserNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184043392099FAD700685F80 /* ADLFixUserNameController.m */; };
+		1840433E2099FAEE00685F80 /* ADLUserNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1840433C2099FAED00685F80 /* ADLUserNameController.m */; };
+		184043412099FB0600685F80 /* ADLChangePhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1840433F2099FB0600685F80 /* ADLChangePhoneViewController.m */; };
+		184043442099FB2000685F80 /* UIImage+wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 184043432099FB2000685F80 /* UIImage+wrapper.m */; };
+		1840434A2099FB6000685F80 /* NSTimer+BlockSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 184043482099FB6000685F80 /* NSTimer+BlockSupport.m */; };
+		1840434B2099FB6000685F80 /* NSTimer+wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 184043492099FB6000685F80 /* NSTimer+wrapper.m */; };
+		1840434E2099FB8400685F80 /* ADLTitleField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1840434D2099FB8300685F80 /* ADLTitleField.m */; };
+		184043512099FC6800685F80 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 184043502099FC6800685F80 /* MBProgressHUD+MJ.m */; };
+		184043542099FE8B00685F80 /* FFSpearteLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184043522099FE8B00685F80 /* FFSpearteLineView.m */; };
+		184043572099FEE900685F80 /* ADLFilterSelectItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 184043562099FEE900685F80 /* ADLFilterSelectItem.m */; };
+		1840435B209A028100685F80 /* UserInfoAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 1840435A209A028100685F80 /* UserInfoAPI.m */; };
 		184DE7A6208F081400E776F3 /* ADLMyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7A5208F081400E776F3 /* ADLMyInfoTableViewCell.m */; };
 		184DE7A9208F088E00E776F3 /* BaseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7A7208F088E00E776F3 /* BaseTableCell.m */; };
 		184DE7AC208F08B400E776F3 /* BaseRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7AB208F08B300E776F3 /* BaseRefreshGifHeader.m */; };
@@ -99,6 +114,36 @@
 		18350894208086DE00BCF7CE /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
 		1835089720808CCD00BCF7CE /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		1835089820808CCD00BCF7CE /* Common.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
+		1840432D2099FA5C00685F80 /* ADLUpdateUserInformCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADLUpdateUserInformCtrl.m; sourceTree = "<group>"; };
+		1840432E2099FA5C00685F80 /* ADLUpdateUserInformCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADLUpdateUserInformCtrl.h; sourceTree = "<group>"; };
+		184043302099FA8D00685F80 /* ADLUpdateUserTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADLUpdateUserTableCell.h; sourceTree = "<group>"; };
+		184043312099FA8D00685F80 /* ADLUpdateUserTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADLUpdateUserTableCell.m; sourceTree = "<group>"; };
+		184043332099FAA200685F80 /* ADLUpdateUserPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADLUpdateUserPhotoCell.h; sourceTree = "<group>"; };
+		184043342099FAA200685F80 /* ADLUpdateUserPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADLUpdateUserPhotoCell.m; sourceTree = "<group>"; };
+		184043362099FABD00685F80 /* ADLEditUserInformCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADLEditUserInformCtrl.h; sourceTree = "<group>"; };
+		184043372099FABD00685F80 /* ADLEditUserInformCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADLEditUserInformCtrl.m; sourceTree = "<group>"; };
+		184043392099FAD700685F80 /* ADLFixUserNameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADLFixUserNameController.m; sourceTree = "<group>"; };
+		1840433A2099FAD800685F80 /* ADLFixUserNameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADLFixUserNameController.h; sourceTree = "<group>"; };
+		1840433C2099FAED00685F80 /* ADLUserNameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADLUserNameController.m; sourceTree = "<group>"; };
+		1840433D2099FAEE00685F80 /* ADLUserNameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADLUserNameController.h; sourceTree = "<group>"; };
+		1840433F2099FB0600685F80 /* ADLChangePhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADLChangePhoneViewController.m; sourceTree = "<group>"; };
+		184043402099FB0600685F80 /* ADLChangePhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADLChangePhoneViewController.h; sourceTree = "<group>"; };
+		184043422099FB1F00685F80 /* UIImage+wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+wrapper.h"; sourceTree = "<group>"; };
+		184043432099FB2000685F80 /* UIImage+wrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+wrapper.m"; sourceTree = "<group>"; };
+		184043462099FB6000685F80 /* NSTimer+BlockSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+BlockSupport.h"; sourceTree = "<group>"; };
+		184043472099FB6000685F80 /* NSTimer+wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+wrapper.h"; sourceTree = "<group>"; };
+		184043482099FB6000685F80 /* NSTimer+BlockSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+BlockSupport.m"; sourceTree = "<group>"; };
+		184043492099FB6000685F80 /* NSTimer+wrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+wrapper.m"; sourceTree = "<group>"; };
+		1840434C2099FB8300685F80 /* ADLTitleField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADLTitleField.h; sourceTree = "<group>"; };
+		1840434D2099FB8300685F80 /* ADLTitleField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADLTitleField.m; sourceTree = "<group>"; };
+		1840434F2099FC6700685F80 /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
+		184043502099FC6800685F80 /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
+		184043522099FE8B00685F80 /* FFSpearteLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFSpearteLineView.m; sourceTree = "<group>"; };
+		184043532099FE8B00685F80 /* FFSpearteLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFSpearteLineView.h; sourceTree = "<group>"; };
+		184043552099FEE800685F80 /* ADLFilterSelectItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADLFilterSelectItem.h; sourceTree = "<group>"; };
+		184043562099FEE900685F80 /* ADLFilterSelectItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADLFilterSelectItem.m; sourceTree = "<group>"; };
+		18404359209A028100685F80 /* UserInfoAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoAPI.h; sourceTree = "<group>"; };
+		1840435A209A028100685F80 /* UserInfoAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoAPI.m; sourceTree = "<group>"; };
 		184DE7A4208F081400E776F3 /* ADLMyInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADLMyInfoTableViewCell.h; sourceTree = "<group>"; };
 		184DE7A5208F081400E776F3 /* ADLMyInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADLMyInfoTableViewCell.m; sourceTree = "<group>"; };
 		184DE7A7208F088E00E776F3 /* BaseTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableCell.m; sourceTree = "<group>"; };
@@ -242,6 +287,8 @@
 		18230F67208D795D00D3E55F /* FFNoDataView */ = {
 			isa = PBXGroup;
 			children = (
+				184043532099FE8B00685F80 /* FFSpearteLineView.h */,
+				184043522099FE8B00685F80 /* FFSpearteLineView.m */,
 				18230F68208D795D00D3E55F /* FFLoadFailView.m */,
 				18230F69208D795D00D3E55F /* FFLoadFailView.h */,
 			);
@@ -251,6 +298,11 @@
 		18230F6B208D79F300D3E55F /* Category(分类) */ = {
 			isa = PBXGroup;
 			children = (
+				1840434F2099FC6700685F80 /* MBProgressHUD+MJ.h */,
+				184043502099FC6800685F80 /* MBProgressHUD+MJ.m */,
+				184043452099FB6000685F80 /* NSTimer */,
+				184043422099FB1F00685F80 /* UIImage+wrapper.h */,
+				184043432099FB2000685F80 /* UIImage+wrapper.m */,
 				18DD156F208DD16A0006475D /* UIView+DCRolling.h */,
 				18DD156E208DD16A0006475D /* UIView+DCRolling.m */,
 				18DD1564208DCA000006475D /* UIBarButtonItem+DCBarButtonItem.h */,
@@ -283,6 +335,7 @@
 		182DC49220905E690066E667 /* PersonInfo(个人信息) */ = {
 			isa = PBXGroup;
 			children = (
+				18404358209A023B00685F80 /* API */,
 				182DC498209061270066E667 /* Ctrl */,
 				182DC497209061200066E667 /* Model */,
 				182DC496209061190066E667 /* View */,
@@ -293,6 +346,14 @@
 		182DC496209061190066E667 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				184043552099FEE800685F80 /* ADLFilterSelectItem.h */,
+				184043562099FEE900685F80 /* ADLFilterSelectItem.m */,
+				1840434C2099FB8300685F80 /* ADLTitleField.h */,
+				1840434D2099FB8300685F80 /* ADLTitleField.m */,
+				184043332099FAA200685F80 /* ADLUpdateUserPhotoCell.h */,
+				184043342099FAA200685F80 /* ADLUpdateUserPhotoCell.m */,
+				184043302099FA8D00685F80 /* ADLUpdateUserTableCell.h */,
+				184043312099FA8D00685F80 /* ADLUpdateUserTableCell.m */,
 				182DC499209061610066E667 /* NSPersonInfoTableView.h */,
 				182DC49A209061610066E667 /* NSPersonInfoTableView.m */,
 				18C4BAB62093366E00F74573 /* NSInfoCustomCell.h */,
@@ -311,6 +372,16 @@
 		182DC498209061270066E667 /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
+				1840432E2099FA5C00685F80 /* ADLUpdateUserInformCtrl.h */,
+				1840432D2099FA5C00685F80 /* ADLUpdateUserInformCtrl.m */,
+				184043362099FABD00685F80 /* ADLEditUserInformCtrl.h */,
+				184043372099FABD00685F80 /* ADLEditUserInformCtrl.m */,
+				1840433D2099FAEE00685F80 /* ADLUserNameController.h */,
+				1840433C2099FAED00685F80 /* ADLUserNameController.m */,
+				1840433A2099FAD800685F80 /* ADLFixUserNameController.h */,
+				184043392099FAD700685F80 /* ADLFixUserNameController.m */,
+				184043402099FB0600685F80 /* ADLChangePhoneViewController.h */,
+				1840433F2099FB0600685F80 /* ADLChangePhoneViewController.m */,
 				182DC49320905EC60066E667 /* NSPersonInfoViewController.h */,
 				182DC49420905EC60066E667 /* NSPersonInfoViewController.m */,
 			);
@@ -343,6 +414,26 @@
 				1835089820808CCD00BCF7CE /* Common.m */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		184043452099FB6000685F80 /* NSTimer */ = {
+			isa = PBXGroup;
+			children = (
+				184043462099FB6000685F80 /* NSTimer+BlockSupport.h */,
+				184043472099FB6000685F80 /* NSTimer+wrapper.h */,
+				184043482099FB6000685F80 /* NSTimer+BlockSupport.m */,
+				184043492099FB6000685F80 /* NSTimer+wrapper.m */,
+			);
+			path = NSTimer;
+			sourceTree = "<group>";
+		};
+		18404358209A023B00685F80 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				18404359209A028100685F80 /* UserInfoAPI.h */,
+				1840435A209A028100685F80 /* UserInfoAPI.m */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		1851CD74208F10000094A594 /* Ctrl */ = {
@@ -747,15 +838,20 @@
 				18DD157D208DD5F40006475D /* NSNearbyViewController.m in Sources */,
 				18D0824A20956D2F0031034A /* NSLoginController.m in Sources */,
 				18DD1570208DD16A0006475D /* UIView+DCRolling.m in Sources */,
+				1840434B2099FB6000685F80 /* NSTimer+wrapper.m in Sources */,
 				1835089920808CCD00BCF7CE /* Common.m in Sources */,
+				1840434A2099FB6000685F80 /* NSTimer+BlockSupport.m in Sources */,
 				18DD1577208DD4140006475D /* NSMyCenterViewController.m in Sources */,
 				18D71044208DC84C002BA6CD /* DCNavigationController.m in Sources */,
 				184DE7A9208F088E00E776F3 /* BaseTableCell.m in Sources */,
+				1840433B2099FAD800685F80 /* ADLFixUserNameController.m in Sources */,
 				18D71045208DC84C002BA6CD /* DCTabBadgeView.m in Sources */,
 				182DC48C20905A240066E667 /* PublishMenuButton.m in Sources */,
 				18230F73208D7D3600D3E55F /* NSString+wrapper.m in Sources */,
 				18DD157A208DD5AA0006475D /* NSMessageViewController.m in Sources */,
 				18C4BAB72093366E00F74573 /* NSInfoCustomCell.m in Sources */,
+				184043412099FB0600685F80 /* ADLChangePhoneViewController.m in Sources */,
+				184043512099FC6800685F80 /* MBProgressHUD+MJ.m in Sources */,
 				18230F66208D793F00D3E55F /* BaseViewCtrl.m in Sources */,
 				182DC49120905E3C0066E667 /* ADOrderTopToolView.m in Sources */,
 				188CC64D207F5431007D749E /* ViewController.m in Sources */,
@@ -768,22 +864,32 @@
 				18D0824F20956D2F0031034A /* LoginParam.m in Sources */,
 				18D092FE20917A1400E091E0 /* DCTabBarCenterButton.m in Sources */,
 				18D0825320956EB70031034A /* HomePageAPI.m in Sources */,
+				184043322099FA8D00685F80 /* ADLUpdateUserTableCell.m in Sources */,
 				18DD1562208DC9AB0006475D /* GQGesVCTransition.m in Sources */,
 				182DC49B209061610066E667 /* NSPersonInfoTableView.m in Sources */,
 				18D0824B20956D2F0031034A /* NSLoginView.m in Sources */,
+				184043382099FABE00685F80 /* ADLEditUserInformCtrl.m in Sources */,
+				1840434E2099FB8400685F80 /* ADLTitleField.m in Sources */,
 				188CC658207F5431007D749E /* main.m in Sources */,
 				18350895208086DE00BCF7CE /* UIViewExt.m in Sources */,
+				1840432F2099FA5D00685F80 /* ADLUpdateUserInformCtrl.m in Sources */,
+				1840433E2099FAEE00685F80 /* ADLUserNameController.m in Sources */,
+				1840435B209A028100685F80 /* UserInfoAPI.m in Sources */,
 				18DD1565208DCA000006475D /* UIBarButtonItem+DCBarButtonItem.m in Sources */,
 				1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */,
 				18D0824C20956D2F0031034A /* NSLImageField.m in Sources */,
 				188CC64A207F5430007D749E /* AppDelegate.mm in Sources */,
+				184043442099FB2000685F80 /* UIImage+wrapper.m in Sources */,
 				182DC49520905EC60066E667 /* NSPersonInfoViewController.m in Sources */,
 				182DC48D20905A240066E667 /* XWPopMenuController.m in Sources */,
 				18DD1588208DEA960006475D /* ADLMyInfoModel.m in Sources */,
+				184043572099FEE900685F80 /* ADLFilterSelectItem.m in Sources */,
+				184043542099FE8B00685F80 /* FFSpearteLineView.m in Sources */,
 				1851CD77208F23530094A594 /* NSCustomHeadCell.m in Sources */,
 				184DE7A6208F081400E776F3 /* ADLMyInfoTableViewCell.m in Sources */,
 				18230F6A208D795E00D3E55F /* FFLoadFailView.m in Sources */,
 				18D0824D20956D2F0031034A /* UserModel.m in Sources */,
+				184043352099FAA200685F80 /* ADLUpdateUserPhotoCell.m in Sources */,
 				18350890207F653600BCF7CE /* Net.m in Sources */,
 				18DD1569208DCB7E0006475D /* DCSpeedy.m in Sources */,
 				18DD1585208DEA8D0006475D /* ADLMyInfoTableView.m in Sources */,
