@@ -14,6 +14,6 @@
 @property (nonatomic,copy)NSString *message;//
 @property (nonatomic,strong)id data;//
 
-@property (nonatomic,readonly)BOOL success;//判断是否成功的快捷方法
+@property (nonatomic,readonly)BOOL success;//
 
 @end

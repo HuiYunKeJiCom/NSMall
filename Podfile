@@ -56,7 +56,12 @@ pod 'JKCountDownButton'
 
 pod 'CYLTabBarController','~>1.17.6'
 
+pod 'HyphenateLite'
+pod 'Hyphenate'
 
+pod 'MWPhotoBrowser'
+
+pod 'BaiduMapKit'
 
 
 end

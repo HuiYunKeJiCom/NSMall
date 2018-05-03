@@ -21,7 +21,7 @@
 
 + (id)plusButton{
     DCTabBarCenterButton *centerBtn = [DCTabBarCenterButton buttonWithType:UIButtonTypeCustom];
-    centerBtn.size = CGSizeMake(80,94);
+    centerBtn.size = CGSizeMake(GetScaleWidth(55),GetScaleWidth(55));
     [centerBtn setTitle:@"发布" forState:UIControlStateNormal];
     [centerBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [centerBtn addTarget:centerBtn action:@selector(centerBtnWasClicked:) forControlEvents:UIControlEventTouchDown];
@@ -32,14 +32,17 @@
     DLog(@"点击了中央按钮，什么都没做");
     
     XWPopMenuController *vc = [[XWPopMenuController alloc]init];
+    //虚化背景
+    UIImage *image = [UIImage imageWithCaputureView:[DCTabBarController sharedTabBarVC].view];
     
+    vc.backImg = image;
     [[DCTabBarController sharedTabBarVC] presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)layoutSubviews{
-    self.imageView.frame = CGRectMake(0, 0, 80, 80);
+    self.imageView.frame = CGRectMake(0, -GetScaleWidth(18), GetScaleWidth(55), GetScaleWidth(55));
     self.imageView.image = [UIImage imageNamed:@"main_ico_add"];
-    self.titleLabel.frame = CGRectMake(0, 80, 80, 14);
+    self.titleLabel.frame = CGRectMake(-GetScaleWidth(10), GetScaleWidth(42), 80, 14);
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.font = [UIFont systemFontOfSize:11];
 }

@@ -73,7 +73,7 @@
     NSNearbyViewController *nearbyVC = [[NSNearbyViewController alloc]init];
     nearbyVC.tabBarItem.title = @"附近";
     
-    NSMessageViewController *messageVC = [[NSMessageViewController alloc]init];
+    NSMessageViewController *messageVC = [[NSMessageViewController alloc]initWithConversationId:@"CarLing02" conversationType:EMConversationTypeChat];
     messageVC.tabBarItem.title = @"消息";
     
     NSMyCenterViewController *myCenterVC = [[NSMyCenterViewController alloc]init];

@@ -90,12 +90,21 @@ YYModelEqualImplementation\
 
 
 
+
+
+#define CurrentHost @"://2008503qw3.51mypc.cn" //锡恩外网接口
+
+//用于替换查找
+#define TEMPHost @"://"
+
+//#define NetDomainADDR @""
+
 /** 弱引用 */
 #define WEAKSELF __weak typeof(self) weakSelf = self;
 
 //屏幕的宽度，屏幕的高度
-#define kScreenHeight [[UIScreen mainScreen] bounds].size.height
-#define kScreenWidth  [[UIScreen mainScreen] bounds].size.width
+//#define kScreenHeight [[UIScreen mainScreen] bounds].size.height
+//#define kScreenWidth  [[UIScreen mainScreen] bounds].size.width
 
 //屏幕宽度相对iPhone6屏幕宽度的比例
 #define kWidth_Iphone6_Scale    [UIScreen mainScreen].bounds.size.width/375.0
@@ -137,3 +146,15 @@ green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 \
 alpha:1.0]
 
+#define kFontSize10                 [UIFont systemFontOfSize:10]
+#define kFontSize11                 [UIFont systemFontOfSize:11]
+#define kFontSize12                 [UIFont systemFontOfSize:12]
+#define kFontSize13                 [UIFont systemFontOfSize:13]
+#define kFontSize14                 [UIFont systemFontOfSize:14]
+#define kFontSize15                 [UIFont systemFontOfSize:15]
+#define kFontSize16                 [UIFont systemFontOfSize:16]
+#define kFontSize17                 [UIFont systemFontOfSize:17]
+
+#define Image_Host  [NSString stringWithFormat:@"http%@%@",CurrentHost,@"/adel-admin/images"]
+
+#define Image_Url(url) [NSString stringWithFormat:@"%@%@",Image_Host,url]

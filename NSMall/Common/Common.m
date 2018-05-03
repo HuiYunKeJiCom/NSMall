@@ -11,7 +11,7 @@
 @implementation Common
 
 + (void)AppShowHUD:(NSString *)title{
-    [MBProgressHUD showHUDAddedTo:AppWindow animated:YES].label.text = title;
+    [MBProgressHUD showHUDAddedTo:AppWindow animated:YES].labelText = title;
 }
 
 + (void)AppHideHUD{

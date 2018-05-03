@@ -7,8 +7,9 @@
 //
 
 #import "NSMyCenterViewController.h"
-#import "NSPersonInfoViewController.h"
+//#import "NSPersonInfoViewController.h"
 #import "ADLMyInfoTableView.h"
+#import "ADLUpdateUserInformCtrl.h"
 
 @interface NSMyCenterViewController ()<ADLMyInfoTableViewDelegate>
 @property (strong, nonatomic) ADLMyInfoTableView   *otherTableView;
@@ -79,9 +80,6 @@
     switch (index) {
         case 0:{
             NSLog(@"点击了头像");
-            //跳转至个人信息
-            NSPersonInfoViewController *personInfoVC = [[NSPersonInfoViewController alloc]init];
-            [self.navigationController pushViewController:personInfoVC animated:YES];
         }
             break;
         case 1:{
@@ -106,6 +104,10 @@
             break;
         case 6:{
             NSLog(@"点击了设置");
+            //跳转至个人信息
+//            NSPersonInfoViewController *personInfoVC = [[NSPersonInfoViewController alloc]init];
+            ADLUpdateUserInformCtrl *userInfoVC = [ADLUpdateUserInformCtrl new];
+            [self.navigationController pushViewController:userInfoVC animated:YES];
         }
             break;
         default:

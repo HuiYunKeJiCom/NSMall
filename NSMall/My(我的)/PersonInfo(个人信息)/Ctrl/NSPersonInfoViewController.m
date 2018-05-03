@@ -7,12 +7,12 @@
 //
 
 #import "NSPersonInfoViewController.h"
-#import "ADLMyInfoTableView.h"
+#import "NSPersonInfoTableView.h"
 #import "ADOrderTopToolView.h"//自定义导航栏
 
-@interface NSPersonInfoViewController ()<ADLMyInfoTableViewDelegate>
-@property (strong, nonatomic) ADLMyInfoTableView   *otherTableView;
-
+@interface NSPersonInfoViewController ()<NSPersonInfoTableViewDelegate>
+@property (strong, nonatomic) NSPersonInfoTableView   *otherTableView;
+@property (strong , nonatomic)ADOrderTopToolView *topToolView;/* 顶部Nva */
 @end
 
 @implementation NSPersonInfoViewController
@@ -23,6 +23,7 @@
     [self setUpData];
     [self.view addSubview:self.otherTableView];
     [self setUpBase];
+    [self setUpNavTopView];
     [self makeConstraints];
     
 }
@@ -30,20 +31,34 @@
 - (void)makeConstraints {
     WEAKSELF
     [self.otherTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(weakSelf.view);
-        make.bottom.mas_equalTo(weakSelf.view).with.offset(-50);
+        make.top.mas_equalTo(weakSelf.view).with.offset(GetScaleWidth(64));
+        make.bottom.mas_equalTo(weakSelf.view).with.offset(-GetScaleWidth(50));
         make.left.right.mas_equalTo(weakSelf.view);
     }];
 }
 
+#pragma mark - 导航栏处理
+- (void)setUpNavTopView
+{
+    _topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
+    _topToolView.backgroundColor = [UIColor whiteColor];
+    [_topToolView setTopTitleWithNSString:KLocalizableStr(@"个人信息")];
+    WEAKSELF
+    _topToolView.leftItemClickBlock = ^{
+        NSLog(@"点击了返回");
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    };
+    [self.view addSubview:_topToolView];
+    
+}
 #pragma mark - 获取数据
 - (void)setUpData
 {
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"头像") imageName:@"my_ico_wallet" num:nil]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"昵称") imageName:@"my_ico_goods" num:@"Peter"]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"性别") imageName:@"my_ico_shop" num:@"男"]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"手机号") imageName:@"my_ico_order" num:@"13765432108"]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"实名认证") imageName:@"my_ico_fav" num:@"未认证"]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"头像") imageName:nil num:@"my_ico_wallet.png"]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"昵称") imageName:nil num:@"Peter"]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"性别") imageName:nil num:@"男"]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"手机号") imageName:nil num:@"13765432108"]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"实名认证") imageName:nil num:@"未认证"]];
 }
 
 #pragma mark - initialize
@@ -53,10 +68,10 @@
 }
 
 #pragma mark - LazyLoad
-- (ADLMyInfoTableView *)otherTableView {
+- (NSPersonInfoTableView *)otherTableView {
     if (!_otherTableView) {
-        _otherTableView = [[ADLMyInfoTableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-        _otherTableView.backgroundColor = UIColorFromRGB(0xf4f5f9);;
+        _otherTableView = [[NSPersonInfoTableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        _otherTableView.backgroundColor = UIColorFromRGB(0xf4f5f9);
         _otherTableView.bounces = NO;
         _otherTableView.tbDelegate = self;
         _otherTableView.isRefresh = NO;

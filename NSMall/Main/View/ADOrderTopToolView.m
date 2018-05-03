@@ -37,7 +37,7 @@
     
         _leftItemButton = ({
             UIButton * button = [UIButton new];
-            [button setImage:[UIImage imageNamed:@"navigation_back_normal"] forState:UIControlStateNormal];
+            [button setImage:[UIImage imageNamed:@"top_left_arrow"] forState:UIControlStateNormal];
             [button addTarget:self action:@selector(leftButtonItemClick) forControlEvents:UIControlEventTouchUpInside];
             button;
         });

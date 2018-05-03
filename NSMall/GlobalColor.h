@@ -33,11 +33,20 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define KColorText333333                UIColorFromRGB(0X333333)
 #define KColorTextEFFFFA                UIColorFromRGB(0XEFFFFA)
 
+#define KColorText999999                UIColorFromRGB(0X999999)
+
 #define KColorTextF8FBFA                UIColorFromRGB(0XF8FBFA)
 #define KColorTextFFFFFF                UIColorFromRGB(0XFFFFFF)
 #define KColorText323232                UIColorFromRGB(0X323232)
 #define KColorText878686                UIColorFromRGB(0X878686)
 #define KColorTextf4f4f4                UIColorFromRGB(0Xf4f4f4)
+#define KColorTexte6e8eb                UIColorFromRGB(0Xe6e8eb)
+
+/** 输入框背景色 */
+#define KColorTextF2F4F7                UIColorFromRGB(0XF2F4F7)
+
+/** 错误提示 红 */
+#define KColorText0XFC3A06                UIColorFromRGB(0XFC3A06)
 
 /** 切换字体蓝 */
 #define KColorText059DAB                UIColorFromRGB(0X059DAB)
@@ -72,8 +81,11 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define PFR9Font [UIFont fontWithName:PFR size:9];
 #define PFR8Font [UIFont fontWithName:PFR size:8];
 
+#define VCBackgroundColor kGetColor(238, 238, 238)
 
+#define kGetColor(r,g,b)       [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 
+#define KMainColor UIColorFromRGB(0Xda2f2d)
 
 
 

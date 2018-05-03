@@ -17,9 +17,9 @@
 //自定义颜色rgba
 #define ColorWithRGBA(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)/1.0] //<<< 用10进制表示颜色，例如（255,255,255）黑色
 
-//屏幕尺寸
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+////屏幕尺寸
+//#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+//#define kScreenHeight [UIScreen mainScreen].bounds.size.height
 
 @interface XWPopMenuController ()
 
@@ -53,7 +53,7 @@
         
         _ary = [NSArray array];
         
-        _ary = @[@"group-2",@"group-3",@"group-4"];
+        _ary = @[@"publish_ico_goods",@"publish_ico_shop"];
     }
     
     return _ary;
@@ -64,16 +64,16 @@
     
     UIView *view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    [view setBackgroundColor:[UIColor blackColor]];
+    [view setBackgroundColor:[UIColor whiteColor]];
     
     //获取截取的背景图片，便于达到模糊背景效果
     UIImageView *imgView = [[UIImageView alloc]initWithImage:_backImg];
     
     //模糊效果层
     UIView *blurView =[[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    
-    [blurView setBackgroundColor:ColorWithRGBA(64, 64, 64, 0.9)];// [UIColor colorWithWhite:0.9 alpha:0.8]];
-    
+//    [UIColor colorWithWhite:0.9 alpha:0.9] ColorWithRGBA(64, 64, 64, 0.9)
+    [blurView setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:0.95]];// [UIColor colorWithWhite:0.9 alpha:0.8]];
+
     [imgView addSubview:blurView];
     
     [view addSubview:imgView];
@@ -113,12 +113,11 @@
 //关闭图片
 - (void)insertCloseImg{
     
-    UIImage *img = [UIImage imageNamed:@"popPlus"];
+    UIImage *img = [UIImage imageNamed:@"plus"];
     
     UIImageView *imgView = [[UIImageView alloc]initWithImage:img];
     
-    imgView.frame = CGRectMake(self.view.center.x-15, self.view.frame.size.height-45, 30, 30);
-    
+    imgView.frame = CGRectMake(self.view.center.x-15, self.view.frame.size.height-45-25, 30, 30);
     [self.view addSubview:imgView];
     
     _closeImgView = imgView;
@@ -162,7 +161,7 @@
 //按九宫格计算方式排列按钮
 - (void)setMenu{
     
-    int cols = 3;
+    int cols = 2;
     int col = 0;
     int row = 0;
     
@@ -173,25 +172,25 @@
     CGFloat margin = ([UIScreen mainScreen].bounds.size.width - cols * wh) / (cols + 1);
     
     //此处按照不同屏幕尺寸适配
-    CGFloat oriY = 500;
-    if (kScreenHeight == 480) {
-        //4/4s
-        oriY = 313;
-    }else if (kScreenHeight == 568){
-        //5/5s
-        oriY = 400;
-    }else if (kScreenHeight == 667){
-        //6/6S
-        oriY = 500;
-    }else{
-        //6P 736
-        oriY = 569;
-    }
+    CGFloat oriY = GetScaleWidth(450);
+//    if (kScreenHeight == 480) {
+//        //4/4s
+//        oriY = 313;
+//    }else if (kScreenHeight == 568){
+//        //5/5s
+//        oriY = 400;
+//    }else if (kScreenHeight == 667){
+//        //6/6S
+//        oriY = GetScaleWidth(500);
+//    }else{
+//        //6P 736
+//        oriY = 569;
+//    }
     
     for (int i = 0; i < self.ary.count; i++) {
         
 //        NSArray *arrTitle = @[@"文字",@"照片",@"链接",@"视频",@"寻亲",@"文章"];
-        NSArray *arrTitle = @[@"文字",@"照片",@"链接",@"视频",@"寻亲",@"文章"];
+        NSArray *arrTitle = @[@"线上商品",@"线下店铺"];
         
         
         PublishMenuButton *btn = [PublishMenuButton buttonWithType:UIButtonTypeCustom];

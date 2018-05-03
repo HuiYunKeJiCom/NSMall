@@ -9,5 +9,5 @@
 #import "DCBaseSetViewController.h"
 
 @interface NSMessageViewController : DCBaseSetViewController
-
+-(instancetype)initWithConversationId:(NSString *)conversationId conversationType:(EMConversationType)conversationType;
 @end

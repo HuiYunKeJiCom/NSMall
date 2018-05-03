@@ -7,7 +7,7 @@
 //
 
 #import "NSPersonInfoTableView.h"
-#import "ADLMyInfoTableViewCell.h"
+#import "NSInfoCustomCell.h"
 
 @implementation NSPersonInfoTableView
 
@@ -19,15 +19,15 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.data.count+1;
+    return self.data.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        ADLMyInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ADLMyInfoTableViewCell"];
+        NSInfoCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSInfoCustomCell"];
         
         if (!cell) {
-            cell = [[ADLMyInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ADLMyInfoTableViewCell"];
+            cell = [[NSInfoCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSInfoCustomCell"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
@@ -41,18 +41,14 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if(indexPath.section == 0){
-        return 288*0.5;
+        return 268*0.5;
     }else{
         return 144*0.5;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if(section == 1 || section == 2 || section == 6){
-        return 30*0.5;
-    }else{
         return 0;
-    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

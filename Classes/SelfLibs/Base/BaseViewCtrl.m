@@ -70,7 +70,7 @@
         
 //        WEAKSELF
         _noDataView.requestDataBlock = ^(void) {
-//            [weak_self reloadDataSource];
+//            [weakSelf reloadDataSource];
         };
         
         [_noDataView setHidden:YES];
