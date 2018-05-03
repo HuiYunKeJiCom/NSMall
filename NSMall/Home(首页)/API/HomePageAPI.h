@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ProductListModel.h"
 
 @interface HomePageAPI : NSObject
 
-+ (void)getProductList:(nullable id)param success:(void (^)(NSDictionary *result))success failure:(void (^)(NSError *error))failure;
++ (void)getProductList:(nullable id)param success:(void (^)(ProductListModel * _Nullable result))success failure:(void (^)(NSError *error))failure;
 
 @end

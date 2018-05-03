@@ -28,6 +28,8 @@
 		184DE7A6208F081400E776F3 /* ADLMyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7A5208F081400E776F3 /* ADLMyInfoTableViewCell.m */; };
 		184DE7A9208F088E00E776F3 /* BaseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7A7208F088E00E776F3 /* BaseTableCell.m */; };
 		184DE7AC208F08B400E776F3 /* BaseRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7AB208F08B300E776F3 /* BaseRefreshGifHeader.m */; };
+		184F05E6209AA57B00768418 /* ProductListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05E5209AA57B00768418 /* ProductListModel.m */; };
+		184F05E9209AA71A00768418 /* ProductListItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05E8209AA71A00768418 /* ProductListItemModel.m */; };
 		1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD6F208F0DD00094A594 /* NetBaseModel.m */; };
 		1851CD77208F23530094A594 /* NSCustomHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD76208F23530094A594 /* NSCustomHeadCell.m */; };
 		188CC64A207F5430007D749E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 188CC649207F5430007D749E /* AppDelegate.m */; };
@@ -110,6 +112,10 @@
 		184DE7A8208F088E00E776F3 /* BaseTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableCell.h; sourceTree = "<group>"; };
 		184DE7AA208F08B300E776F3 /* BaseRefreshGifHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRefreshGifHeader.h; sourceTree = "<group>"; };
 		184DE7AB208F08B300E776F3 /* BaseRefreshGifHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRefreshGifHeader.m; sourceTree = "<group>"; };
+		184F05E4209AA57B00768418 /* ProductListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductListModel.h; sourceTree = "<group>"; };
+		184F05E5209AA57B00768418 /* ProductListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductListModel.m; sourceTree = "<group>"; };
+		184F05E7209AA71A00768418 /* ProductListItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductListItemModel.h; sourceTree = "<group>"; };
+		184F05E8209AA71A00768418 /* ProductListItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductListItemModel.m; sourceTree = "<group>"; };
 		1851CD6E208F0DD00094A594 /* NetBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetBaseModel.h; sourceTree = "<group>"; };
 		1851CD6F208F0DD00094A594 /* NetBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetBaseModel.m; sourceTree = "<group>"; };
 		1851CD75208F23530094A594 /* NSCustomHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCustomHeadCell.h; sourceTree = "<group>"; };
@@ -459,6 +465,10 @@
 		18D09312209469D200E091E0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				184F05E4209AA57B00768418 /* ProductListModel.h */,
+				184F05E5209AA57B00768418 /* ProductListModel.m */,
+				184F05E7209AA71A00768418 /* ProductListItemModel.h */,
+				184F05E8209AA71A00768418 /* ProductListItemModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -750,6 +760,7 @@
 				18DD157D208DD5F40006475D /* NSNearbyViewController.m in Sources */,
 				18DD1570208DD16A0006475D /* UIView+DCRolling.m in Sources */,
 				1835089920808CCD00BCF7CE /* Common.m in Sources */,
+				184F05E6209AA57B00768418 /* ProductListModel.m in Sources */,
 				18DD1577208DD4140006475D /* NSMyCenterViewController.m in Sources */,
 				18D71044208DC84C002BA6CD /* DCNavigationController.m in Sources */,
 				184DE7A9208F088E00E776F3 /* BaseTableCell.m in Sources */,
@@ -759,6 +770,7 @@
 				18DD157A208DD5AA0006475D /* NSMessageViewController.m in Sources */,
 				18230F66208D793F00D3E55F /* BaseViewCtrl.m in Sources */,
 				182DC49120905E3C0066E667 /* ADOrderTopToolView.m in Sources */,
+				184F05E9209AA71A00768418 /* ProductListItemModel.m in Sources */,
 				18230F7F208D821A00D3E55F /* NSLImageField.m in Sources */,
 				188CC64D207F5431007D749E /* ViewController.m in Sources */,
 				18D71043208DC84C002BA6CD /* DCBaseSetViewController.m in Sources */,

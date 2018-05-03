@@ -18,6 +18,7 @@ extern AFHTTPSessionManager *httpManager;
 + (AFHTTPSessionManager *)httpManager;
 
 //showHUD为可空参数，当showHUD为空时，不显示转圈，不会阻塞UI。若要显示一个单纯的转圈而没有文字，则传入NetNullStr
+//若返回值类型为NSNumber、NSDictionary、NSArray等类型，则传入的返回类型需要为nil,解析出的结果将会直接传入回调block
 + (void)requestWithPost:(nullable id)params function:(nullable NSString *)function showHUD:(nullable NSString *)showHUD resultClass:(nullable Class)resultClass success:(nullable void (^)(id _Nullable resultObj))success failure:(nullable void (^)(NSError * _Nullable error))failure;
 + (void)requestWithGet:(nullable id)params function:(nullable NSString *)function showHUD:(nullable NSString *)showHUD resultClass:(nullable Class)resultClass success:(nullable void (^)(id _Nullable resultObj))success failure:(nullable void (^)(NSError * _Nullable error))failure;
 
