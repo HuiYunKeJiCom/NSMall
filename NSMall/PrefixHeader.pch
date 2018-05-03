@@ -52,6 +52,7 @@
 #import "UserModel.h"
 #import "FFSpearteLineView.h"
 #import "BaseTableView.h"
+#import "UIImageView+WebCache.h"
 
 //#import <HyphenateLite/HyphenateLite.h>
 #import <Hyphenate/Hyphenate.h>//环信

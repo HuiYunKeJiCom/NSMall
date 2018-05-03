@@ -154,3 +154,7 @@ alpha:1.0]
 #define kFontSize15                 [UIFont systemFontOfSize:15]
 #define kFontSize16                 [UIFont systemFontOfSize:16]
 #define kFontSize17                 [UIFont systemFontOfSize:17]
+
+#define Image_Host  [NSString stringWithFormat:@"http%@%@",CurrentHost,@"/adel-admin/images"]
+
+#define Image_Url(url) [NSString stringWithFormat:@"%@%@",Image_Host,url]

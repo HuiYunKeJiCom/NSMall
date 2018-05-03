@@ -11,6 +11,9 @@
 #import "NSTimer+BlockSupport.h"
 #import "NSTimer+wrapper.h"
 #import "ADLTitleField.h"
+#import "UserInfoAPI.h"
+#import "GetVcodeAPI.h"
+#import "GetVcodeParam.h"
 
 @interface ADLChangePhoneViewController ()<UITextFieldDelegate>
 //@property (nonatomic, strong) UITextField         *contentField;
@@ -109,58 +112,18 @@
     _errorLabel.text = @"";
     
     if (self.phoneField.text.length >0 && self.codeField.text.length >0) {
-        //这里需要修改
-//        NSMutableDictionary * param = [NSMutableDictionary dictionary];
-//
-//        ADLUserModel *userModel = [[ADLGlobalHandleModel sharedInstance] readCurrentUser];
-//        NSString *memberId = [NSString limitStringNotEmpty:userModel.idx];
-//
-//        if (memberId.length>0) {
-//
-//            param[@"memberId"] = memberId;
-//
-//        } else {
-//
-//            param[@"memberId"] = @"";
-//        }
-//
-//        NSString * phone = [ADLGlobalHandleModel sharedInstance].CurrentUser.phone;
-//        if (phone.length>0) {
-//
-//            param[@"oldphone"] = phone;
-//        } else {
-//
-//            param[@"oldphone"] = @"";
-//        }
-//
-//        param[@"newphone"] = self.phoneField.text;
-//
-//        param[@"nationcode"] = self.countryField.text;
-//        param[@"vcode"] = self.codeField.text;
-//        WEAKSELF
-//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//        [NetWork modifyPhone:[NSDictionary dictionaryWithObject:[self dictionaryToJson:param] forKey:@"params"] success:^(NSDictionary *result) {
-//            NSLog(@"修改号码成功 = %@",result);
-//            [hud hide:YES afterDelay:1];
-//            if ([result[@"status"] integerValue] == 10003 ){
-//                [NSError showHudWithView:self.view Text:@"验证码输入不正确 请核对后输入" delayTime:0.5];
-//            }else if ([result[@"status"] integerValue] == 10002 ){
-//                [NSError showHudWithView:self.view Text:@"验证码已失效，请重新获取" delayTime:0.5];
-//            }else if ([result[@"status"] integerValue] == 10000 ){
-//
-//                [weakSelf.navigationController popViewControllerAnimated:YES];
-//                /*保存当前用户*/
-//                ADLUserModel *userModel = [ADLGlobalHandleModel sharedInstance].CurrentUser;
-//                userModel.phone = self.phoneField.text;
-//                userModel.nationcode = self.countryField.text;
-//                [ADLGlobalHandleModel sharedInstance].CurrentUser = userModel;
-//
-//            }
-//        } failure:^(NSError *error) {
-//            [hud hide:YES afterDelay:1];
-//            NSLog(@"修改错误 = %@",error);
-//            [NSError showHudWithView:self.view Text:[NSString stringWithFormat:@"%@",error] delayTime:0.5];
-//        }];
+        //这里已修改
+        ChangeMobileParam *param = [ChangeMobileParam new];
+        param.mobile = self.phoneField.text;
+        param.smsVerifyCode = self.codeField.text;
+        [UserInfoAPI changeMobileWithParam:param success:^{
+            DLog(@"修改手机号成功");
+            UserModel *usermodel = [UserModel modelFromUnarchive];
+            usermodel.telephone = self.phoneField.text;
+            [usermodel archive];
+        } faulre:^(NSError *error) {
+            DLog(@"修改手机号失败");
+        }];
     }
 }
 
@@ -418,6 +381,7 @@
 
 - (void)actionCode:(UIButton *)button {
     
+    WEAKSELF
     if ([[self.phoneField.text trim] isEmptyOrNull]) {
         [self.phoneField animateShake];
         _errorLabel.text = KLocalizableStr(@"请输入手机号");
@@ -426,21 +390,19 @@
     
     [self.view endEditing:YES];
     _errorLabel.text = @"";
-//这里需要修改
-//    WEAKSELF
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    self.view.userInteractionEnabled = NO;
-//    [RequestTool didSendCodeDictionary:@{@"nationcode":[NSString limitStringNotEmpty:self.countryField.text],@"phone":[NSString limitStringNotEmpty:self.phoneField.text],@"isCheck":@"2"} withSuccessBlock:^(NSDictionary *result) {
-//                                             NSLog(@"手机号登录result = %@",result);
-//                                             [hud hide:YES];
-//                                             weakSelf.view.userInteractionEnabled = YES;
-//                                             [weakSelf reStartTimer];
-//                                         } withFailBlock:^(NSString *msg) {
-//                                             NSLog(@"验证码发送失败= %@",msg);
-//                                             [hud hide:YES];
-//                                             weakSelf.view.userInteractionEnabled = YES;
-//                                             [NSError showHudWithView:weakSelf.view Text:msg delayTime:0.5];
-//                                         }];
+    //这里已修改
+    weakSelf.view.userInteractionEnabled = NO;
+    GetVcodeParam *param = [GetVcodeParam new];
+    param.mobile = self.phoneField.text;
+    param.type = @"2";
+    [GetVcodeAPI getVcodeWithParam:param success:^{
+        NSLog(@"获取验证码成功");
+        weakSelf.view.userInteractionEnabled = YES;
+        [weakSelf reStartTimer];
+    } faulre:^(NSError *error) {
+        NSLog(@"获取验证码失败");
+        weakSelf.view.userInteractionEnabled = YES;
+    }];
 }
 
 

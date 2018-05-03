@@ -23,4 +23,7 @@ const static NSString * const NetDomainADDR = @"http://adelshop.iok.la:41831/nss
 const static NSString * const kLoginAPI = @"login";
 const static NSString * const kHomePageProductListAPI = @"productList";
 const static NSString * const kGetInfoAPI = @"auth/getUserInfo";//获取用户信息
+const static NSString * const kChangeMobileAPI = @"auth/changeMobile";//更换手机号
+const static NSString * const kGetVcodeAPI = @"getSmsVerifyCode";//获取短信验证码
+const static NSString * const kUploadHeaderAPI = @"auth/uploadAvatar";//上传用户头像
 

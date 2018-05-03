@@ -11,7 +11,7 @@
 #import "ADLUpdateUserPhotoCell.h"
 #import "ADLEditUserInformCtrl.h"
 
-#import "ADLFixUserNameController.h"
+//#import "ADLFixUserNameController.h"
 #import "ADLUserNameController.h"
 
 #import <AVFoundation/AVFoundation.h>
@@ -142,17 +142,15 @@
             NSArray *subArr = self.dataSources[indexPath.section];
             cell.titleLb.text = subArr[indexPath.row];
             
-            //这里需要修改
-//            NSString *pictureUrl = @"";
-//            if ([self.userModel.pictureUrl hasPrefix:@"http"]) {
-//                pictureUrl = self.userModel.pictureUrl;
-//            } else {
-//                pictureUrl = Image_Url(self.userModel.pictureUrl);
-//            }
-//
-//            NSURL *imageurl = [NSURL URLWithString:pictureUrl];
-//            [cell.photoImgView sd_setImageWithURL:imageurl placeholderImage:[ADLGlobalHandleModel sharedInstance].readUserPhoto];
-            
+            NSString *pictureUrl = @"";
+            if ([self.userModel.pic_img hasPrefix:@"http"]) {
+                pictureUrl = self.userModel.pic_img;
+            } else {
+                pictureUrl = Image_Url(self.userModel.pic_img);
+            }
+
+            NSURL *imageurl = [NSURL URLWithString:pictureUrl];
+            [cell.photoImgView sd_setImageWithURL:imageurl placeholderImage:IMAGE(@"my_ico_head")];
         }
         return cell;
     }
@@ -204,7 +202,7 @@
                     ctrl.editTitle = title;
                     [self.navigationController pushViewController:ctrl animated:YES];
                     
-                } else if (type == EditUserTypeUserName) {
+                } else if (type == EditUserTypeCertification) {
                     
                     ADLUserNameController *ctrl = [[ADLUserNameController alloc] init];
                     ctrl.editTitle = title;
@@ -228,31 +226,14 @@
     if ([title isEqualToString:KLocalizableStr(@"昵称")]) {
         type = EditUserTypeNickName;
         
-    } else if ([title isEqualToString:KLocalizableStr(@"真实姓名")]) {
-        type = EditUserTypeName;
-        
     } else if ([title isEqualToString:KLocalizableStr(@"性别")]) {
         type = EditUserTypeGender;
         
-    } else if ([title isEqualToString:KLocalizableStr(@"手机")]) {
+    } else if ([title isEqualToString:KLocalizableStr(@"手机号")]) {
         type = EditUserTypePhone;
         
-    } else if ([title isEqualToString:KLocalizableStr(@"电话")]) {
-        type = EditUserTypeMobile;
-        
-    } else if ([title isEqualToString:KLocalizableStr(@"微信")]) {
-        type = EditUserTypeWeiXin;
-        
-    } else if ([title isEqualToString:KLocalizableStr(@"QQ")]) {
-        type = EditUserTypeQQ;
-        
-    } else if ([title isEqualToString:KLocalizableStr(@"微博")]) {
-        type = EditUserTypeWeibo;
-        
-    } else if ([title isEqualToString:KLocalizableStr(@"邮箱")]) {
-        type = EditUserTypeEmail;
-    } else if ([title isEqualToString:KLocalizableStr(@"用户名")]) {
-        type = EditUserTypeUserName;
+    } else if ([title isEqualToString:KLocalizableStr(@"实名认证")]) {
+        type = EditUserTypeCertification;
     }
     
     return type;
@@ -262,38 +243,21 @@
 - (void)handleUserCell:(ADLUpdateUserTableCell *)cell title:(NSString *)title {
     
     cell.titleLb.text = title;
-    
-    //这里需要修改
-//    if ([title isEqualToString:KLocalizableStr(@"昵称")]) {
-//        cell.descLabel.text = [NSString limitStringNotEmpty:self.userModel.nickName];
-//
-//    } else if ([title isEqualToString:KLocalizableStr(@"真实姓名")]) {
-//        cell.descLabel.text = [NSString limitStringNotEmpty:self.userModel.name];
-//
-//    } else if ([title isEqualToString:KLocalizableStr(@"性别")]) {
-//        cell.descLabel.text = [self.userModel.gender isEqualToString:@"0"] ? KLocalizableStr(@"男") : KLocalizableStr(@"女");
-//
-//    } else if ([title isEqualToString:KLocalizableStr(@"手机")]) {
-//        cell.descLabel.text = [NSString limitStringNotEmpty:self.userModel.phone];
-//
-//    } else if ([title isEqualToString:KLocalizableStr(@"电话")]) {
+    //这里已修改
+    if ([title isEqualToString:KLocalizableStr(@"昵称")]) {
+        cell.descLabel.text = [NSString limitStringNotEmpty:self.userModel.user_name];
+
+    }  else if ([title isEqualToString:KLocalizableStr(@"性别")]) {
+        cell.descLabel.text = self.userModel.sex == 0 ? KLocalizableStr(@"保密") : self.userModel.sex == 1 ? KLocalizableStr(@"男") : KLocalizableStr(@"女");
+
+    } else if ([title isEqualToString:KLocalizableStr(@"手机号")]) {
+        cell.descLabel.text = [NSString limitStringNotEmpty:self.userModel.telephone];
+
+    } else if ([title isEqualToString:KLocalizableStr(@"实名认证")]) {
+        //这里需要修改 已认证的需要修改
 //        cell.descLabel.text = [NSString limitStringNotEmpty:self.userModel.mobile];
-//
-//    } else if ([title isEqualToString:KLocalizableStr(@"微信")]) {
-//        cell.descLabel.text = [NSString limitStringNotEmpty:self.userModel.weixin];
-//
-//    } else if ([title isEqualToString:KLocalizableStr(@"QQ")]) {
-//        cell.descLabel.text = [NSString limitStringNotEmpty:self.userModel.qq];
-//
-//    } else if ([title isEqualToString:KLocalizableStr(@"微博")]) {
-//        cell.descLabel.text = [NSString limitStringNotEmpty:self.userModel.weibo];
-//
-//    } else if ([title isEqualToString:KLocalizableStr(@"邮箱")]) {
-//        cell.descLabel.text = [NSString limitStringNotEmpty:self.userModel.email];
-//    } else if ([title isEqualToString:KLocalizableStr(@"用户名")]) {
-//
-//        cell.descLabel.text = [NSString limitStringNotEmpty:self.userModel.userName];
-//    }
+        cell.descLabel.text = [NSString limitStringNotEmpty:KLocalizableStr(@"未认证")];
+    }
 }
 
 
@@ -384,6 +348,13 @@
     ADLUpdateUserPhotoCell *cell = [self.userTable cellForRowAtIndexPath:self.selectIndexPath];
     cell.photoImgView.image = image;
     
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setObject:image forKey:@"file"];
+    [UserInfoAPI uploadHeaderWithParam:param success:^{
+        NSLog(@"头像上传成功");
+    } faulre:^(NSError *error) {
+        NSLog(@"头像上传失败");
+    }];
     //这里需要修改
 //    WEAKSELF
 //    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];

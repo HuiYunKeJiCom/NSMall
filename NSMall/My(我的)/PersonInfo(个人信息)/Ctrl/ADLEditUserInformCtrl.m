@@ -299,31 +299,6 @@
             key = @"phone";
         }
             break;
-        case EditUserTypeMobile:{
-            key = @"mobile";
-        }
-            break;
-        case EditUserTypeWeiXin:{
-            key = @"weixin";
-        }
-            break;
-        case EditUserTypeQQ:{
-            key = @"qq";
-        }
-            break;
-        case EditUserTypeWeibo:{
-            key = @"weibo";
-        }
-            break;
-        case EditUserTypeEmail:{
-            key = @"email";
-        }
-            break;
-        case EditUserTypeName:{
-            key = @"name";
-        }
-            break;
-            
         default:
             key = @"";
             break;
