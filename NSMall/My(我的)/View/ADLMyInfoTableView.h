@@ -25,4 +25,5 @@
 @property (strong , nonatomic)NSMutableArray<DCGridItem *> *orderItemArray;
 @property (strong,nonatomic) NSDictionary *personInfoDic;
 @property (assign,nonatomic) id<ADLMyInfoTableViewDelegate> tbDelegate;
+@property (nonatomic, strong) UserModel              *userModel;
 @end

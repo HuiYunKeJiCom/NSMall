@@ -111,6 +111,7 @@
     [self.view endEditing:YES];
     _errorLabel.text = @"";
     
+    WEAKSELF
     if (self.phoneField.text.length >0 && self.codeField.text.length >0) {
         //这里已修改
         ChangeMobileParam *param = [ChangeMobileParam new];
@@ -121,6 +122,7 @@
             UserModel *usermodel = [UserModel modelFromUnarchive];
             usermodel.telephone = self.phoneField.text;
             [usermodel archive];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
         } faulre:^(NSError *error) {
             DLog(@"修改手机号失败");
         }];
@@ -296,7 +298,7 @@
     
     [self.phoneView mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.centerX.mas_equalTo(weakSelf);
-        make.top.mas_equalTo(weakSelf.view.mas_top).offset(GetScaleWidth(60));
+        make.top.mas_equalTo(weakSelf.view.mas_top).offset(GetScaleWidth(60+64));
         make.left.mas_equalTo(weakSelf.view.mas_left).offset(GetScaleWidth(16));
         make.right.mas_equalTo(weakSelf.view.mas_right).offset(GetScaleWidth(-16));
         make.height.mas_equalTo(GetScaleWidth(40));

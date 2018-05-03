@@ -10,9 +10,11 @@
 //#import "NSPersonInfoViewController.h"
 #import "ADLMyInfoTableView.h"
 #import "ADLUpdateUserInformCtrl.h"
+#import "UserInfoAPI.h"
 
 @interface NSMyCenterViewController ()<ADLMyInfoTableViewDelegate>
 @property (strong, nonatomic) ADLMyInfoTableView   *otherTableView;
+
 @end
 
 @implementation NSMyCenterViewController
@@ -25,6 +27,17 @@
     [self setUpBase];
     [self makeConstraints];
     
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [UserInfoAPI getUserInfo:nil success:^{
+        NSLog(@"获取用户信息");
+        self.otherTableView.userModel = [UserModel modelFromUnarchive];
+        
+    } faulre:^(NSError *error) {
+        NSLog(@"获取用户信息失败");
+    }];
 }
 
 - (void)makeConstraints {

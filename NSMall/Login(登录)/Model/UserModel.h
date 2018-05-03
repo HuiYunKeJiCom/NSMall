@@ -35,6 +35,7 @@
 @property (nonatomic,copy)NSString *last_login_ip;//上次登录IP
 @property (nonatomic,assign)NSInteger login_number;//登录号
 @property (nonatomic,copy)NSString *app_token;//登录token？
+@property (nonatomic,copy)NSString *regeist_day;//注册天数【该参数不够一天显示小时，不够一个小时则显示分钟】
 
 
 + (instancetype)userModel;//供全局使用的userModel，如果为空则从硬盘中归档导出，如果硬盘中没有则返回为空

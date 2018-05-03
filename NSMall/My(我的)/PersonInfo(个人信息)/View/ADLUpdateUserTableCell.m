@@ -68,7 +68,7 @@
 - (UIImageView *)arrowImgView {
     
     if (!_arrowImgView) {
-        _arrowImgView = [[UIImageView alloc] initWithImage:IMAGE(@"ico_home_arrow_black")];
+        _arrowImgView = [[UIImageView alloc] initWithImage:IMAGE(@"my_ico_right_arrow")];
     }
     
     return _arrowImgView;

@@ -11,4 +11,5 @@
 @interface NSCustomHeadCell : BaseTableCell
 /* 点击头像点击回调 */
 @property (nonatomic, copy) dispatch_block_t imageViewBtnClickBlock;
+@property (nonatomic, strong) UserModel              *userModel;
 @end

@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>锁老大需要访问您的相册，将相册里的照片用于设置头像图片</string>
+	<key>NSCameraUsageDescription</key>
+	<string>诺商需要访问您的相机来扫描二维码以获取房间密钥，或者用来获取照片，这些照片将用于设置头像图片</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>需要定位</string>
 	<key>CFBundleDisplayName</key>

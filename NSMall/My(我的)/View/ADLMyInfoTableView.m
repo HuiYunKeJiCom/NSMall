@@ -37,6 +37,7 @@
             customCell = [[NSCustomHeadCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSCustomHeadCell"];
             customCell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+        customCell.userModel = self.userModel;
         return customCell;
     }else{
         ADLMyInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ADLMyInfoTableViewCell"];
@@ -99,5 +100,10 @@
 //        [_tbDelegate collectionView:collectionView didSelectItemAtIndexPath:indexPath];
 //    }
 //}
+
+-(void)setUserModel:(UserModel *)userModel{
+    _userModel = userModel;
+    [self reloadData];
+}
 
 @end

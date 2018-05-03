@@ -5,7 +5,7 @@
 //
 //  Created by apple on 2017/10/28.
 //  Copyright © 2017年 朱鹏. All rights reserved.
-//
+//  实名认证
 
 #import "ADLUserNameController.h"
 
@@ -96,7 +96,7 @@
     [self.contentField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.view.mas_left).with.offset(GetScaleWidth(16));
         make.right.equalTo(weakSelf.view.mas_right).with.offset(GetScaleWidth(-16));
-        make.top.equalTo(weakSelf.view).with.offset(GetScaleWidth(60));
+        make.top.equalTo(weakSelf.view).with.offset(GetScaleWidth(60+64));
         make.height.mas_equalTo(GetScaleWidth(40));
     }];
     
