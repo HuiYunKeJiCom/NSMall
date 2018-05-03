@@ -38,12 +38,12 @@
     [LoginAPI loginWithParam:param success:^{
         DLog(@"登录成功");
         
-//        [HomePageAPI getProductList:nil success:^(NSDictionary *result) {
-//
-//        } failure:^(NSError *error) {
-//
-//        }];
-
+        [HomePageAPI getProductList:nil success:^(ProductListModel *result) {
+            DLog(@"result : %@",result);
+        } failure:^(NSError *error) {
+            
+        }];
+        
     } faulre:^(NSError *error) {
         DLog(@"登录失败");
     }];

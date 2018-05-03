@@ -10,9 +10,9 @@
 
 @implementation HomePageAPI
 
-+ (void)getProductList:(nullable id)param success:(void (^)(NSDictionary *result))success failure:(void (^)(NSError *error))failure{
-    [Net requestWithGet:param function:kHomePageProductListAPI showHUD:NetNullStr resultClass:[NSDictionary class] success:^(id  _Nullable resultObj) {
-        DLog(@"resultObj : %@",resultObj);
++ (void)getProductList:(nullable id)param success:(void (^)(ProductListModel *result))success failure:(void (^)(NSError *error))failure{
+    [Net requestWithGet:param function:kHomePageProductListAPI showHUD:NetNullStr resultClass:[ProductListModel class] success:^(ProductListModel  * _Nullable  resultObj){
+        success?success(resultObj):nil;
     } failure:failure];
 }
 
