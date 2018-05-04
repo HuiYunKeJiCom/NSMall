@@ -4,10 +4,13 @@
 //
 //  Created by 邱学伟 on 16/4/22.
 //  Copyright © 2016年 邱学伟. All rights reserved.
-//
+//  发布页面
 
 #import "XWPopMenuController.h"
 #import "PublishMenuButton.h"
+
+#import "NSGoodsPublishVC.h"
+#import "NSShopPublishVC.h"
 
 ////导入自定义控制器->
 //#import "OneViewController.h"
@@ -232,53 +235,17 @@
 //点击按钮进行放大动画效果直到消失
 - (void)touchDownBtn:(PublishMenuButton *)btn{
     
+    if(btn.tag == 1000){
+        //线上商品
+        NSGoodsPublishVC *ctrl = [[NSGoodsPublishVC alloc] init];
+        [self presentViewController:ctrl animated:YES completion:nil];
+    }else{
+        //线下店铺
+        NSShopPublishVC *ctrl = [[NSShopPublishVC alloc] init];
+        [self presentViewController:ctrl animated:YES completion:nil];
+    }
     
-    NSLog(@"%ld为btn.tag的值，根据不同的按钮需要做什么操作可以写这里",btn.tag);
-    //根据选中的不同按钮的tag判断进入相应的界面->
-    
-//    if (btn.tag == 1000) {
-//        //纯文本
-//        TwoViewController *publishTextVC = [[TwoViewController alloc] init];
-//
-//        [publishTextVC toDissmissSelf:^{
-//            self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(returnUpVC) userInfo:nil repeats:YES];
-//            [UIView animateWithDuration:0.2 animations:^{
-//                _closeImgView.transform = CGAffineTransformRotate(_closeImgView.transform, -M_PI_2*1.5);
-//            }];
-//        }];
-//        [self presentViewController:publishTextVC animated:YES completion:nil];
-//
-//    }else if(btn.tag == 1001){
-//        //图文
-//        OneViewController *publishVC = [[OneViewController alloc] init];
-//        [publishVC.navigationItem setTitle:@"发布"];
-//        [publishVC toDissmissSelf:^{
-//            self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(returnUpVC) userInfo:nil repeats:YES];
-//            [UIView animateWithDuration:0.2 animations:^{
-//                _closeImgView.transform = CGAffineTransformRotate(_closeImgView.transform, -M_PI_2*1.5);
-//            }];
-//        }];
-//        [self presentViewController:publishVC animated:YES completion:nil];
-//    }else{
-//        //链接
-//        ThreeViewController *publishLinkVC = [[ThreeViewController alloc] init];
-//        [publishLinkVC.navigationItem setTitle:@"发布"];
-//        [publishLinkVC toDissmissSelf:^{
-//            self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(returnUpVC) userInfo:nil repeats:YES];
-//            [UIView animateWithDuration:0.2 animations:^{
-//                _closeImgView.transform = CGAffineTransformRotate(_closeImgView.transform, -M_PI_2*1.5);
-//            }];
-//        }];
-//        [self presentViewController:publishLinkVC animated:YES completion:nil];
-//
-//    }
-//
-//
-//    [UIView animateWithDuration:0.5 animations:^{
-//        btn.transform = CGAffineTransformMakeScale(2.0, 2.0);
-//        btn.alpha = 0;
-//    }];
-    
+//    NSLog(@"%ld为btn.tag的值，根据不同的按钮需要做什么操作可以写这里",btn.tag);
 }
 
 
