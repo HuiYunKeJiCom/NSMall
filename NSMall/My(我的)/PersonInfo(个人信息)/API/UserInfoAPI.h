@@ -16,5 +16,5 @@
 /** 更换手机号 */
 + (void)changeMobileWithParam:(ChangeMobileParam *)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure;
 /** 上传用户头像 */
-+ (void)uploadHeaderWithParam:(NSDictionary *)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure;
++ (void)uploadHeaderWithParam:(NSDictionary *)param success:(void (^)(NSString *path))success faulre:(void (^)(NSError *))failure;
 @end

@@ -10,4 +10,8 @@
 
 @implementation AdvertListModel
 
++ (NSDictionary *)modelContainerPropertyGenericClass{
+    return @{@"advertList":[AdvertItemModel class]};
+}
+
 @end

@@ -39,6 +39,10 @@
 		184DE7A6208F081400E776F3 /* ADLMyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7A5208F081400E776F3 /* ADLMyInfoTableViewCell.m */; };
 		184DE7A9208F088E00E776F3 /* BaseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7A7208F088E00E776F3 /* BaseTableCell.m */; };
 		184DE7AC208F08B400E776F3 /* BaseRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7AB208F08B300E776F3 /* BaseRefreshGifHeader.m */; };
+		184F05EF209AE39700768418 /* ProductListItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05EC209AE39600768418 /* ProductListItemModel.m */; };
+		184F05F0209AE39700768418 /* ProductListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05EE209AE39600768418 /* ProductListModel.m */; };
+		184F05F7209C40C700768418 /* AdvertListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05F6209C40C700768418 /* AdvertListModel.m */; };
+		184F05FA209C40DE00768418 /* AdvertItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05F9209C40DE00768418 /* AdvertItemModel.m */; };
 		1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD6F208F0DD00094A594 /* NetBaseModel.m */; };
 		1851CD77208F23530094A594 /* NSCustomHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD76208F23530094A594 /* NSCustomHeadCell.m */; };
 		188CC64A207F5430007D749E /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 188CC649207F5430007D749E /* AppDelegate.mm */; };
@@ -152,6 +156,14 @@
 		184DE7A8208F088E00E776F3 /* BaseTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableCell.h; sourceTree = "<group>"; };
 		184DE7AA208F08B300E776F3 /* BaseRefreshGifHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRefreshGifHeader.h; sourceTree = "<group>"; };
 		184DE7AB208F08B300E776F3 /* BaseRefreshGifHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRefreshGifHeader.m; sourceTree = "<group>"; };
+		184F05EB209AE39600768418 /* ProductListItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListItemModel.h; sourceTree = "<group>"; };
+		184F05EC209AE39600768418 /* ProductListItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListItemModel.m; sourceTree = "<group>"; };
+		184F05ED209AE39600768418 /* ProductListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListModel.h; sourceTree = "<group>"; };
+		184F05EE209AE39600768418 /* ProductListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListModel.m; sourceTree = "<group>"; };
+		184F05F5209C40C700768418 /* AdvertListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdvertListModel.h; sourceTree = "<group>"; };
+		184F05F6209C40C700768418 /* AdvertListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdvertListModel.m; sourceTree = "<group>"; };
+		184F05F8209C40DE00768418 /* AdvertItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdvertItemModel.h; sourceTree = "<group>"; };
+		184F05F9209C40DE00768418 /* AdvertItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdvertItemModel.m; sourceTree = "<group>"; };
 		1851CD6E208F0DD00094A594 /* NetBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetBaseModel.h; sourceTree = "<group>"; };
 		1851CD6F208F0DD00094A594 /* NetBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetBaseModel.m; sourceTree = "<group>"; };
 		1851CD75208F23530094A594 /* NSCustomHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCustomHeadCell.h; sourceTree = "<group>"; };
@@ -451,6 +463,45 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		184F05EA209AE39600768418 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				184F05FB209C590A00768418 /* Category */,
+				184F05F3209C408500768418 /* Product */,
+				184F05F4209C40A000768418 /* Advert */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		184F05F3209C408500768418 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				184F05ED209AE39600768418 /* ProductListModel.h */,
+				184F05EE209AE39600768418 /* ProductListModel.m */,
+				184F05EB209AE39600768418 /* ProductListItemModel.h */,
+				184F05EC209AE39600768418 /* ProductListItemModel.m */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		184F05F4209C40A000768418 /* Advert */ = {
+			isa = PBXGroup;
+			children = (
+				184F05F5209C40C700768418 /* AdvertListModel.h */,
+				184F05F6209C40C700768418 /* AdvertListModel.m */,
+				184F05F8209C40DE00768418 /* AdvertItemModel.h */,
+				184F05F9209C40DE00768418 /* AdvertItemModel.m */,
+			);
+			path = Advert;
+			sourceTree = "<group>";
+		};
+		184F05FB209C590A00768418 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		1851CD74208F10000094A594 /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
@@ -563,8 +614,8 @@
 		18D0825020956EB70031034A /* API */ = {
 			isa = PBXGroup;
 			children = (
-				18D0825120956EB70031034A /* HomePageAPI.m */,
 				18D0825220956EB70031034A /* HomePageAPI.h */,
+				18D0825120956EB70031034A /* HomePageAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -656,6 +707,7 @@
 		18DD156A208DCEEB0006475D /* Home(首页) */ = {
 			isa = PBXGroup;
 			children = (
+				184F05EA209AE39600768418 /* Model */,
 				18D0825020956EB70031034A /* API */,
 				18DD156B208DCF3F0006475D /* NSHomePageViewController.h */,
 				18DD156C208DCF3F0006475D /* NSHomePageViewController.m */,
@@ -878,6 +930,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18D0824E20956D2F0031034A /* LoginAPI.m in Sources */,
+				184F05EF209AE39700768418 /* ProductListItemModel.m in Sources */,
 				18230F83208D8AA000D3E55F /* UILabel+LBExt.m in Sources */,
 				18DD157D208DD5F40006475D /* NSNearbyViewController.m in Sources */,
 				18D0824A20956D2F0031034A /* NSLoginController.m in Sources */,
@@ -895,6 +948,7 @@
 				18D574CB209AA380001C7875 /* GetVcodeAPI.m in Sources */,
 				18DD157A208DD5AA0006475D /* NSMessageViewController.m in Sources */,
 				18C4BAB72093366E00F74573 /* NSInfoCustomCell.m in Sources */,
+				184F05F0209AE39700768418 /* ProductListModel.m in Sources */,
 				184043412099FB0600685F80 /* ADLChangePhoneViewController.m in Sources */,
 				184043512099FC6800685F80 /* MBProgressHUD+MJ.m in Sources */,
 				18230F66208D793F00D3E55F /* BaseViewCtrl.m in Sources */,
@@ -916,6 +970,7 @@
 				182DC49B209061610066E667 /* NSPersonInfoTableView.m in Sources */,
 				18D0824B20956D2F0031034A /* NSLoginView.m in Sources */,
 				184043382099FABE00685F80 /* ADLEditUserInformCtrl.m in Sources */,
+				184F05FA209C40DE00768418 /* AdvertItemModel.m in Sources */,
 				1840434E2099FB8400685F80 /* ADLTitleField.m in Sources */,
 				188CC658207F5431007D749E /* main.m in Sources */,
 				18350895208086DE00BCF7CE /* UIViewExt.m in Sources */,
@@ -939,6 +994,7 @@
 				18D0824D20956D2F0031034A /* UserModel.m in Sources */,
 				184043352099FAA200685F80 /* ADLUpdateUserPhotoCell.m in Sources */,
 				18350890207F653600BCF7CE /* Net.m in Sources */,
+				184F05F7209C40C700768418 /* AdvertListModel.m in Sources */,
 				18DD1569208DCB7E0006475D /* DCSpeedy.m in Sources */,
 				18DD1585208DEA8D0006475D /* ADLMyInfoTableView.m in Sources */,
 				18230F86208D8D7B00D3E55F /* UIView+animation.m in Sources */,

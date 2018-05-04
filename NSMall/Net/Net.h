@@ -23,4 +23,5 @@ extern AFHTTPSessionManager *httpManager;
 + (void)requestWithGet:(nullable id)params function:(nullable NSString *)function showHUD:(nullable NSString *)showHUD resultClass:(nullable Class)resultClass success:(nullable void (^)(id _Nullable resultObj))success failure:(nullable void (^)(NSError * _Nullable error))failure;
 
 
+
 @end

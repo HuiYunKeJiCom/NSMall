@@ -22,4 +22,27 @@
     [AppWindow makeToast:mess];
 }
 
+extern YYImageDecoder *commonImageDecoder = nil;//
+extern YYImageEncoder *commonImageEncoder = nil;//
+
++ (YYImageDecoder *)imageDecoder{
+    if (!commonImageDecoder) {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            commonImageDecoder = [[YYImageDecoder alloc]init];
+        });
+    }
+    return commonImageDecoder;
+}
+
++ (YYImageEncoder *)imageEncoder{
+    if (!commonImageEncoder) {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            commonImageEncoder = [[YYImageEncoder alloc]init];
+        });
+    }
+    return commonImageEncoder;
+}
+
 @end

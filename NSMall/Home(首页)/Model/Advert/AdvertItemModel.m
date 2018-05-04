@@ -6,8 +6,12 @@
 //  Copyright © 2018年 www. All rights reserved.
 //
 
-#import "AdverItemModel.h"
+#import "AdvertItemModel.h"
 
-@implementation AdverItemModel
+@implementation AdvertItemModel
+
++ (NSDictionary *)modelCustomPropertyMapper{
+    return @{@"ID":@"id"};
+}
 
 @end

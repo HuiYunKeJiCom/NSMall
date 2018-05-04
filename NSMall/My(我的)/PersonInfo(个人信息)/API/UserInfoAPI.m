@@ -26,9 +26,9 @@
     }];
 }
 
-+ (void)uploadHeaderWithParam:(NSDictionary *)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure{
-    [Net requestWithPost:param function:kUploadHeaderAPI showHUD:NetNullStr resultClass:[NSDictionary class] success:^(id  _Nullable resultObj) {
-        success?success():nil;
++ (void)uploadHeaderWithParam:(NSDictionary *)param success:(void (^)(NSString *path))success faulre:(void (^)(NSError *))failure{
+    [Net requestWithPost:param function:kUploadHeaderAPI showHUD:NetNullStr resultClass:nil success:^(NSDictionary *resultObj) {
+        success?success([resultObj.allValues firstObject]):nil;
     } failure:^(NSError * _Nullable error) {
         failure?failure(error):nil;
     }];
