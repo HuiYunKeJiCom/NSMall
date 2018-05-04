@@ -54,6 +54,9 @@
 #import "BaseTableView.h"
 #import "UIImageView+WebCache.h"
 
+#import <TZImagePickerController/TZImagePickerController.h>
+#import "LxGridViewFlowLayout.h"
+
 //#import <HyphenateLite/HyphenateLite.h>
 #import <Hyphenate/Hyphenate.h>//环信
 //#import <BaiduMapKit/BaiduMapKit.h>//百度地图

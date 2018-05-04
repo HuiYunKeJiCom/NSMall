@@ -45,7 +45,7 @@
 
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum12 TextColor:KColorTextDA2F2D];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum12 TextColor:UIColorFromRGB(0x0aa1e0)];
         _titleLabel.backgroundColor = [UIColor clearColor];
     }
     return _titleLabel;

@@ -64,7 +64,7 @@
         UILabel * placeholderLabel = [_contentField valueForKey:@"_placeholderLabel"];
         placeholderLabel.textAlignment = NSTextAlignmentCenter;
         
-        _contentField.layer.borderColor = KColorTextDA2F2D.CGColor;
+        _contentField.layer.borderColor = UIColorFromRGB(0x0aa1e0).CGColor;
         _contentField.layer.borderWidth = 1;
         _contentField.layer.cornerRadius = GetScaleWidth(20);
         _contentField.layer.masksToBounds = YES;
@@ -78,7 +78,7 @@
         [_commitButton setTitle:KLocalizableStr(@"保存") forState:UIControlStateNormal];
         [_commitButton setTitleColor:KColorTextFFFFFF forState:UIControlStateNormal];
         _commitButton.titleLabel.font = kFontSize15;
-        _commitButton.backgroundColor = KColorTextDA2F2D;
+        _commitButton.backgroundColor = UIColorFromRGB(0x0aa1e0);
         _commitButton.layer.cornerRadius = GetScaleWidth(20);
         _commitButton.layer.masksToBounds = YES;
         [_commitButton addTarget:self action:@selector(actionCommit) forControlEvents:UIControlEventTouchUpInside];
