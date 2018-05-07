@@ -55,7 +55,7 @@
         self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
-        self.middleView.dc_y = GetScaleWidth(145);
+        self.middleView.dc_y = GetScaleWidth(130);
         self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
     }
 }
@@ -73,7 +73,7 @@
     self.SV.backgroundColor = KBGCOLOR;
     [self.view addSubview:self.SV];
     
-    self.otherTableView = [[NSShopTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(150+40+115), kScreenWidth, GetScaleWidth(218)) style:UITableViewStyleGrouped];
+    self.otherTableView = [[NSShopTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(150+10+130), kScreenWidth, GetScaleWidth(218)) style:UITableViewStyleGrouped];
     self.otherTableView.backgroundColor = [UIColor clearColor];
     self.otherTableView.bounces = NO;
     self.otherTableView.tbDelegate = self;
@@ -89,7 +89,7 @@
     [self setUpData];
     [self configCollectionView];
     
-    self.middleView = [[UIView alloc]initWithFrame:CGRectMake(0, GetScaleWidth(145), kScreenWidth, GetScaleWidth(30+10+110))];
+    self.middleView = [[UIView alloc]initWithFrame:CGRectMake(0, GetScaleWidth(130), kScreenWidth, GetScaleWidth(30+10+110))];
     self.middleView.backgroundColor = [UIColor whiteColor];
     [self.SV addSubview:self.middleView];
     
@@ -470,13 +470,14 @@
         self.addView.alpha = 0.0;
         self.collectionView.alpha = 1.0;
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
-        self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(10);
+        self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+
+        (10);
         self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
     }else{
         self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
-        self.middleView.dc_y = GetScaleWidth(145);
+        self.middleView.dc_y = GetScaleWidth(130);
         self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
     }
     // NSLog(@"cancel");
@@ -507,7 +508,7 @@
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
         self.collectionView.height = GetScaleWidth(120);
-        self.middleView.dc_y = GetScaleWidth(145);
+        self.middleView.dc_y = GetScaleWidth(130);
         self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
     }
     
@@ -549,7 +550,7 @@
 #pragma mark - 获取数据
 - (void)setUpData
 {
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"标签") imageName:nil num:@"餐饮,快餐"]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"标签") imageName:nil num:@"餐饮、快餐"]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"地址") imageName:nil num:@"杭州市省政府旁"]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"电话") imageName:nil num:@"请输入电话"]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"营业时间") imageName:nil num:@"9:00~18:00"]];
@@ -673,7 +674,7 @@
             self.SV.scrollEnabled = NO;
             self.addView.alpha = 1.0;
             self.collectionView.alpha = 0.0;
-            self.middleView.dc_y = GetScaleWidth(145);
+            self.middleView.dc_y = GetScaleWidth(130);
             self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
         }
     }];

@@ -1,18 +1,18 @@
 PODS:
-  - AFNetworking (3.2.0):
-    - AFNetworking/NSURLSession (= 3.2.0)
-    - AFNetworking/Reachability (= 3.2.0)
-    - AFNetworking/Security (= 3.2.0)
-    - AFNetworking/Serialization (= 3.2.0)
-    - AFNetworking/UIKit (= 3.2.0)
-  - AFNetworking/NSURLSession (3.2.0):
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.2.0)
-  - AFNetworking/Security (3.2.0)
-  - AFNetworking/Serialization (3.2.0)
-  - AFNetworking/UIKit (3.2.0):
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
   - BaiduMapKit (4.0.0)
   - Colours (5.13.0):
@@ -34,7 +34,7 @@ PODS:
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - Toast (4.0.0)
-  - TZImagePickerController (2.1.0.3)
+  - TZImagePickerController (2.1.1)
   - UIColor+Hex (1.0.1):
     - UIColor+Hex/NSColor (= 1.0.1)
     - UIColor+Hex/UIColor (= 1.0.1)
@@ -75,7 +75,7 @@ DEPENDENCIES:
   - YYWebImage
 
 SPEC CHECKSUMS:
-  AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   BaiduMapKit: 8fa2eb2ca81b92b740b19d9ff3b59d751d3e92e1
   Colours: f24220c38f13deac88612667e9b4a7fb96b871d4
   CYLTabBarController: c374643dea6dadece8bdff9c70f7387f8ffd7d08
@@ -89,7 +89,7 @@ SPEC CHECKSUMS:
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
-  TZImagePickerController: 0fbbb79c74cfad5afda2df606605ab05bede78f2
+  TZImagePickerController: 788184b04158006b25ffdbccbb550bfc193e9d9c
   UIColor+Hex: 9fee91bb8e19f17dd40a79ae1e98949a6a84489d
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
@@ -99,6 +99,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 0d10617e25471fba24b91d93ec849b944da6b28b
+PODFILE CHECKSUM: f050d5b69551c31470a2b719f1200d76a1a9058b
 
 COCOAPODS: 1.3.1

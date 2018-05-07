@@ -8,14 +8,15 @@
 
 #import "NSGoodsPublishVC.h"
 #import "ADOrderTopToolView.h"
-#import "NSShopTableView.h"
+//#import "NSShopTableView.h"
+#import "NSGoodsTableView.h"
 #import "ADLMyInfoModel.h"
 #import "TZTestCell.h"
 #import "UIView+Layout.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "UITextView+ZWPlaceHolder.h"
 
-@interface NSGoodsPublishVC ()<NSShopTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate> {
+@interface NSGoodsPublishVC ()<NSGoodsTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate> {
     NSMutableArray *_selectedPhotos;
     NSMutableArray *_selectedAssets;
     BOOL _isSelectOriginalPhoto;
@@ -24,7 +25,7 @@
     CGFloat _margin;
 }
 @property (nonatomic, strong) UIImagePickerController *imagePickerVc;
-@property (strong, nonatomic) NSShopTableView   *otherTableView;
+@property (strong, nonatomic) NSGoodsTableView   *otherTableView;
 @property (strong, nonatomic) CLLocation *location;
 
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -55,7 +56,7 @@
         self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
-        self.middleView.dc_y = GetScaleWidth(145);
+        self.middleView.dc_y = GetScaleWidth(130);
         self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
     }
 }
@@ -73,7 +74,7 @@
     self.SV.backgroundColor = KBGCOLOR;
     [self.view addSubview:self.SV];
     
-    self.otherTableView = [[NSShopTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(150+40+115), kScreenWidth, GetScaleWidth(218)) style:UITableViewStyleGrouped];
+    self.otherTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(150+10+130), kScreenWidth, GetScaleWidth(280)) style:UITableViewStyleGrouped];
     self.otherTableView.backgroundColor = [UIColor clearColor];
     self.otherTableView.bounces = NO;
     self.otherTableView.tbDelegate = self;
@@ -89,7 +90,7 @@
     [self setUpData];
     [self configCollectionView];
     
-    self.middleView = [[UIView alloc]initWithFrame:CGRectMake(0, GetScaleWidth(145), kScreenWidth, GetScaleWidth(30+10+110))];
+    self.middleView = [[UIView alloc]initWithFrame:CGRectMake(0, GetScaleWidth(130), kScreenWidth, GetScaleWidth(30+10+110))];
     self.middleView.backgroundColor = [UIColor whiteColor];
     [self.SV addSubview:self.middleView];
     
@@ -97,7 +98,7 @@
     self.shopNameTF.frame = CGRectMake(0, 0, kScreenWidth, GetScaleWidth(30));
     self.shopNameTF.font = [UIFont systemFontOfSize:14];
     self.shopNameTF.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.shopNameTF.placeholder = @"店铺名称";
+    self.shopNameTF.placeholder = @"商品标题,品类、品牌、型号等";
     self.shopNameTF.textColor = [UIColor lightGrayColor];
     self.shopNameTF.backgroundColor = k_UIColorFromRGB(0xffffff);
     UIView *paddingView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, GetScaleWidth(30))];
@@ -114,8 +115,7 @@
     self.detailTV.backgroundColor = k_UIColorFromRGB(0xffffff);
     self.detailTV.font = [UIFont systemFontOfSize:14];
     self.detailTV.delegate = self;
-    self.detailTV.zw_placeHolder = @"描述下你的店铺吧,比如特色、优惠等~";
-    //    self.detailTV.text = @"描述下你的店铺吧,比如特色、优惠等~";
+    self.detailTV.zw_placeHolder = @"在这里详细描述下商品,卖点、优势等~";
     self.detailTV.zw_placeHolderColor = [UIColor lightGrayColor];
     
     self.detailTV.textContainerInset = UIEdgeInsetsMake(0, 15, 0, 0);
@@ -476,7 +476,7 @@
         self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
-        self.middleView.dc_y = GetScaleWidth(145);
+        self.middleView.dc_y = GetScaleWidth(130);
         self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
     }
     // NSLog(@"cancel");
@@ -507,7 +507,7 @@
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
         self.collectionView.height = GetScaleWidth(120);
-        self.middleView.dc_y = GetScaleWidth(145);
+        self.middleView.dc_y = GetScaleWidth(130);
         self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
     }
     
@@ -549,10 +549,11 @@
 #pragma mark - 获取数据
 - (void)setUpData
 {
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"标签") imageName:nil num:@"餐饮,快餐"]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"地址") imageName:nil num:@"杭州市省政府旁"]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"电话") imageName:nil num:@"请输入电话"]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"营业时间") imageName:nil num:@"9:00~18:00"]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"分类") imageName:nil num:@"选择分类"]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"价格") imageName:nil num:@"开个价"]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"数量") imageName:nil num:@"数量"]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"添加商品规格") imageName:nil num:nil]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"运费") imageName:nil num:@"运费"]];
 }
 
 #pragma mark - initialize
@@ -673,7 +674,7 @@
             self.SV.scrollEnabled = NO;
             self.addView.alpha = 1.0;
             self.collectionView.alpha = 0.0;
-            self.middleView.dc_y = GetScaleWidth(145);
+            self.middleView.dc_y = GetScaleWidth(130);
             self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
         }
     }];

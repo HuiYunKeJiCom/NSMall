@@ -1,16 +1,15 @@
 //
-//  NSShopTableView.m
+//  NSGoodsTableView.m
 //  NSMall
 //
-//  Created by 张锐凌 on 2018/5/4.
+//  Created by 张锐凌 on 2018/5/7.
 //  Copyright © 2018年 www. All rights reserved.
-//
+//  发布商品
 
-#import "NSShopTableView.h"
-//#import "ADLMyInfoTableViewCell.h"
+#import "NSGoodsTableView.h"
 #import "NSInfoCustomCell.h"
 
-@implementation NSShopTableView
+@implementation NSGoodsTableView
 
 #pragma mark - tableView delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -24,26 +23,26 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        NSInfoCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSInfoCustomCell"];
-        
-        if (!cell) {
-            cell = [[NSInfoCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSInfoCustomCell"];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
+    NSInfoCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSInfoCustomCell"];
     
-            ADLMyInfoModel *infoModel = [self.data objectAtIndex:indexPath.section];
-            cell.myInfoModel = infoModel;
-        return cell;
+    if (!cell) {
+        cell = [[NSInfoCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSInfoCustomCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    ADLMyInfoModel *infoModel = [self.data objectAtIndex:indexPath.section];
+    cell.myInfoModel = infoModel;
+    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-        return 104*0.5;
+    return GetScaleWidth(52);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if(section == 0){
-        return 10*0.5;
+    if(section == 0 || section == 1 || section == 4){
+        return GetScaleWidth(10);
     }else{
         return 0;
     }
@@ -51,7 +50,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 10*0.5)];
+    UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(10))];
     
     return sectionView;
     
@@ -67,9 +66,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (_tbDelegate && [_tbDelegate respondsToSelector:@selector(didSelectRowAtIndexPath:)]) {
-//        [_tbDelegate didSelectRowAtIndexPath:indexPath];
-//    }
+    //    if (_tbDelegate && [_tbDelegate respondsToSelector:@selector(didSelectRowAtIndexPath:)]) {
+    //        [_tbDelegate didSelectRowAtIndexPath:indexPath];
+    //    }
 }
-
 @end

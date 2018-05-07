@@ -35,14 +35,14 @@ extern YYImageEncoder *commonImageEncoder = nil;//
     return commonImageDecoder;
 }
 
-+ (YYImageEncoder *)imageEncoder{
-    if (!commonImageEncoder) {
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            commonImageEncoder = [[YYImageEncoder alloc]init];
-        });
-    }
-    return commonImageEncoder;
-}
+//+ (YYImageEncoder *)imageEncoder{
+//    if (!commonImageEncoder) {
+//        static dispatch_once_t onceToken;
+//        dispatch_once(&onceToken, ^{
+//            commonImageEncoder = [[YYImageEncoder alloc]init];
+//        });
+//    }
+//    return commonImageEncoder;
+//}
 
 @end
