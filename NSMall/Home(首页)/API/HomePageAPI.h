@@ -29,4 +29,10 @@
 */
 + (void)getProductCategoryList:(id)param success:(void(^)(id _Nullable result))success failure:(void (^)(NSError *error))failure;
 
+
+/*
+    改变商品的点赞状态
+ */
++ (void)changeProductLikeState:(NSString *)productId success:(void (^)(id _Nullable result))success failure:(void (^)(NSError *error))failure;
+
 @end

@@ -21,6 +21,6 @@
 @property (nonatomic,assign)NSInteger type;//
 @property (nonatomic,copy)NSString *is_parent;//
 @property (nonatomic,assign)NSInteger sort;//
-@property (nonatomic,strong)NSArray<CatogeryModel *> children;//
+@property (nonatomic,strong)NSArray<CatogeryModel *> *children;//
 
 @end
