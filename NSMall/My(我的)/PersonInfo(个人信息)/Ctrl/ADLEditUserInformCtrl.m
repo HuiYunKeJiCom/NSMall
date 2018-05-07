@@ -8,6 +8,8 @@
 
 #import "ADLEditUserInformCtrl.h"
 #import "UIView+animation.h"
+#import "UpdateUserParam.h"
+#import "UserInfoAPI.h"
 
 @interface ADLEditUserInformCtrl ()<ADLSexSelectViewDelegate>
 
@@ -43,27 +45,27 @@
     [self.view addSubview:self.commitButton];
     [self.view addSubview:self.errorLabel];
     
-    //这里需要修改
-//    ADLUserModel *userModel = [[ADLGlobalHandleModel sharedInstance] readCurrentUser];
-//    self.gender = [NSString limitStringNotEmpty:userModel.gender];
-//
-//    if (self.type == EditUserTypeGender) {
-//        self.selectView.hidden = NO;
-//        self.contentField.hidden = YES;
-//
-//        if ([userModel.gender isEqualToString:@"0"]) {
-//            [self.selectView refreshIndex:0];
-//        } else {
-//            [self.selectView refreshIndex:1];
-//        }
-//
-//    } else {
-//        self.selectView.hidden = YES;
-//        self.contentField.hidden = NO;
-//
-//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-//        [self.view addGestureRecognizer:tap];
-//    }
+    //这里已修改
+    UserModel *userModel = [UserModel modelFromUnarchive];
+    self.gender = [NSString limitStringNotEmpty:userModel.sex == 0 ? KLocalizableStr(@"保密") : userModel.sex == 1 ? KLocalizableStr(@"男") : KLocalizableStr(@"女")];
+
+    if (self.type == EditUserTypeGender) {
+        self.selectView.hidden = NO;
+        self.contentField.hidden = YES;
+
+        if (userModel.sex == 1) {
+            [self.selectView refreshIndex:0];
+        } else if (userModel.sex == 2){
+            [self.selectView refreshIndex:1];
+        }
+
+    } else {
+        self.selectView.hidden = YES;
+        self.contentField.hidden = NO;
+
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+        [self.view addGestureRecognizer:tap];
+    }
     [self makeConstraints];
     
 }
@@ -106,7 +108,7 @@
         UILabel * placeholderLabel = [_contentField valueForKey:@"_placeholderLabel"];
         placeholderLabel.textAlignment = NSTextAlignmentCenter;
         
-        _contentField.layer.borderColor = KColorTextDA2F2D.CGColor;
+        _contentField.layer.borderColor = UIColorFromRGB(0x0aa1e0).CGColor;
         _contentField.layer.borderWidth = 1;
         _contentField.layer.cornerRadius = GetScaleWidth(20);
         _contentField.layer.masksToBounds = YES;
@@ -120,7 +122,7 @@
         [_commitButton setTitle:KLocalizableStr(@"保存") forState:UIControlStateNormal];
         [_commitButton setTitleColor:KColorTextFFFFFF forState:UIControlStateNormal];
         _commitButton.titleLabel.font = kFontSize15;
-        _commitButton.backgroundColor = KColorTextDA2F2D;
+        _commitButton.backgroundColor = UIColorFromRGB(0x0aa1e0);
         _commitButton.layer.cornerRadius = GetScaleWidth(20);
         _commitButton.layer.masksToBounds = YES;
         [_commitButton addTarget:self action:@selector(actionCommit:) forControlEvents:UIControlEventTouchUpInside];
@@ -147,14 +149,14 @@
     [self.selectView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.view.mas_left).with.offset(GetScaleWidth(16));
         make.right.equalTo(weakSelf.view.mas_right).with.offset(GetScaleWidth(-16));
-        make.top.equalTo(weakSelf.view).with.offset(GetScaleWidth(60));
+        make.top.equalTo(weakSelf.view).with.offset(GetScaleWidth(60+64));
         make.height.mas_equalTo(GetScaleWidth(40));
     }];
     
     [self.contentField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.view.mas_left).with.offset(GetScaleWidth(16));
         make.right.equalTo(weakSelf.view.mas_right).with.offset(GetScaleWidth(-16));
-        make.top.equalTo(weakSelf.view).with.offset(GetScaleWidth(60));
+        make.top.equalTo(weakSelf.view).with.offset(GetScaleWidth(60+64));
         make.height.mas_equalTo(GetScaleWidth(40));
     }];
     
@@ -175,7 +177,18 @@
 
 - (void)sexSelectView:(ADLSexSelectView *)sexSelectView index:(NSInteger)index {
     
-    self.gender = index == 0 ? @"0" : @"1";
+    switch (index) {
+        case 0:
+            self.gender = @"1";
+            break;
+        case 1:
+            self.gender = @"2";
+            break;
+        default:
+            self.gender = @"0";
+            break;
+    }
+//    self.gender = index == 0 ? @"1" : @"2";
     [self.view endEditing:YES];
 }
 #pragma mark - action
@@ -194,76 +207,33 @@
     }
     
     [self.view endEditing:YES];
+    WEAKSELF
+    //这里已修改
+    UserModel *userModel = [UserModel modelFromUnarchive];
     
-    //这里需要修改
-//    ADLUserModel *userModel = [[ADLGlobalHandleModel sharedInstance] readCurrentUser];
-//
-//    NSString *pictureUrl = [NSString limitStringNotEmpty:userModel.phone];
-//
-//    NSString *gender = [self.gender stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//
-//    NSString *memberId = [NSString limitStringNotEmpty:userModel.idx];
-//
-//    NSString *phone = [NSString limitStringNotEmpty:userModel.phone];
-//
-//    NSString *mobile = [NSString limitStringNotEmpty:userModel.mobile];
-//
-//    NSString *nickName = [NSString limitStringNotEmpty:userModel.nickName];
-//    nickName = [nickName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//
-//    NSString *name = [NSString limitStringNotEmpty:userModel.name];
-//    name = [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//
-//    NSMutableDictionary *parmsDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-//                                     memberId,@"memberId",
-//                                     nickName,@"nickName",
-//                                     gender,@"gender",
-//                                     phone,@"phone",
-//                                     mobile,@"mobile",
-//                                     weixin,@"weixin",
-//                                     qq,@"qq",
-//                                     weibo,@"weibo",
-//                                     email,@"email",
-//                                     pictureUrl,@"pictureUrl",
-//                                     name,@"name",nil];
-//
-//    if (self.type != EditUserTypeGender) {
-//
-//        NSString *changeString = @"";
-//        changeString = [[_contentField.text trim] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//
-//        NSString *key = [self getChangeKey:self.type];
-//        if (key.length > 0) {
-//            [parmsDic setObject:changeString forKey:key];
-//        }
-//    }
-//
-//
-//    WEAKSELF
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    [NetWork edtiInformation:[NSDictionary dictionaryWithObject:[self dictionaryToJson:parmsDic] forKey:@"params"] success:^(NSDictionary *result) {
-//        if ([result[@"status"] integerValue] == 10000 ) {
-//
-//            [hud hide:YES afterDelay:1];
-//            [weakSelf back];
-//            NSDictionary *loginInfo = result[@"infoData"];
-//            ADLUserModel *userModel = [ADLUserModel mj_objectWithKeyValues:loginInfo];
-//
-//            /*保存当前用户*/
-//            [ADLGlobalHandleModel sharedInstance].CurrentUser = userModel;
-//
-//            [[ADLGlobalHandleModel sharedInstance] saveLoginName:userModel.userName];
-//            [[ADLGlobalHandleModel sharedInstance] savePassword:userModel.password];
-//            //successBlock(result);
-//        }
-//
-//
-//    } failure:^(NSError *error) {
-//
-//        [hud hide:YES afterDelay:1];
-//
-//        weakSelf.errorLabel.text = @"提交失败";
-//    }];
+    
+    NSString *gender = @"";
+    NSString *nickName = @"";
+    if (self.type != EditUserTypeGender) {
+        nickName = [[_contentField.text trim] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        gender = [NSString limitStringNotEmpty:[NSString stringWithFormat:@"%lu",userModel.sex]];
+    }else{
+        nickName = [NSString limitStringNotEmpty:userModel.user_name];
+        gender = [self.gender stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+    UpdateUserParam *param = [UpdateUserParam new];
+    param.userName = nickName;
+    param.sex = gender;
+    
+    [UserInfoAPI updateUserWithParam:param success:^{
+        DLog(@"修改信息成功");
+        userModel.user_name = nickName;
+        userModel.sex = [gender integerValue];
+        [userModel archive];
+        [weakSelf back];
+    } faulre:^(NSError *error) {
+        DLog(@"修改信息失败");
+    }];
 }
 
 -(NSString*)dictionaryToJson:(NSDictionary *)dic
@@ -311,38 +281,13 @@
 {
     NSString *errorMsg = @"";
     NSString *changeString = [_contentField.text trim];
-    
+    //这里已修改
     if ([changeString isEmptyOrNull]) {
         _contentField.text = @"";
         [_contentField animateShake];
-        errorMsg = KLocalizableStr(@"请输入内容");
+        errorMsg = KLocalizableStr(@"请输入昵称");
         return errorMsg;
     }
-    
-    //这里需要修改
-//    if (self.type == EditUserTypePhone) {
-//    } else if(self.type == EditUserTypeMobile) {
-//        if (![NSString isTel:changeString]) {
-//            errorMsg = KLocalizableStr(@"请输入正确的电话号");
-//            return errorMsg;
-//        }
-//    } else if (self.type == EditUserTypeEmail) {
-//        if (![NSPredicate isEmail:changeString]) {
-//            errorMsg = KLocalizableStr(@"请输入正确的邮箱");
-//            return errorMsg;
-//        }
-//    } else if (self.type == EditUserTypeQQ) {
-//        if (![NSPredicate isDigital:changeString]) {
-//            errorMsg = KLocalizableStr(@"请输入正确的QQ号码");
-//            return errorMsg;
-//        }
-//    }
-//    else if (self.type == EditUserTypeWeibo) {
-//        if (![NSPredicate isEmail:changeString]) {
-//            errorMsg = KLocalizableStr(@"请输入正确的微博");
-//            return errorMsg;
-//        }
-//    }
     
     return errorMsg;
 }

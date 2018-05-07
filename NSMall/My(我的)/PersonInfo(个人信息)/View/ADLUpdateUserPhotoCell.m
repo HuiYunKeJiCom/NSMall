@@ -60,9 +60,9 @@
 - (UIImageView *)photoImgView {
     
     if (!_photoImgView) {
-        _photoImgView = [[UIImageView alloc] initWithImage:IMAGE(@"ico_my_default")];
-        _photoImgView.layer.cornerRadius = 59 / 2.0;
-        _photoImgView.layer.masksToBounds = YES;
+        _photoImgView = [[UIImageView alloc] initWithImage:IMAGE(@"my_ico_head")];
+//        _photoImgView.layer.cornerRadius = 59 / 2.0;
+//        _photoImgView.layer.masksToBounds = YES;
     }
     
     return _photoImgView;

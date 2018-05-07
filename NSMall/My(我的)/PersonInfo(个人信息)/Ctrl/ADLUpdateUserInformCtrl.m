@@ -34,13 +34,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [UserInfoAPI getUserInfo:nil success:^{
-        NSLog(@"获取用户信息");
-        self.userModel = [UserModel modelFromUnarchive];
-    } faulre:^(NSError *error) {
-        NSLog(@"获取用户信息失败");
-    }];
+    self.userModel = [UserModel modelFromUnarchive];
     [self.userTable reloadData];
+    
 }
 
 
@@ -51,15 +47,9 @@
     
     self.dataSources = @[@[KLocalizableStr(@"头像"),
                            KLocalizableStr(@"昵称"),
-                           KLocalizableStr(@"真实姓名"),
-                           KLocalizableStr(@"用户名"),
-                           KLocalizableStr(@"性别")],
-                         @[KLocalizableStr(@"手机"),
-                           KLocalizableStr(@"电话"),
-                           KLocalizableStr(@"微信"),
-                           KLocalizableStr(@"QQ"),
-                           KLocalizableStr(@"微博"),
-                           KLocalizableStr(@"邮箱")]];
+                           KLocalizableStr(@"性别"),
+                           KLocalizableStr(@"手机号"),
+                           KLocalizableStr(@"实名认证")]];
     
     [self.view addSubview:self.userTable];
     
@@ -117,7 +107,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return GetScaleWidth(10);
+    return GetScaleWidth(1);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -212,9 +202,7 @@
                     ADLEditUserInformCtrl *ctrl = [[ADLEditUserInformCtrl alloc] initEditType:type];
                     ctrl.editTitle = title;
                     [self.navigationController pushViewController:ctrl animated:YES];
-                    
                 }
-               
             }
         }
     }
@@ -245,7 +233,7 @@
     cell.titleLb.text = title;
     //这里已修改
     if ([title isEqualToString:KLocalizableStr(@"昵称")]) {
-        cell.descLabel.text = [NSString limitStringNotEmpty:self.userModel.user_name];
+        cell.descLabel.text = [NSString limitStringNotEmpty:[self.userModel.user_name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
     }  else if ([title isEqualToString:KLocalizableStr(@"性别")]) {
         cell.descLabel.text = self.userModel.sex == 0 ? KLocalizableStr(@"保密") : self.userModel.sex == 1 ? KLocalizableStr(@"男") : KLocalizableStr(@"女");
@@ -344,89 +332,46 @@
 
 - (void)saveImage:(UIImage *)image
 {
-    
+    WEAKSELF
     ADLUpdateUserPhotoCell *cell = [self.userTable cellForRowAtIndexPath:self.selectIndexPath];
     cell.photoImgView.image = image;
     
+    //这里已修改
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:image forKey:@"file"];
-    [UserInfoAPI uploadHeaderWithParam:param success:^{
+    [UserInfoAPI uploadHeaderWithParam:param success:^(NSString *path){
         NSLog(@"头像上传成功");
+        [weakSelf updateUserPhone:path image:image];
     } faulre:^(NSError *error) {
         NSLog(@"头像上传失败");
     }];
-    //这里需要修改
-//    WEAKSELF
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    [RequestTool uploadUserImage:image withSuccessBlock:^(NSString *iamgePath) {
-//
-//        [hud hide:YES];
-//        [weakSelf updateUserPhone:iamgePath image:image];
-//    } withFailBlock:^(NSString *msg) {
-//
-//        hud.detailsLabelText = msg ? msg : k_requestErrorMessage;
-//        hud.mode = MBProgressHUDModeText;
-//        [hud hide:YES afterDelay:1.0];
-//    }];
 }
 
 - (void)updateUserPhone:(NSString *)pictureUrl image:(UIImage *)image {
     
-    //这里需要修改
-//    ADLUserModel *userModel = [[ADLGlobalHandleModel sharedInstance] readCurrentUser];
-//
-//    pictureUrl = [NSString limitStringNotEmpty:pictureUrl];
-//
-//    NSString *memberId = [NSString limitStringNotEmpty:userModel.idx];
-//    NSString *gender = [NSString limitStringNotEmpty:userModel.gender];
+    //这里已修改
+    WEAKSELF
+    UserModel *userModel = [UserModel modelFromUnarchive];
+    pictureUrl = [NSString limitStringNotEmpty:pictureUrl];
+    
+//    NSString *gender = [NSString limitStringNotEmpty:[NSString stringWithFormat:@"%lu",userModel.sex]];
 //    gender = [gender stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//
-//    NSString *phone = [NSString limitStringNotEmpty:userModel.phone];
-//    NSString *mobile = [NSString limitStringNotEmpty:userModel.mobile];
-//    NSString *weixin = [NSString limitStringNotEmpty:userModel.weixin];
-//    weixin = [weixin stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//
-//    NSString *qq = [NSString limitStringNotEmpty:userModel.qq];
-//    qq = [qq stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//
-//    NSString *weibo = [NSString limitStringNotEmpty:userModel.weibo];
-//    weibo = [weibo stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//
-//    NSString *email = [NSString limitStringNotEmpty:userModel.email];
-//    email = [email stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//
-//    NSString *nickName = [NSString limitStringNotEmpty:userModel.nickName];
+//    NSString *nickName = [NSString limitStringNotEmpty:userModel.user_name];
 //    nickName = [nickName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 //
-//    NSString *name = [NSString limitStringNotEmpty:userModel.name];
-//    name = [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    WEAKSELF
-//    [RequestTool updateMemberInfoDictionary:@{@"memberId":memberId,
-//                                              @"nickName":nickName,
-//                                              @"gender":gender,
-//                                              @"phone":phone,
-//                                              @"mobile":mobile,
-//                                              @"weixin":weixin,
-//                                              @"qq":qq,
-//                                              @"weibo":weibo,
-//                                              @"email":email,
-//                                              @"pictureUrl":pictureUrl,
-//                                              @"name":name,} withSuccessBlock:^(NSDictionary *result) {
-//                                                  hud.detailsLabelText = KLocalizableStr(@"修改成功");
-//                                                  hud.mode = MBProgressHUDModeText;
-//                                                  [hud hide:YES afterDelay:1.0];
-//
-//                                                  [[ADLGlobalHandleModel sharedInstance] saveUserPhoto:image];
-//
-//                                              } withFailBlock:^(NSString *msg) {
-//                                                  hud.detailsLabelText = msg ? msg : k_requestErrorMessage;
-//                                                  hud.mode = MBProgressHUDModeText;
-//                                                  [hud hide:YES afterDelay:1.0];
-//
-//                                                  [weakSelf.userTable reloadData];
-//                                              }];
+//    UpdateUserParam *param = [UpdateUserParam new];
+//    param.userName = nickName;
+//    param.sex = gender;
+//    [UserInfoAPI updateUserWithParam:param success:^{
+//        DLog(@"修改信息成功");
+//        userModel.user_name = nickName;
+//        userModel.sex = [gender integerValue];
+//    } faulre:^(NSError *error) {
+//        DLog(@"修改信息失败");
+//    }];
+    userModel.pic_img = pictureUrl;
+    [userModel archive];
+    [weakSelf.userTable reloadData];
 }
 
 

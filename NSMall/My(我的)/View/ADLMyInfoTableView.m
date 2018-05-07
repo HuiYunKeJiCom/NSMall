@@ -9,7 +9,6 @@
 #import "ADLMyInfoTableView.h"
 #import "ADLMyInfoTableViewCell.h"
 #import "NSCustomHeadCell.h"//头像cell
-//#import "ADLMyInfoTableViewFooterCell.h"
 
 @interface ADLMyInfoTableView ()
 
@@ -17,7 +16,6 @@
 
 @implementation ADLMyInfoTableView
 
-#pragma mark -
 #pragma mark - tableView delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -37,6 +35,7 @@
             customCell = [[NSCustomHeadCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSCustomHeadCell"];
             customCell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+        customCell.userModel = self.userModel;
         return customCell;
     }else{
         ADLMyInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ADLMyInfoTableViewCell"];
@@ -94,10 +93,9 @@
     }
 }
 
-//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-//    if (_tbDelegate && [_tbDelegate respondsToSelector:@selector(collectionView:didSelectItemAtIndexPath:)]) {
-//        [_tbDelegate collectionView:collectionView didSelectItemAtIndexPath:indexPath];
-//    }
-//}
+-(void)setUserModel:(UserModel *)userModel{
+    _userModel = userModel;
+    [self reloadData];
+}
 
 @end

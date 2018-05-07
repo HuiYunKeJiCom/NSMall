@@ -87,7 +87,7 @@
         [_commitButton setTitle:KLocalizableStr(@"保存") forState:UIControlStateNormal];
         [_commitButton setTitleColor:KColorTextFFFFFF forState:UIControlStateNormal];
         _commitButton.titleLabel.font = kFontSize15;
-        _commitButton.backgroundColor = KColorTextDA2F2D;
+        _commitButton.backgroundColor = UIColorFromRGB(0x0aa1e0);
         _commitButton.layer.cornerRadius = GetScaleWidth(20);
         _commitButton.layer.masksToBounds = YES;
         [_commitButton addTarget:self action:@selector(actionCommit) forControlEvents:UIControlEventTouchUpInside];
@@ -111,6 +111,7 @@
     [self.view endEditing:YES];
     _errorLabel.text = @"";
     
+    WEAKSELF
     if (self.phoneField.text.length >0 && self.codeField.text.length >0) {
         //这里已修改
         ChangeMobileParam *param = [ChangeMobileParam new];
@@ -121,6 +122,7 @@
             UserModel *usermodel = [UserModel modelFromUnarchive];
             usermodel.telephone = self.phoneField.text;
             [usermodel archive];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
         } faulre:^(NSError *error) {
             DLog(@"修改手机号失败");
         }];
@@ -206,7 +208,7 @@
 - (UIView *)phoneView {
     if (!_phoneView) {
         _phoneView = [[UIView alloc] initWithFrame:CGRectZero];
-        _phoneView.layer.borderColor = KColorTextDA2F2D.CGColor;
+        _phoneView.layer.borderColor = UIColorFromRGB(0x0aa1e0).CGColor;
         _phoneView.layer.borderWidth = 1;
         _phoneView.layer.cornerRadius = GetScaleWidth(20);
         _phoneView.layer.masksToBounds = YES;
@@ -248,11 +250,11 @@
         _codeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         NSString *title = [NSString stringWithFormat:@"  %@  ",KLocalizableStr(@"获取验证码")];
         [_codeButton setTitle:title forState:UIControlStateNormal];
-        [_codeButton setTitleColor:KColorTextDA2F2D forState:UIControlStateNormal];
+        [_codeButton setTitleColor:UIColorFromRGB(0x0aa1e0) forState:UIControlStateNormal];
         _codeButton.titleLabel.font = kFontSize12;
         _codeButton.backgroundColor = [UIColor clearColor];
         _codeButton.layer.cornerRadius = GetScaleWidth(20);
-        _codeButton.layer.borderColor = KColorTextDA2F2D.CGColor;
+        _codeButton.layer.borderColor = UIColorFromRGB(0x0aa1e0).CGColor;
         _codeButton.layer.borderWidth = 1;
         _codeButton.layer.masksToBounds = YES;
         [_codeButton addTarget:self action:@selector(actionCode:) forControlEvents:UIControlEventTouchUpInside];
@@ -296,7 +298,7 @@
     
     [self.phoneView mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.centerX.mas_equalTo(weakSelf);
-        make.top.mas_equalTo(weakSelf.view.mas_top).offset(GetScaleWidth(60));
+        make.top.mas_equalTo(weakSelf.view.mas_top).offset(GetScaleWidth(60+64));
         make.left.mas_equalTo(weakSelf.view.mas_left).offset(GetScaleWidth(16));
         make.right.mas_equalTo(weakSelf.view.mas_right).offset(GetScaleWidth(-16));
         make.height.mas_equalTo(GetScaleWidth(40));
@@ -372,7 +374,7 @@
     
     ADLTitleField *titleField = (ADLTitleField *)textField.superview;
     titleField.backgroundColor = KColorTextFFFFFF;
-    titleField.layer.borderColor = KColorTextDA2F2D.CGColor;
+    titleField.layer.borderColor = UIColorFromRGB(0x0aa1e0).CGColor;
     
 }
 

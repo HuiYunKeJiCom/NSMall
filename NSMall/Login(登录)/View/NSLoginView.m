@@ -59,7 +59,7 @@
 
 - (UILabel *)errorLabel {
     if (!_errorLabel) {
-        _errorLabel = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum12 TextColor:KColorTextDA2F2D];
+        _errorLabel = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum12 TextColor:UIColorFromRGB(0x0aa1e0)];
     }
     return _errorLabel;
 }

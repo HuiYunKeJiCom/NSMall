@@ -38,6 +38,8 @@
 #define kDocumentPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) lastObject]
 #define kLoginUserInfoPath [kDocumentPath stringByAppendingPathComponent:@"loginUserInfo.archiver"]
 
+#define kGetUserInfoPath [kDocumentPath stringByAppendingPathComponent:@"getUserInfo.archiver"]
+
 
 #define adjustsScrollViewInsets(scrollView)\
 do{\
