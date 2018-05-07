@@ -43,6 +43,7 @@
 		184F05F0209AE39700768418 /* ProductListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05EE209AE39600768418 /* ProductListModel.m */; };
 		184F05F7209C40C700768418 /* AdvertListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05F6209C40C700768418 /* AdvertListModel.m */; };
 		184F05FA209C40DE00768418 /* AdvertItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05F9209C40DE00768418 /* AdvertItemModel.m */; };
+		184F05FE209FE23100768418 /* CatogeryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05FD209FE23100768418 /* CatogeryModel.m */; };
 		1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD6F208F0DD00094A594 /* NetBaseModel.m */; };
 		1851CD77208F23530094A594 /* NSCustomHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD76208F23530094A594 /* NSCustomHeadCell.m */; };
 		188CC64A207F5430007D749E /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 188CC649207F5430007D749E /* AppDelegate.mm */; };
@@ -164,6 +165,8 @@
 		184F05F6209C40C700768418 /* AdvertListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdvertListModel.m; sourceTree = "<group>"; };
 		184F05F8209C40DE00768418 /* AdvertItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdvertItemModel.h; sourceTree = "<group>"; };
 		184F05F9209C40DE00768418 /* AdvertItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdvertItemModel.m; sourceTree = "<group>"; };
+		184F05FC209FE23100768418 /* CatogeryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatogeryModel.h; sourceTree = "<group>"; };
+		184F05FD209FE23100768418 /* CatogeryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatogeryModel.m; sourceTree = "<group>"; };
 		1851CD6E208F0DD00094A594 /* NetBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetBaseModel.h; sourceTree = "<group>"; };
 		1851CD6F208F0DD00094A594 /* NetBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetBaseModel.m; sourceTree = "<group>"; };
 		1851CD75208F23530094A594 /* NSCustomHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCustomHeadCell.h; sourceTree = "<group>"; };
@@ -498,6 +501,8 @@
 		184F05FB209C590A00768418 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				184F05FC209FE23100768418 /* CatogeryModel.h */,
+				184F05FD209FE23100768418 /* CatogeryModel.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -951,6 +956,7 @@
 				184F05F0209AE39700768418 /* ProductListModel.m in Sources */,
 				184043412099FB0600685F80 /* ADLChangePhoneViewController.m in Sources */,
 				184043512099FC6800685F80 /* MBProgressHUD+MJ.m in Sources */,
+				184F05FE209FE23100768418 /* CatogeryModel.m in Sources */,
 				18230F66208D793F00D3E55F /* BaseViewCtrl.m in Sources */,
 				182DC49120905E3C0066E667 /* ADOrderTopToolView.m in Sources */,
 				188CC64D207F5431007D749E /* ViewController.m in Sources */,
