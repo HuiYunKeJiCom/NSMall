@@ -64,7 +64,6 @@ pod 'MWPhotoBrowser'
 pod 'BaiduMapKit'
 pod 'TZImagePickerController'
 
-pod ''
 
 end
 
