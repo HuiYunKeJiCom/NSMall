@@ -7,7 +7,6 @@
 //
 
 #import "BaseViewCtrl.h"
-#import "BaseViewCtrl.h"
 
 @interface ADLChangePhoneViewController : BaseViewCtrl
 @property (nonatomic, copy) NSString  *editTitle;

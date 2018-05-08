@@ -14,6 +14,9 @@
 #import "UIView+Layout.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "UITextView+ZWPlaceHolder.h"
+#import "NSChangePhoneVC.h"
+#import "ADReceivingAddressViewController.h"
+#import "NSAddLabelVC.h"//添加标签
 
 @interface NSShopPublishVC ()<NSShopTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate> {
     NSMutableArray *_selectedPhotos;
@@ -50,13 +53,13 @@
         self.collectionView.alpha = 1.0;
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
         self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(10);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
     }else{
         self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
         self.middleView.dc_y = GetScaleWidth(130);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
     }
 }
 
@@ -73,7 +76,7 @@
     self.SV.backgroundColor = KBGCOLOR;
     [self.view addSubview:self.SV];
     
-    self.otherTableView = [[NSShopTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(150+10+130), kScreenWidth, GetScaleWidth(218)) style:UITableViewStyleGrouped];
+    self.otherTableView = [[NSShopTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(150+5+130), kScreenWidth, GetScaleWidth(218)) style:UITableViewStyleGrouped];
     self.otherTableView.backgroundColor = [UIColor clearColor];
     self.otherTableView.bounces = NO;
     self.otherTableView.tbDelegate = self;
@@ -472,13 +475,13 @@
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
         self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+
         (10);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
     }else{
         self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
         self.middleView.dc_y = GetScaleWidth(130);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
     }
     // NSLog(@"cancel");
 }
@@ -501,7 +504,7 @@
         self.collectionView.alpha = 1.0;
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
         self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(10);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
         
     }else{
         self.SV.scrollEnabled = NO;
@@ -509,7 +512,7 @@
         self.collectionView.alpha = 0.0;
         self.collectionView.height = GetScaleWidth(120);
         self.middleView.dc_y = GetScaleWidth(130);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
     }
     
     // 1.打印图片名字
@@ -571,14 +574,21 @@
     switch (index) {
         case 0:{
             NSLog(@"点击了标签");
+            
+            
         }
             break;
         case 1:{
             NSLog(@"点击了地址");
+            ADReceivingAddressViewController *ctrl = [[ADReceivingAddressViewController alloc] init];
+            [self presentViewController:ctrl animated:YES completion:nil];
         }
             break;
         case 2:{
             NSLog(@"点击了电话");
+            NSChangePhoneVC *ctrl = [[NSChangePhoneVC alloc] init];
+            ctrl.editTitle = KLocalizableStr(@"电话");
+            [self presentViewController:ctrl animated:YES completion:nil];
         }
             break;
         case 3:{
@@ -637,7 +647,7 @@
 -(void)setUpBottomBtn{
     //发布按钮
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.backgroundColor = UIColorFromRGB(0x0aa1e0);
+    btn.backgroundColor = KMainColor;
     btn.frame = CGRectMake(0, kScreenHeight-TabBarHeight, kScreenWidth, TabBarHeight);
     [btn setTitle:@"发布" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(publish:) forControlEvents:UIControlEventTouchUpInside];
@@ -669,13 +679,13 @@
             self.collectionView.alpha = 1.0;
             self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
             self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(10);
-            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
+            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
         }else{
             self.SV.scrollEnabled = NO;
             self.addView.alpha = 1.0;
             self.collectionView.alpha = 0.0;
             self.middleView.dc_y = GetScaleWidth(130);
-            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
+            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
         }
     }];
     

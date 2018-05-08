@@ -66,8 +66,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    if (_tbDelegate && [_tbDelegate respondsToSelector:@selector(didSelectRowAtIndexPath:)]) {
-    //        [_tbDelegate didSelectRowAtIndexPath:indexPath];
-    //    }
+        if (_tbDelegate && [_tbDelegate respondsToSelector:@selector(didSelectRowAtIndexPath:)]) {
+            [_tbDelegate didSelectRowAtIndexPath:indexPath];
+        }
 }
 @end

@@ -59,7 +59,7 @@
 
 - (UILabel *)errorLabel {
     if (!_errorLabel) {
-        _errorLabel = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum12 TextColor:UIColorFromRGB(0x0aa1e0)];
+        _errorLabel = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum12 TextColor:KMainColor];
     }
     return _errorLabel;
 }
@@ -101,7 +101,7 @@
         _loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_loginButton setTitleColor:KColorTextFFFFFF forState:UIControlStateNormal];
         _loginButton.titleLabel.font = [UIFont systemFontOfSize:kFontNum15];
-        _loginButton.backgroundColor = UIColorFromRGB(0x0aa1e0);
+        _loginButton.backgroundColor = KMainColor;
         _loginButton.layer.cornerRadius = GetScaleWidth(5);
         _loginButton.layer.masksToBounds = YES;
         [_loginButton addTarget:self action:@selector(actionLogin:) forControlEvents:UIControlEventTouchUpInside];
@@ -324,7 +324,7 @@
     if (!_sendBtn) {
         _sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_sendBtn setTitle:@"发送验证码" forState:UIControlStateNormal];
-        [_sendBtn setTitleColor:UIColorFromRGB(0x0aa1e0) forState:UIControlStateNormal];
+        [_sendBtn setTitleColor:KMainColor forState:UIControlStateNormal];
         _sendBtn.titleLabel.font = [UIFont systemFontOfSize:kFontNum12];
         _sendBtn.layer.cornerRadius = 5;
         _sendBtn.layer.masksToBounds = YES;

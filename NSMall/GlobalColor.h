@@ -83,7 +83,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #define kGetColor(r,g,b)       [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 
-#define KMainColor UIColorFromRGB(0Xda2f2d)
+#define KMainColor UIColorFromRGB(0x0aa1e0)
 
 
 

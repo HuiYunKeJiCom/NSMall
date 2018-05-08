@@ -87,7 +87,7 @@
         [_commitButton setTitle:KLocalizableStr(@"保存") forState:UIControlStateNormal];
         [_commitButton setTitleColor:KColorTextFFFFFF forState:UIControlStateNormal];
         _commitButton.titleLabel.font = kFontSize15;
-        _commitButton.backgroundColor = UIColorFromRGB(0x0aa1e0);
+        _commitButton.backgroundColor = KMainColor;
         _commitButton.layer.cornerRadius = GetScaleWidth(20);
         _commitButton.layer.masksToBounds = YES;
         [_commitButton addTarget:self action:@selector(actionCommit) forControlEvents:UIControlEventTouchUpInside];
@@ -208,7 +208,7 @@
 - (UIView *)phoneView {
     if (!_phoneView) {
         _phoneView = [[UIView alloc] initWithFrame:CGRectZero];
-        _phoneView.layer.borderColor = UIColorFromRGB(0x0aa1e0).CGColor;
+        _phoneView.layer.borderColor = KMainColor.CGColor;
         _phoneView.layer.borderWidth = 1;
         _phoneView.layer.cornerRadius = GetScaleWidth(20);
         _phoneView.layer.masksToBounds = YES;
@@ -250,11 +250,11 @@
         _codeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         NSString *title = [NSString stringWithFormat:@"  %@  ",KLocalizableStr(@"获取验证码")];
         [_codeButton setTitle:title forState:UIControlStateNormal];
-        [_codeButton setTitleColor:UIColorFromRGB(0x0aa1e0) forState:UIControlStateNormal];
+        [_codeButton setTitleColor:KMainColor forState:UIControlStateNormal];
         _codeButton.titleLabel.font = kFontSize12;
         _codeButton.backgroundColor = [UIColor clearColor];
         _codeButton.layer.cornerRadius = GetScaleWidth(20);
-        _codeButton.layer.borderColor = UIColorFromRGB(0x0aa1e0).CGColor;
+        _codeButton.layer.borderColor = KMainColor.CGColor;
         _codeButton.layer.borderWidth = 1;
         _codeButton.layer.masksToBounds = YES;
         [_codeButton addTarget:self action:@selector(actionCode:) forControlEvents:UIControlEventTouchUpInside];
@@ -374,7 +374,7 @@
     
     ADLTitleField *titleField = (ADLTitleField *)textField.superview;
     titleField.backgroundColor = KColorTextFFFFFF;
-    titleField.layer.borderColor = UIColorFromRGB(0x0aa1e0).CGColor;
+    titleField.layer.borderColor = KMainColor.CGColor;
     
 }
 

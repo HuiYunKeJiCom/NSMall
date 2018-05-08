@@ -15,6 +15,7 @@
 #import "UIView+Layout.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "UITextView+ZWPlaceHolder.h"
+#import "NSChangeParamVC.h"
 
 @interface NSGoodsPublishVC ()<NSGoodsTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate> {
     NSMutableArray *_selectedPhotos;
@@ -51,13 +52,13 @@
         self.collectionView.alpha = 1.0;
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
         self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(10);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
     }else{
         self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
         self.middleView.dc_y = GetScaleWidth(130);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
     }
 }
 
@@ -70,11 +71,11 @@
     
     self.SV = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight-64-TabBarHeight)];
     self.SV.scrollEnabled = NO;
-    self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight);
+    self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight+72);
     self.SV.backgroundColor = KBGCOLOR;
     [self.view addSubview:self.SV];
     
-    self.otherTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(150+10+130), kScreenWidth, GetScaleWidth(280)) style:UITableViewStyleGrouped];
+    self.otherTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(150+5+130), kScreenWidth, GetScaleWidth(280)) style:UITableViewStyleGrouped];
     self.otherTableView.backgroundColor = [UIColor clearColor];
     self.otherTableView.bounces = NO;
     self.otherTableView.tbDelegate = self;
@@ -181,8 +182,6 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == _selectedPhotos.count) {
-        //            UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"去相册选择", nil];
-        //            [sheet showInView:self.view];
         [self pushTZImagePickerController];
     } else {
         // preview photos or video / 预览照片或者视频
@@ -471,13 +470,13 @@
         self.collectionView.alpha = 1.0;
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
         self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(10);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
     }else{
         self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
         self.middleView.dc_y = GetScaleWidth(130);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
     }
     // NSLog(@"cancel");
 }
@@ -500,7 +499,7 @@
         self.collectionView.alpha = 1.0;
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
         self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(10);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
         
     }else{
         self.SV.scrollEnabled = NO;
@@ -508,7 +507,7 @@
         self.collectionView.alpha = 0.0;
         self.collectionView.height = GetScaleWidth(120);
         self.middleView.dc_y = GetScaleWidth(130);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
     }
     
     // 1.打印图片名字
@@ -570,19 +569,38 @@
     
     switch (index) {
         case 0:{
-            NSLog(@"点击了标签");
+            NSLog(@"点击了分类");
         }
             break;
         case 1:{
-            NSLog(@"点击了地址");
+            NSLog(@"点击了价格");
+            EditUserType type = [self getEditType:KLocalizableStr(@"价格")];
+            
+            NSChangeParamVC *ctrl = [[NSChangeParamVC alloc] initEditType:type];
+            ctrl.editTitle = KLocalizableStr(@"价格");
+            [self presentViewController:ctrl animated:YES completion:nil];
         }
             break;
         case 2:{
-            NSLog(@"点击了电话");
+            NSLog(@"点击了数量");
+            EditUserType type = [self getEditType:KLocalizableStr(@"数量")];
+            
+            NSChangeParamVC *ctrl = [[NSChangeParamVC alloc] initEditType:type];
+            ctrl.editTitle = KLocalizableStr(@"数量");
+            [self presentViewController:ctrl animated:YES completion:nil];
         }
             break;
         case 3:{
-            NSLog(@"点击了营业时间");
+            NSLog(@"点击了添加商品规格");
+        }
+            break;
+        case 4:{
+            NSLog(@"点击了运费");
+            EditUserType type = [self getEditType:KLocalizableStr(@"运费")];
+            
+            NSChangeParamVC *ctrl = [[NSChangeParamVC alloc] initEditType:type];
+            ctrl.editTitle = KLocalizableStr(@"运费");
+            [self presentViewController:ctrl animated:YES completion:nil];
         }
             break;
         default:
@@ -637,7 +655,7 @@
 -(void)setUpBottomBtn{
     //发布按钮
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.backgroundColor = UIColorFromRGB(0x0aa1e0);
+    btn.backgroundColor = KMainColor;
     btn.frame = CGRectMake(0, kScreenHeight-TabBarHeight, kScreenWidth, TabBarHeight);
     [btn setTitle:@"发布" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(publish:) forControlEvents:UIControlEventTouchUpInside];
@@ -669,13 +687,13 @@
             self.collectionView.alpha = 1.0;
             self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
             self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(10);
-            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
+            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
         }else{
             self.SV.scrollEnabled = NO;
             self.addView.alpha = 1.0;
             self.collectionView.alpha = 0.0;
             self.middleView.dc_y = GetScaleWidth(130);
-            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(10);
+            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
         }
     }];
     
@@ -693,6 +711,22 @@
     return  [title boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} context:nil].size;
 }
 
+- (EditUserType)getEditType:(NSString *)title {
+    EditUserType type = 0;
+
+    if ([title isEqualToString:KLocalizableStr(@"价格")]) {
+        type = EditUserTypePrice;
+        
+    } else if ([title isEqualToString:KLocalizableStr(@"数量")]) {
+        type = EditUserTypeNumber;
+        
+    } else if ([title isEqualToString:KLocalizableStr(@"运费")]) {
+        type = EditUserTypeFee;
+        
+    }
+    
+    return type;
+}
 
 
 @end
