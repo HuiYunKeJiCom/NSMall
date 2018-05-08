@@ -111,8 +111,10 @@
     
     if (!IsEmpty(myInfoModel.imageName)) {
         self.leftImgView.image = IMAGE(myInfoModel.imageName);
+        self.titleLb.frame = CGRectMake(GetScaleWidth(29)+GetScaleWidth(25), GetScaleWidth(19), kScreenWidth*0.5, GetScaleWidth(14));
     }else{
         [self.leftImgView removeFromSuperview];
+        self.titleLb.frame = CGRectMake(GetScaleWidth(29), GetScaleWidth(19), kScreenWidth*0.5, GetScaleWidth(14));
     }
     
     if (!IsEmpty(myInfoModel.title)) {
@@ -147,20 +149,23 @@
     [self.contentView addSubview:self.bottomLineView];
 }
 
+-(void)layoutSubviews{
+    [super layoutSubviews];
+}
+
 - (void)makeConstraints {
     
     WEAKSELF
     [self.leftImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.contentView).with.offset(GetScaleWidth(29));
         make.centerY.equalTo(weakSelf.contentView);
-        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(30), GetScaleWidth(30)));
+        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(20), GetScaleWidth(20)));
     }];
     
-    [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(weakSelf.leftImgView.mas_right).with.offset(GetScaleWidth(10));
-    make.left.equalTo(weakSelf.contentView).with.offset(GetScaleWidth(29));
-        make.centerY.equalTo(weakSelf.contentView);
-    }];
+//    [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
+//    make.left.equalTo(weakSelf.contentView).with.offset(GetScaleWidth(29));
+//        make.centerY.equalTo(weakSelf.contentView);
+//    }];
     
     [self.arrowImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(weakSelf.contentView).with.offset(-GetScaleWidth(27));

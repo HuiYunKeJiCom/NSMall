@@ -31,6 +31,8 @@ const static NSString * const kUpdateUserAPI = @"auth/updateUser";//修改用户
 const static NSString * const kGetLabelsAPI = @"getLabels";//获取标签列表
 const static NSString * const kSaveLabelsAPI = @"auth/saveLabel";//新增标签
 
+const static NSString * const kGetAreaAPI = @"getArea";//获取获取省市区数据
+
 
 
 

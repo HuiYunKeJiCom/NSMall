@@ -37,6 +37,12 @@
 		182C8A7220A183DF00872118 /* LabelListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C8A7120A183DF00872118 /* LabelListModel.m */; };
 		182C8A7520A183FA00872118 /* LabelItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C8A7420A183FA00872118 /* LabelItemModel.m */; };
 		182C8A7820A19FCD00872118 /* SaveLabelParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C8A7720A19FCD00872118 /* SaveLabelParam.m */; };
+		182C8A7C20A1D98800872118 /* GetAreaAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C8A7B20A1D98800872118 /* GetAreaAPI.m */; };
+		182C8A8020A1D9BB00872118 /* GetAreaParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C8A7F20A1D9BB00872118 /* GetAreaParam.m */; };
+		182C8A8620A1DA5300872118 /* NSAreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C8A8520A1DA5300872118 /* NSAreaModel.m */; };
+		182C8A8920A1DE5900872118 /* GetAddressParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C8A8820A1DE5900872118 /* GetAddressParam.m */; };
+		182C8A8D20A1E0C900872118 /* NSAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C8A8C20A1E0C900872118 /* NSAddressModel.m */; };
+		182C8A9020A1E3A800872118 /* NSAddressItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C8A8F20A1E3A800872118 /* NSAddressItemModel.m */; };
 		182DC49120905E3C0066E667 /* ADOrderTopToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DC49020905E3C0066E667 /* ADOrderTopToolView.m */; };
 		18350890207F653600BCF7CE /* Net.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835088F207F653600BCF7CE /* Net.m */; };
 		18350895208086DE00BCF7CE /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 18350893208086DE00BCF7CE /* UIViewExt.m */; };
@@ -195,6 +201,18 @@
 		182C8A7420A183FA00872118 /* LabelItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelItemModel.m; sourceTree = "<group>"; };
 		182C8A7620A19FCD00872118 /* SaveLabelParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaveLabelParam.h; sourceTree = "<group>"; };
 		182C8A7720A19FCD00872118 /* SaveLabelParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaveLabelParam.m; sourceTree = "<group>"; };
+		182C8A7A20A1D98800872118 /* GetAreaAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAreaAPI.h; sourceTree = "<group>"; };
+		182C8A7B20A1D98800872118 /* GetAreaAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAreaAPI.m; sourceTree = "<group>"; };
+		182C8A7E20A1D9BB00872118 /* GetAreaParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAreaParam.h; sourceTree = "<group>"; };
+		182C8A7F20A1D9BB00872118 /* GetAreaParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAreaParam.m; sourceTree = "<group>"; };
+		182C8A8420A1DA5300872118 /* NSAreaModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAreaModel.h; sourceTree = "<group>"; };
+		182C8A8520A1DA5300872118 /* NSAreaModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAreaModel.m; sourceTree = "<group>"; };
+		182C8A8720A1DE5900872118 /* GetAddressParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAddressParam.h; sourceTree = "<group>"; };
+		182C8A8820A1DE5900872118 /* GetAddressParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAddressParam.m; sourceTree = "<group>"; };
+		182C8A8B20A1E0C900872118 /* NSAddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAddressModel.h; sourceTree = "<group>"; };
+		182C8A8C20A1E0C900872118 /* NSAddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAddressModel.m; sourceTree = "<group>"; };
+		182C8A8E20A1E3A800872118 /* NSAddressItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAddressItemModel.h; sourceTree = "<group>"; };
+		182C8A8F20A1E3A800872118 /* NSAddressItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAddressItemModel.m; sourceTree = "<group>"; };
 		182DC48F20905E3C0066E667 /* ADOrderTopToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADOrderTopToolView.h; sourceTree = "<group>"; };
 		182DC49020905E3C0066E667 /* ADOrderTopToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADOrderTopToolView.m; sourceTree = "<group>"; };
 		1835088E207F653600BCF7CE /* Net.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Net.h; sourceTree = "<group>"; };
@@ -664,6 +682,26 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		182C8A7920A1D79E00872118 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				182C8A7A20A1D98800872118 /* GetAreaAPI.h */,
+				182C8A7B20A1D98800872118 /* GetAreaAPI.m */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		182C8A7D20A1D9A000872118 /* Param */ = {
+			isa = PBXGroup;
+			children = (
+				182C8A7E20A1D9BB00872118 /* GetAreaParam.h */,
+				182C8A7F20A1D9BB00872118 /* GetAreaParam.m */,
+				182C8A8720A1DE5900872118 /* GetAddressParam.h */,
+				182C8A8820A1DE5900872118 /* GetAddressParam.m */,
+			);
+			path = Param;
+			sourceTree = "<group>";
+		};
 		182DC49220905E690066E667 /* PersonInfo(个人信息) */ = {
 			isa = PBXGroup;
 			children = (
@@ -865,6 +903,8 @@
 		18893D4B20A0414C007FD3BC /* 地址 */ = {
 			isa = PBXGroup;
 			children = (
+				182C8A7D20A1D9A000872118 /* Param */,
+				182C8A7920A1D79E00872118 /* API */,
 				18893D7720A049B7007FD3BC /* YWChooseAddress */,
 				18893D5820A042A3007FD3BC /* YWUI */,
 				18893D5420A04264007FD3BC /* View */,
@@ -888,6 +928,12 @@
 			children = (
 				18893D5120A04230007FD3BC /* ADAddressModel.h */,
 				18893D5220A04230007FD3BC /* ADAddressModel.m */,
+				182C8A8420A1DA5300872118 /* NSAreaModel.h */,
+				182C8A8520A1DA5300872118 /* NSAreaModel.m */,
+				182C8A8B20A1E0C900872118 /* NSAddressModel.h */,
+				182C8A8C20A1E0C900872118 /* NSAddressModel.m */,
+				182C8A8E20A1E3A800872118 /* NSAddressItemModel.h */,
+				182C8A8F20A1E3A800872118 /* NSAddressItemModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1420,6 +1466,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				182C8A7220A183DF00872118 /* LabelListModel.m in Sources */,
+				182C8A9020A1E3A800872118 /* NSAddressItemModel.m in Sources */,
 				18D0824E20956D2F0031034A /* LoginAPI.m in Sources */,
 				18893D5320A04230007FD3BC /* ADAddressModel.m in Sources */,
 				184F05EF209AE39700768418 /* ProductListItemModel.m in Sources */,
@@ -1437,6 +1484,8 @@
 				184DE7A9208F088E00E776F3 /* BaseTableCell.m in Sources */,
 				18105679209FEED700FD7652 /* UIImageView+WebCache.m in Sources */,
 				18D71045208DC84C002BA6CD /* DCTabBadgeView.m in Sources */,
+				182C8A7C20A1D98800872118 /* GetAreaAPI.m in Sources */,
+				182C8A8D20A1E0C900872118 /* NSAddressModel.m in Sources */,
 				18893D7120A042A4007FD3BC /* ADAddressLabelTableViewCell.m in Sources */,
 				18D574CB209AA380001C7875 /* GetVcodeAPI.m in Sources */,
 				18DD157A208DD5AA0006475D /* NSMessageViewController.m in Sources */,
@@ -1471,6 +1520,7 @@
 				18D092FE20917A1400E091E0 /* DCTabBarCenterButton.m in Sources */,
 				18D574D2209AB1D6001C7875 /* HeaderModel.m in Sources */,
 				18D0825320956EB70031034A /* HomePageAPI.m in Sources */,
+				182C8A8620A1DA5300872118 /* NSAreaModel.m in Sources */,
 				184043322099FA8D00685F80 /* ADLUpdateUserTableCell.m in Sources */,
 				18DD1562208DC9AB0006475D /* GQGesVCTransition.m in Sources */,
 				1810564D209FEE5D00FD7652 /* PublishMenuButton.m in Sources */,
@@ -1482,6 +1532,7 @@
 				18105675209FEED700FD7652 /* MBProgressHUD+MJ.m in Sources */,
 				186BFCB120A14B5F006EEE09 /* CLDispalyTagView.m in Sources */,
 				184F05FA209C40DE00768418 /* AdvertItemModel.m in Sources */,
+				182C8A8020A1D9BB00872118 /* GetAreaParam.m in Sources */,
 				1840434E2099FB8400685F80 /* ADLTitleField.m in Sources */,
 				188CC658207F5431007D749E /* main.m in Sources */,
 				18350895208086DE00BCF7CE /* UIViewExt.m in Sources */,
@@ -1530,6 +1581,7 @@
 				18D09304209306B900E091E0 /* DCMainNavController.m in Sources */,
 				18893D6D20A042A4007FD3BC /* YWAddressTableViewCell2.m in Sources */,
 				184DE7AC208F08B400E776F3 /* BaseRefreshGifHeader.m in Sources */,
+				182C8A8920A1DE5900872118 /* GetAddressParam.m in Sources */,
 				18D093012091BE9000E091E0 /* NSHomePageVC.m in Sources */,
 				18893D6B20A042A4007FD3BC /* YWAddressViewController.m in Sources */,
 				18CBB3AB20907AD300358E07 /* NSTabBarController.m in Sources */,

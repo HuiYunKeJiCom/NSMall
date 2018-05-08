@@ -31,7 +31,6 @@
     CGFloat _itemWH;
     CGFloat _margin;
     
-//    UILabel *_tagsLabel;
     NSMutableArray *_tagArrayM;
     NSMutableArray<LabelItemModel *> *_recentTagsM;
 }
@@ -73,16 +72,12 @@
     }
     
     
-//    _tagArrayM = [[NSUserDefaults standardUserDefaults] objectForKey:@"CLTags"];
     if (!_tagArrayM) {
         _tagArrayM = [NSMutableArray array];
     }
-//    _recentTagsM = [[[NSUserDefaults standardUserDefaults] objectForKey:@"CLRecentTags"] mutableCopy];
     
     if (!_recentTagsM) {
         _recentTagsM = [NSMutableArray array];
-//        NSArray *tagsArray = @[@"帅气", @"handsome啊发发发发生", @"酷爱的法师打发", @"1111111111111", @"这是一个设sad挨打大大多", @"撒打算发发发", @"dfsafafafasfaf"];
-        
     }
     
     [_recentTagsM removeAllObjects];
@@ -91,9 +86,6 @@
     [GetLabelsAPI getLabels:param success:^(LabelListModel * _Nullable result) {
         DLog(@"获取标签成功");
         [_recentTagsM addObjectsFromArray:result.labelList];
-//        for (LabelItemModel *model in result.labelList) {
-//            DLog(@"name = %@",model.label_name)
-//        }
     } failure:^(NSError *error) {
         DLog(@"获取标签失败");
     }];
@@ -102,7 +94,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    self.view.backgroundColor = KBGCOLOR;
     _selectedPhotos = [NSMutableArray array];
     _selectedAssets = [NSMutableArray array];
     
@@ -154,19 +145,10 @@
     self.detailTV.font = [UIFont systemFontOfSize:14];
     self.detailTV.delegate = self;
     self.detailTV.zw_placeHolder = @"描述下你的店铺吧,比如特色、优惠等~";
-//    self.detailTV.text = @"描述下你的店铺吧,比如特色、优惠等~";
     self.detailTV.zw_placeHolderColor = [UIColor lightGrayColor];
     
     self.detailTV.textContainerInset = UIEdgeInsetsMake(0, 15, 0, 0);
     [self.middleView addSubview:self.detailTV];
-    
-//    _tagsLabel = [[UILabel alloc] initWithFrame:self.view.bounds];
-//    _tagsLabel.font = [UIFont systemFontOfSize:14];
-//    _tagsLabel.textColor = [UIColor purpleColor];
-//    _tagsLabel.text = @"";
-//    _tagsLabel.textAlignment = NSTextAlignmentCenter;
-//    _tagsLabel.numberOfLines = 0;
-//    [self.view addSubview:_tagsLabel];
     
     [self setUpAddView];
     [self setUpNavTopView];
@@ -218,9 +200,7 @@
         cell.asset = _selectedAssets[indexPath.row];
         cell.deleteBtn.hidden = NO;
     }
-//    if (!self.allowPickingGifSwitch.isOn) {
-//        cell.gifLable.hidden = YES;
-//    }
+
     cell.deleteBtn.tag = indexPath.row;
     [cell.deleteBtn addTarget:self action:@selector(deleteBtnClik:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
@@ -228,8 +208,6 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == _selectedPhotos.count) {
-//            UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"去相册选择", nil];
-//            [sheet showInView:self.view];
         [self pushTZImagePickerController];
     } else {
         // preview photos or video / 预览照片或者视频
@@ -244,7 +222,6 @@
         }
             // preview photos / 预览照片
             TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithSelectedAssets:_selectedAssets selectedPhotos:_selectedPhotos index:indexPath.row];
-//    imagePickerVc.naviBgColor = [UIColor redColor];
             imagePickerVc.maxImagesCount = 9;
             imagePickerVc.allowPickingGif = NO;
             imagePickerVc.allowPickingOriginalPhoto = YES;
@@ -470,11 +447,6 @@
     [_selectedAssets addObject:asset];
     [_selectedPhotos addObject:image];
     [_collectionView reloadData];
-    
-//    if ([asset isKindOfClass:[PHAsset class]]) {
-//        PHAsset *phAsset = asset;
-//        NSLog(@"location:%@",phAsset.location);
-//    }
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
@@ -536,7 +508,6 @@
     _selectedAssets = [NSMutableArray arrayWithArray:assets];
     _isSelectOriginalPhoto = isSelectOriginalPhoto;
     [_collectionView reloadData];
-    // _collectionView.contentSize = CGSizeMake(0, ((_selectedPhotos.count + 2) / 3 ) * (_margin + _itemWH));
     
     if(photos.count >0){
         if(_selectedPhotos.count>7){
@@ -597,8 +568,6 @@
 #pragma mark - 获取数据
 - (void)setUpData
 {
-    
-    
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"标签") imageName:nil num:@"餐饮、快餐"]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"地址") imageName:nil num:@"杭州市省政府旁"]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"电话") imageName:nil num:@"请输入电话"]];
@@ -622,15 +591,13 @@
             NSLog(@"点击了标签");
             
             self.infoCell = [self.otherTableView cellForRowAtIndexPath:indexPath];
-//            NSLog(@"num = %@",self.infoCell.numLb.text);
-            
+
             CLTagsModel *model = [[CLTagsModel alloc] init];
             model.title = @"所有标签";
             model.tagsArray = _recentTagsM.copy;
             
             NSAddLabelVC *tagVC = [[NSAddLabelVC alloc] init];
             tagVC.tagsDelegate = self;
-            //    tagVC.tagsModelArray = @[model];
             tagVC.tagsModelArray = @[model];  // 传入多个模型，显示多个标签组
             tagVC.tagsDisplayArray = _tagArrayM;
             tagVC.highlightTag = YES;
@@ -640,8 +607,8 @@
             break;
         case 1:{
             NSLog(@"点击了地址");
-            ADReceivingAddressViewController *ctrl = [[ADReceivingAddressViewController alloc] init];
-            [self presentViewController:ctrl animated:YES completion:nil];
+//            ADReceivingAddressViewController *ctrl = [[ADReceivingAddressViewController alloc] init];
+//            [self presentViewController:ctrl animated:YES completion:nil];
         }
             break;
         case 2:{
@@ -766,8 +733,6 @@
 #pragma mark - CLTagViewControllerDelegate 返回贴上的标签，并做相关处理
 - (void)tagViewController:(NSAddLabelVC *)tagController tags:(NSArray<LabelItemModel *> *)tags {
 
-    // 没有后台服务器。。。只能做本地处理。。。
-//    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"CLTags"];
     _tagArrayM = [NSMutableArray array];
     [tagController dismissViewControllerAnimated:YES completion:nil];
     for (LabelItemModel *tag in tags) {
@@ -781,9 +746,6 @@
     }
     NSString *tagString = [self removeLastOneChar:self.infoCell.numLb.text];
     self.infoCell.numLb.text = tagString;
-
-//    [[NSUserDefaults standardUserDefaults] setObject:_tagArrayM forKey:@"CLTags"];
-//    [[NSUserDefaults standardUserDefaults] setObject:_recentTagsM forKey:@"CLRecentTags"];
     
 }
 

@@ -29,7 +29,9 @@
         cell = [[NSInfoCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSInfoCustomCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    
+    if(indexPath.section == 3){
+        cell.arrowImgView.alpha = 0.0;
+    }
     ADLMyInfoModel *infoModel = [self.data objectAtIndex:indexPath.section];
     cell.myInfoModel = infoModel;
     return cell;

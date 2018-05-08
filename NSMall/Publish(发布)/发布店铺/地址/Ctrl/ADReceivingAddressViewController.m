@@ -54,11 +54,8 @@
     WEAKSELF
     _topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
-        [weakSelf.navigationController popViewControllerAnimated:YES];
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
     };
-    //    _topToolView.rightItemClickBlock = ^{
-    //        NSLog(@"点击设置");
-    //    };
     
     [self.view addSubview:_topToolView];
     

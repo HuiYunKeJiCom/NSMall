@@ -551,7 +551,7 @@
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"分类") imageName:nil num:@"选择分类"]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"价格") imageName:nil num:@"开个价"]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"数量") imageName:nil num:@"数量"]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"添加商品规格") imageName:nil num:nil]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"添加商品规格") imageName:@"publish_ico_goods_add" num:nil]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"运费") imageName:nil num:@"运费"]];
 }
 
@@ -592,6 +592,7 @@
             break;
         case 3:{
             NSLog(@"点击了添加商品规格");
+            
         }
             break;
         case 4:{
