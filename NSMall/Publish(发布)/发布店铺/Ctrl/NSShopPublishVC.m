@@ -17,14 +17,23 @@
 #import "NSChangePhoneVC.h"
 #import "ADReceivingAddressViewController.h"
 #import "NSAddLabelVC.h"//添加标签
+#import "CLTagsModel.h"
+#import "NSInfoCustomCell.h"
+#import "GetLabelsAPI.h"
+#import "GetLabelsParam.h"
+#import "LabelItemModel.h"
 
-@interface NSShopPublishVC ()<NSShopTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate> {
+@interface NSShopPublishVC ()<NSShopTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,NSAddLabelVCDelegate> {
     NSMutableArray *_selectedPhotos;
     NSMutableArray *_selectedAssets;
     BOOL _isSelectOriginalPhoto;
     
     CGFloat _itemWH;
     CGFloat _margin;
+    
+//    UILabel *_tagsLabel;
+    NSMutableArray *_tagArrayM;
+    NSMutableArray<LabelItemModel *> *_recentTagsM;
 }
 @property (nonatomic, strong) UIImagePickerController *imagePickerVc;
 @property (strong, nonatomic) NSShopTableView   *otherTableView;
@@ -38,6 +47,7 @@
 @property(nonatomic,strong)UIView *middleView;/* 中间的view */
 
 @property(nonatomic,strong)UIScrollView *SV;/* 全局SV */
+@property(nonatomic,strong)NSInfoCustomCell *infoCell;/* 标签Cell */
 @end
 
 @implementation NSShopPublishVC
@@ -61,6 +71,32 @@
         self.middleView.dc_y = GetScaleWidth(130);
         self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
     }
+    
+    
+//    _tagArrayM = [[NSUserDefaults standardUserDefaults] objectForKey:@"CLTags"];
+    if (!_tagArrayM) {
+        _tagArrayM = [NSMutableArray array];
+    }
+//    _recentTagsM = [[[NSUserDefaults standardUserDefaults] objectForKey:@"CLRecentTags"] mutableCopy];
+    
+    if (!_recentTagsM) {
+        _recentTagsM = [NSMutableArray array];
+//        NSArray *tagsArray = @[@"帅气", @"handsome啊发发发发生", @"酷爱的法师打发", @"1111111111111", @"这是一个设sad挨打大大多", @"撒打算发发发", @"dfsafafafasfaf"];
+        
+    }
+    
+    [_recentTagsM removeAllObjects];
+    GetLabelsParam *param = [GetLabelsParam new];
+    param.type = @"1";
+    [GetLabelsAPI getLabels:param success:^(LabelListModel * _Nullable result) {
+        DLog(@"获取标签成功");
+        [_recentTagsM addObjectsFromArray:result.labelList];
+//        for (LabelItemModel *model in result.labelList) {
+//            DLog(@"name = %@",model.label_name)
+//        }
+    } failure:^(NSError *error) {
+        DLog(@"获取标签失败");
+    }];
 }
 
 - (void)viewDidLoad {
@@ -123,6 +159,14 @@
     
     self.detailTV.textContainerInset = UIEdgeInsetsMake(0, 15, 0, 0);
     [self.middleView addSubview:self.detailTV];
+    
+//    _tagsLabel = [[UILabel alloc] initWithFrame:self.view.bounds];
+//    _tagsLabel.font = [UIFont systemFontOfSize:14];
+//    _tagsLabel.textColor = [UIColor purpleColor];
+//    _tagsLabel.text = @"";
+//    _tagsLabel.textAlignment = NSTextAlignmentCenter;
+//    _tagsLabel.numberOfLines = 0;
+//    [self.view addSubview:_tagsLabel];
     
     [self setUpAddView];
     [self setUpNavTopView];
@@ -553,6 +597,8 @@
 #pragma mark - 获取数据
 - (void)setUpData
 {
+    
+    
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"标签") imageName:nil num:@"餐饮、快餐"]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"地址") imageName:nil num:@"杭州市省政府旁"]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"电话") imageName:nil num:@"请输入电话"]];
@@ -575,7 +621,21 @@
         case 0:{
             NSLog(@"点击了标签");
             
+            self.infoCell = [self.otherTableView cellForRowAtIndexPath:indexPath];
+//            NSLog(@"num = %@",self.infoCell.numLb.text);
             
+            CLTagsModel *model = [[CLTagsModel alloc] init];
+            model.title = @"所有标签";
+            model.tagsArray = _recentTagsM.copy;
+            
+            NSAddLabelVC *tagVC = [[NSAddLabelVC alloc] init];
+            tagVC.tagsDelegate = self;
+            //    tagVC.tagsModelArray = @[model];
+            tagVC.tagsModelArray = @[model];  // 传入多个模型，显示多个标签组
+            tagVC.tagsDisplayArray = _tagArrayM;
+            tagVC.highlightTag = YES;
+            [self presentViewController:tagVC animated:YES completion:nil];
+            self.infoCell.numLb.text = @"";
         }
             break;
         case 1:{
@@ -701,6 +761,41 @@
     CGSize maxSize = CGSizeMake(kScreenWidth *0.5, MAXFLOAT);
     // 计算文字的高度
     return  [title boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} context:nil].size;
+}
+    
+#pragma mark - CLTagViewControllerDelegate 返回贴上的标签，并做相关处理
+- (void)tagViewController:(NSAddLabelVC *)tagController tags:(NSArray<LabelItemModel *> *)tags {
+
+    // 没有后台服务器。。。只能做本地处理。。。
+//    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"CLTags"];
+    _tagArrayM = [NSMutableArray array];
+    [tagController dismissViewControllerAnimated:YES completion:nil];
+    for (LabelItemModel *tag in tags) {
+        if (![_recentTagsM containsObject:tag]) {
+            [_recentTagsM addObject:tag];
+        }
+        
+        [_tagArrayM addObject:tag];
+        
+        self.infoCell.numLb.text = [[self.infoCell.numLb.text stringByAppendingString:tag.label_name] stringByAppendingString:@"、"];
+    }
+    NSString *tagString = [self removeLastOneChar:self.infoCell.numLb.text];
+    self.infoCell.numLb.text = tagString;
+
+//    [[NSUserDefaults standardUserDefaults] setObject:_tagArrayM forKey:@"CLTags"];
+//    [[NSUserDefaults standardUserDefaults] setObject:_recentTagsM forKey:@"CLRecentTags"];
+    
+}
+
+-(NSString*) removeLastOneChar:(NSString*)origin
+{
+    NSString* cutted;
+    if([origin length] > 0){
+        cutted = [origin substringToIndex:([origin length]-1)];// 去掉最后一个","
+    }else{
+        cutted = origin;
+    }
+    return cutted;
 }
 
 @end

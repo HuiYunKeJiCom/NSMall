@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FFLoadFailView.h"
-#import <MBProgressHUD.h>
+//#import <MBProgressHUD.h>
 
 @interface BaseViewCtrl : UIViewController
 

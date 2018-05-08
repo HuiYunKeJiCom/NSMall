@@ -23,7 +23,7 @@
     DCTabBarCenterButton *centerBtn = [DCTabBarCenterButton buttonWithType:UIButtonTypeCustom];
     centerBtn.size = CGSizeMake(GetScaleWidth(55),GetScaleWidth(55));
     [centerBtn setTitle:@"发布" forState:UIControlStateNormal];
-    [centerBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [centerBtn setTitleColor:UIColorFromRGB(0xd2d2d2) forState:UIControlStateNormal];
     [centerBtn addTarget:centerBtn action:@selector(centerBtnWasClicked:) forControlEvents:UIControlEventTouchDown];
     return centerBtn;
 }

@@ -55,7 +55,6 @@
 #import "UIImageView+WebCache.h"
 #import <MJExtension/MJExtension.h>
 #import "PPUntil.h"
-#import "ReactiveCocoa.h"
 
 
 #import <TZImagePickerController/TZImagePickerController.h>

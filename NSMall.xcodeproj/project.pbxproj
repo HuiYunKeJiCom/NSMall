@@ -28,10 +28,15 @@
 		1810567D209FEED700FD7652 /* UIView+animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810566F209FEED700FD7652 /* UIView+animation.m */; };
 		1810567E209FEED700FD7652 /* UIView+DCRolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 18105670209FEED700FD7652 /* UIView+DCRolling.m */; };
 		1814218D20A055990012B3B7 /* NSAddLabelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1814218C20A055990012B3B7 /* NSAddLabelVC.m */; };
-		1814219120A059260012B3B7 /* PPLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1814219020A059260012B3B7 /* PPLabel.m */; };
 		1814219420A05A060012B3B7 /* PPUntil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1814219320A05A060012B3B7 /* PPUntil.m */; };
 		18230F66208D793F00D3E55F /* BaseViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 18230F65208D793F00D3E55F /* BaseViewCtrl.m */; };
 		18230F6A208D795E00D3E55F /* FFLoadFailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18230F68208D795D00D3E55F /* FFLoadFailView.m */; };
+		182C8A6420A1817500872118 /* NSShopPublishAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C8A6320A1817500872118 /* NSShopPublishAPI.m */; };
+		182C8A6B20A1830D00872118 /* GetLabelsParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C8A6A20A1830D00872118 /* GetLabelsParam.m */; };
+		182C8A6E20A1832200872118 /* GetLabelsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C8A6D20A1832200872118 /* GetLabelsAPI.m */; };
+		182C8A7220A183DF00872118 /* LabelListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C8A7120A183DF00872118 /* LabelListModel.m */; };
+		182C8A7520A183FA00872118 /* LabelItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C8A7420A183FA00872118 /* LabelItemModel.m */; };
+		182C8A7820A19FCD00872118 /* SaveLabelParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C8A7720A19FCD00872118 /* SaveLabelParam.m */; };
 		182DC49120905E3C0066E667 /* ADOrderTopToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DC49020905E3C0066E667 /* ADOrderTopToolView.m */; };
 		18350890207F653600BCF7CE /* Net.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835088F207F653600BCF7CE /* Net.m */; };
 		18350895208086DE00BCF7CE /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 18350893208086DE00BCF7CE /* UIViewExt.m */; };
@@ -58,6 +63,12 @@
 		184F05FE209FE23100768418 /* CatogeryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05FD209FE23100768418 /* CatogeryModel.m */; };
 		1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD6F208F0DD00094A594 /* NetBaseModel.m */; };
 		1851CD77208F23530094A594 /* NSCustomHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD76208F23530094A594 /* NSCustomHeadCell.m */; };
+		186BFCB120A14B5F006EEE09 /* CLDispalyTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BFCA920A14B5F006EEE09 /* CLDispalyTagView.m */; };
+		186BFCB220A14B5F006EEE09 /* CLRecentTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BFCAE20A14B5F006EEE09 /* CLRecentTagView.m */; };
+		186BFCB320A14B5F006EEE09 /* CLTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BFCAF20A14B5F006EEE09 /* CLTagView.m */; };
+		186BFCB420A14B5F006EEE09 /* CLTagButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BFCB020A14B5F006EEE09 /* CLTagButton.m */; };
+		186BFCB820A14B85006EEE09 /* CLTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BFCB720A14B85006EEE09 /* CLTools.m */; };
+		186BFCBC20A14B8E006EEE09 /* CLTagsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BFCBA20A14B8E006EEE09 /* CLTagsModel.m */; };
 		18893D4420A0055B007FD3BC /* NSGoodsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18893D4320A0055B007FD3BC /* NSGoodsTableView.m */; };
 		18893D4720A02F6C007FD3BC /* NSChangeParamVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18893D4620A02F6C007FD3BC /* NSChangeParamVC.m */; };
 		18893D4A20A03B73007FD3BC /* NSChangePhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18893D4920A03B73007FD3BC /* NSChangePhoneVC.m */; };
@@ -117,7 +128,7 @@
 		18DD1588208DEA960006475D /* ADLMyInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1586208DEA960006475D /* ADLMyInfoModel.m */; };
 		18DD158B208DEAD80006475D /* BaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD158A208DEAD80006475D /* BaseTableView.m */; };
 		18E32597209FF5C2009AFF5D /* UpdateUserParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E32596209FF5C2009AFF5D /* UpdateUserParam.m */; };
-		D56F34B7667EABE2EFEB003F /* Pods_NSMall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288623EBAAB40D66405111A1 /* Pods_NSMall.framework */; };
+		438A67B4EFAE1078078E2EE8 /* libPods-NSMall.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8490CB8261B77FC60A58A4A /* libPods-NSMall.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -164,8 +175,6 @@
 		18105673209FEED700FD7652 /* UIView+animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+animation.h"; sourceTree = "<group>"; };
 		1814218B20A055990012B3B7 /* NSAddLabelVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAddLabelVC.h; sourceTree = "<group>"; };
 		1814218C20A055990012B3B7 /* NSAddLabelVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAddLabelVC.m; sourceTree = "<group>"; };
-		1814218F20A059260012B3B7 /* PPLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPLabel.h; sourceTree = "<group>"; };
-		1814219020A059260012B3B7 /* PPLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPLabel.m; sourceTree = "<group>"; };
 		1814219220A05A050012B3B7 /* PPUntil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPUntil.h; sourceTree = "<group>"; };
 		1814219320A05A060012B3B7 /* PPUntil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPUntil.m; sourceTree = "<group>"; };
 		18230F64208D793F00D3E55F /* BaseViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewCtrl.h; sourceTree = "<group>"; };
@@ -174,6 +183,18 @@
 		18230F69208D795D00D3E55F /* FFLoadFailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFLoadFailView.h; sourceTree = "<group>"; };
 		18230F70208D7B4200D3E55F /* Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
 		18230F80208D835300D3E55F /* GlobalColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalColor.h; sourceTree = "<group>"; };
+		182C8A6220A1817500872118 /* NSShopPublishAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSShopPublishAPI.h; sourceTree = "<group>"; };
+		182C8A6320A1817500872118 /* NSShopPublishAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSShopPublishAPI.m; sourceTree = "<group>"; };
+		182C8A6920A1830D00872118 /* GetLabelsParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetLabelsParam.h; sourceTree = "<group>"; };
+		182C8A6A20A1830D00872118 /* GetLabelsParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetLabelsParam.m; sourceTree = "<group>"; };
+		182C8A6C20A1832200872118 /* GetLabelsAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetLabelsAPI.h; sourceTree = "<group>"; };
+		182C8A6D20A1832200872118 /* GetLabelsAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetLabelsAPI.m; sourceTree = "<group>"; };
+		182C8A7020A183DF00872118 /* LabelListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabelListModel.h; sourceTree = "<group>"; };
+		182C8A7120A183DF00872118 /* LabelListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelListModel.m; sourceTree = "<group>"; };
+		182C8A7320A183FA00872118 /* LabelItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabelItemModel.h; sourceTree = "<group>"; };
+		182C8A7420A183FA00872118 /* LabelItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelItemModel.m; sourceTree = "<group>"; };
+		182C8A7620A19FCD00872118 /* SaveLabelParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaveLabelParam.h; sourceTree = "<group>"; };
+		182C8A7720A19FCD00872118 /* SaveLabelParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaveLabelParam.m; sourceTree = "<group>"; };
 		182DC48F20905E3C0066E667 /* ADOrderTopToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADOrderTopToolView.h; sourceTree = "<group>"; };
 		182DC49020905E3C0066E667 /* ADOrderTopToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADOrderTopToolView.m; sourceTree = "<group>"; };
 		1835088E207F653600BCF7CE /* Net.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Net.h; sourceTree = "<group>"; };
@@ -227,6 +248,18 @@
 		1851CD6F208F0DD00094A594 /* NetBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetBaseModel.m; sourceTree = "<group>"; };
 		1851CD75208F23530094A594 /* NSCustomHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCustomHeadCell.h; sourceTree = "<group>"; };
 		1851CD76208F23530094A594 /* NSCustomHeadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCustomHeadCell.m; sourceTree = "<group>"; };
+		186BFCA920A14B5F006EEE09 /* CLDispalyTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLDispalyTagView.m; sourceTree = "<group>"; };
+		186BFCAA20A14B5F006EEE09 /* CLRecentTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLRecentTagView.h; sourceTree = "<group>"; };
+		186BFCAB20A14B5F006EEE09 /* CLTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTagView.h; sourceTree = "<group>"; };
+		186BFCAC20A14B5F006EEE09 /* CLTagButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTagButton.h; sourceTree = "<group>"; };
+		186BFCAD20A14B5F006EEE09 /* CLDispalyTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLDispalyTagView.h; sourceTree = "<group>"; };
+		186BFCAE20A14B5F006EEE09 /* CLRecentTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLRecentTagView.m; sourceTree = "<group>"; };
+		186BFCAF20A14B5F006EEE09 /* CLTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTagView.m; sourceTree = "<group>"; };
+		186BFCB020A14B5F006EEE09 /* CLTagButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTagButton.m; sourceTree = "<group>"; };
+		186BFCB620A14B85006EEE09 /* CLTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTools.h; sourceTree = "<group>"; };
+		186BFCB720A14B85006EEE09 /* CLTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTools.m; sourceTree = "<group>"; };
+		186BFCBA20A14B8E006EEE09 /* CLTagsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTagsModel.m; sourceTree = "<group>"; };
+		186BFCBB20A14B8E006EEE09 /* CLTagsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTagsModel.h; sourceTree = "<group>"; };
 		18893D4220A0055B007FD3BC /* NSGoodsTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSGoodsTableView.h; sourceTree = "<group>"; };
 		18893D4320A0055B007FD3BC /* NSGoodsTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSGoodsTableView.m; sourceTree = "<group>"; };
 		18893D4520A02F6C007FD3BC /* NSChangeParamVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSChangeParamVC.h; sourceTree = "<group>"; };
@@ -341,8 +374,8 @@
 		18DD158A208DEAD80006475D /* BaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableView.m; sourceTree = "<group>"; };
 		18E32595209FF5C2009AFF5D /* UpdateUserParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateUserParam.h; sourceTree = "<group>"; };
 		18E32596209FF5C2009AFF5D /* UpdateUserParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateUserParam.m; sourceTree = "<group>"; };
-		288623EBAAB40D66405111A1 /* Pods_NSMall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NSMall.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FEDDD97CEA9FCAA52E970F0 /* Pods-NSMall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSMall.release.xcconfig"; path = "Pods/Target Support Files/Pods-NSMall/Pods-NSMall.release.xcconfig"; sourceTree = "<group>"; };
+		A8490CB8261B77FC60A58A4A /* libPods-NSMall.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NSMall.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -350,7 +383,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D56F34B7667EABE2EFEB003F /* Pods_NSMall.framework in Frameworks */,
+				438A67B4EFAE1078078E2EE8 /* libPods-NSMall.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +406,7 @@
 		1810563B209FEE5D00FD7652 /* 发布店铺 */ = {
 			isa = PBXGroup;
 			children = (
+				182C8A5E20A1810A00872118 /* API */,
 				1814218920A0550E0012B3B7 /* 添加标签 */,
 				18893D4B20A0414C007FD3BC /* 地址 */,
 				1810563C209FEE5D00FD7652 /* Ctrl */,
@@ -519,7 +553,9 @@
 		1814218920A0550E0012B3B7 /* 添加标签 */ = {
 			isa = PBXGroup;
 			children = (
-				1814218E20A059260012B3B7 /* CustomLab */,
+				186BFCB920A14B8E006EEE09 /* Model */,
+				186BFCB520A14B85006EEE09 /* tools */,
+				186BFCA820A14B5F006EEE09 /* View */,
 				1814218A20A0551C0012B3B7 /* Ctrl */,
 			);
 			path = "添加标签";
@@ -532,15 +568,6 @@
 				1814218C20A055990012B3B7 /* NSAddLabelVC.m */,
 			);
 			path = Ctrl;
-			sourceTree = "<group>";
-		};
-		1814218E20A059260012B3B7 /* CustomLab */ = {
-			isa = PBXGroup;
-			children = (
-				1814218F20A059260012B3B7 /* PPLabel.h */,
-				1814219020A059260012B3B7 /* PPLabel.m */,
-			);
-			path = CustomLab;
 			sourceTree = "<group>";
 		};
 		18230F60208D788400D3E55F /* Login(登录) */ = {
@@ -615,6 +642,26 @@
 				184043452099FB6000685F80 /* NSTimer */,
 			);
 			path = "Category(分类)";
+			sourceTree = "<group>";
+		};
+		182C8A5E20A1810A00872118 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				182C8A6220A1817500872118 /* NSShopPublishAPI.h */,
+				182C8A6320A1817500872118 /* NSShopPublishAPI.m */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		182C8A6F20A183AC00872118 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				182C8A7020A183DF00872118 /* LabelListModel.h */,
+				182C8A7120A183DF00872118 /* LabelListModel.m */,
+				182C8A7320A183FA00872118 /* LabelItemModel.h */,
+				182C8A7420A183FA00872118 /* LabelItemModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		182DC49220905E690066E667 /* PersonInfo(个人信息) */ = {
@@ -764,6 +811,39 @@
 				18DD1576208DD4140006475D /* NSMyCenterViewController.m */,
 			);
 			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		186BFCA820A14B5F006EEE09 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				186BFCAD20A14B5F006EEE09 /* CLDispalyTagView.h */,
+				186BFCA920A14B5F006EEE09 /* CLDispalyTagView.m */,
+				186BFCAA20A14B5F006EEE09 /* CLRecentTagView.h */,
+				186BFCAE20A14B5F006EEE09 /* CLRecentTagView.m */,
+				186BFCAB20A14B5F006EEE09 /* CLTagView.h */,
+				186BFCAF20A14B5F006EEE09 /* CLTagView.m */,
+				186BFCAC20A14B5F006EEE09 /* CLTagButton.h */,
+				186BFCB020A14B5F006EEE09 /* CLTagButton.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		186BFCB520A14B85006EEE09 /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				186BFCB620A14B85006EEE09 /* CLTools.h */,
+				186BFCB720A14B85006EEE09 /* CLTools.m */,
+			);
+			path = tools;
+			sourceTree = "<group>";
+		};
+		186BFCB920A14B8E006EEE09 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				186BFCBB20A14B8E006EEE09 /* CLTagsModel.h */,
+				186BFCBA20A14B8E006EEE09 /* CLTagsModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		18893D4020A00379007FD3BC /* View */ = {
@@ -924,6 +1004,7 @@
 		188CC647207F5430007D749E /* NSMall */ = {
 			isa = PBXGroup;
 			children = (
+				182C8A6F20A183AC00872118 /* Model */,
 				18D574CC209AA387001C7875 /* Param */,
 				18D574C8209AA35E001C7875 /* API */,
 				18DD1574208DD3810006475D /* Publish(发布) */,
@@ -1026,6 +1107,8 @@
 			children = (
 				18D574C9209AA380001C7875 /* GetVcodeAPI.h */,
 				18D574CA209AA380001C7875 /* GetVcodeAPI.m */,
+				182C8A6C20A1832200872118 /* GetLabelsAPI.h */,
+				182C8A6D20A1832200872118 /* GetLabelsAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1035,6 +1118,10 @@
 			children = (
 				18D574CD209AA39A001C7875 /* GetVcodeParam.h */,
 				18D574CE209AA39A001C7875 /* GetVcodeParam.m */,
+				182C8A6920A1830D00872118 /* GetLabelsParam.h */,
+				182C8A6A20A1830D00872118 /* GetLabelsParam.m */,
+				182C8A7620A19FCD00872118 /* SaveLabelParam.h */,
+				182C8A7720A19FCD00872118 /* SaveLabelParam.m */,
 			);
 			path = Param;
 			sourceTree = "<group>";
@@ -1188,7 +1275,7 @@
 		BD7C576969B1000AE774A23A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				288623EBAAB40D66405111A1 /* Pods_NSMall.framework */,
+				A8490CB8261B77FC60A58A4A /* libPods-NSMall.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1291,63 +1378,13 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-NSMall/Pods-NSMall-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/CYLTabBarController/CYLTabBarController.framework",
-				"${BUILT_PRODUCTS_DIR}/Colours/Colours.framework",
-				"${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework",
-				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${PODS_ROOT}/Hyphenate/iOS_IM_SDK_V3.4.0/HyphenateFullSDK/Hyphenate.framework",
 				"${PODS_ROOT}/HyphenateLite/iOS_IM_SDK_V3.4.0/HyphenateSDK/HyphenateLite.framework",
-				"${BUILT_PRODUCTS_DIR}/JKCountDownButton/JKCountDownButton.framework",
-				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
-				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/MWPhotoBrowser/MWPhotoBrowser.framework",
-				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/TZImagePickerController/TZImagePickerController.framework",
-				"${BUILT_PRODUCTS_DIR}/Toast/Toast.framework",
-				"${BUILT_PRODUCTS_DIR}/UIColor+Hex/UIColor_Hex.framework",
-				"${BUILT_PRODUCTS_DIR}/YYCache/YYCache.framework",
-				"${BUILT_PRODUCTS_DIR}/YYCategories/YYCategories.framework",
-				"${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework",
-				"${BUILT_PRODUCTS_DIR}/YYKeyboardManager/YYKeyboardManager.framework",
-				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
-				"${BUILT_PRODUCTS_DIR}/YYText/YYText.framework",
-				"${BUILT_PRODUCTS_DIR}/YYWebImage/YYWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CYLTabBarController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Colours.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DACircularProgress.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hyphenate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HyphenateLite.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JKCountDownButton.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MWPhotoBrowser.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TZImagePickerController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_Hex.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYCache.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYCategories.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKeyboardManager.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYText.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1362,6 +1399,9 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-NSMall/Pods-NSMall-resources.sh",
 				"${PODS_ROOT}/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Map.framework/Resources/mapapi.bundle",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/MWPhotoBrowser/MWPhotoBrowser.bundle,
+				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -1379,12 +1419,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				182C8A7220A183DF00872118 /* LabelListModel.m in Sources */,
 				18D0824E20956D2F0031034A /* LoginAPI.m in Sources */,
 				18893D5320A04230007FD3BC /* ADAddressModel.m in Sources */,
 				184F05EF209AE39700768418 /* ProductListItemModel.m in Sources */,
 				18893D8820A049B7007FD3BC /* YWAddressView.m in Sources */,
 				1814218D20A055990012B3B7 /* NSAddLabelVC.m in Sources */,
 				18DD157D208DD5F40006475D /* NSNearbyViewController.m in Sources */,
+				186BFCB320A14B5F006EEE09 /* CLTagView.m in Sources */,
 				18D0824A20956D2F0031034A /* NSLoginController.m in Sources */,
 				1840434B2099FB6000685F80 /* NSTimer+wrapper.m in Sources */,
 				1835089920808CCD00BCF7CE /* Common.m in Sources */,
@@ -1416,9 +1458,11 @@
 				1810567E209FEED700FD7652 /* UIView+DCRolling.m in Sources */,
 				18893D7220A042A4007FD3BC /* YWAddressTableViewCell1.m in Sources */,
 				18893D4720A02F6C007FD3BC /* NSChangeParamVC.m in Sources */,
+				182C8A6E20A1832200872118 /* GetLabelsAPI.m in Sources */,
 				18D71043208DC84C002BA6CD /* DCBaseSetViewController.m in Sources */,
 				18893D8620A049B7007FD3BC /* YWChooseAddressView.m in Sources */,
 				18D71042208DC84C002BA6CD /* DCTabBarController.m in Sources */,
+				182C8A7520A183FA00872118 /* LabelItemModel.m in Sources */,
 				18DD158B208DEAD80006475D /* BaseTableView.m in Sources */,
 				1810567C209FEED700FD7652 /* UIView+Layout.m in Sources */,
 				18DD156D208DCF3F0006475D /* NSHomePageViewController.m in Sources */,
@@ -1430,26 +1474,30 @@
 				184043322099FA8D00685F80 /* ADLUpdateUserTableCell.m in Sources */,
 				18DD1562208DC9AB0006475D /* GQGesVCTransition.m in Sources */,
 				1810564D209FEE5D00FD7652 /* PublishMenuButton.m in Sources */,
-				1814219120A059260012B3B7 /* PPLabel.m in Sources */,
 				18893D6C20A042A4007FD3BC /* YWAddressInfoModel.m in Sources */,
 				1810567D209FEED700FD7652 /* UIView+animation.m in Sources */,
 				18D0824B20956D2F0031034A /* NSLoginView.m in Sources */,
 				18105674209FEED700FD7652 /* UIBarButtonItem+DCBarButtonItem.m in Sources */,
 				184043382099FABE00685F80 /* ADLEditUserInformCtrl.m in Sources */,
 				18105675209FEED700FD7652 /* MBProgressHUD+MJ.m in Sources */,
+				186BFCB120A14B5F006EEE09 /* CLDispalyTagView.m in Sources */,
 				184F05FA209C40DE00768418 /* AdvertItemModel.m in Sources */,
 				1840434E2099FB8400685F80 /* ADLTitleField.m in Sources */,
 				188CC658207F5431007D749E /* main.m in Sources */,
 				18350895208086DE00BCF7CE /* UIViewExt.m in Sources */,
 				1840432F2099FA5D00685F80 /* ADLUpdateUserInformCtrl.m in Sources */,
 				18E32597209FF5C2009AFF5D /* UpdateUserParam.m in Sources */,
+				182C8A7820A19FCD00872118 /* SaveLabelParam.m in Sources */,
 				18893D4F20A041A7007FD3BC /* ADReceivingAddressViewController.m in Sources */,
 				1840433E2099FAEE00685F80 /* ADLUserNameController.m in Sources */,
 				18893D8B20A04A5D007FD3BC /* YWTool.m in Sources */,
+				186BFCB820A14B85006EEE09 /* CLTools.m in Sources */,
 				1840435B209A028100685F80 /* UserInfoAPI.m in Sources */,
 				1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */,
 				18D0824C20956D2F0031034A /* NSLImageField.m in Sources */,
 				18893D8E20A04A9E007FD3BC /* ADAddressTopView.m in Sources */,
+				182C8A6420A1817500872118 /* NSShopPublishAPI.m in Sources */,
+				186BFCBC20A14B8E006EEE09 /* CLTagsModel.m in Sources */,
 				188CC64A207F5430007D749E /* AppDelegate.mm in Sources */,
 				18105653209FEE5D00FD7652 /* NSShopTableView.m in Sources */,
 				18105654209FEE5D00FD7652 /* LxGridViewFlowLayout.m in Sources */,
@@ -1470,11 +1518,13 @@
 				18D0824D20956D2F0031034A /* UserModel.m in Sources */,
 				18893D8720A049B7007FD3BC /* YWAddressTableViewCell.m in Sources */,
 				18105652209FEE5D00FD7652 /* NSInfoCustomCell.m in Sources */,
+				186BFCB220A14B5F006EEE09 /* CLRecentTagView.m in Sources */,
 				1810564E209FEE5D00FD7652 /* XWPopMenuController.m in Sources */,
 				184043352099FAA200685F80 /* ADLUpdateUserPhotoCell.m in Sources */,
 				18350890207F653600BCF7CE /* Net.m in Sources */,
 				1810567B209FEED700FD7652 /* UIView+Frame.m in Sources */,
 				184F05F7209C40C700768418 /* AdvertListModel.m in Sources */,
+				186BFCB420A14B5F006EEE09 /* CLTagButton.m in Sources */,
 				18DD1569208DCB7E0006475D /* DCSpeedy.m in Sources */,
 				18DD1585208DEA8D0006475D /* ADLMyInfoTableView.m in Sources */,
 				18D09304209306B900E091E0 /* DCMainNavController.m in Sources */,
@@ -1483,6 +1533,7 @@
 				18D093012091BE9000E091E0 /* NSHomePageVC.m in Sources */,
 				18893D6B20A042A4007FD3BC /* YWAddressViewController.m in Sources */,
 				18CBB3AB20907AD300358E07 /* NSTabBarController.m in Sources */,
+				182C8A6B20A1830D00872118 /* GetLabelsParam.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

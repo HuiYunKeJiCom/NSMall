@@ -28,6 +28,8 @@ const static NSString * const kChangeMobileAPI = @"auth/changeMobile";//更换�
 const static NSString * const kGetVcodeAPI = @"getSmsVerifyCode";//获取短信验证码
 const static NSString * const kUploadHeaderAPI = @"auth/uploadAvatar";//上传用户头像
 const static NSString * const kUpdateUserAPI = @"auth/updateUser";//修改用户信息
+const static NSString * const kGetLabelsAPI = @"getLabels";//获取标签列表
+const static NSString * const kSaveLabelsAPI = @"auth/saveLabel";//新增标签
 
 
 

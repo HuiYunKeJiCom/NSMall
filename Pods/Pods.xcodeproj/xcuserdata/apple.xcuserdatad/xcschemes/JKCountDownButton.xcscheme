@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '313AD034A0E4FCEF7319BA57A503A7EB'
+               BlueprintIdentifier = '48A6F78D5A30888632DD955039121AD9'
                BlueprintName = 'JKCountDownButton'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'JKCountDownButton.framework'>
+               BuildableName = 'libJKCountDownButton.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

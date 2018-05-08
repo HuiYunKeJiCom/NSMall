@@ -34,11 +34,6 @@ PODS:
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
-  - ReactiveCocoa (7.2.0):
-    - ReactiveSwift (~> 3.1)
-  - ReactiveSwift (3.1.0):
-    - Result (~> 3.2)
-  - Result (3.2.4)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
@@ -76,7 +71,6 @@ DEPENDENCIES:
   - MJExtension (~> 3.0.13)
   - MJRefresh
   - MWPhotoBrowser
-  - ReactiveCocoa (~> 7.2.0)
   - Toast
   - TZImagePickerController
   - UIColor+Hex
@@ -101,9 +95,6 @@ SPEC CHECKSUMS:
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
-  ReactiveCocoa: 476dae7ca790f40d30d186a1bd7ebae4290395d5
-  ReactiveSwift: 5b26d2e988fe0eed2daf48c4054d1de74db50184
-  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   TZImagePickerController: 788184b04158006b25ffdbccbb550bfc193e9d9c
@@ -116,6 +107,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: f1f1d375570dd73af1605c336905e9293365961d
+PODFILE CHECKSUM: e6e2cab5b3a4fa3cd6d56bb6167cc6df5960e794
 
 COCOAPODS: 1.3.1

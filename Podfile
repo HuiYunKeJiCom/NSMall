@@ -66,8 +66,7 @@ pod 'TZImagePickerController'
 pod 'MJExtension', '~> 3.0.13'
 pod 'FMDB'
 
-use_frameworks!
-pod 'ReactiveCocoa','~> 7.2.0'
+
 
 end
 
