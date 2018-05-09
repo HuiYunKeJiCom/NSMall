@@ -45,7 +45,7 @@ const static NSString * const kSaveAddressAPI = @"auth/saveAddress";//新增/编
 const static NSString * const kSetDefaultAddressAPI = @"auth/setDefaultAddress";//设置默认收货地址
 const static NSString * const kDelAddressAPI = @"auth/delAddress";//删除收货地址
 
-
+const static NSString * const kCategoryAPI = @"category";//获取商品分类
 
 
 

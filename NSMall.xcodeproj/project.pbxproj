@@ -116,6 +116,9 @@
 		18C3CE5D20A2A596000FCE7F /* NSProductItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CE5C20A2A596000FCE7F /* NSProductItemModel.m */; };
 		18C3CE6020A2AA38000FCE7F /* NSStoreListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CE5F20A2AA38000FCE7F /* NSStoreListModel.m */; };
 		18C3CE6320A2AA4E000FCE7F /* NSStoreItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CE6220A2AA4E000FCE7F /* NSStoreItemModel.m */; };
+		18C3CE6820A2D06C000FCE7F /* NSCategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CE6720A2D06C000FCE7F /* NSCategoryVC.m */; };
+		18C3CE6D20A2D165000FCE7F /* CategoryParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CE6C20A2D165000FCE7F /* CategoryParam.m */; };
+		18C3CE7020A2D1BC000FCE7F /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CE6F20A2D1BC000FCE7F /* CategoryModel.m */; };
 		18CBB3AB20907AD300358E07 /* NSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CBB3AA20907AD300358E07 /* NSTabBarController.m */; };
 		18D0824A20956D2F0031034A /* NSLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D0823A20956D2E0031034A /* NSLoginController.m */; };
 		18D0824B20956D2F0031034A /* NSLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D0823D20956D2E0031034A /* NSLoginView.m */; };
@@ -366,6 +369,12 @@
 		18C3CE5F20A2AA38000FCE7F /* NSStoreListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSStoreListModel.m; sourceTree = "<group>"; };
 		18C3CE6120A2AA4E000FCE7F /* NSStoreItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSStoreItemModel.h; sourceTree = "<group>"; };
 		18C3CE6220A2AA4E000FCE7F /* NSStoreItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSStoreItemModel.m; sourceTree = "<group>"; };
+		18C3CE6620A2D06C000FCE7F /* NSCategoryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCategoryVC.h; sourceTree = "<group>"; };
+		18C3CE6720A2D06C000FCE7F /* NSCategoryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCategoryVC.m; sourceTree = "<group>"; };
+		18C3CE6B20A2D165000FCE7F /* CategoryParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryParam.h; sourceTree = "<group>"; };
+		18C3CE6C20A2D165000FCE7F /* CategoryParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryParam.m; sourceTree = "<group>"; };
+		18C3CE6E20A2D1BC000FCE7F /* CategoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryModel.h; sourceTree = "<group>"; };
+		18C3CE6F20A2D1BC000FCE7F /* CategoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryModel.m; sourceTree = "<group>"; };
 		18CBB3A920907AD300358E07 /* NSTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTabBarController.h; sourceTree = "<group>"; };
 		18CBB3AA20907AD300358E07 /* NSTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSTabBarController.m; sourceTree = "<group>"; };
 		18D0823420956CEA0031034A /* GlobalAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalAPI.h; sourceTree = "<group>"; };
@@ -503,6 +512,7 @@
 		18105649209FEE5D00FD7652 /* 发布商品 */ = {
 			isa = PBXGroup;
 			children = (
+				18C3CE6420A2CFA3000FCE7F /* 分类 */,
 				18893D4120A0037F007FD3BC /* Model */,
 				18893D4020A00379007FD3BC /* View */,
 				1810564A209FEE5D00FD7652 /* Ctrl */,
@@ -1142,6 +1152,43 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		18C3CE6420A2CFA3000FCE7F /* 分类 */ = {
+			isa = PBXGroup;
+			children = (
+				18C3CE6A20A2D144000FCE7F /* Model */,
+				18C3CE6920A2D13E000FCE7F /* Param */,
+				18C3CE6520A2CFB2000FCE7F /* Ctrl */,
+			);
+			path = "分类";
+			sourceTree = "<group>";
+		};
+		18C3CE6520A2CFB2000FCE7F /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				18C3CE6620A2D06C000FCE7F /* NSCategoryVC.h */,
+				18C3CE6720A2D06C000FCE7F /* NSCategoryVC.m */,
+			);
+			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		18C3CE6920A2D13E000FCE7F /* Param */ = {
+			isa = PBXGroup;
+			children = (
+				18C3CE6B20A2D165000FCE7F /* CategoryParam.h */,
+				18C3CE6C20A2D165000FCE7F /* CategoryParam.m */,
+			);
+			path = Param;
+			sourceTree = "<group>";
+		};
+		18C3CE6A20A2D144000FCE7F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18C3CE6E20A2D1BC000FCE7F /* CategoryModel.h */,
+				18C3CE6F20A2D1BC000FCE7F /* CategoryModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		18D0823920956D2E0031034A /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
@@ -1549,6 +1596,7 @@
 				1840434B2099FB6000685F80 /* NSTimer+wrapper.m in Sources */,
 				1835089920808CCD00BCF7CE /* Common.m in Sources */,
 				1840434A2099FB6000685F80 /* NSTimer+BlockSupport.m in Sources */,
+				18C3CE7020A2D1BC000FCE7F /* CategoryModel.m in Sources */,
 				18DD1577208DD4140006475D /* NSMyCenterViewController.m in Sources */,
 				18D574C7209A9EAB001C7875 /* ChangeMobileParam.m in Sources */,
 				18D71044208DC84C002BA6CD /* DCNavigationController.m in Sources */,
@@ -1591,6 +1639,7 @@
 				18DD156D208DCF3F0006475D /* NSHomePageViewController.m in Sources */,
 				18893D4420A0055B007FD3BC /* NSGoodsTableView.m in Sources */,
 				18D0824F20956D2F0031034A /* LoginParam.m in Sources */,
+				18C3CE6D20A2D165000FCE7F /* CategoryParam.m in Sources */,
 				18D092FE20917A1400E091E0 /* DCTabBarCenterButton.m in Sources */,
 				18D574D2209AB1D6001C7875 /* HeaderModel.m in Sources */,
 				18D0825320956EB70031034A /* HomePageAPI.m in Sources */,
@@ -1662,6 +1711,7 @@
 				18893D6D20A042A4007FD3BC /* YWAddressTableViewCell2.m in Sources */,
 				184DE7AC208F08B400E776F3 /* BaseRefreshGifHeader.m in Sources */,
 				182C8A8920A1DE5900872118 /* GetAddressParam.m in Sources */,
+				18C3CE6820A2D06C000FCE7F /* NSCategoryVC.m in Sources */,
 				18D093012091BE9000E091E0 /* NSHomePageVC.m in Sources */,
 				18893D6B20A042A4007FD3BC /* YWAddressViewController.m in Sources */,
 				18C3CE6020A2AA38000FCE7F /* NSStoreListModel.m in Sources */,
