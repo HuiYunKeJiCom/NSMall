@@ -28,11 +28,11 @@
 /*
  获取分类信息接口
  */
-+ (void)getProductCategoryList:(nullable NSString *)parentId success:(void(^)(CatogeryModel * _Nullable result))success failure:(void (^)(NSError *error))failure{
++ (void)getProductCategoryList:(nullable NSString *)parentId success:(void(^)(CatogeryListModel * _Nullable result))success failure:(void (^)(NSError *error))failure{
     NSDictionary *param = parentId?@{@"parentId":parentId}:nil;
-    [Net requestWithGet:param function:kCatogeryListAPI showHUD:NetNullStr resultClass:nil success:^(NSDictionary *  _Nullable resultObj) {
-        CatogeryModel *catogery = [CatogeryModel yy_modelWithJSON:resultObj[@"categoryList"]];
-        success?success(catogery):nil;
+    [Net requestWithGet:param function:kCatogeryListAPI showHUD:NetNullStr resultClass:[CategoryListModel class] success:^(CatogeryListModel *  _Nullable resultObj) {
+
+        success?success(resultObj):nil;
     } failure:failure];
 }
 
