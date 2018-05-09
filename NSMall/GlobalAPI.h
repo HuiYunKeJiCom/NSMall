@@ -24,20 +24,18 @@ const static NSString * const kLoginAPI = @"login";
 const static NSString * const kHomePageProductListAPI = @"productList";//获取首页的商品列表
 const static NSString * const kHomePageAdvertListAPI = @"getAdvertByCode";//获取首页的广告信息
 
-<<<<<<< HEAD
 const static NSString * const kLogoutAPI = @"auth/logout";//退出登录
-=======
 const static NSString * const kCatogeryListAPI = @"parentId";//获取分类信息
 
 const static NSString * const kLikeProductAPI = @"likeProduct";//点赞，喜欢接口
 
 const static NSString * const kGetInfoAPI = @"auth/getUserInfo";//获取用户信息
->>>>>>> f112faef5d6fe061ab9fbbbfa553cf1c2fcae833
+
 const static NSString * const kChangeMobileAPI = @"auth/changeMobile";//更换手机号
 const static NSString * const kUpdateUserAPI = @"auth/updateUser";//修改用户信息
 const static NSString * const kUploadHeaderAPI = @"auth/uploadAvatar";//上传用户头像
 const static NSString * const kUpdatePwdAPI = @"auth/updatePwd";//修改密码
-const static NSString * const kGetInfoAPI = @"auth/getUserInfo";//获取当前用户基本信息
+//const static NSString * const kGetInfoAPI = @"auth/getUserInfo";//获取当前用户基本信息
 const static NSString * const kCertificationAPI = @"auth/certification";//提交实名认证信息
 const static NSString * const kMyProductListAPI = @"auth/myProductList";//获取我的商品列表
 const static NSString * const kMyStoreListAPI = @"auth/myStoreList";//获取我的店铺列表

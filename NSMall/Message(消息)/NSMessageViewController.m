@@ -91,6 +91,7 @@ make.size.mas_equalTo(CGSizeMake(GetScaleWidth(60),GetScaleWidth(30)));
     EMMessage *message = [[EMMessage alloc]initWithConversationID:_conversation.conversationId from:[EMClient sharedClient].currentUsername to:_conversation.conversationId body:body ext:nil ];
     NSLog(@"_conversation.conversationId = %@",_conversation.conversationId);
     NSLog(@"[EMClient sharedClient].currentUsername = %@",[EMClient sharedClient].currentUsername);
+    
     [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
         NSLog(@"error = %@",error);
         if(!error)

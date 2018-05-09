@@ -6,12 +6,12 @@
 //  Copyright © 2018年 www. All rights reserved.
 //
 
-#import "CatogeryModel.h"
+#import "CategeryModel.h"
 
-@implementation CatogeryModel
+@implementation CategeryModel
 
 + (NSDictionary *)modelContainerPropertyGenericClass{
-    return @{@"children":[CatogeryModel class]};
+    return @{@"children":[CategeryModel class]};
 }
 
 @end

@@ -10,7 +10,6 @@
 		18230F66208D793F00D3E55F /* BaseViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 18230F65208D793F00D3E55F /* BaseViewCtrl.m */; };
 		18230F6A208D795E00D3E55F /* FFLoadFailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18230F68208D795D00D3E55F /* FFLoadFailView.m */; };
 		182DC49120905E3C0066E667 /* ADOrderTopToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DC49020905E3C0066E667 /* ADOrderTopToolView.m */; };
-		182DC49520905EC60066E667 /* NSPersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DC49420905EC60066E667 /* NSPersonInfoViewController.m */; };
 		18350890207F653600BCF7CE /* Net.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835088F207F653600BCF7CE /* Net.m */; };
 		18350895208086DE00BCF7CE /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 18350893208086DE00BCF7CE /* UIViewExt.m */; };
 		1835089920808CCD00BCF7CE /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835089820808CCD00BCF7CE /* Common.m */; };
@@ -31,7 +30,6 @@
 		184F05F0209AE39700768418 /* ProductListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05EE209AE39600768418 /* ProductListModel.m */; };
 		184F05F7209C40C700768418 /* AdvertListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05F6209C40C700768418 /* AdvertListModel.m */; };
 		184F05FA209C40DE00768418 /* AdvertItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05F9209C40DE00768418 /* AdvertItemModel.m */; };
-		184F05FE209FE23100768418 /* CatogeryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05FD209FE23100768418 /* CatogeryModel.m */; };
 		184F0617209FE81A00768418 /* NSShopPublishVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F0602209FE81900768418 /* NSShopPublishVC.m */; };
 		184F0618209FE81A00768418 /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F0605209FE81900768418 /* LxGridViewFlowLayout.m */; };
 		184F0619209FE81A00768418 /* NSInfoCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F0607209FE81900768418 /* NSInfoCustomCell.m */; };
@@ -64,6 +62,60 @@
 		188CC652207F5431007D749E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188CC651207F5431007D749E /* Assets.xcassets */; };
 		188CC655207F5431007D749E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188CC653207F5431007D749E /* LaunchScreen.storyboard */; };
 		188CC658207F5431007D749E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 188CC657207F5431007D749E /* main.m */; };
+		18C3CFF020A2EF3B000FCE7F /* YWAddressDataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CFEA20A2EF3A000FCE7F /* YWAddressDataTool.m */; };
+		18C3CFF120A2EF3B000FCE7F /* YWTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CFED20A2EF3A000FCE7F /* YWTool.m */; };
+		18C3CFF220A2EF3B000FCE7F /* PPUntil.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CFEF20A2EF3B000FCE7F /* PPUntil.m */; };
+		18C3CFF520A2EFC0000FCE7F /* CategeryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CFF420A2EFC0000FCE7F /* CategeryModel.m */; };
+		18C3CFFA20A2EFE0000FCE7F /* NSTimer+wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CFF820A2EFE0000FCE7F /* NSTimer+wrapper.m */; };
+		18C3CFFB20A2EFE0000FCE7F /* NSTimer+BlockSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CFF920A2EFE0000FCE7F /* NSTimer+BlockSupport.m */; };
+		18C3CFFE20A2F041000FCE7F /* NSChangePhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CFFC20A2F040000FCE7F /* NSChangePhoneVC.m */; };
+		18C3D05620A2F077000FCE7F /* CLTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D00220A2F076000FCE7F /* CLTools.m */; };
+		18C3D05720A2F077000FCE7F /* NSAddLabelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D00520A2F076000FCE7F /* NSAddLabelVC.m */; };
+		18C3D05820A2F077000FCE7F /* CLTagsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D00720A2F076000FCE7F /* CLTagsModel.m */; };
+		18C3D05920A2F077000FCE7F /* CLDispalyTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D00A20A2F076000FCE7F /* CLDispalyTagView.m */; };
+		18C3D05A20A2F077000FCE7F /* CLRecentTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D00F20A2F076000FCE7F /* CLRecentTagView.m */; };
+		18C3D05B20A2F077000FCE7F /* CLTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D01020A2F076000FCE7F /* CLTagView.m */; };
+		18C3D05C20A2F077000FCE7F /* CLTagButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D01120A2F076000FCE7F /* CLTagButton.m */; };
+		18C3D05D20A2F077000FCE7F /* YWAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D01620A2F077000FCE7F /* YWAddressModel.m */; };
+		18C3D05E20A2F077000FCE7F /* ADAddressLinkageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D01720A2F077000FCE7F /* ADAddressLinkageModel.m */; };
+		18C3D05F20A2F077000FCE7F /* YWChooseAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D01C20A2F077000FCE7F /* YWChooseAddressView.m */; };
+		18C3D06020A2F077000FCE7F /* YWAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D01E20A2F077000FCE7F /* YWAddressTableViewCell.m */; };
+		18C3D06120A2F077000FCE7F /* YWAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D02020A2F077000FCE7F /* YWAddressView.m */; };
+		18C3D06220A2F077000FCE7F /* YWAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D02420A2F077000FCE7F /* YWAddressViewController.m */; };
+		18C3D06320A2F077000FCE7F /* YWAddressInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D02720A2F077000FCE7F /* YWAddressInfoModel.m */; };
+		18C3D06420A2F077000FCE7F /* YWAddressTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D02920A2F077000FCE7F /* YWAddressTableViewCell2.m */; };
+		18C3D06520A2F077000FCE7F /* YWAddressTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C3D02A20A2F077000FCE7F /* YWAddressTableViewCell2.xib */; };
+		18C3D06620A2F077000FCE7F /* YWAddressTableViewCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C3D02B20A2F077000FCE7F /* YWAddressTableViewCell3.xib */; };
+		18C3D06720A2F077000FCE7F /* YWAddressTableViewCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C3D02C20A2F077000FCE7F /* YWAddressTableViewCell1.xib */; };
+		18C3D06820A2F077000FCE7F /* ADAddressLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D02D20A2F077000FCE7F /* ADAddressLabelTableViewCell.m */; };
+		18C3D06920A2F077000FCE7F /* YWAddressTableViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D02F20A2F077000FCE7F /* YWAddressTableViewCell1.m */; };
+		18C3D06A20A2F077000FCE7F /* YWAddressTableViewCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D03320A2F077000FCE7F /* YWAddressTableViewCell3.m */; };
+		18C3D06B20A2F077000FCE7F /* ADReceivingAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D03520A2F077000FCE7F /* ADReceivingAddressViewController.m */; };
+		18C3D06C20A2F077000FCE7F /* SaveAddressParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D03820A2F077000FCE7F /* SaveAddressParam.m */; };
+		18C3D06D20A2F077000FCE7F /* SetDefaultAddressParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D03A20A2F077000FCE7F /* SetDefaultAddressParam.m */; };
+		18C3D06E20A2F077000FCE7F /* DelAddressParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D03B20A2F077000FCE7F /* DelAddressParam.m */; };
+		18C3D06F20A2F077000FCE7F /* GetAreaParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D03C20A2F077000FCE7F /* GetAreaParam.m */; };
+		18C3D07020A2F077000FCE7F /* GetAddressParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D03E20A2F077000FCE7F /* GetAddressParam.m */; };
+		18C3D07120A2F077000FCE7F /* NSAddressItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D04320A2F077000FCE7F /* NSAddressItemModel.m */; };
+		18C3D07220A2F077000FCE7F /* NSAreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D04520A2F077000FCE7F /* NSAreaModel.m */; };
+		18C3D07320A2F077000FCE7F /* ADAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D04620A2F077000FCE7F /* ADAddressModel.m */; };
+		18C3D07420A2F077000FCE7F /* NSAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D04920A2F077000FCE7F /* NSAddressModel.m */; };
+		18C3D07520A2F077000FCE7F /* ADReceivingAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D04E20A2F077000FCE7F /* ADReceivingAddressCell.m */; };
+		18C3D07620A2F077000FCE7F /* ADAddressTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D04F20A2F077000FCE7F /* ADAddressTopView.m */; };
+		18C3D07720A2F077000FCE7F /* GetAreaAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D05220A2F077000FCE7F /* GetAreaAPI.m */; };
+		18C3D07820A2F077000FCE7F /* NSShopPublishAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D05520A2F077000FCE7F /* NSShopPublishAPI.m */; };
+		18C3D07B20A2F0E8000FCE7F /* GetLabelsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D07920A2F0E8000FCE7F /* GetLabelsAPI.m */; };
+		18C3D08020A2F0FA000FCE7F /* SaveLabelParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D07C20A2F0F9000FCE7F /* SaveLabelParam.m */; };
+		18C3D08120A2F0FA000FCE7F /* GetLabelsParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D07F20A2F0F9000FCE7F /* GetLabelsParam.m */; };
+		18C3D08720A2F111000FCE7F /* LabelListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D08420A2F111000FCE7F /* LabelListModel.m */; };
+		18C3D08820A2F111000FCE7F /* LabelItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D08520A2F111000FCE7F /* LabelItemModel.m */; };
+		18C3D08B20A2F13F000FCE7F /* NSChangeParamVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D08920A2F13F000FCE7F /* NSChangeParamVC.m */; };
+		18C3D09D20A2F151000FCE7F /* NSGoodsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D08F20A2F150000FCE7F /* NSGoodsTableView.m */; };
+		18C3D09E20A2F151000FCE7F /* NSCategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D09320A2F151000FCE7F /* NSCategoryVC.m */; };
+		18C3D09F20A2F151000FCE7F /* NSCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D09620A2F151000FCE7F /* NSCategoryModel.m */; };
+		18C3D0A020A2F151000FCE7F /* NSCategoryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D09920A2F151000FCE7F /* NSCategoryTableView.m */; };
+		18C3D0A120A2F151000FCE7F /* NSCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D09A20A2F151000FCE7F /* NSCategoryTableViewCell.m */; };
+		18C3D0A420A2F190000FCE7F /* UIView+YWFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0A220A2F190000FCE7F /* UIView+YWFrame.m */; };
 		18CBB3AB20907AD300358E07 /* NSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CBB3AA20907AD300358E07 /* NSTabBarController.m */; };
 		18D0824A20956D2F0031034A /* NSLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D0823A20956D2E0031034A /* NSLoginController.m */; };
 		18D0824B20956D2F0031034A /* NSLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D0823D20956D2E0031034A /* NSLoginView.m */; };
@@ -105,8 +157,6 @@
 		18230F80208D835300D3E55F /* GlobalColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalColor.h; sourceTree = "<group>"; };
 		182DC48F20905E3C0066E667 /* ADOrderTopToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADOrderTopToolView.h; sourceTree = "<group>"; };
 		182DC49020905E3C0066E667 /* ADOrderTopToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADOrderTopToolView.m; sourceTree = "<group>"; };
-		182DC49320905EC60066E667 /* NSPersonInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSPersonInfoViewController.h; sourceTree = "<group>"; };
-		182DC49420905EC60066E667 /* NSPersonInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSPersonInfoViewController.m; sourceTree = "<group>"; };
 		1835088E207F653600BCF7CE /* Net.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Net.h; sourceTree = "<group>"; };
 		1835088F207F653600BCF7CE /* Net.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Net.m; sourceTree = "<group>"; };
 		18350891208059ED00BCF7CE /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -148,8 +198,6 @@
 		184F05F6209C40C700768418 /* AdvertListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdvertListModel.m; sourceTree = "<group>"; };
 		184F05F8209C40DE00768418 /* AdvertItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdvertItemModel.h; sourceTree = "<group>"; };
 		184F05F9209C40DE00768418 /* AdvertItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdvertItemModel.m; sourceTree = "<group>"; };
-		184F05FC209FE23100768418 /* CatogeryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatogeryModel.h; sourceTree = "<group>"; };
-		184F05FD209FE23100768418 /* CatogeryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatogeryModel.m; sourceTree = "<group>"; };
 		184F0601209FE81900768418 /* NSShopPublishVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSShopPublishVC.h; sourceTree = "<group>"; };
 		184F0602209FE81900768418 /* NSShopPublishVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSShopPublishVC.m; sourceTree = "<group>"; };
 		184F0604209FE81900768418 /* LxGridViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LxGridViewFlowLayout.h; sourceTree = "<group>"; };
@@ -212,6 +260,111 @@
 		188CC654207F5431007D749E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		188CC656207F5431007D749E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		188CC657207F5431007D749E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		18C3CFEA20A2EF3A000FCE7F /* YWAddressDataTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWAddressDataTool.m; sourceTree = "<group>"; };
+		18C3CFEB20A2EF3A000FCE7F /* YWAddressDataTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWAddressDataTool.h; sourceTree = "<group>"; };
+		18C3CFEC20A2EF3A000FCE7F /* YWTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWTool.h; sourceTree = "<group>"; };
+		18C3CFED20A2EF3A000FCE7F /* YWTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWTool.m; sourceTree = "<group>"; };
+		18C3CFEE20A2EF3B000FCE7F /* PPUntil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPUntil.h; sourceTree = "<group>"; };
+		18C3CFEF20A2EF3B000FCE7F /* PPUntil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPUntil.m; sourceTree = "<group>"; };
+		18C3CFF320A2EFBF000FCE7F /* CategeryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategeryModel.h; sourceTree = "<group>"; };
+		18C3CFF420A2EFC0000FCE7F /* CategeryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategeryModel.m; sourceTree = "<group>"; };
+		18C3CFF620A2EFDF000FCE7F /* NSTimer+wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+wrapper.h"; sourceTree = "<group>"; };
+		18C3CFF720A2EFDF000FCE7F /* NSTimer+BlockSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+BlockSupport.h"; sourceTree = "<group>"; };
+		18C3CFF820A2EFE0000FCE7F /* NSTimer+wrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+wrapper.m"; sourceTree = "<group>"; };
+		18C3CFF920A2EFE0000FCE7F /* NSTimer+BlockSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+BlockSupport.m"; sourceTree = "<group>"; };
+		18C3CFFC20A2F040000FCE7F /* NSChangePhoneVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSChangePhoneVC.m; path = "../../../../../nuoshang/NSMall/Publish(发布)/发布店铺/Ctrl/NSChangePhoneVC.m"; sourceTree = "<group>"; };
+		18C3CFFD20A2F041000FCE7F /* NSChangePhoneVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSChangePhoneVC.h; path = "../../../../../nuoshang/NSMall/Publish(发布)/发布店铺/Ctrl/NSChangePhoneVC.h"; sourceTree = "<group>"; };
+		18C3D00120A2F076000FCE7F /* CLTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTools.h; sourceTree = "<group>"; };
+		18C3D00220A2F076000FCE7F /* CLTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTools.m; sourceTree = "<group>"; };
+		18C3D00420A2F076000FCE7F /* NSAddLabelVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAddLabelVC.h; sourceTree = "<group>"; };
+		18C3D00520A2F076000FCE7F /* NSAddLabelVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSAddLabelVC.m; sourceTree = "<group>"; };
+		18C3D00720A2F076000FCE7F /* CLTagsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTagsModel.m; sourceTree = "<group>"; };
+		18C3D00820A2F076000FCE7F /* CLTagsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTagsModel.h; sourceTree = "<group>"; };
+		18C3D00A20A2F076000FCE7F /* CLDispalyTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLDispalyTagView.m; sourceTree = "<group>"; };
+		18C3D00B20A2F076000FCE7F /* CLRecentTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLRecentTagView.h; sourceTree = "<group>"; };
+		18C3D00C20A2F076000FCE7F /* CLTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTagView.h; sourceTree = "<group>"; };
+		18C3D00D20A2F076000FCE7F /* CLTagButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTagButton.h; sourceTree = "<group>"; };
+		18C3D00E20A2F076000FCE7F /* CLDispalyTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLDispalyTagView.h; sourceTree = "<group>"; };
+		18C3D00F20A2F076000FCE7F /* CLRecentTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLRecentTagView.m; sourceTree = "<group>"; };
+		18C3D01020A2F076000FCE7F /* CLTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTagView.m; sourceTree = "<group>"; };
+		18C3D01120A2F076000FCE7F /* CLTagButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTagButton.m; sourceTree = "<group>"; };
+		18C3D01620A2F077000FCE7F /* YWAddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWAddressModel.m; sourceTree = "<group>"; };
+		18C3D01720A2F077000FCE7F /* ADAddressLinkageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADAddressLinkageModel.m; sourceTree = "<group>"; };
+		18C3D01820A2F077000FCE7F /* YWAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWAddressModel.h; sourceTree = "<group>"; };
+		18C3D01920A2F077000FCE7F /* ADAddressLinkageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADAddressLinkageModel.h; sourceTree = "<group>"; };
+		18C3D01B20A2F077000FCE7F /* YWAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWAddressView.h; sourceTree = "<group>"; };
+		18C3D01C20A2F077000FCE7F /* YWChooseAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWChooseAddressView.m; sourceTree = "<group>"; };
+		18C3D01D20A2F077000FCE7F /* YWAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWAddressTableViewCell.h; sourceTree = "<group>"; };
+		18C3D01E20A2F077000FCE7F /* YWAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWAddressTableViewCell.m; sourceTree = "<group>"; };
+		18C3D01F20A2F077000FCE7F /* YWChooseAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWChooseAddressView.h; sourceTree = "<group>"; };
+		18C3D02020A2F077000FCE7F /* YWAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWAddressView.m; sourceTree = "<group>"; };
+		18C3D02320A2F077000FCE7F /* YWAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWAddressViewController.h; sourceTree = "<group>"; };
+		18C3D02420A2F077000FCE7F /* YWAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWAddressViewController.m; sourceTree = "<group>"; };
+		18C3D02620A2F077000FCE7F /* YWAddressInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWAddressInfoModel.h; sourceTree = "<group>"; };
+		18C3D02720A2F077000FCE7F /* YWAddressInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWAddressInfoModel.m; sourceTree = "<group>"; };
+		18C3D02920A2F077000FCE7F /* YWAddressTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWAddressTableViewCell2.m; sourceTree = "<group>"; };
+		18C3D02A20A2F077000FCE7F /* YWAddressTableViewCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWAddressTableViewCell2.xib; sourceTree = "<group>"; };
+		18C3D02B20A2F077000FCE7F /* YWAddressTableViewCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWAddressTableViewCell3.xib; sourceTree = "<group>"; };
+		18C3D02C20A2F077000FCE7F /* YWAddressTableViewCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWAddressTableViewCell1.xib; sourceTree = "<group>"; };
+		18C3D02D20A2F077000FCE7F /* ADAddressLabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADAddressLabelTableViewCell.m; sourceTree = "<group>"; };
+		18C3D02E20A2F077000FCE7F /* YWAddressTableViewCell3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWAddressTableViewCell3.h; sourceTree = "<group>"; };
+		18C3D02F20A2F077000FCE7F /* YWAddressTableViewCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWAddressTableViewCell1.m; sourceTree = "<group>"; };
+		18C3D03020A2F077000FCE7F /* YWAddressTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWAddressTableViewCell2.h; sourceTree = "<group>"; };
+		18C3D03120A2F077000FCE7F /* ADAddressLabelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADAddressLabelTableViewCell.h; sourceTree = "<group>"; };
+		18C3D03220A2F077000FCE7F /* YWAddressTableViewCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWAddressTableViewCell1.h; sourceTree = "<group>"; };
+		18C3D03320A2F077000FCE7F /* YWAddressTableViewCell3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWAddressTableViewCell3.m; sourceTree = "<group>"; };
+		18C3D03520A2F077000FCE7F /* ADReceivingAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADReceivingAddressViewController.m; sourceTree = "<group>"; };
+		18C3D03620A2F077000FCE7F /* ADReceivingAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADReceivingAddressViewController.h; sourceTree = "<group>"; };
+		18C3D03820A2F077000FCE7F /* SaveAddressParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveAddressParam.m; sourceTree = "<group>"; };
+		18C3D03920A2F077000FCE7F /* GetAddressParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAddressParam.h; sourceTree = "<group>"; };
+		18C3D03A20A2F077000FCE7F /* SetDefaultAddressParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetDefaultAddressParam.m; sourceTree = "<group>"; };
+		18C3D03B20A2F077000FCE7F /* DelAddressParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelAddressParam.m; sourceTree = "<group>"; };
+		18C3D03C20A2F077000FCE7F /* GetAreaParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetAreaParam.m; sourceTree = "<group>"; };
+		18C3D03D20A2F077000FCE7F /* SaveAddressParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveAddressParam.h; sourceTree = "<group>"; };
+		18C3D03E20A2F077000FCE7F /* GetAddressParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetAddressParam.m; sourceTree = "<group>"; };
+		18C3D03F20A2F077000FCE7F /* DelAddressParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelAddressParam.h; sourceTree = "<group>"; };
+		18C3D04020A2F077000FCE7F /* SetDefaultAddressParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetDefaultAddressParam.h; sourceTree = "<group>"; };
+		18C3D04120A2F077000FCE7F /* GetAreaParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAreaParam.h; sourceTree = "<group>"; };
+		18C3D04320A2F077000FCE7F /* NSAddressItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSAddressItemModel.m; sourceTree = "<group>"; };
+		18C3D04420A2F077000FCE7F /* NSAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAddressModel.h; sourceTree = "<group>"; };
+		18C3D04520A2F077000FCE7F /* NSAreaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSAreaModel.m; sourceTree = "<group>"; };
+		18C3D04620A2F077000FCE7F /* ADAddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADAddressModel.m; sourceTree = "<group>"; };
+		18C3D04720A2F077000FCE7F /* NSAddressItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAddressItemModel.h; sourceTree = "<group>"; };
+		18C3D04820A2F077000FCE7F /* NSAreaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAreaModel.h; sourceTree = "<group>"; };
+		18C3D04920A2F077000FCE7F /* NSAddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSAddressModel.m; sourceTree = "<group>"; };
+		18C3D04A20A2F077000FCE7F /* ADAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADAddressModel.h; sourceTree = "<group>"; };
+		18C3D04C20A2F077000FCE7F /* ADReceivingAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADReceivingAddressCell.h; sourceTree = "<group>"; };
+		18C3D04D20A2F077000FCE7F /* ADAddressTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADAddressTopView.h; sourceTree = "<group>"; };
+		18C3D04E20A2F077000FCE7F /* ADReceivingAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADReceivingAddressCell.m; sourceTree = "<group>"; };
+		18C3D04F20A2F077000FCE7F /* ADAddressTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADAddressTopView.m; sourceTree = "<group>"; };
+		18C3D05120A2F077000FCE7F /* GetAreaAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAreaAPI.h; sourceTree = "<group>"; };
+		18C3D05220A2F077000FCE7F /* GetAreaAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetAreaAPI.m; sourceTree = "<group>"; };
+		18C3D05420A2F077000FCE7F /* NSShopPublishAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSShopPublishAPI.h; sourceTree = "<group>"; };
+		18C3D05520A2F077000FCE7F /* NSShopPublishAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSShopPublishAPI.m; sourceTree = "<group>"; };
+		18C3D07920A2F0E8000FCE7F /* GetLabelsAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetLabelsAPI.m; sourceTree = "<group>"; };
+		18C3D07A20A2F0E8000FCE7F /* GetLabelsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetLabelsAPI.h; sourceTree = "<group>"; };
+		18C3D07C20A2F0F9000FCE7F /* SaveLabelParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveLabelParam.m; sourceTree = "<group>"; };
+		18C3D07D20A2F0F9000FCE7F /* SaveLabelParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveLabelParam.h; sourceTree = "<group>"; };
+		18C3D07E20A2F0F9000FCE7F /* GetLabelsParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetLabelsParam.h; sourceTree = "<group>"; };
+		18C3D07F20A2F0F9000FCE7F /* GetLabelsParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetLabelsParam.m; sourceTree = "<group>"; };
+		18C3D08320A2F111000FCE7F /* LabelItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelItemModel.h; sourceTree = "<group>"; };
+		18C3D08420A2F111000FCE7F /* LabelListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelListModel.m; sourceTree = "<group>"; };
+		18C3D08520A2F111000FCE7F /* LabelItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelItemModel.m; sourceTree = "<group>"; };
+		18C3D08620A2F111000FCE7F /* LabelListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelListModel.h; sourceTree = "<group>"; };
+		18C3D08920A2F13F000FCE7F /* NSChangeParamVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSChangeParamVC.m; sourceTree = "<group>"; };
+		18C3D08A20A2F13F000FCE7F /* NSChangeParamVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSChangeParamVC.h; sourceTree = "<group>"; };
+		18C3D08E20A2F150000FCE7F /* NSGoodsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSGoodsTableView.h; sourceTree = "<group>"; };
+		18C3D08F20A2F150000FCE7F /* NSGoodsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSGoodsTableView.m; sourceTree = "<group>"; };
+		18C3D09220A2F151000FCE7F /* NSCategoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCategoryVC.h; sourceTree = "<group>"; };
+		18C3D09320A2F151000FCE7F /* NSCategoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSCategoryVC.m; sourceTree = "<group>"; };
+		18C3D09620A2F151000FCE7F /* NSCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSCategoryModel.m; sourceTree = "<group>"; };
+		18C3D09720A2F151000FCE7F /* NSCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCategoryModel.h; sourceTree = "<group>"; };
+		18C3D09920A2F151000FCE7F /* NSCategoryTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSCategoryTableView.m; sourceTree = "<group>"; };
+		18C3D09A20A2F151000FCE7F /* NSCategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSCategoryTableViewCell.m; sourceTree = "<group>"; };
+		18C3D09B20A2F151000FCE7F /* NSCategoryTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCategoryTableView.h; sourceTree = "<group>"; };
+		18C3D09C20A2F151000FCE7F /* NSCategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCategoryTableViewCell.h; sourceTree = "<group>"; };
+		18C3D0A220A2F190000FCE7F /* UIView+YWFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YWFrame.m"; sourceTree = "<group>"; };
+		18C3D0A320A2F190000FCE7F /* UIView+YWFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YWFrame.h"; sourceTree = "<group>"; };
 		18CBB3A920907AD300358E07 /* NSTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTabBarController.h; sourceTree = "<group>"; };
 		18CBB3AA20907AD300358E07 /* NSTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSTabBarController.m; sourceTree = "<group>"; };
 		18D0823420956CEA0031034A /* GlobalAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalAPI.h; sourceTree = "<group>"; };
@@ -390,8 +543,6 @@
 				1840433C2099FAED00685F80 /* ADLUserNameController.m */,
 				184043402099FB0600685F80 /* ADLChangePhoneViewController.h */,
 				1840433F2099FB0600685F80 /* ADLChangePhoneViewController.m */,
-				182DC49320905EC60066E667 /* NSPersonInfoViewController.h */,
-				182DC49420905EC60066E667 /* NSPersonInfoViewController.m */,
 			);
 			path = Ctrl;
 			sourceTree = "<group>";
@@ -470,8 +621,8 @@
 		184F05FB209C590A00768418 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				184F05FC209FE23100768418 /* CatogeryModel.h */,
-				184F05FD209FE23100768418 /* CatogeryModel.m */,
+				18C3CFF320A2EFBF000FCE7F /* CategeryModel.h */,
+				18C3CFF420A2EFC0000FCE7F /* CategeryModel.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -479,6 +630,10 @@
 		184F05FF209FE81900768418 /* 发布店铺 */ = {
 			isa = PBXGroup;
 			children = (
+				18C3D01320A2F077000FCE7F /* 地址 */,
+				18C3CFFF20A2F076000FCE7F /* 添加标签 */,
+				18C3D05320A2F077000FCE7F /* API */,
+				18C3D01220A2F077000FCE7F /* Model */,
 				184F0600209FE81900768418 /* Ctrl */,
 				184F0603209FE81900768418 /* View */,
 			);
@@ -488,6 +643,8 @@
 		184F0600209FE81900768418 /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
+				18C3CFFD20A2F041000FCE7F /* NSChangePhoneVC.h */,
+				18C3CFFC20A2F040000FCE7F /* NSChangePhoneVC.m */,
 				184F0601209FE81900768418 /* NSShopPublishVC.h */,
 				184F0602209FE81900768418 /* NSShopPublishVC.m */,
 			);
@@ -512,6 +669,9 @@
 		184F060C209FE81A00768418 /* 发布商品 */ = {
 			isa = PBXGroup;
 			children = (
+				18C3D09020A2F151000FCE7F /* 分类 */,
+				18C3D08C20A2F150000FCE7F /* Model */,
+				18C3D08D20A2F150000FCE7F /* View */,
 				184F060D209FE81A00768418 /* Ctrl */,
 			);
 			path = "发布商品";
@@ -522,6 +682,8 @@
 			children = (
 				184F060E209FE81A00768418 /* NSGoodsPublishVC.h */,
 				184F060F209FE81A00768418 /* NSGoodsPublishVC.m */,
+				18C3D08A20A2F13F000FCE7F /* NSChangeParamVC.h */,
+				18C3D08920A2F13F000FCE7F /* NSChangeParamVC.m */,
 			);
 			path = Ctrl;
 			sourceTree = "<group>";
@@ -576,6 +738,10 @@
 		184F0627209FFB7F00768418 /* NSTimer */ = {
 			isa = PBXGroup;
 			children = (
+				18C3CFF720A2EFDF000FCE7F /* NSTimer+BlockSupport.h */,
+				18C3CFF920A2EFE0000FCE7F /* NSTimer+BlockSupport.m */,
+				18C3CFF620A2EFDF000FCE7F /* NSTimer+wrapper.h */,
+				18C3CFF820A2EFE0000FCE7F /* NSTimer+wrapper.m */,
 			);
 			path = NSTimer;
 			sourceTree = "<group>";
@@ -628,6 +794,8 @@
 		184F0637209FFB7F00768418 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
+				18C3D0A320A2F190000FCE7F /* UIView+YWFrame.h */,
+				18C3D0A220A2F190000FCE7F /* UIView+YWFrame.m */,
 				184F0638209FFB7F00768418 /* UIView+animation.h */,
 				184F0639209FFB7F00768418 /* UIView+animation.m */,
 				184F063A209FFB7F00768418 /* UIView+DCRolling.h */,
@@ -698,6 +866,7 @@
 		188CC647207F5430007D749E /* NSMall */ = {
 			isa = PBXGroup;
 			children = (
+				18C3D08220A2F111000FCE7F /* Model */,
 				18D574CC209AA387001C7875 /* Param */,
 				18D574C8209AA35E001C7875 /* API */,
 				18DD1574208DD3810006475D /* Publish(发布) */,
@@ -726,6 +895,307 @@
 				18230F80208D835300D3E55F /* GlobalColor.h */,
 			);
 			path = NSMall;
+			sourceTree = "<group>";
+		};
+		18C3CFFF20A2F076000FCE7F /* 添加标签 */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D00020A2F076000FCE7F /* tools */,
+				18C3D00320A2F076000FCE7F /* Ctrl */,
+				18C3D00620A2F076000FCE7F /* Model */,
+				18C3D00920A2F076000FCE7F /* View */,
+			);
+			name = "添加标签";
+			path = "../../../../nuoshang/NSMall/Publish(发布)/发布店铺/添加标签";
+			sourceTree = "<group>";
+		};
+		18C3D00020A2F076000FCE7F /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D00120A2F076000FCE7F /* CLTools.h */,
+				18C3D00220A2F076000FCE7F /* CLTools.m */,
+			);
+			path = tools;
+			sourceTree = "<group>";
+		};
+		18C3D00320A2F076000FCE7F /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D00420A2F076000FCE7F /* NSAddLabelVC.h */,
+				18C3D00520A2F076000FCE7F /* NSAddLabelVC.m */,
+			);
+			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		18C3D00620A2F076000FCE7F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D00720A2F076000FCE7F /* CLTagsModel.m */,
+				18C3D00820A2F076000FCE7F /* CLTagsModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18C3D00920A2F076000FCE7F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D00A20A2F076000FCE7F /* CLDispalyTagView.m */,
+				18C3D00B20A2F076000FCE7F /* CLRecentTagView.h */,
+				18C3D00C20A2F076000FCE7F /* CLTagView.h */,
+				18C3D00D20A2F076000FCE7F /* CLTagButton.h */,
+				18C3D00E20A2F076000FCE7F /* CLDispalyTagView.h */,
+				18C3D00F20A2F076000FCE7F /* CLRecentTagView.m */,
+				18C3D01020A2F076000FCE7F /* CLTagView.m */,
+				18C3D01120A2F076000FCE7F /* CLTagButton.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18C3D01220A2F077000FCE7F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			path = "../../../../nuoshang/NSMall/Publish(发布)/发布店铺/Model";
+			sourceTree = "<group>";
+		};
+		18C3D01320A2F077000FCE7F /* 地址 */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D01420A2F077000FCE7F /* YWChooseAddress */,
+				18C3D02120A2F077000FCE7F /* YWUI */,
+				18C3D03420A2F077000FCE7F /* Ctrl */,
+				18C3D03720A2F077000FCE7F /* Param */,
+				18C3D04220A2F077000FCE7F /* Model */,
+				18C3D04B20A2F077000FCE7F /* View */,
+				18C3D05020A2F077000FCE7F /* API */,
+			);
+			name = "地址";
+			path = "../../../../nuoshang/NSMall/Publish(发布)/发布店铺/地址";
+			sourceTree = "<group>";
+		};
+		18C3D01420A2F077000FCE7F /* YWChooseAddress */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D01520A2F077000FCE7F /* Model */,
+				18C3D01A20A2F077000FCE7F /* View */,
+			);
+			path = YWChooseAddress;
+			sourceTree = "<group>";
+		};
+		18C3D01520A2F077000FCE7F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D01620A2F077000FCE7F /* YWAddressModel.m */,
+				18C3D01720A2F077000FCE7F /* ADAddressLinkageModel.m */,
+				18C3D01820A2F077000FCE7F /* YWAddressModel.h */,
+				18C3D01920A2F077000FCE7F /* ADAddressLinkageModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18C3D01A20A2F077000FCE7F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D01B20A2F077000FCE7F /* YWAddressView.h */,
+				18C3D01C20A2F077000FCE7F /* YWChooseAddressView.m */,
+				18C3D01D20A2F077000FCE7F /* YWAddressTableViewCell.h */,
+				18C3D01E20A2F077000FCE7F /* YWAddressTableViewCell.m */,
+				18C3D01F20A2F077000FCE7F /* YWChooseAddressView.h */,
+				18C3D02020A2F077000FCE7F /* YWAddressView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18C3D02120A2F077000FCE7F /* YWUI */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D02220A2F077000FCE7F /* Controller */,
+				18C3D02520A2F077000FCE7F /* Model */,
+				18C3D02820A2F077000FCE7F /* View */,
+			);
+			path = YWUI;
+			sourceTree = "<group>";
+		};
+		18C3D02220A2F077000FCE7F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D02320A2F077000FCE7F /* YWAddressViewController.h */,
+				18C3D02420A2F077000FCE7F /* YWAddressViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		18C3D02520A2F077000FCE7F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D02620A2F077000FCE7F /* YWAddressInfoModel.h */,
+				18C3D02720A2F077000FCE7F /* YWAddressInfoModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18C3D02820A2F077000FCE7F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D02920A2F077000FCE7F /* YWAddressTableViewCell2.m */,
+				18C3D02A20A2F077000FCE7F /* YWAddressTableViewCell2.xib */,
+				18C3D02B20A2F077000FCE7F /* YWAddressTableViewCell3.xib */,
+				18C3D02C20A2F077000FCE7F /* YWAddressTableViewCell1.xib */,
+				18C3D02D20A2F077000FCE7F /* ADAddressLabelTableViewCell.m */,
+				18C3D02E20A2F077000FCE7F /* YWAddressTableViewCell3.h */,
+				18C3D02F20A2F077000FCE7F /* YWAddressTableViewCell1.m */,
+				18C3D03020A2F077000FCE7F /* YWAddressTableViewCell2.h */,
+				18C3D03120A2F077000FCE7F /* ADAddressLabelTableViewCell.h */,
+				18C3D03220A2F077000FCE7F /* YWAddressTableViewCell1.h */,
+				18C3D03320A2F077000FCE7F /* YWAddressTableViewCell3.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18C3D03420A2F077000FCE7F /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D03520A2F077000FCE7F /* ADReceivingAddressViewController.m */,
+				18C3D03620A2F077000FCE7F /* ADReceivingAddressViewController.h */,
+			);
+			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		18C3D03720A2F077000FCE7F /* Param */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D03820A2F077000FCE7F /* SaveAddressParam.m */,
+				18C3D03920A2F077000FCE7F /* GetAddressParam.h */,
+				18C3D03A20A2F077000FCE7F /* SetDefaultAddressParam.m */,
+				18C3D03B20A2F077000FCE7F /* DelAddressParam.m */,
+				18C3D03C20A2F077000FCE7F /* GetAreaParam.m */,
+				18C3D03D20A2F077000FCE7F /* SaveAddressParam.h */,
+				18C3D03E20A2F077000FCE7F /* GetAddressParam.m */,
+				18C3D03F20A2F077000FCE7F /* DelAddressParam.h */,
+				18C3D04020A2F077000FCE7F /* SetDefaultAddressParam.h */,
+				18C3D04120A2F077000FCE7F /* GetAreaParam.h */,
+			);
+			path = Param;
+			sourceTree = "<group>";
+		};
+		18C3D04220A2F077000FCE7F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D04320A2F077000FCE7F /* NSAddressItemModel.m */,
+				18C3D04420A2F077000FCE7F /* NSAddressModel.h */,
+				18C3D04520A2F077000FCE7F /* NSAreaModel.m */,
+				18C3D04620A2F077000FCE7F /* ADAddressModel.m */,
+				18C3D04720A2F077000FCE7F /* NSAddressItemModel.h */,
+				18C3D04820A2F077000FCE7F /* NSAreaModel.h */,
+				18C3D04920A2F077000FCE7F /* NSAddressModel.m */,
+				18C3D04A20A2F077000FCE7F /* ADAddressModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18C3D04B20A2F077000FCE7F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D04C20A2F077000FCE7F /* ADReceivingAddressCell.h */,
+				18C3D04D20A2F077000FCE7F /* ADAddressTopView.h */,
+				18C3D04E20A2F077000FCE7F /* ADReceivingAddressCell.m */,
+				18C3D04F20A2F077000FCE7F /* ADAddressTopView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18C3D05020A2F077000FCE7F /* API */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D05120A2F077000FCE7F /* GetAreaAPI.h */,
+				18C3D05220A2F077000FCE7F /* GetAreaAPI.m */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		18C3D05320A2F077000FCE7F /* API */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D05420A2F077000FCE7F /* NSShopPublishAPI.h */,
+				18C3D05520A2F077000FCE7F /* NSShopPublishAPI.m */,
+			);
+			name = API;
+			path = "../../../../nuoshang/NSMall/Publish(发布)/发布店铺/API";
+			sourceTree = "<group>";
+		};
+		18C3D08220A2F111000FCE7F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D08320A2F111000FCE7F /* LabelItemModel.h */,
+				18C3D08420A2F111000FCE7F /* LabelListModel.m */,
+				18C3D08520A2F111000FCE7F /* LabelItemModel.m */,
+				18C3D08620A2F111000FCE7F /* LabelListModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18C3D08C20A2F150000FCE7F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18C3D08D20A2F150000FCE7F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D08E20A2F150000FCE7F /* NSGoodsTableView.h */,
+				18C3D08F20A2F150000FCE7F /* NSGoodsTableView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18C3D09020A2F151000FCE7F /* 分类 */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D09120A2F151000FCE7F /* Ctrl */,
+				18C3D09420A2F151000FCE7F /* Param */,
+				18C3D09520A2F151000FCE7F /* Model */,
+				18C3D09820A2F151000FCE7F /* View */,
+			);
+			path = "分类";
+			sourceTree = "<group>";
+		};
+		18C3D09120A2F151000FCE7F /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D09220A2F151000FCE7F /* NSCategoryVC.h */,
+				18C3D09320A2F151000FCE7F /* NSCategoryVC.m */,
+			);
+			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		18C3D09420A2F151000FCE7F /* Param */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Param;
+			sourceTree = "<group>";
+		};
+		18C3D09520A2F151000FCE7F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D09620A2F151000FCE7F /* NSCategoryModel.m */,
+				18C3D09720A2F151000FCE7F /* NSCategoryModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18C3D09820A2F151000FCE7F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D09920A2F151000FCE7F /* NSCategoryTableView.m */,
+				18C3D09A20A2F151000FCE7F /* NSCategoryTableViewCell.m */,
+				18C3D09B20A2F151000FCE7F /* NSCategoryTableView.h */,
+				18C3D09C20A2F151000FCE7F /* NSCategoryTableViewCell.h */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		18D0823920956D2E0031034A /* Ctrl */ = {
@@ -798,6 +1268,8 @@
 		18D574C8209AA35E001C7875 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				18C3D07A20A2F0E8000FCE7F /* GetLabelsAPI.h */,
+				18C3D07920A2F0E8000FCE7F /* GetLabelsAPI.m */,
 				18D574C9209AA380001C7875 /* GetVcodeAPI.h */,
 				18D574CA209AA380001C7875 /* GetVcodeAPI.m */,
 			);
@@ -807,6 +1279,10 @@
 		18D574CC209AA387001C7875 /* Param */ = {
 			isa = PBXGroup;
 			children = (
+				18C3D07E20A2F0F9000FCE7F /* GetLabelsParam.h */,
+				18C3D07F20A2F0F9000FCE7F /* GetLabelsParam.m */,
+				18C3D07D20A2F0F9000FCE7F /* SaveLabelParam.h */,
+				18C3D07C20A2F0F9000FCE7F /* SaveLabelParam.m */,
 				18D574CD209AA39A001C7875 /* GetVcodeParam.h */,
 				18D574CE209AA39A001C7875 /* GetVcodeParam.m */,
 			);
@@ -864,6 +1340,12 @@
 		18DD1566208DCB630006475D /* Tools(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				18C3CFEE20A2EF3B000FCE7F /* PPUntil.h */,
+				18C3CFEF20A2EF3B000FCE7F /* PPUntil.m */,
+				18C3CFEB20A2EF3A000FCE7F /* YWAddressDataTool.h */,
+				18C3CFEA20A2EF3A000FCE7F /* YWAddressDataTool.m */,
+				18C3CFEC20A2EF3A000FCE7F /* YWTool.h */,
+				18C3CFED20A2EF3A000FCE7F /* YWTool.m */,
 				18DD1568208DCB7E0006475D /* DCSpeedy.h */,
 				18DD1567208DCB7E0006475D /* DCSpeedy.m */,
 			);
@@ -1023,9 +1505,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18C3D06720A2F077000FCE7F /* YWAddressTableViewCell1.xib in Resources */,
 				188CC655207F5431007D749E /* LaunchScreen.storyboard in Resources */,
 				188CC652207F5431007D749E /* Assets.xcassets in Resources */,
 				188CC650207F5431007D749E /* Main.storyboard in Resources */,
+				18C3D06520A2F077000FCE7F /* YWAddressTableViewCell2.xib in Resources */,
+				18C3D06620A2F077000FCE7F /* YWAddressTableViewCell3.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1098,87 +1583,136 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18C3D0A420A2F190000FCE7F /* UIView+YWFrame.m in Sources */,
 				18D0824E20956D2F0031034A /* LoginAPI.m in Sources */,
 				184F05EF209AE39700768418 /* ProductListItemModel.m in Sources */,
 				18DD157D208DD5F40006475D /* NSNearbyViewController.m in Sources */,
 				18D0824A20956D2F0031034A /* NSLoginController.m in Sources */,
 				1835089920808CCD00BCF7CE /* Common.m in Sources */,
+				18C3D0A020A2F151000FCE7F /* NSCategoryTableView.m in Sources */,
 				18DD1577208DD4140006475D /* NSMyCenterViewController.m in Sources */,
+				18C3D07120A2F077000FCE7F /* NSAddressItemModel.m in Sources */,
+				18C3D07020A2F077000FCE7F /* GetAddressParam.m in Sources */,
 				18D574C7209A9EAB001C7875 /* ChangeMobileParam.m in Sources */,
 				18D71044208DC84C002BA6CD /* DCNavigationController.m in Sources */,
 				184DE7A9208F088E00E776F3 /* BaseTableCell.m in Sources */,
 				18D71045208DC84C002BA6CD /* DCTabBadgeView.m in Sources */,
+				18C3D06820A2F077000FCE7F /* ADAddressLabelTableViewCell.m in Sources */,
+				18C3D06D20A2F077000FCE7F /* SetDefaultAddressParam.m in Sources */,
 				184F061D209FE81A00768418 /* PublishMenuButton.m in Sources */,
+				18C3D07620A2F077000FCE7F /* ADAddressTopView.m in Sources */,
 				18D574CB209AA380001C7875 /* GetVcodeAPI.m in Sources */,
+				18C3D05620A2F077000FCE7F /* CLTools.m in Sources */,
 				184F064D209FFC4D00768418 /* UpdateUserParam.m in Sources */,
 				184F0644209FFB7F00768418 /* UIImageView+WebCache.m in Sources */,
 				18DD157A208DD5AA0006475D /* NSMessageViewController.m in Sources */,
 				184F0645209FFB7F00768418 /* UILabel+LBExt.m in Sources */,
+				18C3D07B20A2F0E8000FCE7F /* GetLabelsAPI.m in Sources */,
 				184F061B209FE81A00768418 /* TZTestCell.m in Sources */,
+				18C3CFF220A2EF3B000FCE7F /* PPUntil.m in Sources */,
+				18C3CFF120A2EF3B000FCE7F /* YWTool.m in Sources */,
+				18C3D07420A2F077000FCE7F /* NSAddressModel.m in Sources */,
 				184F05F0209AE39700768418 /* ProductListModel.m in Sources */,
 				184F0619209FE81A00768418 /* NSInfoCustomCell.m in Sources */,
+				18C3D07820A2F077000FCE7F /* NSShopPublishAPI.m in Sources */,
 				184043412099FB0600685F80 /* ADLChangePhoneViewController.m in Sources */,
-				184F05FE209FE23100768418 /* CatogeryModel.m in Sources */,
 				18230F66208D793F00D3E55F /* BaseViewCtrl.m in Sources */,
 				182DC49120905E3C0066E667 /* ADOrderTopToolView.m in Sources */,
+				18C3D05B20A2F077000FCE7F /* CLTagView.m in Sources */,
 				188CC64D207F5431007D749E /* ViewController.m in Sources */,
+				18C3D08020A2F0FA000FCE7F /* SaveLabelParam.m in Sources */,
 				18D71043208DC84C002BA6CD /* DCBaseSetViewController.m in Sources */,
+				18C3D06120A2F077000FCE7F /* YWAddressView.m in Sources */,
+				18C3D06F20A2F077000FCE7F /* GetAreaParam.m in Sources */,
 				18D71042208DC84C002BA6CD /* DCTabBarController.m in Sources */,
 				18DD158B208DEAD80006475D /* BaseTableView.m in Sources */,
 				18DD156D208DCF3F0006475D /* NSHomePageViewController.m in Sources */,
+				18C3D05C20A2F077000FCE7F /* CLTagButton.m in Sources */,
 				184F065D20A2E37300768418 /* StoreItemModel.m in Sources */,
+				18C3D07320A2F077000FCE7F /* ADAddressModel.m in Sources */,
 				184F064A209FFB7F00768418 /* UIView+Layout.m in Sources */,
 				18D0824F20956D2F0031034A /* LoginParam.m in Sources */,
 				18D092FE20917A1400E091E0 /* DCTabBarCenterButton.m in Sources */,
 				184F065320A2DC2D00768418 /* SearchParam.m in Sources */,
+				18C3CFFE20A2F041000FCE7F /* NSChangePhoneVC.m in Sources */,
+				18C3D05720A2F077000FCE7F /* NSAddLabelVC.m in Sources */,
 				18D574D2209AB1D6001C7875 /* HeaderModel.m in Sources */,
+				18C3CFF020A2EF3B000FCE7F /* YWAddressDataTool.m in Sources */,
+				18C3D07720A2F077000FCE7F /* GetAreaAPI.m in Sources */,
+				18C3D05E20A2F077000FCE7F /* ADAddressLinkageModel.m in Sources */,
 				18D0825320956EB70031034A /* HomePageAPI.m in Sources */,
+				18C3D06B20A2F077000FCE7F /* ADReceivingAddressViewController.m in Sources */,
 				184043322099FA8D00685F80 /* ADLUpdateUserTableCell.m in Sources */,
 				184F061F209FE81A00768418 /* XWPopMenuController.m in Sources */,
 				18DD1562208DC9AB0006475D /* GQGesVCTransition.m in Sources */,
 				184F061A209FE81A00768418 /* NSShopTableView.m in Sources */,
 				18D0824B20956D2F0031034A /* NSLoginView.m in Sources */,
 				184F0642209FFB7F00768418 /* UIBarButtonItem+DCBarButtonItem.m in Sources */,
+				18C3D06E20A2F077000FCE7F /* DelAddressParam.m in Sources */,
 				184043382099FABE00685F80 /* ADLEditUserInformCtrl.m in Sources */,
+				18C3D06320A2F077000FCE7F /* YWAddressInfoModel.m in Sources */,
+				18C3D06A20A2F077000FCE7F /* YWAddressTableViewCell3.m in Sources */,
 				184F05FA209C40DE00768418 /* AdvertItemModel.m in Sources */,
 				1840434E2099FB8400685F80 /* ADLTitleField.m in Sources */,
+				18C3D06C20A2F077000FCE7F /* SaveAddressParam.m in Sources */,
 				188CC658207F5431007D749E /* main.m in Sources */,
 				184F061C209FE81A00768418 /* NSGoodsPublishVC.m in Sources */,
 				18350895208086DE00BCF7CE /* UIViewExt.m in Sources */,
 				1840432F2099FA5D00685F80 /* ADLUpdateUserInformCtrl.m in Sources */,
+				18C3D06220A2F077000FCE7F /* YWAddressViewController.m in Sources */,
 				184F061E209FE81A00768418 /* UIImage+XW.m in Sources */,
+				18C3D07220A2F077000FCE7F /* NSAreaModel.m in Sources */,
+				18C3CFF520A2EFC0000FCE7F /* CategeryModel.m in Sources */,
 				1840433E2099FAEE00685F80 /* ADLUserNameController.m in Sources */,
+				18C3D0A120A2F151000FCE7F /* NSCategoryTableViewCell.m in Sources */,
 				1840435B209A028100685F80 /* UserInfoAPI.m in Sources */,
 				184F065620A2DD5500768418 /* SearchModel.m in Sources */,
 				184F0648209FFB7F00768418 /* UIView+DCRolling.m in Sources */,
 				184F0643209FFB7F00768418 /* UIImage+wrapper.m in Sources */,
+				18C3D05D20A2F077000FCE7F /* YWAddressModel.m in Sources */,
 				184F0640209FFB7F00768418 /* MBProgressHUD+MJ.m in Sources */,
 				1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */,
 				18D0824C20956D2F0031034A /* NSLImageField.m in Sources */,
+				18C3CFFB20A2EFE0000FCE7F /* NSTimer+BlockSupport.m in Sources */,
 				188CC64A207F5430007D749E /* AppDelegate.mm in Sources */,
-				182DC49520905EC60066E667 /* NSPersonInfoViewController.m in Sources */,
 				18DD1588208DEA960006475D /* ADLMyInfoModel.m in Sources */,
 				184043572099FEE900685F80 /* ADLFilterSelectItem.m in Sources */,
+				18C3D08120A2F0FA000FCE7F /* GetLabelsParam.m in Sources */,
 				184043542099FE8B00685F80 /* FFSpearteLineView.m in Sources */,
+				18C3D09D20A2F151000FCE7F /* NSGoodsTableView.m in Sources */,
 				184F0646209FFB7F00768418 /* UITextView+ZWPlaceHolder.m in Sources */,
+				18C3CFFA20A2EFE0000FCE7F /* NSTimer+wrapper.m in Sources */,
+				18C3D06420A2F077000FCE7F /* YWAddressTableViewCell2.m in Sources */,
+				18C3D05920A2F077000FCE7F /* CLDispalyTagView.m in Sources */,
 				1851CD77208F23530094A594 /* NSCustomHeadCell.m in Sources */,
 				18D574CF209AA39A001C7875 /* GetVcodeParam.m in Sources */,
 				184DE7A6208F081400E776F3 /* ADLMyInfoTableViewCell.m in Sources */,
 				18230F6A208D795E00D3E55F /* FFLoadFailView.m in Sources */,
 				18D0824D20956D2F0031034A /* UserModel.m in Sources */,
+				18C3D08B20A2F13F000FCE7F /* NSChangeParamVC.m in Sources */,
 				184043352099FAA200685F80 /* ADLUpdateUserPhotoCell.m in Sources */,
 				18350890207F653600BCF7CE /* Net.m in Sources */,
 				184F0617209FE81A00768418 /* NSShopPublishVC.m in Sources */,
+				18C3D05A20A2F077000FCE7F /* CLRecentTagView.m in Sources */,
 				184F05F7209C40C700768418 /* AdvertListModel.m in Sources */,
+				18C3D08820A2F111000FCE7F /* LabelItemModel.m in Sources */,
+				18C3D09E20A2F151000FCE7F /* NSCategoryVC.m in Sources */,
 				18DD1569208DCB7E0006475D /* DCSpeedy.m in Sources */,
 				18DD1585208DEA8D0006475D /* ADLMyInfoTableView.m in Sources */,
 				184F0649209FFB7F00768418 /* UIView+Frame.m in Sources */,
 				184F0641209FFB7F00768418 /* NSString+wrapper.m in Sources */,
+				18C3D06920A2F077000FCE7F /* YWAddressTableViewCell1.m in Sources */,
+				18C3D05820A2F077000FCE7F /* CLTagsModel.m in Sources */,
 				18D09304209306B900E091E0 /* DCMainNavController.m in Sources */,
+				18C3D08720A2F111000FCE7F /* LabelListModel.m in Sources */,
 				184DE7AC208F08B400E776F3 /* BaseRefreshGifHeader.m in Sources */,
 				18D093012091BE9000E091E0 /* NSHomePageVC.m in Sources */,
+				18C3D05F20A2F077000FCE7F /* YWChooseAddressView.m in Sources */,
 				18CBB3AB20907AD300358E07 /* NSTabBarController.m in Sources */,
 				184F0647209FFB7F00768418 /* UIView+animation.m in Sources */,
+				18C3D09F20A2F151000FCE7F /* NSCategoryModel.m in Sources */,
+				18C3D06020A2F077000FCE7F /* YWAddressTableViewCell.m in Sources */,
+				18C3D07520A2F077000FCE7F /* ADReceivingAddressCell.m in Sources */,
 				184F0618209FE81A00768418 /* LxGridViewFlowLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
