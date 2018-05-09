@@ -53,6 +53,9 @@
 		184F0649209FFB7F00768418 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F063D209FFB7F00768418 /* UIView+Frame.m */; };
 		184F064A209FFB7F00768418 /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F063F209FFB7F00768418 /* UIView+Layout.m */; };
 		184F064D209FFC4D00768418 /* UpdateUserParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F064C209FFC4D00768418 /* UpdateUserParam.m */; };
+		184F065320A2DC2D00768418 /* SearchParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F065220A2DC2C00768418 /* SearchParam.m */; };
+		184F065620A2DD5500768418 /* SearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F065520A2DD5500768418 /* SearchModel.m */; };
+		184F065D20A2E37300768418 /* StoreItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F065C20A2E37300768418 /* StoreItemModel.m */; };
 		1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD6F208F0DD00094A594 /* NetBaseModel.m */; };
 		1851CD77208F23530094A594 /* NSCustomHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD76208F23530094A594 /* NSCustomHeadCell.m */; };
 		188CC64A207F5430007D749E /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 188CC649207F5430007D749E /* AppDelegate.mm */; };
@@ -189,6 +192,12 @@
 		184F063F209FFB7F00768418 /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
 		184F064B209FFC4D00768418 /* UpdateUserParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateUserParam.h; sourceTree = "<group>"; };
 		184F064C209FFC4D00768418 /* UpdateUserParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateUserParam.m; sourceTree = "<group>"; };
+		184F065120A2DC2C00768418 /* SearchParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchParam.h; sourceTree = "<group>"; };
+		184F065220A2DC2C00768418 /* SearchParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchParam.m; sourceTree = "<group>"; };
+		184F065420A2DD5500768418 /* SearchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchModel.h; sourceTree = "<group>"; };
+		184F065520A2DD5500768418 /* SearchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchModel.m; sourceTree = "<group>"; };
+		184F065B20A2E37300768418 /* StoreItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreItemModel.h; sourceTree = "<group>"; };
+		184F065C20A2E37300768418 /* StoreItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreItemModel.m; sourceTree = "<group>"; };
 		1851CD6E208F0DD00094A594 /* NetBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetBaseModel.h; sourceTree = "<group>"; };
 		1851CD6F208F0DD00094A594 /* NetBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetBaseModel.m; sourceTree = "<group>"; };
 		1851CD75208F23530094A594 /* NSCustomHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCustomHeadCell.h; sourceTree = "<group>"; };
@@ -427,6 +436,8 @@
 		184F05EA209AE39600768418 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				184F065720A2E32500768418 /* Store */,
+				184F064E20A2DBB800768418 /* Search */,
 				184F05FB209C590A00768418 /* Category */,
 				184F05F3209C408500768418 /* Product */,
 				184F05F4209C40A000768418 /* Advert */,
@@ -627,6 +638,33 @@
 				184F063F209FFB7F00768418 /* UIView+Layout.m */,
 			);
 			path = UIView;
+			sourceTree = "<group>";
+		};
+		184F064E20A2DBB800768418 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				184F065420A2DD5500768418 /* SearchModel.h */,
+				184F065520A2DD5500768418 /* SearchModel.m */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		184F065020A2DBFF00768418 /* Param */ = {
+			isa = PBXGroup;
+			children = (
+				184F065120A2DC2C00768418 /* SearchParam.h */,
+				184F065220A2DC2C00768418 /* SearchParam.m */,
+			);
+			path = Param;
+			sourceTree = "<group>";
+		};
+		184F065720A2E32500768418 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				184F065B20A2E37300768418 /* StoreItemModel.h */,
+				184F065C20A2E37300768418 /* StoreItemModel.m */,
+			);
+			path = Store;
 			sourceTree = "<group>";
 		};
 		1851CD74208F10000094A594 /* Ctrl */ = {
@@ -835,6 +873,7 @@
 		18DD156A208DCEEB0006475D /* Home(首页) */ = {
 			isa = PBXGroup;
 			children = (
+				184F065020A2DBFF00768418 /* Param */,
 				184F05EA209AE39600768418 /* Model */,
 				18D0825020956EB70031034A /* API */,
 				18DD156B208DCF3F0006475D /* NSHomePageViewController.h */,
@@ -1087,9 +1126,11 @@
 				18D71042208DC84C002BA6CD /* DCTabBarController.m in Sources */,
 				18DD158B208DEAD80006475D /* BaseTableView.m in Sources */,
 				18DD156D208DCF3F0006475D /* NSHomePageViewController.m in Sources */,
+				184F065D20A2E37300768418 /* StoreItemModel.m in Sources */,
 				184F064A209FFB7F00768418 /* UIView+Layout.m in Sources */,
 				18D0824F20956D2F0031034A /* LoginParam.m in Sources */,
 				18D092FE20917A1400E091E0 /* DCTabBarCenterButton.m in Sources */,
+				184F065320A2DC2D00768418 /* SearchParam.m in Sources */,
 				18D574D2209AB1D6001C7875 /* HeaderModel.m in Sources */,
 				18D0825320956EB70031034A /* HomePageAPI.m in Sources */,
 				184043322099FA8D00685F80 /* ADLUpdateUserTableCell.m in Sources */,
@@ -1108,6 +1149,7 @@
 				184F061E209FE81A00768418 /* UIImage+XW.m in Sources */,
 				1840433E2099FAEE00685F80 /* ADLUserNameController.m in Sources */,
 				1840435B209A028100685F80 /* UserInfoAPI.m in Sources */,
+				184F065620A2DD5500768418 /* SearchModel.m in Sources */,
 				184F0648209FFB7F00768418 /* UIView+DCRolling.m in Sources */,
 				184F0643209FFB7F00768418 /* UIImage+wrapper.m in Sources */,
 				184F0640209FFB7F00768418 /* MBProgressHUD+MJ.m in Sources */,
