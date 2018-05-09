@@ -30,7 +30,10 @@
  */
 + (void)getProductCategoryList:(nullable NSString *)parentId success:(void(^)(CatogeryModel * _Nullable result))success failure:(void (^)(NSError *error))failure{
     NSDictionary *param = parentId?@{@"parentId":parentId}:nil;
-    [Net requestWithGet:param function:kCatogeryListAPI showHUD:NetNullStr resultClass:[CatogeryModel class] success:success failure:failure];
+    [Net requestWithGet:param function:kCatogeryListAPI showHUD:NetNullStr resultClass:nil success:^(NSDictionary *  _Nullable resultObj) {
+        CatogeryModel *catogery = [CatogeryModel yy_modelWithJSON:resultObj[@"categoryList"]];
+        success?success(catogery):nil;
+    } failure:failure];
 }
 
 /*
