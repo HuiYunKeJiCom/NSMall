@@ -28,7 +28,7 @@
 /*
  获取分类信息接口
  */
-+ (void)getProductCategoryList:(nullable NSString *)parentId success:(void(^)(CatogeryModel _Nullable result))success failure:(void (^)(NSError *error))failure{
++ (void)getProductCategoryList:(nullable NSString *)parentId success:(void(^)(CatogeryModel * _Nullable result))success failure:(void (^)(NSError *error))failure{
     NSDictionary *param = parentId?@{@"parentId":parentId}:nil;
     [Net requestWithGet:param function:kCatogeryListAPI showHUD:NetNullStr resultClass:[CatogeryModel class] success:success failure:failure];
 }
@@ -36,9 +36,9 @@
 /*
  改变商品的点赞状态
  */
-+ (void)changeProductLikeState:(NSString *)productId success:(void (^)(id _Nullable result))success failure:(void (^)(NSError *error))failure{
-    [Net requestWithGet:@{@"productId":productId} function:kLikeProductAPI showHUD:NetNullStr resultClass:nil success:^(NSDictionary *resultObj) {
-        
++ (void)changeProductLikeState:(NSString *)productId success:(void (^)(NSInteger likeNumber))success failure:(void (^)(NSError *error))failure{
+    [Net requestWithGet:@{@"productId":productId} function:kLikeProductAPI showHUD:NetNullStr resultClass:[NSNumber class] success:^(NSNumber *resultObj) {
+        success?success(resultObj.integerValue):nil;
     } failure:failure];
 }
 
