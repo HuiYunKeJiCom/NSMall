@@ -29,7 +29,7 @@
 @property (nonatomic,copy)NSString *user_id;//
 @property (nonatomic,copy)NSString *user_name;//
 @property (nonatomic,copy)NSString *user_avatar;//
-@property (nonatomic,copy)NSString *weak;//
+@property (nonatomic,copy)NSString *week;//
 @property (nonatomic,strong)NSArray<NSString *> *productImageList;//
 
 @end

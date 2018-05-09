@@ -105,6 +105,17 @@
 		188CC652207F5431007D749E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188CC651207F5431007D749E /* Assets.xcassets */; };
 		188CC655207F5431007D749E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188CC653207F5431007D749E /* LaunchScreen.storyboard */; };
 		188CC658207F5431007D749E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 188CC657207F5431007D749E /* main.m */; };
+		18C3CE4320A28F62000FCE7F /* SaveAddressParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CE4220A28F62000FCE7F /* SaveAddressParam.m */; };
+		18C3CE4620A29643000FCE7F /* SetDefaultAddressParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CE4520A29643000FCE7F /* SetDefaultAddressParam.m */; };
+		18C3CE4920A29692000FCE7F /* DelAddressParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CE4820A29692000FCE7F /* DelAddressParam.m */; };
+		18C3CE4C20A29E1E000FCE7F /* MyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CE4B20A29E1E000FCE7F /* MyAPI.m */; };
+		18C3CE5120A29F8B000FCE7F /* UpdatePwdParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CE5020A29F8B000FCE7F /* UpdatePwdParam.m */; };
+		18C3CE5420A2A1CF000FCE7F /* CertificationParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CE5320A2A1CF000FCE7F /* CertificationParam.m */; };
+		18C3CE5720A2A302000FCE7F /* GetListParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CE5620A2A302000FCE7F /* GetListParam.m */; };
+		18C3CE5A20A2A56F000FCE7F /* NSProductListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CE5920A2A56F000FCE7F /* NSProductListModel.m */; };
+		18C3CE5D20A2A596000FCE7F /* NSProductItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CE5C20A2A596000FCE7F /* NSProductItemModel.m */; };
+		18C3CE6020A2AA38000FCE7F /* NSStoreListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CE5F20A2AA38000FCE7F /* NSStoreListModel.m */; };
+		18C3CE6320A2AA4E000FCE7F /* NSStoreItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CE6220A2AA4E000FCE7F /* NSStoreItemModel.m */; };
 		18CBB3AB20907AD300358E07 /* NSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CBB3AA20907AD300358E07 /* NSTabBarController.m */; };
 		18D0824A20956D2F0031034A /* NSLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D0823A20956D2E0031034A /* NSLoginController.m */; };
 		18D0824B20956D2F0031034A /* NSLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D0823D20956D2E0031034A /* NSLoginView.m */; };
@@ -333,6 +344,28 @@
 		188CC654207F5431007D749E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		188CC656207F5431007D749E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		188CC657207F5431007D749E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		18C3CE4120A28F62000FCE7F /* SaveAddressParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaveAddressParam.h; sourceTree = "<group>"; };
+		18C3CE4220A28F62000FCE7F /* SaveAddressParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaveAddressParam.m; sourceTree = "<group>"; };
+		18C3CE4420A29643000FCE7F /* SetDefaultAddressParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetDefaultAddressParam.h; sourceTree = "<group>"; };
+		18C3CE4520A29643000FCE7F /* SetDefaultAddressParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetDefaultAddressParam.m; sourceTree = "<group>"; };
+		18C3CE4720A29692000FCE7F /* DelAddressParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelAddressParam.h; sourceTree = "<group>"; };
+		18C3CE4820A29692000FCE7F /* DelAddressParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelAddressParam.m; sourceTree = "<group>"; };
+		18C3CE4A20A29E1E000FCE7F /* MyAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAPI.h; sourceTree = "<group>"; };
+		18C3CE4B20A29E1E000FCE7F /* MyAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAPI.m; sourceTree = "<group>"; };
+		18C3CE4F20A29F8B000FCE7F /* UpdatePwdParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdatePwdParam.h; sourceTree = "<group>"; };
+		18C3CE5020A29F8B000FCE7F /* UpdatePwdParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdatePwdParam.m; sourceTree = "<group>"; };
+		18C3CE5220A2A1CF000FCE7F /* CertificationParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CertificationParam.h; sourceTree = "<group>"; };
+		18C3CE5320A2A1CF000FCE7F /* CertificationParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CertificationParam.m; sourceTree = "<group>"; };
+		18C3CE5520A2A302000FCE7F /* GetListParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetListParam.h; sourceTree = "<group>"; };
+		18C3CE5620A2A302000FCE7F /* GetListParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetListParam.m; sourceTree = "<group>"; };
+		18C3CE5820A2A56F000FCE7F /* NSProductListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSProductListModel.h; sourceTree = "<group>"; };
+		18C3CE5920A2A56F000FCE7F /* NSProductListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSProductListModel.m; sourceTree = "<group>"; };
+		18C3CE5B20A2A596000FCE7F /* NSProductItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSProductItemModel.h; sourceTree = "<group>"; };
+		18C3CE5C20A2A596000FCE7F /* NSProductItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSProductItemModel.m; sourceTree = "<group>"; };
+		18C3CE5E20A2AA38000FCE7F /* NSStoreListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSStoreListModel.h; sourceTree = "<group>"; };
+		18C3CE5F20A2AA38000FCE7F /* NSStoreListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSStoreListModel.m; sourceTree = "<group>"; };
+		18C3CE6120A2AA4E000FCE7F /* NSStoreItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSStoreItemModel.h; sourceTree = "<group>"; };
+		18C3CE6220A2AA4E000FCE7F /* NSStoreItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSStoreItemModel.m; sourceTree = "<group>"; };
 		18CBB3A920907AD300358E07 /* NSTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTabBarController.h; sourceTree = "<group>"; };
 		18CBB3AA20907AD300358E07 /* NSTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSTabBarController.m; sourceTree = "<group>"; };
 		18D0823420956CEA0031034A /* GlobalAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalAPI.h; sourceTree = "<group>"; };
@@ -698,6 +731,12 @@
 				182C8A7F20A1D9BB00872118 /* GetAreaParam.m */,
 				182C8A8720A1DE5900872118 /* GetAddressParam.h */,
 				182C8A8820A1DE5900872118 /* GetAddressParam.m */,
+				18C3CE4120A28F62000FCE7F /* SaveAddressParam.h */,
+				18C3CE4220A28F62000FCE7F /* SaveAddressParam.m */,
+				18C3CE4420A29643000FCE7F /* SetDefaultAddressParam.h */,
+				18C3CE4520A29643000FCE7F /* SetDefaultAddressParam.m */,
+				18C3CE4720A29692000FCE7F /* DelAddressParam.h */,
+				18C3CE4820A29692000FCE7F /* DelAddressParam.m */,
 			);
 			path = Param;
 			sourceTree = "<group>";
@@ -705,8 +744,8 @@
 		182DC49220905E690066E667 /* PersonInfo(个人信息) */ = {
 			isa = PBXGroup;
 			children = (
+				18C3CE4E20A29F66000FCE7F /* API */,
 				18D574C4209A9E67001C7875 /* Param */,
-				18404358209A023B00685F80 /* API */,
 				182DC498209061270066E667 /* Ctrl */,
 				182DC497209061200066E667 /* Model */,
 				182DC496209061190066E667 /* View */,
@@ -795,8 +834,8 @@
 		18404358209A023B00685F80 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				18404359209A028100685F80 /* UserInfoAPI.h */,
-				1840435A209A028100685F80 /* UserInfoAPI.m */,
+				18C3CE4A20A29E1E000FCE7F /* MyAPI.h */,
+				18C3CE4B20A29E1E000FCE7F /* MyAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1081,6 +1120,28 @@
 			path = NSMall;
 			sourceTree = "<group>";
 		};
+		18C3CE4D20A29F60000FCE7F /* Param */ = {
+			isa = PBXGroup;
+			children = (
+				18C3CE4F20A29F8B000FCE7F /* UpdatePwdParam.h */,
+				18C3CE5020A29F8B000FCE7F /* UpdatePwdParam.m */,
+				18C3CE5220A2A1CF000FCE7F /* CertificationParam.h */,
+				18C3CE5320A2A1CF000FCE7F /* CertificationParam.m */,
+				18C3CE5520A2A302000FCE7F /* GetListParam.h */,
+				18C3CE5620A2A302000FCE7F /* GetListParam.m */,
+			);
+			path = Param;
+			sourceTree = "<group>";
+		};
+		18C3CE4E20A29F66000FCE7F /* API */ = {
+			isa = PBXGroup;
+			children = (
+				18404359209A028100685F80 /* UserInfoAPI.h */,
+				1840435A209A028100685F80 /* UserInfoAPI.m */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		18D0823920956D2E0031034A /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
@@ -1269,6 +1330,8 @@
 		18DD1573208DD3740006475D /* My(我的) */ = {
 			isa = PBXGroup;
 			children = (
+				18C3CE4D20A29F60000FCE7F /* Param */,
+				18404358209A023B00685F80 /* API */,
 				182DC49220905E690066E667 /* PersonInfo(个人信息) */,
 				1851CD74208F10000094A594 /* Ctrl */,
 				18DD1582208DEA780006475D /* Model */,
@@ -1305,6 +1368,14 @@
 			children = (
 				18DD1587208DEA960006475D /* ADLMyInfoModel.h */,
 				18DD1586208DEA960006475D /* ADLMyInfoModel.m */,
+				18C3CE5820A2A56F000FCE7F /* NSProductListModel.h */,
+				18C3CE5920A2A56F000FCE7F /* NSProductListModel.m */,
+				18C3CE5B20A2A596000FCE7F /* NSProductItemModel.h */,
+				18C3CE5C20A2A596000FCE7F /* NSProductItemModel.m */,
+				18C3CE5E20A2AA38000FCE7F /* NSStoreListModel.h */,
+				18C3CE5F20A2AA38000FCE7F /* NSStoreListModel.m */,
+				18C3CE6120A2AA4E000FCE7F /* NSStoreItemModel.h */,
+				18C3CE6220A2AA4E000FCE7F /* NSStoreItemModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1484,6 +1555,7 @@
 				184DE7A9208F088E00E776F3 /* BaseTableCell.m in Sources */,
 				18105679209FEED700FD7652 /* UIImageView+WebCache.m in Sources */,
 				18D71045208DC84C002BA6CD /* DCTabBadgeView.m in Sources */,
+				18C3CE6320A2AA4E000FCE7F /* NSStoreItemModel.m in Sources */,
 				182C8A7C20A1D98800872118 /* GetAreaAPI.m in Sources */,
 				182C8A8D20A1E0C900872118 /* NSAddressModel.m in Sources */,
 				18893D7120A042A4007FD3BC /* ADAddressLabelTableViewCell.m in Sources */,
@@ -1497,6 +1569,7 @@
 				1814219420A05A060012B3B7 /* PPUntil.m in Sources */,
 				18105650209FEE5D00FD7652 /* NSShopPublishVC.m in Sources */,
 				184F05F0209AE39700768418 /* ProductListModel.m in Sources */,
+				18C3CE4620A29643000FCE7F /* SetDefaultAddressParam.m in Sources */,
 				18893D8420A049B7007FD3BC /* YWAddressModel.m in Sources */,
 				184043412099FB0600685F80 /* ADLChangePhoneViewController.m in Sources */,
 				18893D4A20A03B73007FD3BC /* NSChangePhoneVC.m in Sources */,
@@ -1510,6 +1583,7 @@
 				182C8A6E20A1832200872118 /* GetLabelsAPI.m in Sources */,
 				18D71043208DC84C002BA6CD /* DCBaseSetViewController.m in Sources */,
 				18893D8620A049B7007FD3BC /* YWChooseAddressView.m in Sources */,
+				18C3CE5120A29F8B000FCE7F /* UpdatePwdParam.m in Sources */,
 				18D71042208DC84C002BA6CD /* DCTabBarController.m in Sources */,
 				182C8A7520A183FA00872118 /* LabelItemModel.m in Sources */,
 				18DD158B208DEAD80006475D /* BaseTableView.m in Sources */,
@@ -1541,6 +1615,7 @@
 				182C8A7820A19FCD00872118 /* SaveLabelParam.m in Sources */,
 				18893D4F20A041A7007FD3BC /* ADReceivingAddressViewController.m in Sources */,
 				1840433E2099FAEE00685F80 /* ADLUserNameController.m in Sources */,
+				18C3CE4C20A29E1E000FCE7F /* MyAPI.m in Sources */,
 				18893D8B20A04A5D007FD3BC /* YWTool.m in Sources */,
 				186BFCB820A14B85006EEE09 /* CLTools.m in Sources */,
 				1840435B209A028100685F80 /* UserInfoAPI.m in Sources */,
@@ -1548,14 +1623,18 @@
 				18D0824C20956D2F0031034A /* NSLImageField.m in Sources */,
 				18893D8E20A04A9E007FD3BC /* ADAddressTopView.m in Sources */,
 				182C8A6420A1817500872118 /* NSShopPublishAPI.m in Sources */,
+				18C3CE5720A2A302000FCE7F /* GetListParam.m in Sources */,
 				186BFCBC20A14B8E006EEE09 /* CLTagsModel.m in Sources */,
 				188CC64A207F5430007D749E /* AppDelegate.mm in Sources */,
 				18105653209FEE5D00FD7652 /* NSShopTableView.m in Sources */,
 				18105654209FEE5D00FD7652 /* LxGridViewFlowLayout.m in Sources */,
+				18C3CE5A20A2A56F000FCE7F /* NSProductListModel.m in Sources */,
+				18C3CE4920A29692000FCE7F /* DelAddressParam.m in Sources */,
 				18105655209FEE5D00FD7652 /* NSGoodsPublishVC.m in Sources */,
 				18DD1588208DEA960006475D /* ADLMyInfoModel.m in Sources */,
 				184043572099FEE900685F80 /* ADLFilterSelectItem.m in Sources */,
 				1810564F209FEE5D00FD7652 /* UIImage+XW.m in Sources */,
+				18C3CE4320A28F62000FCE7F /* SaveAddressParam.m in Sources */,
 				1810567A209FEED700FD7652 /* UITextView+ZWPlaceHolder.m in Sources */,
 				184043542099FE8B00685F80 /* FFSpearteLineView.m in Sources */,
 				18105676209FEED700FD7652 /* NSString+wrapper.m in Sources */,
@@ -1567,6 +1646,7 @@
 				18230F6A208D795E00D3E55F /* FFLoadFailView.m in Sources */,
 				18893D7620A0462B007FD3BC /* UIView+YWFrame.m in Sources */,
 				18D0824D20956D2F0031034A /* UserModel.m in Sources */,
+				18C3CE5D20A2A596000FCE7F /* NSProductItemModel.m in Sources */,
 				18893D8720A049B7007FD3BC /* YWAddressTableViewCell.m in Sources */,
 				18105652209FEE5D00FD7652 /* NSInfoCustomCell.m in Sources */,
 				186BFCB220A14B5F006EEE09 /* CLRecentTagView.m in Sources */,
@@ -1584,8 +1664,10 @@
 				182C8A8920A1DE5900872118 /* GetAddressParam.m in Sources */,
 				18D093012091BE9000E091E0 /* NSHomePageVC.m in Sources */,
 				18893D6B20A042A4007FD3BC /* YWAddressViewController.m in Sources */,
+				18C3CE6020A2AA38000FCE7F /* NSStoreListModel.m in Sources */,
 				18CBB3AB20907AD300358E07 /* NSTabBarController.m in Sources */,
 				182C8A6B20A1830D00872118 /* GetLabelsParam.m in Sources */,
+				18C3CE5420A2A1CF000FCE7F /* CertificationParam.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
