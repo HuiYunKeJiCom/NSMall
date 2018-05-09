@@ -25,9 +25,23 @@
     } failure:failure];
 }
 
-+ (void)getProductCategoryList:(id)param success:(void(^)(id _Nullable result))success failure:(void (^)(NSError *error))failure{
-    
-    
+/*
+ 获取分类信息接口
+ */
++ (void)getProductCategoryList:(nullable NSString *)parentId success:(void(^)(CatogeryModel _Nullable result))success failure:(void (^)(NSError *error))failure{
+    NSDictionary *param = parentId?@{@"parentId":parentId}:nil;
+    [Net requestWithGet:param function:kCatogeryListAPI showHUD:NetNullStr resultClass:[CatogeryModel class] success:success failure:failure];
 }
+
+/*
+ 改变商品的点赞状态
+ */
++ (void)changeProductLikeState:(NSString *)productId success:(void (^)(id _Nullable result))success failure:(void (^)(NSError *error))failure{
+    [Net requestWithGet:@{@"productId":productId} function:kLikeProductAPI showHUD:NetNullStr resultClass:nil success:^(NSDictionary *resultObj) {
+        
+    } failure:failure];
+}
+
+
 
 @end
