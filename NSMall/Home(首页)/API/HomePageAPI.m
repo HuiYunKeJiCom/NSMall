@@ -28,9 +28,9 @@
 /*
  获取分类信息接口
  */
-+ (void)getProductCategoryList:(nullable NSString *)parentId success:(void(^)(CatogeryListModel * _Nullable result))success failure:(void (^)(NSError *error))failure{
++ (void)getProductCategoryList:(nullable NSString *)parentId success:(void(^)(CategoryListModel * _Nullable result))success failure:(void (^)(NSError *error))failure{
     NSDictionary *param = parentId?@{@"parentId":parentId}:nil;
-    [Net requestWithGet:param function:kCatogeryListAPI showHUD:NetNullStr resultClass:[CategoryListModel class] success:^(CatogeryListModel *  _Nullable resultObj) {
+    [Net requestWithGet:param function:kCatogeryListAPI showHUD:NetNullStr resultClass:[CategoryListModel class] success:^(CategoryListModel *  _Nullable resultObj) {
 
         success?success(resultObj):nil;
     } failure:failure];
@@ -45,6 +45,9 @@
     } failure:failure];
 }
 
++ (void)searchProductOrShop:(nullable id)param success:(void (^)(SearchModel *result))success failure:(void (^)(NSError *error))failure{
+    [Net requestWithGet:param function:kSearchAPI showHUD:NetNullStr resultClass:[SearchModel class] success:success failure:failure];
+}
 
 
 @end

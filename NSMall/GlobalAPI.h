@@ -28,6 +28,8 @@ const static NSString * const kCatogeryListAPI = @"parentId";//获取分类信�
 
 const static NSString * const kLikeProductAPI = @"likeProduct";//点赞，喜欢接口
 
+const static NSString * const kSearchAPI = @"search";//搜索（商铺或者商品接口）
+
 const static NSString * const kGetInfoAPI = @"auth/getUserInfo";//获取用户信息
 const static NSString * const kChangeMobileAPI = @"auth/changeMobile";//更换手机号
 const static NSString * const kGetVcodeAPI = @"getSmsVerifyCode";//获取短信验证码
