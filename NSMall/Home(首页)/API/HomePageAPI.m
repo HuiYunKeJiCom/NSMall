@@ -46,6 +46,9 @@
     } failure:failure];
 }
 
++ (void)searchProductOrShop:(nullable id)param success:(void (^)(SearchModel *result))success failure:(void (^)(NSError *error))failure{
+    [Net requestWithGet:param function:kSearchAPI showHUD:NetNullStr resultClass:[SearchModel class] success:success failure:failure];
+}
 
 
 @end
