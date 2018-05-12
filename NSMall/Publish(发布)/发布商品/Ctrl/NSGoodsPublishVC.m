@@ -16,6 +16,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "UITextView+ZWPlaceHolder.h"
 #import "NSChangeParamVC.h"
+#import "NSCategoryVC.h"
 
 @interface NSGoodsPublishVC ()<NSGoodsTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate> {
     NSMutableArray *_selectedPhotos;
@@ -570,6 +571,8 @@
     switch (index) {
         case 0:{
             NSLog(@"点击了分类");
+            NSCategoryVC *ctrl = [[NSCategoryVC alloc] init];
+            [self presentViewController:ctrl animated:YES completion:nil];
         }
             break;
         case 1:{
@@ -592,6 +595,7 @@
             break;
         case 3:{
             NSLog(@"点击了添加商品规格");
+//            [self addSpecView];
             
         }
             break;
@@ -607,6 +611,11 @@
         default:
             break;
     }
+    
+}
+
+-(void)addSpecView{
+    NSLog(@"VC里面");
     
 }
 

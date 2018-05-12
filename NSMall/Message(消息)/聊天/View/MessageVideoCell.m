@@ -63,7 +63,7 @@
 {
     CGFloat timeX = 0;
     CGFloat timeY = 0;
-    CGFloat timeW = SCREEN_WIDTH;
+    CGFloat timeW = kScreenWidth;
     CGFloat timeH = 40;
     self.timeView.frame = CGRectMake(timeX, timeY, timeW, timeH);
     
@@ -82,7 +82,7 @@
     if (type == 1) {// 别人发的
         iconX = 10;
     } else { // 自己的发的
-        iconX = SCREEN_WIDTH - 10 - iconW;
+        iconX = kScreenWidth - 10 - iconW;
     }
     self.iconView.frame = CGRectMake(iconX, iconY, iconW, iconH);
     

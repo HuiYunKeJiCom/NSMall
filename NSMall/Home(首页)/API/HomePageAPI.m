@@ -28,19 +28,12 @@
 /*
  获取分类信息接口
  */
-<<<<<<< HEAD
-+ (void)getProductCategoryList:(nullable NSString *)parentId success:(void(^)(CategeryModel * _Nullable result))success failure:(void (^)(NSError *error))failure{
++ (void)getProductCategoryList:(nullable NSString *)parentId success:(void(^)(CategoryListModel * _Nullable result))success failure:(void (^)(NSError *error))failure{
     NSDictionary *param = parentId?@{@"parentId":parentId}:nil;
-    [Net requestWithGet:param function:kCatogeryListAPI showHUD:NetNullStr resultClass:nil success:^(NSDictionary *  _Nullable resultObj) {
-        CategeryModel *catogery = [CategeryModel yy_modelWithJSON:resultObj[@"categoryList"]];
-        success?success(catogery):nil;
-=======
-+ (void)getProductCategoryList:(nullable NSString *)parentId success:(void(^)(CatogeryListModel * _Nullable result))success failure:(void (^)(NSError *error))failure{
-    NSDictionary *param = parentId?@{@"parentId":parentId}:nil;
-    [Net requestWithGet:param function:kCatogeryListAPI showHUD:NetNullStr resultClass:[CategoryListModel class] success:^(CatogeryListModel *  _Nullable resultObj) {
+    [Net requestWithGet:param function:kCatogeryListAPI showHUD:NetNullStr resultClass:[CategoryListModel class] success:^(CategoryListModel *  _Nullable resultObj) {
 
         success?success(resultObj):nil;
->>>>>>> 2202ddc0fee1d7365779ad8f3a9904518978c334
+
     } failure:failure];
 }
 

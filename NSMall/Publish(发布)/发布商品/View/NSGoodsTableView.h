@@ -14,6 +14,8 @@
 
 - (void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 
+-(void)addSpecView;
+
 @end
 
 @interface NSGoodsTableView : BaseTableView

@@ -56,15 +56,14 @@ pod 'JKCountDownButton'
 
 pod 'CYLTabBarController','~>1.17.6'
 
-pod 'HyphenateLite'
 pod 'Hyphenate'
-
 pod 'MWPhotoBrowser'
 
 pod 'BaiduMapKit'
 pod 'TZImagePickerController'
 pod 'MJExtension', '~> 3.0.13'
 pod 'FMDB'
+
 
 
 

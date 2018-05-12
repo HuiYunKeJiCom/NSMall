@@ -8,6 +8,11 @@
 
 #import "ConverseViewController.h"
 #import "GYHTimeTool.h"
+#import "ChatViewController.h"
+#import "ADOrderTopToolView.h"
+#import "AddFriendViewController.h"
+#import "FriendsViewController.h"
+#import "UIBarButtonItem+gyh.h"
 
 @interface ConverseViewController ()<EMClientDelegate,EMContactManagerDelegate,EMChatManagerDelegate,UIAlertViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
@@ -53,14 +58,38 @@
     
     [self loadConversations];
     
-    
-    UITableView *tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    UITableView *tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight-64)];
     tableview.delegate = self;
     tableview.dataSource = self;
     [self.view addSubview:tableview];
     self.tableview = tableview;
+    
+//    UIBarButtonItem *barbutton = [UIBarButtonItem ItemTitle:@"联系人" target:self action:@selector(addFriend)];
+//
+//    [DCTabBarController sharedTabBarVC].navigationController.navigationItem.leftBarButtonItem = barbutton;
+    
+//    self.navigationController.navigationBar.translucent = NO;
+//
+    [self.navigationController setNavigationBarHidden:YES];
+    [self setUpNavTopView];
 }
 
+#pragma mark - 导航栏处理
+- (void)setUpNavTopView
+{
+    ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
+    topToolView.backgroundColor = k_UIColorFromRGB(0xffffff);
+    [topToolView setTopTitleWithNSString:KLocalizableStr(@"消息")];
+    WEAKSELF
+    topToolView.leftItemClickBlock = ^{
+        NSLog(@"点击了返回");
+//        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        [weakSelf addFriend];
+    };
+
+    [self.view addSubview:topToolView];
+    [self.view bringSubviewToFront:topToolView];
+}
 
 -(void)loadConversations{
     //获取历史会话记录
@@ -140,6 +169,13 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    ChatViewController *chatVC = [[ChatViewController alloc]init];
+    EMConversation *conversaion = self.conversations[indexPath.row];
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    chatVC = [story instantiateViewControllerWithIdentifier:@"ChatViewControl"];
+    chatVC.fromname = conversaion.latestMessage.from;
+    [self.navigationController pushViewController:chatVC animated:YES];
+    
 }
 
 
@@ -191,6 +227,8 @@
 - (void)didReceiveFriendInvitationFromUsername:(NSString *)aUsername
                                        message:(NSString *)aMessage
 {
+    NSLog(@"回调方法没调用");
+    
     NSLog(@"%@,%@",aUsername,aMessage);
     self.buddyUsername = aUsername;
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"好友添加请求" message:aMessage delegate:self cancelButtonTitle:@"拒绝" otherButtonTitles:@"同意", nil];
@@ -253,5 +291,19 @@
     [[EMClient sharedClient].contactManager removeDelegate:self];
     [[EMClient sharedClient].chatManager removeDelegate:self];
 }
+
+- (void)addFriend
+{
+    NSLog(@"添加好友");
+    FriendsViewController *addVC = [[FriendsViewController alloc]init];
+    addVC.view.backgroundColor = [UIColor whiteColor];
+    [self.navigationController pushViewController:addVC animated:YES];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 
 @end

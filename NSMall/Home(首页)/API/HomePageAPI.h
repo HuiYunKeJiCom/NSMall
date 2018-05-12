@@ -9,11 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "ProductListModel.h"
 #import "AdvertListModel.h"
-<<<<<<< HEAD
-#import "CategeryModel.h"
-=======
+#import "CategoryModel.h"
 #import "CategoryListModel.h"
->>>>>>> 2202ddc0fee1d7365779ad8f3a9904518978c334
+
 
 @interface HomePageAPI : NSObject
 
@@ -32,12 +30,7 @@
 /*
     获取分类信息接口
 */
-<<<<<<< HEAD
-+ (void)getProductCategoryList:(nullable NSString *)parentId success:(void(^)(CategeryModel * _Nullable result))success failure:(void (^)(NSError *error))failure;
-=======
-+ (void)getProductCategoryList:(nullable NSString *)parentId success:(void(^)(CatogeryListModel * _Nullable result))success failure:(void (^)(NSError *error))failure;
->>>>>>> 2202ddc0fee1d7365779ad8f3a9904518978c334
-
++ (void)getProductCategoryList:(nullable NSString *)parentId success:(void(^)(CategoryListModel * _Nullable result))success failure:(void (^)(NSError *error))failure;
 
 /*
     改变商品的点赞状态

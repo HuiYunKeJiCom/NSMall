@@ -249,8 +249,8 @@
  */
 - (void)actionLogin:(UIButton *)button {
     //测试
-//    self.nameTextField.textField.text = @"test";
-//    self.passTextField.textField.text = @"123456";
+    self.nameTextField.textField.text = @"test";
+    self.passTextField.textField.text = @"123456";
     //    测试账号1【账号：myshop 密码：123456】
     //    测试账号2【账号：test 密码：123456】
     if ([[self.nameTextField.text trim] isEmptyOrNull]) {

@@ -7,7 +7,10 @@
 //
 
 #import "BaseTableCell.h"
+#import "CategoryModel.h"
 
 @interface NSCategoryTableViewCell : BaseTableCell
+@property (strong, nonatomic) UILabel        *titleLb;
 
+@property (strong, nonatomic) CategoryModel *myInfoModel;
 @end

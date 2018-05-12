@@ -157,10 +157,6 @@ THE SOFTWARE.
 
 Hyphenate Inc. 2017
 
-## HyphenateLite
-
-Hyphenate Inc. 2017
-
 ## JKCountDownButton
 
 The MIT License (MIT)

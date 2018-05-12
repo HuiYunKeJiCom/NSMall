@@ -52,7 +52,7 @@
     [button setTitle:title forState:UIControlStateNormal];
     button.frame = (CGRect){CGPointZero,70,40};
     button.titleLabel.font = [UIFont systemFontOfSize:16];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     return [[UIBarButtonItem alloc]initWithCustomView:button];
 }

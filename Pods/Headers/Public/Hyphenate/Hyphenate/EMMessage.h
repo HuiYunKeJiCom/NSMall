@@ -1,1 +1,1 @@
-../../../../Hyphenate/iOS_IM_SDK_V3.4.0/HyphenateFullSDK/Hyphenate.framework/Headers/EMMessage.h
+../../../../Hyphenate/iOS_Pods_IMFullSDK_V3.4.0/Hyphenate.framework/Headers/EMMessage.h

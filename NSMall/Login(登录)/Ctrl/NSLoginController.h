@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewCtrl.h"
+//#import <BuglyExtension/CrashReporterLite.h>
 
 @interface NSLoginController : BaseViewCtrl
 

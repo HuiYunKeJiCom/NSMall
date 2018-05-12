@@ -9,5 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface NSNavView : UIView
-
+-(void)setTopTitleWithNSString:(NSString *)string;
+/* 左边Item */
+@property (strong , nonatomic)UIButton *leftItemButton;
+/** 左边Item点击 */
+@property (nonatomic, copy) dispatch_block_t leftItemClickBlock;
+/* 右边Item */
+@property (strong , nonatomic)UIButton *rightItemButton;
+/** 右边Item点击 */
+@property (nonatomic, copy) dispatch_block_t rightItemClickBlock;
 @end

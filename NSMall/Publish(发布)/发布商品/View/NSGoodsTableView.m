@@ -71,5 +71,21 @@
         if (_tbDelegate && [_tbDelegate respondsToSelector:@selector(didSelectRowAtIndexPath:)]) {
             [_tbDelegate didSelectRowAtIndexPath:indexPath];
         }
+    
+//    if(indexPath.section == 3){
+//        [self addSpecView];
+//    }
+}
+
+-(void)addSpecView{
+    NSLog(@"tableView里面");
+    if (_tbDelegate && [_tbDelegate respondsToSelector:@selector(addSpecView)]) {
+        [_tbDelegate addSpecView];
+    }
+    
+    UIView *specView = [[UIView alloc]initWithFrame:CGRectMake(0, 228, kScreenWidth, 166)];
+    specView.backgroundColor = [UIColor redColor];
+    [self addSubview:specView];
+    [self reloadData];
 }
 @end

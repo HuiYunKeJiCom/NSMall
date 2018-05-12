@@ -8,7 +8,30 @@
 
 #import "NSCategoryTableViewCell.h"
 
+@interface NSCategoryTableViewCell ()
+
+@property (strong, nonatomic) UIView *bottomLineView;
+
+@end
+
 @implementation NSCategoryTableViewCell
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self initViews];
+        [self makeConstraints];
+        
+    }
+    return self;
+}
+
+-(void)setFrame:(CGRect)frame {
+    //    frame.origin.y += 10;
+    [super setFrame:frame];
+    
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -17,8 +40,65 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
+
+#pragma mark - getter
+
+- (UILabel *)titleLb {
+    
+    if (!_titleLb) {
+        _titleLb = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum15 TextColor:KColorText323232];
+    }
+    
+    return _titleLb;
+    
+}
+
+- (UIView *)bottomLineView {
+    
+    if (!_bottomLineView) {
+        _bottomLineView = [[UIView alloc] initWithFrame:CGRectZero];
+        _bottomLineView.backgroundColor = KColorTextf4f4f4;
+    }
+    
+    return _bottomLineView;
+}
+
+#pragma mark - setter
+
+- (void)setMyInfoModel:(CategoryModel *)myInfoModel {
+    _myInfoModel = myInfoModel;
+    if (!IsEmpty(myInfoModel.name)) {
+        self.titleLb.text = myInfoModel.name;
+    }
+}
+
+#pragma mark - private methord
+
+- (void)initViews{
+    
+    [self.contentView addSubview:self.titleLb];
+    [self.contentView addSubview:self.bottomLineView];
+}
+
+- (void)makeConstraints {
+    
+    WEAKSELF
+    [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.contentView.mas_right).with.offset(GetScaleWidth(29));
+        make.centerY.equalTo(weakSelf.contentView);
+    }];
+  
+    [self.bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.contentView);
+        make.right.equalTo(weakSelf.contentView);
+        make.bottom.equalTo(weakSelf.contentView);
+        make.height.mas_equalTo(1);
+    }];
+    
+}
+
 
 @end

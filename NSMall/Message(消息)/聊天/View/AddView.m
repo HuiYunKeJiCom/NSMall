@@ -41,7 +41,7 @@
     NSArray *titleArr = @[@"图片",@"拍照",@"小视频"];
     NSArray *imageArr = @[@"聊天图片",@"聊天拍照",@"聊天小视频"];
     for (int i = 0 ; i < 3; i ++) {
-        CGFloat w = (SCREEN_WIDTH-40)/3;
+        CGFloat w = (kScreenWidth-40)/3;
         CGFloat x = 10 + i*(w+10);
         AddViewButton *btn1 = [[AddViewButton alloc]initWithFrame:CGRectMake(x, 20, w, w)];
         [btn1 setTitle:titleArr[i] forState:UIControlStateNormal];

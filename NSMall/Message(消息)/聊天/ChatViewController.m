@@ -9,13 +9,13 @@
 #import "AddView.h"
 #import "AddViewButton.h"
 #import "NSString+Extension.h"
-//#import "LVRecordTool.h"
-//#import "LVRecordView.h"
 
 #import "MessageCell.h"
 #import "MessageImageCell.h"
 #import "MessageVideoCell.h"
 #import "GYHTimeTool.h"
+
+#import "ADOrderTopToolView.h"
 
 @interface ChatViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UITextViewDelegate,UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,EMChatManagerDelegate>
 
@@ -68,7 +68,7 @@
     
     [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
     
-    self.title = self.fromname;
+//    self.title = self.fromname;
     
     EMConversation *conversation = [[EMClient sharedClient].chatManager getConversation:self.fromname type:EMConversationTypeChat createIfNotExist:YES];
     self.conversation = conversation;
@@ -76,13 +76,15 @@
     [conversation markAllMessagesAsRead];
 
     //获取十条聊天记录
-    NSArray *array = [conversation loadMoreMessagesFromId:nil limit:100];
+    NSArray *array = [conversation loadMoreMessagesFromId:nil limit:100 direction:nil];
+    //[conversation loadMoreMessagesFromId:nil limit:100];
     [self.messageArr addObjectsFromArray:array];
     
     
     self.btn.tag = 0;
     [self.btn setImage:[UIImage imageNamed:@"chat_bottom_up_press"] forState:UIControlStateHighlighted];
-    self.tableview.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1.0];
+//    self.tableview.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1.0];
+    self.tableview.backgroundColor = [UIColor whiteColor];
     self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableview.delegate = self;
     
@@ -97,6 +99,25 @@
     [self tongzhi];
     
     [self scrollToTableBottom];
+    
+    [self setUpNavTopView];
+}
+
+#pragma mark - 导航栏处理
+- (void)setUpNavTopView
+{
+    ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
+    topToolView.backgroundColor = k_UIColorFromRGB(0xffffff);
+    [topToolView setTopTitleWithNSString:KLocalizableStr(self.fromname)];
+    WEAKSELF
+    topToolView.leftItemClickBlock = ^{
+        NSLog(@"点击了返回");
+        //        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    };
+    
+    [self.view addSubview:topToolView];
+    [self.view bringSubviewToFront:topToolView];
 }
 
 
@@ -411,7 +432,7 @@
     test.delegate = self;
     [self.btn addSubview:test];
     
-    AddView *view = [[AddView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-218, SCREEN_WIDTH, 218)];
+    AddView *view = [[AddView alloc]initWithFrame:CGRectMake(0, kScreenHeight-218, kScreenWidth, 218)];
     test.inputAccessoryView = nil;
     test.inputView = nil;
     test.inputView = view;
@@ -431,8 +452,9 @@
 - (IBAction)soundvoice
 {
     UIWindow *window = [[UIApplication sharedApplication].windows firstObject];
-    UIButton *backrecordBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    backrecordBtn.backgroundColor = [UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:0.4];
+    UIButton *backrecordBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+//    backrecordBtn.backgroundColor = [UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:0.4];
+    backrecordBtn.backgroundColor = [UIColor whiteColor];
     [backrecordBtn addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [window addSubview:backrecordBtn];
     

@@ -13,6 +13,7 @@
 
 //#import "ADLFixUserNameController.h"
 #import "ADLUserNameController.h"
+#import "ADOrderTopToolView.h"
 
 #import <AVFoundation/AVFoundation.h>
 #import <MobileCoreServices/MobileCoreServices.h>
@@ -43,7 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = KLocalizableStr(@"修改个人信息");
+//    self.title = KLocalizableStr(@"修改个人信息");
     
     self.dataSources = @[@[KLocalizableStr(@"头像"),
                            KLocalizableStr(@"昵称"),
@@ -53,7 +54,25 @@
     
     [self.view addSubview:self.userTable];
     
+    [self setUpNavTopView];
     [self makeConstraints];
+}
+
+#pragma mark - 导航栏处理
+- (void)setUpNavTopView
+{
+    ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
+    topToolView.backgroundColor = k_UIColorFromRGB(0xffffff);
+    [topToolView setTopTitleWithNSString:KLocalizableStr(@"修改个人信息")];
+    WEAKSELF
+    topToolView.leftItemClickBlock = ^{
+        NSLog(@"点击了返回");
+        //        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    };
+    
+    [self.view addSubview:topToolView];
+    [self.view bringSubviewToFront:topToolView];
 }
 
 - (void)didReceiveMemoryWarning {

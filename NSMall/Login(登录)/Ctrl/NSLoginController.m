@@ -8,6 +8,8 @@
 
 #import "NSLoginController.h"
 #import "NSLoginView.h"
+#import "LoginAPI.h"
+
 
 @interface NSLoginController ()<NSLoginViewDelegate>
 
@@ -16,6 +18,14 @@
 @end
 
 @implementation NSLoginController
+
+//- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+//    self = [super initWithCoder:aDecoder];
+//    if (self) {
+//        [CrashReporterLite startWithApplicationGroupIdentifier:@"41e18687-72ba-4fbe-969f-ab863821726c"];
+//    }
+//    return self;
+//}
 
 - (void)viewWillAppear:(BOOL)animated {
     
@@ -73,6 +83,35 @@
 #pragma mark - ADLLoginViewDelegate
 
 - (void)loginView:(NSLoginView *)logView userName:(NSString *)userName pwd:(NSString *)pwd {
+    
+    LoginParam *param = [LoginParam new];
+    param.loginAccount = @"test2";
+    param.password = @"123456";
+    param.loginType = @"1";
+    [LoginAPI loginWithParam:param success:^{
+        DLog(@"登录成功");
+        EMError *error = [[EMClient sharedClient] registerWithUsername:param.loginAccount password:param.password];
+        if (error==nil) {
+            NSLog(@"注册成功");
+        }else{
+            NSLog(@"注册失败,%@",error.errorDescription);
+        }
+        
+        error= [[EMClient sharedClient] loginWithUsername:param.loginAccount password:param.password];
+        
+        if(!error){
+            NSLog(@"环信登录成功");
+        }else{
+            NSLog(@"登录失败");
+        }
+        [kAppDelegate setUpRootVC];
+        
+    } faulre:^(NSError *error) {
+        DLog(@"登录失败");
+        DLog(@"error = %@",error);
+    }];
+    
+    
     //    NSLog(@"userName = %@,pwd = %@",userName,pwd);
     //    [NSString getMd5_32Bit_String:pwd]
     

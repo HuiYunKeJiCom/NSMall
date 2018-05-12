@@ -13,10 +13,12 @@
 #import "NSHomePageViewController.h"//首页
 #import "NSNearbyViewController.h"//附近
 #import "NSMyCenterViewController.h"//我的
-#import "NSMessageViewController.h"//消息
+//#import "NSMessageViewController.h"//消息
+
 //#import "NSPublishViewController.h"//发布
 
 #import "NSHomePageVC.h"//新首页
+#import "ConverseViewController.h"//新消息
 
 #import "XWPopMenuController.h"//发布
 // Views
@@ -27,14 +29,13 @@
 
 // Others
 
-@interface DCTabBarController ()<UITabBarControllerDelegate>
+@interface DCTabBarController ()<UITabBarControllerDelegate,EMClientDelegate>
 
 //消息
-@property (nonatomic, weak) NSMessageViewController *beautyMsgVc;
-
-@property (nonatomic, strong) NSMutableArray *tabBarItems;
-//给item加上badge
-@property (nonatomic, weak) UITabBarItem *item;
+@property (nonatomic, weak) ConverseViewController *beautyMsgVc;
+@property (nonatomic , strong) NSArray *conversations;
+////给item加上badge
+//@property (nonatomic, weak) UITabBarItem *item;
 
 @end
 
@@ -73,7 +74,7 @@
     NSNearbyViewController *nearbyVC = [[NSNearbyViewController alloc]init];
     nearbyVC.tabBarItem.title = @"附近";
     
-    NSMessageViewController *messageVC = [[NSMessageViewController alloc]initWithConversationId:@"CarLing02" conversationType:EMConversationTypeChat];
+    ConverseViewController *messageVC = [[ConverseViewController alloc]init];
     messageVC.tabBarItem.title = @"消息";
     
     NSMyCenterViewController *myCenterVC = [[NSMyCenterViewController alloc]init];
@@ -95,17 +96,25 @@
     return shellNav;
 }
 
-#pragma mark - LazyLoad
-- (NSMutableArray *)tabBarItems {
-    if (_tabBarItems == nil) {
-        _tabBarItems = [NSMutableArray array];
-    }
-    return _tabBarItems;
-}
+//#pragma mark - LazyLoad
+//- (NSMutableArray *)tabBarItems {
+//    if (_tabBarItems == nil) {
+//        _tabBarItems = [NSMutableArray array];
+//    }
+//    return _tabBarItems;
+//}
 
 #pragma mark - initialize
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    //登录接口相关的代理
+//    [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
+//    //联系人模块代理
+//    [[EMClient sharedClient].contactManager addDelegate:self delegateQueue:nil];
+//    //消息，聊天
+//    [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+//
+//    [self loadConversations];
 }
 
 
@@ -114,6 +123,37 @@
     return YES;
 }
 
+-(void)loadConversations{
+    //获取历史会话记录
+    NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
+    if (conversations.count == 0) {
+        conversations =  [[EMClient sharedClient].chatManager loadAllConversationsFromDB];
+    }
+    NSLog(@"zzzzzzz %@",conversations);
+    self.conversations = conversations;
+    if (conversations.count != 0) {
+        //显示总的未读数
+        [self showTabBarBadge];
+    }
+}
+
+
+- (void)showTabBarBadge{
+    NSInteger totalUnreadCount = 0;
+    for (EMConversation *conversation in self.conversations) {
+        totalUnreadCount += [conversation unreadMessagesCount];
+    }
+    NSLog(@"未读消息总数:%ld",(long)totalUnreadCount);
+    self.beautyMsgVc.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",totalUnreadCount];
+}
+
+- (NSArray *)conversations
+{
+    if (!_conversations) {
+        _conversations = [NSArray array];
+    }
+    return _conversations;
+}
 
 
 @end

@@ -16,9 +16,11 @@
 
 #import "DCTabBarController.h"
 #import "DCTabBarCenterButton.h"
+//#import <Bugly/Bugly.h>
+//#import <BuglyExtension/CrashReporterLite.h>
 
 
-@interface AppDelegate ()<CYLPlusButtonSubclassing>
+@interface AppDelegate ()<CYLPlusButtonSubclassing,EMChatManagerDelegate>
 /** tabbar */
 @property(nonatomic,strong)CYLTabBarController *tabBarController;
 @end
@@ -28,6 +30,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+   
+    //打印日志
+//    [Bugly startWithAppId:@"f01e247410"];
+    
+//    [[CrashReporter sharedInstance] installWithAppId:@"f01e247410"  applicationGroupIdentifier:@"41e18687-72ba-4fbe-969f-ab863821726c"];
     
     //环信
     //AppKey:注册的AppKey，详细见下面注释。
@@ -39,13 +46,13 @@
         NSLog(@"初始化成功");
     }
     
-    error= [[EMClient sharedClient] loginWithUsername:@"CarLing01" password:@"rl123456"];
-    
-    if(!error){
-        NSLog(@"登录成功");
-    }else{
-        NSLog(@"登录失败");
-    }
+//    error= [[EMClient sharedClient] loginWithUsername:@"CarLing01" password:@"rl123456"];
+//
+//    if(!error){
+//        NSLog(@"环信登录成功");
+//    }else{
+//        NSLog(@"登录失败");
+//    }
     
     //百度地图
     _mapManager = [[BMKMapManager alloc] init];
@@ -57,7 +64,24 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [DCTabBarCenterButton registerPlusButton];
-    [self setUpRootVC]; //跟控制器判断
+//    [self setUpRootVC]; //跟控制器判断
+    
+    // 监听自动登录的状态
+    // 设置chatManager代理
+    [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+    
+    BOOL isAuLogin = [[EMClient sharedClient] isAutoLogin];
+    NSLog(@"isAuLogin = %@",isAuLogin == 0?NO:YES);
+    
+    // 如果登录过，直接来到主界面
+    if ([[EMClient sharedClient] isAutoLogin]) {
+        NSLog(@"直接进主界面");
+        [self setUpRootVC];
+    }else{
+        NSLoginController *login = [[NSLoginController alloc]init];
+        [self.window setRootViewController:login];
+    }
+    
     [self.window makeKeyAndVisible];
     
     return YES;

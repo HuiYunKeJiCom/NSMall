@@ -7,6 +7,7 @@
 //
 
 #import "AddFriendViewController.h"
+#import "ADOrderTopToolView.h"
 
 @interface AddFriendViewController ()
 @property (nonatomic , weak) UITextField *addfield;
@@ -30,6 +31,23 @@
     [btn addTarget:self action:@selector(addhaoyou) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
 
+    [self setUpNavTopView];
+}
+
+#pragma mark - 导航栏处理
+- (void)setUpNavTopView
+{
+    ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
+    topToolView.backgroundColor = k_UIColorFromRGB(0xffffff);
+    [topToolView setTopTitleWithNSString:KLocalizableStr(@"添加好友")];
+    WEAKSELF
+    topToolView.leftItemClickBlock = ^{
+        NSLog(@"点击了返回");
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    };
+    
+    [self.view addSubview:topToolView];
+    [self.view bringSubviewToFront:topToolView];
 }
 
 - (void)addhaoyou

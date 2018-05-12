@@ -10,6 +10,7 @@
 #import "UIBarButtonItem+gyh.h"
 #import "AddFriendViewController.h"
 #import "ChatViewController.h"
+#import "NSNavView.h"
 
 
 @interface FriendsViewController ()<EMClientDelegate,EMContactManagerDelegate,UITableViewDelegate,UITableViewDataSource>
@@ -34,17 +35,40 @@
     [super viewDidLoad];
     
     tableview = [[UITableView alloc]init];
-    tableview.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    tableview.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight-64);
     tableview.delegate = self;
     tableview.dataSource = self;
     [self.view addSubview:tableview];
     
-    UIBarButtonItem *barbutton = [UIBarButtonItem ItemTitle:@"添加好友" target:self action:@selector(addFriend)];
-    self.navigationItem.rightBarButtonItem = barbutton;
     
+    
+//    UIBarButtonItem *barbutton = [UIBarButtonItem ItemTitle:@"添加好友" target:self action:@selector(addFriend)];
+//    self.navigationItem.rightBarButtonItem = barbutton;
+
     
     [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
     [[EMClient sharedClient].contactManager addDelegate:self delegateQueue:nil];
+    
+    [self setUpNavTopView];
+}
+
+#pragma mark - 导航栏处理
+- (void)setUpNavTopView
+{
+    NSNavView *topToolView = [[NSNavView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
+    topToolView.backgroundColor = k_UIColorFromRGB(0xffffff);
+    [topToolView setTopTitleWithNSString:KLocalizableStr(@"联系人")];
+    WEAKSELF
+    topToolView.leftItemClickBlock = ^{
+        NSLog(@"点击了返回");
+        [self.navigationController popViewControllerAnimated:YES];
+    };
+    topToolView.rightItemClickBlock = ^{
+        [weakSelf addFriend];
+    };
+    
+    [self.view addSubview:topToolView];
+    [self.view bringSubviewToFront:topToolView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
