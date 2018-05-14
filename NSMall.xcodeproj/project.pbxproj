@@ -31,6 +31,10 @@
 		184F05F0209AE39700768418 /* ProductListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05EE209AE39600768418 /* ProductListModel.m */; };
 		184F05F7209C40C700768418 /* AdvertListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05F6209C40C700768418 /* AdvertListModel.m */; };
 		184F05FA209C40DE00768418 /* AdvertItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05F9209C40DE00768418 /* AdvertItemModel.m */; };
+<<<<<<< HEAD
+=======
+		184F05FE209FE23100768418 /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05FD209FE23100768418 /* CategoryModel.m */; };
+>>>>>>> eaeadc9268cf35ed49897375bc350de54da4ac27
 		184F0617209FE81A00768418 /* NSShopPublishVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F0602209FE81900768418 /* NSShopPublishVC.m */; };
 		184F0618209FE81A00768418 /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F0605209FE81900768418 /* LxGridViewFlowLayout.m */; };
 		184F0619209FE81A00768418 /* NSInfoCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F0607209FE81900768418 /* NSInfoCustomCell.m */; };
@@ -55,6 +59,7 @@
 		184F065320A2DC2D00768418 /* SearchParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F065220A2DC2C00768418 /* SearchParam.m */; };
 		184F065620A2DD5500768418 /* SearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F065520A2DD5500768418 /* SearchModel.m */; };
 		184F065D20A2E37300768418 /* StoreItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F065C20A2E37300768418 /* StoreItemModel.m */; };
+		184F066020A2F47000768418 /* CategoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F065F20A2F47000768418 /* CategoryListModel.m */; };
 		1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD6F208F0DD00094A594 /* NetBaseModel.m */; };
 		1851CD77208F23530094A594 /* NSCustomHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD76208F23530094A594 /* NSCustomHeadCell.m */; };
 		188CC64A207F5430007D749E /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 188CC649207F5430007D749E /* AppDelegate.mm */; };
@@ -215,6 +220,11 @@
 		184F05F6209C40C700768418 /* AdvertListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdvertListModel.m; sourceTree = "<group>"; };
 		184F05F8209C40DE00768418 /* AdvertItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdvertItemModel.h; sourceTree = "<group>"; };
 		184F05F9209C40DE00768418 /* AdvertItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdvertItemModel.m; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		184F05FC209FE23100768418 /* CategoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryModel.h; sourceTree = "<group>"; };
+		184F05FD209FE23100768418 /* CategoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryModel.m; sourceTree = "<group>"; };
+>>>>>>> eaeadc9268cf35ed49897375bc350de54da4ac27
 		184F0601209FE81900768418 /* NSShopPublishVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSShopPublishVC.h; sourceTree = "<group>"; };
 		184F0602209FE81900768418 /* NSShopPublishVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSShopPublishVC.m; sourceTree = "<group>"; };
 		184F0604209FE81900768418 /* LxGridViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LxGridViewFlowLayout.h; sourceTree = "<group>"; };
@@ -263,6 +273,8 @@
 		184F065520A2DD5500768418 /* SearchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchModel.m; sourceTree = "<group>"; };
 		184F065B20A2E37300768418 /* StoreItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreItemModel.h; sourceTree = "<group>"; };
 		184F065C20A2E37300768418 /* StoreItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreItemModel.m; sourceTree = "<group>"; };
+		184F065E20A2F47000768418 /* CategoryListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryListModel.h; sourceTree = "<group>"; };
+		184F065F20A2F47000768418 /* CategoryListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryListModel.m; sourceTree = "<group>"; };
 		1851CD6E208F0DD00094A594 /* NetBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetBaseModel.h; sourceTree = "<group>"; };
 		1851CD6F208F0DD00094A594 /* NetBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetBaseModel.m; sourceTree = "<group>"; };
 		1851CD75208F23530094A594 /* NSCustomHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCustomHeadCell.h; sourceTree = "<group>"; };
@@ -666,10 +678,17 @@
 		184F05FB209C590A00768418 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				18C3D0A820A2F77E000FCE7F /* CategoryListModel.h */,
 				18C3D0A720A2F77E000FCE7F /* CategoryListModel.m */,
 				18C3D0A620A2F77D000FCE7F /* CategoryModel.h */,
 				18C3D0A520A2F77D000FCE7F /* CategoryModel.m */,
+=======
+				184F05FC209FE23100768418 /* CategoryModel.h */,
+				184F05FD209FE23100768418 /* CategoryModel.m */,
+				184F065E20A2F47000768418 /* CategoryListModel.h */,
+				184F065F20A2F47000768418 /* CategoryListModel.m */,
+>>>>>>> eaeadc9268cf35ed49897375bc350de54da4ac27
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1722,6 +1741,10 @@
 				184F0619209FE81A00768418 /* NSInfoCustomCell.m in Sources */,
 				18B017A820A67B9600826EA4 /* ADAddressModel.m in Sources */,
 				184043412099FB0600685F80 /* ADLChangePhoneViewController.m in Sources */,
+<<<<<<< HEAD
+=======
+				184F05FE209FE23100768418 /* CategoryModel.m in Sources */,
+>>>>>>> eaeadc9268cf35ed49897375bc350de54da4ac27
 				18230F66208D793F00D3E55F /* BaseViewCtrl.m in Sources */,
 				182DC49120905E3C0066E667 /* ADOrderTopToolView.m in Sources */,
 				18C3D08020A2F0FA000FCE7F /* SaveLabelParam.m in Sources */,
@@ -1809,6 +1832,7 @@
 				18B0179820A67B9600826EA4 /* YWAddressInfoModel.m in Sources */,
 				18DD1569208DCB7E0006475D /* DCSpeedy.m in Sources */,
 				18DD1585208DEA8D0006475D /* ADLMyInfoTableView.m in Sources */,
+				184F066020A2F47000768418 /* CategoryListModel.m in Sources */,
 				184F0649209FFB7F00768418 /* UIView+Frame.m in Sources */,
 				184F0641209FFB7F00768418 /* NSString+wrapper.m in Sources */,
 				18D09304209306B900E091E0 /* DCMainNavController.m in Sources */,
