@@ -139,6 +139,17 @@
     [_collectionView registerClass:[TZTestCell class] forCellWithReuseIdentifier:@"TZTestCell"];
 }
 
+-(void)setCategoryString:(NSString *)categoryString{
+    _categoryString = categoryString;
+    DLog(@"字符串有没有传过来categoryString = %@",categoryString);
+    for (ADLMyInfoModel *model in self.otherTableView.data) {
+        if([model.title isEqualToString:@"分类"]){
+            model.num = categoryString;
+        }
+    }
+    [self.otherTableView reloadData];
+}
+
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     

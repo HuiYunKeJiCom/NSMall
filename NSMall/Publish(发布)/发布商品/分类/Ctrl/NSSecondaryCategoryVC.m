@@ -7,7 +7,7 @@
 //
 
 #import "NSSecondaryCategoryVC.h"
-
+#import "NSGoodsPublishVC.h"
 
 @interface NSSecondaryCategoryVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
 @property (nonatomic, strong) BaseTableView         *goodsTable;
@@ -98,11 +98,17 @@
     NSCategoryTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     CategoryModel *model = cell.myInfoModel;
     if(model.children.count == 0){
-        if (self.stringBlock) {
-            self.stringBlock(model.name);
-        }
+        //返回页面A 得改用导航控制器
+//        if (self.stringBlock) {
+//            self.stringBlock(model.name);
+//        }
+        NSGoodsPublishVC *ctrl = [[NSGoodsPublishVC alloc] init];
+        ctrl.categoryString = model.name;
+        [self presentViewController:ctrl animated:YES completion:nil];
+        
     }else{
         //        跳到下一级
+        
     }
     
 }

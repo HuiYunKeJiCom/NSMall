@@ -9,5 +9,5 @@
 #import "DCBaseSetViewController.h"
 
 @interface NSGoodsPublishVC : DCBaseSetViewController
-
+@property(nonatomic,copy)NSString *categoryString;/* 选择分类 */
 @end
