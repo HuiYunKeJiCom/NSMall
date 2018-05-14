@@ -10,4 +10,8 @@
 
 @interface NSCategoryVC : DCBaseSetViewController
 
+typedef void(^stringBlock)(NSString *string);
+
+@property (nonatomic, copy) stringBlock                   stringBlock;/* 选择的类别回调 */
+
 @end

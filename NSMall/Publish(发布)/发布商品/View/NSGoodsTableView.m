@@ -43,7 +43,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if(section == 0 || section == 1 || section == 4){
+    if(section == 0 || section == 1 || section == 4|| section == 5){
         return GetScaleWidth(10);
     }else{
         return 0;

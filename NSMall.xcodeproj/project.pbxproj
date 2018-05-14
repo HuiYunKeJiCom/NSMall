@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1819B65620A71DC8009EAF87 /* NSSecondaryCategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819B65520A71DC8009EAF87 /* NSSecondaryCategoryVC.m */; };
 		18230F66208D793F00D3E55F /* BaseViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 18230F65208D793F00D3E55F /* BaseViewCtrl.m */; };
 		18230F6A208D795E00D3E55F /* FFLoadFailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18230F68208D795D00D3E55F /* FFLoadFailView.m */; };
 		182DC49120905E3C0066E667 /* ADOrderTopToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DC49020905E3C0066E667 /* ADOrderTopToolView.m */; };
@@ -163,6 +164,8 @@
 
 /* Begin PBXFileReference section */
 		162AA1D6179FA2D4019BE742 /* Pods-NSMall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSMall.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NSMall/Pods-NSMall.debug.xcconfig"; sourceTree = "<group>"; };
+		1819B65420A71DC8009EAF87 /* NSSecondaryCategoryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSecondaryCategoryVC.h; sourceTree = "<group>"; };
+		1819B65520A71DC8009EAF87 /* NSSecondaryCategoryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSecondaryCategoryVC.m; sourceTree = "<group>"; };
 		18230F64208D793F00D3E55F /* BaseViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewCtrl.h; sourceTree = "<group>"; };
 		18230F65208D793F00D3E55F /* BaseViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewCtrl.m; sourceTree = "<group>"; };
 		18230F68208D795D00D3E55F /* FFLoadFailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFLoadFailView.m; sourceTree = "<group>"; };
@@ -1213,6 +1216,8 @@
 			children = (
 				18C3D09220A2F151000FCE7F /* NSCategoryVC.h */,
 				18C3D09320A2F151000FCE7F /* NSCategoryVC.m */,
+				1819B65420A71DC8009EAF87 /* NSSecondaryCategoryVC.h */,
+				1819B65520A71DC8009EAF87 /* NSSecondaryCategoryVC.m */,
 			);
 			path = Ctrl;
 			sourceTree = "<group>";
@@ -1689,6 +1694,7 @@
 				18D574C7209A9EAB001C7875 /* ChangeMobileParam.m in Sources */,
 				18B017AE20A67B9600826EA4 /* CLTools.m in Sources */,
 				18D71044208DC84C002BA6CD /* DCNavigationController.m in Sources */,
+				1819B65620A71DC8009EAF87 /* NSSecondaryCategoryVC.m in Sources */,
 				18C3D0C520A3DD76000FCE7F /* NSString+Extension.m in Sources */,
 				18C3D0C120A3DD2A000FCE7F /* MessageCell.m in Sources */,
 				18C3D0CB20A3DDC8000FCE7F /* UIImage+Extension.m in Sources */,

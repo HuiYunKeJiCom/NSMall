@@ -66,12 +66,27 @@
     return _bottomLineView;
 }
 
+- (UIImageView *)arrowImgView {
+    
+    if (!_arrowImgView) {
+        _arrowImgView = [[UIImageView alloc] initWithImage:IMAGE(@"my_ico_right_arrow")];
+    }
+    
+    return _arrowImgView;
+}
+
 #pragma mark - setter
 
 - (void)setMyInfoModel:(CategoryModel *)myInfoModel {
     _myInfoModel = myInfoModel;
     if (!IsEmpty(myInfoModel.name)) {
         self.titleLb.text = myInfoModel.name;
+    }
+    
+    if(myInfoModel.children.count == 0){
+        self.arrowImgView.alpha = 0.0;
+    }else{
+        self.arrowImgView.alpha = 1.0;
     }
 }
 
@@ -80,6 +95,7 @@
 - (void)initViews{
     
     [self.contentView addSubview:self.titleLb];
+    [self.contentView addSubview:self.arrowImgView];
     [self.contentView addSubview:self.bottomLineView];
 }
 
@@ -87,8 +103,14 @@
     
     WEAKSELF
     [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.contentView.mas_right).with.offset(GetScaleWidth(29));
+        make.left.equalTo(weakSelf.contentView.mas_left).with.offset(GetScaleWidth(29));
         make.centerY.equalTo(weakSelf.contentView);
+    }];
+    
+    [self.arrowImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(weakSelf.contentView).with.offset(-GetScaleWidth(27));
+        make.centerY.equalTo(weakSelf.contentView);
+        make.size.mas_equalTo(CGSizeMake(16*0.5, 28*0.5));
     }];
   
     [self.bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {

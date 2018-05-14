@@ -161,7 +161,6 @@
 #pragma mark - action
 
 - (void)actionCommit:(UIButton *)button {
-        
         NSString *errorMsg = [self validateInput];
         
         if (errorMsg.length > 0) {
@@ -173,19 +172,24 @@
     [self.view endEditing:YES];
 //    WEAKSELF
     //这里已修改
-    UserModel *userModel = [UserModel modelFromUnarchive];
-    
-    
-    NSString *gender = @"";
-    NSString *nickName = @"";
-    
-        nickName = [[_contentField.text trim] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        gender = [NSString limitStringNotEmpty:[NSString stringWithFormat:@"%lu",userModel.sex]];
+//    UserModel *userModel = [UserModel modelFromUnarchive];
+//
+//
+//    NSString *gender = @"";
+//    NSString *nickName = @"";
+//
+//        nickName = [[_contentField.text trim] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//        gender = [NSString limitStringNotEmpty:[NSString stringWithFormat:@"%lu",userModel.sex]];
   
-    UpdateUserParam *param = [UpdateUserParam new];
-    param.userName = nickName;
-    param.sex = gender;
+    if (self.stringBlock) {
+        self.stringBlock(_contentField.text);
+    }
+    [self back];
     
+//    UpdateUserParam *param = [UpdateUserParam new];
+//    param.userName = nickName;
+//    param.sex = gender;
+//
 //    [UserInfoAPI updateUserWithParam:param success:^{
 //        DLog(@"修改信息成功");
 //        userModel.user_name = nickName;
@@ -211,7 +215,8 @@
 }
 
 - (void)back {
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (NSString *)validateInput

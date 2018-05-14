@@ -25,9 +25,9 @@ const static NSString * const kHomePageProductListAPI = @"productList";//获取�
 const static NSString * const kHomePageAdvertListAPI = @"getAdvertByCode";//获取首页的广告信息
 
 const static NSString * const kLogoutAPI = @"auth/logout";//退出登录
-const static NSString * const kCatogeryListAPI = @"parentId";//获取分类信息
+const static NSString * const kCatogeryListAPI = @"category";//获取分类信息
 
-const static NSString * const kLikeProductAPI = @"likeProduct";//点赞，喜欢接口
+const static NSString * const kLikeProductAPI = @"auth/likeProduct";//点赞，喜欢接口
 
 const static NSString * const kGetInfoAPI = @"auth/getUserInfo";//获取用户信息
 

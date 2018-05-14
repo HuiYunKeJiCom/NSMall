@@ -22,10 +22,12 @@ typedef NS_ENUM(NSInteger, EditUserType) {
     EditUserTypePhone,
 };
 
+typedef void(^stringBlock)(NSString *string);
+
 @interface NSChangeParamVC : BaseViewCtrl
 @property (nonatomic, copy) NSString  *editTitle;
 
-
 - (instancetype)initEditType:(EditUserType)type;
+@property (nonatomic, copy) stringBlock                   stringBlock;/* 保存修改的信息回调 */
 @end
 

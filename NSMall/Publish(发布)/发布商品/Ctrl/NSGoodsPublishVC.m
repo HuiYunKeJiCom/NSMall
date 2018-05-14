@@ -44,18 +44,15 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     if(_selectedPhotos.count >0){
-        if(_selectedPhotos.count>7){
-            self.SV.scrollEnabled = YES;
-        }else{
-            self.SV.scrollEnabled = NO;
-        }
+        self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20+_selectedPhotos.count/4*(_itemWH + _margin*2));
+        
         self.addView.alpha = 0.0;
         self.collectionView.alpha = 1.0;
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
         self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(10);
         self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
     }else{
-        self.SV.scrollEnabled = NO;
+//        self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
         self.middleView.dc_y = GetScaleWidth(130);
@@ -71,12 +68,12 @@
     _selectedAssets = [NSMutableArray array];
     
     self.SV = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight-64-TabBarHeight)];
-    self.SV.scrollEnabled = NO;
-    self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight+72);
+//    self.SV.scrollEnabled = NO;
+    self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20);
     self.SV.backgroundColor = KBGCOLOR;
     [self.view addSubview:self.SV];
     
-    self.otherTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(150+5+130), kScreenWidth, GetScaleWidth(280)) style:UITableViewStyleGrouped];
+    self.otherTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(150+5+130), kScreenWidth, GetScaleWidth(352)) style:UITableViewStyleGrouped];
     self.otherTableView.backgroundColor = [UIColor clearColor];
     self.otherTableView.bounces = NO;
     self.otherTableView.tbDelegate = self;
@@ -439,11 +436,34 @@
 #pragma mark - UIActionSheetDelegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) { // take photo / 去拍照
-        [self takePhoto];
-    } else if (buttonIndex == 1) {
-        [self pushTZImagePickerController];
+    
+    if(actionSheet.tag == 10){
+        if (buttonIndex == 0) { // take photo / 去拍照
+            [self takePhoto];
+        } else if (buttonIndex == 1) {
+            [self pushTZImagePickerController];
+        }
+    }else{
+        NSString *updateStr = @"";
+        if (buttonIndex == 0) { // 是
+            NSLog(@"上架");
+            updateStr = @"是";
+        } else if (buttonIndex == 1) {
+            NSLog(@"不上架");
+            updateStr = @"否";
+        }
+        
+        for (ADLMyInfoModel *model in self.otherTableView.data) {
+            if([model.title isEqualToString:@"上架"]){
+                model.num = updateStr;
+            }
+        }
+        [self.otherTableView reloadData];
+        
+        
     }
+    
+    
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -462,18 +482,15 @@
 /// 用户点击了取消
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker {
     if(_selectedPhotos.count >0){
-        if(_selectedPhotos.count>7){
-            self.SV.scrollEnabled = YES;
-        }else{
-            self.SV.scrollEnabled = NO;
-        }
+        self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20+_selectedPhotos.count/4*(_itemWH + _margin*2));
+        
         self.addView.alpha = 0.0;
         self.collectionView.alpha = 1.0;
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
         self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(10);
         self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
     }else{
-        self.SV.scrollEnabled = NO;
+//        self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
         self.middleView.dc_y = GetScaleWidth(130);
@@ -491,11 +508,8 @@
     // _collectionView.contentSize = CGSizeMake(0, ((_selectedPhotos.count + 2) / 3 ) * (_margin + _itemWH));
     
     if(photos.count >0){
-        if(_selectedPhotos.count>7){
-            self.SV.scrollEnabled = YES;
-        }else{
-            self.SV.scrollEnabled = NO;
-        }
+        self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20+_selectedPhotos.count/4*(_itemWH + _margin*2));
+        
         self.addView.alpha = 0.0;
         self.collectionView.alpha = 1.0;
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
@@ -503,7 +517,7 @@
         self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
         
     }else{
-        self.SV.scrollEnabled = NO;
+//        self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
         self.collectionView.height = GetScaleWidth(120);
@@ -554,6 +568,7 @@
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"数量") imageName:nil num:@"数量"]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"添加商品规格") imageName:@"publish_ico_goods_add" num:nil]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"运费") imageName:nil num:@"运费"]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"上架") imageName:nil num:@"否"]];
 }
 
 #pragma mark - initialize
@@ -572,6 +587,14 @@
         case 0:{
             NSLog(@"点击了分类");
             NSCategoryVC *ctrl = [[NSCategoryVC alloc] init];
+            ctrl.stringBlock = ^(NSString *string) {
+                for (ADLMyInfoModel *model in self.otherTableView.data) {
+                    if([model.title isEqualToString:@"分类"]){
+                        model.num = string;
+                    }
+                }
+                [self.otherTableView reloadData];
+            };
             [self presentViewController:ctrl animated:YES completion:nil];
         }
             break;
@@ -581,6 +604,15 @@
             
             NSChangeParamVC *ctrl = [[NSChangeParamVC alloc] initEditType:type];
             ctrl.editTitle = KLocalizableStr(@"价格");
+            
+            ctrl.stringBlock = ^(NSString *string) {
+                for (ADLMyInfoModel *model in self.otherTableView.data) {
+                    if([model.title isEqualToString:@"价格"]){
+                        model.num = string;
+                    }
+                }
+                [self.otherTableView reloadData];
+            };
             [self presentViewController:ctrl animated:YES completion:nil];
         }
             break;
@@ -590,6 +622,15 @@
             
             NSChangeParamVC *ctrl = [[NSChangeParamVC alloc] initEditType:type];
             ctrl.editTitle = KLocalizableStr(@"数量");
+            ctrl.stringBlock = ^(NSString *string) {
+                for (ADLMyInfoModel *model in self.otherTableView.data) {
+                    if([model.title isEqualToString:@"数量"]){
+                        model.num = string;
+                    }
+                }
+                [self.otherTableView reloadData];
+            };
+//            [[DCMainNavController sharedRootNav] pushViewController:ctrl animated:YES];
             [self presentViewController:ctrl animated:YES completion:nil];
         }
             break;
@@ -605,7 +646,21 @@
             
             NSChangeParamVC *ctrl = [[NSChangeParamVC alloc] initEditType:type];
             ctrl.editTitle = KLocalizableStr(@"运费");
+            ctrl.stringBlock = ^(NSString *string) {
+                for (ADLMyInfoModel *model in self.otherTableView.data) {
+                    if([model.title isEqualToString:@"运费"]){
+                        model.num = string;
+                    }
+                }
+                [self.otherTableView reloadData];
+            };
             [self presentViewController:ctrl animated:YES completion:nil];
+        }
+            break;
+        case 5:{
+            NSLog(@"点击了上架");
+            [self updateGoods];
+            
         }
             break;
         default:
@@ -613,6 +668,13 @@
     }
     
 }
+
+-(void)updateGoods{
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"是",@"否", nil];
+    sheet.tag = 100;
+    [sheet showInView:self.view];
+}
+
 
 -(void)addSpecView{
     NSLog(@"VC里面");
@@ -642,6 +704,7 @@
 
 -(void)addPhoto:(UIButton *)button{
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"去相册选择", nil];
+    sheet.tag = 10;
     [sheet showInView:self.view];
 }
 
@@ -688,18 +751,15 @@
     } completion:^(BOOL finished) {
         [self->_collectionView reloadData];
         if(_selectedPhotos.count >0){
-            if(_selectedPhotos.count>7){
-                self.SV.scrollEnabled = YES;
-            }else{
-                self.SV.scrollEnabled = NO;
-            }
+            self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20+_selectedPhotos.count/4*(_itemWH + _margin*2));
+            
             self.addView.alpha = 0.0;
             self.collectionView.alpha = 1.0;
             self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
             self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(10);
             self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
         }else{
-            self.SV.scrollEnabled = NO;
+//            self.SV.scrollEnabled = NO;
             self.addView.alpha = 1.0;
             self.collectionView.alpha = 0.0;
             self.middleView.dc_y = GetScaleWidth(130);
