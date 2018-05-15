@@ -11,7 +11,8 @@
 #import "AdvertListModel.h"
 #import "CategoryModel.h"
 #import "CategoryListModel.h"
-
+#import "SearchModel.h"
+#import "SearchParam.h"
 
 @interface HomePageAPI : NSObject
 
@@ -36,5 +37,12 @@
     改变商品的点赞状态
  */
 + (void)changeProductLikeState:(NSString *)productId success:(void (^)(NSInteger likeNumber))success failure:(void (^)(NSError *error))failure;
+
+
+/*
+    搜索商铺或者商品
+ */
++ (void)searchProductOrShop:(nullable id)param success:(void (^)(SearchModel *result))success failure:(void (^)(NSError *error))failure;
+
 
 @end

@@ -57,6 +57,8 @@
 		184F065D20A2E37300768418 /* StoreItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F065C20A2E37300768418 /* StoreItemModel.m */; };
 		1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD6F208F0DD00094A594 /* NetBaseModel.m */; };
 		1851CD77208F23530094A594 /* NSCustomHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD76208F23530094A594 /* NSCustomHeadCell.m */; };
+		1863D26720A96C8800047A7D /* NSGoodsShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863D26620A96C8800047A7D /* NSGoodsShowCell.m */; };
+		1863D26B20A9873C00047A7D /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863D26A20A9873C00047A7D /* UIButton+Bootstrap.m */; };
 		188CC64A207F5430007D749E /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 188CC649207F5430007D749E /* AppDelegate.mm */; };
 		188CC650207F5431007D749E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188CC64E207F5431007D749E /* Main.storyboard */; };
 		188CC652207F5431007D749E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188CC651207F5431007D749E /* Assets.xcassets */; };
@@ -267,6 +269,10 @@
 		1851CD6F208F0DD00094A594 /* NetBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetBaseModel.m; sourceTree = "<group>"; };
 		1851CD75208F23530094A594 /* NSCustomHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCustomHeadCell.h; sourceTree = "<group>"; };
 		1851CD76208F23530094A594 /* NSCustomHeadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCustomHeadCell.m; sourceTree = "<group>"; };
+		1863D26520A96C8800047A7D /* NSGoodsShowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSGoodsShowCell.h; sourceTree = "<group>"; };
+		1863D26620A96C8800047A7D /* NSGoodsShowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSGoodsShowCell.m; sourceTree = "<group>"; };
+		1863D26920A9873B00047A7D /* UIButton+Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Bootstrap.h"; sourceTree = "<group>"; };
+		1863D26A20A9873C00047A7D /* UIButton+Bootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Bootstrap.m"; sourceTree = "<group>"; };
 		188CC645207F5430007D749E /* NSMall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSMall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188CC648207F5430007D749E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		188CC649207F5430007D749E /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -632,6 +638,8 @@
 		184F05EA209AE39600768418 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1863D26420A96AA200047A7D /* View */,
+				1863D26320A96A9000047A7D /* Ctrl */,
 				184F065720A2E32500768418 /* Store */,
 				184F064E20A2DBB800768418 /* Search */,
 				184F05FB209C590A00768418 /* Category */,
@@ -751,6 +759,7 @@
 		184F0620209FFB7F00768418 /* Category(分类) */ = {
 			isa = PBXGroup;
 			children = (
+				1863D26820A9872B00047A7D /* UIButton */,
 				184F0621209FFB7F00768418 /* MBProgressHUD */,
 				184F0624209FFB7F00768418 /* NSString */,
 				184F0627209FFB7F00768418 /* NSTimer */,
@@ -895,6 +904,35 @@
 				18DD1576208DD4140006475D /* NSMyCenterViewController.m */,
 			);
 			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		1863D26320A96A9000047A7D /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				18DD156B208DCF3F0006475D /* NSHomePageViewController.h */,
+				18DD156C208DCF3F0006475D /* NSHomePageViewController.m */,
+				18D092FF2091BE9000E091E0 /* NSHomePageVC.h */,
+				18D093002091BE9000E091E0 /* NSHomePageVC.m */,
+			);
+			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		1863D26420A96AA200047A7D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1863D26520A96C8800047A7D /* NSGoodsShowCell.h */,
+				1863D26620A96C8800047A7D /* NSGoodsShowCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1863D26820A9872B00047A7D /* UIButton */ = {
+			isa = PBXGroup;
+			children = (
+				1863D26920A9873B00047A7D /* UIButton+Bootstrap.h */,
+				1863D26A20A9873C00047A7D /* UIButton+Bootstrap.m */,
+			);
+			path = UIButton;
 			sourceTree = "<group>";
 		};
 		188CC63C207F5430007D749E = {
@@ -1446,10 +1484,6 @@
 				184F065020A2DBFF00768418 /* Param */,
 				184F05EA209AE39600768418 /* Model */,
 				18D0825020956EB70031034A /* API */,
-				18DD156B208DCF3F0006475D /* NSHomePageViewController.h */,
-				18DD156C208DCF3F0006475D /* NSHomePageViewController.m */,
-				18D092FF2091BE9000E091E0 /* NSHomePageVC.h */,
-				18D093002091BE9000E091E0 /* NSHomePageVC.m */,
 			);
 			path = "Home(首页)";
 			sourceTree = "<group>";
@@ -1677,6 +1711,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18C3D0DC20A44803000FCE7F /* NSNavView.m in Sources */,
+				1863D26720A96C8800047A7D /* NSGoodsShowCell.m in Sources */,
 				18C3D0A420A2F190000FCE7F /* UIView+YWFrame.m in Sources */,
 				18C3D0D720A3FAC3000FCE7F /* UIBarButtonItem+gyh.m in Sources */,
 				18C3D0A920A2F77E000FCE7F /* CategoryModel.m in Sources */,
@@ -1697,6 +1732,7 @@
 				1819B65620A71DC8009EAF87 /* NSSecondaryCategoryVC.m in Sources */,
 				18C3D0C520A3DD76000FCE7F /* NSString+Extension.m in Sources */,
 				18C3D0C120A3DD2A000FCE7F /* MessageCell.m in Sources */,
+				1863D26B20A9873C00047A7D /* UIButton+Bootstrap.m in Sources */,
 				18C3D0CB20A3DDC8000FCE7F /* UIImage+Extension.m in Sources */,
 				184DE7A9208F088E00E776F3 /* BaseTableCell.m in Sources */,
 				18D71045208DC84C002BA6CD /* DCTabBadgeView.m in Sources */,

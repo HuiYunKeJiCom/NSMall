@@ -109,17 +109,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //进入下一级分类
     NSCategoryTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     CategoryModel *model = cell.myInfoModel;
     if(model.children.count == 0){
-        //进入下一级分类
         if (self.stringBlock) {
             self.stringBlock(model.name);
         }
         [self dismissViewControllerAnimated:YES completion:nil];
     }else{
 //        跳到下一级
-        //显示下级类别
         NSSecondaryCategoryVC *ctrl = [[NSSecondaryCategoryVC alloc] init];
         [ctrl getDataWithCategoryModel:model];
         [self presentViewController:ctrl animated:YES completion:nil];

@@ -236,13 +236,9 @@
 - (void)touchDownBtn:(PublishMenuButton *)btn{
     
     if(btn.tag == 1000){
-        
         //线上商品
         NSGoodsPublishVC *ctrl = [[NSGoodsPublishVC alloc] init];
         [self presentViewController:ctrl animated:YES completion:nil];
-//        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:self];
-//        nav.viewControllers = @[ctrl];
-//        [self presentViewController:nav animated:YES completion:nil];
     }else{
         //线下店铺
         NSShopPublishVC *ctrl = [[NSShopPublishVC alloc] init];
