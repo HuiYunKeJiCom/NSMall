@@ -19,7 +19,9 @@
 #define NavBarHeight 44.f //导航栏高度
 #define TopBarHeight (StatusBarHeight + NavBarHeight)//总起始高度，使用这个
 
-#define TabBarHeight (((([[UIApplication sharedApplication] statusBarFrame].size.height>20?83:49)>kCenterTabBarButtonHeight)?([[UIApplication sharedApplication] statusBarFrame].size.height>20?83:49):kCenterTabBarButtonHeight) + 2.f) //底部tabbar高度
+#define TabBarHeight (([[UIApplication sharedApplication] statusBarFrame].size.height>20)?83:49) //底部tabbar高度
+
+//#define TabBarHeight (((([[UIApplication sharedApplication] statusBarFrame].size.height>20?83:49)>kCenterTabBarButtonHeight)?([[UIApplication sharedApplication] statusBarFrame].size.height>20?83:49):kCenterTabBarButtonHeight) + 2.f) //底部tabbar高度
 
 #define kBlackColor [UIColor blackColor]
 #define kWhiteColor [UIColor whiteColor]

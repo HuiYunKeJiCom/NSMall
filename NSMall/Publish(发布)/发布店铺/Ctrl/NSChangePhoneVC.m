@@ -49,7 +49,7 @@
 #pragma mark - 导航栏处理
 - (void)setUpNavTopView
 {
-    ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
+    ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     topToolView.backgroundColor = k_UIColorFromRGB(0xffffff);
     [topToolView setTopTitleWithNSString:[NSString stringWithFormat:@"%@ %@",KLocalizableStr(@"修改"),_editTitle]];
     WEAKSELF
@@ -310,7 +310,7 @@
     
     [self.phoneView mas_makeConstraints:^(MASConstraintMaker *make) {
         //        make.centerX.mas_equalTo(weakSelf);
-        make.top.mas_equalTo(weakSelf.view.mas_top).offset(GetScaleWidth(60+64));
+        make.top.mas_equalTo(weakSelf.view.mas_top).offset(GetScaleWidth(60+TopBarHeight));
         make.left.mas_equalTo(weakSelf.view.mas_left).offset(GetScaleWidth(16));
         make.right.mas_equalTo(weakSelf.view.mas_right).offset(GetScaleWidth(-16));
         make.height.mas_equalTo(GetScaleWidth(40));

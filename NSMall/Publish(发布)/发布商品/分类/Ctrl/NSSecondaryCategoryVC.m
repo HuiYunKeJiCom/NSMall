@@ -27,7 +27,7 @@
 #pragma mark - 导航栏处理
 - (void)setUpNavTopView
 {
-    self.topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
+    self.topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     self.topToolView.backgroundColor = k_UIColorFromRGB(0xffffff);
     WEAKSELF
     self.topToolView.leftItemClickBlock = ^{

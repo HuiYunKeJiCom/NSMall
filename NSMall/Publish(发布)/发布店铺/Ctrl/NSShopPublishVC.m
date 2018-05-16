@@ -97,7 +97,7 @@
     _selectedPhotos = [NSMutableArray array];
     _selectedAssets = [NSMutableArray array];
     
-    self.SV = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight-64-TabBarHeight)];
+    self.SV = [[UIScrollView alloc]initWithFrame:CGRectMake(0, TopBarHeight, kScreenWidth, kScreenHeight-TopBarHeight-TabBarHeight)];
     self.SV.scrollEnabled = NO;
     self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight);
     self.SV.backgroundColor = KBGCOLOR;
@@ -657,7 +657,7 @@
 #pragma mark - 导航栏处理
 - (void)setUpNavTopView
 {
-    ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
+    ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     topToolView.hidden = NO;
     topToolView.backgroundColor = k_UIColorFromRGB(0xffffff);
     [topToolView setTopTitleWithNSString:KLocalizableStr(@"发布店铺")];

@@ -58,7 +58,7 @@
     
     [self loadConversations];
     
-    UITableView *tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight-64)];
+    UITableView *tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, TopBarHeight, kScreenWidth, kScreenHeight-TopBarHeight)];
     tableview.delegate = self;
     tableview.dataSource = self;
     [self.view addSubview:tableview];
@@ -77,7 +77,7 @@
 #pragma mark - 导航栏处理
 - (void)setUpNavTopView
 {
-    ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
+    ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     topToolView.backgroundColor = k_UIColorFromRGB(0xffffff);
     [topToolView setTopTitleWithNSString:KLocalizableStr(@"消息")];
     WEAKSELF

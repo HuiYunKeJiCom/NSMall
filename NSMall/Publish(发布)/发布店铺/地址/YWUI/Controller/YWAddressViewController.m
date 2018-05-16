@@ -60,7 +60,7 @@
 #pragma mark - 导航栏处理
 - (void)setUpNavTopView
 {
-    _topToolView = [[ADAddressTopView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
+    _topToolView = [[ADAddressTopView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     _topToolView.hidden = NO;
     _topToolView.backgroundColor = [UIColor whiteColor];
     [_topToolView setTopTitleWithNSString:KLocalizableStr(@"添加新地址")];

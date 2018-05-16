@@ -25,6 +25,7 @@
     [centerBtn setTitle:@"发布" forState:UIControlStateNormal];
     [centerBtn setTitleColor:UIColorFromRGB(0xd2d2d2) forState:UIControlStateNormal];
     [centerBtn addTarget:centerBtn action:@selector(centerBtnWasClicked:) forControlEvents:UIControlEventTouchDown];
+    centerBtn.backgroundColor = [UIColor clearColor];
     return centerBtn;
 }
 

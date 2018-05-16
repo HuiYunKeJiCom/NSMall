@@ -31,7 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
+//    self.view.backgroundColor = kWhiteColor;
     [self buildUI];
     [self setUpNavTopView];
     [self requestAllOrder:NO];
@@ -46,7 +46,7 @@
 #pragma mark - 导航栏处理
 - (void)setUpNavTopView
 {
-    _topToolView = [[DCHomeTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
+    _topToolView = [[DCHomeTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
 //    WEAKSELF
     _topToolView.rightItemClickBlock = ^{
         NSLog(@"点击了首页扫一扫");
@@ -74,8 +74,9 @@
 }
 
 - (void)layoutUI{
-//    NSLog(@"kScreenHeight = %.2f,TopBarHeight = %.2f,TabBarHeight = %.2f",kScreenHeight,TopBarHeight,TabBarHeight);
-    _tableView.size = CGSizeMake(kScreenWidth, kScreenHeight - TopBarHeight - TabBarHeight);
+    NSLog(@"kScreenHeight = %.2f,TopBarHeight = %.2f,TabBarHeight = %.2f",kScreenHeight,TopBarHeight,TabBarHeight);
+    _tableView.y = TopBarHeight;
+    _tableView.size = CGSizeMake(kScreenWidth, AppHeight - TopBarHeight-TabBarHeight);
 }
 
 - (void)requestAllOrder:(BOOL)more {

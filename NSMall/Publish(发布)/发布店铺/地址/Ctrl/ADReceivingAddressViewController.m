@@ -47,7 +47,7 @@
 #pragma mark - 导航栏处理
 - (void)setUpNavTopView
 {
-    _topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
+    _topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     _topToolView.hidden = NO;
     _topToolView.backgroundColor = [UIColor whiteColor];
     [_topToolView setTopTitleWithNSString:KLocalizableStr(@"管理收货地址")];
@@ -77,8 +77,8 @@
     
     [self.goodsTable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
-        make.top.equalTo(self.view.mas_top).with.offset(64);
-        make.top.equalTo(self.view.mas_top).with.offset(64);
+        make.top.equalTo(self.view.mas_top).with.offset(TopBarHeight);
+        make.top.equalTo(self.view.mas_top).with.offset(TopBarHeight);
         make.bottom.equalTo(self.view.mas_bottom).with.offset(-50);
     }];
     
