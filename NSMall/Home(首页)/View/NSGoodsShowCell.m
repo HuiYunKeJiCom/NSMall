@@ -30,7 +30,6 @@
     if (self) {
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-//        self.backgroundColor = [UIColor clearColor];
         
         [self buildUI];
     }
@@ -44,8 +43,9 @@
     [self addSubview:self.bgView];
     
     self.headerIV = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 50, 50)];
-//    self.headerIV.backgroundColor = [UIColor greenColor];
-    [self.headerIV setContentMode:UIViewContentModeScaleAspectFit];
+    [self.headerIV setContentMode:UIViewContentModeScaleAspectFill];
+    [self.headerIV.layer setCornerRadius:25];
+    [self.headerIV.layer setMasksToBounds:YES];
     [self.bgView addSubview:self.headerIV];
 
     self.userName = [[UILabel alloc] init];
@@ -66,20 +66,7 @@
     [self.bgView addSubview:self.priceLab];
     
     self.imageSV = [[UIScrollView alloc]init];
-    self.imageSV.contentSize = CGSizeMake(kScreenWidth, 0);
     [self.bgView addSubview:self.imageSV];
-    float itemWidth = (kScreenWidth-20-24)/3.0;
-    for(int i=0;i<3;i++){
-        UIImageView *goodsIV = [[UIImageView alloc]initWithFrame:CGRectMake((itemWidth+12)*i, 0, itemWidth, itemWidth)];
-        if(i==0){
-            goodsIV.backgroundColor = [UIColor greenColor];
-        }else if (i==1){
-            goodsIV.backgroundColor = [UIColor redColor];
-        }else{
-            goodsIV.backgroundColor = [UIColor yellowColor];
-        }
-        [self.imageSV addSubview:goodsIV];
-    }
     
     self.detailLab = [[UILabel alloc] init];
 //    self.detailLab.size = CGSizeMake(kScreenWidth-20, 20);
@@ -115,6 +102,7 @@
 -(void)setProductModel:(ProductListItemModel *)productModel{
     _productModel = productModel;
     
+//    self.headerIV.backgroundColor = [UIColor greenColor];
     [self.headerIV sd_setImageWithURL:[NSURL URLWithString:productModel.user_avatar]];
     self.userName.text = productModel.user_name;
     [self.userName sizeToFit];
@@ -131,6 +119,14 @@
     self.imageSV.x = 10;
     self.imageSV.y = CGRectGetMaxY(self.timeLab.frame)+20;
     self.imageSV.size = CGSizeMake(kScreenWidth, itemWidth);
+    self.imageSV.contentSize = CGSizeMake((itemWidth+12)*productModel.productImageList.count, 0);
+//    NSLog(@"图片数量= %lu",productModel.productImageList.count);
+    for(int i=0;i<productModel.productImageList.count;i++){
+        UIImageView *goodsIV = [[UIImageView alloc]initWithFrame:CGRectMake((itemWidth+12)*i, 0, itemWidth, itemWidth)];
+        [goodsIV sd_setImageWithURL:[NSURL URLWithString:productModel.productImageList[i]]];
+        [self.imageSV addSubview:goodsIV];
+    }
+    
     self.detailLab.x = 10;
     self.detailLab.y = CGRectGetMaxY(self.imageSV.frame)+15;
     self.detailLab.text = productModel.introduce;

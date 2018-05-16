@@ -63,7 +63,7 @@ pod 'BaiduMapKit'
 pod 'TZImagePickerController'
 pod 'MJExtension', '~> 3.0.13'
 pod 'FMDB'
-
+pod 'SDCycleScrollView'
 
 
 

@@ -89,7 +89,7 @@
                                                   0.0,
                                                   0.0)];
     }else if([_position isEqualToString:@"top"]){
-        [self setTitleEdgeInsets:UIEdgeInsetsMake(50.0,
+        [self setTitleEdgeInsets:UIEdgeInsetsMake(80.0,
                                                   -image.size.width,
                                                   0.0,
                                                   0.0)];

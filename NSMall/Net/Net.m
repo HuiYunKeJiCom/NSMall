@@ -116,15 +116,15 @@ AFHTTPSessionManager *httpManager = nil;
 }
 
 
-+ (void)uploadDataWithPost:(NSData *)data function:(NSString *)function success:(void (^)(NSDictionary *result))success failure:(void (^)(NSError *error))failure{
-    [httpManager POST:[NSString stringWithFormat:@"%@%@",NetDomainADDR,function] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        [formData appendPartWithFormData:data name:@"file"];
++ (void)uploadWithPost{
+    [httpManager POST:@"" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        success?success(responseObject):nil;
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        failure?failure(error):nil;
+        
     }];
     
 }

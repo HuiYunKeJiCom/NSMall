@@ -59,6 +59,9 @@
 		1851CD77208F23530094A594 /* NSCustomHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD76208F23530094A594 /* NSCustomHeadCell.m */; };
 		1863D26720A96C8800047A7D /* NSGoodsShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863D26620A96C8800047A7D /* NSGoodsShowCell.m */; };
 		1863D26B20A9873C00047A7D /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863D26A20A9873C00047A7D /* UIButton+Bootstrap.m */; };
+		1874D5BB20AA8F8A0004B1AF /* DCHomeTopToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874D5B920AA8F8A0004B1AF /* DCHomeTopToolView.m */; };
+		1874D5BE20AABFDA0004B1AF /* NSCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874D5BD20AABFDA0004B1AF /* NSCarouselView.m */; };
+		1874D5C120AAD50A0004B1AF /* NSFunctionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874D5C020AAD50A0004B1AF /* NSFunctionCell.m */; };
 		188CC64A207F5430007D749E /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 188CC649207F5430007D749E /* AppDelegate.mm */; };
 		188CC650207F5431007D749E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188CC64E207F5431007D749E /* Main.storyboard */; };
 		188CC652207F5431007D749E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188CC651207F5431007D749E /* Assets.xcassets */; };
@@ -273,6 +276,12 @@
 		1863D26620A96C8800047A7D /* NSGoodsShowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSGoodsShowCell.m; sourceTree = "<group>"; };
 		1863D26920A9873B00047A7D /* UIButton+Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Bootstrap.h"; sourceTree = "<group>"; };
 		1863D26A20A9873C00047A7D /* UIButton+Bootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Bootstrap.m"; sourceTree = "<group>"; };
+		1874D5B920AA8F8A0004B1AF /* DCHomeTopToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCHomeTopToolView.m; sourceTree = "<group>"; };
+		1874D5BA20AA8F8A0004B1AF /* DCHomeTopToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCHomeTopToolView.h; sourceTree = "<group>"; };
+		1874D5BC20AABFDA0004B1AF /* NSCarouselView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCarouselView.h; sourceTree = "<group>"; };
+		1874D5BD20AABFDA0004B1AF /* NSCarouselView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCarouselView.m; sourceTree = "<group>"; };
+		1874D5BF20AAD50A0004B1AF /* NSFunctionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSFunctionCell.h; sourceTree = "<group>"; };
+		1874D5C020AAD50A0004B1AF /* NSFunctionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSFunctionCell.m; sourceTree = "<group>"; };
 		188CC645207F5430007D749E /* NSMall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSMall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188CC648207F5430007D749E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		188CC649207F5430007D749E /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -638,8 +647,6 @@
 		184F05EA209AE39600768418 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1863D26420A96AA200047A7D /* View */,
-				1863D26320A96A9000047A7D /* Ctrl */,
 				184F065720A2E32500768418 /* Store */,
 				184F064E20A2DBB800768418 /* Search */,
 				184F05FB209C590A00768418 /* Category */,
@@ -920,8 +927,14 @@
 		1863D26420A96AA200047A7D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1874D5BA20AA8F8A0004B1AF /* DCHomeTopToolView.h */,
+				1874D5B920AA8F8A0004B1AF /* DCHomeTopToolView.m */,
 				1863D26520A96C8800047A7D /* NSGoodsShowCell.h */,
 				1863D26620A96C8800047A7D /* NSGoodsShowCell.m */,
+				1874D5BC20AABFDA0004B1AF /* NSCarouselView.h */,
+				1874D5BD20AABFDA0004B1AF /* NSCarouselView.m */,
+				1874D5BF20AAD50A0004B1AF /* NSFunctionCell.h */,
+				1874D5C020AAD50A0004B1AF /* NSFunctionCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1481,6 +1494,8 @@
 		18DD156A208DCEEB0006475D /* Home(首页) */ = {
 			isa = PBXGroup;
 			children = (
+				1863D26420A96AA200047A7D /* View */,
+				1863D26320A96A9000047A7D /* Ctrl */,
 				184F065020A2DBFF00768418 /* Param */,
 				184F05EA209AE39600768418 /* Model */,
 				18D0825020956EB70031034A /* API */,
@@ -1759,6 +1774,7 @@
 				18B017A820A67B9600826EA4 /* ADAddressModel.m in Sources */,
 				184043412099FB0600685F80 /* ADLChangePhoneViewController.m in Sources */,
 				18230F66208D793F00D3E55F /* BaseViewCtrl.m in Sources */,
+				1874D5C120AAD50A0004B1AF /* NSFunctionCell.m in Sources */,
 				182DC49120905E3C0066E667 /* ADOrderTopToolView.m in Sources */,
 				18C3D08020A2F0FA000FCE7F /* SaveLabelParam.m in Sources */,
 				18B017A620A67B9600826EA4 /* NSAddressItemModel.m in Sources */,
@@ -1813,6 +1829,8 @@
 				18B0179520A67B9600826EA4 /* YWAddressTableViewCell.m in Sources */,
 				188CC64A207F5430007D749E /* AppDelegate.mm in Sources */,
 				18DD1588208DEA960006475D /* ADLMyInfoModel.m in Sources */,
+				1874D5BE20AABFDA0004B1AF /* NSCarouselView.m in Sources */,
+				1874D5BB20AA8F8A0004B1AF /* DCHomeTopToolView.m in Sources */,
 				184043572099FEE900685F80 /* ADLFilterSelectItem.m in Sources */,
 				18C3D08120A2F0FA000FCE7F /* GetLabelsParam.m in Sources */,
 				184043542099FE8B00685F80 /* FFSpearteLineView.m in Sources */,
