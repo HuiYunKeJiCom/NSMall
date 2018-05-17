@@ -116,15 +116,33 @@ AFHTTPSessionManager *httpManager = nil;
 }
 
 
-+ (void)uploadWithPost{
-    [httpManager POST:@"" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        
++ (void)uploadDataWithPost:(NSDictionary *)params function:(NSString *)function success:(void (^)(NSDictionary *result))success failure:(void (^)(NSError *error))failure{
+    
+    UIImage *image = params[@"pic"];
+    NSString *imageName = params[@"imageName"];
+    
+    NSData *imgData = UIImageJPEGRepresentation(image, 0.1); // 1 -> 0.1
+    NSInteger dataLength = imgData.length;
+    CGFloat rate = 1.0;
+    if (dataLength >= 1000 * 1000 * 5) {
+        rate = 1000.0 * 1000.0 * 5.0 / dataLength;
+    } else if (dataLength >= 1000 * 1000 * 2 && dataLength < 1000 * 1000 * 5) {
+        rate = 0.7;
+    } else {
+        rate = 1.0;
+    }
+    NSData *data = UIImageJPEGRepresentation(image, rate * 0.1);
+
+    
+    [httpManager POST:[NSString stringWithFormat:@"%@%@",NetDomainADDR,function] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        [formData appendPartWithFileData:data name:@"file" fileName:imageName mimeType:@"multipart/form-data"];
+//        [formData appendPartWithFormData:data name:@"file" ];
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
+        success?success(responseObject):nil;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        failure?failure(error):nil;
     }];
     
 }
@@ -133,3 +151,4 @@ AFHTTPSessionManager *httpManager = nil;
 
 
 @end
+

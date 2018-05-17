@@ -28,7 +28,7 @@
 - (void)setUpNavTopView
 {
     self.topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
-    self.topToolView.backgroundColor = k_UIColorFromRGB(0xffffff);
+    self.topToolView.backgroundColor = kWhiteColor;
     WEAKSELF
     self.topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");

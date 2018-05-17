@@ -94,7 +94,7 @@
 
 - (UILabel *)titleLab {
     if (!_titleLab) {
-        _titleLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum17 TextColor:k_UIColorFromRGB(0xffffff)];
+        _titleLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum17 TextColor:kWhiteColor];
         _titleLab.textColor = [UIColor blackColor];
     }
     return _titleLab;

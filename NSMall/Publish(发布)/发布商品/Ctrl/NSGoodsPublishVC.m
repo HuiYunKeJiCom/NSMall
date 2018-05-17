@@ -99,19 +99,19 @@
     self.shopNameTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.shopNameTF.placeholder = @"商品标题,品类、品牌、型号等";
     self.shopNameTF.textColor = [UIColor lightGrayColor];
-    self.shopNameTF.backgroundColor = k_UIColorFromRGB(0xffffff);
+    self.shopNameTF.backgroundColor = kWhiteColor;
     UIView *paddingView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, GetScaleWidth(30))];
     self.shopNameTF.leftView = paddingView;
     self.shopNameTF.leftViewMode = UITextFieldViewModeAlways;
     [self.middleView addSubview:self.shopNameTF];
     
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, GetScaleWidth(30), kScreenWidth, GetScaleWidth(10))];
-    view.backgroundColor = k_UIColorFromRGB(0xffffff);
+    view.backgroundColor = kWhiteColor;
     [self.middleView addSubview:view];
     
     self.detailTV = [[UITextView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(40), kScreenWidth, GetScaleWidth(110))];
     self.detailTV.textColor = [UIColor lightGrayColor];
-    self.detailTV.backgroundColor = k_UIColorFromRGB(0xffffff);
+    self.detailTV.backgroundColor = kWhiteColor;
     self.detailTV.font = [UIFont systemFontOfSize:14];
     self.detailTV.delegate = self;
     self.detailTV.zw_placeHolder = @"在这里详细描述下商品,卖点、优势等~";
@@ -130,7 +130,7 @@
     _layout = [[LxGridViewFlowLayout alloc] init];
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:_layout];
     _collectionView.alwaysBounceVertical = YES;
-    _collectionView.backgroundColor = k_UIColorFromRGB(0xffffff);
+    _collectionView.backgroundColor = kWhiteColor;
     _collectionView.contentInset = UIEdgeInsetsMake(4, 4, 4, 4);
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
@@ -695,7 +695,7 @@
 
 -(void)setUpAddView{
     self.addView = [[UIView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(1), kScreenWidth, GetScaleWidth(120))];
-    self.addView.backgroundColor = k_UIColorFromRGB(0xffffff);
+    self.addView.backgroundColor = kWhiteColor;
     [self.SV addSubview:self.addView];
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -709,7 +709,7 @@
     
     UILabel *addPhotoLab=[[UILabel alloc] initWithFrame:CGRectMake(self.addView.centerX- contentSize.width*0.5, CGRectGetMaxY(btn.frame)+3, contentSize.width, contentSize.height)];
     [addPhotoLab setText:@"添加照片"];
-    addPhotoLab.font = kFontSize15;
+    addPhotoLab.font = UISystemFontSize(15);
     addPhotoLab.textColor= [UIColor blackColor];
     [self.addView addSubview:addPhotoLab];
 }
@@ -725,7 +725,7 @@
 {
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     topToolView.hidden = NO;
-    topToolView.backgroundColor = k_UIColorFromRGB(0xffffff);
+    topToolView.backgroundColor = kWhiteColor;
     [topToolView setTopTitleWithNSString:KLocalizableStr(@"发布商品")];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{

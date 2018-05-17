@@ -56,7 +56,7 @@
 - (void)setUpNavTopView
 {
     NSNavView *topToolView = [[NSNavView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
-    topToolView.backgroundColor = k_UIColorFromRGB(0xffffff);
+    topToolView.backgroundColor = kWhiteColor;
     [topToolView setTopTitleWithNSString:KLocalizableStr(@"联系人")];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{

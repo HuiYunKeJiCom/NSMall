@@ -12,7 +12,7 @@
 #import "ADLEditUserInformCtrl.h"
 
 //#import "ADLFixUserNameController.h"
-#import "ADLUserNameController.h"
+//#import "ADLUserNameController.h"
 #import "ADOrderTopToolView.h"
 
 #import <AVFoundation/AVFoundation.h>
@@ -20,6 +20,8 @@
 #import "UIImage+wrapper.h"
 #import "ADLChangePhoneViewController.h"
 #import "UserInfoAPI.h"
+
+#import "TDUserCertifyViewCtrl.h"
 
 
 @interface ADLUpdateUserInformCtrl ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
@@ -62,7 +64,7 @@
 - (void)setUpNavTopView
 {
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth,  TopBarHeight)];
-    topToolView.backgroundColor = k_UIColorFromRGB(0xffffff);
+    topToolView.backgroundColor = kWhiteColor;
     [topToolView setTopTitleWithNSString:KLocalizableStr(@"修改个人信息")];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
@@ -212,9 +214,9 @@
                     [self.navigationController pushViewController:ctrl animated:YES];
                     
                 } else if (type == EditUserTypeCertification) {
-                    
-                    ADLUserNameController *ctrl = [[ADLUserNameController alloc] init];
-                    ctrl.editTitle = title;
+//                    [self.navigationController setNavigationBarHidden:NO];
+                    TDUserCertifyViewCtrl *ctrl = [[TDUserCertifyViewCtrl alloc] init];
+//                    ctrl.editTitle = title;
                     [self.navigationController pushViewController:ctrl animated:YES];
                 } else {
                     
@@ -357,42 +359,19 @@
     
     //这里已修改
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    [param setObject:image forKey:@"file"];
-    [UserInfoAPI uploadHeaderWithParam:param success:^(NSString *path){
+    [param setObject:image forKey:@"pic"];
+    [param setObject:@"header" forKey:@"imageName"];
+    
+    [UserInfoAPI uploadHeaderWithParam:param success:^(NSString *path) {
         NSLog(@"头像上传成功");
-        [weakSelf updateUserPhone:path image:image];
+        UserModel *userModel = [UserModel modelFromUnarchive];
+        userModel.pic_img = path;
+        [userModel archive];
+        [weakSelf.userTable reloadData];
     } faulre:^(NSError *error) {
         NSLog(@"头像上传失败");
     }];
 }
-
-- (void)updateUserPhone:(NSString *)pictureUrl image:(UIImage *)image {
-    
-    //这里已修改
-    WEAKSELF
-    UserModel *userModel = [UserModel modelFromUnarchive];
-    pictureUrl = [NSString limitStringNotEmpty:pictureUrl];
-    
-//    NSString *gender = [NSString limitStringNotEmpty:[NSString stringWithFormat:@"%lu",userModel.sex]];
-//    gender = [gender stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    NSString *nickName = [NSString limitStringNotEmpty:userModel.user_name];
-//    nickName = [nickName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//
-//    UpdateUserParam *param = [UpdateUserParam new];
-//    param.userName = nickName;
-//    param.sex = gender;
-//    [UserInfoAPI updateUserWithParam:param success:^{
-//        DLog(@"修改信息成功");
-//        userModel.user_name = nickName;
-//        userModel.sex = [gender integerValue];
-//    } faulre:^(NSError *error) {
-//        DLog(@"修改信息失败");
-//    }];
-    userModel.pic_img = pictureUrl;
-    [userModel archive];
-    [weakSelf.userTable reloadData];
-}
-
 
 @end
 

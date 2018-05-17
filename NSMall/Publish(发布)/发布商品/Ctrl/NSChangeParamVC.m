@@ -45,7 +45,7 @@
     [self.view addSubview:self.errorLabel];
     
     //这里已修改
-    UserModel *userModel = [UserModel modelFromUnarchive];
+//    UserModel *userModel = [UserModel modelFromUnarchive];
 
         self.contentField.hidden = NO;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
@@ -59,7 +59,7 @@
 - (void)setUpNavTopView
 {
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
-    topToolView.backgroundColor = k_UIColorFromRGB(0xffffff);
+    topToolView.backgroundColor = kWhiteColor;
     [topToolView setTopTitleWithNSString:[NSString stringWithFormat:@"%@ %@",KLocalizableStr(@"修改"),_editTitle]];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
@@ -95,7 +95,7 @@
 - (UITextField *)contentField {
     if (!_contentField) {
         _contentField = [[UITextField alloc] initWithFrame:CGRectZero];
-        _contentField.font = kFontSize13;
+        _contentField.font = UISystemFontSize(13);
         _contentField.textAlignment = NSTextAlignmentCenter;
         
         UILabel * placeholderLabel = [_contentField valueForKey:@"_placeholderLabel"];
@@ -114,7 +114,7 @@
         _commitButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_commitButton setTitle:KLocalizableStr(@"确定") forState:UIControlStateNormal];
         [_commitButton setTitleColor:KColorTextFFFFFF forState:UIControlStateNormal];
-        _commitButton.titleLabel.font = kFontSize15;
+        _commitButton.titleLabel.font = UISystemFontSize(15);
         _commitButton.backgroundColor = KMainColor;
         _commitButton.layer.cornerRadius = GetScaleWidth(20);
         _commitButton.layer.masksToBounds = YES;

@@ -38,7 +38,7 @@
 - (void)setUpNavTopView
 {
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
-    topToolView.backgroundColor = k_UIColorFromRGB(0xffffff);
+    topToolView.backgroundColor = kWhiteColor;
     [topToolView setTopTitleWithNSString:KLocalizableStr(@"添加好友")];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{

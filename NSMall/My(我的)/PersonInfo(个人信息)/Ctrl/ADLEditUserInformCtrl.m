@@ -102,7 +102,7 @@
 - (UITextField *)contentField {
     if (!_contentField) {
         _contentField = [[UITextField alloc] initWithFrame:CGRectZero];
-        _contentField.font = kFontSize13;
+        _contentField.font = UISystemFontSize(13);
         _contentField.textAlignment = NSTextAlignmentCenter;
         
         UILabel * placeholderLabel = [_contentField valueForKey:@"_placeholderLabel"];
@@ -121,7 +121,7 @@
         _commitButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_commitButton setTitle:KLocalizableStr(@"保存") forState:UIControlStateNormal];
         [_commitButton setTitleColor:KColorTextFFFFFF forState:UIControlStateNormal];
-        _commitButton.titleLabel.font = kFontSize15;
+        _commitButton.titleLabel.font = UISystemFontSize(15);
         _commitButton.backgroundColor = KMainColor;
         _commitButton.layer.cornerRadius = GetScaleWidth(20);
         _commitButton.layer.masksToBounds = YES;
@@ -218,9 +218,20 @@
         nickName = [[_contentField.text trim] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         gender = [NSString limitStringNotEmpty:[NSString stringWithFormat:@"%lu",userModel.sex]];
     }else{
+        if([self.gender isEqualToString:@"2"] || [self.gender isEqualToString:@"女"]){
+            self.gender = @"2";
+        }
+        if([self.gender isEqualToString:@"1"] || [self.gender isEqualToString:@"男"]){
+            self.gender = @"1";
+        }
+        if([self.gender isEqualToString:@"0"] || [self.gender isEqualToString:@"保密"]){
+            self.gender = @"0";
+        }
+        
         nickName = [NSString limitStringNotEmpty:userModel.user_name];
         gender = [self.gender stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     }
+    
     UpdateUserParam *param = [UpdateUserParam new];
     param.userName = nickName;
     param.sex = gender;
@@ -229,6 +240,7 @@
         DLog(@"修改信息成功");
         userModel.user_name = nickName;
         userModel.sex = [gender integerValue];
+        
         [userModel archive];
         [weakSelf back];
     } faulre:^(NSError *error) {

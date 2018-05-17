@@ -22,6 +22,8 @@ extern AFHTTPSessionManager *httpManager;
 + (void)requestWithPost:(nullable id)params function:(nullable NSString *)function showHUD:(nullable NSString *)showHUD resultClass:(nullable Class)resultClass success:(nullable void (^)(id _Nullable resultObj))success failure:(nullable void (^)(NSError * _Nullable error))failure;
 + (void)requestWithGet:(nullable id)params function:(nullable NSString *)function showHUD:(nullable NSString *)showHUD resultClass:(nullable Class)resultClass success:(nullable void (^)(id _Nullable resultObj))success failure:(nullable void (^)(NSError * _Nullable error))failure;
 
-
+//上传文件
++ (void)uploadDataWithPost:(NSDictionary *)params function:(NSString *)function success:(void (^)(NSDictionary *result))success failure:(void (^)(NSError *error))failure;
 
 @end
+

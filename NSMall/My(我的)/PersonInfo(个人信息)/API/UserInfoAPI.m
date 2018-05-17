@@ -26,10 +26,12 @@
     }];
 }
 
-+ (void)uploadHeaderWithParam:(NSDictionary *)param success:(void (^)(NSString *path))success faulre:(void (^)(NSError *))failure{
-    [Net requestWithPost:param function:kUploadHeaderAPI showHUD:NetNullStr resultClass:nil success:^(NSDictionary *resultObj) {
-        success?success([resultObj.allValues firstObject]):nil;
-    } failure:^(NSError * _Nullable error) {
++ (void)uploadHeaderWithParam:(NSDictionary *)params success:(void (^)(NSString *path))success faulre:(void (^)(NSError *))failure{
+    [Net uploadDataWithPost:params function:kUploadHeaderAPI success:^(NSDictionary *result) {
+        DLog(@"上传头像result = %@",result);
+        NSString* imageUrl = result[@"data"][@"path"];
+        success?success(imageUrl):nil;
+    } failure:^(NSError *error) {
         failure?failure(error):nil;
     }];
 }

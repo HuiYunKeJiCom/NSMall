@@ -118,7 +118,6 @@
         case 6:{
             NSLog(@"点击了设置");
             //跳转至个人信息
-//            NSPersonInfoViewController *personInfoVC = [[NSPersonInfoViewController alloc]init];
             ADLUpdateUserInformCtrl *userInfoVC = [ADLUpdateUserInformCtrl new];
             [self.navigationController pushViewController:userInfoVC animated:YES];
         }

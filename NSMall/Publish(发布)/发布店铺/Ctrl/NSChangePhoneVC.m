@@ -50,7 +50,7 @@
 - (void)setUpNavTopView
 {
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
-    topToolView.backgroundColor = k_UIColorFromRGB(0xffffff);
+    topToolView.backgroundColor = kWhiteColor;
     [topToolView setTopTitleWithNSString:[NSString stringWithFormat:@"%@ %@",KLocalizableStr(@"修改"),_editTitle]];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
@@ -85,7 +85,7 @@
 - (UITextField *)phoneField {
     if (!_phoneField) {
         _phoneField = [[UITextField alloc] initWithFrame:CGRectZero];
-        _phoneField.font = kFontSize13;
+        _phoneField.font = UISystemFontSize(13);
         _phoneField.placeholder = KLocalizableStr(@"请输入新的手机号");
         _phoneField.keyboardType = UIKeyboardTypeNumberPad;
         _phoneField.delegate = self;
@@ -98,7 +98,7 @@
         _commitButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_commitButton setTitle:KLocalizableStr(@"确定") forState:UIControlStateNormal];
         [_commitButton setTitleColor:KColorTextFFFFFF forState:UIControlStateNormal];
-        _commitButton.titleLabel.font = kFontSize15;
+        _commitButton.titleLabel.font = UISystemFontSize(15);
         _commitButton.backgroundColor = KMainColor;
         _commitButton.layer.cornerRadius = GetScaleWidth(20);
         _commitButton.layer.masksToBounds = YES;
@@ -240,7 +240,7 @@
 - (UITextField *)countryField {
     if (!_countryField) {
         _countryField = [[UITextField alloc] initWithFrame:CGRectZero];
-        _countryField.font = kFontSize13;
+        _countryField.font = UISystemFontSize(13);
         _countryField.keyboardType = UIKeyboardTypeNumberPad;
         _countryField.text = @"86";
         _countryField.textColor = KColorText999999;
@@ -263,7 +263,7 @@
         NSString *title = [NSString stringWithFormat:@"  %@  ",KLocalizableStr(@"获取验证码")];
         [_codeButton setTitle:title forState:UIControlStateNormal];
         [_codeButton setTitleColor:KMainColor forState:UIControlStateNormal];
-        _codeButton.titleLabel.font = kFontSize12;
+        _codeButton.titleLabel.font = UISystemFontSize(12);
         _codeButton.backgroundColor = [UIColor clearColor];
         _codeButton.layer.cornerRadius = GetScaleWidth(20);
         _codeButton.layer.borderColor = KMainColor.CGColor;
@@ -281,7 +281,7 @@
         _codeField.backgroundColor = KColorTextF2F4F7;
         _codeField.layer.cornerRadius = GetScaleWidth(20);
         _codeField.textField.placeholder = KLocalizableStr(@"请输入验证码");
-        _codeField.textField.font = kFontSize12;
+        _codeField.textField.font = UISystemFontSize(12);
         _codeField.textField.keyboardType = UIKeyboardTypeNumberPad;
         _codeField.textField.delegate = self;
         

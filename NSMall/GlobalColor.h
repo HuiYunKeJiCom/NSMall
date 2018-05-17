@@ -21,7 +21,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 //#define kBACKGROUNDCOLOR [UIColor colorWithHexString:@"#eeeeee"]
 // 全局背景色  白色
 #define kBACKGROUNDCOLOR [UIColor whiteColor]
-
+#define KColorMainBackground [UIColor whiteColor]
+//[UIColor blackColor]
 // 背景色  淡灰色
 #define KBGCOLOR [UIColor colorWithHexString:@"#E0E0E0"]
 
@@ -65,6 +66,17 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define kFontNum16                  16
 #define kFontNum17                  17
 
+/** 副背景色: 深蓝色 */
+#define KColorSubBackground         UIColorFromRGB(0x26263a)
+/** 主绿色 */
+#define KColorMainGreen             UIColorFromRGB(0x3ba447)
+
+/** 文本色: placeHolder */
+#define KColorTextPlaceHolder       UIColorFromRGB(0x8399a8)
+/** 文本色: content */
+#define KColorTextContent           UIColorFromRGB(0xd6e9fc)
+/** 文本色: title */
+#define KColorTextTitle             UIColorFromRGB(0xffffff)
 
 #define PFR [[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0 ? @"PingFangSC-Regular" : @"PingFang SC"
 #define PFR20Font [UIFont fontWithName:PFR size:20];
@@ -85,7 +97,18 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #define KMainColor UIColorFromRGB(0x0aa1e0)
 
+/** 主橙色 */
+#define KColorMainOrange            UIColorFromRGB(0xffc334)
 
+///** 白色 */
+//#define KColorTextFFFFFF5               k_UIColorRGBA(0XFFFFFF,0.5)
+
+#define k_UIColorRGBA(rgbValue,a)\
+\
+[UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+blue:((float)(rgbValue & 0xFF))/255.0 \
+alpha:a]
 
 
 

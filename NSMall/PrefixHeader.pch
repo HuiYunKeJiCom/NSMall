@@ -47,6 +47,8 @@
 #import "UIView+DCRolling.h"
 #import "UIView+Frame.h"
 #import "BaseTableCell.h"
+#import "TDBaseViewController.h"
+#import "BaseCellTextFiled.h"
 #import <Masonry/Masonry.h>
 #import "MBProgressHUD+MJ.h"
 #import "UserModel.h"
@@ -55,7 +57,9 @@
 #import "UIImageView+WebCache.h"
 #import <MJExtension/MJExtension.h>
 #import "PPUntil.h"
-
+#import <ReactiveCocoa.h>
+#import "MBProgressHUD+Extension.h"
+#import "UIImage+Extension.h"
 
 #import <TZImagePickerController/TZImagePickerController.h>
 #import "LxGridViewFlowLayout.h"

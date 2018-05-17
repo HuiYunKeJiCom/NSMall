@@ -14,7 +14,6 @@
 
 #import "MessageCell.h"
 
-#import "UIImage+Extension.h"
 #import "HyperlinksButton.h"
 
 #import "NSString+Extension.h"

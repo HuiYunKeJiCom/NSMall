@@ -143,21 +143,15 @@ static inline BOOL IsEmpty(id thing) {
         && [(NSArray *)thing count] == 0);
 }
 
-#define k_UIColorFromRGB(rgbValue)\
-\
-[UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
-green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
-blue:((float)(rgbValue & 0xFF))/255.0 \
-alpha:1.0]
+//#define k_UIColorFromRGB(rgbValue)\
+//\
+//[UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+//green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+//blue:((float)(rgbValue & 0xFF))/255.0 \
+//alpha:1.0]
 
-#define kFontSize10                 [UIFont systemFontOfSize:10]
-#define kFontSize11                 [UIFont systemFontOfSize:11]
-#define kFontSize12                 [UIFont systemFontOfSize:12]
-#define kFontSize13                 [UIFont systemFontOfSize:13]
-#define kFontSize14                 [UIFont systemFontOfSize:14]
-#define kFontSize15                 [UIFont systemFontOfSize:15]
-#define kFontSize16                 [UIFont systemFontOfSize:16]
-#define kFontSize17                 [UIFont systemFontOfSize:17]
+#define UISystemFontSize(s)           [UIFont systemFontOfSize:s]
+
 
 #define kSmallMargin 10
 #define kBigMargin 20
@@ -167,5 +161,17 @@ alpha:1.0]
 #define Image_Url(url) [NSString stringWithFormat:@"%@%@",Image_Host,url]
 
 #define kAppDelegate               ((AppDelegate *)([UIApplication sharedApplication].delegate))
+
+//算行高
+#define KTextSize(text, width, fontSize) [text boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]} context:nil].size
+
+#define kEdgeInsetTop               4
+#define kEdgeInsetLeft              8
+#define kEdgeInsetBottom            10
+#define kEdgeInsetRight             8
+#define kMinimumInteritemSpacing    10   //collectionviewcell 左右间距
+#define kMinimumLineSpacing         15   //collectionviewcell 上下间距
+
+#define UIBoldFontSize(s)           [UIFont boldSystemFontOfSize:s]
 
 
