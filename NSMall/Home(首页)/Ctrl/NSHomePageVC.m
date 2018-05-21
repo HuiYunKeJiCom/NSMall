@@ -113,9 +113,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0){
-        return GetScaleWidth(112);
+        return GetScaleWidth(73);
     }else{
-        return GetScaleWidth(275);
+        return GetScaleWidth(259);
     }
 }
 
@@ -125,20 +125,20 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if(section == 0){
-        return GetScaleWidth(240);
+        return GetScaleWidth(160);
     }else{
         //设置间隔高度
-        return 5;
+        return GetScaleWidth(6);
     }
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if(section == 0){
-        NSCarouselView *carouselView = [[NSCarouselView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth,GetScaleWidth(240))];
+        NSCarouselView *carouselView = [[NSCarouselView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth,GetScaleWidth(160))];
         carouselView.imageGroupArray = self.imageGroupArray;
         return carouselView;
     }else{
-        UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(5))];
+        UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(6))];
         sectionView.backgroundColor = [UIColor lightGrayColor];
         return sectionView;
     }

@@ -11,6 +11,8 @@
 #import "ADLMyInfoTableView.h"
 #import "ADLUpdateUserInformCtrl.h"
 #import "UserInfoAPI.h"
+#import "NSMyGoodsListVC.h"//我的商品列表
+#import "NSCollectionListVC.h"//我的收藏
 
 @interface NSMyCenterViewController ()<ADLMyInfoTableViewDelegate>
 @property (strong, nonatomic) ADLMyInfoTableView   *otherTableView;
@@ -101,6 +103,9 @@
             break;
         case 2:{
             NSLog(@"点击了我的商品");
+            //跳转至我的商品
+            NSMyGoodsListVC *goodsVC = [NSMyGoodsListVC new];
+            [self.navigationController pushViewController:goodsVC animated:YES];
         }
             break;
         case 3:{
@@ -113,6 +118,9 @@
             break;
         case 5:{
             NSLog(@"点击了我的收藏");
+            //跳转至我的收藏
+            NSCollectionListVC *collectionVC = [NSCollectionListVC new];
+            [self.navigationController pushViewController:collectionVC animated:YES];
         }
             break;
         case 6:{

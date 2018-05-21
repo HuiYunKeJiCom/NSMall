@@ -120,7 +120,7 @@
     
     UIImageView *imgView = [[UIImageView alloc]initWithImage:img];
     
-    imgView.frame = CGRectMake(self.view.center.x-15, self.view.frame.size.height-45-25, 30, 30);
+    imgView.frame = CGRectMake(self.view.center.x-GetScaleWidth(15), self.view.frame.size.height-GetScaleWidth(70), GetScaleWidth(30), GetScaleWidth(30));
     [self.view addSubview:imgView];
     
     _closeImgView = imgView;
@@ -175,7 +175,7 @@
     CGFloat margin = ([UIScreen mainScreen].bounds.size.width - cols * wh) / (cols + 1);
     
     //此处按照不同屏幕尺寸适配
-    CGFloat oriY = GetScaleWidth(450);
+    CGFloat oriY = GetScaleWidth(397);
 //    if (kScreenHeight == 480) {
 //        //4/4s
 //        oriY = 313;

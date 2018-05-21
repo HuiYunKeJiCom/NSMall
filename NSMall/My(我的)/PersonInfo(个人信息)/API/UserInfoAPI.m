@@ -36,9 +36,64 @@
     }];
 }
 
++ (void)uploadIDCardWithParam:(NSDictionary *)params success:(void (^)(NSString *path))success faulre:(void (^)(NSError *))failure{
+    [Net uploadDataWithPost:params function:kUploadIDCardAPI success:^(NSDictionary *result) {
+        DLog(@"上传身份证result = %@",result);
+        NSString* imageUrl = result[@"data"][@"imagePaths"];
+        success?success(imageUrl):nil;
+    } failure:^(NSError *error) {
+        failure?failure(error):nil;
+    }];
+}
+
 + (void)updateUserWithParam:(UpdateUserParam *)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure{
     [Net requestWithPost:param function:kUpdateUserAPI showHUD:NetNullStr resultClass:[NSDictionary class] success:^(id  _Nullable resultObj) {
         success?success():nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+}
+
+
+
++ (void)certificationWithParam:(NSDictionary *)param success:(void (^)(NSString *message))success faulre:(void (^)(NSError *))failure{
+    [Net requestWithPost:param function:kCertificationAPI showHUD:NetNullStr resultClass:[NSDictionary class] success:^(id  _Nullable resultObj) {
+        DLog(@"认证信息result = %@",resultObj);
+        NSString *message = resultObj[@"message"];
+        success?success(message):nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+}
+
+/*
+ 获取我的商品列表
+ */
++ (void)getMyProductList:(nullable NSCommonParam *)param success:(void (^)(NSMyProductListModel * _Nullable result))success failure:(void (^)(NSError *error))failure{
+    [Net requestWithGet:param function:kMyProductListAPI showHUD:NetNullStr resultClass:[NSMyProductListModel class] success:^(NSMyProductListModel  * _Nullable  resultObj){
+        success?success(resultObj):nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+}
+
+/*
+ 获取我的收藏
+ */
++ (void)getMyCollectionList:(nullable NSCommonParam *)param success:(void (^)(ProductListModel * _Nullable result))success failure:(void (^)(NSError *error))failure{
+    [Net requestWithGet:param function:kCollectionListAPI showHUD:NetNullStr resultClass:[ProductListModel class] success:^(ProductListModel  * _Nullable  resultObj){
+        success?success(resultObj):nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+}
+
+/*
+ 获取我的店铺
+ */
++ (void)getMyShopList:(nullable NSCommonParam *)param success:(void (^)(NSShopListModel * _Nullable result))success failure:(void (^)(NSError *error))failure{
+    [Net requestWithGet:param function:kMyStoreListAPI showHUD:NetNullStr resultClass:[NSShopListModel class] success:^(NSShopListModel  * _Nullable  resultObj){
+        success?success(resultObj):nil;
     } failure:^(NSError * _Nullable error) {
         failure?failure(error):nil;
     }];

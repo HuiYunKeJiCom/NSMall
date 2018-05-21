@@ -135,8 +135,8 @@ AFHTTPSessionManager *httpManager = nil;
 
     
     [httpManager POST:[NSString stringWithFormat:@"%@%@",NetDomainADDR,function] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        [formData appendPartWithFileData:data name:@"file" fileName:imageName mimeType:@"multipart/form-data"];
-//        [formData appendPartWithFormData:data name:@"file" ];
+        [formData appendPartWithFileData:data name:@"file" fileName:imageName mimeType:@"image/jpeg"];
+//        [formData appendPartWithFormData:data name:@"file" ];multipart/form-data
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

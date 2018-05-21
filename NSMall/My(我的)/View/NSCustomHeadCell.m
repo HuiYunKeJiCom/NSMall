@@ -39,7 +39,7 @@
     self.backgroundColor = [UIColor whiteColor];
     
     //头像
-    self.goodsIV = [[UIImageView alloc] initWithFrame:CGRectMake(GetScaleWidth(29), GetScaleWidth(38), GetScaleWidth(71), GetScaleWidth(71))];
+    self.goodsIV = [[UIImageView alloc] initWithFrame:CGRectMake(GetScaleWidth(19), GetScaleWidth(21), GetScaleWidth(48), GetScaleWidth(48))];
 //    self.goodsIV.backgroundColor = [UIColor greenColor];
     [self.goodsIV setContentMode:UIViewContentModeScaleAspectFill];
     [self.contentView addSubview:self.goodsIV];
@@ -50,8 +50,8 @@
     
     //用户名
     self.userName = [[UILabel alloc] init];
-    self.userName.x = CGRectGetMaxX(self.goodsIV.frame)+GetScaleWidth(18);
-    self.userName.y = CGRectGetMinY(self.goodsIV.frame)+GetScaleWidth(10);
+    self.userName.x = CGRectGetMaxX(self.goodsIV.frame)+GetScaleWidth(12);
+    self.userName.y = CGRectGetMinY(self.goodsIV.frame)+GetScaleWidth(7);
     self.userName.font = [UIFont systemFontOfSize:kFontNum15];
     self.userName.textColor = KColorText323232;
 //    [self.userName sizeToFit];
@@ -59,16 +59,11 @@
     
     //天数记录
     self.daysRecord = [[UILabel alloc] init];
-    self.daysRecord.x = CGRectGetMaxX(self.goodsIV.frame)+GetScaleWidth(18);
-    self.daysRecord.y = CGRectGetMaxY(self.userName.frame)+GetScaleWidth(23);
     self.daysRecord.font = [UIFont systemFontOfSize:kFontNum15];
     self.daysRecord.textColor = KColorText323232;
     [self.contentView addSubview:self.daysRecord];
 
     self.arrowImgView = [[UIImageView alloc] initWithImage:IMAGE(@"my_ico_right_arrow")];
-    self.arrowImgView.right = CGRectGetMaxX(self.contentView.frame) + GetScaleWidth(58);
-    self.arrowImgView.top = GetScaleWidth(68);
-    self.arrowImgView.size = CGSizeMake(GetScaleWidth(8), GetScaleWidth(14));
 //    NSLog(@"arrowImgView.frame = %@",NSStringFromCGRect(self.arrowImgView.frame));
     [self.contentView addSubview:self.arrowImgView];
 }
@@ -88,9 +83,15 @@
     self.userName.text = KLocalizableStr([userModel.user_name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
     [self.userName sizeToFit];
     NSString *daysRecordStr = [NSString stringWithFormat:@"来诺商%@了!",userModel.regeist_day];
+    self.daysRecord.x = CGRectGetMaxX(self.goodsIV.frame)+GetScaleWidth(12);
+    self.daysRecord.y = CGRectGetMaxY(self.userName.frame)+GetScaleWidth(9);
     self.daysRecord.text = KLocalizableStr(daysRecordStr);
     [self.daysRecord sizeToFit];
     [self.goodsIV sd_setImageWithURL:[NSURL URLWithString:userModel.pic_img]];
+    
+    self.arrowImgView.right = kScreenWidth- GetScaleWidth(19);
+    self.arrowImgView.top = GetScaleWidth(40);
+    self.arrowImgView.size = CGSizeMake(GetScaleWidth(5), GetScaleWidth(9));
     
 }
 

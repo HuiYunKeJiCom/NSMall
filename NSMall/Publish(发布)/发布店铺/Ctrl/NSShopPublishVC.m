@@ -61,14 +61,14 @@
         self.addView.alpha = 0.0;
         self.collectionView.alpha = 1.0;
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
-        self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(10);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
+        self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
     }else{
         self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
-        self.middleView.dc_y = GetScaleWidth(130);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
+        self.middleView.dc_y = GetScaleWidth(109);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
     }
     
     
@@ -103,7 +103,7 @@
     self.SV.backgroundColor = KBGCOLOR;
     [self.view addSubview:self.SV];
     
-    self.otherTableView = [[NSShopTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(150+5+130), kScreenWidth, GetScaleWidth(218)) style:UITableViewStyleGrouped];
+    self.otherTableView = [[NSShopTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(150+5+130), kScreenWidth, GetScaleWidth(172)) style:UITableViewStyleGrouped];
     self.otherTableView.backgroundColor = [UIColor clearColor];
     self.otherTableView.bounces = NO;
     self.otherTableView.tbDelegate = self;
@@ -119,7 +119,7 @@
     [self setUpData];
     [self configCollectionView];
     
-    self.middleView = [[UIView alloc]initWithFrame:CGRectMake(0, GetScaleWidth(130), kScreenWidth, GetScaleWidth(30+10+110))];
+    self.middleView = [[UIView alloc]initWithFrame:CGRectMake(0, GetScaleWidth(109), kScreenWidth, GetScaleWidth(30+10+110))];
     self.middleView.backgroundColor = [UIColor whiteColor];
     [self.SV addSubview:self.middleView];
     
@@ -179,7 +179,7 @@
     _layout.minimumLineSpacing = _margin;
     [self.collectionView setCollectionViewLayout:_layout];
     CGFloat collectionViewY = GetScaleWidth(0);
-    self.collectionView.frame = CGRectMake(0, collectionViewY, self.view.tz_width, GetScaleWidth(120));
+    self.collectionView.frame = CGRectMake(0, collectionViewY, self.view.tz_width, GetScaleWidth(100));
 }
 
 #pragma mark UICollectionView
@@ -490,14 +490,14 @@
         self.collectionView.alpha = 1.0;
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
         self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+
-        (10);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
+        (9);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
     }else{
         self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
-        self.middleView.dc_y = GetScaleWidth(130);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
+        self.middleView.dc_y = GetScaleWidth(109);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
     }
     // NSLog(@"cancel");
 }
@@ -518,16 +518,16 @@
         self.addView.alpha = 0.0;
         self.collectionView.alpha = 1.0;
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
-        self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(10);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
+        self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
         
     }else{
         self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
-        self.collectionView.height = GetScaleWidth(120);
-        self.middleView.dc_y = GetScaleWidth(130);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
+        self.collectionView.height = GetScaleWidth(100);
+        self.middleView.dc_y = GetScaleWidth(109);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
     }
     
     // 1.打印图片名字
@@ -629,12 +629,12 @@
 }
 
 -(void)setUpAddView{
-    self.addView = [[UIView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(1), kScreenWidth, GetScaleWidth(120))];
+    self.addView = [[UIView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(1), kScreenWidth, GetScaleWidth(100))];
     self.addView.backgroundColor = kWhiteColor;
     [self.SV addSubview:self.addView];
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(self.addView.centerX- GetScaleWidth(25), GetScaleWidth(25), GetScaleWidth(50), GetScaleWidth(50));
+    btn.frame = CGRectMake(self.addView.centerX- GetScaleWidth(16), GetScaleWidth(28), GetScaleWidth(33), GetScaleWidth(27));
 
     [btn setImage:[UIImage imageNamed:@"publish_ico_goods_picture"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(addPhoto:) forControlEvents:UIControlEventTouchUpInside];
@@ -705,14 +705,14 @@
             self.addView.alpha = 0.0;
             self.collectionView.alpha = 1.0;
             self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
-            self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(10);
-            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
+            self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
+            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
         }else{
             self.SV.scrollEnabled = NO;
             self.addView.alpha = 1.0;
             self.collectionView.alpha = 0.0;
-            self.middleView.dc_y = GetScaleWidth(130);
-            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(5);
+            self.middleView.dc_y = GetScaleWidth(109);
+            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
         }
     }];
     

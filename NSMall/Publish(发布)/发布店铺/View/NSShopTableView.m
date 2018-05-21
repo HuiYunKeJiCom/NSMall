@@ -38,15 +38,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return GetScaleWidth(52);
+    return GetScaleWidth(43);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if(section == 0){
-        return GetScaleWidth(10);
-    }else{
+//    if(section == 0){
+//        return GetScaleWidth(11);
+//    }else{
         return 0;
-    }
+//    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

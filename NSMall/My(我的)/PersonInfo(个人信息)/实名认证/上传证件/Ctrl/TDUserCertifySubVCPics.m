@@ -333,7 +333,7 @@
 - (UIButton *)commitBtn {
     if (!_commitBtn) {
         _commitBtn = [UIButton new];
-        _commitBtn.backgroundColor = KColorMainOrange;
+        _commitBtn.backgroundColor = KMainColor;
         _commitBtn.layer.cornerRadius = 5;
         [_commitBtn setTitle:KLocalizableStr(@"确认上传") forState:UIControlStateNormal];
         [_commitBtn setTitleColor:KBGCOLOR forState:UIControlStateNormal];

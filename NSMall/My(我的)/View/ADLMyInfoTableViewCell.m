@@ -132,9 +132,9 @@
     
     WEAKSELF
     [self.leftImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.contentView).with.offset(GetScaleWidth(29));
+        make.left.equalTo(weakSelf.contentView).with.offset(GetScaleWidth(19));
         make.centerY.equalTo(weakSelf.contentView);
-        make.size.mas_equalTo(CGSizeMake(60*0.5, 60*0.5));
+        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(19), GetScaleWidth(19)));
     }];
     
     [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -143,9 +143,9 @@
     }];
     
     [self.arrowImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(weakSelf.contentView).with.offset(-GetScaleWidth(27));
+        make.right.equalTo(weakSelf.contentView).with.offset(-GetScaleWidth(19));
         make.centerY.equalTo(weakSelf.contentView);
-        make.size.mas_equalTo(CGSizeMake(16*0.5, 28*0.5));
+        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(5), GetScaleWidth(9)));
     }];
     
     [self.numLb mas_makeConstraints:^(MASConstraintMaker *make) {

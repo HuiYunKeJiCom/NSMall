@@ -85,7 +85,7 @@
 - (void)loginView:(NSLoginView *)logView userName:(NSString *)userName pwd:(NSString *)pwd {
     
     LoginParam *param = [LoginParam new];
-    param.loginAccount = @"test2";
+    param.loginAccount = @"test3";
     param.password = @"123456";
     param.loginType = @"1";
     [LoginAPI loginWithParam:param success:^{

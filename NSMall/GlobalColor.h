@@ -21,7 +21,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 //#define kBACKGROUNDCOLOR [UIColor colorWithHexString:@"#eeeeee"]
 // 全局背景色  白色
 #define kBACKGROUNDCOLOR [UIColor whiteColor]
-#define KColorMainBackground [UIColor whiteColor]
+#define KColorMainBackground [UIColor blackColor]
 //[UIColor blackColor]
 // 背景色  淡灰色
 #define KBGCOLOR [UIColor colorWithHexString:@"#E0E0E0"]
@@ -95,10 +95,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #define kGetColor(r,g,b)       [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 
+/** 主色调 蓝 */
 #define KMainColor UIColorFromRGB(0x0aa1e0)
-
-/** 主橙色 */
-#define KColorMainOrange            UIColorFromRGB(0xffc334)
 
 ///** 白色 */
 //#define KColorTextFFFFFF5               k_UIColorRGBA(0XFFFFFF,0.5)

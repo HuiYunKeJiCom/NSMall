@@ -42,26 +42,26 @@
     self.bgView.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.bgView];
     
-    self.headerIV = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 50, 50)];
+    self.headerIV = [[UIImageView alloc]initWithFrame:CGRectMake(GetScaleWidth(11), GetScaleWidth(19), GetScaleWidth(33), GetScaleWidth(33))];
     [self.headerIV setContentMode:UIViewContentModeScaleAspectFill];
-    [self.headerIV.layer setCornerRadius:25];
-    [self.headerIV.layer setMasksToBounds:YES];
+//    [self.headerIV.layer setCornerRadius:33];
+//    [self.headerIV.layer setMasksToBounds:YES];
     [self.bgView addSubview:self.headerIV];
 
     self.userName = [[UILabel alloc] init];
-    self.userName.x = CGRectGetMaxX(self.headerIV.frame)+10;
-    self.userName.y = 10;
-    self.userName.font = [UIFont systemFontOfSize:kFontNum14];
+    self.userName.x = CGRectGetMaxX(self.headerIV.frame)+GetScaleWidth(6);
+    self.userName.y = GetScaleWidth(19);
+    self.userName.font = [UIFont systemFontOfSize:kFontNum13];
     self.userName.textColor = [UIColor blackColor];
     [self.bgView addSubview:self.userName];
     
     self.timeLab = [[UILabel alloc] init];
-    self.timeLab.font = [UIFont systemFontOfSize:kFontNum14];
+    self.timeLab.font = [UIFont systemFontOfSize:kFontNum13];
     self.timeLab.textColor = [UIColor lightGrayColor];
     [self.bgView addSubview:self.timeLab];
     
     self.priceLab = [[UILabel alloc] init];
-    self.priceLab.font = [UIFont systemFontOfSize:kFontNum14];
+    self.priceLab.font = [UIFont systemFontOfSize:kFontNum13];
     self.priceLab.textColor = [UIColor redColor];
     [self.bgView addSubview:self.priceLab];
     
@@ -107,41 +107,41 @@
     self.userName.text = productModel.user_name;
     [self.userName sizeToFit];
     self.timeLab.text = productModel.update_time;
-    self.timeLab.x = CGRectGetMaxX(self.headerIV.frame)+10;
-    self.timeLab.y = CGRectGetMaxY(self.userName.frame)+5;
+    self.timeLab.x = CGRectGetMaxX(self.headerIV.frame)+GetScaleWidth(6);
+    self.timeLab.y = CGRectGetMaxY(self.userName.frame)+GetScaleWidth(6);
     [self.timeLab sizeToFit];
 //    NSLog(@"show_price = %@",productModel.show_score);
     self.priceLab.text = [NSString stringWithFormat:@"N%.2f/¥%.2f",[productModel.show_price floatValue],[productModel.show_score floatValue]];
-    self.priceLab.x = kScreenWidth-10-self.priceLab.width;
-    self.priceLab.centerY = CGRectGetMidY(self.headerIV.frame);
     [self.priceLab sizeToFit];
-    float itemWidth = (kScreenWidth-20-24)/3.0;
-    self.imageSV.x = 10;
-    self.imageSV.y = CGRectGetMaxY(self.timeLab.frame)+20;
+    self.priceLab.x = kScreenWidth-GetScaleWidth(10)-self.priceLab.width;
+    self.priceLab.centerY = CGRectGetMidY(self.headerIV.frame);
+    float itemWidth = (kScreenWidth-GetScaleWidth(22)-GetScaleWidth(16))/3.0;
+    self.imageSV.x = GetScaleWidth(11);
+    self.imageSV.y = CGRectGetMaxY(self.headerIV.frame)+GetScaleWidth(15);
     self.imageSV.size = CGSizeMake(kScreenWidth, itemWidth);
-    self.imageSV.contentSize = CGSizeMake((itemWidth+12)*productModel.productImageList.count, 0);
+    self.imageSV.contentSize = CGSizeMake((itemWidth+GetScaleWidth(8))*productModel.productImageList.count, 0);
 //    NSLog(@"图片数量= %lu",productModel.productImageList.count);
     for(int i=0;i<productModel.productImageList.count;i++){
-        UIImageView *goodsIV = [[UIImageView alloc]initWithFrame:CGRectMake((itemWidth+12)*i, 0, itemWidth, itemWidth)];
+        UIImageView *goodsIV = [[UIImageView alloc]initWithFrame:CGRectMake((itemWidth+GetScaleWidth(8))*i, 0, itemWidth, itemWidth)];
         [goodsIV sd_setImageWithURL:[NSURL URLWithString:productModel.productImageList[i]]];
         [self.imageSV addSubview:goodsIV];
     }
     
-    self.detailLab.x = 10;
-    self.detailLab.y = CGRectGetMaxY(self.imageSV.frame)+15;
+    self.detailLab.x = GetScaleWidth(11);
+    self.detailLab.y = CGRectGetMaxY(self.imageSV.frame)+GetScaleWidth(13);
     self.detailLab.text = productModel.introduce;
-    CGSize maximumLabelSize = CGSizeMake(kScreenWidth-20, 9999);//labelsize的最大值
+    CGSize maximumLabelSize = CGSizeMake(kScreenWidth-GetScaleWidth(22), 9999);//labelsize的最大值
     CGSize expectSize = [self.detailLab sizeThatFits:maximumLabelSize];
     self.detailLab.size = CGSizeMake(expectSize.width, expectSize.height);
-    self.likeBtn.centerX = itemWidth*0.5-40+40;
-    self.likeBtn.y = CGRectGetMaxY(self.detailLab.frame)+25;
-    self.likeBtn.size = CGSizeMake(80, 20);
-    self.commentBtn.centerX = itemWidth*1.5-28+40;
-    self.commentBtn.y = CGRectGetMaxY(self.detailLab.frame)+25;
-    self.commentBtn.size = CGSizeMake(80, 20);
-    self.shareBtn.centerX = itemWidth*2.5-16+40;
-    self.shareBtn.y = CGRectGetMaxY(self.detailLab.frame)+25;
-    self.shareBtn.size = CGSizeMake(80, 20);
+    self.likeBtn.centerX = itemWidth*0.5;
+    self.likeBtn.y = CGRectGetMaxY(self.detailLab.frame)+GetScaleWidth(30);
+    self.likeBtn.size = CGSizeMake(GetScaleWidth(80), GetScaleWidth(12));
+    self.commentBtn.centerX = itemWidth*1.5+GetScaleWidth(12);
+    self.commentBtn.y = CGRectGetMaxY(self.detailLab.frame)+GetScaleWidth(30);
+    self.commentBtn.size = CGSizeMake(GetScaleWidth(80), GetScaleWidth(12));
+    self.shareBtn.centerX = itemWidth*2.5+GetScaleWidth(40-16);
+    self.shareBtn.y = CGRectGetMaxY(self.detailLab.frame)+GetScaleWidth(30);
+    self.shareBtn.size = CGSizeMake(GetScaleWidth(80), GetScaleWidth(12));
 }
 
 - (void)likeButtonClick {

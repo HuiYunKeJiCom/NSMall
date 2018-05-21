@@ -56,15 +56,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if(indexPath.section == 0){
-        return 288*0.5;
+        return GetScaleWidth(89);
     }else{
-        return 144*0.5;
+        return GetScaleWidth(48);
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if(section == 1 || section == 2 || section == 6){
-        return 30*0.5;
+        return GetScaleWidth(10);
     }else{
         return 0;
     }
@@ -72,7 +72,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 30*0.5)];
+    UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(10))];
     
     return sectionView;
 

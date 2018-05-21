@@ -124,7 +124,7 @@
         cell.layoutMargins = UIEdgeInsetsZero;
         cell.textLabel.textColor = KColorTextContent;
         cell.textLabel.font = UIBoldFontSize(15);
-        cell.tintColor = KColorMainOrange;
+        cell.tintColor = KMainColor;
     }
     cell.textLabel.text = [self.dataSource countryNameAtIndexPath:indexPath];
     cell.accessoryType = indexPath == self.selectedIndexPath ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
@@ -157,7 +157,7 @@
 
 - (void)setupViews {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:KLocalizableStr(@"取消") style:UIBarButtonItemStylePlain target:self action:@selector(clickedCancel:)];
-    self.navigationItem.leftBarButtonItem.tintColor = KColorMainOrange;
+    self.navigationItem.leftBarButtonItem.tintColor = KMainColor;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:KLocalizableStr(@"完成") style:UIBarButtonItemStylePlain target:self action:@selector(clickedSure:)];
     [self.view addSubview:self.searchBar];
     [self.view addSubview:self.tableView];
@@ -183,7 +183,7 @@
     if (!_searchBar) {
         _searchBar = [[UISearchBar alloc] init];
         _searchBar.barStyle = UIBarStyleBlack;
-        _searchBar.tintColor = KColorMainOrange;
+        _searchBar.tintColor = KMainColor;
         _searchBar.backgroundImage = [UIImage imageWithCustomColor:KBGCOLOR];
         _searchBar.delegate = self;
         _searchBar.placeholder = KLocalizableStr(@"搜索");
@@ -198,7 +198,8 @@
         _tableView.separatorInset = UIEdgeInsetsZero;
         _tableView.layoutMargins = UIEdgeInsetsZero;
         _tableView.tableFooterView = [UIView new];
-        _tableView.sectionIndexColor = KColorTextTitle;
+        _tableView.sectionIndexColor = [UIColor blackColor];
+        //KColorTextTitle;
         _tableView.sectionIndexBackgroundColor = KColorMainBackground;
         _tableView.delegate = self;
         _tableView.dataSource = self;

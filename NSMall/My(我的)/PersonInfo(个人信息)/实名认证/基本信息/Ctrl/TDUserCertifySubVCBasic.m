@@ -84,18 +84,19 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     TDUserCertifyDataBasicNode* certifierNode = [self.dataSource dataNodeAtRow:indexPath.row];
     // 点击了"国家"cell
-    if ([certifierNode.title isEqualToString:KLocalizableStr(TDUserCertifyTitleCountry)]) {
-        TDCountryCtrl* countryVC = [TDCountryCtrl new];
-        countryVC.didSelectedCountryModel = ^(TDCountryCodesModel *model) {
-            if (model) {
-                certifierNode.value = model.nameCn;
-                [tableView reloadData];
-            }
-        };
-        [self.navigationController pushViewController:countryVC animated:YES];
-    }
+//    if ([certifierNode.title isEqualToString:KLocalizableStr(TDUserCertifyTitleCountry)]) {
+//        TDCountryCtrl* countryVC = [TDCountryCtrl new];
+//        countryVC.didSelectedCountryModel = ^(TDCountryCodesModel *model) {
+//            if (model) {
+//                certifierNode.value = model.nameCn;
+//                [tableView reloadData];
+//            }
+//        };
+//        [self.navigationController pushViewController:countryVC animated:YES];
+//    }
     // 点击了"性别"cell
-    else if ([certifierNode.title isEqualToString:KLocalizableStr(TDUserCertifyTitleSex)]) {
+//    else
+        if ([certifierNode.title isEqualToString:KLocalizableStr(TDUserCertifyTitleSex)]) {
         [self.pickerCtrl showPicker];
     }
     // 点击了"出生日期"cell
@@ -134,6 +135,7 @@
         TDUserCertifyCellTxtInput* inputCell = (TDUserCertifyCellTxtInput*)cell;
         inputCell.titleLabel.text = certifierNode.title;
         inputCell.textField.placeholder = certifierNode.placeHolder;
+        inputCell.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:inputCell.textField.placeholder attributes:@{NSForegroundColorAttributeName: kGreyColor}];
         inputCell.textField.tag = indexPath.row;
         @weakify(self);
         [[[inputCell.textField.rac_textSignal takeUntil:inputCell.rac_prepareForReuseSignal] skip:1] subscribeNext:^(NSString* value) {
@@ -227,7 +229,7 @@
 - (UIButton *)commitBtn {
     if (!_commitBtn) {
         _commitBtn = [UIButton new];
-        _commitBtn.backgroundColor = KColorMainOrange;
+        _commitBtn.backgroundColor = KMainColor;
         _commitBtn.layer.cornerRadius = 5;
         [_commitBtn setTitle:KLocalizableStr(@"提交") forState:UIControlStateNormal];
         [_commitBtn setTitleColor:KBGCOLOR forState:UIControlStateNormal];

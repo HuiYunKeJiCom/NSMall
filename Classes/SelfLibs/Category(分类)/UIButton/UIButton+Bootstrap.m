@@ -72,7 +72,7 @@
     if([_position isEqualToString:@"left"]){
         [self setImageEdgeInsets:UIEdgeInsetsMake((self.frame.size.height - 50)/2, 10.0, 0.0, 0)];
     }else if([_position isEqualToString:@"top"]){
-        [self setImageEdgeInsets:UIEdgeInsetsMake(2.0, 0.0, 25.0, -titleSize.width)];
+        [self setImageEdgeInsets:UIEdgeInsetsMake(-5.0, 0.0, 25.0, -titleSize.width)];
     }else if([_position isEqualToString:@"right"]){
         [self setImageEdgeInsets:UIEdgeInsetsMake((self.frame.size.height - 50)/2, titleSize.width + 25, 0.0, 0.0)];
     }
@@ -89,7 +89,7 @@
                                                   0.0,
                                                   0.0)];
     }else if([_position isEqualToString:@"top"]){
-        [self setTitleEdgeInsets:UIEdgeInsetsMake(80.0,
+        [self setTitleEdgeInsets:UIEdgeInsetsMake(65.0,
                                                   -image.size.width,
                                                   0.0,
                                                   0.0)];

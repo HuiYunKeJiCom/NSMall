@@ -42,7 +42,7 @@
     
     
     // UILabel
-    CGFloat labelY = imageH;
+    CGFloat labelY = imageH+GetScaleWidth(10);
     CGFloat labelH = self.bounds.size.height - labelY;
     self.titleLabel.frame = CGRectMake(imageX, labelY, imageW, labelH);
 }

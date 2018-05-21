@@ -111,14 +111,15 @@
     
     if (!IsEmpty(myInfoModel.imageName)) {
         self.leftImgView.image = IMAGE(myInfoModel.imageName);
-        self.titleLb.frame = CGRectMake(GetScaleWidth(29)+GetScaleWidth(25), GetScaleWidth(19), kScreenWidth*0.5, GetScaleWidth(14));
+        self.titleLb.frame = CGRectMake(GetScaleWidth(18)+GetScaleWidth(25), GetScaleWidth(19), kScreenWidth*0.5, GetScaleWidth(14));
     }else{
         [self.leftImgView removeFromSuperview];
-        self.titleLb.frame = CGRectMake(GetScaleWidth(29), GetScaleWidth(19), kScreenWidth*0.5, GetScaleWidth(14));
+        self.titleLb.frame = CGRectMake(GetScaleWidth(18), GetScaleWidth(15), kScreenWidth*0.5, GetScaleWidth(12));
     }
     
     if (!IsEmpty(myInfoModel.title)) {
         self.titleLb.text = myInfoModel.title;
+        [self.titleLb sizeToFit];
     }
     
     if (!IsEmpty(myInfoModel.num)) {
@@ -157,7 +158,7 @@
     
     WEAKSELF
     [self.leftImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.contentView).with.offset(GetScaleWidth(29));
+        make.left.equalTo(weakSelf.contentView).with.offset(GetScaleWidth(19));
         make.centerY.equalTo(weakSelf.contentView);
         make.size.mas_equalTo(CGSizeMake(GetScaleWidth(20), GetScaleWidth(20)));
     }];
@@ -168,18 +169,18 @@
 //    }];
     
     [self.arrowImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(weakSelf.contentView).with.offset(-GetScaleWidth(27));
+        make.right.equalTo(weakSelf.contentView).with.offset(-GetScaleWidth(19));
         make.centerY.equalTo(weakSelf.contentView);
-        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(8), GetScaleWidth(14)));
+        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(5), GetScaleWidth(9)));
     }];
     
     [self.numLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(weakSelf.arrowImgView.mas_left).with.offset(-GetScaleWidth(10));
+        make.right.equalTo(weakSelf.arrowImgView.mas_left).with.offset(-GetScaleWidth(15));
         make.centerY.equalTo(weakSelf.contentView);
     }];
     
     [self.numIV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(weakSelf.arrowImgView.mas_left).with.offset(-GetScaleWidth(10));
+        make.right.equalTo(weakSelf.arrowImgView.mas_left).with.offset(-GetScaleWidth(15));
         make.centerY.equalTo(weakSelf.contentView);
         make.size.mas_equalTo(CGSizeMake(GetScaleWidth(72), GetScaleWidth(72)));
     }];

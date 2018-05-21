@@ -29,7 +29,7 @@
     self.textField.font = UIBoldFontSize(14);
     self.textField.textAlignment = NSTextAlignmentLeft;
     self.textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.textField.textColor = KColorTextFFFFFF;
+    self.textField.textColor = kGreyColor;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
 }

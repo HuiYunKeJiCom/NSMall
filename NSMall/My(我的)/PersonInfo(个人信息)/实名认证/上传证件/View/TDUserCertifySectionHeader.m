@@ -47,7 +47,7 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
-        _titleLabel.textColor = KColorMainOrange;
+        _titleLabel.textColor = KMainColor;
         _titleLabel.font = UIBoldFontSize(TDUserCertifySectionHeaderTitleFontSize);
         _titleLabel.numberOfLines = 0;
     }
@@ -116,7 +116,7 @@
 - (UILabel *)titleLabel1 {
     if (!_titleLabel1) {
         _titleLabel1 = [UILabel new];
-        _titleLabel1.textColor = KColorMainOrange;
+        _titleLabel1.textColor = KMainColor;
         _titleLabel1.font = UIBoldFontSize(TDUserCertifySectionHeaderTitleFontSize);
         _titleLabel1.numberOfLines = 0;
     }
@@ -125,7 +125,7 @@
 - (UILabel *)titleLabel2 {
     if (!_titleLabel2) {
         _titleLabel2 = [UILabel new];
-        _titleLabel2.textColor = KColorMainOrange;
+        _titleLabel2.textColor = KMainColor;
         _titleLabel2.font = UIBoldFontSize(TDUserCertifySectionHeaderTitleFontSize);
         _titleLabel2.numberOfLines = 0;
     }

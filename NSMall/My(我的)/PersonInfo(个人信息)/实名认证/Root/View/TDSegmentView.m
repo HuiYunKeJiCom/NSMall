@@ -182,7 +182,7 @@
 
 - (UIColor *)selectedColor {
     if (!_selectedColor) {
-        _selectedColor = KColorMainOrange;
+        _selectedColor = KMainColor;
     }
     return _selectedColor;
 }

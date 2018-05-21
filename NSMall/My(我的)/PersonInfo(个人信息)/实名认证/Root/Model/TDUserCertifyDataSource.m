@@ -7,6 +7,7 @@
 //
 
 #import "TDUserCertifyDataSource.h"
+#import "UserInfoAPI.h"
 
 
 @implementation TDUserCertifyDataSource
@@ -23,45 +24,56 @@
 
 - (void)uploadRealNameDataOnSuccess:(SuccessBlock)successBlock orFail:(FailBlock)failBlock {
     //这里需要修改,上传三张照片
+    WEAKSELF
+    NSMutableDictionary *foregroundParam = [NSMutableDictionary dictionary];
+    [foregroundParam setObject:self.realNameModel.imageFace forKey:@"pic"];
+    [foregroundParam setObject:@"foreground" forKey:@"imageName"];
     
+    NSMutableDictionary *backgroundParam = [NSMutableDictionary dictionary];
+    [backgroundParam setObject:self.realNameModel.imageBack forKey:@"pic"];
+    [backgroundParam setObject:@"background" forKey:@"imageName"];
+    
+    NSMutableDictionary *holdParam = [NSMutableDictionary dictionary];
+    [holdParam setObject:self.realNameModel.imageHold forKey:@"pic"];
+    [holdParam setObject:@"hold" forKey:@"imageName"];
     // 上传正面照
-//    __weak typeof(self) wself = self;
-//    [RequestTool appUploadWithImage:self.realNameModel.imageFace onSuccess:^(id data) {
-//        // 保存正面图片的url
-//        wself.realNameModel.cardFront = data;
-//        // 上传反面照
-//        [RequestTool appUploadWithImage:wself.realNameModel.imageBack onSuccess:^(id data) {
-//            // 保存背面图片的url
-//            wself.realNameModel.cardBack = data;
-//            // 上传手持照
-//            [RequestTool appUploadWithImage:wself.realNameModel.imageHold onSuccess:^(id data) {
-//                // 保存手持图片的url
-//                wself.realNameModel.holdCard = data;
-//                // 上传所有信息
-//                [RequestTool appRealNameCreateInfo:wself.realNameModel onSuccess:^(id data) {
-//                    if (successBlock) {
-//                        successBlock(data);
-//                    }
-//                } fail:^(NSString *msg) {
-//                    if (failBlock) {
-//                        failBlock(msg);
-//                    }
-//                }];
-//            } orFail:^(NSString *msg) {
-//                if (failBlock) {
-//                    failBlock(msg);
-//                }
-//            }];
-//        } orFail:^(NSString *msg) {
-//            if (failBlock) {
-//                failBlock(msg);
-//            }
-//        }];
-//    } orFail:^(NSString *msg) {
-//        if (failBlock) {
-//            failBlock(msg);
-//        }
-//    }];
+    [UserInfoAPI uploadIDCardWithParam:foregroundParam success:^(NSString *path) {
+        NSLog(@"正面照上传成功");
+        weakSelf.realNameModel.cardFront = path;
+        // 上传反面照
+        [UserInfoAPI uploadIDCardWithParam:backgroundParam success:^(NSString *path) {
+            NSLog(@"反面照上传成功");
+            weakSelf.realNameModel.cardBack = path;
+            // 上传手持照
+            [UserInfoAPI uploadIDCardWithParam:holdParam success:^(NSString *path) {
+                NSLog(@"手持照上传成功");
+                weakSelf.realNameModel.holdCard = path;
+                // 上传所有信息
+                
+                NSMutableDictionary *param = [NSMutableDictionary dictionary];
+                [param setObject:self.realNameModel.name forKey:@"realName"];
+                [param setObject:self.realNameModel.idNo forKey:@"idcard"];
+                [param setObject:self.realNameModel.cardFront forKey:@"frontImage"];
+                [param setObject:self.realNameModel.cardBack forKey:@"backImage"];
+                [param setObject:self.realNameModel.holdCard forKey:@"handheldImage"];
+                [UserInfoAPI certificationWithParam:param success:^(NSString *message){
+                    NSLog(@"认证信息上传成功");
+                    if (successBlock) {
+                        successBlock(message);
+                    }
+                } faulre:^(NSError *error) {
+                    NSLog(@"认证信息上传失败");
+                }];
+                
+            } faulre:^(NSError *error) {
+                NSLog(@"手持照上传失败");
+            }];
+        } faulre:^(NSError *error) {
+            NSLog(@"反面照上传失败");
+        }];
+    } faulre:^(NSError *error) {
+        NSLog(@"正面照上传失败");
+    }];
 }
 
 // 重新获取实名认证信息

@@ -173,7 +173,7 @@
         _statusLabel = [UILabel new];
         _statusLabel.textAlignment = NSTextAlignmentCenter;
         _statusLabel.font = UIBoldFontSize(16);
-        _statusLabel.textColor = KColorMainOrange;
+        _statusLabel.textColor = KMainColor;
     }
     return _statusLabel;
 }
@@ -194,7 +194,7 @@
         [_sureBtn setTitleColor:KColorMainBackground forState:UIControlStateNormal];
         [_sureBtn setTitleColor:kWhiteColor forState:UIControlStateHighlighted];
         [_sureBtn addTarget:self action:@selector(clickedSureBtn:) forControlEvents:UIControlEventTouchUpInside];
-        _sureBtn.backgroundColor = KColorMainOrange;
+        _sureBtn.backgroundColor = KMainColor;
         _sureBtn.layer.cornerRadius = 5;
     }
     return _sureBtn;

@@ -91,22 +91,23 @@
     WEAKSELF
     
     [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf).with.offset(GetScaleWidth(16));
+        make.left.equalTo(weakSelf).with.offset(GetScaleWidth(19));
         make.centerY.equalTo(weakSelf.contentView);
     }];
     
     [self.arrowImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(weakSelf.contentView).with.offset(GetScaleWidth(-16));
+        make.right.equalTo(weakSelf.contentView).with.offset(GetScaleWidth(-19));
         make.centerY.equalTo(weakSelf.contentView);
+        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(5), GetScaleWidth(9)));
     }];
     
     [self.descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(weakSelf.arrowImgView.mas_left).with.offset(GetScaleWidth(-7));
+        make.right.equalTo(weakSelf.arrowImgView.mas_left).with.offset(GetScaleWidth(-15));
         make.centerY.equalTo(weakSelf.contentView);
     }];
     
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.contentView).with.offset(GetScaleWidth(16));
+        make.left.equalTo(weakSelf.contentView);
         make.right.equalTo(weakSelf.contentView);
         make.bottom.equalTo(weakSelf.contentView);
         make.height.mas_equalTo(0.5);

@@ -44,10 +44,12 @@
 
 // 上传数据
 - (void) uploadingDatas {
-    
+    //这里要修改
     __weak typeof(self) wself = self;
     [MBProgressHUD mb_showWaitingWithText:KLocalizableStr(@"正在上传数据...") detailText:nil inView:self.view];
+    
     [[TDUserCertifyDataSource sharedRealNameCtrl] uploadRealNameDataOnSuccess:^(id data) {
+        DLog(@"上传成功回调");
         [MBProgressHUD hideHUDForView:wself.view animated:YES];
         // 上传成功跳转结果界面
         TDUserCertifyResultCtrl* resultVC = [TDUserCertifyResultCtrl new];
@@ -242,7 +244,7 @@
         _basicVC.touchEvent = ^{
             [wself doTransition];
         };
-        _basicVC.view.frame = CGRectMake(0, 64 + 70, kScreenWidth, kScreenHeight - 64 - 70);
+        _basicVC.view.frame = CGRectMake(0, TopBarHeight + 70, kScreenWidth, kScreenHeight - TopBarHeight - 70);
     }
     return _basicVC ;
 }
@@ -254,7 +256,7 @@
         _picsVC.touchEvent = ^{
             [wself doTransition];
         };
-        _picsVC.view.frame = CGRectMake(0, 64 + 70, kScreenWidth, kScreenHeight - 64 - 70);
+        _picsVC.view.frame = CGRectMake(0, TopBarHeight + 70, kScreenWidth, kScreenHeight - TopBarHeight - 70);
     }
     return _picsVC;
 }
@@ -267,7 +269,7 @@
             // 处理上传
             [wself uploadingDatas];
         };
-        _confirmVC.view.frame = CGRectMake(0, 64 + 70, kScreenWidth, kScreenHeight - 64 - 70);
+        _confirmVC.view.frame = CGRectMake(0, TopBarHeight + 70, kScreenWidth, kScreenHeight - TopBarHeight - 70);
     }
     return _confirmVC;
 }

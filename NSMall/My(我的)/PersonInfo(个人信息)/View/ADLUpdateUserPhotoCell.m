@@ -83,18 +83,18 @@
     WEAKSELF
     
     [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf).with.offset(GetScaleWidth(16));
+        make.left.equalTo(weakSelf).with.offset(GetScaleWidth(19));
         make.centerY.equalTo(weakSelf.contentView);
     }];
     
     [self.photoImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(weakSelf.contentView).with.offset(GetScaleWidth(-16));
+        make.right.equalTo(weakSelf.contentView).with.offset(GetScaleWidth(-39));
         make.centerY.equalTo(weakSelf.contentView);
-        make.size.mas_equalTo(CGSizeMake(59, 59));
+        make.size.mas_equalTo(CGSizeMake(51, 51));
     }];
     
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.contentView).with.offset(GetScaleWidth(16));
+        make.left.equalTo(weakSelf.contentView);
         make.right.equalTo(weakSelf.contentView);
         make.bottom.equalTo(weakSelf.contentView);
         make.height.mas_equalTo(0.5);

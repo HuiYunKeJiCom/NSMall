@@ -46,7 +46,7 @@
     [self.bgView addSubview:self.classifyBtn];
     
     self.classifyBtn.x = spaceWidth;
-    self.classifyBtn.y = 0;
+    self.classifyBtn.y = -GetScaleWidth(10);
     self.classifyBtn.size = CGSizeMake(itemWidth, GetScaleWidth(112));
 
     //    [self.shareBtn addTarget:self action:@selector(shareButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -57,7 +57,7 @@
                               withTitle:@"购物车" position:@"top" font:[UIFont systemFontOfSize:kFontNum14] forState:UIControlStateNormal];
     [self.bgView addSubview:self.shopCartBtn];
     self.shopCartBtn.x = itemWidth+2*spaceWidth;
-    self.shopCartBtn.y = 0;
+    self.shopCartBtn.y = -GetScaleWidth(10);
     self.shopCartBtn.size = CGSizeMake(itemWidth, GetScaleWidth(112));
     
     self.QRBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -66,7 +66,7 @@
                               withTitle:@"二维码" position:@"top" font:[UIFont systemFontOfSize:kFontNum14] forState:UIControlStateNormal];
     [self.bgView addSubview:self.QRBtn];
     self.QRBtn.x = itemWidth*2+3*spaceWidth;
-    self.QRBtn.y = 0;
+    self.QRBtn.y = -GetScaleWidth(10);
     self.QRBtn.size = CGSizeMake(itemWidth, GetScaleWidth(112));
     
     self.myOrderBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -75,7 +75,7 @@
                               withTitle:@"我的订单" position:@"top" font:[UIFont systemFontOfSize:kFontNum14] forState:UIControlStateNormal];
     [self.bgView addSubview:self.myOrderBtn];
     self.myOrderBtn.x = itemWidth*3+4*spaceWidth;
-    self.myOrderBtn.y = 0;
+    self.myOrderBtn.y = -GetScaleWidth(10);
     self.myOrderBtn.size = CGSizeMake(itemWidth, GetScaleWidth(112));
 }
 
