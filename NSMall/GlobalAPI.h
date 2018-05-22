@@ -41,6 +41,7 @@ const static NSString * const kCertificationAPI = @"auth/certification";//提交
 const static NSString * const kMyProductListAPI = @"auth/myProductList";//获取我的商品列表
 const static NSString * const kMyStoreListAPI = @"auth/myStoreList";//获取我的店铺列表
 const static NSString * const kCollectionListAPI = @"auth/collectProductList";//我的收藏商品列表
+const static NSString * const kOrderListAPI = @"auth/orderList";//我的订单列表
 
 const static NSString * const kGetVcodeAPI = @"getSmsVerifyCode";//获取短信验证码
 const static NSString * const kGetLabelsAPI = @"getLabels";//获取标签列表
@@ -54,9 +55,10 @@ const static NSString * const kDelAddressAPI = @"auth/delAddress";//删除收货
 
 const static NSString * const kCategoryAPI = @"category";//获取商品分类
 
-
-
-
+//商品发布
+const static NSString * const kCreateProductAPI = @"auth/createProduct";//商品发布
+const static NSString * const kUploadProductImageAPI = @"auth/uploadProductImage";//商品图片上传
+const static NSString * const kShelveProductAPI = @"auth/shelveProduct";//上/下架商品
 
 
 

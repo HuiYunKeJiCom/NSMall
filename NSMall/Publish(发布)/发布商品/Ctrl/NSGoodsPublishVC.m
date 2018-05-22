@@ -17,6 +17,7 @@
 #import "UITextView+ZWPlaceHolder.h"
 #import "NSChangeParamVC.h"
 #import "NSCategoryVC.h"
+#import "GoodsPublishAPI.h"
 
 @interface NSGoodsPublishVC ()<NSGoodsTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate> {
     NSMutableArray *_selectedPhotos;
@@ -33,7 +34,7 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (strong, nonatomic) LxGridViewFlowLayout *layout;
 @property(nonatomic,strong)UIView *addView;/* 添加照片的按钮 */
-@property(nonatomic,strong)UITextField *shopNameTF;/* 店铺名称 */
+@property(nonatomic,strong)UITextField *goodsNameTF;/* 商品名称 */
 @property(nonatomic,strong)UITextView *detailTV;/* 描述内容 */
 @property(nonatomic,strong)UIView *middleView;/* 中间的view */
 
@@ -93,17 +94,17 @@
     self.middleView.backgroundColor = [UIColor whiteColor];
     [self.SV addSubview:self.middleView];
     
-    self.shopNameTF = [[UITextField alloc] initWithFrame:CGRectZero];
-    self.shopNameTF.frame = CGRectMake(0, 0, kScreenWidth, GetScaleWidth(30));
-    self.shopNameTF.font = [UIFont systemFontOfSize:14];
-    self.shopNameTF.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.shopNameTF.placeholder = @"商品标题,品类、品牌、型号等";
-    self.shopNameTF.textColor = [UIColor lightGrayColor];
-    self.shopNameTF.backgroundColor = kWhiteColor;
+    self.goodsNameTF = [[UITextField alloc] initWithFrame:CGRectZero];
+    self.goodsNameTF.frame = CGRectMake(0, 0, kScreenWidth, GetScaleWidth(30));
+    self.goodsNameTF.font = [UIFont systemFontOfSize:14];
+    self.goodsNameTF.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.goodsNameTF.placeholder = @"商品标题,品类、品牌、型号等";
+    self.goodsNameTF.textColor = [UIColor lightGrayColor];
+    self.goodsNameTF.backgroundColor = kWhiteColor;
     UIView *paddingView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, GetScaleWidth(30))];
-    self.shopNameTF.leftView = paddingView;
-    self.shopNameTF.leftViewMode = UITextFieldViewModeAlways;
-    [self.middleView addSubview:self.shopNameTF];
+    self.goodsNameTF.leftView = paddingView;
+    self.goodsNameTF.leftViewMode = UITextFieldViewModeAlways;
+    [self.middleView addSubview:self.goodsNameTF];
     
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, GetScaleWidth(30), kScreenWidth, GetScaleWidth(10))];
     view.backgroundColor = kWhiteColor;
@@ -460,6 +461,7 @@
         if (buttonIndex == 0) { // 是
             NSLog(@"上架");
             updateStr = @"是";
+            
         } else if (buttonIndex == 1) {
             NSLog(@"不上架");
             updateStr = @"否";
@@ -620,7 +622,7 @@
             ctrl.stringBlock = ^(NSString *string) {
                 for (ADLMyInfoModel *model in self.otherTableView.data) {
                     if([model.title isEqualToString:@"价格"]){
-                        model.num = string;
+                        model.num = [NSString stringWithFormat:@"N %@",string];
                     }
                 }
                 [self.otherTableView reloadData];
@@ -637,7 +639,7 @@
             ctrl.stringBlock = ^(NSString *string) {
                 for (ADLMyInfoModel *model in self.otherTableView.data) {
                     if([model.title isEqualToString:@"数量"]){
-                        model.num = string;
+                        model.num = [NSString stringWithFormat:@"%@ 个",string];
                     }
                 }
                 [self.otherTableView reloadData];
@@ -661,7 +663,7 @@
             ctrl.stringBlock = ^(NSString *string) {
                 for (ADLMyInfoModel *model in self.otherTableView.data) {
                     if([model.title isEqualToString:@"运费"]){
-                        model.num = string;
+                        model.num = [NSString stringWithFormat:@"N %@",string];
                     }
                 }
                 [self.otherTableView reloadData];

@@ -13,6 +13,7 @@
 #import "UserInfoAPI.h"
 #import "NSMyGoodsListVC.h"//我的商品列表
 #import "NSCollectionListVC.h"//我的收藏
+#import "NSOrderListVC.h"//我的订单
 
 @interface NSMyCenterViewController ()<ADLMyInfoTableViewDelegate>
 @property (strong, nonatomic) ADLMyInfoTableView   *otherTableView;
@@ -114,6 +115,10 @@
             break;
         case 4:{
             NSLog(@"点击了我的订单");
+            [self.navigationController setNavigationBarHidden:YES];
+            //跳转至我的订单
+            NSOrderListVC *orderListVC = [NSOrderListVC new];
+            [self.navigationController pushViewController:orderListVC animated:YES];
         }
             break;
         case 5:{

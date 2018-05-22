@@ -9,5 +9,5 @@
 #import "BaseViewCtrl.h"
 
 @interface NSOrderListVC : BaseViewCtrl
-
+@property (nonatomic,assign) NSInteger index;
 @end

@@ -37,11 +37,11 @@
 {
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     topToolView.backgroundColor = kWhiteColor;
-    [topToolView setTopTitleWithNSString:KLocalizableStr(@"我的商品")];
+    [topToolView setTopTitleWithNSString:KLocalizableStr(@"我的收藏")];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
-        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
     };
     
     [self.view addSubview:topToolView];

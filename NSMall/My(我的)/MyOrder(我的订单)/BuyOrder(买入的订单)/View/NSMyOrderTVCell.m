@@ -1,0 +1,161 @@
+//
+//  NSMyOrderTVCell.m
+//  NSMall
+//
+//  Created by 张锐凌 on 2018/5/21.
+//  Copyright © 2018年 www. All rights reserved.
+//
+
+#import "NSMyOrderTVCell.h"
+#import "NSGoodsView.h"
+
+
+@interface NSMyOrderTVCell()
+@property (nonatomic, strong) UIView           *bgView;
+@property(nonatomic,strong)UIImageView *headerIV;/* 用户头像 */
+@property(nonatomic,strong)UILabel *userName;/* 用户昵称 */
+@property(nonatomic,strong)UIImageView *arrowIV;/* 箭头 */
+@property(nonatomic,strong)UILabel *stateLab;/* 状态 */
+@property(nonatomic,strong)UIView *lineView1;/* 分割线1 */
+@property(nonatomic,strong)UILabel *totalLab;/* 总计 */
+@property(nonatomic,strong)UIButton *nextOperation;/* 下一步 */
+@end
+
+@implementation NSMyOrderTVCell
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    
+    if (self) {
+        
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.backgroundColor = KBGCOLOR;
+        [self buildUI];
+    }
+    
+    return self;
+}
+
+-(void)buildUI{
+    _bgView = [[UIView alloc] initWithFrame:self.frame];
+    _bgView.backgroundColor = kWhiteColor;
+    [self addSubview:self.bgView];
+    
+    self.headerIV = [[UIImageView alloc] initWithFrame:CGRectMake(18, 5, 29, 29)];
+    [self.headerIV setContentMode:UIViewContentModeScaleAspectFill];
+    [self.bgView addSubview:self.headerIV];
+    
+    self.userName = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum14 TextColor:[UIColor blackColor]];
+    [self.bgView addSubview:self.userName];
+    
+    self.arrowIV = [[UIImageView alloc] init];
+    [self.arrowIV setContentMode:UIViewContentModeScaleAspectFill];
+    [self.bgView addSubview:self.arrowIV];
+    
+    self.stateLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum14 TextColor:[UIColor blackColor]];
+    [self.bgView addSubview:self.stateLab];
+    
+    self.lineView1 = [[UIView alloc] initWithFrame:CGRectZero];
+    self.lineView1.backgroundColor = KBGCOLOR;
+    [self.bgView addSubview:self.lineView1];
+    
+    self.totalLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum14 TextColor:[UIColor blackColor]];
+    [self.bgView addSubview:self.totalLab];
+    
+    self.nextOperation = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.nextOperation.titleLabel.font = [UIFont systemFontOfSize:kFontNum14];
+//    // 设置圆角的大小
+//    self.nextOperation.layer.cornerRadius = 5;
+//    [self.nextOperation.layer setMasksToBounds:YES];
+//    self.nextOperation.layer.borderWidth = 1;
+//    self.nextOperation.layer.borderColor = [KMainColor CGColor];
+    [self.nextOperation setTitleColor:kWhiteColor forState:UIControlStateNormal];
+    [self.nextOperation addTarget:self action:@selector(nextOperation) forControlEvents:UIControlEventTouchUpInside];
+    [self.bgView addSubview:self.nextOperation];
+}
+
+-(void)setFrame:(CGRect)frame {
+    //    frame.origin.y += 15;
+    [super setFrame:frame];
+    
+}
+
+- (void)setModel:(NSOrderListItemModel *)model {
+    _model = model;
+    [self.headerIV sd_setImageWithURL:[NSURL URLWithString:model.user_avatar]];
+    self.userName.y = 15;
+    self.userName.x = CGRectGetMaxX(self.headerIV.frame)+12;
+    self.userName.text = model.user_name;
+    [self.userName sizeToFit];
+    self.arrowIV.x = CGRectGetMaxX(self.userName.frame)+11;
+    self.arrowIV.y = 15;
+    self.arrowIV.size = CGSizeMake(5, 9);
+    self.arrowIV.image = IMAGE(@"my_ico_right_arrow");
+    self.stateLab.y = 15;
+    self.stateLab.x =  kScreenWidth -19;
+    switch (model.order_status) {
+        case 1:{
+            self.stateLab.text = @"待支付";
+            [self.nextOperation setTitle:@"去支付" forState:UIControlStateNormal];
+            self.nextOperation.backgroundColor = kRedColor;
+        }
+            break;
+        case 2:{
+            self.stateLab.text = @"待发货";
+            [self.nextOperation setTitle:@"去发货" forState:UIControlStateNormal];
+            self.nextOperation.backgroundColor = kRedColor;
+        }
+            break;
+        case 3:{
+            self.stateLab.text = @"待收货";
+            self.nextOperation.backgroundColor = KMainColor;
+            if([model.type isEqualToString:@"1"]){
+                [self.nextOperation setTitle:@"去评价" forState:UIControlStateNormal];
+            }else{
+                [self.nextOperation setTitle:@"确认收货" forState:UIControlStateNormal];
+            }
+        }
+            break;
+        case 4:
+            self.stateLab.text = @"已完成";//待评价
+            break;
+        case 10:
+            self.stateLab.text = @"已完成";//已结束,不可评价和退换货
+            break;
+        case 11:
+            self.stateLab.text = @"已取消";//手动取消
+            break;
+        case 12:
+            self.stateLab.text = @"已取消";//超时自动取消
+            break;
+        default:
+            break;
+    }
+    [self.stateLab sizeToFit];
+    self.lineView1.x = 0;
+    self.lineView1.y = CGRectGetMaxY(self.headerIV.frame)+7;
+    self.lineView1.size = CGSizeMake(kScreenWidth, 1);
+    
+    float height = 41;
+    for(int i=0;i<model.productList.count;i++){
+        NSGoodsView *goodsView = [[NSGoodsView alloc]init];
+        goodsView.model = model.productList[i];
+        goodsView.x = 0;
+        goodsView.y = height;
+        goodsView.size = CGSizeMake(kScreenWidth, 65);
+        height+=65;
+    }
+    
+    self.totalLab.y = CGRectGetMaxY(self.bgView.frame)-53;
+    self.totalLab.x =  kScreenWidth-18;
+    self.totalLab.text = [NSString stringWithFormat:@"共%lu件商品,小计N%.2f/¥%.2f",model.buy_number,model.pay_amount,model.order_score];
+    [self.totalLab sizeToFit];
+    self.nextOperation.x = kScreenWidth-67-19;
+    self.nextOperation.y = CGRectGetMaxY(self.bgView.frame)-14;
+    self.nextOperation.size = CGSizeMake(67, 28);
+}
+
+-(void)nextOperation{
+    !_nextOperationClickBlock ? : _nextOperationClickBlock();
+}
+@end

@@ -36,6 +36,9 @@
     }];
 }
 
+/*
+ 上传身份证照片
+ */
 + (void)uploadIDCardWithParam:(NSDictionary *)params success:(void (^)(NSString *path))success faulre:(void (^)(NSError *))failure{
     [Net uploadDataWithPost:params function:kUploadIDCardAPI success:^(NSDictionary *result) {
         DLog(@"上传身份证result = %@",result);
@@ -46,6 +49,9 @@
     }];
 }
 
+/*
+ 修改用户信息
+ */
 + (void)updateUserWithParam:(UpdateUserParam *)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure{
     [Net requestWithPost:param function:kUpdateUserAPI showHUD:NetNullStr resultClass:[NSDictionary class] success:^(id  _Nullable resultObj) {
         success?success():nil;
@@ -54,8 +60,9 @@
     }];
 }
 
-
-
+/*
+ 提交实名认证信息
+ */
 + (void)certificationWithParam:(NSDictionary *)param success:(void (^)(NSString *message))success faulre:(void (^)(NSError *))failure{
     [Net requestWithPost:param function:kCertificationAPI showHUD:NetNullStr resultClass:[NSDictionary class] success:^(id  _Nullable resultObj) {
         DLog(@"认证信息result = %@",resultObj);
