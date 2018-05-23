@@ -9,6 +9,12 @@
 #import "NSGoodsTableView.h"
 #import "NSInfoCustomCell.h"
 
+
+
+@interface NSGoodsTableView()
+
+@end
+
 @implementation NSGoodsTableView
 
 #pragma mark - tableView delegate
@@ -38,8 +44,17 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    return GetScaleWidth(43);
+    if(self.dict[@"indexPath"]){
+        NSInteger section = [self.dict[@"indexPath"] integerValue];
+        float height = [self.dict[@"height"] floatValue];
+        if(indexPath.section == section){
+            return height;
+        }else{
+            return GetScaleWidth(43);
+        }
+    }else{
+        return GetScaleWidth(43);
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -68,24 +83,30 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"View里面");
+//    if(indexPath.section == 3){
+//        [self addSpecViewWithIndexPath:indexPath];
+//    }else{
         if (_tbDelegate && [_tbDelegate respondsToSelector:@selector(didSelectRowAtIndexPath:)]) {
             [_tbDelegate didSelectRowAtIndexPath:indexPath];
         }
-    
-//    if(indexPath.section == 3){
-//        [self addSpecView];
 //    }
 }
 
--(void)addSpecView{
-    NSLog(@"tableView里面");
-    if (_tbDelegate && [_tbDelegate respondsToSelector:@selector(addSpecView)]) {
-        [_tbDelegate addSpecView];
+-(void)addSpecViewWithIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"增加规格");
+    
+    if (_tbDelegate && [_tbDelegate respondsToSelector:@selector(addSpecViewWithIndexPath:)]) {
+        [_tbDelegate addSpecViewWithIndexPath:indexPath];
     }
     
-    UIView *specView = [[UIView alloc]initWithFrame:CGRectMake(0, 228, kScreenWidth, 166)];
-    specView.backgroundColor = [UIColor redColor];
-    [self addSubview:specView];
+}
+
+-(void)setDict:(NSMutableDictionary *)dict{
+    _dict = dict;
     [self reloadData];
 }
+
+
+
 @end

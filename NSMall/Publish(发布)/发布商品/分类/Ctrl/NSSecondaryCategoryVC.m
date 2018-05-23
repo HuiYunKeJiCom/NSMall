@@ -8,10 +8,15 @@
 
 #import "NSSecondaryCategoryVC.h"
 #import "NSGoodsPublishVC.h"
+#import "NSCategoryTV.h"
+#import "ADLMyInfoModel.h"
 
-@interface NSSecondaryCategoryVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
+@interface NSSecondaryCategoryVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate,NSCategoryTVDelegate>
 @property (nonatomic, strong) BaseTableView         *goodsTable;
 @property(nonatomic,strong)ADOrderTopToolView *topToolView;/* 自定义导航栏 */
+@property (nonatomic,strong)NSArray<CategoryModel *> *children;//
+@property(nonatomic,strong)NSMutableDictionary *dict;/* 改变高度的字典 */
+
 @end
 
 @implementation NSSecondaryCategoryVC
@@ -19,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.dict = [NSMutableDictionary dictionary];
     [self.view addSubview:self.goodsTable];
     [self setUpNavTopView];
     [self makeConstraints];
@@ -32,7 +38,7 @@
     WEAKSELF
     self.topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
-        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
     };
     
     [self.view addSubview:self.topToolView];
@@ -43,8 +49,8 @@
 - (void)makeConstraints {
     
     [self.goodsTable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.bottom.equalTo(self.view);
-        //        make.top.equalTo(self.view.mas_bottom).with.offset(GetScaleWidth(10));
+        make.left.right.bottom.equalTo(self.view);
+    make.top.equalTo(self.view.mas_top).with.offset(TopBarHeight);
     }];
     
 }
@@ -79,7 +85,17 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return GetScaleWidth(52);
+    if(self.dict[@"indexPath"]){
+        NSInteger row = [self.dict[@"indexPath"] integerValue];
+        float height = [self.dict[@"height"] floatValue];
+        if(indexPath.row == row){
+            return height;
+        }else{
+            return GetScaleWidth(43);
+        }
+    }else{
+       return GetScaleWidth(43);
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -89,7 +105,6 @@
         NSLog(@"model = %@",model.mj_keyValues);
         cell.myInfoModel = model;
     }
-    
     return cell;
 }
 
@@ -99,17 +114,55 @@
     CategoryModel *model = cell.myInfoModel;
     if(model.children.count == 0){
         //返回页面A 得改用导航控制器
-//        if (self.stringBlock) {
-//            self.stringBlock(model.name);
-//        }
-        NSGoodsPublishVC *ctrl = [[NSGoodsPublishVC alloc] init];
-        ctrl.categoryString = model.name;
-        [self presentViewController:ctrl animated:YES completion:nil];
-        
+        for (NSGoodsPublishVC *ctrl in self.navigationController.viewControllers) {
+            if([ctrl isKindOfClass:[NSGoodsPublishVC class]]){
+                ctrl.model = model;
+                [self.navigationController popToViewController:ctrl animated:YES];
+            }
+        }
     }else{
-        //        跳到下一级
+        if(cell.isShow){
+            [self.dict setValue:[NSNumber numberWithInteger:indexPath.row] forKey:@"indexPath"];
+            float height = GetScaleWidth(43);
+            [self.dict setValue:[NSNumber numberWithFloat:height] forKey:@"height"];
+            cell.isShow = NO;
+            for (UIView *view in cell.subviews) {
+                if([view isKindOfClass:[NSCategoryTV class]]){
+                    [view removeFromSuperview];
+                }
+            }
+            [self.goodsTable reloadData];
+        }else{
+            CGRect frame2 = cell.frame;
+            float height = GetScaleWidth(43)*model.children.count+frame2.size.height;
+            [self.dict setValue:[NSNumber numberWithInteger:indexPath.row] forKey:@"indexPath"];
+            [self.dict setValue:[NSNumber numberWithFloat:height] forKey:@"height"];
+            //        展示所有分类
+            NSCategoryTV *otherTableView = [[NSCategoryTV alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+            otherTableView.backgroundColor = kClearColor;
+            otherTableView.x = 0;
+            otherTableView.y = GetScaleWidth(43);
+            otherTableView.size = CGSizeMake(kScreenWidth, GetScaleWidth(43)*model.children.count);
+            otherTableView.bounces = NO;
+            otherTableView.tbDelegate = self;
+            otherTableView.isRefresh = NO;
+            otherTableView.isLoadMore = NO;
+            if (@available(iOS 11.0, *)) {
+                otherTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            } else {
+                self.automaticallyAdjustsScrollViewInsets = NO;
+            }
+            [cell addSubview:otherTableView];
+            
+            for(int i=0;i<model.children.count;i++){
+                CategoryModel *childrenModel = model.children[i];
+                [otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(childrenModel.name) imageName:nil num:nil]];
+            }
+            self.children = model.children;
+            cell.isShow = YES;
+            [self.goodsTable reloadData];
+        }
     }
-    
 }
 
 - (void)baseTableVIew:(BaseTableView *)tableView refresh:(BOOL)flag {
@@ -125,5 +178,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    DLog(@"有没有调这里");
+    CategoryModel *model = self.children[indexPath.section];
+    //返回页面A 得改用导航控制器
+    for (NSGoodsPublishVC *ctrl in self.navigationController.viewControllers) {
+        if([ctrl isKindOfClass:[NSGoodsPublishVC class]]){
+            ctrl.model = model;
+            [self.navigationController popToViewController:ctrl animated:YES];
+        }
+    }
+}
+
+-(NSArray *)children{
+    if (!_children) {
+        _children = [NSArray array];
+    }
+    return _children;
+}
 
 @end

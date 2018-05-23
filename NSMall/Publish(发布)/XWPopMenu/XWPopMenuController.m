@@ -238,7 +238,11 @@
     if(btn.tag == 1000){
         //线上商品
         NSGoodsPublishVC *ctrl = [[NSGoodsPublishVC alloc] init];
-        [self presentViewController:ctrl animated:YES completion:nil];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:ctrl];
+        [nav setNavigationBarHidden:YES];
+        [self presentViewController:nav animated:YES completion:nil];
+//        
+//        [self presentViewController:ctrl animated:YES completion:nil];
     }else{
         //线下店铺
         NSShopPublishVC *ctrl = [[NSShopPublishVC alloc] init];

@@ -12,9 +12,6 @@
 #import "ADOrderTopToolView.h"
 
 @interface NSSecondaryCategoryVC : DCBaseSetViewController
-typedef void(^stringBlock)(NSString *string);
-
-@property (nonatomic, copy) stringBlock                   stringBlock;/* 选择的类别回调 */
 
 -(void)getDataWithCategoryModel:(CategoryModel *)model;
 @end

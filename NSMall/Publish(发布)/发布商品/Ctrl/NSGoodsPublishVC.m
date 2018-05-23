@@ -18,6 +18,11 @@
 #import "NSChangeParamVC.h"
 #import "NSCategoryVC.h"
 #import "GoodsPublishAPI.h"
+#import "GoodsPublishParam.h"
+#import "NSSpecView.h"
+#import "NSInfoCustomCell.h"
+
+
 
 @interface NSGoodsPublishVC ()<NSGoodsTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate> {
     NSMutableArray *_selectedPhotos;
@@ -39,6 +44,8 @@
 @property(nonatomic,strong)UIView *middleView;/* 中间的view */
 
 @property(nonatomic,strong)UIScrollView *SV;/* 全局SV */
+@property(nonatomic,strong)GoodsPublishParam *param;/* 商品发布参数 */
+@property(nonatomic,strong)NSMutableDictionary *dict;/* 改变高度的字典 */
 @end
 
 @implementation NSGoodsPublishVC
@@ -67,6 +74,7 @@
     //    self.view.backgroundColor = KBGCOLOR;
     _selectedPhotos = [NSMutableArray array];
     _selectedAssets = [NSMutableArray array];
+    self.param = [GoodsPublishParam new];
     
     self.SV = [[UIScrollView alloc]initWithFrame:CGRectMake(0, TopBarHeight, kScreenWidth, kScreenHeight-TopBarHeight-TabBarHeight)];
 //    self.SV.scrollEnabled = NO;
@@ -140,12 +148,12 @@
     [_collectionView registerClass:[TZTestCell class] forCellWithReuseIdentifier:@"TZTestCell"];
 }
 
--(void)setCategoryString:(NSString *)categoryString{
-    _categoryString = categoryString;
-    DLog(@"字符串有没有传过来categoryString = %@",categoryString);
-    for (ADLMyInfoModel *model in self.otherTableView.data) {
-        if([model.title isEqualToString:@"分类"]){
-            model.num = categoryString;
+-(void)setModel:(CategoryModel *)model{
+    _model = model;
+    for (ADLMyInfoModel *infoModel in self.otherTableView.data) {
+        if([infoModel.title isEqualToString:@"分类"]){
+            infoModel.num = model.name;
+            self.param.categoryId = model.ID;
         }
     }
     [self.otherTableView reloadData];
@@ -461,10 +469,11 @@
         if (buttonIndex == 0) { // 是
             NSLog(@"上架");
             updateStr = @"是";
-            
+            self.param.isShelve = @"1";
         } else if (buttonIndex == 1) {
             NSLog(@"不上架");
             updateStr = @"否";
+            self.param.isShelve = @"-1";
         }
         
         for (ADLMyInfoModel *model in self.otherTableView.data) {
@@ -594,22 +603,22 @@
 #pragma mark - NSShopTableViewDelegate
 
 - (void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     NSInteger index = indexPath.section;
     
     switch (index) {
         case 0:{
             NSLog(@"点击了分类");
             NSCategoryVC *ctrl = [[NSCategoryVC alloc] init];
-            ctrl.stringBlock = ^(NSString *string) {
-                for (ADLMyInfoModel *model in self.otherTableView.data) {
-                    if([model.title isEqualToString:@"分类"]){
-                        model.num = string;
+            ctrl.stringBlock = ^(CategoryModel *model) {
+                for (ADLMyInfoModel *infoModel in self.otherTableView.data) {
+                    if([infoModel.title isEqualToString:@"分类"]){
+                        infoModel.num = model.name;
+                        self.param.categoryId = model.ID;
                     }
                 }
                 [self.otherTableView reloadData];
             };
-            [self presentViewController:ctrl animated:YES completion:nil];
+            [self.navigationController pushViewController:ctrl animated:YES];
         }
             break;
         case 1:{
@@ -622,6 +631,7 @@
             ctrl.stringBlock = ^(NSString *string) {
                 for (ADLMyInfoModel *model in self.otherTableView.data) {
                     if([model.title isEqualToString:@"价格"]){
+                        self.param.price = string;
                         model.num = [NSString stringWithFormat:@"N %@",string];
                     }
                 }
@@ -639,19 +649,18 @@
             ctrl.stringBlock = ^(NSString *string) {
                 for (ADLMyInfoModel *model in self.otherTableView.data) {
                     if([model.title isEqualToString:@"数量"]){
+                        self.param.stock = string;
                         model.num = [NSString stringWithFormat:@"%@ 个",string];
                     }
                 }
                 [self.otherTableView reloadData];
             };
-//            [[DCMainNavController sharedRootNav] pushViewController:ctrl animated:YES];
             [self presentViewController:ctrl animated:YES completion:nil];
         }
             break;
         case 3:{
             NSLog(@"点击了添加商品规格");
-//            [self addSpecView];
-            
+            [self addSpecViewWithIndexPath:indexPath];
         }
             break;
         case 4:{
@@ -663,6 +672,7 @@
             ctrl.stringBlock = ^(NSString *string) {
                 for (ADLMyInfoModel *model in self.otherTableView.data) {
                     if([model.title isEqualToString:@"运费"]){
+                        self.param.shipPrice = string;
                         model.num = [NSString stringWithFormat:@"N %@",string];
                     }
                 }
@@ -683,16 +693,30 @@
     
 }
 
+-(void)addSpecViewWithIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"VC里面");
+    
+    NSInfoCustomCell *cell = [self.otherTableView cellForRowAtIndexPath:indexPath];
+    CGRect frame2 = cell.frame;
+    float height = GetScaleWidth(43)*3+10+frame2.size.height;
+    [self.dict setValue:[NSNumber numberWithInteger:indexPath.section] forKey:@"indexPath"];
+    [self.dict setValue:[NSNumber numberWithFloat:height] forKey:@"height"];
+    
+    NSSpecView *specView = [NSSpecView new];
+    specView.backgroundColor = kRedColor;
+    specView.x = 0;
+    specView.y = frame2.size.height;
+    specView.size = CGSizeMake(kScreenWidth, GetScaleWidth(43)*3+10);
+    [cell addSubview:specView];
+    
+    self.otherTableView.dict = self.dict;
+}
+
 -(void)updateGoods{
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"是",@"否", nil];
     sheet.tag = 100;
     [sheet showInView:self.view];
-}
-
-
--(void)addSpecView{
-    NSLog(@"VC里面");
-    
 }
 
 -(void)setUpAddView{
@@ -750,6 +774,26 @@
 }
 
 -(void)publish:(UIButton *)btn{
+    NSMutableArray *pathArr = [NSMutableArray array];
+    for(int i=0;i<_selectedPhotos.count;i++){
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        [param setObject:_selectedPhotos[i] forKey:@"pic"];
+        [param setObject:[NSString stringWithFormat:@"pic%d",i] forKey:@"imageName"];
+        
+        [GoodsPublishAPI uploadGoodsPicWithParam:param success:^(NSString *path) {
+            [pathArr addObject:path];
+        } faulre:^(NSError *error) {
+        }];
+    }
+    
+    self.param.imagePath = [pathArr componentsJoinedByString:@","];
+    self.param.productName = self.goodsNameTF.text;
+    self.param.introduce = self.detailTV.text;
+//    self.param.labelId = //非必填
+//    self.param.stock//非必填
+//     self.param.hasSpec//是否有规格,需要判断,必填
+//    self.param.productSpec//有规格时为必填
+    
     
 }
 
@@ -810,6 +854,13 @@
     }
     
     return type;
+}
+
+-(NSMutableDictionary *)dict{
+    if (!_dict) {
+        _dict = [NSMutableDictionary dictionary];
+    }
+    return _dict;
 }
 
 

@@ -1,24 +1,25 @@
 //
-//  NSInfoCustomCell.m
+//  NSCategoryTVCell.m
 //  NSMall
 //
-//  Created by 张锐凌 on 2018/4/26.
+//  Created by 张锐凌 on 2018/5/22.
 //  Copyright © 2018年 www. All rights reserved.
 //
 
-#import "NSInfoCustomCell.h"
+#import "NSCategoryTVCell.h"
 #import "ADLMyInfoModel.h"
 
-@interface NSInfoCustomCell()
+@interface NSCategoryTVCell()
 @property (strong, nonatomic) UIView *bottomLineView;
 @end
 
-@implementation NSInfoCustomCell
+@implementation NSCategoryTVCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.contentView.backgroundColor = [UIColor grayColor];
         [self initViews];
         [self makeConstraints];
         
@@ -80,7 +81,7 @@
     
     if (!_numIV) {
         _numIV = [[UIImageView alloc] initWithImage:IMAGE(@"draw_right_icon")];
-//        _numIV.backgroundColor = [UIColor redColor];
+        //        _numIV.backgroundColor = [UIColor redColor];
     }
     
     return _numIV;
@@ -90,7 +91,7 @@
     
     if (!_bottomLineView) {
         _bottomLineView = [[UIView alloc] initWithFrame:CGRectZero];
-        _bottomLineView.backgroundColor = KColorTextf4f4f4;
+        _bottomLineView.backgroundColor = KBGCOLOR;
     }
     
     return _bottomLineView;
@@ -111,10 +112,10 @@
     
     if (!IsEmpty(myInfoModel.imageName)) {
         self.leftImgView.image = IMAGE(myInfoModel.imageName);
-        self.titleLb.frame = CGRectMake(GetScaleWidth(18)+GetScaleWidth(25), GetScaleWidth(15), kScreenWidth*0.5, GetScaleWidth(14));
+        self.titleLb.frame = CGRectMake(GetScaleWidth(18)+GetScaleWidth(25), GetScaleWidth(19), kScreenWidth*0.5, GetScaleWidth(14));
     }else{
         [self.leftImgView removeFromSuperview];
-        self.titleLb.frame = CGRectMake(GetScaleWidth(18), GetScaleWidth(15), kScreenWidth*0.5, GetScaleWidth(12));
+        self.titleLb.frame = CGRectMake(GetScaleWidth(29), GetScaleWidth(15), kScreenWidth*0.5, GetScaleWidth(12));
     }
     
     if (!IsEmpty(myInfoModel.title)) {
@@ -159,14 +160,14 @@
     WEAKSELF
     [self.leftImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.contentView).with.offset(GetScaleWidth(19));
-        make.top.equalTo(weakSelf.contentView).with.offset(GetScaleWidth(12));
+        make.centerY.equalTo(weakSelf.contentView);
         make.size.mas_equalTo(CGSizeMake(GetScaleWidth(20), GetScaleWidth(20)));
     }];
     
-//    [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
-//    make.left.equalTo(weakSelf.contentView).with.offset(GetScaleWidth(29));
-//        make.centerY.equalTo(weakSelf.contentView);
-//    }];
+    //    [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
+    //    make.left.equalTo(weakSelf.contentView).with.offset(GetScaleWidth(29));
+    //        make.centerY.equalTo(weakSelf.contentView);
+    //    }];
     
     [self.arrowImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(weakSelf.contentView).with.offset(-GetScaleWidth(19));
@@ -193,6 +194,4 @@
     }];
     
 }
-
-
 @end

@@ -7,7 +7,8 @@
 //
 
 #import "DCBaseSetViewController.h"
+#import "CategoryModel.h"
 
 @interface NSGoodsPublishVC : DCBaseSetViewController
-@property(nonatomic,copy)NSString *categoryString;/* 选择分类 */
+@property(nonatomic,copy)CategoryModel *model;/* 选择分类 */
 @end

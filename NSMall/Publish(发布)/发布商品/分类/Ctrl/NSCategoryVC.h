@@ -7,11 +7,12 @@
 //
 
 #import "DCBaseSetViewController.h"
+#import "CategoryModel.h"
 
 @interface NSCategoryVC : DCBaseSetViewController
 
-typedef void(^stringBlock)(NSString *string);
+typedef void(^modelBlock)(CategoryModel *model);
 
-@property (nonatomic, copy) stringBlock                   stringBlock;/* 选择的类别回调 */
+@property (nonatomic, strong) modelBlock                   stringBlock;/* 选择的类别回调 */
 
 @end

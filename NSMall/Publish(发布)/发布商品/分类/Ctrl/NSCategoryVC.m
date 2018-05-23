@@ -7,7 +7,6 @@
 //
 
 #import "NSCategoryVC.h"
-#import "CategoryModel.h"
 #import "NSCategoryTableViewCell.h"
 #import "HomePageAPI.h"
 #import "ADOrderTopToolView.h"
@@ -39,7 +38,7 @@
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
-        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
     };
     
     [self.view addSubview:topToolView];
@@ -50,8 +49,8 @@
 - (void)makeConstraints {
     
     [self.goodsTable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.bottom.equalTo(self.view);
-        //        make.top.equalTo(self.view.mas_bottom).with.offset(GetScaleWidth(10));
+        make.left.right.bottom.equalTo(self.view);
+    make.top.equalTo(self.view.mas_top).with.offset(TopBarHeight);
     }];
     
 }
@@ -94,7 +93,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return GetScaleWidth(52);
+    return GetScaleWidth(43);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -109,19 +108,18 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //进入下一级分类
     NSCategoryTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     CategoryModel *model = cell.myInfoModel;
     if(model.children.count == 0){
         if (self.stringBlock) {
-            self.stringBlock(model.name);
+            self.stringBlock(model);
         }
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController popViewControllerAnimated:YES];
     }else{
 //        跳到下一级
         NSSecondaryCategoryVC *ctrl = [[NSSecondaryCategoryVC alloc] init];
         [ctrl getDataWithCategoryModel:model];
-        [self presentViewController:ctrl animated:YES completion:nil];
+        [self.navigationController pushViewController:ctrl animated:YES];
     }
     
 }

@@ -20,6 +20,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.isShow = NO;
         [self initViews];
         [self makeConstraints];
         
@@ -104,7 +105,7 @@
     WEAKSELF
     [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.contentView.mas_left).with.offset(GetScaleWidth(29));
-        make.centerY.equalTo(weakSelf.contentView);
+        make.top.equalTo(weakSelf.contentView.mas_top).with.offset(GetScaleWidth(15));
     }];
     
     [self.arrowImgView mas_makeConstraints:^(MASConstraintMaker *make) {

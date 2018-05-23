@@ -12,6 +12,6 @@
 @interface NSCategoryTableViewCell : BaseTableCell
 @property (strong, nonatomic) UILabel        *titleLb;
 @property (strong, nonatomic) UIImageView    *arrowImgView;
-
+@property (nonatomic,assign) BOOL isShow;/* 是否展示View */
 @property (strong, nonatomic) CategoryModel *myInfoModel;
 @end

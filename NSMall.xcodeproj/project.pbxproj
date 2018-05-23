@@ -56,6 +56,8 @@
 		184F065D20A2E37300768418 /* StoreItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F065C20A2E37300768418 /* StoreItemModel.m */; };
 		1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD6F208F0DD00094A594 /* NetBaseModel.m */; };
 		1851CD77208F23530094A594 /* NSCustomHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD76208F23530094A594 /* NSCustomHeadCell.m */; };
+		185DFDFE20B3C7E800437168 /* NSCategoryTV.m in Sources */ = {isa = PBXBuildFile; fileRef = 185DFDFD20B3C7E800437168 /* NSCategoryTV.m */; };
+		185DFE0120B3FA8A00437168 /* NSCategoryTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185DFE0020B3FA8A00437168 /* NSCategoryTVCell.m */; };
 		1863D26720A96C8800047A7D /* NSGoodsShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863D26620A96C8800047A7D /* NSGoodsShowCell.m */; };
 		1863D26B20A9873C00047A7D /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863D26A20A9873C00047A7D /* UIButton+Bootstrap.m */; };
 		1874D5BB20AA8F8A0004B1AF /* DCHomeTopToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874D5B920AA8F8A0004B1AF /* DCHomeTopToolView.m */; };
@@ -333,6 +335,10 @@
 		1851CD6F208F0DD00094A594 /* NetBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetBaseModel.m; sourceTree = "<group>"; };
 		1851CD75208F23530094A594 /* NSCustomHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCustomHeadCell.h; sourceTree = "<group>"; };
 		1851CD76208F23530094A594 /* NSCustomHeadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCustomHeadCell.m; sourceTree = "<group>"; };
+		185DFDFC20B3C7E800437168 /* NSCategoryTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCategoryTV.h; sourceTree = "<group>"; };
+		185DFDFD20B3C7E800437168 /* NSCategoryTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCategoryTV.m; sourceTree = "<group>"; };
+		185DFDFF20B3FA8A00437168 /* NSCategoryTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCategoryTVCell.h; sourceTree = "<group>"; };
+		185DFE0020B3FA8A00437168 /* NSCategoryTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCategoryTVCell.m; sourceTree = "<group>"; };
 		1863D26520A96C8800047A7D /* NSGoodsShowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSGoodsShowCell.h; sourceTree = "<group>"; };
 		1863D26620A96C8800047A7D /* NSGoodsShowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSGoodsShowCell.m; sourceTree = "<group>"; };
 		1863D26920A9873B00047A7D /* UIButton+Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Bootstrap.h"; sourceTree = "<group>"; };
@@ -1618,6 +1624,10 @@
 			children = (
 				18C3D09C20A2F151000FCE7F /* NSCategoryTableViewCell.h */,
 				18C3D09A20A2F151000FCE7F /* NSCategoryTableViewCell.m */,
+				185DFDFC20B3C7E800437168 /* NSCategoryTV.h */,
+				185DFDFD20B3C7E800437168 /* NSCategoryTV.m */,
+				185DFDFF20B3FA8A00437168 /* NSCategoryTVCell.h */,
+				185DFE0020B3FA8A00437168 /* NSCategoryTVCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2536,6 +2546,7 @@
 				18D71043208DC84C002BA6CD /* DCBaseSetViewController.m in Sources */,
 				18D0C0AF20AC0D01007F0784 /* TDUserCertifyDataSource.m in Sources */,
 				18C3D0BC20A3DD2A000FCE7F /* ChatViewController.m in Sources */,
+				185DFE0120B3FA8A00437168 /* NSCategoryTVCell.m in Sources */,
 				18D0C0A620AC0D01007F0784 /* TDUserCertifySubVCConfirm.m in Sources */,
 				18D71042208DC84C002BA6CD /* DCTabBarController.m in Sources */,
 				18DD158B208DEAD80006475D /* BaseTableView.m in Sources */,
@@ -2617,6 +2628,7 @@
 				1851CD77208F23530094A594 /* NSCustomHeadCell.m in Sources */,
 				18B017A020A67B9600826EA4 /* ADReceivingAddressViewController.m in Sources */,
 				18D574CF209AA39A001C7875 /* GetVcodeParam.m in Sources */,
+				185DFDFE20B3C7E800437168 /* NSCategoryTV.m in Sources */,
 				184DE7A6208F081400E776F3 /* ADLMyInfoTableViewCell.m in Sources */,
 				18E3A43B20B2763C00F847ED /* NSOrderProductItemModel.m in Sources */,
 				18D0C0C420AC114A007F0784 /* AJPhotoTapDetectingImageView.m in Sources */,
