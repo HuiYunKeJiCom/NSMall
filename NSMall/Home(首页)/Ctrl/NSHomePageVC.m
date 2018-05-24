@@ -15,6 +15,9 @@
 #import "NSCarouselView.h"//轮播图
 #import "AdvertItemModel.h"
 #import "NSFunctionCell.h"
+#import "UIButton+Bootstrap.h"
+#import "NSOrderListVC.h"
+#import "LZCartViewController.h"
 
 @interface NSHomePageVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
 
@@ -23,6 +26,7 @@
 @property (nonatomic, strong) DCHomeTopToolView *topToolView;
 @property(nonatomic,strong)NSMutableArray *imageGroupArray;/* 广告图路径数组 */
 @property(nonatomic,strong)NSMutableDictionary *imageDict;/* 图片字典 */
+
 @end
 
 @implementation NSHomePageVC
@@ -32,14 +36,16 @@
     // Do any additional setup after loading the view.
     
 //    self.view.backgroundColor = kWhiteColor;
+    
     [self buildUI];
     [self setUpNavTopView];
-    [self requestAllOrder:NO];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self layoutUI];
+    [self requestAllOrder:NO];
     
 }
 
@@ -74,7 +80,6 @@
 }
 
 - (void)layoutUI{
-    NSLog(@"kScreenHeight = %.2f,TopBarHeight = %.2f,TabBarHeight = %.2f",kScreenHeight,TopBarHeight,TabBarHeight);
     _tableView.y = TopBarHeight;
     _tableView.size = CGSizeMake(kScreenWidth, AppHeight - TopBarHeight-TabBarHeight);
 }
@@ -92,6 +97,9 @@
     } failure:^(NSError *error) {
         NSLog(@"获取产品列表失败");
     }];
+    
+    [self.imageGroupArray removeAllObjects];
+    [self.imageDict removeAllObjects];
     
     [HomePageAPI getHomePageAdvertInfro:@{@"advertCode":@"indexHeadAdvert"} success:^(AdvertListModel * _Nullable result) {
         NSLog(@"count = %lu",result.advertList.count);
@@ -150,15 +158,36 @@
         if (cell == nil) {
             cell = [[NSFunctionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSFunctionCell"];
         }
+        cell.classifyBtnClickBlock = ^{
+            DLog(@"点击了分类");
+        };
+        cell.QRBtnClickBlock = ^{
+            DLog(@"点击了二维码");
+        };
+        cell.shopCartBtnClickBlock = ^{
+            DLog(@"点击了购物车");
+            LZCartViewController *cartVC = [LZCartViewController new];
+            [self.navigationController pushViewController:cartVC animated:YES];
+        };
+        cell.myOrderBtnClickBlock = ^{
+            DLog(@"点击了我的订单");
+            NSOrderListVC *orderListVC = [NSOrderListVC new];
+            [self.navigationController pushViewController:orderListVC animated:YES];
+        };
+        
         return cell;
     }else{
         NSGoodsShowCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSGoodsShowCell"];
         if (cell == nil) {
             cell = [[NSGoodsShowCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSGoodsShowCell"];
         }
+        WEAKSELF
         if (self.tableView.data.count > indexPath.section-1) {
             ProductListItemModel *model = self.tableView.data[indexPath.section-1];
             cell.productModel = model;
+            cell.likeBtnClickBlock = ^{
+                [weakSelf likeClickAtIndexPath:indexPath];
+            };
         }
         return cell;
     }
@@ -173,7 +202,7 @@
 }
 
 - (void)baseTableView:(BaseTableView *)tableView loadMore:(BOOL)flag {
-    [self requestAllOrder:NO];
+    [self requestAllOrder:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -193,6 +222,24 @@
         _imageGroupArray = [NSMutableArray array];
     }
     return _imageGroupArray;
+}
+
+-(void)likeClickAtIndexPath:(NSIndexPath *)indexPath{
+    NSGoodsShowCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [HomePageAPI changeProductLikeState:cell.productModel.product_id success:^(NSLikeModel *model) {
+        DLog(@"点赞成功");
+        DLog(@"model = %@",model.mj_keyValues);
+        if(cell.isLike){
+            [cell.likeBtn setImageWithTitle:IMAGE(@"ico_like") withTitle:@"喜欢" position:@"left" font:UISystemFontSize(14) forState:UIControlStateNormal];
+            cell.isLike = NO;
+        }else{
+            [cell.likeBtn setImageWithTitle:IMAGE(@"ico_like") withTitle:[NSString stringWithFormat:@"喜欢(%@)",[NSNumber numberWithInteger:model.like_number]] position:@"left" font:UISystemFontSize(14) forState:UIControlStateNormal];
+            cell.isLike = YES;
+        }
+        
+    } failure:^(NSError *error) {
+        DLog(@"点赞失败");
+    }];
 }
 
 @end

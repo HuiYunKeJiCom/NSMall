@@ -12,6 +12,7 @@
 #import "ADOrderTopToolView.h"
 #import "NSSecondaryCategoryVC.h"
 
+
 @interface NSCategoryVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
 @property (nonatomic, strong) BaseTableView         *goodsTable;
 
@@ -114,6 +115,7 @@
         if (self.stringBlock) {
             self.stringBlock(model);
         }
+
         [self.navigationController popViewControllerAnimated:YES];
     }else{
 //        跳到下一级

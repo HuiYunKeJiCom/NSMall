@@ -35,13 +35,16 @@
 }
 
 -(void)buildUI{
-    _bgView = [[UIView alloc] initWithFrame:self.frame];
+    _bgView = [[UIView alloc] init];
+    self.bgView.x = 0;
+    self.bgView.y = 0;
+    self.bgView.size = CGSizeMake(kScreenWidth, GetScaleWidth(127));
     _bgView.backgroundColor = kWhiteColor;
     [self addSubview:self.bgView];
     
-    self.goodsIV = [[UIImageView alloc] initWithFrame:CGRectMake(19, 12, 53, 53)];
-//    self.goodsIV.backgroundColor = kGreyColor;
+    self.goodsIV = [[UIImageView alloc] initWithFrame:CGRectMake(GetScaleWidth(19), GetScaleWidth(12), GetScaleWidth(53), GetScaleWidth(53))];
     [self.goodsIV setContentMode:UIViewContentModeScaleAspectFill];
+    self.goodsIV.backgroundColor = kRedColor;
     [self.bgView addSubview:self.goodsIV];
     
     self.goodsName = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum14 TextColor:[UIColor blackColor]];
@@ -92,32 +95,33 @@
 - (void)setModel:(NSMyProductListItemModel *)model {
     _model = model;
     
-    self.goodsName.x = CGRectGetMaxX(self.goodsIV.frame)+14;
+    [self.goodsIV sd_setImageWithURL:[NSURL URLWithString:model.product_imge]];
+    self.goodsName.x = CGRectGetMaxX(self.goodsIV.frame)+GetScaleWidth(14);
     self.goodsName.y = CGRectGetMinY(self.goodsIV.frame);
     self.goodsName.text = self.model.name;
     [self.goodsName sizeToFit];
     
-    self.publishLab.x = CGRectGetMaxX(self.goodsName.frame)+7;
-    self.publishLab.y = CGRectGetMinY(self.goodsIV.frame)+2;
+    self.publishLab.x = CGRectGetMaxX(self.goodsName.frame)+GetScaleWidth(7);
+    self.publishLab.y = CGRectGetMinY(self.goodsIV.frame)+GetScaleWidth(2);
     self.publishLab.text = @"售卖中";
     [self.publishLab sizeToFit];
     
-    self.detailLab.x = CGRectGetMaxX(self.goodsIV.frame)+14;
-    self.detailLab.y = CGRectGetMaxY(self.goodsName.frame)+10;
+    self.detailLab.x = CGRectGetMaxX(self.goodsIV.frame)+GetScaleWidth(14);
+    self.detailLab.y = CGRectGetMaxY(self.goodsName.frame)+GetScaleWidth(10);
     self.detailLab.text = self.model.introduce;
     [self.detailLab sizeToFit];
     
     self.lineView.x = 0;
-    self.lineView.y = CGRectGetMaxY(self.goodsIV.frame)+13;
+    self.lineView.y = CGRectGetMaxY(self.goodsIV.frame)+GetScaleWidth(13);
     self.lineView.size = CGSizeMake(kScreenWidth, 1);
     
-    self.editBtn.x = kScreenWidth-19-53;
-    self.editBtn.y = CGRectGetMaxY(self.lineView.frame)+13;
-    self.editBtn.size = CGSizeMake(53, 23);
+    self.editBtn.x = kScreenWidth-GetScaleWidth(19-53);
+    self.editBtn.y = CGRectGetMaxY(self.lineView.frame)+GetScaleWidth(13);
+    self.editBtn.size = CGSizeMake(GetScaleWidth(53), GetScaleWidth(23));
     
-    self.delBtn.x = kScreenWidth-19-53-13-53;
-    self.delBtn.y = CGRectGetMaxY(self.lineView.frame)+13;
-    self.delBtn.size = CGSizeMake(53, 23);
+    self.delBtn.x = kScreenWidth-GetScaleWidth(19-53-13-53);
+    self.delBtn.y = CGRectGetMaxY(self.lineView.frame)+GetScaleWidth(13);
+    self.delBtn.size = CGSizeMake(GetScaleWidth(53), GetScaleWidth(23));
 }
 
 

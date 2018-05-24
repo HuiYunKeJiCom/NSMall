@@ -10,4 +10,6 @@
 
 @interface NSSpecView : UIView
 
+@property (nonatomic, copy) dispatch_block_t deleteClickBlock;/* closeView 点击回调 */
+@property(nonatomic,strong)NSMutableDictionary *dataDict;/* 规格字典 */
 @end

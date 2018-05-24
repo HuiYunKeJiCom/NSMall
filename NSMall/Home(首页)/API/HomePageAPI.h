@@ -13,6 +13,7 @@
 #import "CategoryListModel.h"
 #import "SearchModel.h"
 #import "SearchParam.h"
+#import "NSLikeModel.h"
 
 @interface HomePageAPI : NSObject
 
@@ -36,7 +37,7 @@
 /*
     改变商品的点赞状态
  */
-+ (void)changeProductLikeState:(NSString *)productId success:(void (^)(NSInteger likeNumber))success failure:(void (^)(NSError *error))failure;
++ (void)changeProductLikeState:(NSString *)productId success:(void (^)(NSLikeModel *model))success failure:(void (^)(NSError *error))failure;
 
 
 /*

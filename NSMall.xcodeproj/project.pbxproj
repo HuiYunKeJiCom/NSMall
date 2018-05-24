@@ -23,6 +23,32 @@
 		184043542099FE8B00685F80 /* FFSpearteLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184043522099FE8B00685F80 /* FFSpearteLineView.m */; };
 		184043572099FEE900685F80 /* ADLFilterSelectItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 184043562099FEE900685F80 /* ADLFilterSelectItem.m */; };
 		1840435B209A028100685F80 /* UserInfoAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 1840435A209A028100685F80 /* UserInfoAPI.m */; };
+		1842A6D020B59D350090861D /* ADPaymentOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A69B20B59D350090861D /* ADPaymentOrderViewController.m */; };
+		1842A6D120B59D350090861D /* LZCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A69C20B59D350090861D /* LZCartViewController.m */; };
+		1842A6D220B59D350090861D /* ADPaymentSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A69E20B59D350090861D /* ADPaymentSuccessViewController.m */; };
+		1842A6D320B59D350090861D /* ADPlaceOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6A020B59D350090861D /* ADPlaceOrderViewController.m */; };
+		1842A6D420B59D350090861D /* ADBuildOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6A320B59D350090861D /* ADBuildOrderModel.m */; };
+		1842A6D520B59D350090861D /* LZGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6A420B59D350090861D /* LZGoodsModel.m */; };
+		1842A6D620B59D350090861D /* LZShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6A620B59D350090861D /* LZShopModel.m */; };
+		1842A6D720B59D350090861D /* DCRecommendItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6A920B59D350090861D /* DCRecommendItem.m */; };
+		1842A6D820B59D350090861D /* ADPaymentGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6AA20B59D350090861D /* ADPaymentGoodsModel.m */; };
+		1842A6D920B59D350090861D /* ADPayTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6AD20B59D350090861D /* ADPayTypeModel.m */; };
+		1842A6DA20B59D350090861D /* ADCartGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6AE20B59D350090861D /* ADCartGoodsModel.m */; };
+		1842A6DB20B59D350090861D /* ADPaymentOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6B220B59D350090861D /* ADPaymentOrderView.m */; };
+		1842A6DC20B59D350090861D /* ADOrderGoodsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6B420B59D350090861D /* ADOrderGoodsView.m */; };
+		1842A6DD20B59D350090861D /* ADTotalViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6B520B59D350090861D /* ADTotalViewCell.m */; };
+		1842A6DE20B59D350090861D /* ADBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6B720B59D350090861D /* ADBottomView.m */; };
+		1842A6DF20B59D350090861D /* ADPaymentOrderBottonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6B920B59D350090861D /* ADPaymentOrderBottonView.m */; };
+		1842A6E020B59D350090861D /* ADGoodsListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6BC20B59D350090861D /* ADGoodsListViewCell.m */; };
+		1842A6E120B59D350090861D /* ADPaymentSuccessContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6C020B59D350090861D /* ADPaymentSuccessContentView.m */; };
+		1842A6E220B59D350090861D /* ADOrderPublicViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6C220B59D350090861D /* ADOrderPublicViewCell.m */; };
+		1842A6E320B59D350090861D /* ADReceivingAddressViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6C420B59D350090861D /* ADReceivingAddressViewCell.m */; };
+		1842A6E420B59D350090861D /* ADCartGoodsListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6C620B59D350090861D /* ADCartGoodsListTableViewCell.m */; };
+		1842A6E520B59D350090861D /* LZTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6C820B59D350090861D /* LZTableHeaderView.m */; };
+		1842A6E620B59D360090861D /* LZCartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6CA20B59D350090861D /* LZCartTableViewCell.m */; };
+		1842A6E720B59D360090861D /* ADCartTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6CC20B59D350090861D /* ADCartTableHeaderView.m */; };
+		1842A6E820B59D360090861D /* ADPaymentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6CE20B59D350090861D /* ADPaymentViewCell.m */; };
+		1842A6E920B59D360090861D /* ADPaymentGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6CF20B59D350090861D /* ADPaymentGoodsCell.m */; };
 		184DE7A6208F081400E776F3 /* ADLMyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7A5208F081400E776F3 /* ADLMyInfoTableViewCell.m */; };
 		184DE7A9208F088E00E776F3 /* BaseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7A7208F088E00E776F3 /* BaseTableCell.m */; };
 		184DE7AC208F08B400E776F3 /* BaseRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7AB208F08B300E776F3 /* BaseRefreshGifHeader.m */; };
@@ -75,6 +101,7 @@
 		188CC652207F5431007D749E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188CC651207F5431007D749E /* Assets.xcassets */; };
 		188CC655207F5431007D749E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188CC653207F5431007D749E /* LaunchScreen.storyboard */; };
 		188CC658207F5431007D749E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 188CC657207F5431007D749E /* main.m */; };
+		1899B7B620B57643002FF2A8 /* NSLikeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1899B7B520B57643002FF2A8 /* NSLikeModel.m */; };
 		18A7AB7920ADAAFC009FC725 /* NSMyGoodsListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A7AB7820ADAAFC009FC725 /* NSMyGoodsListVC.m */; };
 		18A7AB7C20ADAC95009FC725 /* NSCommonParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A7AB7B20ADAC95009FC725 /* NSCommonParam.m */; };
 		18A7AB7F20ADB0BB009FC725 /* NSMyGoodsTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A7AB7E20ADB0BB009FC725 /* NSMyGoodsTVCell.m */; };
@@ -269,6 +296,59 @@
 		184043562099FEE900685F80 /* ADLFilterSelectItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADLFilterSelectItem.m; sourceTree = "<group>"; };
 		18404359209A028100685F80 /* UserInfoAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoAPI.h; sourceTree = "<group>"; };
 		1840435A209A028100685F80 /* UserInfoAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoAPI.m; sourceTree = "<group>"; };
+		1842A69A20B59D350090861D /* ADPaymentSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPaymentSuccessViewController.h; sourceTree = "<group>"; };
+		1842A69B20B59D350090861D /* ADPaymentOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPaymentOrderViewController.m; sourceTree = "<group>"; };
+		1842A69C20B59D350090861D /* LZCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZCartViewController.m; sourceTree = "<group>"; };
+		1842A69D20B59D350090861D /* ADPlaceOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPlaceOrderViewController.h; sourceTree = "<group>"; };
+		1842A69E20B59D350090861D /* ADPaymentSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPaymentSuccessViewController.m; sourceTree = "<group>"; };
+		1842A69F20B59D350090861D /* ADPaymentOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPaymentOrderViewController.h; sourceTree = "<group>"; };
+		1842A6A020B59D350090861D /* ADPlaceOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPlaceOrderViewController.m; sourceTree = "<group>"; };
+		1842A6A120B59D350090861D /* LZCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZCartViewController.h; sourceTree = "<group>"; };
+		1842A6A320B59D350090861D /* ADBuildOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADBuildOrderModel.m; sourceTree = "<group>"; };
+		1842A6A420B59D350090861D /* LZGoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZGoodsModel.m; sourceTree = "<group>"; };
+		1842A6A520B59D350090861D /* ADPaymentGoodsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPaymentGoodsModel.h; sourceTree = "<group>"; };
+		1842A6A620B59D350090861D /* LZShopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZShopModel.m; sourceTree = "<group>"; };
+		1842A6A720B59D350090861D /* ADCartGoodsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADCartGoodsModel.h; sourceTree = "<group>"; };
+		1842A6A820B59D350090861D /* ADPayTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPayTypeModel.h; sourceTree = "<group>"; };
+		1842A6A920B59D350090861D /* DCRecommendItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRecommendItem.m; sourceTree = "<group>"; };
+		1842A6AA20B59D350090861D /* ADPaymentGoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPaymentGoodsModel.m; sourceTree = "<group>"; };
+		1842A6AB20B59D350090861D /* LZGoodsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZGoodsModel.h; sourceTree = "<group>"; };
+		1842A6AC20B59D350090861D /* ADBuildOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADBuildOrderModel.h; sourceTree = "<group>"; };
+		1842A6AD20B59D350090861D /* ADPayTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPayTypeModel.m; sourceTree = "<group>"; };
+		1842A6AE20B59D350090861D /* ADCartGoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADCartGoodsModel.m; sourceTree = "<group>"; };
+		1842A6AF20B59D350090861D /* LZShopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZShopModel.h; sourceTree = "<group>"; };
+		1842A6B020B59D350090861D /* DCRecommendItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRecommendItem.h; sourceTree = "<group>"; };
+		1842A6B220B59D350090861D /* ADPaymentOrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPaymentOrderView.m; sourceTree = "<group>"; };
+		1842A6B320B59D350090861D /* ADOrderPublicViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADOrderPublicViewCell.h; sourceTree = "<group>"; };
+		1842A6B420B59D350090861D /* ADOrderGoodsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADOrderGoodsView.m; sourceTree = "<group>"; };
+		1842A6B520B59D350090861D /* ADTotalViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADTotalViewCell.m; sourceTree = "<group>"; };
+		1842A6B620B59D350090861D /* ADCartGoodsListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADCartGoodsListTableViewCell.h; sourceTree = "<group>"; };
+		1842A6B720B59D350090861D /* ADBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADBottomView.m; sourceTree = "<group>"; };
+		1842A6B820B59D350090861D /* ADReceivingAddressViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADReceivingAddressViewCell.h; sourceTree = "<group>"; };
+		1842A6B920B59D350090861D /* ADPaymentOrderBottonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPaymentOrderBottonView.m; sourceTree = "<group>"; };
+		1842A6BA20B59D350090861D /* ADCartTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADCartTableHeaderView.h; sourceTree = "<group>"; };
+		1842A6BB20B59D350090861D /* LZCartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZCartTableViewCell.h; sourceTree = "<group>"; };
+		1842A6BC20B59D350090861D /* ADGoodsListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADGoodsListViewCell.m; sourceTree = "<group>"; };
+		1842A6BD20B59D350090861D /* LZTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZTableHeaderView.h; sourceTree = "<group>"; };
+		1842A6BE20B59D350090861D /* ADPaymentGoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPaymentGoodsCell.h; sourceTree = "<group>"; };
+		1842A6BF20B59D350090861D /* ADPaymentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPaymentViewCell.h; sourceTree = "<group>"; };
+		1842A6C020B59D350090861D /* ADPaymentSuccessContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPaymentSuccessContentView.m; sourceTree = "<group>"; };
+		1842A6C120B59D350090861D /* ADOrderGoodsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADOrderGoodsView.h; sourceTree = "<group>"; };
+		1842A6C220B59D350090861D /* ADOrderPublicViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADOrderPublicViewCell.m; sourceTree = "<group>"; };
+		1842A6C320B59D350090861D /* ADPaymentOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPaymentOrderView.h; sourceTree = "<group>"; };
+		1842A6C420B59D350090861D /* ADReceivingAddressViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADReceivingAddressViewCell.m; sourceTree = "<group>"; };
+		1842A6C520B59D350090861D /* ADBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADBottomView.h; sourceTree = "<group>"; };
+		1842A6C620B59D350090861D /* ADCartGoodsListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADCartGoodsListTableViewCell.m; sourceTree = "<group>"; };
+		1842A6C720B59D350090861D /* ADTotalViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADTotalViewCell.h; sourceTree = "<group>"; };
+		1842A6C820B59D350090861D /* LZTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZTableHeaderView.m; sourceTree = "<group>"; };
+		1842A6C920B59D350090861D /* ADGoodsListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADGoodsListViewCell.h; sourceTree = "<group>"; };
+		1842A6CA20B59D350090861D /* LZCartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZCartTableViewCell.m; sourceTree = "<group>"; };
+		1842A6CB20B59D350090861D /* ADPaymentOrderBottonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPaymentOrderBottonView.h; sourceTree = "<group>"; };
+		1842A6CC20B59D350090861D /* ADCartTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADCartTableHeaderView.m; sourceTree = "<group>"; };
+		1842A6CD20B59D350090861D /* ADPaymentSuccessContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPaymentSuccessContentView.h; sourceTree = "<group>"; };
+		1842A6CE20B59D350090861D /* ADPaymentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPaymentViewCell.m; sourceTree = "<group>"; };
+		1842A6CF20B59D350090861D /* ADPaymentGoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPaymentGoodsCell.m; sourceTree = "<group>"; };
+		1842A6EA20B59DE20090861D /* LZConfigFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZConfigFile.h; sourceTree = "<group>"; };
 		184DE7A4208F081400E776F3 /* ADLMyInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADLMyInfoTableViewCell.h; sourceTree = "<group>"; };
 		184DE7A5208F081400E776F3 /* ADLMyInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADLMyInfoTableViewCell.m; sourceTree = "<group>"; };
 		184DE7A7208F088E00E776F3 /* BaseTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableCell.m; sourceTree = "<group>"; };
@@ -371,6 +451,8 @@
 		188CC654207F5431007D749E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		188CC656207F5431007D749E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		188CC657207F5431007D749E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1899B7B420B57643002FF2A8 /* NSLikeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSLikeModel.h; sourceTree = "<group>"; };
+		1899B7B520B57643002FF2A8 /* NSLikeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSLikeModel.m; sourceTree = "<group>"; };
 		18A7AB7720ADAAFC009FC725 /* NSMyGoodsListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSMyGoodsListVC.h; sourceTree = "<group>"; };
 		18A7AB7820ADAAFC009FC725 /* NSMyGoodsListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSMyGoodsListVC.m; sourceTree = "<group>"; };
 		18A7AB7A20ADAC95009FC725 /* NSCommonParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCommonParam.h; sourceTree = "<group>"; };
@@ -719,6 +801,7 @@
 		18230F62208D792100D3E55F /* SelfLibs */ = {
 			isa = PBXGroup;
 			children = (
+				1842A6EA20B59DE20090861D /* LZConfigFile.h */,
 				184F0620209FFB7F00768418 /* Category(分类) */,
 				18DD1566208DCB630006475D /* Tools(工具) */,
 				18DD155B208DC9AB0006475D /* GQGesVCTransition */,
@@ -844,9 +927,93 @@
 			path = "PersonInfo(个人信息)/API";
 			sourceTree = "<group>";
 		};
+		1842A69820B59D350090861D /* ShoppingCar(购物车) */ = {
+			isa = PBXGroup;
+			children = (
+				1842A69920B59D350090861D /* Ctrl */,
+				1842A6A220B59D350090861D /* Model */,
+				1842A6B120B59D350090861D /* View */,
+			);
+			path = "ShoppingCar(购物车)";
+			sourceTree = "<group>";
+		};
+		1842A69920B59D350090861D /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				1842A6A120B59D350090861D /* LZCartViewController.h */,
+				1842A69C20B59D350090861D /* LZCartViewController.m */,
+				1842A69D20B59D350090861D /* ADPlaceOrderViewController.h */,
+				1842A6A020B59D350090861D /* ADPlaceOrderViewController.m */,
+				1842A69F20B59D350090861D /* ADPaymentOrderViewController.h */,
+				1842A69B20B59D350090861D /* ADPaymentOrderViewController.m */,
+				1842A69A20B59D350090861D /* ADPaymentSuccessViewController.h */,
+				1842A69E20B59D350090861D /* ADPaymentSuccessViewController.m */,
+			);
+			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		1842A6A220B59D350090861D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1842A6A320B59D350090861D /* ADBuildOrderModel.m */,
+				1842A6A420B59D350090861D /* LZGoodsModel.m */,
+				1842A6A520B59D350090861D /* ADPaymentGoodsModel.h */,
+				1842A6A620B59D350090861D /* LZShopModel.m */,
+				1842A6A720B59D350090861D /* ADCartGoodsModel.h */,
+				1842A6A820B59D350090861D /* ADPayTypeModel.h */,
+				1842A6A920B59D350090861D /* DCRecommendItem.m */,
+				1842A6AA20B59D350090861D /* ADPaymentGoodsModel.m */,
+				1842A6AB20B59D350090861D /* LZGoodsModel.h */,
+				1842A6AC20B59D350090861D /* ADBuildOrderModel.h */,
+				1842A6AD20B59D350090861D /* ADPayTypeModel.m */,
+				1842A6AE20B59D350090861D /* ADCartGoodsModel.m */,
+				1842A6AF20B59D350090861D /* LZShopModel.h */,
+				1842A6B020B59D350090861D /* DCRecommendItem.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1842A6B120B59D350090861D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1842A6B220B59D350090861D /* ADPaymentOrderView.m */,
+				1842A6B320B59D350090861D /* ADOrderPublicViewCell.h */,
+				1842A6B420B59D350090861D /* ADOrderGoodsView.m */,
+				1842A6B520B59D350090861D /* ADTotalViewCell.m */,
+				1842A6B620B59D350090861D /* ADCartGoodsListTableViewCell.h */,
+				1842A6B720B59D350090861D /* ADBottomView.m */,
+				1842A6B820B59D350090861D /* ADReceivingAddressViewCell.h */,
+				1842A6B920B59D350090861D /* ADPaymentOrderBottonView.m */,
+				1842A6BA20B59D350090861D /* ADCartTableHeaderView.h */,
+				1842A6BB20B59D350090861D /* LZCartTableViewCell.h */,
+				1842A6BC20B59D350090861D /* ADGoodsListViewCell.m */,
+				1842A6BD20B59D350090861D /* LZTableHeaderView.h */,
+				1842A6BE20B59D350090861D /* ADPaymentGoodsCell.h */,
+				1842A6BF20B59D350090861D /* ADPaymentViewCell.h */,
+				1842A6C020B59D350090861D /* ADPaymentSuccessContentView.m */,
+				1842A6C120B59D350090861D /* ADOrderGoodsView.h */,
+				1842A6C220B59D350090861D /* ADOrderPublicViewCell.m */,
+				1842A6C320B59D350090861D /* ADPaymentOrderView.h */,
+				1842A6C420B59D350090861D /* ADReceivingAddressViewCell.m */,
+				1842A6C520B59D350090861D /* ADBottomView.h */,
+				1842A6C620B59D350090861D /* ADCartGoodsListTableViewCell.m */,
+				1842A6C720B59D350090861D /* ADTotalViewCell.h */,
+				1842A6C820B59D350090861D /* LZTableHeaderView.m */,
+				1842A6C920B59D350090861D /* ADGoodsListViewCell.h */,
+				1842A6CA20B59D350090861D /* LZCartTableViewCell.m */,
+				1842A6CB20B59D350090861D /* ADPaymentOrderBottonView.h */,
+				1842A6CC20B59D350090861D /* ADCartTableHeaderView.m */,
+				1842A6CD20B59D350090861D /* ADPaymentSuccessContentView.h */,
+				1842A6CE20B59D350090861D /* ADPaymentViewCell.m */,
+				1842A6CF20B59D350090861D /* ADPaymentGoodsCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		184F05EA209AE39600768418 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1899B7B320B575E4002FF2A8 /* Like */,
 				184F065720A2E32500768418 /* Store */,
 				184F064E20A2DBB800768418 /* Search */,
 				184F05FB209C590A00768418 /* Category */,
@@ -1260,6 +1427,15 @@
 			path = NSMall;
 			sourceTree = "<group>";
 		};
+		1899B7B320B575E4002FF2A8 /* Like */ = {
+			isa = PBXGroup;
+			children = (
+				1899B7B420B57643002FF2A8 /* NSLikeModel.h */,
+				1899B7B520B57643002FF2A8 /* NSLikeModel.m */,
+			);
+			path = Like;
+			sourceTree = "<group>";
+		};
 		18A7AB7020AD8B69009FC725 /* Goods(我的商品) */ = {
 			isa = PBXGroup;
 			children = (
@@ -1558,9 +1734,9 @@
 			isa = PBXGroup;
 			children = (
 				18C3D08320A2F111000FCE7F /* LabelItemModel.h */,
-				18C3D08420A2F111000FCE7F /* LabelListModel.m */,
 				18C3D08520A2F111000FCE7F /* LabelItemModel.m */,
 				18C3D08620A2F111000FCE7F /* LabelListModel.h */,
+				18C3D08420A2F111000FCE7F /* LabelListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2099,6 +2275,7 @@
 		18DD156A208DCEEB0006475D /* Home(首页) */ = {
 			isa = PBXGroup;
 			children = (
+				1842A69820B59D350090861D /* ShoppingCar(购物车) */,
 				1863D26420A96AA200047A7D /* View */,
 				1863D26320A96A9000047A7D /* Ctrl */,
 				184F065020A2DBFF00768418 /* Param */,
@@ -2471,6 +2648,7 @@
 				18C3D0DC20A44803000FCE7F /* NSNavView.m in Sources */,
 				18E3A45420B2E63D00F847ED /* GoodsPublishParam.m in Sources */,
 				1863D26720A96C8800047A7D /* NSGoodsShowCell.m in Sources */,
+				1842A6E620B59D360090861D /* LZCartTableViewCell.m in Sources */,
 				18C3D0A420A2F190000FCE7F /* UIView+YWFrame.m in Sources */,
 				18C3D0D720A3FAC3000FCE7F /* UIBarButtonItem+gyh.m in Sources */,
 				18C3D0A920A2F77E000FCE7F /* CategoryModel.m in Sources */,
@@ -2484,15 +2662,22 @@
 				18B017A120A67B9600826EA4 /* SaveAddressParam.m in Sources */,
 				184F05EF209AE39700768418 /* ProductListItemModel.m in Sources */,
 				1878478920AEE93600AC0E0F /* NSOrderHeader.m in Sources */,
+				1842A6D920B59D350090861D /* ADPayTypeModel.m in Sources */,
+				1842A6E520B59D350090861D /* LZTableHeaderView.m in Sources */,
+				1842A6DA20B59D350090861D /* ADCartGoodsModel.m in Sources */,
+				1842A6DF20B59D350090861D /* ADPaymentOrderBottonView.m in Sources */,
 				18DD157D208DD5F40006475D /* NSNearbyViewController.m in Sources */,
+				1842A6DC20B59D350090861D /* ADOrderGoodsView.m in Sources */,
 				18E3A44320B29C0A00F847ED /* MyOrderParam.m in Sources */,
 				18A7AB7C20ADAC95009FC725 /* NSCommonParam.m in Sources */,
+				1842A6D320B59D350090861D /* ADPlaceOrderViewController.m in Sources */,
 				18C3D0BE20A3DD2A000FCE7F /* AddViewButton.m in Sources */,
 				18C3D0D420A3FA99000FCE7F /* FriendsViewController.m in Sources */,
 				18A7AB8320ADB57E009FC725 /* NSMyProductListModel.m in Sources */,
 				18D0824A20956D2F0031034A /* NSLoginController.m in Sources */,
 				18D0C0DE20AC1BC3007F0784 /* TDCountryCtrl.m in Sources */,
 				1835089920808CCD00BCF7CE /* Common.m in Sources */,
+				1842A6E820B59D360090861D /* ADPaymentViewCell.m in Sources */,
 				18DD1577208DD4140006475D /* NSMyCenterViewController.m in Sources */,
 				18D574C7209A9EAB001C7875 /* ChangeMobileParam.m in Sources */,
 				18D0C0AB20AC0D01007F0784 /* TDUserCertifyCellTxtInput.m in Sources */,
@@ -2524,6 +2709,7 @@
 				18C3D07B20A2F0E8000FCE7F /* GetLabelsAPI.m in Sources */,
 				18C3D0C220A3DD2A000FCE7F /* MessageImageCell.m in Sources */,
 				18E3A42620B263B800F847ED /* NSWaitPaySaleVC.m in Sources */,
+				1842A6D220B59D350090861D /* ADPaymentSuccessViewController.m in Sources */,
 				18D0C0AA20AC0D01007F0784 /* TDUserCertifyDataBasic.m in Sources */,
 				184F061B209FE81A00768418 /* TZTestCell.m in Sources */,
 				18B0179D20A67B9600826EA4 /* ADAddressLabelTableViewCell.m in Sources */,
@@ -2544,6 +2730,7 @@
 				18E3A42C20B2641800F847ED /* NSWaitReceiveSaleVC.m in Sources */,
 				18B017A620A67B9600826EA4 /* NSAddressItemModel.m in Sources */,
 				18D71043208DC84C002BA6CD /* DCBaseSetViewController.m in Sources */,
+				1842A6D420B59D350090861D /* ADBuildOrderModel.m in Sources */,
 				18D0C0AF20AC0D01007F0784 /* TDUserCertifyDataSource.m in Sources */,
 				18C3D0BC20A3DD2A000FCE7F /* ChatViewController.m in Sources */,
 				185DFE0120B3FA8A00437168 /* NSCategoryTVCell.m in Sources */,
@@ -2557,13 +2744,18 @@
 				184F064A209FFB7F00768418 /* UIView+Layout.m in Sources */,
 				18D0824F20956D2F0031034A /* LoginParam.m in Sources */,
 				18D092FE20917A1400E091E0 /* DCTabBarCenterButton.m in Sources */,
+				1842A6D120B59D350090861D /* LZCartViewController.m in Sources */,
 				18A7AB8620ADB5AD009FC725 /* NSMyProductListItemModel.m in Sources */,
 				184F065320A2DC2D00768418 /* SearchParam.m in Sources */,
 				18E3A43520B2731700F847ED /* NSOrderListModel.m in Sources */,
 				18E3A41A20B2628D00F847ED /* NSWaitReceiveBuyVC.m in Sources */,
+				1842A6E420B59D350090861D /* ADCartGoodsListTableViewCell.m in Sources */,
 				18B017AD20A67B9600826EA4 /* NSShopPublishAPI.m in Sources */,
+				1842A6E120B59D350090861D /* ADPaymentSuccessContentView.m in Sources */,
 				18D0C0E620AC1E19007F0784 /* JFPickerController.m in Sources */,
 				18D574D2209AB1D6001C7875 /* HeaderModel.m in Sources */,
+				1842A6E020B59D350090861D /* ADGoodsListViewCell.m in Sources */,
+				1899B7B620B57643002FF2A8 /* NSLikeModel.m in Sources */,
 				18C3CFF020A2EF3B000FCE7F /* YWAddressDataTool.m in Sources */,
 				18B0179920A67B9600826EA4 /* YWAddressTableViewCell2.m in Sources */,
 				18D0825320956EB70031034A /* HomePageAPI.m in Sources */,
@@ -2588,6 +2780,7 @@
 				1840434E2099FB8400685F80 /* ADLTitleField.m in Sources */,
 				188CC658207F5431007D749E /* main.m in Sources */,
 				184F061C209FE81A00768418 /* NSGoodsPublishVC.m in Sources */,
+				1842A6D020B59D350090861D /* ADPaymentOrderViewController.m in Sources */,
 				18350895208086DE00BCF7CE /* UIViewExt.m in Sources */,
 				1840432F2099FA5D00685F80 /* ADLUpdateUserInformCtrl.m in Sources */,
 				18D0C0B220AC0D01007F0784 /* TDUserCertifyDataPics.m in Sources */,
@@ -2621,6 +2814,7 @@
 				184043572099FEE900685F80 /* ADLFilterSelectItem.m in Sources */,
 				18E3A45720B2EF5000F847ED /* ShelveProductParam.m in Sources */,
 				18C3D08120A2F0FA000FCE7F /* GetLabelsParam.m in Sources */,
+				1842A6E220B59D350090861D /* ADOrderPublicViewCell.m in Sources */,
 				184043542099FE8B00685F80 /* FFSpearteLineView.m in Sources */,
 				18C3D09D20A2F151000FCE7F /* NSGoodsTableView.m in Sources */,
 				184F0646209FFB7F00768418 /* UITextView+ZWPlaceHolder.m in Sources */,
@@ -2628,15 +2822,21 @@
 				1851CD77208F23530094A594 /* NSCustomHeadCell.m in Sources */,
 				18B017A020A67B9600826EA4 /* ADReceivingAddressViewController.m in Sources */,
 				18D574CF209AA39A001C7875 /* GetVcodeParam.m in Sources */,
+				1842A6E920B59D360090861D /* ADPaymentGoodsCell.m in Sources */,
 				185DFDFE20B3C7E800437168 /* NSCategoryTV.m in Sources */,
+				1842A6DB20B59D350090861D /* ADPaymentOrderView.m in Sources */,
 				184DE7A6208F081400E776F3 /* ADLMyInfoTableViewCell.m in Sources */,
+				1842A6D820B59D350090861D /* ADPaymentGoodsModel.m in Sources */,
+				1842A6D720B59D350090861D /* DCRecommendItem.m in Sources */,
 				18E3A43B20B2763C00F847ED /* NSOrderProductItemModel.m in Sources */,
 				18D0C0C420AC114A007F0784 /* AJPhotoTapDetectingImageView.m in Sources */,
 				18E3A43220B2646700F847ED /* NSAbolishSaleVC.m in Sources */,
 				18230F6A208D795E00D3E55F /* FFLoadFailView.m in Sources */,
+				1842A6DD20B59D350090861D /* ADTotalViewCell.m in Sources */,
 				18D0824D20956D2F0031034A /* UserModel.m in Sources */,
 				18B017AA20A67B9600826EA4 /* ADReceivingAddressCell.m in Sources */,
 				18C3D08B20A2F13F000FCE7F /* NSChangeParamVC.m in Sources */,
+				1842A6DE20B59D350090861D /* ADBottomView.m in Sources */,
 				184043352099FAA200685F80 /* ADLUpdateUserPhotoCell.m in Sources */,
 				18350890207F653600BCF7CE /* Net.m in Sources */,
 				18B017AB20A67B9600826EA4 /* ADAddressTopView.m in Sources */,
@@ -2647,6 +2847,7 @@
 				184F0617209FE81A00768418 /* NSShopPublishVC.m in Sources */,
 				18B017B720A67C0F00826EA4 /* NSChangePhoneVC.m in Sources */,
 				184F05F7209C40C700768418 /* AdvertListModel.m in Sources */,
+				1842A6E320B59D350090861D /* ADReceivingAddressViewCell.m in Sources */,
 				18C3D08820A2F111000FCE7F /* LabelItemModel.m in Sources */,
 				18C3D0C020A3DD2A000FCE7F /* AddView.m in Sources */,
 				18B017B320A67B9600826EA4 /* CLTagView.m in Sources */,
@@ -2665,6 +2866,7 @@
 				184F0641209FFB7F00768418 /* NSString+wrapper.m in Sources */,
 				18D09304209306B900E091E0 /* DCMainNavController.m in Sources */,
 				18A7AB7920ADAAFC009FC725 /* NSMyGoodsListVC.m in Sources */,
+				1842A6D520B59D350090861D /* LZGoodsModel.m in Sources */,
 				1878478020AED12100AC0E0F /* NSMyShopTVCell.m in Sources */,
 				18C3D08720A2F111000FCE7F /* LabelListModel.m in Sources */,
 				18D0C0CD20AC167C007F0784 /* TDNameCertifyModel.m in Sources */,
@@ -2678,6 +2880,8 @@
 				18E3A42320B2638900F847ED /* NSAllSaleVC.m in Sources */,
 				18D0C06D20AC0B58007F0784 /* TDBaseViewController.m in Sources */,
 				18CBB3AB20907AD300358E07 /* NSTabBarController.m in Sources */,
+				1842A6E720B59D360090861D /* ADCartTableHeaderView.m in Sources */,
+				1842A6D620B59D350090861D /* LZShopModel.m in Sources */,
 				1878477A20AECD4000AC0E0F /* NSShopListItemModel.m in Sources */,
 				18D0C0A720AC0D01007F0784 /* TDUserCertifyDataConfirm.m in Sources */,
 				1878478620AEDD9E00AC0E0F /* NSOrderListVC.m in Sources */,

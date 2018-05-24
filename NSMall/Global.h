@@ -174,4 +174,9 @@ static inline BOOL IsEmpty(id thing) {
 
 #define UIBoldFontSize(s)           [UIFont boldSystemFontOfSize:s]
 
+#define LZSCREEN_HEIGHT ([[UIScreen mainScreen]bounds].size.height)
+#define LZSCREEN_WIDTH ([[UIScreen mainScreen]bounds].size.width)
+#define LZNaigationBarHeight 64
+#define LZTabBarHeight 49
+#define LZTableViewHeaderHeight 30
 

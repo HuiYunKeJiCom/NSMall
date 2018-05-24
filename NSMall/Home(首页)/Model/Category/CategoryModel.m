@@ -14,4 +14,7 @@
     return @{@"children":[CategoryModel class]};
 }
 
++ (NSDictionary *)modelCustomPropertyMapper{
+    return @{@"ID":@"id"};
+}
 @end

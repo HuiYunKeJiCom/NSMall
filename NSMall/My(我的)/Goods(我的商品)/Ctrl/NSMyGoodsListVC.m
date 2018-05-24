@@ -79,6 +79,7 @@
 - (BaseTableView *)goodsTable {
     if (!_goodsTable) {
         _goodsTable = [[BaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _goodsTable.backgroundColor = KBGCOLOR;
         _goodsTable.delegate = self;
         _goodsTable.dataSource = self;
         _goodsTable.isLoadMore = YES;
@@ -97,23 +98,27 @@
         return GetScaleWidth(0);
     }else{
         //设置间隔高度
-        return GetScaleWidth(15);
+        return GetScaleWidth(10);
     }
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
-    UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(5))];
-    sectionView.backgroundColor = kGreyColor;
+    UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(10))];
+    sectionView.backgroundColor = KBGCOLOR;
     return sectionView;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return self.goodsTable.data.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return GetScaleWidth(191);
+    return GetScaleWidth(127);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

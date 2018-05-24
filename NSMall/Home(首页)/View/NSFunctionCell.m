@@ -33,7 +33,7 @@
 }
 
 -(void)buildUI{
-    self.bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    self.bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(73+30))];
     self.bgView.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.bgView];
     
@@ -48,8 +48,7 @@
     self.classifyBtn.x = spaceWidth;
     self.classifyBtn.y = -GetScaleWidth(10);
     self.classifyBtn.size = CGSizeMake(itemWidth, GetScaleWidth(112));
-
-    //    [self.shareBtn addTarget:self action:@selector(shareButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.classifyBtn addTarget:self action:@selector(classifyButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.shopCartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.shopCartBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -59,6 +58,7 @@
     self.shopCartBtn.x = itemWidth+2*spaceWidth;
     self.shopCartBtn.y = -GetScaleWidth(10);
     self.shopCartBtn.size = CGSizeMake(itemWidth, GetScaleWidth(112));
+    [self.classifyBtn addTarget:self action:@selector(classifyButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.QRBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.QRBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -68,6 +68,7 @@
     self.QRBtn.x = itemWidth*2+3*spaceWidth;
     self.QRBtn.y = -GetScaleWidth(10);
     self.QRBtn.size = CGSizeMake(itemWidth, GetScaleWidth(112));
+    [self.QRBtn addTarget:self action:@selector(QRButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.myOrderBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.myOrderBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -77,10 +78,27 @@
     self.myOrderBtn.x = itemWidth*3+4*spaceWidth;
     self.myOrderBtn.y = -GetScaleWidth(10);
     self.myOrderBtn.size = CGSizeMake(itemWidth, GetScaleWidth(112));
+    [self.myOrderBtn addTarget:self action:@selector(myOrderButtonClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)setFrame:(CGRect)frame {
     [super setFrame:frame];
+}
+
+- (void)classifyButtonClick {
+    !_classifyBtnClickBlock ? : _classifyBtnClickBlock();
+}
+
+- (void)shopCartButtonClick {
+    !_shopCartBtnClickBlock ? : _shopCartBtnClickBlock();
+}
+
+- (void)QRButtonClick {
+    !_QRBtnClickBlock ? : _QRBtnClickBlock();
+}
+
+- (void)myOrderButtonClick {
+    !_myOrderBtnClickBlock ? : _myOrderBtnClickBlock();
 }
 
 @end

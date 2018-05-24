@@ -46,6 +46,7 @@
 @property(nonatomic,strong)UIScrollView *SV;/* 全局SV */
 @property(nonatomic,strong)GoodsPublishParam *param;/* 商品发布参数 */
 @property(nonatomic,strong)NSMutableDictionary *dict;/* 改变高度的字典 */
+@property(nonatomic,strong)NSMutableArray *specViewArr;/* 存放规格View */
 @end
 
 @implementation NSGoodsPublishVC
@@ -132,6 +133,8 @@
     [self setUpAddView];
     [self setUpNavTopView];
     [self setUpBottomBtn];
+    
+    
 }
 
 - (void)configCollectionView {
@@ -699,16 +702,25 @@
     
     NSInfoCustomCell *cell = [self.otherTableView cellForRowAtIndexPath:indexPath];
     CGRect frame2 = cell.frame;
-    float height = GetScaleWidth(43)*3+10+frame2.size.height;
+    __block float height = GetScaleWidth(43)*3+10+frame2.size.height;
     [self.dict setValue:[NSNumber numberWithInteger:indexPath.section] forKey:@"indexPath"];
     [self.dict setValue:[NSNumber numberWithFloat:height] forKey:@"height"];
-    
+
     NSSpecView *specView = [NSSpecView new];
-    specView.backgroundColor = kRedColor;
+    specView.backgroundColor = KBGCOLOR;
+    __weak typeof(specView) specview = specView;
+    specView.deleteClickBlock = ^{
+        [self.dict setValue:[NSNumber numberWithInteger:indexPath.section] forKey:@"indexPath"];
+        height -= (GetScaleWidth(43)*3+10);
+        [self.dict setValue:[NSNumber numberWithFloat:height] forKey:@"height"];
+        self.otherTableView.dict = self.dict;
+        [self.specViewArr removeObject:specview];
+    };
     specView.x = 0;
     specView.y = frame2.size.height;
     specView.size = CGSizeMake(kScreenWidth, GetScaleWidth(43)*3+10);
     [cell addSubview:specView];
+    [self.specViewArr addObject:specView];
     
     self.otherTableView.dict = self.dict;
 }
@@ -774,6 +786,7 @@
 }
 
 -(void)publish:(UIButton *)btn{
+    DLog(@"图片数量 = %lu",_selectedPhotos.count);
     NSMutableArray *pathArr = [NSMutableArray array];
     for(int i=0;i<_selectedPhotos.count;i++){
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
@@ -782,18 +795,78 @@
         
         [GoodsPublishAPI uploadGoodsPicWithParam:param success:^(NSString *path) {
             [pathArr addObject:path];
+            if(i==_selectedPhotos.count-1){
+                self.param.imagePath = [pathArr componentsJoinedByString:@","];
+                DLog(@"商品图片上传 = %lu",pathArr.count);
+                DLog(@"self.param.imagePath = %@",self.param.imagePath);
+            self.param.productName = self.goodsNameTF.text;
+            self.param.introduce = self.detailTV.text;
+            
+            if(self.specViewArr.count>0){
+                self.param.hasSpec = @"1";
+                NSString *specStr = @"";
+                for(int i=0;i<self.specViewArr.count;i++){
+                    NSSpecView *specV = self.specViewArr[i];
+                    if(i==0){
+                        specStr =[self convertToJsonData:specV.dataDict];
+                    }else{
+                        specStr = [specStr stringByAppendingFormat:@",%@",[self convertToJsonData:specV.dataDict]];
+                    }
+                }
+                self.param.productSpec = specStr;
+            }else{
+                self.param.hasSpec = @"0";
+            }
+                DLog(@"categoryId = %@",self.param.categoryId);
+            //调用发布接口API
+            [GoodsPublishAPI createProductWithParam:self.param success:^{
+                DLog(@"商品发布成功");
+//                [kAppDelegate setUpRootVC];
+            } faulre:^(NSError *error) {
+                DLog(@"商品发布失败");
+            }];
+            }
         } faulre:^(NSError *error) {
         }];
     }
+
+}
+
+-(NSString *)convertToJsonData:(NSDictionary *)dict
+
+{
     
-    self.param.imagePath = [pathArr componentsJoinedByString:@","];
-    self.param.productName = self.goodsNameTF.text;
-    self.param.introduce = self.detailTV.text;
-//    self.param.labelId = //非必填
-//    self.param.stock//非必填
-//     self.param.hasSpec//是否有规格,需要判断,必填
-//    self.param.productSpec//有规格时为必填
+    NSError *error;
     
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
+    
+    NSString *jsonString;
+    
+    if (!jsonData) {
+        
+        NSLog(@"%@",error);
+        
+    }else{
+        
+        jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+    }
+    
+    NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
+    
+    NSRange range = {0,jsonString.length};
+    
+    //去掉字符串中的空格
+    
+    [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
+    
+    NSRange range2 = {0,mutStr.length};
+    
+    //去掉字符串中的换行符
+    
+    [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
+    
+    return mutStr;
     
 }
 
@@ -863,5 +936,25 @@
     return _dict;
 }
 
+-(NSMutableArray *)specViewArr{
+    if (!_specViewArr) {
+        _specViewArr = [NSMutableArray array];
+    }
+    return _specViewArr;
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+    [theTextField resignFirstResponder];// 使当前文本框失去第一响应者的特权，就会回收键盘了
+    return YES;
+}
 
 @end

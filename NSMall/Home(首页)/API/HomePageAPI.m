@@ -40,9 +40,9 @@
 /*
  改变商品的点赞状态
  */
-+ (void)changeProductLikeState:(NSString *)productId success:(void (^)(NSInteger likeNumber))success failure:(void (^)(NSError *error))failure{
-    [Net requestWithGet:@{@"productId":productId} function:kLikeProductAPI showHUD:NetNullStr resultClass:[NSNumber class] success:^(NSNumber *resultObj) {
-        success?success(resultObj.integerValue):nil;
++ (void)changeProductLikeState:(NSString *)productId success:(void (^)(NSLikeModel *model))success failure:(void (^)(NSError *error))failure{
+    [Net requestWithGet:@{@"productId":productId} function:kLikeProductAPI showHUD:NetNullStr resultClass:[NSLikeModel class] success:^(NSLikeModel *resultObj) {
+        success?success(resultObj):nil;
     } failure:failure];
 }
 
