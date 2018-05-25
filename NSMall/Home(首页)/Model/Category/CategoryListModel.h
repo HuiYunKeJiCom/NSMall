@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "CategoryModel.h"
 
-@interface CategoryListModel : NSObject
+@interface CategoryListModel : NSObject<YYModel>
 
 @property (nonatomic,strong)NSArray<CategoryModel *> *categoryList;//
 

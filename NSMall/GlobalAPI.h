@@ -60,7 +60,7 @@ const static NSString * const kCreateProductAPI = @"auth/createProduct";//商品
 const static NSString * const kUploadProductImageAPI = @"auth/uploadProductImage";//商品图片上传
 const static NSString * const kShelveProductAPI = @"auth/shelveProduct";//上/下架商品
 
-
+const static NSString * const kProductDetailAPI = @"productDetail";//获取商品详情
 
 
 

@@ -58,7 +58,7 @@
     self.shopCartBtn.x = itemWidth+2*spaceWidth;
     self.shopCartBtn.y = -GetScaleWidth(10);
     self.shopCartBtn.size = CGSizeMake(itemWidth, GetScaleWidth(112));
-    [self.classifyBtn addTarget:self action:@selector(classifyButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.shopCartBtn addTarget:self action:@selector(shopCartButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.QRBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.QRBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

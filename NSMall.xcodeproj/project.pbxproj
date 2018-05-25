@@ -234,6 +234,10 @@
 		18DD1585208DEA8D0006475D /* ADLMyInfoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1583208DEA8C0006475D /* ADLMyInfoTableView.m */; };
 		18DD1588208DEA960006475D /* ADLMyInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1586208DEA960006475D /* ADLMyInfoModel.m */; };
 		18DD158B208DEAD80006475D /* BaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD158A208DEAD80006475D /* BaseTableView.m */; };
+		18E1E33C20B6546700B0FD0C /* NSGoodsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E1E33B20B6546700B0FD0C /* NSGoodsDetailVC.m */; };
+		18E1E34020B654E200B0FD0C /* NSGoodsDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E1E33F20B654E200B0FD0C /* NSGoodsDetailModel.m */; };
+		18E1E34320B6599D00B0FD0C /* NSDetailItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E1E34220B6599D00B0FD0C /* NSDetailItemModel.m */; };
+		18E1E34620B65CD000B0FD0C /* GoodsDetailAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E1E34520B65CD000B0FD0C /* GoodsDetailAPI.m */; };
 		18E3A41420B2621000F847ED /* NSAllBuyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E3A41320B2621000F847ED /* NSAllBuyVC.m */; };
 		18E3A41720B2625200F847ED /* NSWaitPayBuyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E3A41620B2625200F847ED /* NSWaitPayBuyVC.m */; };
 		18E3A41A20B2628D00F847ED /* NSWaitReceiveBuyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E3A41920B2628D00F847ED /* NSWaitReceiveBuyVC.m */; };
@@ -715,6 +719,14 @@
 		18DD1587208DEA960006475D /* ADLMyInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADLMyInfoModel.h; sourceTree = "<group>"; };
 		18DD1589208DEAD80006475D /* BaseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableView.h; sourceTree = "<group>"; };
 		18DD158A208DEAD80006475D /* BaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableView.m; sourceTree = "<group>"; };
+		18E1E33A20B6546700B0FD0C /* NSGoodsDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSGoodsDetailVC.h; sourceTree = "<group>"; };
+		18E1E33B20B6546700B0FD0C /* NSGoodsDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSGoodsDetailVC.m; sourceTree = "<group>"; };
+		18E1E33E20B654E200B0FD0C /* NSGoodsDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSGoodsDetailModel.h; sourceTree = "<group>"; };
+		18E1E33F20B654E200B0FD0C /* NSGoodsDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSGoodsDetailModel.m; sourceTree = "<group>"; };
+		18E1E34120B6599D00B0FD0C /* NSDetailItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSDetailItemModel.h; sourceTree = "<group>"; };
+		18E1E34220B6599D00B0FD0C /* NSDetailItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDetailItemModel.m; sourceTree = "<group>"; };
+		18E1E34420B65CD000B0FD0C /* GoodsDetailAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsDetailAPI.h; sourceTree = "<group>"; };
+		18E1E34520B65CD000B0FD0C /* GoodsDetailAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailAPI.m; sourceTree = "<group>"; };
 		18E3A41220B2621000F847ED /* NSAllBuyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAllBuyVC.h; sourceTree = "<group>"; };
 		18E3A41320B2621000F847ED /* NSAllBuyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAllBuyVC.m; sourceTree = "<group>"; };
 		18E3A41520B2625200F847ED /* NSWaitPayBuyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSWaitPayBuyVC.h; sourceTree = "<group>"; };
@@ -2275,6 +2287,7 @@
 		18DD156A208DCEEB0006475D /* Home(首页) */ = {
 			isa = PBXGroup;
 			children = (
+				18E1E33620B652F400B0FD0C /* GoodsDetail(商品详情) */,
 				1842A69820B59D350090861D /* ShoppingCar(购物车) */,
 				1863D26420A96AA200047A7D /* View */,
 				1863D26320A96A9000047A7D /* Ctrl */,
@@ -2357,6 +2370,53 @@
 				18DD1586208DEA960006475D /* ADLMyInfoModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		18E1E33620B652F400B0FD0C /* GoodsDetail(商品详情) */ = {
+			isa = PBXGroup;
+			children = (
+				18E1E33D20B654A700B0FD0C /* API */,
+				18E1E33920B6531B00B0FD0C /* Model */,
+				18E1E33820B6531500B0FD0C /* View */,
+				18E1E33720B6530F00B0FD0C /* Ctrl */,
+			);
+			path = "GoodsDetail(商品详情)";
+			sourceTree = "<group>";
+		};
+		18E1E33720B6530F00B0FD0C /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				18E1E33A20B6546700B0FD0C /* NSGoodsDetailVC.h */,
+				18E1E33B20B6546700B0FD0C /* NSGoodsDetailVC.m */,
+			);
+			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		18E1E33820B6531500B0FD0C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18E1E33920B6531B00B0FD0C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18E1E33E20B654E200B0FD0C /* NSGoodsDetailModel.h */,
+				18E1E33F20B654E200B0FD0C /* NSGoodsDetailModel.m */,
+				18E1E34120B6599D00B0FD0C /* NSDetailItemModel.h */,
+				18E1E34220B6599D00B0FD0C /* NSDetailItemModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18E1E33D20B654A700B0FD0C /* API */ = {
+			isa = PBXGroup;
+			children = (
+				18E1E34420B65CD000B0FD0C /* GoodsDetailAPI.h */,
+				18E1E34520B65CD000B0FD0C /* GoodsDetailAPI.m */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		18E3A40A20B2610400F847ED /* BuyOrder(买入的订单) */ = {
@@ -2742,6 +2802,7 @@
 				18E3A42020B2633200F847ED /* NSAbolishBuyVC.m in Sources */,
 				184F065D20A2E37300768418 /* StoreItemModel.m in Sources */,
 				184F064A209FFB7F00768418 /* UIView+Layout.m in Sources */,
+				18E1E34620B65CD000B0FD0C /* GoodsDetailAPI.m in Sources */,
 				18D0824F20956D2F0031034A /* LoginParam.m in Sources */,
 				18D092FE20917A1400E091E0 /* DCTabBarCenterButton.m in Sources */,
 				1842A6D120B59D350090861D /* LZCartViewController.m in Sources */,
@@ -2797,6 +2858,7 @@
 				184F065620A2DD5500768418 /* SearchModel.m in Sources */,
 				18B017B420A67B9600826EA4 /* CLTagButton.m in Sources */,
 				184F0648209FFB7F00768418 /* UIView+DCRolling.m in Sources */,
+				18E1E34320B6599D00B0FD0C /* NSDetailItemModel.m in Sources */,
 				184F0643209FFB7F00768418 /* UIImage+wrapper.m in Sources */,
 				184F0640209FFB7F00768418 /* MBProgressHUD+MJ.m in Sources */,
 				1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */,
@@ -2806,6 +2868,8 @@
 				18C3CFFB20A2EFE0000FCE7F /* NSTimer+BlockSupport.m in Sources */,
 				18B0179520A67B9600826EA4 /* YWAddressTableViewCell.m in Sources */,
 				188CC64A207F5430007D749E /* AppDelegate.mm in Sources */,
+				18E1E34020B654E200B0FD0C /* NSGoodsDetailModel.m in Sources */,
+				18E1E33C20B6546700B0FD0C /* NSGoodsDetailVC.m in Sources */,
 				18E3A44620B2A3B200F847ED /* NSMyOrderTVCell.m in Sources */,
 				18DD1588208DEA960006475D /* ADLMyInfoModel.m in Sources */,
 				18D0C0A920AC0D01007F0784 /* TDUserCertifySubVCBasic.m in Sources */,

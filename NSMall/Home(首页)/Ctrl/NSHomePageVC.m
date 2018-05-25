@@ -18,6 +18,7 @@
 #import "UIButton+Bootstrap.h"
 #import "NSOrderListVC.h"
 #import "LZCartViewController.h"
+#import "NSGoodsDetailVC.h"
 
 @interface NSHomePageVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
 
@@ -195,6 +196,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.section != 0){
+        DLog(@"跳转到详情页");
+        NSGoodsDetailVC *detailVC = [NSGoodsDetailVC new];
+        [self.navigationController pushViewController:detailVC animated:YES];
+    }
 }
 
 - (void)baseTableVIew:(BaseTableView *)tableView refresh:(BOOL)flag {
@@ -233,7 +239,7 @@
             [cell.likeBtn setImageWithTitle:IMAGE(@"ico_like") withTitle:@"喜欢" position:@"left" font:UISystemFontSize(14) forState:UIControlStateNormal];
             cell.isLike = NO;
         }else{
-            [cell.likeBtn setImageWithTitle:IMAGE(@"ico_like") withTitle:[NSString stringWithFormat:@"喜欢(%@)",[NSNumber numberWithInteger:model.like_number]] position:@"left" font:UISystemFontSize(14) forState:UIControlStateNormal];
+            [cell.likeBtn setImageWithTitle:IMAGE(@"home_ico_like_press") withTitle:[NSString stringWithFormat:@"喜欢(%@)",[NSNumber numberWithInteger:model.like_number]] position:@"left" font:UISystemFontSize(14) forState:UIControlStateNormal];
             cell.isLike = YES;
         }
         

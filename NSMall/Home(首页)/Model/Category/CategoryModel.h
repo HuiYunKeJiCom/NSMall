@@ -13,7 +13,7 @@
     http://doc.huist.cn/index.php?s=/10&page_id=286
  */
 
-@interface CategoryModel : NSObject
+@interface CategoryModel : NSObject<YYModel>
 
 @property (nonatomic,copy)NSString *ID;//转义id
 @property (nonatomic,copy)NSString *name;//
