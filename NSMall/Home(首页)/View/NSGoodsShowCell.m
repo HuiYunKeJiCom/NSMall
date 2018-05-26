@@ -61,7 +61,6 @@
     
     self.priceLab = [[UILabel alloc] init];
     self.priceLab.font = [UIFont systemFontOfSize:kFontNum13];
-    self.priceLab.textColor = [UIColor redColor];
     [self.bgView addSubview:self.priceLab];
     
     self.imageSV = [[UIScrollView alloc]init];
@@ -117,8 +116,21 @@
     self.timeLab.x = CGRectGetMaxX(self.headerIV.frame)+GetScaleWidth(6);
     self.timeLab.y = CGRectGetMaxY(self.userName.frame)+GetScaleWidth(6);
     [self.timeLab sizeToFit];
-//    NSLog(@"show_price = %@",productModel.show_score);
-    self.priceLab.text = [NSString stringWithFormat:@"N%.2f/¥%.2f",[productModel.show_price floatValue],[productModel.show_score floatValue]];
+
+    NSString *str = [NSString stringWithFormat:@"N%.2f/¥%.2f",[productModel.show_price floatValue],[productModel.show_score floatValue]];
+    NSArray *strArr = [str componentsSeparatedByString:@"/¥"];
+//    self.priceLab.text = str;
+    self.priceLab.textColor = [UIColor lightGrayColor];
+    
+    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:str];
+    [AttributedStr addAttribute:NSForegroundColorAttributeName
+     
+                          value:kRedColor
+     
+                          range:[str rangeOfString:strArr[0]]];
+    
+    self.priceLab.attributedText = AttributedStr;
+    
     [self.priceLab sizeToFit];
     self.priceLab.x = kScreenWidth-GetScaleWidth(10)-self.priceLab.width;
     self.priceLab.centerY = CGRectGetMidY(self.headerIV.frame);

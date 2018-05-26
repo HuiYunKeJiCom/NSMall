@@ -181,15 +181,11 @@
     _topToolView.hidden = NO;
     _topToolView.backgroundColor = [UIColor whiteColor];
     [_topToolView setTopTitleWithNSString:KLocalizableStr(@"购物车")];
-    _topToolView.leftItemButton.hidden = YES;
     WEAKSELF
     _topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
         [weakSelf.navigationController popViewControllerAnimated:YES];
     };
-    //    _topToolView.rightItemClickBlock = ^{
-    //        NSLog(@"点击设置");
-    //    };
     
     [self.view addSubview:_topToolView];
     

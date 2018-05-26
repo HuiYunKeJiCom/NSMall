@@ -39,5 +39,5 @@
 @property (nonatomic)double score;//商品真实人民币价格（根据诺一股汇率换算）
 @property (nonatomic)NSInteger stock;//商品库存【-1代表无限库存】
 @property (nonatomic)NSInteger limit_num;//商品最大购买量【-1代表不限制购买量】
-@property (nonatomic,strong)NSArray<NSDetailItemModel *> *productSpecList;//
+@property (nonatomic,strong)NSArray<NSDetailItemModel *> *productSpecList;//商品规格参数
 @end

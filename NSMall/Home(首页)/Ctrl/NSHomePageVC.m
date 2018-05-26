@@ -19,6 +19,7 @@
 #import "NSOrderListVC.h"
 #import "LZCartViewController.h"
 #import "NSGoodsDetailVC.h"
+#import "NSSortVC.h"
 
 @interface NSHomePageVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
 
@@ -161,6 +162,8 @@
         }
         cell.classifyBtnClickBlock = ^{
             DLog(@"点击了分类");
+            NSSortVC *sortVC = [NSSortVC new];
+            [self.navigationController pushViewController:sortVC animated:YES];
         };
         cell.QRBtnClickBlock = ^{
             DLog(@"点击了二维码");
@@ -198,7 +201,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section != 0){
         DLog(@"跳转到详情页");
+        
+        NSGoodsShowCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        
         NSGoodsDetailVC *detailVC = [NSGoodsDetailVC new];
+        [detailVC getDataWithProductID:cell.productModel.product_id];
         [self.navigationController pushViewController:detailVC animated:YES];
     }
 }

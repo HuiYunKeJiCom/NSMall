@@ -9,5 +9,5 @@
 #import "BaseViewCtrl.h"
 
 @interface NSGoodsDetailVC : BaseViewCtrl
-
+-(void)getDataWithProductID:(NSString *)productId;
 @end

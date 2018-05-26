@@ -73,7 +73,7 @@
 - (ADLMyInfoTableView *)otherTableView {
     if (!_otherTableView) {
         _otherTableView = [[ADLMyInfoTableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-        _otherTableView.backgroundColor = UIColorFromRGB(0xf4f5f9);;
+        _otherTableView.backgroundColor = UIColorFromRGB(0xf4f5f9);
         _otherTableView.bounces = NO;
         _otherTableView.tbDelegate = self;
         _otherTableView.isRefresh = NO;

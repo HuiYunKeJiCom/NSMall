@@ -143,6 +143,11 @@
 		18B017B320A67B9600826EA4 /* CLTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B0179020A67B9600826EA4 /* CLTagView.m */; };
 		18B017B420A67B9600826EA4 /* CLTagButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B0179120A67B9600826EA4 /* CLTagButton.m */; };
 		18B017B720A67C0F00826EA4 /* NSChangePhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B017B620A67C0F00826EA4 /* NSChangePhoneVC.m */; };
+		18C2DDEA20B7A8FB00A3B851 /* NSMessageTV.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2DDE920B7A8FB00A3B851 /* NSMessageTV.m */; };
+		18C2DDED20B7A92300A3B851 /* NSMessageTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2DDEC20B7A92300A3B851 /* NSMessageTVCell.m */; };
+		18C2DDF020B7A97D00A3B851 /* NSMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2DDEF20B7A97D00A3B851 /* NSMessageModel.m */; };
+		18C2DE1620B7F5C700A3B851 /* NSSortVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2DE1520B7F5C700A3B851 /* NSSortVC.m */; };
+		18C2DE1920B7F8F000A3B851 /* NSSortLeftTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2DE1820B7F8F000A3B851 /* NSSortLeftTVCell.m */; };
 		18C3CFF020A2EF3B000FCE7F /* YWAddressDataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CFEA20A2EF3A000FCE7F /* YWAddressDataTool.m */; };
 		18C3CFF120A2EF3B000FCE7F /* YWTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CFED20A2EF3A000FCE7F /* YWTool.m */; };
 		18C3CFF220A2EF3B000FCE7F /* PPUntil.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CFEF20A2EF3B000FCE7F /* PPUntil.m */; };
@@ -536,6 +541,16 @@
 		18B0179120A67B9600826EA4 /* CLTagButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTagButton.m; sourceTree = "<group>"; };
 		18B017B520A67C0F00826EA4 /* NSChangePhoneVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSChangePhoneVC.h; sourceTree = "<group>"; };
 		18B017B620A67C0F00826EA4 /* NSChangePhoneVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSChangePhoneVC.m; sourceTree = "<group>"; };
+		18C2DDE820B7A8FB00A3B851 /* NSMessageTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSMessageTV.h; sourceTree = "<group>"; };
+		18C2DDE920B7A8FB00A3B851 /* NSMessageTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSMessageTV.m; sourceTree = "<group>"; };
+		18C2DDEB20B7A92300A3B851 /* NSMessageTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSMessageTVCell.h; sourceTree = "<group>"; };
+		18C2DDEC20B7A92300A3B851 /* NSMessageTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSMessageTVCell.m; sourceTree = "<group>"; };
+		18C2DDEE20B7A97D00A3B851 /* NSMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSMessageModel.h; sourceTree = "<group>"; };
+		18C2DDEF20B7A97D00A3B851 /* NSMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSMessageModel.m; sourceTree = "<group>"; };
+		18C2DE1420B7F5C700A3B851 /* NSSortVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSortVC.h; sourceTree = "<group>"; };
+		18C2DE1520B7F5C700A3B851 /* NSSortVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSortVC.m; sourceTree = "<group>"; };
+		18C2DE1720B7F8F000A3B851 /* NSSortLeftTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSortLeftTVCell.h; sourceTree = "<group>"; };
+		18C2DE1820B7F8F000A3B851 /* NSSortLeftTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSortLeftTVCell.m; sourceTree = "<group>"; };
 		18C3CFEA20A2EF3A000FCE7F /* YWAddressDataTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWAddressDataTool.m; sourceTree = "<group>"; };
 		18C3CFEB20A2EF3A000FCE7F /* YWAddressDataTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWAddressDataTool.h; sourceTree = "<group>"; };
 		18C3CFEC20A2EF3A000FCE7F /* YWTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWTool.h; sourceTree = "<group>"; };
@@ -1742,6 +1757,41 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		18C2DE1020B7F55E00A3B851 /* Sort(分类) */ = {
+			isa = PBXGroup;
+			children = (
+				18C2DE1320B7F59300A3B851 /* View */,
+				18C2DE1220B7F58D00A3B851 /* Model */,
+				18C2DE1120B7F58300A3B851 /* Ctrl */,
+			);
+			path = "Sort(分类)";
+			sourceTree = "<group>";
+		};
+		18C2DE1120B7F58300A3B851 /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				18C2DE1420B7F5C700A3B851 /* NSSortVC.h */,
+				18C2DE1520B7F5C700A3B851 /* NSSortVC.m */,
+			);
+			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		18C2DE1220B7F58D00A3B851 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18C2DE1320B7F59300A3B851 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18C2DE1720B7F8F000A3B851 /* NSSortLeftTVCell.h */,
+				18C2DE1820B7F8F000A3B851 /* NSSortLeftTVCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		18C3D08220A2F111000FCE7F /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -2287,6 +2337,7 @@
 		18DD156A208DCEEB0006475D /* Home(首页) */ = {
 			isa = PBXGroup;
 			children = (
+				18C2DE1020B7F55E00A3B851 /* Sort(分类) */,
 				18E1E33620B652F400B0FD0C /* GoodsDetail(商品详情) */,
 				1842A69820B59D350090861D /* ShoppingCar(购物车) */,
 				1863D26420A96AA200047A7D /* View */,
@@ -2395,6 +2446,10 @@
 		18E1E33820B6531500B0FD0C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18C2DDE820B7A8FB00A3B851 /* NSMessageTV.h */,
+				18C2DDE920B7A8FB00A3B851 /* NSMessageTV.m */,
+				18C2DDEB20B7A92300A3B851 /* NSMessageTVCell.h */,
+				18C2DDEC20B7A92300A3B851 /* NSMessageTVCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2406,6 +2461,8 @@
 				18E1E33F20B654E200B0FD0C /* NSGoodsDetailModel.m */,
 				18E1E34120B6599D00B0FD0C /* NSDetailItemModel.h */,
 				18E1E34220B6599D00B0FD0C /* NSDetailItemModel.m */,
+				18C2DDEE20B7A97D00A3B851 /* NSMessageModel.h */,
+				18C2DDEF20B7A97D00A3B851 /* NSMessageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2739,6 +2796,7 @@
 				1835089920808CCD00BCF7CE /* Common.m in Sources */,
 				1842A6E820B59D360090861D /* ADPaymentViewCell.m in Sources */,
 				18DD1577208DD4140006475D /* NSMyCenterViewController.m in Sources */,
+				18C2DDF020B7A97D00A3B851 /* NSMessageModel.m in Sources */,
 				18D574C7209A9EAB001C7875 /* ChangeMobileParam.m in Sources */,
 				18D0C0AB20AC0D01007F0784 /* TDUserCertifyCellTxtInput.m in Sources */,
 				18B017AE20A67B9600826EA4 /* CLTools.m in Sources */,
@@ -2811,6 +2869,7 @@
 				18E3A43520B2731700F847ED /* NSOrderListModel.m in Sources */,
 				18E3A41A20B2628D00F847ED /* NSWaitReceiveBuyVC.m in Sources */,
 				1842A6E420B59D350090861D /* ADCartGoodsListTableViewCell.m in Sources */,
+				18C2DE1620B7F5C700A3B851 /* NSSortVC.m in Sources */,
 				18B017AD20A67B9600826EA4 /* NSShopPublishAPI.m in Sources */,
 				1842A6E120B59D350090861D /* ADPaymentSuccessContentView.m in Sources */,
 				18D0C0E620AC1E19007F0784 /* JFPickerController.m in Sources */,
@@ -2833,6 +2892,7 @@
 				18B017AC20A67B9600826EA4 /* GetAreaAPI.m in Sources */,
 				18D0C0A820AC0D01007F0784 /* TDUserCertifyCellConfirm.m in Sources */,
 				18B017A920A67B9600826EA4 /* NSAddressModel.m in Sources */,
+				18C2DDEA20B7A8FB00A3B851 /* NSMessageTV.m in Sources */,
 				184F0642209FFB7F00768418 /* UIBarButtonItem+DCBarButtonItem.m in Sources */,
 				184043382099FABE00685F80 /* ADLEditUserInformCtrl.m in Sources */,
 				18C3D0BD20A3DD2A000FCE7F /* HyperlinksButton.m in Sources */,
@@ -2913,6 +2973,7 @@
 				184F05F7209C40C700768418 /* AdvertListModel.m in Sources */,
 				1842A6E320B59D350090861D /* ADReceivingAddressViewCell.m in Sources */,
 				18C3D08820A2F111000FCE7F /* LabelItemModel.m in Sources */,
+				18C2DE1920B7F8F000A3B851 /* NSSortLeftTVCell.m in Sources */,
 				18C3D0C020A3DD2A000FCE7F /* AddView.m in Sources */,
 				18B017B320A67B9600826EA4 /* CLTagView.m in Sources */,
 				18B017B120A67B9600826EA4 /* CLDispalyTagView.m in Sources */,
@@ -2942,6 +3003,7 @@
 				18D093012091BE9000E091E0 /* NSHomePageVC.m in Sources */,
 				18B0179620A67B9600826EA4 /* YWAddressView.m in Sources */,
 				18E3A42320B2638900F847ED /* NSAllSaleVC.m in Sources */,
+				18C2DDED20B7A92300A3B851 /* NSMessageTVCell.m in Sources */,
 				18D0C06D20AC0B58007F0784 /* TDBaseViewController.m in Sources */,
 				18CBB3AB20907AD300358E07 /* NSTabBarController.m in Sources */,
 				1842A6E720B59D360090861D /* ADCartTableHeaderView.m in Sources */,

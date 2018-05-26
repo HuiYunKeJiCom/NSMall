@@ -10,9 +10,13 @@
 #import "GoodsDetailAPI.h"
 #import "ADOrderTopToolView.h"
 #import "UIButton+Bootstrap.h"
+#import "NSMessageTV.h"
+#import "GoodsDetailAPI.h"
+#import "NSGoodsDetailModel.h"
 
-@interface NSGoodsDetailVC ()<UIScrollViewDelegate>
+@interface NSGoodsDetailVC ()<UIScrollViewDelegate,NSMessageTVDelegate>
 @property(nonatomic,strong)UIScrollView *SV;/* 滚动 */
+@property(nonatomic,strong)NSGoodsDetailModel *model;/* 商品详情模型 */
 @end
 
 @implementation NSGoodsDetailVC
@@ -21,7 +25,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self buildUI];
     [self setUpNavTopView];
     [self setUpBottomView];
 //    self.currentPage = 1;
@@ -43,22 +46,32 @@
     goodsView.backgroundColor = kWhiteColor;
     [self.SV addSubview:goodsView];
     
-    CGSize nameSize = [self contentSizeWithTitle:@"家乡脐橙" andFont:15];
+    CGSize nameSize = [self contentSizeWithTitle:self.model.name andFont:15];
     UILabel *goodsName = [[UILabel alloc] initWithFrame:CGRectMake(GetScaleWidth(18), GetScaleWidth(18),nameSize.width,nameSize.height) FontSize:15];
     goodsName.textColor = kBlackColor;
-    goodsName.text = @"家乡脐橙";
+    goodsName.text = self.model.name;
     [goodsView addSubview:goodsName];
     
-    CGSize priceSize = [self contentSizeWithTitle:@"N26/¥150" andFont:14];
+    NSString *str = [NSString stringWithFormat:@"N%.2f/¥%.2f",self.model.show_price,self.model.show_score];
+    NSArray *strArr = [str componentsSeparatedByString:@"/¥"];
+    CGSize priceSize = [self contentSizeWithTitle:str andFont:14];
     UILabel *goodsPrice = [[UILabel alloc] initWithFrame:CGRectMake(GetScaleWidth(18), CGRectGetMaxY(goodsName.frame)+GetScaleWidth(7),priceSize.width,priceSize.height) FontSize:14];
-    goodsPrice.textColor = kRedColor;
-    goodsPrice.text = @"N26/¥150";
+    goodsPrice.textColor = [UIColor lightGrayColor];
     [goodsView addSubview:goodsPrice];
     
-    CGSize shipSize = [self contentSizeWithTitle:@"运费:N4" andFont:14];
+    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:str];
+    [AttributedStr addAttribute:NSForegroundColorAttributeName
+     
+                          value:[UIColor redColor]
+     
+                          range:[str rangeOfString:strArr[0]]];
+    
+    goodsPrice.attributedText = AttributedStr;
+    
+    CGSize shipSize = [self contentSizeWithTitle:[NSString stringWithFormat:@"运费:N%.2f",self.model.ship_price] andFont:14];
     UILabel *goodsShip = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(goodsPrice.frame)+GetScaleWidth(10), CGRectGetMaxY(goodsName.frame)+GetScaleWidth(7),shipSize.width,shipSize.height) FontSize:14];
     goodsShip.textColor = [UIColor lightGrayColor];
-    goodsShip.text = @"运费:N4";
+    goodsShip.text = [NSString stringWithFormat:@"运费:N%.2f",self.model.ship_price];
     [goodsView addSubview:goodsShip];
     
     //商品简介
@@ -72,10 +85,8 @@
     
     UILabel *goodsDetail = [[UILabel alloc] initWithFrame:CGRectZero FontSize:14];
     goodsDetail.textColor = kBlackColor;
-    goodsDetail.text = @"运费:N4";
     [goodsIntroductionV addSubview:goodsDetail];
-    
-    goodsDetail.text = @"家里自己种的脐橙成熟啦.今年大丰收,只卖15NBS一箱,买到就是赚到.2箱起免快递,全国包邮,不甜退货";
+    goodsDetail.text = self.model.introduce;
     goodsDetail.numberOfLines = 0;
     goodsDetail.x = GetScaleWidth(18);
     goodsDetail.y = height;
@@ -86,20 +97,14 @@
     
     float itemWidth = kScreenWidth-38;//323
     float itemHeight = 205*(kScreenWidth-38)/323.0;
-    for(int i=0;i<3;i++){
+    for(int i=0;i<self.model.productImageList.count;i++){
         UIImageView *goodsIV = [[UIImageView alloc]initWithFrame:CGRectZero];
         goodsIV.x = GetScaleWidth(19);
-//        if(i==0){
-//            goodsIV.y = height;
-//            height += itemHeight+15;
-//        }else{
-            goodsIV.y = height;
-            height += itemHeight+15;
-//        }
+        goodsIV.y = height;
+        height += itemHeight+15;
         goodsIV.size = CGSizeMake(itemWidth, itemHeight);
-        goodsIV.backgroundColor = kRedColor;
-//        [goodsIV sd_setImageWithURL:[NSURL URLWithString:productModel.productImageList[i]]];
-        
+//        goodsIV.backgroundColor = kRedColor;
+        [goodsIV sd_setImageWithURL:[NSURL URLWithString:self.model.productImageList[i]]];
         [goodsIntroductionV addSubview:goodsIV];
     }
     goodsIntroductionV.size = CGSizeMake(kScreenWidth, height+GetScaleWidth(4));
@@ -108,22 +113,85 @@
     UIView *sellerView = [[UIView alloc]initWithFrame:CGRectMake(0, height+GetScaleWidth(10)+GetScaleWidth(75), kScreenWidth, GetScaleWidth(54))];
     sellerView.backgroundColor = kWhiteColor;
     [self.SV addSubview:sellerView];
-
-    CGSize userNameSize = [self contentSizeWithTitle:@"Winder" andFont:14];
+    
+    CGSize userNameSize = [self contentSizeWithTitle:self.model.user_name andFont:14];
     UILabel *userName = [[UILabel alloc] initWithFrame:CGRectMake(GetScaleWidth(18), GetScaleWidth(13),userNameSize.width,userNameSize.height) FontSize:14];
     userName.textColor = kBlackColor;
-    userName.text = @"Winder";
+    userName.text = self.model.user_name;
     [sellerView addSubview:userName];
     
+    CGSize certificationSize = [self contentSizeWithTitle:@"实名认证" andFont:12];
+    UILabel *certificationLab = [[UILabel alloc] initWithFrame:CGRectMake(GetScaleWidth(5)+CGRectGetMaxX(userName.frame), GetScaleWidth(13),certificationSize.width+GetScaleWidth(10),certificationSize.height+GetScaleWidth(2)) FontSize:12];
+    certificationLab.textAlignment = NSTextAlignmentCenter;
+    certificationLab.backgroundColor = KMainColor;
+    certificationLab.textColor = kWhiteColor;
+    certificationLab.text = @"实名认证";
+    //设置圆角
+    certificationLab.layer.cornerRadius = 5;
+    //将多余的部分切掉
+    certificationLab.layer.masksToBounds = YES;
+    [sellerView addSubview:certificationLab];
+    
     UIImageView *sellerIV = [[UIImageView alloc]initWithFrame:CGRectZero];
-    sellerIV.x = kScreenWidth - GetScaleWidth(19);
+    sellerIV.x = kScreenWidth - GetScaleWidth(19)-GetScaleWidth(34);
     sellerIV.y = GetScaleWidth(10);
     sellerIV.size = CGSizeMake(GetScaleWidth(34), GetScaleWidth(34));
-    sellerIV.backgroundColor = kRedColor;
-    //        [sellerIV sd_setImageWithURL:[NSURL URLWithString:productModel.productImageList[i]]];
+//    sellerIV.backgroundColor = kRedColor;
+    [sellerIV sd_setImageWithURL:[NSURL URLWithString:self.model.user_avatar]];
     [sellerView addSubview:sellerIV];
     
-    self.SV.contentSize = CGSizeMake(self.SV.bounds.size.width, height+GetScaleWidth(79)+GetScaleWidth(54));
+    CGSize shopContentSize = [self contentSizeWithTitle:@"18商品  2店铺  9评价" andFont:13];
+    UILabel *shopContent = [[UILabel alloc] initWithFrame:CGRectMake(GetScaleWidth(18), GetScaleWidth(10)+GetScaleWidth(34)-shopContentSize.height,shopContentSize.width,shopContentSize.height) FontSize:13];
+    shopContent.textColor = [UIColor lightGrayColor];
+    shopContent.text = @"18商品  2店铺  9评价";
+    [sellerView addSubview:shopContent];
+    
+    //留言
+    UIView *messageView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(sellerView.frame), kScreenWidth, GetScaleWidth(312))];
+    messageView.backgroundColor = kWhiteColor;
+    [self.SV addSubview:messageView];
+    
+    CGSize titleSize = [self contentSizeWithTitle:@"留言" andFont:15];
+    UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(GetScaleWidth(18), GetScaleWidth(25),titleSize.width,titleSize.height) FontSize:15];
+    titleLab.textColor = kBlackColor;
+    titleLab.text = @"留言";
+    [messageView addSubview:titleLab];
+    
+    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(titleLab.frame)+GetScaleWidth(12), kScreenWidth, GetScaleWidth(1))];
+    lineView.backgroundColor = [UIColor lightGrayColor];
+    [messageView addSubview:lineView];
+    
+    NSMessageTV *messageTV = [[NSMessageTV alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    messageTV.backgroundColor = kWhiteColor;
+    messageTV.bounces = NO;
+    messageTV.tbDelegate = self;
+    messageTV.isRefresh = NO;
+    messageTV.isLoadMore = NO;
+    messageTV.tableFooterView = [UIView new]; //去除多余分割线
+    if (@available(iOS 11.0, *)) {
+        messageTV.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    messageTV.x = 0;
+    messageTV.y = CGRectGetMaxY(lineView.frame)+GetScaleWidth(10);
+    messageTV.size = CGSizeMake(kScreenWidth, 2*GetScaleWidth(95));
+    [messageView addSubview:messageTV];
+
+    [messageTV.data addObject:[[NSMessageModel alloc] initWithUserName:@"游泳的鱼" imagePath:nil content:@"这个外边打蜡了吗?" time:@"1小时前"]];
+    [messageTV.data addObject:[[NSMessageModel alloc] initWithUserName:@"游泳的鱼" imagePath:nil content:@"这个外边打蜡了吗?" time:@"1小时前"]];
+    
+    self.SV.contentSize = CGSizeMake(self.SV.bounds.size.width, height+GetScaleWidth(79)+GetScaleWidth(54)+GetScaleWidth(312));
+}
+
+-(void)getDataWithProductID:(NSString *)productId{
+    [GoodsDetailAPI getDetailWithGoodsID:productId success:^(NSGoodsDetailModel *model) {
+        DLog(@"获取商品详情成功");
+        self.model = model;
+        [self buildUI];
+    } failure:^(NSError *error) {
+        DLog(@"获取商品详情失败");
+    }];
 }
 
 #pragma mark - 导航栏处理
@@ -213,6 +281,10 @@
 
         [self.view addSubview:button];
     }
+}
+
+-(void)setModel:(NSGoodsDetailModel *)model{
+    _model = model;
 }
 
 - (CGSize)contentSizeWithTitle:(NSString *)title andFont:(float)font{
