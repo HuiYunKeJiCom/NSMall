@@ -44,10 +44,10 @@
     _rightRItemButton = ({
         UIButton * button = [UIButton new];
         [button setImage:[UIImage imageNamed:@"main_ico_scan"] forState:UIControlStateNormal];
-//        [button addTarget:self action:@selector(rightRButtonItemClick) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(rightButtonItemClick) forControlEvents:UIControlEventTouchUpInside];
         button;
     });
-
+//    _rightRItemButton.backgroundColor = kRedColor;
     [self addSubview:_rightRItemButton];
     
     CAGradientLayer * layer = [[CAGradientLayer alloc] init];
@@ -70,6 +70,7 @@
     _searchButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     _searchButton.titleEdgeInsets = UIEdgeInsetsMake(0, 2 * 10, 0, 0);
     _searchButton.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+//    _searchButton.backgroundColor = kRedColor;
     [_searchButton addTarget:self action:@selector(searchButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [_topSearchView addSubview:_searchButton];
     

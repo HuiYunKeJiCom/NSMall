@@ -43,7 +43,7 @@
 /*
     搜索商铺或者商品
  */
-+ (void)searchProductOrShop:(nullable id)param success:(void (^)(SearchModel *result))success failure:(void (^)(NSError *error))failure;
++ (void)searchProductOrShop:(nullable SearchParam*)param success:(void (^)(SearchModel *result))success failure:(void (^)(NSError *error))failure;
 
 
 @end

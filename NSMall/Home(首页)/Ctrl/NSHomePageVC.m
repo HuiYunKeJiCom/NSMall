@@ -20,6 +20,8 @@
 #import "LZCartViewController.h"
 #import "NSGoodsDetailVC.h"
 #import "NSSortVC.h"
+#import "HistoryVC.h"
+#import "LZCartViewController.h"
 
 @interface NSHomePageVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
 
@@ -55,7 +57,8 @@
 - (void)setUpNavTopView
 {
     _topToolView = [[DCHomeTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
-//    WEAKSELF
+    [self.navigationController setNavigationBarHidden:YES];
+    WEAKSELF
     _topToolView.rightItemClickBlock = ^{
         NSLog(@"点击了首页扫一扫");
 //        DCCommodityViewController *dcComVc = [DCCommodityViewController new];
@@ -63,6 +66,8 @@
     };
     _topToolView.searchButtonClickBlock = ^{
         NSLog(@"点击了首页搜索");
+        HistoryVC *hVC = [HistoryVC new];
+        [weakSelf.navigationController pushViewController:hVC animated:YES];
     };
     [self.view addSubview:_topToolView];
 
@@ -201,11 +206,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section != 0){
         DLog(@"跳转到详情页");
-        
         NSGoodsShowCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        
+                DLog(@"product_id = %@",cell.productModel.product_id);
         NSGoodsDetailVC *detailVC = [NSGoodsDetailVC new];
-        [detailVC getDataWithProductID:cell.productModel.product_id];
+        [detailVC getDataWithProductID:cell.productModel.product_id andCollectNum:cell.productModel.favorite_number];
         [self.navigationController pushViewController:detailVC animated:YES];
     }
 }

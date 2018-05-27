@@ -53,8 +53,8 @@
     self.allOrderTable.data = dataArray;
     self.allOrderTable.noDataView.hidden = self.allOrderTable.data.count;
     for (LZShopModel *shopModel in dataArray) {
-        for (LZGoodsModel *model in shopModel.goodsCarts) {
-            NSLog(@"填充数据这里 立即下单model.spec_info = %@",model.spec_info);
+        for (LZGoodsModel *model in shopModel.productList) {
+//            NSLog(@"填充数据这里 立即下单model.spec_info = %@",model.spec_info);
         }
     }
     
@@ -113,7 +113,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     LZShopModel *model = [self.self.allOrderTable.data objectAtIndex:section];
-    return model.goodsCarts.count;
+    return model.productList.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -125,7 +125,7 @@
     ADCartTableHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ADCartTableHeaderView"];
     view.contentView.backgroundColor = [UIColor whiteColor];
     LZShopModel *model = [self.allOrderTable.data objectAtIndex:section];
-    view.titleString = model.store_name;
+    view.titleString = model.user_name;
     return view;
 }
 
@@ -149,10 +149,10 @@
     }
     
     LZShopModel *shopModel = self.allOrderTable.data[indexPath.section];
-    LZGoodsModel *model = [shopModel.goodsCarts objectAtIndex:indexPath.row];
+    LZGoodsModel *model = [shopModel.productList objectAtIndex:indexPath.row];
 //    cell.model = model;
     NSLog(@"立即下单model = %@",model.mj_keyValues);
-    NSLog(@"立即下单model.spec_info = %@",model.spec_info);
+//    NSLog(@"立即下单model.spec_info = %@",model.spec_info);
     [cell reloadDataWithModel:model];
     
     return cell;

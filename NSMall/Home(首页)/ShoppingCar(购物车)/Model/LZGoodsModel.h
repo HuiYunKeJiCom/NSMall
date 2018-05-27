@@ -9,33 +9,23 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface LZGoodsModel : NSObject
+@interface LZGoodsModel : NSObject<YYModel>
 
 @property (nonatomic,assign) BOOL select;
 
-/** 商品选购数量 */
-@property (assign,nonatomic)NSInteger count;
-/** 商品ID */
-@property (copy,nonatomic)NSString *goods_id;
-/** 商品名称 */
-@property (copy,nonatomic)NSString *goods_name;
-/** 商品单价 */
-@property (copy,nonatomic)NSString *price;
-/** 商品规格 */
-@property (copy,nonatomic)NSString *spec_info;
-///** 商品选购数量 */
-//@property (copy,nonatomic)NSString *detail2;
-/** 商品主图片路径 */
-@property (copy,nonatomic)NSString *goods_image_path;
+@property (copy,nonatomic)NSString *cart_id;/* 购物车ItemID */
+@property (copy,nonatomic)NSString *product_id;/* 商品ID */
+@property (copy,nonatomic)NSString *product_name;/* 商品名称 */
+@property (copy,nonatomic)NSString *product_image;/* 商品主图片 */
+@property (nonatomic)NSInteger is_shelve;/* 商品是否上架【0=下架，1=上架】(前台要判断该参数，如果是下架商品就不能进行结算和增减数量) */
 
-/** 商品总价 */
-@property (copy,nonatomic)NSString *total_price;
-/** 商品项ID */
-@property (copy,nonatomic)NSString *goodscart_id;
-/** 商品状态（0=上架，1=仓库中，-1=已下架，-2=违规下架） */
-@property (copy,nonatomic)NSString *goods_status;
-/** 商品库存数 */
-@property (copy,nonatomic)NSString *goods_inventory;
-/** 商品所属店铺id */
-@property (copy,nonatomic)NSString *goods_store_id;
+@property (nonatomic)double ship_price;/* 运费（诺一股） */
+@property (nonatomic)double ship_score;/* 运费（人民币） */
+@property (nonatomic)double price;/* 商品单价（诺一股） */
+@property (nonatomic)double total_price;/* 商品总价（诺一股） */
+@property (nonatomic)double score;/* 商品单价（人民币） */
+@property (nonatomic)double total_score;/* 商品总价（人民币） */
+@property (nonatomic)NSInteger stock;/* 库存【前台要判断用户增加商品数量不能大于库存】 */
+@property (nonatomic)NSInteger limit_num;/* 最大购买量 */
+@property (nonatomic)NSInteger buy_number;/* 商品数量 */
 @end

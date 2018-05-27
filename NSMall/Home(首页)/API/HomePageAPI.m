@@ -46,6 +46,15 @@
     } failure:failure];
 }
 
-
+/*
+ 搜索商铺或者商品
+ */
++ (void)searchProductOrShop:(nullable SearchParam*)param success:(void (^)(SearchModel *result))success failure:(void (^)(NSError *error))failure{
+    [Net requestWithGet:param function:kSearchAPI showHUD:NetNullStr resultClass:[SearchModel class] success:^(SearchModel *  _Nullable resultObj) {
+        
+        success?success(resultObj):nil;
+        
+    } failure:failure];
+}
 
 @end

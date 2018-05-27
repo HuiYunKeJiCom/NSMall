@@ -16,6 +16,7 @@
 #import "ADPlaceOrderViewController.h"
 //#import "ADHomePageViewController.h"//首页
 #import "DCTabBarController.h"
+#import "CartAPI.h"
 
 @interface LZCartViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -64,46 +65,16 @@
 }
 
 -(void)creatData {
-    //这里需要修改
-//    WEAKSELF
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    [RequestTool getCartList:nil withSuccessBlock:^(NSDictionary *result) {
-//        NSLog(@"获取购物车列表result = %@",result);
-//        if([result[@"code"] integerValue] == 1){
-////            code【-2=登录失效，-1=未登录，0=失败，1=成功，2=无返回数据】
-//            [weakSelf withNSDictionary:result];
-//        }else if([result[@"code"] integerValue] == -2){
-//            hud.detailsLabelText = @"登录失效";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }else if([result[@"code"] integerValue] == -1){
-//            hud.detailsLabelText = @"未登录";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }else if([result[@"code"] integerValue] == 0){
-//            hud.detailsLabelText = @"失败";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }else if([result[@"code"] integerValue] == 2){
-//            hud.detailsLabelText = @"无返回数据";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }
-//    } withFailBlock:^(NSString *msg) {
-//        NSLog(@"加入购物车msg = %@",msg);
-//        hud.detailsLabelText = msg;
-//        hud.mode = MBProgressHUDModeText;
-//        [hud hide:YES afterDelay:1.0];
-//    }];
-
-}
-
--(void)withNSDictionary:(NSDictionary *)dict
-{
-    _dataArray = [LZShopModel mj_objectArrayWithKeyValuesArray:dict[@"data"][@"result"]];
-    [self.myTableView reloadData];
-    [self changeView];
-    NSLog(@"获取购物车列表dataArray = %@",_dataArray);
+    //这里已修改
+    [CartAPI getCartList:nil success:^(NSCartModel *cartModel) {
+        DLog(@"获取购物车列表成功");
+        _dataArray = cartModel.result;
+        DLog(@"count = %lu",_dataArray.count);
+        [self.myTableView reloadData];
+        [self changeView];
+    } failure:^(NSError *error) {
+        DLog(@"获取购物车列表失败");
+    }];
 }
 
 
@@ -147,9 +118,9 @@
     
     for (LZGoodsModel *model in self.selectedArray) {
         
-        double price = [model.price doubleValue];
+        double price = model.price;
         
-        totlePrice += price * model.count;
+        totlePrice += price * model.buy_number;
     }
     NSString *string = [NSString stringWithFormat:@"￥%.2f",totlePrice];
     self.totlePriceLabel.attributedText = [self LZSetString:string];
@@ -225,7 +196,7 @@
     
     //结算按钮
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.backgroundColor = BASECOLOR_RED;
+    btn.backgroundColor = KMainColor;
     btn.frame = CGRectMake(LZSCREEN_WIDTH - 80, 0, 80, LZTabBarHeight);
     [btn setTitle:@"去支付" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(goToPayButtonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -302,7 +273,7 @@
     btn.titleLabel.font = [UIFont systemFontOfSize:kFontNum14];
     //        _toLoginBtn.backgroundColor = [UIColor blueColor];
     [btn setTitle:@"去首页逛逛" forState:UIControlStateNormal];
-    btn.backgroundColor = BASECOLOR_RED;
+    btn.backgroundColor = KMainColor;
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(goToHomeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     btn.layer.masksToBounds = YES;
@@ -356,7 +327,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     LZShopModel *model = [self.dataArray objectAtIndex:section];
-    return model.goodsCarts.count;
+    return model.productList.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -371,7 +342,7 @@
     }
     
     LZShopModel *shopModel = self.dataArray[indexPath.section];
-    LZGoodsModel *model = [shopModel.goodsCarts objectAtIndex:indexPath.row];
+    LZGoodsModel *model = [shopModel.productList objectAtIndex:indexPath.row];
     
     cell.model = model;
     
@@ -379,9 +350,9 @@
     
     [cell numberAddWithBlock:^(NSInteger number) {
         wsCell.lzNumber = number;
-        model.count = number;
+        model.buy_number = number;
         
-        [shopModel.goodsCarts replaceObjectAtIndex:indexPath.row withObject:model];
+        [shopModel.productList replaceObjectAtIndex:indexPath.row withObject:model];
         if ([self.selectedArray containsObject:model]) {
             [self.selectedArray removeObject:model];
             [self.selectedArray addObject:model];
@@ -392,9 +363,9 @@
     [cell numberCutWithBlock:^(NSInteger number) {
         
         wsCell.lzNumber = number;
-        model.count = number;
+        model.buy_number = number;
         
-        [shopModel.goodsCarts replaceObjectAtIndex:indexPath.row withObject:model];
+        [shopModel.productList replaceObjectAtIndex:indexPath.row withObject:model];
         
         //判断已选择数组里有无该对象,有就删除  重新添加
         if ([self.selectedArray containsObject:model]) {
@@ -431,13 +402,13 @@
     LZTableHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LZHeaderView"];
     LZShopModel *model = [self.dataArray objectAtIndex:section];
 //    NSLog(@">>>>>>%d", model.select);
-    view.title = model.store_name;
+    view.title = model.user_name;
     view.select = model.select;
     view.lzClickBlock = ^(BOOL select) {
         model.select = select;
         if (select) {
 
-            for (LZGoodsModel *good in model.goodsCarts) {
+            for (LZGoodsModel *good in model.productList) {
                 good.select = YES;
                 if (![self.selectedArray containsObject:good]) {
                     
@@ -446,7 +417,7 @@
             }
             
         } else {
-            for (LZGoodsModel *good in model.goodsCarts) {
+            for (LZGoodsModel *good in model.productList) {
                 good.select = NO;
                 if ([self.selectedArray containsObject:good]) {
                     
@@ -578,7 +549,7 @@
         
         for (LZShopModel *shop in self.dataArray) {
             shop.select = YES;
-            for (LZGoodsModel *model in shop.goodsCarts) {
+            for (LZGoodsModel *model in shop.productList) {
                 model.select = YES;
                 [self.selectedArray addObject:model];
             }
@@ -599,7 +570,8 @@
     if(self.selectedArray.count > 0){
         NSMutableString *goodsCartIdStr = [[NSMutableString alloc] init];
         for (LZGoodsModel *model in self.selectedArray) {
-            [goodsCartIdStr appendString:[NSString stringWithFormat:@",%@",model.goodscart_id]];
+            //这里需要修改
+            [goodsCartIdStr appendString:[NSString stringWithFormat:@",%@",model.cart_id]];
         }
         NSString *CartIdStr = goodsCartIdStr;
         NSLog(@"CartIdStr = %@",CartIdStr);
@@ -621,7 +593,7 @@
     LZShopModel *tempShop = self.dataArray[section];
     // 是否全选标示符
     BOOL isShopAllSelect = YES;
-    for (LZGoodsModel *model in tempShop.goodsCarts) {
+    for (LZGoodsModel *model in tempShop.productList) {
         // 当有一个为NO的是时候,将标示符置为NO,并跳出循环
         if (model.select == NO) {
             isShopAllSelect = NO;
@@ -638,7 +610,7 @@
     
     NSInteger count = 0;
     for (LZShopModel *shop in self.dataArray) {
-        count += shop.goodsCarts.count;
+        count += shop.productList.count;
     }
     
     if (self.selectedArray.count == count) {

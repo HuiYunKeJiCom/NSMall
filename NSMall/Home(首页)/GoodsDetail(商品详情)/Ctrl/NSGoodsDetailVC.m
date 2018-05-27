@@ -13,10 +13,19 @@
 #import "NSMessageTV.h"
 #import "GoodsDetailAPI.h"
 #import "NSGoodsDetailModel.h"
+#import "GoodAttributesView.h"
+#import "GoodAttrModel.h"
+#import "NSAddCartParam.h"
+
 
 @interface NSGoodsDetailVC ()<UIScrollViewDelegate,NSMessageTVDelegate>
 @property(nonatomic,strong)UIScrollView *SV;/* 滚动 */
 @property(nonatomic,strong)NSGoodsDetailModel *model;/* 商品详情模型 */
+@property(nonatomic,copy)NSString *productID;/* 商品ID */
+@property (nonatomic, assign) BOOL isCollect;
+@property(nonatomic)NSInteger collectNum;/* 收藏人数 */
+@property (nonatomic, strong) NSArray *goodAttrsArr;
+@property(nonatomic,strong)NSMutableDictionary *goodSpecDict;/* 规格字典 */
 @end
 
 @implementation NSGoodsDetailVC
@@ -26,7 +35,6 @@
     // Do any additional setup after loading the view.
     
     [self setUpNavTopView];
-    [self setUpBottomView];
 //    self.currentPage = 1;
 //    [self requestAllOrder:NO];
 }
@@ -99,6 +107,7 @@
     float itemHeight = 205*(kScreenWidth-38)/323.0;
     for(int i=0;i<self.model.productImageList.count;i++){
         UIImageView *goodsIV = [[UIImageView alloc]initWithFrame:CGRectZero];
+        goodsIV.contentMode = UIViewContentModeScaleAspectFit;
         goodsIV.x = GetScaleWidth(19);
         goodsIV.y = height;
         height += itemHeight+15;
@@ -184,11 +193,19 @@
     self.SV.contentSize = CGSizeMake(self.SV.bounds.size.width, height+GetScaleWidth(79)+GetScaleWidth(54)+GetScaleWidth(312));
 }
 
--(void)getDataWithProductID:(NSString *)productId{
+-(void)getDataWithProductID:(NSString *)productId andCollectNum:(NSInteger)collectNum{
+    self.productID = productId;
+    self.collectNum = collectNum;
     [GoodsDetailAPI getDetailWithGoodsID:productId success:^(NSGoodsDetailModel *model) {
         DLog(@"获取商品详情成功");
         self.model = model;
+        if(model.is_collect == 1){
+            self.isCollect = YES;
+        }else{
+            self.isCollect = NO;
+        }
         [self buildUI];
+        [self setUpBottomView];
     } failure:^(NSError *error) {
         DLog(@"获取商品详情失败");
     }];
@@ -231,20 +248,26 @@
     [self.view addSubview:bottomView];
     
     UIButton *collectionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [collectionBtn setImageWithTitle:IMAGE(@"goods_detail_ico_fav") withTitle:@"收藏" position:@"left" font:UISystemFontSize(13) forState:UIControlStateNormal];
+    if(self.isCollect){
+        [collectionBtn setImageWithTitle:IMAGE(@"goods_detail_ico_fav") withTitle:[NSString stringWithFormat:@"收藏(%@)",[NSNumber numberWithInteger:self.collectNum]] position:@"left" font:UISystemFontSize(13) forState:UIControlStateNormal];
+    }else{
+        [collectionBtn setImageWithTitle:IMAGE(@"goods_detail_ico_fav") withTitle:@"收藏" position:@"left" font:UISystemFontSize(13) forState:UIControlStateNormal];
+    }
+//    [collectionBtn setImageWithTitle:IMAGE(@"goods_detail_ico_fav") withTitle:@"收藏" position:@"left" font:UISystemFontSize(13) forState:UIControlStateNormal];
+    collectionBtn.frame = CGRectMake(0, 12, buttonW+20, buttonH);
+    [bottomView addSubview:collectionBtn];
         collectionBtn.tag = 2;
 //    collectionBtn.backgroundColor = kRedColor;
     [collectionBtn setTitleColor:kBlackColor forState:UIControlStateNormal];
-//        [collectionBtn addTarget:self action:@selector(bottomButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-        collectionBtn.frame = CGRectMake(0, 12, buttonW, buttonH);
-        [bottomView addSubview:collectionBtn];
+        [collectionBtn addTarget:self action:@selector(collectionGoods:) forControlEvents:UIControlEventTouchUpInside];
+    
     
     UIButton *messageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [messageBtn setTitleColor:kBlackColor forState:UIControlStateNormal];
     [messageBtn setImageWithTitle:IMAGE(@"goods_detail_ico_message") withTitle:@"留言" position:@"left" font:UISystemFontSize(13) forState:UIControlStateNormal];
     messageBtn.tag = 3;
     //        [messageBtn addTarget:self action:@selector(bottomButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    messageBtn.frame = CGRectMake(buttonW, 12, buttonW, buttonH);
+    messageBtn.frame = CGRectMake(buttonW+10, 12, buttonW, buttonH);
     [bottomView addSubview:messageBtn];
     
     UIButton *buycarBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -275,7 +298,7 @@
         }else{
             button.backgroundColor = kRedColor;
         }
-//        [button addTarget:self action:@selector(bottomButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(bottomButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         CGFloat buttonX = kScreenWidth-4-buttonW-(buttonW+11)*(1-i);
         button.frame = CGRectMake(buttonX, buttonY, buttonW, buttonH);
 
@@ -291,6 +314,107 @@
     CGSize maxSize = CGSizeMake(kScreenWidth *0.5, MAXFLOAT);
     // 计算文字的高度
     return  [title boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:font]} context:nil].size;
+}
+
+-(void)collectionGoods:(UIButton *)btn{
+    
+//    UserModel *userModel = [UserModel modelFromUnarchive];
+//    if(self.model.user_id == userModel.user_id){
+//        [Common AppShowHUD:@""];
+//    }else{
+        [GoodsDetailAPI changeProductCollectState:self.productID success:^(NSCollectModel *model) {
+            DLog(@"收藏成功");
+            if(self.isCollect){
+                [btn setTitle:@"收藏" forState:UIControlStateNormal];
+                self.isCollect = NO;
+            }else{
+                [btn setTitle:[NSString stringWithFormat:@"收藏(%@)",[NSNumber numberWithInteger:model.favorite_number]] forState:UIControlStateNormal];
+                self.isCollect = YES;
+            }
+        } failure:^(NSError *error) {
+            DLog(@"收藏失败");
+        }];
+//    }
+}
+
+
+-(void)bottomButtonClick:(UIButton *)button{
+    if(button.tag == 20){
+        //加入购物车
+        if(self.model.productSpecList.count == 0){
+            NSAddCartParam *param = [NSAddCartParam new];
+            param.productId = self.productID;
+            param.buyNumber = @"1";
+            [GoodsDetailAPI addProductToCartWithParam:param success:^{
+                DLog(@"加入购物车成功");
+            } faulre:^(NSError *error) {
+                DLog(@"加入购物车失败");
+            }];
+        }else{
+            [self addGoodAttributesView];
+        }
+        
+    }else{
+        
+    }
+}
+
+-(void)addGoodAttributesView{
+    
+    GoodAttrModel *model1 = [GoodAttrModel new];
+    model1.attr_id = @"11";
+    model1.attr_name = nil;
+    model1.attr_value = [NSMutableArray array];
+    for(int i=0;i<self.model.productSpecList.count;i++){
+        NSDetailItemModel *itemModel = self.model.productSpecList[i];
+        GoodAttrValueModel *value = [GoodAttrValueModel new];
+        value.attr_value = itemModel.spec_name;
+        [model1.attr_value addObject:value];
+        [self.goodSpecDict setValue:itemModel.product_spec_id forKey:itemModel.spec_name];
+    }
+    
+    self.goodAttrsArr = [NSArray arrayWithObjects: model1, nil];
+    
+    GoodAttributesView *attributesView = [[GoodAttributesView alloc] initWithFrame:(CGRect){0, 0, kScreenWidth, kScreenHeight}];
+    attributesView.goodAttrsArr = self.goodAttrsArr;
+    attributesView.sureBtnsClick = ^(NSString *num, NSString *attrs, NSString *goods_attr_value_1) {
+        NSAddCartParam *param = [NSAddCartParam new];
+        param.productId = self.productID;
+        param.buyNumber = num;
+        [GoodsDetailAPI addProductToCartWithParam:param success:^{
+            DLog(@"加入购物车成功");
+        } faulre:^(NSError *error) {
+            DLog(@"加入购物车失败");
+        }];
+    };
+    
+    NSString *str = [NSString stringWithFormat:@"N%.2f/¥%.2f",self.model.show_price,self.model.show_score];
+    NSArray *strArr = [str componentsSeparatedByString:@"/¥"];
+    
+    attributesView.good_img = self.model.productImageList[0];
+    if(self.model.stock == -1){
+        attributesView.good_price = @"无限供应";
+    }else{
+        attributesView.good_price = [NSString stringWithFormat:@"库存 %lu 件",self.model.stock];
+    }
+    
+    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:str];
+    [AttributedStr addAttribute:NSForegroundColorAttributeName
+     
+                          value:kRedColor
+     
+                          range:[str rangeOfString:strArr[0]]];
+    
+    attributesView.goodsNameLbl.attributedText = AttributedStr;
+    
+    [attributesView showInView:self.navigationController.view];
+}
+
+-(NSMutableDictionary *)goodSpecDict{
+    if (!_goodSpecDict) {
+        _goodSpecDict = [NSMutableDictionary dictionary];
+    }
+    return _goodSpecDict;
 }
 
 @end

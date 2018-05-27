@@ -11,8 +11,7 @@
 @interface NSSortLeftTVCell()
 /* 标题 */
 @property (strong , nonatomic)UILabel *titleLabel;
-/* 指示View */
-@property (strong , nonatomic)UIView *indicatorView;
+
 @end
 
 @implementation NSSortLeftTVCell
@@ -23,6 +22,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
+        self.isShow = NO;
         [self setUpUI];
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
@@ -46,8 +46,10 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    WEAKSELF
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.mas_equalTo(self);
+        make.left.equalTo(weakSelf.contentView.mas_left).with.offset(GetScaleWidth(18));
+        make.top.equalTo(weakSelf.contentView.mas_top).with.offset(GetScaleWidth(19));
     }];
     
     [_indicatorView mas_makeConstraints:^(MASConstraintMaker *make) {

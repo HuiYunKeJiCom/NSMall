@@ -15,10 +15,10 @@
 
 @interface SearchParam : NSObject
 
-@property (nonatomic,assign)NSInteger currentPage;//
-@property (nonatomic,assign)NSInteger pageSize;//
+@property (nonatomic,copy)NSString *currentPage;//
+@property (nonatomic,copy)NSString *pageSize;//
 @property (nonatomic,copy)NSString *keyword;//
-@property (nonatomic,assign)NSInteger searchType;//
+@property (nonatomic,copy)NSString * searchType;//
 @property (nonatomic,copy)NSString *categoryId;//
 @property (nonatomic,copy)NSString *sort;//
 @property (nonatomic,copy)NSString *sortType;//

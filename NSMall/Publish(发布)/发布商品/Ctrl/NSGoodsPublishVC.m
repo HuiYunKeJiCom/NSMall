@@ -713,14 +713,20 @@
         [self.dict setValue:[NSNumber numberWithInteger:indexPath.section] forKey:@"indexPath"];
         height -= (GetScaleWidth(43)*3+10);
         [self.dict setValue:[NSNumber numberWithFloat:height] forKey:@"height"];
-        self.otherTableView.dict = self.dict;
         [self.specViewArr removeObject:specview];
+        
+//        if(self.specViewArr.count==0){
+//            [self.otherTableView.data insertObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"数量") imageName:nil num:@"数量"] atIndex:2];
+//        }
+        self.otherTableView.dict = self.dict;
     };
     specView.x = 0;
     specView.y = frame2.size.height;
     specView.size = CGSizeMake(kScreenWidth, GetScaleWidth(43)*3+10);
     [cell addSubview:specView];
     [self.specViewArr addObject:specView];
+    
+
     
     self.otherTableView.dict = self.dict;
 }
@@ -816,6 +822,7 @@
                 self.param.productSpec = specStr;
             }else{
                 self.param.hasSpec = @"0";
+                
             }
                 DLog(@"categoryId = %@",self.param.categoryId);
             //调用发布接口API

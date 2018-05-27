@@ -9,19 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @class LZGoodsModel;
-@interface LZShopModel : NSObject
+@interface LZShopModel : NSObject<YYModel>
 
 @property (assign,nonatomic)BOOL select;
-/** 店铺项Id */
-@property (copy,nonatomic)NSString *idx;
-/** 店铺id */
-@property (copy,nonatomic)NSString *store_id;
-/** 店铺名称 */
-@property (copy,nonatomic)NSString *store_name;
-/** 店铺所属人 */
-@property (copy,nonatomic)NSString *store_ower;
-/** 店铺id */
-@property (strong,nonatomic,readonly)NSMutableArray<LZGoodsModel *> *goodsCarts;
 
-//- (void)configGoodsArrayWithArray:(NSArray*)array;
+@property (copy,nonatomic)NSString *user_id;/* 卖家用户id */
+@property (copy,nonatomic)NSString *user_name;/* 卖家昵称 */
+@property (copy,nonatomic)NSString *user_avatar;/* 卖家头像路径 */
+@property (strong,nonatomic,readonly)NSMutableArray<LZGoodsModel *> *productList;
+
 @end

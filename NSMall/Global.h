@@ -180,3 +180,7 @@ static inline BOOL IsEmpty(id thing) {
 #define LZTabBarHeight 49
 #define LZTableViewHeaderHeight 30
 
+#define kATTR_VIEW_HEIGHT kScreenHeight * 0.47
+
+#define kContentTextFont   [UIFont systemFontOfSize:14]
+#define kButtonTextFont   [UIFont systemFontOfSize:13]

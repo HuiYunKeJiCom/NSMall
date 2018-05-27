@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ProductListItemModel.h"
 #import "StoreItemModel.h"
+#import "LabelItemModel.h"
 
 @interface SearchModel : NSObject
 
@@ -23,6 +24,6 @@
 @property (nonatomic,assign)NSInteger currentPage;//
 @property (nonatomic,strong)NSArray<ProductListItemModel *> *productList;//
 @property (nonatomic,strong)NSArray<StoreItemModel *> *storeList;//
-@property (nonatomic,strong)NSArray *labelList;//
+@property (nonatomic,strong)NSArray<LabelItemModel*> *labelList;//
 
 @end

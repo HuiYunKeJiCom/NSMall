@@ -45,14 +45,15 @@
 }
 #pragma mark - public method
 - (void)reloadDataWithModel:(LZGoodsModel*)model {
-    NSLog(@"model.spec_info = %@",model.spec_info);
+    //这里需要修改
+//    NSLog(@"model.spec_info = %@",model.spec_info);
     //    self.lzImageView.image = model.goods_image_path;
-    [self.lzImageView sd_setImageWithURL:[NSURL URLWithString:model.goods_image_path]];
-    self.nameLabel.text = model.goods_name;
-    self.detail1Label.text = model.spec_info;
-    self.detail2Label.text = model.total_price;
-    self.dateLabel.text = [NSString stringWithFormat:@"%.2f 元",[model.price floatValue]];
-    self.numberLab.text = [NSString stringWithFormat:@"数量: %ld",(long)model.count];
+    [self.lzImageView sd_setImageWithURL:[NSURL URLWithString:model.product_image]];
+    self.nameLabel.text = model.product_name;
+//    self.detail1Label.text = model.spec_info;
+    self.detail2Label.text = [NSString stringWithFormat:@"%.2f",model.total_price];
+    self.dateLabel.text = [NSString stringWithFormat:@"%.2f 元",model.price];
+    self.numberLab.text = [NSString stringWithFormat:@"数量: %ld",(long)model.buy_number];
 }
 
 #pragma mark - 按钮点击方法
@@ -117,7 +118,7 @@
     dateLabel.frame = CGRectMake(bgView.width - 75 - 35, bgView.height - 35, 90, 20);
     dateLabel.textAlignment = NSTextAlignmentRight;
     dateLabel.font = [UIFont systemFontOfSize:14];
-    dateLabel.textColor = BASECOLOR_RED;
+    dateLabel.textColor = KMainColor;
     [bgView addSubview:dateLabel];
     self.dateLabel = dateLabel;
     

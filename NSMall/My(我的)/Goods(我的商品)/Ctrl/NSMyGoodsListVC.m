@@ -51,8 +51,8 @@
 - (void)makeConstraints {
     
     [self.goodsTable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.bottom.equalTo(self.view);
-        //        make.top.equalTo(self.view.mas_bottom).with.offset(GetScaleWidth(10));
+        make.left.right.bottom.equalTo(self.view);
+        make.top.equalTo(self.view.mas_top).with.offset(TopBarHeight+1);
     }];
     
 }

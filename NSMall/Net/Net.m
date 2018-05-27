@@ -88,6 +88,7 @@ AFHTTPSessionManager *httpManager = nil;
         requestParams = [params yy_modelToJSONObject];
     
     [self requestWithGet:requestParams function:function showHUD:showHUD success:^(NSDictionary * _Nullable responseObj) {
+        NSLog(@"responseObj = %@",responseObj);
         id resultObj = nil;
         if (resultClass == Nil || [resultClass isKindOfClass:[NSDictionary class]] || [resultClass isKindOfClass:[NSArray class]])
             resultObj = responseObj;

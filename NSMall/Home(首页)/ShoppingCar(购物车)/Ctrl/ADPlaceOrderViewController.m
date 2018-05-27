@@ -177,10 +177,10 @@ static NSString *const ADTotalViewCellID = @"ADTotalViewCell";
     NSInteger goodsNumber = 0;
     _dataArray = [LZShopModel mj_objectArrayWithKeyValuesArray:dict[@"data"][@"result"]];
     for (LZShopModel *shopModel in self.dataArray) {
-        for (LZGoodsModel *model in shopModel.goodsCarts) {
-            float price = [model.price floatValue];
-            totalPrice += price*model.count;
-            goodsNumber += model.count;
+        for (LZGoodsModel *model in shopModel.productList) {
+            float price = model.price;
+            totalPrice += price*model.buy_number;
+            goodsNumber += model.buy_number;
         }
     }
     self.goodsNumber = goodsNumber;

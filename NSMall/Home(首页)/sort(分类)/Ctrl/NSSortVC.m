@@ -11,11 +11,15 @@
 #import "NSSortLeftTVCell.h"
 #import "CategoryModel.h"
 #import "HomePageAPI.h"
+#import "NSAllSortView.h"
+#import "NSSortListVC.h"
 
-@interface NSSortVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
+@interface NSSortVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate,NSAllSortViewDelegate>
 @property (nonatomic, strong) BaseTableView         *leftTV;/* 左边的tableview */
 @property (nonatomic, strong) BaseTableView         *rightTV;/* 右边的tableview */
 @property(nonatomic)NSInteger selectRow;/* 被选中的行数 */
+@property(nonatomic,strong)NSMutableDictionary *dict;/* 改变高度的字典 */
+@property(nonatomic)float sortViewHeight;/* 高度 */
 @end
 
 @implementation NSSortVC
@@ -24,6 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.dict = [NSMutableDictionary dictionary];
     [self.view addSubview:self.leftTV];
     [self.view addSubview:self.rightTV];
     [self setUpNavTopView];
@@ -134,7 +139,19 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return GetScaleWidth(50);
+    
+    if(tableView.tag == 20 && self.dict[@"indexPath"]){
+        NSInteger row = [self.dict[@"indexPath"] integerValue];
+        float height = [self.dict[@"height"] floatValue];
+        if(indexPath.row == row){
+            return height;
+        }else{
+            return GetScaleWidth(50);
+        }
+        return GetScaleWidth(50);
+    }else{
+        return GetScaleWidth(50);
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -155,15 +172,51 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    WEAKSELF
     if(tableView.tag == 10){
         CategoryModel *model = self.leftTV.data[indexPath.row];
         self.selectRow = indexPath.row;
         self.rightTV.data =  [NSMutableArray arrayWithArray:model.children];
         [self.rightTV reloadData];
     }else{
+        NSSortLeftTVCell *cell = [self.rightTV cellForRowAtIndexPath:indexPath];
+        CGRect frame2 = cell.frame;
         CategoryModel *rightModel = self.rightTV.data[indexPath.row];
         if(rightModel.children.count>0){
-            
+            if(cell.isShow){
+                [self.dict setValue:[NSNumber numberWithInteger:indexPath.row] forKey:@"indexPath"];
+                float height = frame2.size.height-self.sortViewHeight-13;
+                [self.dict setValue:[NSNumber numberWithFloat:height] forKey:@"height"];
+                cell.isShow = NO;
+                for (UIView *view in cell.subviews) {
+                    if([view isKindOfClass:[NSAllSortView class]]){
+                        [view removeFromSuperview];
+                    }
+                }
+                [self.rightTV reloadData];
+            }else{
+                
+                NSAllSortView *allView = [[NSAllSortView alloc] init];
+                allView.dataArr = rightModel.children;
+                allView.tbDelegate = self;
+                self.sortViewHeight = [allView getHeight];
+                allView.x = 0;
+                allView.y = frame2.size.height;
+                allView.size = CGSizeMake(frame2.size.width, self.sortViewHeight+13);
+                [cell addSubview:allView];
+                
+                float height = self.sortViewHeight+13+frame2.size.height;
+                [self.dict setValue:[NSNumber numberWithInteger:indexPath.row] forKey:@"indexPath"];
+                [self.dict setValue:[NSNumber numberWithFloat:height] forKey:@"height"];
+                [self.rightTV reloadData];
+                cell.isShow = YES;
+            }
+        }else{
+            //跳转到列表页面
+            NSSortListVC *sortListVC = [NSSortListVC new];
+            sortListVC.titleString = rightModel.name;
+            sortListVC.param.categoryId = rightModel.ID;
+            [weakSelf.navigationController pushViewController:sortListVC animated:YES];
         }
     }
 }
@@ -180,6 +233,17 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)didClickByButton:(UIButton *)btn andNSArray:(NSArray *)array{
+    NSLog(@"点击了按钮");
+    //跳转到列表页面
+    CategoryModel *model = array[btn.tag-20];
+    NSSortListVC *sortListVC = [NSSortListVC new];
+    sortListVC.titleString = model.name;
+    sortListVC.param.categoryId = model.ID;
+    [self.navigationController pushViewController:sortListVC animated:YES];
 }
 
 

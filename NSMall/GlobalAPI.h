@@ -62,8 +62,13 @@ const static NSString * const kShelveProductAPI = @"auth/shelveProduct";//上/�
 
 const static NSString * const kProductDetailAPI = @"productDetail";//获取商品详情
 
+const static NSString * const kSearchAPI = @"search";//商品/店铺搜索、分类商品列表、卖家商品/店铺列表
 
+const static NSString * const kCollectProductAPI = @"auth/collectProduct";//收藏/取消收藏商品
 
-
+//购物车
+const static NSString * const kAddCartAPI = @"auth/addCart";//添加商品到购物车
+const static NSString * const kUpdateCartCountAPI = @"auth/updateCartCount";//修改购物车商品数量
+const static NSString * const kCartListAPI = @"auth/cartList";//获取购物车列表
 
 
