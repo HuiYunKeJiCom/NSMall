@@ -28,4 +28,5 @@
 @property (nonatomic)NSInteger stock;/* 库存【前台要判断用户增加商品数量不能大于库存】 */
 @property (nonatomic)NSInteger limit_num;/* 最大购买量 */
 @property (nonatomic)NSInteger buy_number;/* 商品数量 */
+@property(nonatomic,copy)NSString *spec_name;/* 规格 */
 @end

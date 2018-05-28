@@ -8,10 +8,13 @@
 
 #import "ADReceivingAddressViewController.h"
 #import "ADOrderTopToolView.h"//自定义导航栏
-#import "ADAddressModel.h"
+#import "NSAddressItemModel.h"
 #import "ADReceivingAddressCell.h"
-
 #import "YWAddressViewController.h"//新增地址
+#import "GetAreaAPI.h"
+#import "GetAddressParam.h"
+#import "SetDefaultAddressParam.h"
+#import "DelAddressParam.h"
 
 
 @interface ADReceivingAddressViewController ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
@@ -87,65 +90,29 @@
 - (void)requestAllOrder:(BOOL)more {
     [self.goodsTable updateLoadState:more];
     
-//    WEAKSELF
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    [RequestTool getAddress:@{@"currentPage":[NSNumber numberWithInteger:self.currentPage]} withSuccessBlock:^(NSDictionary *result) {
-//        NSLog(@"获取收货地址result = %@",result);
-//        if([result[@"code"] integerValue] == 1){
-//            NSLog(@"获取收货地址成功");
-//            [hud hide:YES];
-//            [weakSelf handleTransferResult:result more:more];
-//        }else if([result[@"code"] integerValue] == -2){
-//            [self cutCurrentPag];
-//            hud.detailsLabelText = @"登录失效";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }else if([result[@"code"] integerValue] == -1){
-//            [self cutCurrentPag];
-//            hud.detailsLabelText = @"未登录";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }else if([result[@"code"] integerValue] == 0){
-//            [self cutCurrentPag];
-//            hud.detailsLabelText = @"失败";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }else if([result[@"code"] integerValue] == 2){
-//            [self cutCurrentPag];
-//            hud.detailsLabelText = @"无返回数据";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }
-//    } withFailBlock:^(NSString *msg) {
-//        [self cutCurrentPag];
-//        NSLog(@"获取收货地址msg = %@",msg);
-//        hud.detailsLabelText = msg;
-//        hud.mode = MBProgressHUDModeText;
-//        [hud hide:YES afterDelay:1.0];
-//    }];
+    //这里需要修改
+    GetAddressParam *param = [GetAddressParam new];
+    param.currentPage = [NSString stringWithFormat:@"%lu",self.currentPage];
+    [GetAreaAPI getAddressWithParam:param success:^(NSAddressModel * _Nullable result) {
+        NSLog(@"获取收货地址成功");
+        [self.goodsTable.data removeAllObjects];
+        self.goodsTable.data = [NSMutableArray arrayWithArray:result.addressList];
+        
+        [self.goodsTable updatePage:more];
+        self.goodsTable.noDataView.hidden = self.goodsTable.data.count;
+        [self.goodsTable reloadData];
+        
+    } failure:^(NSError * _Nullable error) {
+        NSLog(@"获取收货地址失败");
+        [self cutCurrentPag];
+    }];
+
 }
 
 -(void)cutCurrentPag{
     if(self.currentPage != 1){
         self.currentPage -= 1;
     }
-}
-
-- (void)handleTransferResult:(NSDictionary *)result more:(BOOL)more{
-
-    NSArray *dataArr = result[@"data"][@"addressList"];
-    [self.goodsTable.data removeAllObjects];
-    for (NSDictionary *dic in dataArr) {
-        ADAddressModel *model = [ADAddressModel mj_objectWithKeyValues:dic];
-        NSLog(@"model.address_Id = %@",model.address_id);
-        [self.goodsTable.data addObject:model];
-    }
-    
-    [self.goodsTable updatePage:more];
-    //    self.allOrderTable.isLoadMore = dataArr.count >= k_RequestPageSize ? YES : NO;
-    self.goodsTable.noDataView.hidden = self.goodsTable.data.count;
-    
-    [self.goodsTable reloadData];
 }
 
 - (BaseTableView *)goodsTable {
@@ -193,7 +160,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ADReceivingAddressCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ADReceivingAddressCell"];
     if (self.goodsTable.data.count > indexPath.section) {
-        ADAddressModel *model = self.goodsTable.data[indexPath.section];
+        NSAddressItemModel *model = self.goodsTable.data[indexPath.section];
 //        NSLog(@"model.homeLabelName = %@",model.homeLabelName);
         cell.model = model;
         cell.setDefaultBtnClickBlock = ^{
@@ -232,28 +199,30 @@
     NSLog(@"调用addBtnAction方法");
     YWAddressViewController *addressVC = [[YWAddressViewController alloc] init];
     // 保存后的地址回调
-    addressVC.addressBlock = ^(YWAddressInfoModel *model) {
+    addressVC.addressBlock = ^(NSAddressItemModel *model) {
         NSLog(@"新增用户地址信息填写回调：");
     };
     [self presentViewController:addressVC animated:YES completion:nil];
 }
 
-- (void)editBtnAction:(ADAddressModel *)addressModel {
+- (void)editBtnAction:(NSAddressItemModel *)addressModel {
     
     // 这里传入需要编辑的地址信息，例如:
     YWAddressViewController *addressVC = [[YWAddressViewController alloc] init];
-    YWAddressInfoModel *model = [YWAddressInfoModel alloc];
-    model.mobile = addressModel.mobile;
-    model.trueName = addressModel.trueName;
-    model.areaId = addressModel.area_id;
-    model.areaName = addressModel.area_name;
-    model.detailAddress = addressModel.detail_address;
-    model.addressId = addressModel.address_id;
-    model.isDefault = addressModel.is_default; // 如果是默认地址则传入YES
+    NSAddressItemModel *model = [NSAddressItemModel alloc];
+    model.user_phone = addressModel.user_phone;
+    model.user_name = addressModel.user_name;
+    //县区ID model.district_id,model.district_name这两个需要修改
+    model.district_id = addressModel.district_id;
+    model.district_name = addressModel.district_name;
+    
+    model.user_address = addressModel.user_address;
+    model.address_id = addressModel.address_id;
+    model.is_default = addressModel.is_default; // 如果是默认地址则传入YES
     addressVC.model = model;
     WEAKSELF
     // 保存后的地址回调
-    addressVC.addressBlock = ^(YWAddressInfoModel *model) {
+    addressVC.addressBlock = ^(NSAddressItemModel *model) {
         NSLog(@"编辑用户地址信息填写回调：");
         [weakSelf.goodsTable reloadData];
     };
@@ -264,62 +233,32 @@
 //设置默认收货地址
 -(void)setDefaultAddressWithID:(NSString *)addressId{
     NSLog(@"addressId = %@",addressId);
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    [RequestTool setDefaultAddress:@{@"addressId":addressId} withSuccessBlock:^(NSDictionary *result) {
-//        NSLog(@"设置默认收货地址result = %@",result);
-//        if([result[@"code"] integerValue] == 1){
-//            NSLog(@"设置默认收货地址成功");
-//            hud.hidden = YES;
-//            [self.goodsTable reloadData];
-//            [self requestAllOrder:NO];
-//        }else if([result[@"code"] integerValue] == -2){
-//            hud.detailsLabelText = @"登录失效";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }else if([result[@"code"] integerValue] == -1){
-//            hud.detailsLabelText = @"未登录";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }else if([result[@"code"] integerValue] == 0){
-//            hud.detailsLabelText = @"失败";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }
-//    } withFailBlock:^(NSString *msg) {
-//        hud.detailsLabelText = msg;
-//        hud.mode = MBProgressHUDModeText;
-//        [hud hide:YES afterDelay:1.0];
-//    }];
+    //这里需要修改
+    SetDefaultAddressParam *param = [SetDefaultAddressParam new];
+    param.addressId = addressId;
+    [GetAreaAPI setDefaultAddressWithParam:param success:^{
+        NSLog(@"设置默认收货地址成功");
+        [self.goodsTable reloadData];
+        [self requestAllOrder:NO];
+    } faulre:^(NSError *error) {
+        NSLog(@"设置默认收货地址失败");
+    }];
+
 }
 
-//设置默认收货地址
+//删除收货地址
 -(void)deleteAddressWithID:(NSString *)addressId{
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    [RequestTool delAddress:@{@"addressId":addressId} withSuccessBlock:^(NSDictionary *result) {
-//        NSLog(@"删除收货地址result = %@",result);
-//        if([result[@"code"] integerValue] == 1){
-//            NSLog(@"删除收货地址成功");
-//            hud.hidden = YES;
-//            [self.goodsTable reloadData];
-//            [self requestAllOrder:NO];
-//        }else if([result[@"code"] integerValue] == -2){
-//            hud.detailsLabelText = @"登录失效";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }else if([result[@"code"] integerValue] == -1){
-//            hud.detailsLabelText = @"未登录";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }else if([result[@"code"] integerValue] == 0){
-//            hud.detailsLabelText = @"失败";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }
-//    } withFailBlock:^(NSString *msg) {
-//        hud.detailsLabelText = msg;
-//        hud.mode = MBProgressHUDModeText;
-//        [hud hide:YES afterDelay:1.0];
-//    }];
+    //这里需要修改
+    DelAddressParam *param = [DelAddressParam new];
+    param.addressId = addressId;
+    [GetAreaAPI delAddressWithParam:param success:^{
+        NSLog(@"删除收货地址成功");
+        [self.goodsTable reloadData];
+        [self requestAllOrder:NO];
+    } faulre:^(NSError *error) {
+        NSLog(@"删除收货地址失败");
+    }];
+
 }
 
 @end

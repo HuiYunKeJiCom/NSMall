@@ -10,5 +10,5 @@
 #import "LZShopModel.h"
 
 @interface NSCartModel : NSObject<YYModel>
-@property (strong,nonatomic,readonly)NSMutableArray<LZShopModel *> *result;
+@property (strong,nonatomic)NSArray<LZShopModel *> *result;
 @end

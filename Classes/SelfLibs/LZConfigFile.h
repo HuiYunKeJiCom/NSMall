@@ -34,7 +34,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define LZSCREEN_WIDTH ([[UIScreen mainScreen]bounds].size.width)
 #define LZNaigationBarHeight 64
 #define LZTabBarHeight 49
-#define LZTableViewHeaderHeight 30
+#define LZTableViewHeaderHeight 42
 
 #define  TAG_CartEmptyView 100
 
@@ -43,5 +43,5 @@ static NSString *lz_BackButtonString = @"navigation_back_normal";
 static NSString *lz_Bottom_UnSelectButtonString = @"buycar_ico_check";
 static NSString *lz_Bottom_SelectButtonString = @"buycar_ico_checked";
 static NSString *lz_CartEmptyString = @"cart_default_bg";
-static NSInteger lz_CartRowHeight = 130;
+static NSInteger lz_CartRowHeight = 84;
 #endif /* LZConfigFile_h */

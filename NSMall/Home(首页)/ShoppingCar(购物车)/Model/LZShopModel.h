@@ -16,6 +16,6 @@
 @property (copy,nonatomic)NSString *user_id;/* 卖家用户id */
 @property (copy,nonatomic)NSString *user_name;/* 卖家昵称 */
 @property (copy,nonatomic)NSString *user_avatar;/* 卖家头像路径 */
-@property (strong,nonatomic,readonly)NSMutableArray<LZGoodsModel *> *productList;
+@property (strong,nonatomic)NSMutableArray <LZGoodsModel *> *productList;
 
 @end

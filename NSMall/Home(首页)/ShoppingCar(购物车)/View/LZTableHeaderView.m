@@ -12,6 +12,7 @@
 @interface LZTableHeaderView ()
 
 @property (strong,nonatomic)UILabel *titleLabel;
+@property(nonatomic,strong)UIImageView *userIV;/* 卖家头像 */
 @property (strong,nonatomic)UIButton *button;
 @end
 @implementation LZTableHeaderView
@@ -29,7 +30,7 @@
 - (void)setupUI {
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(13, 10, 15, 15);
+    button.frame = CGRectMake(11, 15, 15, 15);
     
     [button setImage:[UIImage imageNamed:@"buycar_ico_check"] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:@"buycar_ico_checked"] forState:UIControlStateSelected];
@@ -37,8 +38,14 @@
     [self.contentView addSubview:button];
     self.button = button;
     
+    self.userIV = [[UIImageView alloc]init];
+    self.userIV.x = CGRectGetMaxX(button.frame)+8;
+    self.userIV.y = 7;
+    self.userIV.size = CGSizeMake(29, 29);
+    [self.contentView addSubview:self.userIV];
+    
     UILabel *label = [[UILabel alloc]init];
-    label.frame = CGRectMake(40, 0, LZSCREEN_WIDTH - 100, 30);
+    label.frame = CGRectMake(CGRectGetMaxX(self.userIV.frame)+12, 18, LZSCREEN_WIDTH - 100, 8);
     label.font = [UIFont systemFontOfSize:14];
     [self.contentView addSubview:label];
     self.titleLabel = label;
@@ -60,6 +67,11 @@
 - (void)setTitle:(NSString *)title {
     self.titleLabel.text = title;
     _title = title;
+}
+
+-(void)setImagePath:(NSString *)imagePath{
+    _imagePath = imagePath;
+    [self.userIV sd_setImageWithURL:[NSURL URLWithString:imagePath]];
 }
 /*
 // Only override drawRect: if you perform custom drawing.

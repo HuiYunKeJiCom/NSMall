@@ -101,7 +101,8 @@
     
     WEAKSELF
     [self.userTable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.bottom.mas_equalTo(weakSelf.view);
+        make.left.right.bottom.mas_equalTo(weakSelf.view);
+        make.top.equalTo(self.view.mas_top).with.offset(TopBarHeight);
     }];
     
 }

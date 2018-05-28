@@ -14,10 +14,18 @@
  */
 + (void)getCartList:(nullable id)param success:(void (^)(NSCartModel *cartModel))success failure:(void (^)(NSError *error))failure{
     [Net requestWithGet:param function:kCartListAPI showHUD:NetNullStr resultClass:[NSCartModel class] success:^(NSCartModel  * _Nullable  resultObj){
-        NSLog(@"NSCartModel = %@",resultObj.mj_keyValues);
         success?success(resultObj):nil;
     } failure:failure];
 }
 
-
+/*
+ 修改购物车商品数量
+ */
++ (void)changeCartNumWithParam:(NSChangeCartNumParam *)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure{
+    [Net requestWithPost:param function:kUpdateCartCountAPI showHUD:NetNullStr resultClass:[NSDictionary class] success:^(id  _Nullable resultObj) {
+        success?success():nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+}
 @end

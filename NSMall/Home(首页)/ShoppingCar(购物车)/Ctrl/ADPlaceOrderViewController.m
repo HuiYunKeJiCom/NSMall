@@ -20,7 +20,7 @@
 #import "LZShopModel.h"//店铺模型
 #import "LZGoodsModel.h"//购物车商品模型
 
-#import "ADAddressModel.h"//地址模型
+#import "NSAddressItemModel.h"//地址模型
 
 @interface ADPlaceOrderViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 /* collectionView */
@@ -38,7 +38,7 @@
 @property (nonatomic)double expressFee;
 
 /** 地址模型 */
-@property (strong,nonatomic)ADAddressModel *addressModel;
+@property (strong,nonatomic)NSAddressItemModel *addressModel;
 /** 下单店铺商品 */
 @property (strong,nonatomic)NSMutableArray<LZShopModel *> *dataArray;
 /** 商品ID */
@@ -71,9 +71,9 @@ static NSString *const ADTotalViewCellID = @"ADTotalViewCell";
 #pragma mark - 导航栏处理
 - (void)setUpNavTopView
 {
-    _topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
+    _topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     _topToolView.hidden = NO;
-    [_topToolView setTopTitleWithNSString:KLocalizableStr(@"购物车")];
+    [_topToolView setTopTitleWithNSString:KLocalizableStr(@"确认订单")];
     WEAKSELF
     _topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
@@ -130,10 +130,10 @@ static NSString *const ADTotalViewCellID = @"ADTotalViewCell";
     NSLog(@"addressArr = %@",addressArr);
     self.expressFee = 0.0;
     if(addressArr.count >0){
-        self.addressModel = [ADAddressModel mj_objectWithKeyValues:addressArr];
+        self.addressModel = [NSAddressItemModel mj_objectWithKeyValues:addressArr];
         
         self.bottomView.dict = @{@"goodsCartId":self.goodsCartId,@"addressId":self.addressModel.address_id};
-        NSString *areaId = self.addressModel.area_id;
+        NSString *areaId = self.addressModel.district_id;
         //这里需要修改
         //获取选购商品各种运送方式的邮费
 //        MBProgressHUD *hud2 = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -202,10 +202,7 @@ static NSString *const ADTotalViewCellID = @"ADTotalViewCell";
             [placeOrderVC getOrderWithNSDictionary:weakSelf.bottomView.dict];
             [weakSelf.navigationController pushViewController:placeOrderVC animated:YES];
         }else{
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:weakSelf.view animated:YES];
-            hud.detailsLabelText = @"请选择商品";
-            hud.mode = MBProgressHUDModeText;
-            [hud hide:YES afterDelay:1.0];
+            [Common AppShowToast:@"请选择商品"];
         }
         
     };
@@ -253,7 +250,7 @@ static NSString *const ADTotalViewCellID = @"ADTotalViewCell";
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        _collectionView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight -64);
+        _collectionView.frame = CGRectMake(0, TopBarHeight, kScreenWidth, kScreenHeight -TopBarHeight);
         _collectionView.showsVerticalScrollIndicator = NO;        //注册
         [_collectionView registerClass:[ADGoodsListViewCell class] forCellWithReuseIdentifier:ADGoodsListViewCellID];
         [_collectionView registerClass:[ADReceivingAddressViewCell class] forCellWithReuseIdentifier:ADReceivingAddressViewCellID];

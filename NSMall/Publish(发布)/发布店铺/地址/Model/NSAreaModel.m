@@ -9,7 +9,7 @@
 #import "NSAreaModel.h"
 
 @implementation NSAreaModel
-+ (NSDictionary *)modelCustomPropertyMapper{
-    return @{@"ID":@"id"};
++ (NSDictionary *)modelContainerPropertyGenericClass{
+    return @{@"result":[NSAreaItemModel class]};
 }
 @end

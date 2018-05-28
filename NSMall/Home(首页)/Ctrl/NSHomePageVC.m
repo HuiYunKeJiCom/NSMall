@@ -112,7 +112,7 @@
         NSLog(@"count = %lu",result.advertList.count);
         NSLog(@"获取广告数据成功");
         for(AdvertItemModel *model in result.advertList){
-            NSLog(@"path = %@",model.pic_img);
+//            NSLog(@"path = %@",model.pic_img);
             [self.imageGroupArray addObject:model.pic_img];
             [self.imageDict setValue:model forKey:model.pic_img];
         }

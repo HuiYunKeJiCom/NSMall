@@ -65,7 +65,7 @@ typedef NS_ENUM(NSInteger, TDMainTableViewType) {
 #pragma mark - 导航栏处理
 - (void)setUpNavTopView
 {
-    _topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
+    _topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     _topToolView.hidden = NO;
     _topToolView.backgroundColor = [UIColor whiteColor];
     [_topToolView setTopTitleWithNSString:KLocalizableStr(@"购物车")];
@@ -104,7 +104,7 @@ typedef NS_ENUM(NSInteger, TDMainTableViewType) {
 - (void)setUpContentView
 {
 //    380
-    _contentView = [[ADPaymentOrderView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, 250)];
+    _contentView = [[ADPaymentOrderView alloc] initWithFrame:CGRectMake(0, TopBarHeight, kScreenWidth, 250)];
 //    _contentView.backgroundColor = [UIColor greenColor];
     _contentView.buildOrderModel = self.buildOrderModel;
     [self.view addSubview:_contentView];

@@ -16,6 +16,7 @@
 #import "GoodAttributesView.h"
 #import "GoodAttrModel.h"
 #import "NSAddCartParam.h"
+#import "LZCartViewController.h"
 
 
 @interface NSGoodsDetailVC ()<UIScrollViewDelegate,NSMessageTVDelegate>
@@ -274,7 +275,7 @@
     [buycarBtn setImageWithTitle:IMAGE(@"goods_detail_ico_buycar") withTitle:@"购物车" position:@"left" font:UISystemFontSize(13) forState:UIControlStateNormal];
     [buycarBtn setTitleColor:kBlackColor forState:UIControlStateNormal];
     buycarBtn.tag = 4;
-    //        [buycarBtn addTarget:self action:@selector(bottomButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [buycarBtn addTarget:self action:@selector(goToCart) forControlEvents:UIControlEventTouchUpInside];
     buycarBtn.frame = CGRectMake(buttonW*2, 12, buttonW+20, buttonH);
     [bottomView addSubview:buycarBtn];
     
@@ -415,6 +416,11 @@
         _goodSpecDict = [NSMutableDictionary dictionary];
     }
     return _goodSpecDict;
+}
+
+-(void)goToCart{
+    LZCartViewController *cartVC = [LZCartViewController new];
+    [self.navigationController pushViewController:cartVC animated:YES];
 }
 
 @end

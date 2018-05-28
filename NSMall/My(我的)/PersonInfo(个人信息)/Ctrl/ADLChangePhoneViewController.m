@@ -150,6 +150,7 @@
 }
 
 - (void)initViews {
+    [self.navigationController setNavigationBarHidden:NO];
     [self.view addSubview:self.phoneView];
     [self.phoneView addSubview:self.markLab];
     [self.phoneView addSubview:self.countryField];

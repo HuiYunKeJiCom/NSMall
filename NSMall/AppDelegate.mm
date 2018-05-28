@@ -71,7 +71,7 @@
     [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
     
     BOOL isAuLogin = [[EMClient sharedClient] isAutoLogin];
-    NSLog(@"isAuLogin = %@",isAuLogin == 0?NO:YES);
+//    NSLog(@"isAuLogin = %@",isAuLogin == 0?NO:YES);
     
     // 如果登录过，直接来到主界面
     if ([[EMClient sharedClient] isAutoLogin]) {

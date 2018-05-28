@@ -11,11 +11,9 @@
 
 @implementation LZShopModel
 
-+(NSDictionary *)mj_objectClassInArray
-{
-    return @{
-             @"productList" : @"LZGoodsModel"
-             };
++ (NSDictionary *)modelContainerPropertyGenericClass{
+    return @{@"productList":[LZGoodsModel class]};
 }
+
 
 @end

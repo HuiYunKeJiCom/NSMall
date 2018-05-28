@@ -60,7 +60,10 @@ const static NSString * const kCreateProductAPI = @"auth/createProduct";//商品
 const static NSString * const kUploadProductImageAPI = @"auth/uploadProductImage";//商品图片上传
 const static NSString * const kShelveProductAPI = @"auth/shelveProduct";//上/下架商品
 
+//商品详情
 const static NSString * const kProductDetailAPI = @"productDetail";//获取商品详情
+const static NSString * const kGetCheckDataAPI = @"auth/getCheckData";//获取立即购买页面数据
+
 
 const static NSString * const kSearchAPI = @"search";//商品/店铺搜索、分类商品列表、卖家商品/店铺列表
 
@@ -70,5 +73,6 @@ const static NSString * const kCollectProductAPI = @"auth/collectProduct";//收�
 const static NSString * const kAddCartAPI = @"auth/addCart";//添加商品到购物车
 const static NSString * const kUpdateCartCountAPI = @"auth/updateCartCount";//修改购物车商品数量
 const static NSString * const kCartListAPI = @"auth/cartList";//获取购物车列表
+const static NSString * const kRemoveCartAPI = @"auth/removeCart";//删除购物车商品
 
 

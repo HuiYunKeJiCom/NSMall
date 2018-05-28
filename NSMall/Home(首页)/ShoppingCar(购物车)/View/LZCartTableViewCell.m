@@ -10,7 +10,8 @@
 #import "LZConfigFile.h"
 //#import "LZCartModel.h"
 #import "LZGoodsModel.h"
-
+#import "CartAPI.h"
+#import "NSChangeCartNumParam.h"
 
 @interface LZCartTableViewCell ()<UITextFieldDelegate>
 {
@@ -62,12 +63,23 @@
 #pragma mark - public method
 - (void)reloadDataWithModel:(LZGoodsModel*)model {
     //这里需要修改
-//    self.lzImageView.image = model.goods_image_path;
     [self.lzImageView sd_setImageWithURL:[NSURL URLWithString:model.product_image]];
     self.nameLabel.text = model.product_name;
-//    self.detail1Label.text = model.spec_info;
-    self.detail2Label.text = [NSString stringWithFormat:@"%.2f",model.total_price];
-    self.dateLabel.text = [NSString stringWithFormat:@"%.2f 元",model.price];
+    if(model.spec_name){
+        self.detail1Label.text = [NSString stringWithFormat:@"尺寸规格:%@",model.spec_name];
+    }
+    
+    NSString *str = [NSString stringWithFormat:@"N%.2f/¥%.2f",model.price,model.score];
+    NSArray *strArr = [str componentsSeparatedByString:@"/¥"];
+    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:str];
+    [AttributedStr addAttribute:NSForegroundColorAttributeName
+     
+                          value:kRedColor
+     
+                          range:[str rangeOfString:strArr[0]]];
+    
+    self.detail2Label.attributedText = AttributedStr;
+//    self.dateLabel.text = [NSString stringWithFormat:@"%.2f 元",model.price];
     self.numberTF.text = [NSString stringWithFormat:@"%ld",(long)model.buy_number];
 //    self.sizeLabel.text = model.sizeStr;
     self.selectBtn.selected = model.select;
@@ -108,38 +120,17 @@
     NSInteger count = [self.numberTF.text integerValue];
     count++;
     //这里需要修改
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.contentView animated:YES];
-//    [RequestTool changeCartCount:@{@"count":[NSString stringWithFormat:@"%ld",(long)count],@"goodsCartId":self.model.goodscart_id} withSuccessBlock:^(NSDictionary *result) {
-//        NSLog(@"购物车商品数量增result = %@",result);
-//        if([result[@"code"] integerValue] == 1){
-//            [hud hide:YES];
-//
-//            if (numberAddBlock) {
-//                numberAddBlock(count);
-//            }
-//        }else if([result[@"code"] integerValue] == -2){
-//            hud.detailsLabelText = @"登录失效";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }else if([result[@"code"] integerValue] == -1){
-//            hud.detailsLabelText = @"未登录";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }else if([result[@"code"] integerValue] == 0){
-//            hud.detailsLabelText = @"失败";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }else if([result[@"code"] integerValue] == 2){
-//            hud.detailsLabelText = @"无返回数据";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }
-//    } withFailBlock:^(NSString *msg) {
-//        NSLog(@"购物车商品数量增msg = %@",msg);
-//        hud.detailsLabelText = msg;
-//        hud.mode = MBProgressHUDModeText;
-//        [hud hide:YES afterDelay:1.0];
-//    }];
+    NSChangeCartNumParam *param = [NSChangeCartNumParam new];
+    param.cartId = self.model.cart_id;
+    param.buyNumber = [NSString stringWithFormat:@"%lu",count];
+    [CartAPI changeCartNumWithParam:param success:^{
+        DLog(@"修改数量成功");
+        if (numberAddBlock) {
+            numberAddBlock(count);
+        }
+    } faulre:^(NSError *error) {
+        DLog(@"修改数量失败");
+    }];
 }
 
 - (void)cutBtnClick:(UIButton*)button {
@@ -149,38 +140,17 @@
         return ;
     }
     //这里需要修改
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.contentView animated:YES];
-//    [RequestTool changeCartCount:@{@"count":[NSString stringWithFormat:@"%ld",(long)count],@"goodsCartId":self.model.goodscart_id} withSuccessBlock:^(NSDictionary *result) {
-//        NSLog(@"购物车商品数量减result = %@",result);
-//        if([result[@"code"] integerValue] == 1){
-//            [hud hide:YES];
-//            
-//            if (numberCutBlock) {
-//                numberCutBlock(count);
-//            }
-//        }else if([result[@"code"] integerValue] == -2){
-//            hud.detailsLabelText = @"登录失效";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }else if([result[@"code"] integerValue] == -1){
-//            hud.detailsLabelText = @"未登录";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }else if([result[@"code"] integerValue] == 0){
-//            hud.detailsLabelText = @"失败";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }else if([result[@"code"] integerValue] == 2){
-//            hud.detailsLabelText = @"无返回数据";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }
-//    } withFailBlock:^(NSString *msg) {
-//        NSLog(@"购物车商品数量减msg = %@",msg);
-//        hud.detailsLabelText = msg;
-//        hud.mode = MBProgressHUDModeText;
-//        [hud hide:YES afterDelay:1.0];
-//    }];
+    NSChangeCartNumParam *param = [NSChangeCartNumParam new];
+    param.cartId = self.model.cart_id;
+    param.buyNumber = [NSString stringWithFormat:@"%lu",count];
+    [CartAPI changeCartNumWithParam:param success:^{
+        DLog(@"修改数量成功");
+        if (numberCutBlock) {
+            numberCutBlock(count);
+        }
+    } faulre:^(NSError *error) {
+        DLog(@"修改数量失败");
+    }];
 
 }
 
@@ -200,7 +170,9 @@
     
     //选中按钮
     UIButton* selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    selectBtn.center = CGPointMake(20, 20);
+//    selectBtn.center = CGPointMake(20, 20);
+    selectBtn.x = 11+9;
+    selectBtn.y = 42-15*0.5;
     selectBtn.bounds = CGRectMake(0, 0, 15, 15);
     [selectBtn setImage:[UIImage imageNamed:lz_Bottom_UnSelectButtonString] forState:UIControlStateNormal];
     [selectBtn setImage:[UIImage imageNamed:lz_Bottom_SelectButtonString] forState:UIControlStateSelected];
@@ -210,7 +182,7 @@
     
     //照片背景
     UIView *imageBgView = [[UIView alloc]init];
-    imageBgView.frame = CGRectMake(selectBtn.right + 10, selectBtn.bottom+10, bgView.height - 50, bgView.height - 50);
+    imageBgView.frame = CGRectMake(selectBtn.right + 8, 15, 53, 53);
     imageBgView.backgroundColor = LZColorFromHex(0xF3F3F3);
     [bgView addSubview:imageBgView];
     
@@ -226,40 +198,41 @@
     
     //商品名
     UILabel* nameLabel = [[UILabel alloc]init];
-    nameLabel.frame = CGRectMake(imageBgView.left, 10, bgView.width-40, 20);
+    nameLabel.frame = CGRectMake(imageBgView.right + 14, 16, bgView.width-40, 12);
     nameLabel.font = [UIFont systemFontOfSize:15];
     [bgView addSubview:nameLabel];
     self.nameLabel = nameLabel;
     
+    //价格
+    UILabel* dateLabel = [[UILabel alloc]init];
+    dateLabel.frame = CGRectMake(imageBgView.right + 14, CGRectGetMaxY(nameLabel.frame)+8, width, 12);
+    dateLabel.font = [UIFont systemFontOfSize:14];
+    dateLabel.textColor = kBlackColor;
+    [bgView addSubview:dateLabel];
+    self.dateLabel = dateLabel;
+    
     //描述1
     UILabel* detail1Label = [[UILabel alloc]init];
-    detail1Label.frame = CGRectMake(imageView.right+10, imageView.top, nameLabel.width-10-imageView.width, 20);
+    detail1Label.frame = CGRectMake(imageBgView.right + 14, CGRectGetMaxY(nameLabel.frame)+8, nameLabel.width-10-imageView.width, 12);
     detail1Label.font = [UIFont boldSystemFontOfSize:14];
     detail1Label.textColor = LZColorFromRGB(132, 132, 132);
     detail1Label.textAlignment = NSTextAlignmentLeft;
     [bgView addSubview:detail1Label];
     self.detail1Label = detail1Label;
+
     
     //描述2
     UILabel* detail2Label = [[UILabel alloc]init];
-    detail2Label.frame = CGRectMake(imageView.right+10, detail1Label.bottom, nameLabel.width-10-imageView.width, 20);
+    detail2Label.frame = CGRectMake(imageBgView.right + 14, CGRectGetMaxY(nameLabel.frame)+30, nameLabel.width-10-imageView.width, 12);
     detail2Label.font = [UIFont boldSystemFontOfSize:14];
-    detail2Label.textColor = LZColorFromRGB(132, 132, 132);
+    detail2Label.textColor = KBGCOLOR;
     detail2Label.textAlignment = NSTextAlignmentLeft;
     [bgView addSubview:detail2Label];
     self.detail2Label = detail2Label;
     
-    //价格
-    UILabel* dateLabel = [[UILabel alloc]init];
-    dateLabel.frame = CGRectMake(imageView.right+10, bgView.height - 40 , width, 20);
-    dateLabel.font = [UIFont systemFontOfSize:14];
-    dateLabel.textColor = KMainColor;
-    [bgView addSubview:dateLabel];
-    self.dateLabel = dateLabel;
-    
     //数量加按钮
     UIButton *addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    addBtn.frame = CGRectMake(bgView.width - 35, bgView.height - 35, 25, 25);
+    addBtn.frame = CGRectMake(bgView.width - 25-19, bgView.height - 25-8, 25, 25);
     [addBtn setImage:[UIImage imageNamed:@"buycar_ico_add"] forState:UIControlStateNormal];
     [addBtn setImage:[UIImage imageNamed:@"buycar_ico_add"] forState:UIControlStateHighlighted];
     [addBtn addTarget:self action:@selector(addBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -267,7 +240,7 @@
     
     //数量显示
     UITextField* numberTF = [[UITextField alloc]init];
-    numberTF.frame = CGRectMake(addBtn.left - 55, addBtn.top, 50, 25);
+    numberTF.frame = CGRectMake(addBtn.left - 50, addBtn.top, 50, 25);
     numberTF.textAlignment = NSTextAlignmentCenter;
     numberTF.text = @"1";
     numberTF.font = [UIFont systemFontOfSize:15];
@@ -281,7 +254,7 @@
     
     //数量减按钮
     UIButton *cutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    cutBtn.frame = CGRectMake(numberTF.left - 30, addBtn.top, 25, 25);
+    cutBtn.frame = CGRectMake(numberTF.left - 25, addBtn.top, 25, 25);
     [cutBtn setImage:[UIImage imageNamed:@"buycar_ico_sub"] forState:UIControlStateNormal];
     [cutBtn setImage:[UIImage imageNamed:@"buycar_ico_sub"] forState:UIControlStateHighlighted];
     [cutBtn addTarget:self action:@selector(cutBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -291,38 +264,25 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     NSInteger count = [self.numberTF.text integerValue];
     //这里需要修改
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.contentView animated:YES];
-//    [RequestTool changeCartCount:@{@"count":[NSString stringWithFormat:@"%ld",(long)count],@"goodsCartId":self.model.goodscart_id} withSuccessBlock:^(NSDictionary *result) {
-//        NSLog(@"购物车商品数量增result = %@",result);
-//        if([result[@"code"] integerValue] == 1){
-//            [hud hide:YES];
-//
-//            if (numberAddBlock) {
-//                numberAddBlock(count);
-//            }
-//        }else if([result[@"code"] integerValue] == -2){
-//            hud.detailsLabelText = @"登录失效";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }else if([result[@"code"] integerValue] == -1){
-//            hud.detailsLabelText = @"未登录";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }else if([result[@"code"] integerValue] == 0){
-//            hud.detailsLabelText = @"失败";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }else if([result[@"code"] integerValue] == 2){
-//            hud.detailsLabelText = @"无返回数据";
-//            hud.mode = MBProgressHUDModeText;
-//            [hud hide:YES afterDelay:1.0];
-//        }
-//    } withFailBlock:^(NSString *msg) {
-//        NSLog(@"购物车商品数量增msg = %@",msg);
-//        hud.detailsLabelText = msg;
-//        hud.mode = MBProgressHUDModeText;
-//        [hud hide:YES afterDelay:1.0];
-//    }];
+    
+    NSChangeCartNumParam *param = [NSChangeCartNumParam new];
+    param.cartId = self.model.cart_id;
+    param.buyNumber = [NSString stringWithFormat:@"%lu",count];
+    [CartAPI changeCartNumWithParam:param success:^{
+        DLog(@"修改数量成功");
+        if (numberAddBlock) {
+            numberAddBlock(count);
+        }
+    } faulre:^(NSError *error) {
+        DLog(@"修改数量失败");
+    }];
+ 
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    if (![self.numberTF isExclusiveTouch]) {
+        [self.numberTF resignFirstResponder];
+    }
 }
 
 @end

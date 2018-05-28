@@ -63,7 +63,7 @@
     //消除强引用
     __weak typeof(self) weakSelf = self;
     
-    self.SV = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64,kScreenWidth,kScreenHeight-64)];
+    self.SV = [[UIScrollView alloc]initWithFrame:CGRectMake(0, TopBarHeight,kScreenWidth,kScreenHeight-TopBarHeight)];
     self.SV.backgroundColor = kBACKGROUNDCOLOR;
     self.SV.contentSize = CGSizeMake(self.SV.bounds.size.width*2, self.SV.bounds.size.height);
     self.SV.pagingEnabled = YES;
@@ -84,7 +84,7 @@
     [self.buyView addSubview:_headView1];
     
     
-    _scrollView1 = [[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_headView1.frame),kScreenWidth,kScreenHeight-64-40)];
+    _scrollView1 = [[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_headView1.frame),kScreenWidth,kScreenHeight-TopBarHeight-40)];
     _scrollView1.backgroundColor = kBACKGROUNDCOLOR;
     _scrollView1.contentSize = CGSizeMake(_scrollView1.bounds.size.width*5, _scrollView1.bounds.size.height);
     _scrollView1.pagingEnabled = YES;
@@ -106,7 +106,7 @@
     };
     [self.saleView addSubview:_headView2];
     
-    _scrollView2 = [[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_headView2.frame),kScreenWidth,kScreenHeight-64-40)];
+    _scrollView2 = [[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_headView2.frame),kScreenWidth,kScreenHeight-TopBarHeight-40)];
     _scrollView2.backgroundColor = kBACKGROUNDCOLOR;
     _scrollView2.contentSize = CGSizeMake(_scrollView2.bounds.size.width*5, _scrollView2.bounds.size.height);
     _scrollView2.pagingEnabled = YES;
@@ -122,7 +122,7 @@
 #pragma mark - 导航栏处理
 - (void)setUpNavTopView
 {
-    _topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
+    _topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     _topToolView.hidden = NO;
     _topToolView.backgroundColor = [UIColor whiteColor];
 //    [_topToolView setTopTitleWithNSString:KLocalizableStr(@"我的订单")];

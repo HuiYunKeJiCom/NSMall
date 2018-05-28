@@ -7,7 +7,7 @@
 //  下单页面-收货地址
 
 #import "ADReceivingAddressViewCell.h"
-#import "ADAddressModel.h"
+#import "NSAddressItemModel.h"
 
 @interface ADReceivingAddressViewCell()
 @property (nonatomic, strong) UIView  *bgView;
@@ -81,23 +81,23 @@
 //    [self.detailBtn setTitle:@">" forState:UIControlStateNormal];
 }
 
--(void)setAddressModel:(ADAddressModel *)addressModel{
+-(void)setAddressModel:(NSAddressItemModel *)addressModel{
     _addressModel = addressModel;
     
     NSString *areaName;
-    NSRange range = [addressModel.area_name rangeOfString:@","];
+    NSRange range = [addressModel.district_name rangeOfString:@","];
     if (range.location!=NSNotFound) {
-        areaName = [addressModel.area_name stringByReplacingOccurrencesOfString:@"," withString:@" "];
+        areaName = [addressModel.district_name stringByReplacingOccurrencesOfString:@"," withString:@" "];
         
     }else{
-        areaName = addressModel.area_name;
+        areaName = addressModel.district_name;
     }
     
-    self.addressLab.text = [NSString stringWithFormat:@"%@%@",areaName,addressModel.detail_address];
-    self.homeLab.text = addressModel.label;
-    self.receiverLab.text = addressModel.trueName;
-    self.phoneLab.text = addressModel.mobile;
-    self.zipCodeLab.text = addressModel.post_code;
+    self.addressLab.text = [NSString stringWithFormat:@"%@%@",areaName,addressModel.user_address];
+    self.homeLab.text = addressModel.user_tag;
+    self.receiverLab.text = addressModel.user_name;
+    self.phoneLab.text = addressModel.user_phone;
+    self.zipCodeLab.text = addressModel.user_zipcode;
     
 }
 

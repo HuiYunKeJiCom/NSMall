@@ -7,7 +7,7 @@
 //
 
 #import "YWAddressTableViewCell.h"
-#import "ADAddressLinkageModel.h"
+#import "NSAreaItemModel.h"
 #import "UIView+YWFrame.h"
 
 static  CGFloat  const  YWFontH = 22; //地址字体高度限制
@@ -32,11 +32,11 @@ static  CGFloat  const  YWFontH = 22; //地址字体高度限制
 }
 
 
-- (void)setItem:(ADAddressLinkageModel *)item {
+- (void)setItem:(NSAreaItemModel *)item {
     
     _item = item;
-    _addressNameLabel.text = item.area_name;
-    CGSize fontSize = [UIView getSizeByString:item.area_name sizeConstraint:CGSizeMake(YWScreenW, YWFontH) font:[UIFont systemFontOfSize:16]];
+    _addressNameLabel.text = item.name;
+    CGSize fontSize = [UIView getSizeByString:item.name sizeConstraint:CGSizeMake(YWScreenW, YWFontH) font:[UIFont systemFontOfSize:16]];
     _addressNameLabel.frame = CGRectMake(20, 10, fontSize.width, YWFontH);
     _addressNameLabel.textColor = item.isSelected ? YWCOLOR(255, 85, 0, 1) : [UIColor blackColor];
     _selectFlagImageView.hidden = !item.isSelected;

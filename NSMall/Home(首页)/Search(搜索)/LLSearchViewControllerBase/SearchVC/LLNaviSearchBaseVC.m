@@ -204,7 +204,7 @@
 {
     if (!_myBGScrollView) {
         _myBGScrollView = ({
-            UIScrollView *bgScrollView =  [[UIScrollView alloc] initWithFrame:CGRectMake(0,64, ZYHT_ScreenWidth,ZYHT_ScreenHeight-64)];
+            UIScrollView *bgScrollView =  [[UIScrollView alloc] initWithFrame:CGRectMake(0,TopBarHeight, ZYHT_ScreenWidth,ZYHT_ScreenHeight-TopBarHeight)];
             bgScrollView.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
             bgScrollView.contentSize = CGSizeMake(ZYHT_ScreenWidth, ZYHT_ScreenHeight-60);
             bgScrollView.showsVerticalScrollIndicator = NO;

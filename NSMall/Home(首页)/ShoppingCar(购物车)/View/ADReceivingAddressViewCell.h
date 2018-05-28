@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class ADAddressModel;
+@class NSAddressItemModel;
 @interface ADReceivingAddressViewCell : UICollectionViewCell
 /* 查看详情 点击回调 */
 @property (nonatomic, copy) dispatch_block_t detailBtnClickBlock;
 /** 地址模型 */
-@property (strong,nonatomic)ADAddressModel *addressModel;
+@property (strong,nonatomic)NSAddressItemModel *addressModel;
 @end

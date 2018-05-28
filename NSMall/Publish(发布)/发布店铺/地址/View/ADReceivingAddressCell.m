@@ -64,13 +64,13 @@
     
 }
 
-- (void)setModel:(ADAddressModel *)model {
+- (void)setModel:(NSAddressItemModel *)model {
     _model = model;
-    self.receiverLab.text = model.trueName;
-    self.phoneLab.text = model.mobile;
-    self.addressLab.text = [NSString stringWithFormat:@"%@ %@",model.area_name,model.detail_address];
+    self.receiverLab.text = model.user_name;
+    self.phoneLab.text = model.user_phone;
+    self.addressLab.text = [NSString stringWithFormat:@"%@ %@",model.district_name,model.user_address];
     
-    if([model.is_default isEqualToString:@"1"]){
+    if(model.is_default == 1){
         [self.setDefaultBtn setTitle:@"默认地址" forState:UIControlStateNormal];
         self.setDefaultBtn.userInteractionEnabled = NO;
         [self.setDefaultBtn.layer setMasksToBounds:NO];
@@ -89,15 +89,15 @@
     [self.editBtn setTitle:@"编辑" forState:UIControlStateNormal];
     [self.deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
     
-    if([model.label isEqualToString:@"家"]){
+    if([model.user_tag isEqualToString:@"家"]){
         _homeLab.backgroundColor = [UIColor brownColor];
 //        self.homeLab.text = @" 家 ";
     }else{
 //        self.homeLab.text = @" 公司 ";
     }
-    self.homeLab.text = model.label;
+    self.homeLab.text = model.user_tag;
     
-    CGSize labelSize = [DCSpeedy dc_calculateTextSizeWithText:model.label WithTextFont:kFontNum12 WithMaxW:80];
+    CGSize labelSize = [DCSpeedy dc_calculateTextSizeWithText:model.user_tag WithTextFont:kFontNum12 WithMaxW:80];
     self.homeLab.frame = CGRectMake(kScreenWidth-40-labelSize.width, 20, labelSize.width+10, labelSize.height);
     
 }

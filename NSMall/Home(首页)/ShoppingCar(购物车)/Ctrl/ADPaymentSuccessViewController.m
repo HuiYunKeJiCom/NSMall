@@ -44,7 +44,7 @@
 #pragma mark - 导航栏处理
 - (void)setUpNavTopView
 {
-    _topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
+    _topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     _topToolView.hidden = NO;
     _topToolView.backgroundColor = [UIColor whiteColor];
     [_topToolView setTopTitleWithNSString:KLocalizableStr(@"支付成功")];
@@ -74,7 +74,7 @@
 #pragma mark - contentView
 - (void)setUpContentView
 {
-    _contentView = [[ADPaymentSuccessContentView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight-64-50)];
+    _contentView = [[ADPaymentSuccessContentView alloc] initWithFrame:CGRectMake(0, TopBarHeight, kScreenWidth, kScreenHeight-TopBarHeight-50)];
 //    _contentView.backgroundColor = [UIColor greenColor];
     [self.view addSubview:_contentView];
 

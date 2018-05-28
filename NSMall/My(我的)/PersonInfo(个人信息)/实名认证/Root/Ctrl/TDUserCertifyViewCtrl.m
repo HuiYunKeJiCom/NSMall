@@ -98,7 +98,7 @@
 
     // 目标界面添加到当前子视图层
     [self addChildViewController:presentedVC];
-    __block CGRect frame = CGRectMake(kScreenWidth, 64 + 70, kScreenWidth, kScreenHeight - 64 - 70);
+    __block CGRect frame = CGRectMake(kScreenWidth, TopBarHeight + 70, kScreenWidth, kScreenHeight - TopBarHeight - 70);
     presentedVC.view.frame = frame;
     // 执行转场
     [self transitionFromViewController:curPresentVC toViewController:presentedVC duration:0.3 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -138,7 +138,7 @@
 
     // 目标界面添加到当前子视图层
     [self addChildViewController:presentedVC];
-    __block CGRect frame = CGRectMake(-kScreenWidth, 64 + 70, kScreenWidth, kScreenHeight - 64 - 70);
+    __block CGRect frame = CGRectMake(-kScreenWidth, TopBarHeight + 70, kScreenWidth, kScreenHeight - TopBarHeight - 70);
     presentedVC.view.frame = frame;
     // 执行转场
     [self transitionFromViewController:curPresentVC toViewController:presentedVC duration:0.3 options:UIViewAnimationOptionCurveEaseInOut animations:^{

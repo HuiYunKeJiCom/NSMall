@@ -59,7 +59,7 @@
     
     //初始化显示状态
     _allSellectedButton.selected = NO;
-    _totlePriceLabel.attributedText = [self LZSetString:@"￥0.00"];
+    _totlePriceLabel.attributedText = [self LZSetString:@"N0.00/¥0.00"];
     
     [self loadData];
 }
@@ -68,8 +68,10 @@
     //这里已修改
     [CartAPI getCartList:nil success:^(NSCartModel *cartModel) {
         DLog(@"获取购物车列表成功");
-        _dataArray = cartModel.result;
-        DLog(@"count = %lu",_dataArray.count);
+        _dataArray = [NSMutableArray arrayWithArray:cartModel.result];
+        LZShopModel *shopModel = _dataArray[0];
+//        for (LZGoodsModel *model in shopModel.productList) {
+//        }
         [self.myTableView reloadData];
         [self changeView];
     } failure:^(NSError *error) {
@@ -80,7 +82,7 @@
 
 - (void)loadData {
     [self creatData];
-    [self changeView];
+//    [self changeView];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -115,14 +117,16 @@
  */
 -(void)countPrice {
     double totlePrice = 0.0;
-    
+    double totleScore = 0.0;
     for (LZGoodsModel *model in self.selectedArray) {
         
         double price = model.price;
+        double score = model.score;
         
         totlePrice += price * model.buy_number;
+        totleScore += score * model.buy_number;
     }
-    NSString *string = [NSString stringWithFormat:@"￥%.2f",totlePrice];
+    NSString *string = [NSString stringWithFormat:@"N%.2f/¥%.2f",totlePrice,totleScore];
     self.totlePriceLabel.attributedText = [self LZSetString:string];
 }
 
@@ -148,7 +152,7 @@
 #pragma mark - 导航栏处理
 - (void)setUpNavTopView
 {
-    _topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
+    _topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     _topToolView.hidden = NO;
     _topToolView.backgroundColor = [UIColor whiteColor];
     [_topToolView setTopTitleWithNSString:KLocalizableStr(@"购物车")];
@@ -184,7 +188,7 @@
     
     //全选按钮
     UIButton *selectAll = [UIButton buttonWithType:UIButtonTypeCustom];
-    selectAll.titleLabel.font = [UIFont systemFontOfSize:12];
+    selectAll.titleLabel.font = [UIFont systemFontOfSize:14];
     selectAll.frame = CGRectMake(-10, 5, 80, LZTabBarHeight - 10);
     [selectAll setTitle:@" 全选" forState:UIControlStateNormal];
     [selectAll setImage:[UIImage imageNamed:lz_Bottom_UnSelectButtonString] forState:UIControlStateNormal];
@@ -197,18 +201,18 @@
     //结算按钮
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.backgroundColor = KMainColor;
-    btn.frame = CGRectMake(LZSCREEN_WIDTH - 80, 0, 80, LZTabBarHeight);
-    [btn setTitle:@"去支付" forState:UIControlStateNormal];
+    btn.frame = CGRectMake(LZSCREEN_WIDTH - 67-19, 10, 67, 28);
+    [btn setTitle:@"去结算" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(goToPayButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:btn];
     
     //合计
     UILabel *label = [[UILabel alloc]init];
-    label.font = [UIFont systemFontOfSize:12];
-    label.textColor = [UIColor redColor];
+    label.font = [UIFont systemFontOfSize:14];
+    label.textColor = KBGCOLOR;
     [backgroundView addSubview:label];
     
-    label.attributedText = [self LZSetString:@"¥0.00"];
+    label.attributedText = [self LZSetString:@"N0.00/¥0.00"];
     CGFloat maxWidth = LZSCREEN_WIDTH - selectAll.bounds.size.width - btn.bounds.size.width - 30;
 //    CGSize size = [label sizeThatFits:CGSizeMake(maxWidth, LZTabBarHeight)];
     label.frame = CGRectMake(selectAll.bounds.size.width, 0, maxWidth - 10, LZTabBarHeight);
@@ -217,11 +221,15 @@
 
 - (NSMutableAttributedString*)LZSetString:(NSString*)string {
     
-    NSString *text = [NSString stringWithFormat:@"合计（不含运费）:%@元",string];
+    NSString *text = [NSString stringWithFormat:@"合计:%@",string];
     NSMutableAttributedString *LZString = [[NSMutableAttributedString alloc]initWithString:text];
-    NSRange rang = [text rangeOfString:@"合计（不含运费）:"];
+    NSRange rang = [text rangeOfString:@"合计:"];
+    NSArray *strArr = [text componentsSeparatedByString:@"/¥"];
+    NSRange rang2 = [text rangeOfString:strArr[0]];
+    [LZString addAttribute:NSForegroundColorAttributeName value:kRedColor range:rang2];
+    
     [LZString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:rang];
-    [LZString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:rang];
+    [LZString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:rang];
     return LZString;
 }
 
@@ -294,16 +302,6 @@
     //创建底部视图
     [self setupCustomBottomView];
     
-    UIView *tipView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, 50)];
-    tipView.backgroundColor = kBACKGROUNDCOLOR;
-    UILabel *tipLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 50)];
-    tipLab.textAlignment = NSTextAlignmentCenter;
-    tipLab.text = @"温馨提示：产品是否购买成功，以最终下单为准哦，请尽快结算";
-    tipLab.font = [UIFont systemFontOfSize:12];
-    tipLab.textColor = [UIColor blackColor];
-    [tipView addSubview:tipLab];
-    [self.view addSubview:tipView];
-    
     UITableView *table = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     
     table.delegate = self;
@@ -311,14 +309,14 @@
     
     table.rowHeight = lz_CartRowHeight;
     table.separatorStyle = UITableViewCellSeparatorStyleNone;
-    table.backgroundColor = [UIColor whiteColor];
+    table.backgroundColor = KBGCOLOR;
     [self.view addSubview:table];
     self.myTableView = table;
     
     if (_isHasTabBarController) {
-        table.frame = CGRectMake(0, LZNaigationBarHeight+50, LZSCREEN_WIDTH, LZSCREEN_HEIGHT - LZNaigationBarHeight - 2*LZTabBarHeight-50);
+        table.frame = CGRectMake(0, LZNaigationBarHeight, LZSCREEN_WIDTH, LZSCREEN_HEIGHT - LZNaigationBarHeight - 2*LZTabBarHeight);
     } else {
-        table.frame = CGRectMake(0, LZNaigationBarHeight+50, LZSCREEN_WIDTH, LZSCREEN_HEIGHT - LZNaigationBarHeight - LZTabBarHeight-50);
+        table.frame = CGRectMake(0, LZNaigationBarHeight, LZSCREEN_WIDTH, LZSCREEN_HEIGHT - LZNaigationBarHeight - LZTabBarHeight);
     }
     
     [table registerClass:[LZTableHeaderView class] forHeaderFooterViewReuseIdentifier:@"LZHeaderView"];
@@ -343,7 +341,6 @@
     
     LZShopModel *shopModel = self.dataArray[indexPath.section];
     LZGoodsModel *model = [shopModel.productList objectAtIndex:indexPath.row];
-    
     cell.model = model;
     
     __block typeof(cell)wsCell = cell;
@@ -352,6 +349,7 @@
         wsCell.lzNumber = number;
         model.buy_number = number;
         
+        //这里需要修改
         [shopModel.productList replaceObjectAtIndex:indexPath.row withObject:model];
         if ([self.selectedArray containsObject:model]) {
             [self.selectedArray removeObject:model];
@@ -364,7 +362,7 @@
         
         wsCell.lzNumber = number;
         model.buy_number = number;
-        
+        //这里需要修改
         [shopModel.productList replaceObjectAtIndex:indexPath.row withObject:model];
         
         //判断已选择数组里有无该对象,有就删除  重新添加
@@ -403,6 +401,7 @@
     LZShopModel *model = [self.dataArray objectAtIndex:section];
 //    NSLog(@">>>>>>%d", model.select);
     view.title = model.user_name;
+    view.imagePath = model.user_avatar;
     view.select = model.select;
     view.lzClickBlock = ^(BOOL select) {
         model.select = select;
@@ -445,83 +444,55 @@
 }
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
         //这里需要修改
-//    if (editingStyle == UITableViewCellEditingStyleDelete) {
-//
-//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定要删除该商品?删除后无法恢复!" preferredStyle:1];
-//        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//
-//            LZShopModel *shop = [self.dataArray objectAtIndex:indexPath.section];
-//            LZGoodsModel *model = [shop.goodsCarts objectAtIndex:indexPath.row];
-//
-//            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//            [RequestTool removeCart:@{@"goodsCartId":model.goodscart_id} withSuccessBlock:^(NSDictionary *result) {
-//                NSLog(@"商品移除result = %@",result);
-//                if([result[@"code"] integerValue] == 1){
-//                    hud.detailsLabelText = @"商品移除成功";
-//                    hud.mode = MBProgressHUDModeText;
-//                    [hud hide:YES afterDelay:1.0];
-//
-//                    [shop.goodsCarts removeObjectAtIndex:indexPath.row];
-//                    //    删除
-//                    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//                    if (shop.goodsCarts.count == 0) {
-//                        [self.dataArray removeObjectAtIndex:indexPath.section];
-//                    }
-//                    //判断删除的商品是否已选择
-//                    if ([self.selectedArray containsObject:model]) {
-//                        //从已选中删除,重新计算价格
-//                        [self.selectedArray removeObject:model];
-//                        [self countPrice];
-//                    }
-//                    NSInteger count = 0;
-//                    for (LZShopModel *shop in self.dataArray) {
-//                        count += shop.goodsCarts.count;
-//                    }
-//                    if (self.selectedArray.count == count) {
-//                        _allSellectedButton.selected = YES;
-//                    } else {
-//                        _allSellectedButton.selected = NO;
-//                    }
-//                    if (count == 0) {
-//                        [self changeView];
-//                    }
-//                    //如果删除的时候数据紊乱,可延迟0.5s刷新一下
-//                    [self performSelector:@selector(reloadTable) withObject:nil afterDelay:0.5];
-//
-//                }else if([result[@"code"] integerValue] == -2){
-//                    hud.detailsLabelText = @"登录失效";
-//                    hud.mode = MBProgressHUDModeText;
-//                    [hud hide:YES afterDelay:1.0];
-//                }else if([result[@"code"] integerValue] == -1){
-//                    hud.detailsLabelText = @"未登录";
-//                    hud.mode = MBProgressHUDModeText;
-//                    [hud hide:YES afterDelay:1.0];
-//                }else if([result[@"code"] integerValue] == 0){
-//                    hud.detailsLabelText = @"失败";
-//                    hud.mode = MBProgressHUDModeText;
-//                    [hud hide:YES afterDelay:1.0];
-//                }else if([result[@"code"] integerValue] == 2){
-//                    hud.detailsLabelText = @"无返回数据";
-//                    hud.mode = MBProgressHUDModeText;
-//                    [hud hide:YES afterDelay:1.0];
-//                }
-//            } withFailBlock:^(NSString *msg) {
-//                NSLog(@"商品移除msg = %@",msg);
-//                hud.detailsLabelText = msg;
-//                hud.mode = MBProgressHUDModeText;
-//                [hud hide:YES afterDelay:1.0];
-//            }];
-//
-//        }];
-//
-//        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-//
-//        [alert addAction:okAction];
-//        [alert addAction:cancel];
-//        [self presentViewController:alert animated:YES completion:nil];
-//    }
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
 
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定要删除该商品?删除后无法恢复!" preferredStyle:1];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+
+            LZShopModel *shop = [self.dataArray objectAtIndex:indexPath.section];
+            LZGoodsModel *model = [shop.productList objectAtIndex:indexPath.row];
+
+            [CartAPI removeCartWithParam:model.cart_id success:^{
+                DLog(@"商品移除成功");
+                [shop.productList removeObjectAtIndex:indexPath.row];
+                //                    //    删除
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                if (shop.productList.count == 0) {
+                    [self.dataArray removeObjectAtIndex:indexPath.section];
+                }
+                //判断删除的商品是否已选择
+                if ([self.selectedArray containsObject:model]) {
+                    //从已选中删除,重新计算价格
+                    [self.selectedArray removeObject:model];
+                    [self countPrice];
+                }
+                NSInteger count = 0;
+                for (LZShopModel *shop in self.dataArray) {
+                    count += shop.productList.count;
+                }
+                if (self.selectedArray.count == count) {
+                    _allSellectedButton.selected = YES;
+                } else {
+                    _allSellectedButton.selected = NO;
+                }
+                if (count == 0) {
+                    [self changeView];
+                }
+                //如果删除的时候数据紊乱,可延迟0.5s刷新一下
+                [self performSelector:@selector(reloadTable) withObject:nil afterDelay:0.5];
+                
+            } faulre:^(NSError *error) {
+                DLog(@"商品移除失败");
+            }];
+    }];
+        
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:okAction];
+        [alert addAction:cancel];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
+                                   
 - (void)reloadTable {
     [self.myTableView reloadData];
 }
@@ -580,10 +551,7 @@
         [placeOrderVC loadDataWithNSString:CartIdStr];
         [self.navigationController pushViewController:placeOrderVC animated:YES];
     }else{
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.detailsLabelText = @"您还没有选择任何商品";
-        hud.mode = MBProgressHUDModeText;
-        [hud hide:YES afterDelay:1.0];
+        [Common AppShowToast:@"您还没有选择任何商品"];
     }
 }
 
@@ -622,6 +590,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    if ([view isKindOfClass:[UITableViewHeaderFooterView class]]) {
+        ((UITableViewHeaderFooterView *)view).backgroundView.backgroundColor = kWhiteColor;
+    }
 }
 
 @end

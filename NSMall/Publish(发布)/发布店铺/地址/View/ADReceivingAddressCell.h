@@ -7,10 +7,10 @@
 //
 
 #import "BaseTableCell.h"
-#import "ADAddressModel.h"
+#import "NSAddressItemModel.h"
 
 @interface ADReceivingAddressCell : BaseTableCell
-@property (nonatomic, strong) ADAddressModel  *model;
+@property (nonatomic, strong) NSAddressItemModel  *model;
 /* 设为默认 点击回调 */
 @property (nonatomic, copy) dispatch_block_t setDefaultBtnClickBlock;
 /* 编辑 点击回调 */

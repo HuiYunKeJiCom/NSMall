@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-#import "YWAddressInfoModel.h"
+#import "NSAddressItemModel.h"
 #import "UIView+YWFrame.h"
 
-typedef void(^AddressBlock)(YWAddressInfoModel *model);
+typedef void(^AddressBlock)(NSAddressItemModel *model);
 
 @interface YWAddressViewController : UIViewController
 
 /** 如果为编辑地址则需传入model **/
-@property (nonatomic, strong) YWAddressInfoModel         * model;
+@property (nonatomic, strong) NSAddressItemModel         * model;
 
 /** 保存收货地址信息后的地址信息回调 **/
 @property (nonatomic, copy) AddressBlock                   addressBlock;

@@ -10,10 +10,7 @@
 #import "NSCartModel.h"
 
 @implementation NSCartModel
-+(NSDictionary *)mj_objectClassInArray
-{
-    return @{
-             @"result" : @"LZShopModel"
-             };
++ (NSDictionary *)modelContainerPropertyGenericClass{
+    return @{@"result":[LZShopModel class]};
 }
 @end
