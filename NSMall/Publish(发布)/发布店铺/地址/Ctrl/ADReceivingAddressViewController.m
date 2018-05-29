@@ -32,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = kBACKGROUNDCOLOR;
+    self.view.backgroundColor = KBGCOLOR;
     [self.view addSubview:self.goodsTable];
     [self setUpNavTopView];
     
@@ -57,7 +57,7 @@
     WEAKSELF
     _topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
-        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
     };
     
     [self.view addSubview:_topToolView];
@@ -202,7 +202,7 @@
     addressVC.addressBlock = ^(NSAddressItemModel *model) {
         NSLog(@"新增用户地址信息填写回调：");
     };
-    [self presentViewController:addressVC animated:YES completion:nil];
+    [self.navigationController pushViewController:addressVC animated:YES];
 }
 
 - (void)editBtnAction:(NSAddressItemModel *)addressModel {
@@ -213,8 +213,15 @@
     model.user_phone = addressModel.user_phone;
     model.user_name = addressModel.user_name;
     //县区ID model.district_id,model.district_name这两个需要修改
+    model.province_id = addressModel.province_id;
+    model.province_name = addressModel.province_name;
+    model.city_id = addressModel.city_id;
+    model.city_name = addressModel.city_name;
     model.district_id = addressModel.district_id;
     model.district_name = addressModel.district_name;
+    model.street_id = addressModel.street_id;
+    model.street_name = addressModel.street_name;
+    
     
     model.user_address = addressModel.user_address;
     model.address_id = addressModel.address_id;
@@ -226,8 +233,8 @@
         NSLog(@"编辑用户地址信息填写回调：");
         [weakSelf.goodsTable reloadData];
     };
-    
-    [self presentViewController:addressVC animated:YES completion:nil];
+    NSLog(@"navigationController = %@",self.navigationController);
+    [self.navigationController pushViewController:addressVC animated:YES];
 }
 
 //设置默认收货地址

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "NSCartModel.h"
 #import "NSChangeCartNumParam.h"
+#import "NSFirmOrderModel.h"
 
 @interface CartAPI : NSObject
 /*
@@ -25,4 +26,9 @@
  删除购物车商品
  */
 + (void)removeCartWithParam:(NSString *)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure;
+
+/*
+ 获取购物车结算页面数据
+ */
++ (void)checkCartDataWithParam:(NSString *)param success:(void (^)(NSFirmOrderModel *firmOrderModel))success faulre:(void (^)(NSError *))failure;
 @end

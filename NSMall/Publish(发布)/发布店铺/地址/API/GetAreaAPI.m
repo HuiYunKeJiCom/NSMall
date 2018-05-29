@@ -60,14 +60,4 @@
     }];
 }
 
-/*
- 删除购物车商品
- */
-+ (void)removeCartWithParam:(NSString *)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure{
-    [Net requestWithPost:@{@"cartId":param} function:kRemoveCartAPI showHUD:NetNullStr resultClass:[NSDictionary class] success:^(id  _Nullable resultObj) {
-        success?success():nil;
-    } failure:^(NSError * _Nullable error) {
-        failure?failure(error):nil;
-    }];
-}
 @end

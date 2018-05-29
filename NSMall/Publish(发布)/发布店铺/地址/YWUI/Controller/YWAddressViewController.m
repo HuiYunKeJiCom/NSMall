@@ -71,7 +71,7 @@
         [_topToolView setTopTitleWithNSString:KLocalizableStr(@"编辑地址")];
     } else {
         _model = [[NSAddressItemModel alloc] init];
-        _model.address_id = @"请选择";
+        _model.district_id = @"请选择";
     }
     WEAKSELF
     _topToolView.leftItemClickBlock = ^{
@@ -124,20 +124,17 @@
     _model.is_default = [NSString stringWithFormat:@"%d",defaultCell.rightSwitch.isOn];
     _model.user_tag = labelCell.labelStr;
     
-    if(_chooseAddressView.areaId){
+    if(_chooseAddressView.districtId){
         //　这里需要修改
-        _model.district_id = _chooseAddressView.areaId;
+        _model.province_id = _chooseAddressView.provinceId;
+        _model.province_name = _chooseAddressView.provinceName;
+        _model.city_id = _chooseAddressView.cityId;
+        _model.city_name = _chooseAddressView.cityName;
+        _model.district_id = _chooseAddressView.districtId;
+        _model.district_name = _chooseAddressView.districtName;
+        _model.street_id = _chooseAddressView.streetId;
+        _model.street_name = _chooseAddressView.streetName;
     }
-    NSRange range = [_model.district_id rangeOfString:@","];
-    if (range.location!=NSNotFound) {
-//        NSLog(@"Yes");
-        NSArray *tempArr = [_model.district_id componentsSeparatedByString:@","];
-        NSString *tempStr = [tempArr lastObject];
-        _model.district_id = tempStr;
-    }else {
-//        NSLog(@"NO");
-    }
-//    NSLog(@"看看这是啥areaId = %@",_model.areaId);
     
     if (_model.user_name.length == 0) {
         [YWTool showAlterWithViewController:self Message:@"请填写收货人姓名！"];
@@ -156,7 +153,8 @@
         return;
     }else{
         NSLog(@"提交地址");
-        if([_model.address_id isEqualToString:@"请选择"]){
+        NSLog(@"address_id = %@",_model.address_id);
+        if(!_model.address_id){
             NSLog(@"新增收货地址");
             
             //这里需要修改
@@ -165,19 +163,38 @@
                 param.userName = _model.user_name;
                 param.isDefault = [NSString stringWithFormat:@"%lu",_model.is_default];
                 param.userTag = _model.user_tag;
+                param.provinceId = _model.province_id;
+                param.provinceName = _model.province_name;
+                param.cityId = _model.city_id;
+                param.cityName = _model.city_name;
                 param.districtId = _model.district_id;
+                param.districtName = _model.district_name;
+                param.streetId = _model.street_id;
+                param.streetName = _model.street_name;
                 param.userAddress = _model.user_address;
                 param.userPhone = _model.user_phone;
             }else{
                 param.userName = _model.user_name;
                 param.isDefault = [NSString stringWithFormat:@"%lu",_model.is_default];
+                param.provinceId = _model.province_id;
+                param.provinceName = _model.province_name;
+                param.cityId = _model.city_id;
+                param.cityName = _model.city_name;
                 param.districtId = _model.district_id;
+                param.districtName = _model.district_name;
+                param.streetId = _model.street_id;
+                param.streetName = _model.street_name;
                 param.userAddress = _model.user_address;
                 param.userPhone = _model.user_phone;
             }
-            
+            DLog(@"detailTextViw = %@",param.mj_keyValues);
             [GetAreaAPI saveAddressWithParam:param success:^{
                 NSLog(@"新增收货地址成功");
+                // 回调所填写的地址信息（姓名、电话、地址等等）
+                if (self.addressBlock) {
+                    self.addressBlock(_model);
+                }
+                [self.navigationController popViewControllerAnimated:YES];
             } faulre:^(NSError *error) {
                 NSLog(@"新增收货地址失败");
             }];
@@ -193,30 +210,43 @@
                 param.isDefault = [NSString stringWithFormat:@"%lu",_model.is_default];
                 param.addressId = _model.address_id;
                 param.userTag = _model.user_tag;
+                param.provinceId = _model.province_id;
+                param.provinceName = _model.province_name;
+                param.cityId = _model.city_id;
+                param.cityName = _model.city_name;
                 param.districtId = _model.district_id;
+                param.districtName = _model.district_name;
+                param.streetId = _model.street_id;
+                param.streetName = _model.street_name;
                 param.userAddress = _model.user_address;
                 param.userPhone = _model.user_phone;
             }else{
                 param.userName = _model.user_name;
                 param.isDefault = [NSString stringWithFormat:@"%lu",_model.is_default];
                 param.addressId = _model.address_id;
+                param.provinceId = _model.province_id;
+                param.provinceName = _model.province_name;
+                param.cityId = _model.city_id;
+                param.cityName = _model.city_name;
                 param.districtId = _model.district_id;
+                param.districtName = _model.district_name;
+                param.streetId = _model.street_id;
+                param.streetName = _model.street_name;
                 param.userAddress = _model.user_address;
                 param.userPhone = _model.user_phone;
             }
             [GetAreaAPI saveAddressWithParam:param success:^{
-                NSLog(@"新增收货地址成功");
+                NSLog(@"编辑收货地址成功");
+                // 回调所填写的地址信息（姓名、电话、地址等等）
+                if (self.addressBlock) {
+                    self.addressBlock(_model);
+                }
+                [self.navigationController popViewControllerAnimated:YES];
             } faulre:^(NSError *error) {
-                NSLog(@"新增收货地址失败");
+                NSLog(@"编辑收货地址失败");
             }];
         }
     }
-    
-    // 回调所填写的地址信息（姓名、电话、地址等等）
-    if (self.addressBlock) {
-        self.addressBlock(_model);
-    }
-    [self.navigationController popViewControllerAnimated:YES];
     
 }
 
@@ -250,6 +280,10 @@
     if (_chooseAddressView.chooseFinish) {
         _chooseAddressView.chooseFinish();
     }
+    if (![self.detailTextViw isExclusiveTouch]) {
+        [self.detailTextViw resignFirstResponder];
+    }
+
 }
 
 #pragma mark *** 从通讯录选择联系人 电话 & 姓名 ***
@@ -352,20 +386,23 @@
             YWAddressTableViewCell2 *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER2 forIndexPath:indexPath];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.leftStr = _dataSource[indexPath.section][indexPath.row];
+            //这里需要修改
+            NSString *strUrl = [NSString stringWithFormat:@"%@%@%@%@",_model.province_name,_model.city_name,_model.district_name,_model.street_name];
+//            NSRange range = [_model.district_name rangeOfString:@","];
+//            if (range.location!=NSNotFound) {
+//                strUrl = [_model.district_name stringByReplacingOccurrencesOfString:@"," withString:@""];
+//            }else{
+//                strUrl = _model.district_name;
+//            }
+            
+//            ![_model.district_id isEqualToString:@""] && ![_model.district_id isEqualToString:@"请选择"]
 
-            NSString *strUrl;
-            NSRange range = [_model.district_name rangeOfString:@","];
-            if (range.location!=NSNotFound) {
-                strUrl = [_model.district_name stringByReplacingOccurrencesOfString:@"," withString:@""];
-            }else{
-                strUrl = _model.district_name;
-            }
-            cell.rightStr = strUrl;
-            if (![_model.district_id isEqualToString:@""] && ![_model.district_id isEqualToString:@"请选择"]) {
-                
-                cell.rightLabel.textColor = [UIColor blackColor];
-            } else {
+            if (_model.province_name) {
+                cell.rightStr = strUrl;
                 cell.rightLabel.textColor = [UIColor lightGrayColor];
+            } else {
+                cell.rightStr = _model.district_id;
+                cell.rightLabel.textColor = [UIColor blackColor];
             }
             return cell;
         }
@@ -469,14 +506,20 @@
         _chooseAddressView = [[YWChooseAddressView alloc]initWithFrame:CGRectMake(0, YWScreenH - 350, YWScreenW, 350)];
         if ([_model.district_id isKindOfClass:[NSNull class]] || [_model.district_id isEqualToString:@""]) {
             _model.district_id = @"请选择";
+            _chooseAddressView.address = _model.district_id;
+        }else{
+            _chooseAddressView.address =[NSString stringWithFormat:@"%@%@%@%@%@",_model.province_name,_model.city_name,_model.district_name,_model.street_name,_model.user_address]; 
         }
         
-        _chooseAddressView.address = _model.district_id;
+        
         
         _chooseAddressView.chooseFinish = ^{
             weakSelf.coverView.backgroundColor = [UIColor clearColor];
             NSLog(@"选择的地区为：%@", weakSelf.chooseAddressView.address);
-            weakSelf.model.district_name = weakSelf.chooseAddressView.address;
+            weakSelf.model.province_name = weakSelf.chooseAddressView.provinceName;
+            weakSelf.model.city_name = weakSelf.chooseAddressView.cityName;
+            weakSelf.model.district_name = weakSelf.chooseAddressView.districtName;
+            weakSelf.model.street_name = weakSelf.chooseAddressView.streetName;
 //            weakSelf.model.areaId = weakSelf.chooseAddressView.address;
             if (weakSelf.model.district_id.length == 0) {
                 weakSelf.model.district_id = @"请选择";
@@ -503,6 +546,11 @@
     return _coverView;
 }
 
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+//    if (![self.detailTextViw isExclusiveTouch]) {
+//        [self.detailTextViw resignFirstResponder];
+//    }
+//}
 
 
 @end

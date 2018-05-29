@@ -18,7 +18,6 @@
 @property (copy,nonatomic)NSString *product_name;/* 商品名称 */
 @property (copy,nonatomic)NSString *product_image;/* 商品主图片 */
 @property (nonatomic)NSInteger is_shelve;/* 商品是否上架【0=下架，1=上架】(前台要判断该参数，如果是下架商品就不能进行结算和增减数量) */
-
 @property (nonatomic)double ship_price;/* 运费（诺一股） */
 @property (nonatomic)double ship_score;/* 运费（人民币） */
 @property (nonatomic)double price;/* 商品单价（诺一股） */
@@ -29,4 +28,6 @@
 @property (nonatomic)NSInteger limit_num;/* 最大购买量 */
 @property (nonatomic)NSInteger buy_number;/* 商品数量 */
 @property(nonatomic,copy)NSString *spec_name;/* 规格 */
+
+@property (nonatomic)double product_spec_number;/* 商品规格编码 */
 @end

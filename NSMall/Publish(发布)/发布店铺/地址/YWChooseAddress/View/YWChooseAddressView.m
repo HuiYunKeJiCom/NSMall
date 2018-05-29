@@ -28,6 +28,7 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
 @property (nonatomic,strong) NSArray<NSAreaItemModel *>            * dataSouce;
 @property (nonatomic,strong) NSArray<NSAreaItemModel *>            * cityDataSouce;
 @property (nonatomic,strong) NSArray<NSAreaItemModel *>            * districtDataSouce;
+@property (nonatomic,strong) NSArray<NSAreaItemModel *>            * streetDataSouce;
 @property (nonatomic,strong) NSMutableArray     * tableViews;
 @property (nonatomic,strong) NSMutableArray     * topTabbarItems;
 @property (nonatomic,weak) UIButton             * selectedBtn;
@@ -128,6 +129,8 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
         return self.cityDataSouce.count;
     } else if ([self.tableViews indexOfObject:tableView] == 2) {
         return self.districtDataSouce.count;
+    }else if ([self.tableViews indexOfObject:tableView] == 3) {
+        return self.streetDataSouce.count;
     }
     return self.dataSouce.count;
 }
@@ -146,6 +149,8 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
     //县级别
     } else if ([self.tableViews indexOfObject:tableView] == 2){
         item = self.districtDataSouce[indexPath.row];
+    }else if ([self.tableViews indexOfObject:tableView] == 3){
+        item = self.streetDataSouce[indexPath.row];
     }
     cell.item = item;
     return cell;
@@ -189,7 +194,7 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
 
         if ([indexPath0 compare:indexPath] != NSOrderedSame && indexPath0) {
 
-            for (int i = 0; i < self.tableViews.count && self.tableViews.count != 1; i++) {
+            for (int i = 0; i <= self.tableViews.count && self.tableViews.count != 1; i++) {
                 [self removeLastItem];
             }
             [self addTopBarItem];
@@ -199,7 +204,7 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
 
         } else if ([indexPath0 compare:indexPath] == NSOrderedSame && indexPath0) {
 
-            for (int i = 0; i < self.tableViews.count && self.tableViews.count != 1 ; i++) {
+            for (int i = 0; i <= self.tableViews.count && self.tableViews.count != 1 ; i++) {
                 [self removeLastItem];
             }
             [self addTopBarItem];
@@ -216,25 +221,37 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
     } else if ([self.tableViews indexOfObject:tableView] == 1) {
         
         NSAreaItemModel * cityItem = self.cityDataSouce[indexPath.row];
-//        [RequestTool getArea:@{@"parentId":cityItem.idx} withSuccessBlock:^(NSDictionary *result) {
-//            NSLog(@"获取省市区数据result = %@",result);
-//            NSArray *dataInfo = result[@"data"][@"result"];
-//            self.districtDataSouce = [NSAreaItemModel mj_objectArrayWithKeyValuesArray:dataInfo];
-//            for (int i=0; i<self.tableViews.count; i++) {
-//                if(i == self.tableViews.count-1){
-//                    UITableView *tableView = self.tableViews[i];
-//                    [tableView reloadData];
-//                }
-//            }
-//
-//        } withFailBlock:^(NSString *msg) {
-//            NSLog(@"获取省市区数据msg = %@",msg);
-//        }];
+        
+        //这里需要修改
+        GetAreaParam *param = [GetAreaParam new];
+        param.parentId = cityItem.ID;
+        [GetAreaAPI getAreaWithParam:param success:^(NSAreaModel * _Nullable result) {
+            NSLog(@"获取省市区数据成功");
+            self.districtDataSouce = [NSMutableArray arrayWithArray:result.result];
+            
+            if(self.districtDataSouce.count == 0) {
+                for (int i = 0; i < self.tableViews.count && self.tableViews.count != 2; i++) {
+                    [self removeLastItem];
+                }
+                [self setUpAddress:cityItem.name];
+                return;
+            }
+            
+            for (int i=0; i<self.tableViews.count; i++) {
+                if(i == self.tableViews.count-1){
+                    UITableView *tableView = self.tableViews[i];
+                    [tableView reloadData];
+                }
+            }
+        } failure:^(NSError * _Nullable error) {
+            NSLog(@"获取省市区数据失败");
+        }];
+    
         NSIndexPath * indexPath0 = [tableView indexPathForSelectedRow];
         
         if ([indexPath0 compare:indexPath] != NSOrderedSame && indexPath0) {
             
-            for (int i = 0; i < self.tableViews.count - 1; i++) {
+            for (int i = 0; i < self.tableViews.count && self.tableViews.count != 2; i++) {
                 [self removeLastItem];
             }
             [self addTopBarItem];
@@ -244,6 +261,11 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
 
         } else if ([indexPath0 compare:indexPath] == NSOrderedSame && indexPath0) {
         
+            for (int i = 0; i < self.tableViews.count && self.tableViews.count != 2 ; i++) {
+                [self removeLastItem];
+            }
+            [self addTopBarItem];
+            [self addTableView];
             [self scrollToNextItem:cityItem.name];
             return indexPath;
         }
@@ -255,9 +277,67 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
         
     } else if ([self.tableViews indexOfObject:tableView] == 2) {
         
+        NSAreaItemModel * streetItem = self.districtDataSouce[indexPath.row];
+        //这里需要修改
+        GetAreaParam *param = [GetAreaParam new];
+        param.parentId = streetItem.ID;
+        [GetAreaAPI getAreaWithParam:param success:^(NSAreaModel * _Nullable result) {
+            NSLog(@"获取省市区数据成功");
+            self.streetDataSouce = [NSMutableArray arrayWithArray:result.result];
+            
+            if(self.streetDataSouce.count == 0) {
+                for (int i = 0; i < self.tableViews.count && self.tableViews.count != 3 ; i++) {
+                    [self removeLastItem];
+                }
+                [self setUpAddress:streetItem.name];
+                return;
+            }
+            
+            for (int i=0; i<self.tableViews.count; i++) {
+                if(i == self.tableViews.count-1){
+                    UITableView *tableView = self.tableViews[i];
+                    [tableView reloadData];
+                }
+            }
+        } failure:^(NSError * _Nullable error) {
+            NSLog(@"获取省市区数据失败");
+            [self setUpAddress:streetItem.name];
+        }];
+        
+        NSIndexPath * indexPath0 = [tableView indexPathForSelectedRow];
+        
+        if ([indexPath0 compare:indexPath] != NSOrderedSame && indexPath0) {
+            
+            for (int i = 0; i < self.tableViews.count && self.tableViews.count != 3 ; i++) {
+                [self removeLastItem];
+            }
+            [self addTopBarItem];
+            [self addTableView];
+            [self scrollToNextItem:streetItem.name];
+            return indexPath;
+            
+        } else if ([indexPath0 compare:indexPath] == NSOrderedSame && indexPath0) {
+            for (int i = 0; i < self.tableViews.count && self.tableViews.count != 3 ; i++) {
+                [self removeLastItem];
+            }
+            [self addTopBarItem];
+            [self addTableView];
+            [self scrollToNextItem:streetItem.name];
+            return indexPath;
+        }
+        
+        [self addTopBarItem];
+        [self addTableView];
         NSAreaItemModel * item = self.districtDataSouce[indexPath.row];
+        [self scrollToNextItem:item.name];
+        
+//        [self setUpAddress:item.name];
+    }else if ([self.tableViews indexOfObject:tableView] == 3) {
+        
+        NSAreaItemModel * item = self.streetDataSouce[indexPath.row];
         [self setUpAddress:item.name];
     }
+    
     return indexPath;
 }
 
@@ -266,13 +346,20 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
     NSAreaItemModel * item;
     if([self.tableViews indexOfObject:tableView] == 0) {
        item = self.dataSouce[indexPath.row];
-        
+        self.provinceName = item.name;
+        self.provinceId = item.ID;
     } else if ([self.tableViews indexOfObject:tableView] == 1) {
        item = self.cityDataSouce[indexPath.row];
+        self.cityName = item.name;
+        self.cityId = item.ID;
     } else if ([self.tableViews indexOfObject:tableView] == 2) {
        item = self.districtDataSouce[indexPath.row];
-        NSLog(@"item.idx = %@",item.ID);
-        self.areaId = item.ID;
+        self.districtName = item.name;
+        self.districtId = item.ID;
+    }else if ([self.tableViews indexOfObject:tableView] == 3) {
+        item = self.streetDataSouce[indexPath.row];
+        self.streetName = item.name;
+        self.streetId = item.ID;
     }
     item.isSelected = YES;
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -288,6 +375,8 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
         item = self.cityDataSouce[indexPath.row];
     } else if ([self.tableViews indexOfObject:tableView] == 2) {
         item = self.districtDataSouce[indexPath.row];
+    }else if ([self.tableViews indexOfObject:tableView] == 3) {
+        item = self.streetDataSouce[indexPath.row];
     }
     item.isSelected = NO;
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -329,6 +418,7 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
     [_topTabbar layoutIfNeeded];
     [self changeUnderLineFrame:btn];
     NSMutableString * addressStr = [[NSMutableString alloc] init];
+    
     for (UIButton * btn  in self.topTabbarItems) {
         if ([btn.currentTitle isEqualToString:@"县"] || [btn.currentTitle isEqualToString:@"市辖区"] ) {
             continue;
@@ -336,6 +426,7 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
         [addressStr appendString:btn.currentTitle];
         // [addressStr appendString:@" "]; // 省市区地址间加空格或者其他间隔符号
     }
+    DLog(@"provinceId = %@",self.provinceId);
     self.address = addressStr;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -395,6 +486,7 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
 
     self.cityDataSouce = [[YWAddressDataTool sharedManager] queryAllRecordWithShengID:[self.areaCode substringWithRange:(NSRange){0,2}]];
     self.districtDataSouce = [[YWAddressDataTool sharedManager] queryAllRecordWithShengID:[self.areaCode substringWithRange:(NSRange){0,2}] cityID:[self.areaCode substringWithRange:(NSRange){2,2}]];
+    self.streetDataSouce = [[YWAddressDataTool sharedManager] queryAllRecordWithShengID:[self.areaCode substringWithRange:(NSRange){0,2}] cityID:[self.areaCode substringWithRange:(NSRange){2,2}]];
   
     //2.3 添加底部对应按钮
     [self addTopBarItem];
@@ -412,22 +504,27 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
      NSString * districtName = [[YWAddressDataTool sharedManager] queryAllRecordWithAreaCode:self.areaCode];
     UIButton * lastBtn = self.topTabbarItems.lastObject;
     [lastBtn setTitle:districtName forState:UIControlStateNormal];
+    
+    NSString * streetName = [[YWAddressDataTool sharedManager] queryAllRecordWithAreaCode:self.areaCode];
+    UIButton * streetBtn = self.topTabbarItems.lastObject;
+    [streetBtn setTitle:streetName forState:UIControlStateNormal];
+    
     [self.topTabbarItems makeObjectsPerformSelector:@selector(sizeToFit)];
     [_topTabbar layoutIfNeeded];
 
 
-    [self changeUnderLineFrame:lastBtn];
+    [self changeUnderLineFrame:streetBtn];
 
     //2.4 设置偏移量
     self.contentView.contentSize = (CGSize){self.tableViews.count * YWScreenW,0};
     CGPoint offset = self.contentView.contentOffset;
     self.contentView.contentOffset = CGPointMake((self.tableViews.count - 1) * YWScreenW, offset.y);
 
-    [self setSelectedProvince:provinceName andCity:cityName andDistrict:districtName];
+    [self setSelectedProvince:provinceName andCity:cityName andDistrict:districtName andStreet:streetName];
 }
 
 //初始化选中状态
-- (void)setSelectedProvince:(NSString *)provinceName andCity:(NSString *)cityName andDistrict:(NSString *)districtName {
+- (void)setSelectedProvince:(NSString *)provinceName andCity:(NSString *)cityName andDistrict:(NSString *)districtName andStreet:(NSString *)streetName {
     
     for (NSAreaItemModel * item in self.dataSouce) {
         if ([item.name isEqualToString:provinceName]) {
@@ -456,6 +553,17 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
         if ([item.name isEqualToString:districtName]) {
             NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
             UITableView * tableView  = self.tableViews[2];
+            [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+            [self tableView:tableView didSelectRowAtIndexPath:indexPath];
+            break;
+        }
+    }
+    
+    for (int i = 0; i <self.streetDataSouce.count; i++) {
+        NSAreaItemModel * item = self.streetDataSouce[i];
+        if ([item.name isEqualToString:streetName]) {
+            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            UITableView * tableView  = self.tableViews[3];
             [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
             [self tableView:tableView didSelectRowAtIndexPath:indexPath];
             break;
@@ -493,16 +601,17 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
 - (NSArray *)dataSouce {
     
     if (!_dataSouce) {
-//        [RequestTool getArea:nil withSuccessBlock:^(NSDictionary *result) {
-//            NSLog(@"获取省级数据result = %@",result);
-//            NSArray *dataInfo = result[@"data"][@"result"];
-//            _dataSouce = [NSAreaItemModel mj_objectArrayWithKeyValuesArray:dataInfo];
-//            for (UITableView *tableView in self.tableViews) {
-//                [tableView reloadData];
-//            }
-//        } withFailBlock:^(NSString *msg) {
-//            NSLog(@"获取省市区数据msg = %@",msg);
-//        }];
+        _dataSouce = [NSArray array];
+        //这里需要修改
+        [GetAreaAPI getAreaWithParam:nil success:^(NSAreaModel * _Nullable result) {
+            NSLog(@"获取省市区数据成功");
+            _dataSouce = [NSMutableArray arrayWithArray:result.result];
+            for (UITableView *tableView in self.tableViews) {
+                [tableView reloadData];
+            }
+        } failure:^(NSError * _Nullable error) {
+            NSLog(@"获取省市区数据失败");
+        }];
     }
     return _dataSouce;
 }

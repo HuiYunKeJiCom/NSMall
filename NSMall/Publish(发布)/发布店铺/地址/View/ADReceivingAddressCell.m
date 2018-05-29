@@ -68,7 +68,7 @@
     _model = model;
     self.receiverLab.text = model.user_name;
     self.phoneLab.text = model.user_phone;
-    self.addressLab.text = [NSString stringWithFormat:@"%@ %@",model.district_name,model.user_address];
+    self.addressLab.text = [NSString stringWithFormat:@"%@%@%@ %@%@",model.province_name,model.city_name,model.district_name,model.street_name,model.user_address];
     
     if(model.is_default == 1){
         [self.setDefaultBtn setTitle:@"默认地址" forState:UIControlStateNormal];

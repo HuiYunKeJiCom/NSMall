@@ -69,7 +69,7 @@
     [CartAPI getCartList:nil success:^(NSCartModel *cartModel) {
         DLog(@"获取购物车列表成功");
         _dataArray = [NSMutableArray arrayWithArray:cartModel.result];
-        LZShopModel *shopModel = _dataArray[0];
+//        LZShopModel *shopModel = _dataArray[0];
 //        for (LZGoodsModel *model in shopModel.productList) {
 //        }
         [self.myTableView reloadData];
@@ -87,7 +87,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = kBACKGROUNDCOLOR;
+    self.view.backgroundColor = KBGCOLOR;
     _isHasTabBarController = self.tabBarController?YES:NO;
     _isHasNavitationController = self.navigationController?YES:NO;
     
@@ -545,7 +545,6 @@
             [goodsCartIdStr appendString:[NSString stringWithFormat:@",%@",model.cart_id]];
         }
         NSString *CartIdStr = goodsCartIdStr;
-        NSLog(@"CartIdStr = %@",CartIdStr);
         //跳转到 下单页面
         ADPlaceOrderViewController *placeOrderVC = [[ADPlaceOrderViewController alloc] init];
         [placeOrderVC loadDataWithNSString:CartIdStr];

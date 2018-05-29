@@ -84,16 +84,16 @@
 -(void)setAddressModel:(NSAddressItemModel *)addressModel{
     _addressModel = addressModel;
     
-    NSString *areaName;
-    NSRange range = [addressModel.district_name rangeOfString:@","];
-    if (range.location!=NSNotFound) {
-        areaName = [addressModel.district_name stringByReplacingOccurrencesOfString:@"," withString:@" "];
-        
-    }else{
-        areaName = addressModel.district_name;
-    }
+//    NSString *areaName;
+//    NSRange range = [addressModel.district_name rangeOfString:@","];
+//    if (range.location!=NSNotFound) {
+//        areaName = [addressModel.district_name stringByReplacingOccurrencesOfString:@"," withString:@" "];
+//
+//    }else{
+//        areaName = addressModel.district_name;
+//    }
     
-    self.addressLab.text = [NSString stringWithFormat:@"%@%@",areaName,addressModel.user_address];
+    self.addressLab.text = [NSString stringWithFormat:@"%@%@%@%@%@",addressModel.province_name,addressModel.city_name,addressModel.district_name,addressModel.street_name,addressModel.user_address];
     self.homeLab.text = addressModel.user_tag;
     self.receiverLab.text = addressModel.user_name;
     self.phoneLab.text = addressModel.user_phone;
@@ -269,7 +269,7 @@
 //        _detailBtn.backgroundColor = k_UIColorFromRGB(0xffffff);
         [_detailBtn setTitleColor:KColorText878686 forState:UIControlStateNormal];
         [_detailBtn addTarget:self action:@selector(detailButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        [_detailBtn setImage:[UIImage imageNamed:@"ico_home_back_black"] forState:UIControlStateNormal];
+        [_detailBtn setImage:[UIImage imageNamed:@"my_ico_right_arrow"] forState:UIControlStateNormal];
     }
     return _detailBtn;
 }

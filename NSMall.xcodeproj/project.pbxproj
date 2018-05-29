@@ -54,6 +54,7 @@
 		184DE7A6208F081400E776F3 /* ADLMyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7A5208F081400E776F3 /* ADLMyInfoTableViewCell.m */; };
 		184DE7A9208F088E00E776F3 /* BaseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7A7208F088E00E776F3 /* BaseTableCell.m */; };
 		184DE7AC208F08B400E776F3 /* BaseRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7AB208F08B300E776F3 /* BaseRefreshGifHeader.m */; };
+		184EC18320BD8DE9009BBFE6 /* NSFirmOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184EC18220BD8DE9009BBFE6 /* NSFirmOrderModel.m */; };
 		184F05EF209AE39700768418 /* ProductListItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05EC209AE39600768418 /* ProductListItemModel.m */; };
 		184F05F0209AE39700768418 /* ProductListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05EE209AE39600768418 /* ProductListModel.m */; };
 		184F05F7209C40C700768418 /* AdvertListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F05F6209C40C700768418 /* AdvertListModel.m */; };
@@ -396,6 +397,8 @@
 		184DE7A8208F088E00E776F3 /* BaseTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableCell.h; sourceTree = "<group>"; };
 		184DE7AA208F08B300E776F3 /* BaseRefreshGifHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRefreshGifHeader.h; sourceTree = "<group>"; };
 		184DE7AB208F08B300E776F3 /* BaseRefreshGifHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRefreshGifHeader.m; sourceTree = "<group>"; };
+		184EC18120BD8DE9009BBFE6 /* NSFirmOrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSFirmOrderModel.h; sourceTree = "<group>"; };
+		184EC18220BD8DE9009BBFE6 /* NSFirmOrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSFirmOrderModel.m; sourceTree = "<group>"; };
 		184F05EB209AE39600768418 /* ProductListItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListItemModel.h; sourceTree = "<group>"; };
 		184F05EC209AE39600768418 /* ProductListItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListItemModel.m; sourceTree = "<group>"; };
 		184F05ED209AE39600768418 /* ProductListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListModel.h; sourceTree = "<group>"; };
@@ -1093,6 +1096,8 @@
 				1842A6A920B59D350090861D /* DCRecommendItem.m */,
 				18ADC51F20BAE9B500961CD8 /* NSCartModel.h */,
 				18ADC52020BAE9B500961CD8 /* NSCartModel.m */,
+				184EC18120BD8DE9009BBFE6 /* NSFirmOrderModel.h */,
+				184EC18220BD8DE9009BBFE6 /* NSFirmOrderModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3138,6 +3143,7 @@
 				1842A6DC20B59D350090861D /* ADOrderGoodsView.m in Sources */,
 				18E3A44320B29C0A00F847ED /* MyOrderParam.m in Sources */,
 				18A7AB7C20ADAC95009FC725 /* NSCommonParam.m in Sources */,
+				184EC18320BD8DE9009BBFE6 /* NSFirmOrderModel.m in Sources */,
 				1842A6D320B59D350090861D /* ADPlaceOrderViewController.m in Sources */,
 				18C3D0BE20A3DD2A000FCE7F /* AddViewButton.m in Sources */,
 				18C3D0D420A3FA99000FCE7F /* FriendsViewController.m in Sources */,

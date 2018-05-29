@@ -28,4 +28,28 @@
         failure?failure(error):nil;
     }];
 }
+
+
+/*
+ 删除购物车商品
+ */
++ (void)removeCartWithParam:(NSString *)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure{
+    [Net requestWithPost:@{@"cartId":param} function:kRemoveCartAPI showHUD:NetNullStr resultClass:[NSDictionary class] success:^(id  _Nullable resultObj) {
+        success?success():nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+}
+
+/*
+ 获取购物车结算页面数据
+ */
++ (void)checkCartDataWithParam:(NSString *)param success:(void (^)(NSFirmOrderModel *firmOrderModel))success faulre:(void (^)(NSError *))failure{
+    [Net requestWithPost:@{@"cartId":param} function:kGetCheckDataAPI showHUD:NetNullStr resultClass:[NSFirmOrderModel class] success:^(NSFirmOrderModel  *_Nullable resultObj) {
+        success?success(resultObj):nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+
+}
 @end

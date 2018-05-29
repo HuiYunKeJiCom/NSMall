@@ -29,14 +29,12 @@
 @property (strong , nonatomic)ADOrderTopToolView *topToolView;
 /* 底部View */
 @property (strong , nonatomic)ADBottomView *bottomView;
-//@property (strong,nonatomic)UILabel *totlePriceLabel;
 /** 商品总价格 */
 @property (nonatomic)float totlePrice;
 /** 商品件数 */
 @property (nonatomic)NSInteger goodsNumber;
 /** 快递邮费 */
 @property (nonatomic)double expressFee;
-
 /** 地址模型 */
 @property (strong,nonatomic)NSAddressItemModel *addressModel;
 /** 下单店铺商品 */

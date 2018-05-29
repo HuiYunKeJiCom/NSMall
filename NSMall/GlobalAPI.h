@@ -74,5 +74,5 @@ const static NSString * const kAddCartAPI = @"auth/addCart";//添加商品到购
 const static NSString * const kUpdateCartCountAPI = @"auth/updateCartCount";//修改购物车商品数量
 const static NSString * const kCartListAPI = @"auth/cartList";//获取购物车列表
 const static NSString * const kRemoveCartAPI = @"auth/removeCart";//删除购物车商品
-
+const static NSString * const kGetCartCheckDataAPI = @"auth/getCartCheckData";//获取购物车结算页面数据
 
