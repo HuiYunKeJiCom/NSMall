@@ -13,10 +13,12 @@
 #import "LZGoodsModel.h"
 #import "LZTableHeaderView.h"
 #import "ADOrderTopToolView.h"
-#import "ADPlaceOrderViewController.h"
+//#import "ADPlaceOrderViewController.h"
 //#import "ADHomePageViewController.h"//首页
 #import "DCTabBarController.h"
 #import "CartAPI.h"
+
+#import "NSFirmOrderVC.h"//确认订单
 
 @interface LZCartViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -540,15 +542,20 @@
     
     if(self.selectedArray.count > 0){
         NSMutableString *goodsCartIdStr = [[NSMutableString alloc] init];
-        for (LZGoodsModel *model in self.selectedArray) {
-            //这里需要修改
-            [goodsCartIdStr appendString:[NSString stringWithFormat:@",%@",model.cart_id]];
+        for(int i=0;i<self.selectedArray.count;i++){
+            LZGoodsModel *model = self.selectedArray[i];
+            if(i == 0){
+                goodsCartIdStr = [NSMutableString stringWithString:model.cart_id];
+            }else{
+                [goodsCartIdStr appendString:[NSString stringWithFormat:@",%@",model.cart_id]];
+            }
         }
         NSString *CartIdStr = goodsCartIdStr;
-        //跳转到 下单页面
-        ADPlaceOrderViewController *placeOrderVC = [[ADPlaceOrderViewController alloc] init];
-        [placeOrderVC loadDataWithNSString:CartIdStr];
-        [self.navigationController pushViewController:placeOrderVC animated:YES];
+        DLog(@"CartIdStr = %@",CartIdStr);
+        //跳转到 确认订单页面
+        NSFirmOrderVC *firmOrderVC = [[NSFirmOrderVC alloc] init];
+        [firmOrderVC loadDataWithNSString:CartIdStr];
+        [self.navigationController pushViewController:firmOrderVC animated:YES];
     }else{
         [Common AppShowToast:@"您还没有选择任何商品"];
     }

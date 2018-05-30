@@ -15,5 +15,8 @@
     return @{@"productList":[LZGoodsModel class]};
 }
 
+-(float)cellHeight{
+    return self.productList.count*(10+176)-10+48+34;
+}
 
 @end

@@ -21,5 +21,5 @@
 @property (nonatomic)double sum_price;/* 单个商家订单总金额（诺一股）【包含运费】 */
 @property (nonatomic)double sum_score;/* 单个商家订单总金额（人民币）【包含运费】 */
 
-
+@property(nonatomic)float cellHeight;/* cell高度 */
 @end

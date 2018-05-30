@@ -16,6 +16,9 @@
 		18350890207F653600BCF7CE /* Net.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835088F207F653600BCF7CE /* Net.m */; };
 		18350895208086DE00BCF7CE /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 18350893208086DE00BCF7CE /* UIViewExt.m */; };
 		1835089920808CCD00BCF7CE /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835089820808CCD00BCF7CE /* Common.m */; };
+		183ED91120BE379500DB0487 /* NSFirmOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 183ED91020BE379500DB0487 /* NSFirmOrderVC.m */; };
+		183ED91420BE3FE200DB0487 /* NSFirmOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 183ED91320BE3FE200DB0487 /* NSFirmOrderCell.m */; };
+		183ED91720BE845100DB0487 /* NSAddressTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 183ED91620BE845100DB0487 /* NSAddressTVCell.m */; };
 		1840432F2099FA5D00685F80 /* ADLUpdateUserInformCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1840432D2099FA5C00685F80 /* ADLUpdateUserInformCtrl.m */; };
 		184043322099FA8D00685F80 /* ADLUpdateUserTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184043312099FA8D00685F80 /* ADLUpdateUserTableCell.m */; };
 		184043352099FAA200685F80 /* ADLUpdateUserPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184043342099FAA200685F80 /* ADLUpdateUserPhotoCell.m */; };
@@ -320,6 +323,12 @@
 		18350894208086DE00BCF7CE /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
 		1835089720808CCD00BCF7CE /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		1835089820808CCD00BCF7CE /* Common.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
+		183ED90F20BE379500DB0487 /* NSFirmOrderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSFirmOrderVC.h; sourceTree = "<group>"; };
+		183ED91020BE379500DB0487 /* NSFirmOrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSFirmOrderVC.m; sourceTree = "<group>"; };
+		183ED91220BE3FE200DB0487 /* NSFirmOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSFirmOrderCell.h; sourceTree = "<group>"; };
+		183ED91320BE3FE200DB0487 /* NSFirmOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSFirmOrderCell.m; sourceTree = "<group>"; };
+		183ED91520BE845100DB0487 /* NSAddressTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAddressTVCell.h; sourceTree = "<group>"; };
+		183ED91620BE845100DB0487 /* NSAddressTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAddressTVCell.m; sourceTree = "<group>"; };
 		1840432D2099FA5C00685F80 /* ADLUpdateUserInformCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADLUpdateUserInformCtrl.m; sourceTree = "<group>"; };
 		1840432E2099FA5C00685F80 /* ADLUpdateUserInformCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADLUpdateUserInformCtrl.h; sourceTree = "<group>"; };
 		184043302099FA8D00685F80 /* ADLUpdateUserTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADLUpdateUserTableCell.h; sourceTree = "<group>"; };
@@ -1067,6 +1076,8 @@
 			children = (
 				1842A6A120B59D350090861D /* LZCartViewController.h */,
 				1842A69C20B59D350090861D /* LZCartViewController.m */,
+				183ED90F20BE379500DB0487 /* NSFirmOrderVC.h */,
+				183ED91020BE379500DB0487 /* NSFirmOrderVC.m */,
 				1842A69D20B59D350090861D /* ADPlaceOrderViewController.h */,
 				1842A6A020B59D350090861D /* ADPlaceOrderViewController.m */,
 				1842A69F20B59D350090861D /* ADPaymentOrderViewController.h */,
@@ -1135,6 +1146,10 @@
 				1842A6CE20B59D350090861D /* ADPaymentViewCell.m */,
 				1842A6CD20B59D350090861D /* ADPaymentSuccessContentView.h */,
 				1842A6C020B59D350090861D /* ADPaymentSuccessContentView.m */,
+				183ED91220BE3FE200DB0487 /* NSFirmOrderCell.h */,
+				183ED91320BE3FE200DB0487 /* NSFirmOrderCell.m */,
+				183ED91520BE845100DB0487 /* NSAddressTVCell.h */,
+				183ED91620BE845100DB0487 /* NSAddressTVCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3173,6 +3188,7 @@
 				184F061D209FE81A00768418 /* PublishMenuButton.m in Sources */,
 				18D574CB209AA380001C7875 /* GetVcodeAPI.m in Sources */,
 				184F064D209FFC4D00768418 /* UpdateUserParam.m in Sources */,
+				183ED91120BE379500DB0487 /* NSFirmOrderVC.m in Sources */,
 				18D0C0B120AC0D01007F0784 /* TDUserCertifySubVCPics.m in Sources */,
 				18B0179420A67B9600826EA4 /* YWChooseAddressView.m in Sources */,
 				18B017B020A67B9600826EA4 /* CLTagsModel.m in Sources */,
@@ -3263,6 +3279,7 @@
 				18C2DDEA20B7A8FB00A3B851 /* NSMessageTV.m in Sources */,
 				184F0642209FFB7F00768418 /* UIBarButtonItem+DCBarButtonItem.m in Sources */,
 				184043382099FABE00685F80 /* ADLEditUserInformCtrl.m in Sources */,
+				183ED91720BE845100DB0487 /* NSAddressTVCell.m in Sources */,
 				18C3D0BD20A3DD2A000FCE7F /* HyperlinksButton.m in Sources */,
 				184F05FA209C40DE00768418 /* AdvertItemModel.m in Sources */,
 				1878477D20AECFAE00AC0E0F /* NSMyShopVC.m in Sources */,
@@ -3375,6 +3392,7 @@
 				1878478020AED12100AC0E0F /* NSMyShopTVCell.m in Sources */,
 				18C3D08720A2F111000FCE7F /* LabelListModel.m in Sources */,
 				18D0C0CD20AC167C007F0784 /* TDNameCertifyModel.m in Sources */,
+				183ED91420BE3FE200DB0487 /* NSFirmOrderCell.m in Sources */,
 				184DE7AC208F08B400E776F3 /* BaseRefreshGifHeader.m in Sources */,
 				18ADC51A20BAD5AE00961CD8 /* GoodAttrModel.m in Sources */,
 				18D0C0AD20AC0D01007F0784 /* TDUserCertifyResultCtrl.m in Sources */,
