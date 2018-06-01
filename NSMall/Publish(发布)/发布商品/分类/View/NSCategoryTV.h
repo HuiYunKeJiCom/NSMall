@@ -17,5 +17,5 @@
 @end
 
 @interface NSCategoryTV : BaseTableView
-@property (assign,nonatomic) id<NSCategoryTVDelegate> tbDelegate;
+@property (weak,nonatomic) id<NSCategoryTVDelegate> tbDelegate;
 @end

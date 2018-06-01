@@ -75,4 +75,11 @@ const static NSString * const kUpdateCartCountAPI = @"auth/updateCartCount";//�
 const static NSString * const kCartListAPI = @"auth/cartList";//获取购物车列表
 const static NSString * const kRemoveCartAPI = @"auth/removeCart";//删除购物车商品
 const static NSString * const kGetCartCheckDataAPI = @"auth/getCartCheckData";//获取购物车结算页面数据
+const static NSString * const kBuildOrderAPI = @"auth/buildOrderOfCart";//购物车提交订单
+const static NSString * const kPayOrderAPI = @"auth/payOrder";//订单支付
+
+//钱包
+const static NSString * const kWalletListAPI = @"auth/walletList";//获取已绑定的钱包列表
+const static NSString * const kBindWalletAPI = @"auth/bindWallet";//绑定钱包
+const static NSString * const kSetWalletAPI = @"auth/setSellWallet";//设置默认收款钱包
 

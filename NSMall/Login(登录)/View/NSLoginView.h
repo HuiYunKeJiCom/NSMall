@@ -29,7 +29,7 @@ typedef NS_ENUM(NSInteger, UseLoginType){
 @end
 
 @interface NSLoginView : UIView
-@property (nonatomic, assign) id<NSLoginViewDelegate> delegate;
+@property (nonatomic, weak) id<NSLoginViewDelegate> delegate;
 //获取验证码
 @property (nonatomic, strong) UIButton       *sendBtn;
 @end

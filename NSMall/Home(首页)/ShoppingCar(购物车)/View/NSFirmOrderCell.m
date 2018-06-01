@@ -193,13 +193,13 @@
         [goodsV addSubview:line3];
         
         height = CGRectGetMaxY(goodsV.frame)+10;
-        DLog(@"里面height = %.2f",height);
+//        DLog(@"里面height = %.2f",height);
         if(i == shopModel.productList.count-1){
             height -= 10;
         }
     }
     
-    DLog(@"外面height = %.2f",height);
+//    DLog(@"外面height = %.2f",height);
     
 //    footView
     UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, height+1, kScreenWidth, 34)];
@@ -228,11 +228,11 @@
     
     UILabel *totalTitle = [[UILabel alloc]init];
     totalTitle.text = [NSString stringWithFormat:@"共%lu件商品,小计",buyNum];
+    totalTitle.font = UISystemFontSize(14);
     CGSize totalSize = [self contentSizeWithTitle:totalTitle.text andFont:14];
     totalTitle.x = CGRectGetMinX(totalLab.frame)-totalSize.width-3;
     totalTitle.y = 12;
     [totalTitle sizeToFit];
-    totalTitle.font = UISystemFontSize(14);
     totalTitle.textColor = KBGCOLOR;
     [footView addSubview:totalTitle];
     

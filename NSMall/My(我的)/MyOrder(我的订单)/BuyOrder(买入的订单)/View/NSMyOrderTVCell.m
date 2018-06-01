@@ -37,7 +37,7 @@
 }
 
 -(void)buildUI{
-    _bgView = [[UIView alloc] initWithFrame:self.frame];
+    _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(183))];
     _bgView.backgroundColor = kWhiteColor;
     [self addSubview:self.bgView];
     
@@ -59,18 +59,19 @@
     self.lineView1.backgroundColor = KBGCOLOR;
     [self.bgView addSubview:self.lineView1];
     
-    self.totalLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum14 TextColor:[UIColor blackColor]];
+    self.totalLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum14 TextColor:KBGCOLOR];
     [self.bgView addSubview:self.totalLab];
     
     self.nextOperation = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.nextOperation.titleLabel.font = [UIFont systemFontOfSize:kFontNum14];
+    self.nextOperation.titleLabel.font = UISystemFontSize(14);
+    
 //    // 设置圆角的大小
 //    self.nextOperation.layer.cornerRadius = 5;
 //    [self.nextOperation.layer setMasksToBounds:YES];
 //    self.nextOperation.layer.borderWidth = 1;
 //    self.nextOperation.layer.borderColor = [KMainColor CGColor];
     [self.nextOperation setTitleColor:kWhiteColor forState:UIControlStateNormal];
-    [self.nextOperation addTarget:self action:@selector(nextOperation) forControlEvents:UIControlEventTouchUpInside];
+    [self.nextOperation addTarget:self action:@selector(nextOperationClick) forControlEvents:UIControlEventTouchUpInside];
     [self.bgView addSubview:self.nextOperation];
 }
 
@@ -83,16 +84,15 @@
 - (void)setModel:(NSOrderListItemModel *)model {
     _model = model;
     [self.headerIV sd_setImageWithURL:[NSURL URLWithString:model.user_avatar]];
-    self.userName.y = 15;
-    self.userName.x = CGRectGetMaxX(self.headerIV.frame)+12;
     self.userName.text = model.user_name;
+    CGSize userSize = [self contentSizeWithTitle:model.user_name andFont:14];
+    self.userName.y = CGRectGetMidY(self.headerIV.frame)-userSize.height*0.5;
+    self.userName.x = CGRectGetMaxX(self.headerIV.frame)+12;
     [self.userName sizeToFit];
     self.arrowIV.x = CGRectGetMaxX(self.userName.frame)+11;
-    self.arrowIV.y = 15;
+    self.arrowIV.y = 13;
     self.arrowIV.size = CGSizeMake(5, 9);
     self.arrowIV.image = IMAGE(@"my_ico_right_arrow");
-    self.stateLab.y = 15;
-    self.stateLab.x =  kScreenWidth -19;
     switch (model.order_status) {
         case 1:{
             self.stateLab.text = @"待支付";
@@ -131,31 +131,43 @@
         default:
             break;
     }
+    CGSize stateSize = [self contentSizeWithTitle:self.stateLab.text andFont:14];
+    self.stateLab.y = CGRectGetMidY(self.headerIV.frame)-stateSize.height *0.5;
+    self.stateLab.x =  kScreenWidth -19-stateSize.width;
     [self.stateLab sizeToFit];
     self.lineView1.x = 0;
     self.lineView1.y = CGRectGetMaxY(self.headerIV.frame)+7;
     self.lineView1.size = CGSizeMake(kScreenWidth, 1);
     
     float height = 41;
+    NSLog(@"productList = %lu",model.productList.count);
     for(int i=0;i<model.productList.count;i++){
         NSGoodsView *goodsView = [[NSGoodsView alloc]init];
         goodsView.model = model.productList[i];
         goodsView.x = 0;
         goodsView.y = height;
         goodsView.size = CGSizeMake(kScreenWidth, 65);
+        
         height+=65;
     }
     
-    self.totalLab.y = CGRectGetMaxY(self.bgView.frame)-53;
-    self.totalLab.x =  kScreenWidth-18;
     self.totalLab.text = [NSString stringWithFormat:@"共%lu件商品,小计N%.2f/¥%.2f",model.buy_number,model.pay_amount,model.order_score];
-    [self.totalLab sizeToFit];
     self.nextOperation.x = kScreenWidth-67-19;
-    self.nextOperation.y = CGRectGetMaxY(self.bgView.frame)-14;
+    self.nextOperation.y = CGRectGetMaxY(self.bgView.frame)-14-28;
     self.nextOperation.size = CGSizeMake(67, 28);
+    CGSize totalSize = [self contentSizeWithTitle:self.totalLab.text andFont:14];
+    [self.totalLab sizeToFit];
+    self.totalLab.x =  kScreenWidth-18-totalSize.width;
+    self.totalLab.y = CGRectGetMinY(self.nextOperation.frame)-10-totalSize.height;
 }
 
--(void)nextOperation{
+-(void)nextOperationClick{
     !_nextOperationClickBlock ? : _nextOperationClickBlock();
+}
+
+- (CGSize)contentSizeWithTitle:(NSString *)title andFont:(float)font{
+    CGSize maxSize = CGSizeMake(kScreenWidth *0.5, MAXFLOAT);
+    // 计算文字的高度
+    return  [title boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:font]} context:nil].size;
 }
 @end

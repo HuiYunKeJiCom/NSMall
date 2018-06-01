@@ -17,5 +17,5 @@
 @end
 
 @interface NSShopTableView : BaseTableView
-@property (assign,nonatomic) id<NSShopTableViewDelegate> tbDelegate;
+@property (weak,nonatomic) id<NSShopTableViewDelegate> tbDelegate;
 @end

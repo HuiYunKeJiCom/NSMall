@@ -37,8 +37,8 @@
 - (void)makeConstraints {
     
     [self.allOrderTable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self.view);
-    make.top.equalTo(self.view).with.offset(TopBarHeight);
+        make.left.top.right.bottom.equalTo(self.view);
+//    make.top.equalTo(self.view).with.offset(TopBarHeight);
     }];
     
 }
@@ -52,6 +52,7 @@
     WEAKSELF
     [MyOrderAPI getMyOrderList:param success:^(NSOrderListModel * _Nullable result) {
         DLog(@"获取订单列表成功");
+        DLog(@"result = %@",result.mj_keyValues);
         weakSelf.allOrderTable.data = [NSMutableArray arrayWithArray:result.orderList];
         [self.allOrderTable updatePage:more];
         self.allOrderTable.noDataView.hidden = self.allOrderTable.data.count;
@@ -77,7 +78,7 @@
         _allOrderTable.isLoadMore = YES;
         _allOrderTable.isRefresh = YES;
         _allOrderTable.delegateBase = self;
-        
+        _allOrderTable.backgroundColor = KBGCOLOR;
         [_allOrderTable registerClass:[NSMyOrderTVCell class] forCellReuseIdentifier:@"NSMyOrderTVCell"];
         
     }
@@ -96,20 +97,20 @@
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(10))];
-    sectionView.backgroundColor = kBACKGROUNDCOLOR;
+    sectionView.backgroundColor = KBGCOLOR;
     return sectionView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if(section == 0){
-        return 1;
-    }else{
+//    if(section == 0){
+//        return 1;
+//    }else{
         return GetScaleWidth(10);
-    }
+//    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return kScreenWidth == 320 ? 120 : GetScaleWidth(120);
+    return GetScaleWidth(183);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

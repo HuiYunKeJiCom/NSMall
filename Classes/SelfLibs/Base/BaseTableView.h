@@ -13,7 +13,7 @@
 
 @interface BaseTableView : UITableView<UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic,assign) id <BaseTableViewDelegate> delegateBase;
+@property (nonatomic,weak) id <BaseTableViewDelegate> delegateBase;
 @property (nonatomic,strong) NSMutableArray *data;
 @property (nonatomic,assign) NSInteger      currentPage;
 @property (nonatomic,assign) BOOL           isRefresh;

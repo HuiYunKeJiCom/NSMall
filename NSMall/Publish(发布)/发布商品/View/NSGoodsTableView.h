@@ -19,6 +19,6 @@
 @end
 
 @interface NSGoodsTableView : BaseTableView
-@property (assign,nonatomic) id<NSGoodsTableViewDelegate> tbDelegate;
+@property (weak,nonatomic) id<NSGoodsTableViewDelegate> tbDelegate;
 @property(nonatomic,strong)NSMutableDictionary *dict;/* 改变高度的字典 */
 @end

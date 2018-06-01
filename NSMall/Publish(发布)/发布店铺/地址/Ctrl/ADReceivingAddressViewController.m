@@ -154,7 +154,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return kScreenWidth == 320 ? 100 : GetScaleWidth(100);
+    return GetScaleWidth(100);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -178,7 +178,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    ADReceivingAddressCell *cell = [self.goodsTable cellForRowAtIndexPath:indexPath];
+    NSAddressItemModel *model = cell.model;
+    if (self.addressBlock) {
+        self.addressBlock(model);
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)baseTableVIew:(BaseTableView *)tableView refresh:(BOOL)flag {

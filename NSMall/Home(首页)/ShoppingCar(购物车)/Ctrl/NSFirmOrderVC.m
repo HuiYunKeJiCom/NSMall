@@ -12,13 +12,21 @@
 #import "NSFirmOrderCell.h"
 #import "NSAddressTVCell.h"
 #import "CartAPI.h"
+#import "NSBuildOrderParam.h"
 
 #import "ADReceivingAddressViewController.h"//地址列表
+#import "NSWalletListModel.h"
+#import "NSPayView.h"
+#import "WalletAPI.h"
+#import "NSInputPwView.h"
 
-@interface NSFirmOrderVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
+@interface NSFirmOrderVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate,NSInputPwViewDelegate>
 @property (nonatomic, strong) BaseTableView         *goodsTable;
 @property(nonatomic,strong)NSFirmOrderModel *firmOrderModel;/* 数据模型 */
 @property(nonatomic,copy)NSString *cartId;/* 购物车Id */
+@property(nonatomic,copy)NSString *walletID;/* 购物车Id */
+@property(nonatomic,strong)NSWalletListModel *walletListModel;/* 订单模型 */
+//@property(nonatomic,strong)NSMutableArray *walletNameArr;/* 钱包名称 */
 @end
 
 @implementation NSFirmOrderVC
@@ -65,10 +73,11 @@
     [submission setTitle:@"提交并支付" forState:UIControlStateNormal];
     submission.titleLabel.font = UISystemFontSize(14);
     [submission setTitleColor:kWhiteColor forState:UIControlStateNormal];
-//    [submission addTarget:self action:@selector(goToPayButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [submission addTarget:self action:@selector(payView) forControlEvents:UIControlEventTouchUpInside];
     [buttomView addSubview:submission];
     
     UILabel *sumLab = [[UILabel alloc]init];
+    sumLab.textColor = KBGCOLOR;
     NSString *str = [NSString stringWithFormat:@"N%.2f/¥%.2f",self.firmOrderModel.payment_price,self.firmOrderModel.payment_score];
     NSArray *strArr = [str componentsSeparatedByString:@"/¥"];
     NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:str];
@@ -84,7 +93,6 @@
     sumLab.y = 24-sum.height*0.5;
     sumLab.font = UISystemFontSize(14);
     [sumLab sizeToFit];
-    sumLab.textColor = KBGCOLOR;
     [buttomView addSubview:sumLab];
     
     UILabel *sumTitle = [[UILabel alloc]init];
@@ -111,7 +119,6 @@
 -(void)loadDataWithNSString:(NSString *)string{
     self.cartId = string;
     [self requestAllOrder:NO];
-    [self setUpButtomView];
 }
 
 - (void)requestAllOrder:(BOOL)more {
@@ -126,6 +133,7 @@
         [self.goodsTable updatePage:more];
         self.goodsTable.noDataView.hidden = self.goodsTable.data.count;
         [self.goodsTable reloadData];
+        [self setUpButtomView];
     } faulre:^(NSError *error) {
         NSLog(@"获取获取购物车结算页面数据失败");
     }];
@@ -160,7 +168,7 @@
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(15))];
-    sectionView.backgroundColor = kGreyColor;
+    sectionView.backgroundColor = KBGCOLOR;
     return sectionView;
 }
 
@@ -177,7 +185,7 @@
         return GetScaleWidth(65);
     }else{
         LZShopModel *shopModel = self.goodsTable.data[indexPath.section-1];
-        DLog(@"cellHeight = %.2f",shopModel.cellHeight);
+//        DLog(@"cellHeight = %.2f",shopModel.cellHeight);
         return shopModel.cellHeight;
     }
 }
@@ -202,7 +210,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section==0){
+        
         ADReceivingAddressViewController *receivingAddressVC = [[ADReceivingAddressViewController alloc] init];
+        receivingAddressVC.addressBlock = ^(NSAddressItemModel *model) {
+            self.firmOrderModel.defaultAddress = model;
+            [self.goodsTable reloadData];
+        };
         [self.navigationController pushViewController:receivingAddressVC animated:YES];
     }
 }
@@ -225,5 +238,76 @@
     // 计算文字的高度
     return  [title boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:font]} context:nil].size;
 }
+
+-(void)buildOrder{
+    NSBuildOrderParam *param = [NSBuildOrderParam new];
+    param.cartIds = self.cartId;
+    param.addressId = self.firmOrderModel.defaultAddress.address_id;
+    [CartAPI buildOrderWithParam:param success:^(NSWalletListModel *walletList) {
+        DLog(@"创建订单成功");
+        self.walletListModel = walletList;
+    } faulre:^(NSError *error) {
+        DLog(@"创建订单失败");
+    }];
+}
+
+-(void)payView{
+    
+    [WalletAPI getWalletListWithParam:nil success:^(NSWalletModel *walletModel) {
+        NSLog(@"获取钱包列表成功");
+//        [self.walletNameArr removeAllObjects];
+//        for (WalletItemModel* model in walletModel.walletList) {
+//            [self.walletNameArr addObject:model];
+//        }
+        NSPayView *payView = [[NSPayView alloc] initWithFrame:(CGRect){0, 0, kScreenWidth, kScreenHeight}];
+        payView.userInteractionEnabled = YES;
+        payView.payString = [NSString stringWithFormat:@"N%.2f/¥%.2f",self.firmOrderModel.payment_price,self.firmOrderModel.payment_score];
+        payView.walletNameArr = [NSMutableArray arrayWithArray:walletModel.walletList];
+        __weak typeof(payView) PayView = payView;
+        payView.confirmClickBlock = ^{
+            [PayView removeView];
+            [self buildOrder];
+            [self showInputPwView:PayView.walletId];
+        };
+        [payView showInView:self.navigationController.view];
+    } faulre:^(NSError *error) {
+        NSLog(@"获取钱包列表失败");
+    }];
+    
+}
+
+-(void)showInputPwView:(NSString *)walletID{
+    self.walletID = walletID;
+    NSInputPwView *inputView = [[NSInputPwView alloc] initWithFrame:(CGRect){0, 0, kScreenWidth, kScreenHeight}];
+    inputView.tbDelegate = self;
+    __weak typeof(inputView) InputView = inputView;
+    inputView.backClickBlock = ^{
+        [InputView removeView];
+        [self payView];
+    };
+    [inputView showInView:self.navigationController.view];
+}
+
+-(void)payOrder:(NSString *)tradePw{
+    //调用支付订单接口
+    NSPayOrderParam *param = [NSPayOrderParam new];
+    param.walletId = self.walletID;
+    param.orderId = self.walletListModel.orderId;
+    param.tradePassword = tradePw;
+    DLog(@"param = %@",param.mj_keyValues);
+    [CartAPI payOrderWithParam:param success:^{
+        DLog(@"支付成功");
+        [self.navigationController popViewControllerAnimated:YES];
+    } faulre:^(NSError *error) {
+        DLog(@"支付失败");
+    }];
+}
+
+//-(NSMutableArray *)walletNameArr{
+//    if (!_walletNameArr) {
+//        _walletNameArr = [NSMutableArray array];
+//    }
+//    return _walletNameArr;
+//}
 
 @end

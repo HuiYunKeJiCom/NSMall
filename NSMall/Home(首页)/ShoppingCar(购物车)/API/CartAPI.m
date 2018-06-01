@@ -52,4 +52,28 @@
     }];
 
 }
+
+/*
+ 购物车提交订单
+ */
++ (void)buildOrderWithParam:(NSBuildOrderParam *)param success:(void (^)(NSWalletListModel *walletList))success faulre:(void (^)(NSError *))failure{
+    [Net requestWithPost:param function:kBuildOrderAPI showHUD:NetNullStr resultClass:[NSWalletListModel class] success:^(NSWalletListModel  *_Nullable resultObj) {
+        success?success(resultObj):nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+    
+}
+
+/*
+ 订单支付
+ */
++ (void)payOrderWithParam:(NSPayOrderParam *)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure{
+    [Net requestWithPost:param function:kPayOrderAPI showHUD:NetNullStr resultClass:[NSDictionary class] success:^(id  _Nullable resultObj) {
+        success?success():nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+}
+
 @end

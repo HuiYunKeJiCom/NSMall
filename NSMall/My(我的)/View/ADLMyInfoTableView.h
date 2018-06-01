@@ -18,6 +18,6 @@
 @end
 
 @interface ADLMyInfoTableView : BaseTableView
-@property (assign,nonatomic) id<ADLMyInfoTableViewDelegate> tbDelegate;
+@property (weak,nonatomic) id<ADLMyInfoTableViewDelegate> tbDelegate;
 @property (nonatomic, strong) UserModel              *userModel;
 @end

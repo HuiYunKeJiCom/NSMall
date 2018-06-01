@@ -18,5 +18,5 @@
 @end
 
 @interface NSMessageTV : BaseTableView
-@property (assign,nonatomic) id<NSMessageTVDelegate> tbDelegate;
+@property (weak,nonatomic) id<NSMessageTVDelegate> tbDelegate;
 @end

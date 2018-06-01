@@ -10,6 +10,9 @@
 #import "NSCartModel.h"
 #import "NSChangeCartNumParam.h"
 #import "NSFirmOrderModel.h"
+#import "NSBuildOrderParam.h"
+#import "NSWalletListModel.h"
+#import "NSPayOrderParam.h"
 
 @interface CartAPI : NSObject
 /*
@@ -31,4 +34,14 @@
  获取购物车结算页面数据
  */
 + (void)checkCartDataWithParam:(NSString *)param success:(void (^)(NSFirmOrderModel *firmOrderModel))success faulre:(void (^)(NSError *))failure;
+
+/*
+ 购物车提交订单
+ */
++ (void)buildOrderWithParam:(NSBuildOrderParam *)param success:(void (^)(NSWalletListModel *walletList))success faulre:(void (^)(NSError *))failure;
+
+/*
+ 订单支付
+ */
++ (void)payOrderWithParam:(NSPayOrderParam *)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure;
 @end

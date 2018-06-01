@@ -19,7 +19,7 @@
 }
 
 + (void)AppShowToast:(NSString *)mess{
-    [AppWindow makeToast:mess];
+    [AppWindow makeToast:mess duration:1 position:@"CSToastPositionCenter"];
 }
 
 extern YYImageDecoder *commonImageDecoder = nil;//
