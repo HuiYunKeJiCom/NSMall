@@ -41,14 +41,13 @@
     
 //    self.view.backgroundColor = kWhiteColor;
     
-    [self buildUI];
     [self setUpNavTopView];
     
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self layoutUI];
+    [self buildUI];
     [self requestAllOrder:NO];
     
 }
@@ -74,7 +73,7 @@
 }
 
 - (void)buildUI{
-    _tableView = [[BaseTableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    _tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, TopBarHeight, kScreenWidth, AppHeight - TopBarHeight-TabBarHeight) style:UITableViewStyleGrouped];
     _tableView.backgroundColor = [UIColor lightGrayColor];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -86,11 +85,6 @@
     [_tableView registerClass:[NSFunctionCell class] forCellReuseIdentifier:@"NSFunctionCell"];
 }
 
-- (void)layoutUI{
-    _tableView.y = TopBarHeight;
-    _tableView.size = CGSizeMake(kScreenWidth, AppHeight - TopBarHeight-TabBarHeight);
-}
-
 - (void)requestAllOrder:(BOOL)more {
     [self.tableView updateLoadState:more];
 
@@ -98,9 +92,9 @@
     [HomePageAPI getProductList:nil success:^(ProductListModel * _Nullable result) {
         NSLog(@"获取产品列表成功");
         weakSelf.tableView.data = [NSMutableArray arrayWithArray:result.productList];
-        [self.tableView updatePage:more];
-        self.tableView.noDataView.hidden = self.tableView.data.count;
-        [self.tableView reloadData];
+        [weakSelf.tableView updatePage:more];
+        weakSelf.tableView.noDataView.hidden = weakSelf.tableView.data.count;
+        [weakSelf.tableView reloadData];
     } failure:^(NSError *error) {
         NSLog(@"获取产品列表失败");
     }];
@@ -113,13 +107,15 @@
         NSLog(@"获取广告数据成功");
         for(AdvertItemModel *model in result.advertList){
 //            NSLog(@"path = %@",model.pic_img);
-            [self.imageGroupArray addObject:model.pic_img];
-            [self.imageDict setValue:model forKey:model.pic_img];
+            [weakSelf.imageGroupArray addObject:model.pic_img];
+            [weakSelf.imageDict setValue:model forKey:model.pic_img];
         }
-        [self.tableView reloadData];
+        [weakSelf
+         .tableView reloadData];
     } failure:^(NSError *error) {
         NSLog(@"获取广告数据失败");
     }];
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -187,7 +183,7 @@
         return cell;
     }else{
         NSGoodsShowCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSGoodsShowCell"];
-        if (cell == nil) {
+        if (!cell) {
             cell = [[NSGoodsShowCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSGoodsShowCell"];
         }
         WEAKSELF
@@ -258,5 +254,6 @@
         DLog(@"点赞失败");
     }];
 }
+
 
 @end
