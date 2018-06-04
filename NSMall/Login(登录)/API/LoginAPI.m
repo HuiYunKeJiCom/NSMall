@@ -14,7 +14,22 @@
     [Net requestWithPost:param function:kLoginAPI showHUD:NetNullStr resultClass:[UserModel class] success:^(UserModel *userModel) {
         [userModel archive];
         DLog(@"userModel From Unarchive : %@",[UserModel userModel]);
-        [httpManager.requestSerializer setValue:userModel.app_token forHTTPHeaderField:@"app_token"];
+        
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        // 保存数据
+        [userDefaults setValue:userModel.app_token forKey:@"appToken"];
+        [userDefaults synchronize];
+        
+
+        DLog(@"userModel.app_token = %@",userModel.app_token);
+        
+        // 读取数据
+        NSString *appToken = [userDefaults valueForKey:@"appToken"];
+        
+//        [httpManager.requestSerializer setValue:userModel.app_token forHTTPHeaderField:@"app_token"];
+        
+        [httpManager.requestSerializer setValue:appToken forHTTPHeaderField:@"app_token"];
+        
         success?success():nil;
     } failure:^(NSError * _Nullable error) {
         failure?failure(error):nil;

@@ -14,4 +14,5 @@
 @property (strong , nonatomic)CategoryModel *model;/* 标题数据 */
 @property (nonatomic,assign) BOOL isShow;/* 是否展示View */
 @property (strong , nonatomic)UIView *indicatorView;/* 指示View */
+//@property (nonatomic,assign) BOOL isSelected;/* 是否被选中 */
 @end

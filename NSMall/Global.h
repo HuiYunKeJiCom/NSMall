@@ -96,7 +96,10 @@ YYModelEqualImplementation\
 
 
 
-#define CurrentHost @"://2008503qw3.51mypc.cn" //锡恩外网接口
+//#define CurrentHost @"://2008503qw3.51mypc.cn" //锡恩外网接口
+
+#define CurrentHost @"://stagewww.neublockchain.com" //锡恩外网接口
+//https://stagewww.neublockchain.com/nsshop
 
 //用于替换查找
 #define TEMPHost @"://"

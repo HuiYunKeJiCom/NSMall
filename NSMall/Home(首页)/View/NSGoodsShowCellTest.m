@@ -29,7 +29,6 @@
     if (self) {
         self.isLike = NO;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
         [self buildUI];
     }
     
@@ -37,19 +36,19 @@
 }
 
 -(void)buildUI{
-    self.bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    self.bgView = [[UIView alloc] init];
     self.bgView.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.bgView];
     
-    self.headerIV = [[UIImageView alloc]initWithFrame:CGRectMake(GetScaleWidth(11), GetScaleWidth(19), GetScaleWidth(33), GetScaleWidth(33))];
-    [self.headerIV setContentMode:UIViewContentModeScaleAspectFill];
+    self.headerIV = [[UIImageView alloc]init];
+    [self.headerIV setContentMode:UIViewContentModeScaleAspectFit];
     //    [self.headerIV.layer setCornerRadius:33];
     //    [self.headerIV.layer setMasksToBounds:YES];
     [self.bgView addSubview:self.headerIV];
     
     self.userName = [[UILabel alloc] init];
-    self.userName.x = CGRectGetMaxX(self.headerIV.frame)+GetScaleWidth(6);
-    self.userName.y = GetScaleWidth(19);
+//    self.userName.x = CGRectGetMaxX(self.headerIV.frame)+GetScaleWidth(6);
+//    self.userName.y = GetScaleWidth(19);
     self.userName.font = [UIFont systemFontOfSize:kFontNum13];
     self.userName.textColor = [UIColor blackColor];
     [self.bgView addSubview:self.userName];
@@ -65,7 +64,8 @@
     [self.bgView addSubview:self.priceLab];
     
     self.imageSV = [[UIScrollView alloc]init];
-    self.imageSV.backgroundColor = [UIColor greenColor];
+//    self.imageSV.backgroundColor = [UIColor greenColor];
+    
     [self.bgView addSubview:self.imageSV];
     
     self.detailLab = [[UILabel alloc] init];
@@ -92,10 +92,6 @@
     [self.shareBtn setImageWithTitle:IMAGE(@"ico_share") withTitle:@"分享" position:@"left" font:[UIFont systemFontOfSize:kFontNum14] forState:UIControlStateNormal];
     [self.bgView addSubview:self.shareBtn];
     [self.shareBtn addTarget:self action:@selector(shareButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    
-//    self.likeBtn.backgroundColor = [UIColor yellowColor];
-//    self.commentBtn.backgroundColor = kRedColor;
-//    self.shareBtn.backgroundColor = [UIColor greenColor];
 }
 
 -(void)setFrame:(CGRect)frame {

@@ -255,7 +255,7 @@
         [collectionBtn setImageWithTitle:IMAGE(@"goods_detail_ico_fav") withTitle:@"收藏" position:@"left" font:UISystemFontSize(13) forState:UIControlStateNormal];
     }
 //    [collectionBtn setImageWithTitle:IMAGE(@"goods_detail_ico_fav") withTitle:@"收藏" position:@"left" font:UISystemFontSize(13) forState:UIControlStateNormal];
-    collectionBtn.frame = CGRectMake(0, 12, buttonW+20, buttonH);
+    collectionBtn.frame = CGRectMake(0, 2, buttonW+20, buttonH);
     [bottomView addSubview:collectionBtn];
         collectionBtn.tag = 2;
 //    collectionBtn.backgroundColor = kRedColor;
@@ -268,7 +268,7 @@
     [messageBtn setImageWithTitle:IMAGE(@"goods_detail_ico_message") withTitle:@"留言" position:@"left" font:UISystemFontSize(13) forState:UIControlStateNormal];
     messageBtn.tag = 3;
     //        [messageBtn addTarget:self action:@selector(bottomButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    messageBtn.frame = CGRectMake(buttonW+10, 12, buttonW, buttonH);
+    messageBtn.frame = CGRectMake(buttonW+10, 2, buttonW, buttonH);
     [bottomView addSubview:messageBtn];
     
     UIButton *buycarBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -276,7 +276,7 @@
     [buycarBtn setTitleColor:kBlackColor forState:UIControlStateNormal];
     buycarBtn.tag = 4;
     [buycarBtn addTarget:self action:@selector(goToCart) forControlEvents:UIControlEventTouchUpInside];
-    buycarBtn.frame = CGRectMake(buttonW*2, 12, buttonW+20, buttonH);
+    buycarBtn.frame = CGRectMake(buttonW*2, 2, buttonW+20, buttonH);
     [bottomView addSubview:buycarBtn];
     
 }

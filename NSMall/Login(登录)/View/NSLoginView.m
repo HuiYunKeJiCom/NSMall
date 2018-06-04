@@ -109,27 +109,6 @@
     return _loginButton;
 }
 
-//- (UIButton *)phoneButton {
-//    if (!_phoneButton) {
-//        _phoneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [_phoneButton setTitleColor:KColorText333333 forState:UIControlStateNormal];
-//        _phoneButton.titleLabel.font = [UIFont systemFontOfSize:kFontNum14];
-//        [_phoneButton addTarget:self action:@selector(actionRegister:) forControlEvents:UIControlEventTouchUpInside];
-//    }
-//    return _phoneButton;
-//}
-
-
-//- (UIButton *)forgetButton {
-//    if (!_forgetButton) {
-//        _forgetButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [_forgetButton setTitleColor:KColorText333333 forState:UIControlStateNormal];
-//        _forgetButton.titleLabel.font = [UIFont systemFontOfSize:kFontNum14];
-//        [_forgetButton addTarget:self action:@selector(actionForget:) forControlEvents:UIControlEventTouchUpInside];
-//    }
-//    return _forgetButton;
-//}
-
 - (void)makeConstraints {
     
     WEAKSELF
@@ -175,19 +154,7 @@
         make.width.height.mas_equalTo(weakSelf.nameTextField);
         make.centerX.mas_equalTo(weakSelf.nameTextField);
     }];
-    
-//    [self.phoneButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(weakSelf.loginButton.mas_bottom).offset(5);
-//        make.left.mas_equalTo(weakSelf.loginButton.mas_left).offset(15);
-//        make.height.mas_equalTo(GetScaleWidth(20));
-//    }];
-//
-//    [self.forgetButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(weakSelf.loginButton.mas_bottom).offset(5);
-//        make.right.mas_equalTo(weakSelf.loginButton.mas_right).offset(-15);
-//        make.height.mas_equalTo(GetScaleWidth(20));
-//    }];
-    
+
 }
 
 #pragma mark - UITextFieldDelegate
@@ -249,8 +216,10 @@
  */
 - (void)actionLogin:(UIButton *)button {
     //测试
-    self.nameTextField.textField.text = @"test";
-    self.passTextField.textField.text = @"123456";
+    self.nameTextField.textField.text = @"15913120993";
+//    self.nameTextField.textField.text = @"test";
+//    self.passTextField.textField.text = @"123456";
+    
     //    测试账号1【账号：myshop 密码：123456】
     //    测试账号2【账号：test 密码：123456】
     if ([[self.nameTextField.text trim] isEmptyOrNull]) {
@@ -280,6 +249,12 @@
     _errorLabel.text = @"";
     if (self.delegate && [self.delegate respondsToSelector:@selector(loginView:userName:pwd:)]) {
         [self.delegate loginView:self userName:[self.nameTextField.text trim] pwd:[self.passTextField.text trim]];
+    }
+}
+
+-(void)getVcodeWithPhone:(NSString *)phone{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(getVcodeWithPhone:)]) {
+        [self.delegate getVcodeWithPhone:[self.nameTextField.text trim]];
     }
 }
 
@@ -328,6 +303,7 @@
         _sendBtn.titleLabel.font = [UIFont systemFontOfSize:kFontNum12];
         _sendBtn.layer.cornerRadius = 5;
         _sendBtn.layer.masksToBounds = YES;
+        
     }
     return  _sendBtn;
 }

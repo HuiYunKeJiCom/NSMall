@@ -89,6 +89,7 @@
     self.otherTableView.tbDelegate = self;
     self.otherTableView.isRefresh = NO;
     self.otherTableView.isLoadMore = NO;
+    self.otherTableView.isShow = YES;
     if (@available(iOS 11.0, *)) {
         self.otherTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
@@ -591,8 +592,11 @@
 {
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"分类") imageName:nil num:@"选择分类"]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"价格") imageName:nil num:@"开个价"]];
+   
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"数量") imageName:nil num:@"数量"]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"添加商品规格") imageName:@"publish_ico_goods_add" num:nil]];
+    
+    
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"运费") imageName:nil num:@"运费"]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"上架") imageName:nil num:@"否"]];
 }
@@ -663,6 +667,7 @@
             break;
         case 3:{
             NSLog(@"点击了添加商品规格");
+            self.otherTableView.isShow = NO;
             [self addSpecViewWithIndexPath:indexPath];
         }
             break;
@@ -715,20 +720,22 @@
         [self.dict setValue:[NSNumber numberWithFloat:height] forKey:@"height"];
         [self.specViewArr removeObject:specview];
         
-//        if(self.specViewArr.count==0){
-//            [self.otherTableView.data insertObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"数量") imageName:nil num:@"数量"] atIndex:2];
-//        }
+        if(self.specViewArr.count==0){
+            self.otherTableView.isShow = YES;
+        }
         self.otherTableView.dict = self.dict;
+//        [self.otherTableView reloadData];
     };
+    
+    
     specView.x = 0;
     specView.y = frame2.size.height;
     specView.size = CGSizeMake(kScreenWidth, GetScaleWidth(43)*3+10);
     [cell addSubview:specView];
     [self.specViewArr addObject:specView];
     
-
-    
     self.otherTableView.dict = self.dict;
+//    [self.otherTableView reloadData];
 }
 
 -(void)updateGoods{

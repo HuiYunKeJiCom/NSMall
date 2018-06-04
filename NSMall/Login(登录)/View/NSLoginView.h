@@ -25,6 +25,9 @@ typedef NS_ENUM(NSInteger, UseLoginType){
 
 - (void)loginView:(NSLoginView *)logView userName:(NSString *)userName pwd:(NSString *)pwd;
 
+-(void)getVcodeWithPhone:(NSString *)phone;
+
+
 
 @end
 

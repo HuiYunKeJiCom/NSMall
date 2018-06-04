@@ -18,6 +18,6 @@
 //用来替代以往的 NSString 方法
 -(NSString *)showText:(NSString *)key;
 - (void)setUpRootVC;
-//-(void)initRootUI;
+-(void)comeBackToRootVC;
 @end
 

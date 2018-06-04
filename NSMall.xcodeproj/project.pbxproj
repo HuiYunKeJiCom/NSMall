@@ -183,7 +183,6 @@
 		18C60DE820C13635002920D2 /* GLTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C60DE720C13634002920D2 /* GLTextField.m */; };
 		18C60DEB20C136B7002920D2 /* UIView+category.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C60DE920C136B7002920D2 /* UIView+category.m */; };
 		18C60DEE20C14D70002920D2 /* NSPayOrderParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C60DED20C14D70002920D2 /* NSPayOrderParam.m */; };
-		18CBB3AB20907AD300358E07 /* NSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CBB3AA20907AD300358E07 /* NSTabBarController.m */; };
 		18D0824A20956D2F0031034A /* NSLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D0823A20956D2E0031034A /* NSLoginController.m */; };
 		18D0824B20956D2F0031034A /* NSLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D0823D20956D2E0031034A /* NSLoginView.m */; };
 		18D0824C20956D2F0031034A /* NSLImageField.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D0823F20956D2E0031034A /* NSLImageField.m */; };
@@ -649,8 +648,6 @@
 		18C60DEA20C136B7002920D2 /* UIView+category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+category.h"; sourceTree = "<group>"; };
 		18C60DEC20C14D70002920D2 /* NSPayOrderParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSPayOrderParam.h; sourceTree = "<group>"; };
 		18C60DED20C14D70002920D2 /* NSPayOrderParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSPayOrderParam.m; sourceTree = "<group>"; };
-		18CBB3A920907AD300358E07 /* NSTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTabBarController.h; sourceTree = "<group>"; };
-		18CBB3AA20907AD300358E07 /* NSTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSTabBarController.m; sourceTree = "<group>"; };
 		18D0823420956CEA0031034A /* GlobalAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalAPI.h; sourceTree = "<group>"; };
 		18D0823A20956D2E0031034A /* NSLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSLoginController.m; sourceTree = "<group>"; };
 		18D0823B20956D2E0031034A /* NSLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSLoginController.h; sourceTree = "<group>"; };
@@ -2437,8 +2434,6 @@
 				18D7103D208DC84C002BA6CD /* DCBaseSetViewController.m */,
 				18D7103B208DC84C002BA6CD /* DCNavigationController.h */,
 				18D7103E208DC84C002BA6CD /* DCNavigationController.m */,
-				18CBB3A920907AD300358E07 /* NSTabBarController.h */,
-				18CBB3AA20907AD300358E07 /* NSTabBarController.m */,
 				18D09302209306B900E091E0 /* DCMainNavController.h */,
 				18D09303209306B900E091E0 /* DCMainNavController.m */,
 			);
@@ -3430,7 +3425,6 @@
 				18DD2F1A20B90B1E00521B61 /* UIColor+LLHex.m in Sources */,
 				18C2DDED20B7A92300A3B851 /* NSMessageTVCell.m in Sources */,
 				18D0C06D20AC0B58007F0784 /* TDBaseViewController.m in Sources */,
-				18CBB3AB20907AD300358E07 /* NSTabBarController.m in Sources */,
 				18DD2F0D20B90B1D00521B61 /* LLNaviSearchHistorySaveBasePresenter.m in Sources */,
 				1842A6D620B59D350090861D /* LZShopModel.m in Sources */,
 				1878477A20AECD4000AC0E0F /* NSShopListItemModel.m in Sources */,

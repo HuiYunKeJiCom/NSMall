@@ -35,11 +35,11 @@
         cell = [[NSInfoCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSInfoCustomCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    ADLMyInfoModel *infoModel = [self.data objectAtIndex:indexPath.section];
+    cell.myInfoModel = infoModel;
     if(indexPath.section == 3){
         cell.arrowImgView.alpha = 0.0;
     }
-    ADLMyInfoModel *infoModel = [self.data objectAtIndex:indexPath.section];
-    cell.myInfoModel = infoModel;
     return cell;
 }
 
@@ -52,7 +52,14 @@
         }else{
             return GetScaleWidth(43);
         }
+    }else if(indexPath.section == 2 && !self.isShow){
+        NSLog(@"这里有调用吗");
+        NSInfoCustomCell *cell = [self cellForRowAtIndexPath:indexPath];
+        cell.alpha = 0.0;
+        return 0.01f;
     }else{
+        NSInfoCustomCell *cell = [self cellForRowAtIndexPath:indexPath];
+        cell.alpha = 1.0;
         return GetScaleWidth(43);
     }
 }
@@ -107,6 +114,10 @@
     [self reloadData];
 }
 
+-(void)setIsShow:(BOOL)isShow{
+    _isShow = isShow;
+    [self reloadData];
+}
 
 
 @end

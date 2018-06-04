@@ -23,6 +23,7 @@
     if (self) {
         
         self.isShow = NO;
+//        self.isSelected = NO;
         [self setUpUI];
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
@@ -38,7 +39,7 @@
     
     _indicatorView = [[UIView alloc] init];
     _indicatorView.hidden = NO;
-    _indicatorView.backgroundColor = [UIColor redColor];
+    _indicatorView.backgroundColor = KMainColor;
     [self addSubview:_indicatorView];
 }
 
@@ -65,7 +66,7 @@
     [super setSelected:selected animated:animated];
     if (selected) {
         _indicatorView.hidden = NO;
-        _titleLabel.textColor = [UIColor redColor];
+        _titleLabel.textColor = KMainColor;
         self.backgroundColor = [UIColor whiteColor];
     }else{
         _indicatorView.hidden = YES;
@@ -74,6 +75,19 @@
     }
 }
 
+//-(void)setIsSelected:(BOOL)isSelected{
+//    NSLog(@"设置被选中");
+//    _isSelected = isSelected;
+//    if (isSelected) {
+//        _indicatorView.hidden = NO;
+//        _titleLabel.textColor = KMainColor;
+//        self.backgroundColor = [UIColor whiteColor];
+//    }else{
+//        _indicatorView.hidden = YES;
+//        _titleLabel.textColor = [UIColor blackColor];
+//        self.backgroundColor = [UIColor clearColor];
+//    }
+//}
 #pragma mark - Setter Getter Methods
 - (void)setModel:(CategoryModel *)model
 {

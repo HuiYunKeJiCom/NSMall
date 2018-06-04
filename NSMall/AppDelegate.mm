@@ -146,10 +146,9 @@
     return  string;
 }
 
-//-(void)initRootUI {
-//    DCTabBarController *root = [[DCTabBarController alloc] init];
-//    self.window.rootViewController = root;
-//}
+-(void)comeBackToRootVC{
+    [[DCTabBarController sharedTabBarVC] goToSelectedViewControllerWith:0];
+}
 
 
 @end

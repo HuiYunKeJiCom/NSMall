@@ -76,15 +76,16 @@
 - (void)buildUI{
     _tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, TopBarHeight, kScreenWidth, AppHeight - TopBarHeight-TabBarHeight) style:UITableViewStyleGrouped];
     _tableView.backgroundColor = [UIColor lightGrayColor];
+    _tableView.separatorColor = [UIColor clearColor];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.isLoadMore = YES;
     _tableView.isRefresh = YES;
     _tableView.delegateBase = self;
+    _tableView.tableFooterView = [UIView new];
     [self.view addSubview:_tableView];
     _tableView.estimatedRowHeight = GetScaleWidth(259);
     [_tableView registerClass:[NSGoodsShowCell class] forCellReuseIdentifier:@"NSGoodsShowCell"];
-    [_tableView registerClass:[NSFunctionCell class] forCellReuseIdentifier:@"NSFunctionCell"];
     [_tableView registerClass:[NSGoodsShowCellTest class] forCellReuseIdentifier:@"NSGoodsShowCellTest"];
 }
 
@@ -125,24 +126,23 @@
     return 1;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section == 0){
-        return GetScaleWidth(73);
-    }else{
-//        return GetScaleWidth(259);
-        return [tableView fd_heightForCellWithIdentifier:@"NSGoodsShowCellTest" cacheByIndexPath:indexPath configuration:^(NSGoodsShowCellTest *cell) {
-            [self configureCell:cell atIndexPath:indexPath];
-        }];
-    }
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.tableView.data.count;
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.tableView.data.count+1;
-}
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+////        return GetScaleWidth(259);
+////        return UITableViewAutomaticDimension;
+//        return [tableView fd_heightForCellWithIdentifier:@"NSGoodsShowCellTest" cacheByIndexPath:indexPath configuration:^(NSGoodsShowCellTest *cell) {
+//            [self configureCell:cell atIndexPath:indexPath];
+//        }];
+////    }
+//}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if(section == 0){
-        return GetScaleWidth(160);
+        return GetScaleWidth(160+73+6+39);
     }else{
         //设置间隔高度
         return GetScaleWidth(6);
@@ -151,87 +151,82 @@
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if(section == 0){
-        NSCarouselView *carouselView = [[NSCarouselView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth,GetScaleWidth(160))];
+        NSCarouselView *carouselView = [[NSCarouselView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth,GetScaleWidth(160+73+6+39))];
+//        carouselView.backgroundColor = kRedColor;
         carouselView.imageGroupArray = self.imageGroupArray;
-        return carouselView;
-    }else{
-        UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(6))];
-        sectionView.backgroundColor = [UIColor lightGrayColor];
-        return sectionView;
-    }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section == 0){
-        NSFunctionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSFunctionCell"];
-        if (cell == nil) {
-            cell = [[NSFunctionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSFunctionCell"];
-        }
-        cell.classifyBtnClickBlock = ^{
+        carouselView.classifyBtnClickBlock = ^{
             DLog(@"点击了分类");
             NSSortVC *sortVC = [NSSortVC new];
             [self.navigationController pushViewController:sortVC animated:YES];
         };
-        cell.QRBtnClickBlock = ^{
+        carouselView.QRBtnClickBlock = ^{
             DLog(@"点击了二维码");
         };
-        cell.shopCartBtnClickBlock = ^{
+        carouselView.shopCartBtnClickBlock = ^{
             DLog(@"点击了购物车");
             LZCartViewController *cartVC = [LZCartViewController new];
             [self.navigationController pushViewController:cartVC animated:YES];
         };
-        cell.myOrderBtnClickBlock = ^{
+        carouselView.myOrderBtnClickBlock = ^{
             DLog(@"点击了我的订单");
             NSOrderListVC *orderListVC = [NSOrderListVC new];
             [self.navigationController pushViewController:orderListVC animated:YES];
         };
-        
-        return cell;
+        return carouselView;
     }else{
-//        NSGoodsShowCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSGoodsShowCell"];
-//        if (!cell) {
-//            cell = [[NSGoodsShowCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSGoodsShowCell"];
-//        }
-//        WEAKSELF
-//        if (self.tableView.data.count > indexPath.section-1) {
-//            ProductListItemModel *model = self.tableView.data[indexPath.section-1];
-//            cell.productModel = model;
-//            cell.likeBtnClickBlock = ^{
-//                [weakSelf likeClickAtIndexPath:indexPath];
-//            };
-//        }
-//        return cell;
+        UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(6))];
+        sectionView.backgroundColor = KBGCOLOR;
+        return sectionView;
+    }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.001;//把高度设置很小，效果可以看成footer的高度等于0
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 0.001)];
+    view.backgroundColor = [UIColor clearColor];
+    return view;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
         NSGoodsShowCellTest *cell = [tableView dequeueReusableCellWithIdentifier:@"NSGoodsShowCellTest"];
         if (!cell) {
             cell = [[NSGoodsShowCellTest alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSGoodsShowCellTest"];
         }
         WEAKSELF
-        if (self.tableView.data.count > indexPath.section-1) {
-            [self configureCell:cell atIndexPath:indexPath];
+//        if (self.tableView.data.count > indexPath.section) {
+            ProductListItemModel *model = self.tableView.data[indexPath.section];
+            cell.productModel = model;
+//            [self configureCell:cell atIndexPath:indexPath];
             cell.likeBtnClickBlock = ^{
                 [weakSelf likeClickAtIndexPath:indexPath];
             };
-        }
+//        }
         return cell;
-    }
+//    }
     
 }
 
-- (void)configureCell:(NSGoodsShowCellTest *)cell atIndexPath:(NSIndexPath *)indexPath {
-    cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
-    ProductListItemModel *model = self.tableView.data[indexPath.section-1];
-    cell.productModel = model;
-}
+//- (void)configureCell:(NSGoodsShowCellTest *)cell atIndexPath:(NSIndexPath *)indexPath {
+//    cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
+//    ProductListItemModel *model = self.tableView.data[indexPath.section];
+//    cell.productModel = model;
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section != 0){
+//    if(indexPath.section != 0){
         DLog(@"跳转到详情页");
         NSGoodsShowCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
                 DLog(@"product_id = %@",cell.productModel.product_id);
         NSGoodsDetailVC *detailVC = [NSGoodsDetailVC new];
         [detailVC getDataWithProductID:cell.productModel.product_id andCollectNum:cell.productModel.favorite_number];
         [self.navigationController pushViewController:detailVC animated:YES];
-    }
+//    }
 }
 
 - (void)baseTableVIew:(BaseTableView *)tableView refresh:(BOOL)flag {

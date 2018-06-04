@@ -13,6 +13,6 @@
 
 + (instancetype)sharedTabBarVC;//单例模式，直接取出可用
 
-//-(void)goToSelectedViewControllerWith:(NSInteger)index;
+-(void)goToSelectedViewControllerWith:(NSInteger)index;
 
 @end

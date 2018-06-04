@@ -9,7 +9,8 @@
 #import "NSLoginController.h"
 #import "NSLoginView.h"
 #import "LoginAPI.h"
-
+#import "GetVcodeAPI.h"
+#import "GetVcodeParam.h"
 
 @interface NSLoginController ()<NSLoginViewDelegate>
 
@@ -85,9 +86,13 @@
 - (void)loginView:(NSLoginView *)logView userName:(NSString *)userName pwd:(NSString *)pwd {
     
     LoginParam *param = [LoginParam new];
-    param.loginAccount = @"test3";
-    param.password = @"123456";
-    param.loginType = @"1";
+//    param.loginAccount = @"test3";
+//    param.password = @"123456";
+//    param.loginType = @"1";
+    param.loginAccount = @"15913120993";
+    param.loginType = @"0";
+    param.smsCode = pwd;
+   
     [LoginAPI loginWithParam:param success:^{
         DLog(@"登录成功");
         EMError *error = [[EMClient sharedClient] registerWithUsername:param.loginAccount password:param.password];
@@ -111,38 +116,6 @@
         DLog(@"error = %@",error);
     }];
     
-    
-    //    NSLog(@"userName = %@,pwd = %@",userName,pwd);
-    //    [NSString getMd5_32Bit_String:pwd]
-    
-    //    WEAKSELF
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    [RequestTool loginWithDictionary:@{@"userName":[NSString limitStringNotEmpty:userName],
-//                                       @"password":[NSString limitStringNotEmpty:pwd]} withSuccessBlock:^(NSDictionary *result) {
-//                                           NSLog(@"登录result = %@",result);
-//                                           if([result[@"code"] integerValue] == 1){
-//                                               //            result[@"data"]
-//                                               hud.hidden = YES;
-//                                               [[NSUserDefaults standardUserDefaults] synchronize];
-//
-//                                               ADLUserModel *model = [ADLUserModel mj_objectWithKeyValues:result[@"data"]];
-//                                               [ADLGlobalHandleModel sharedInstance].CurrentUser = model;
-//                                               [[ADLGlobalHandleModel sharedInstance] saveCurrentUser:model];
-//                                               [[ADLGlobalHandleModel sharedInstance] saveLoginName:userName];
-//                                               [[ADLGlobalHandleModel sharedInstance] savePassword:pwd];
-//
-//                                               if(![model.app_token isEqualToString:[ADAppToken dc_GetLastOneAppToken]]){
-//                                                   [ADAppToken dc_SaveNewAppToken:model.app_token];
-//                                                   //                NSLog(@"请求myAppToken = %@",model.app_token);
-//                                               }
-//                                               //            NSLog(@"请头myAppToken = %@",model.app_token);
-//                                               [kAppDelegate initRootUI];
-//                                           }else{
-//                                           }
-//                                       } withFailBlock:^(NSString *msg) {
-//                                           hud.hidden = YES;
-//                                           NSLog(@"登录msg = %@",msg);
-//                                       }];
 }
 
 /**
@@ -191,10 +164,16 @@
     }
 }
 
+-(void)getVcodeWithPhone:(NSString *)phone{
+//    GetVcodeParam *param = [GetVcodeParam new];
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end

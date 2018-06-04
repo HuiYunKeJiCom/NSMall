@@ -140,6 +140,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    if(tableView.tag == 20 && self.dict[@"lastIndexPath"]){
+        NSInteger lastRow = [self.dict[@"lastIndexPath"] integerValue];
+        float lastHeight = [self.dict[@"lastHeight"] floatValue];
+        if(indexPath.row == lastRow){
+            return lastHeight;
+        }else{
+            return GetScaleWidth(50);
+        }
+        return GetScaleWidth(50);
+    }
     if(tableView.tag == 20 && self.dict[@"indexPath"]){
         NSInteger row = [self.dict[@"indexPath"] integerValue];
         float height = [self.dict[@"height"] floatValue];
@@ -149,9 +159,8 @@
             return GetScaleWidth(50);
         }
         return GetScaleWidth(50);
-    }else{
-        return GetScaleWidth(50);
     }
+    return GetScaleWidth(50);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -177,24 +186,43 @@
         CategoryModel *model = self.leftTV.data[indexPath.row];
         self.selectRow = indexPath.row;
         self.rightTV.data =  [NSMutableArray arrayWithArray:model.children];
+        
+        if(self.dict[@"tableViewCell"]){
+            NSSortLeftTVCell *lastCell = self.dict[@"tableViewCell"];
+            CGRect lastFrame = lastCell.frame;
+            float lastHeight = lastFrame.size.height-self.sortViewHeight-13;
+            [self.dict setValue:self.dict[@"indexPath"] forKey:@"indexPath"];
+            [self.dict setValue:[NSNumber numberWithFloat:lastHeight] forKey:@"height"];
+            [self.dict setValue:lastCell forKey:@"tableViewCell"];
+            lastCell.isShow = NO;
+            
+            for (UIView *view in lastCell.subviews) {
+                if([view isKindOfClass:[NSAllSortView class]]){
+                    [view removeFromSuperview];
+                }
+            }
+            [self.dict removeAllObjects];
+        }
+        
         [self.rightTV reloadData];
     }else{
         NSSortLeftTVCell *cell = [self.rightTV cellForRowAtIndexPath:indexPath];
         CGRect frame2 = cell.frame;
         CategoryModel *rightModel = self.rightTV.data[indexPath.row];
         if(rightModel.children.count>0){
-            if(cell.isShow){
-                [self.dict setValue:[NSNumber numberWithInteger:indexPath.row] forKey:@"indexPath"];
-                float height = frame2.size.height-self.sortViewHeight-13;
-                [self.dict setValue:[NSNumber numberWithFloat:height] forKey:@"height"];
-                cell.isShow = NO;
-                for (UIView *view in cell.subviews) {
+            if(indexPath.row != [self.dict[@"indexPath"] integerValue]){
+                NSSortLeftTVCell *lastCell = self.dict[@"tableViewCell"];
+                CGRect lastFrame = lastCell.frame;
+                float lastHeight = lastFrame.size.height-self.sortViewHeight-13;
+                [self.dict setValue:self.dict[@"indexPath"] forKey:@"lastIndexPath"];
+                [self.dict setValue:[NSNumber numberWithFloat:lastHeight] forKey:@"lastHeight"];
+                [self.dict setValue:cell forKey:@"lastTableViewCell"];
+                lastCell.isShow = NO;
+                for (UIView *view in lastCell.subviews) {
                     if([view isKindOfClass:[NSAllSortView class]]){
                         [view removeFromSuperview];
                     }
                 }
-                [self.rightTV reloadData];
-            }else{
                 
                 NSAllSortView *allView = [[NSAllSortView alloc] init];
                 allView.dataArr = rightModel.children;
@@ -208,10 +236,32 @@
                 float height = self.sortViewHeight+13+frame2.size.height;
                 [self.dict setValue:[NSNumber numberWithInteger:indexPath.row] forKey:@"indexPath"];
                 [self.dict setValue:[NSNumber numberWithFloat:height] forKey:@"height"];
-                [self.rightTV reloadData];
+                [self.dict setValue:cell forKey:@"tableViewCell"];
                 cell.isShow = YES;
+                [self.rightTV reloadData];
             }
+//            cell.isSelected = YES;
         }else{
+            if(self.dict[@"tableViewCell"]){
+                NSSortLeftTVCell *lastCell = self.dict[@"tableViewCell"];
+                CGRect lastFrame = lastCell.frame;
+                float lastHeight = lastFrame.size.height-self.sortViewHeight-13;
+                [self.dict setValue:self.dict[@"indexPath"] forKey:@"indexPath"];
+                [self.dict setValue:[NSNumber numberWithFloat:lastHeight] forKey:@"height"];
+                [self.dict setValue:lastCell forKey:@"tableViewCell"];
+                lastCell.isShow = NO;
+                
+                for (UIView *view in lastCell.subviews) {
+                    if([view isKindOfClass:[NSAllSortView class]]){
+                        [view removeFromSuperview];
+                    }
+                }
+                [self.dict removeAllObjects];
+            }
+            
+            [self.rightTV reloadData];
+//            cell.isSelected = YES;
+            
             //跳转到列表页面
             NSSortListVC *sortListVC = [NSSortListVC new];
             sortListVC.titleString = rightModel.name;

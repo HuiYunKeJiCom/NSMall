@@ -155,5 +155,10 @@
     return _conversations;
 }
 
+//}
+
+-(void)goToSelectedViewControllerWith:(NSInteger)index{
+    self.selectedViewController = [self.viewControllers objectAtIndex:index];
+}
 
 @end
