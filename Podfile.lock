@@ -51,6 +51,7 @@ PODS:
     - UIColor+Hex/NSColor (= 1.0.1)
     - UIColor+Hex/UIColor (= 1.0.1)
   - UIColor+Hex/UIColor (1.0.1)
+  - UITableView+FDTemplateLayoutCell (1.6)
   - YYCache (1.0.4)
   - YYCategories (1.0.4):
     - YYCategories/no-arc (= 1.0.4)
@@ -83,6 +84,7 @@ DEPENDENCIES:
   - Toast
   - TZImagePickerController
   - UIColor+Hex
+  - UITableView+FDTemplateLayoutCell
   - YYCategories
   - YYKeyboardManager
   - YYModel
@@ -109,6 +111,7 @@ SPEC CHECKSUMS:
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   TZImagePickerController: 788184b04158006b25ffdbccbb550bfc193e9d9c
   UIColor+Hex: 9fee91bb8e19f17dd40a79ae1e98949a6a84489d
+  UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
@@ -117,6 +120,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 9e1c7932e1573ce7e771bd96cc275ef9ad8273eb
+PODFILE CHECKSUM: 22355b06abb3a2636c268a26a2ed17e817ce37ec
 
 COCOAPODS: 1.3.1

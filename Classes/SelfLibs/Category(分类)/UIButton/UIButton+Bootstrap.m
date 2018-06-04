@@ -70,7 +70,7 @@
     [self.imageView setContentMode:UIViewContentModeCenter];
     
     if([_position isEqualToString:@"left"]){
-        [self setImageEdgeInsets:UIEdgeInsetsMake((self.frame.size.height - 50)/2, 10.0, 0.0, 0)];
+        [self setImageEdgeInsets:UIEdgeInsetsMake((self.frame.size.height - 50)/2, 10.0, -25, 0)];
     }else if([_position isEqualToString:@"top"]){
         [self setImageEdgeInsets:UIEdgeInsetsMake(-5.0, 0.0, 25.0, -titleSize.width)];
     }else if([_position isEqualToString:@"right"]){
@@ -86,7 +86,7 @@
     if([_position isEqualToString:@"left"]){
         [self setTitleEdgeInsets:UIEdgeInsetsMake((self.frame.size.height - 50)/2,
                                                   image.size.width,
-                                                  0.0,
+                                                  -25,
                                                   0.0)];
     }else if([_position isEqualToString:@"top"]){
         [self setTitleEdgeInsets:UIEdgeInsetsMake(65.0,

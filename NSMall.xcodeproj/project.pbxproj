@@ -229,6 +229,7 @@
 		18D574CB209AA380001C7875 /* GetVcodeAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D574CA209AA380001C7875 /* GetVcodeAPI.m */; };
 		18D574CF209AA39A001C7875 /* GetVcodeParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D574CE209AA39A001C7875 /* GetVcodeParam.m */; };
 		18D574D2209AB1D6001C7875 /* HeaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D574D1209AB1D6001C7875 /* HeaderModel.m */; };
+		18D62C5820C2737300F66C4C /* NSGoodsShowCellTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D62C5720C2737300F66C4C /* NSGoodsShowCellTest.m */; };
 		18D71042208DC84C002BA6CD /* DCTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7103C208DC84C002BA6CD /* DCTabBarController.m */; };
 		18D71043208DC84C002BA6CD /* DCBaseSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7103D208DC84C002BA6CD /* DCBaseSetViewController.m */; };
 		18D71044208DC84C002BA6CD /* DCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7103E208DC84C002BA6CD /* DCNavigationController.m */; };
@@ -741,6 +742,8 @@
 		18D574CE209AA39A001C7875 /* GetVcodeParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetVcodeParam.m; sourceTree = "<group>"; };
 		18D574D0209AB1D6001C7875 /* HeaderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeaderModel.h; sourceTree = "<group>"; };
 		18D574D1209AB1D6001C7875 /* HeaderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeaderModel.m; sourceTree = "<group>"; };
+		18D62C5620C2737300F66C4C /* NSGoodsShowCellTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSGoodsShowCellTest.h; sourceTree = "<group>"; };
+		18D62C5720C2737300F66C4C /* NSGoodsShowCellTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSGoodsShowCellTest.m; sourceTree = "<group>"; };
 		18D71039208DC84C002BA6CD /* DCTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTabBarController.h; sourceTree = "<group>"; };
 		18D7103A208DC84C002BA6CD /* DCBaseSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCBaseSetViewController.h; sourceTree = "<group>"; };
 		18D7103B208DC84C002BA6CD /* DCNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCNavigationController.h; sourceTree = "<group>"; };
@@ -1410,6 +1413,8 @@
 				1874D5B920AA8F8A0004B1AF /* DCHomeTopToolView.m */,
 				1863D26520A96C8800047A7D /* NSGoodsShowCell.h */,
 				1863D26620A96C8800047A7D /* NSGoodsShowCell.m */,
+				18D62C5620C2737300F66C4C /* NSGoodsShowCellTest.h */,
+				18D62C5720C2737300F66C4C /* NSGoodsShowCellTest.m */,
 				1874D5BC20AABFDA0004B1AF /* NSCarouselView.h */,
 				1874D5BD20AABFDA0004B1AF /* NSCarouselView.m */,
 				1874D5BF20AAD50A0004B1AF /* NSFunctionCell.h */,
@@ -3215,6 +3220,7 @@
 				18D0C0B120AC0D01007F0784 /* TDUserCertifySubVCPics.m in Sources */,
 				18B0179420A67B9600826EA4 /* YWChooseAddressView.m in Sources */,
 				18B017B020A67B9600826EA4 /* CLTagsModel.m in Sources */,
+				18D62C5820C2737300F66C4C /* NSGoodsShowCellTest.m in Sources */,
 				18D0C0EA20AC1E4A007F0784 /* JFDatePickerController.m in Sources */,
 				184F0644209FFB7F00768418 /* UIImageView+WebCache.m in Sources */,
 				18DD157A208DD5AA0006475D /* NSMessageViewController.m in Sources */,

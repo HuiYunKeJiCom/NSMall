@@ -22,6 +22,7 @@
 #import "NSSortVC.h"
 #import "HistoryVC.h"
 #import "LZCartViewController.h"
+#import "NSGoodsShowCellTest.h"
 
 @interface NSHomePageVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
 
@@ -81,8 +82,10 @@
     _tableView.isRefresh = YES;
     _tableView.delegateBase = self;
     [self.view addSubview:_tableView];
+    _tableView.estimatedRowHeight = GetScaleWidth(259);
     [_tableView registerClass:[NSGoodsShowCell class] forCellReuseIdentifier:@"NSGoodsShowCell"];
     [_tableView registerClass:[NSFunctionCell class] forCellReuseIdentifier:@"NSFunctionCell"];
+    [_tableView registerClass:[NSGoodsShowCellTest class] forCellReuseIdentifier:@"NSGoodsShowCellTest"];
 }
 
 - (void)requestAllOrder:(BOOL)more {
@@ -126,7 +129,10 @@
     if(indexPath.section == 0){
         return GetScaleWidth(73);
     }else{
-        return GetScaleWidth(259);
+//        return GetScaleWidth(259);
+        return [tableView fd_heightForCellWithIdentifier:@"NSGoodsShowCellTest" cacheByIndexPath:indexPath configuration:^(NSGoodsShowCellTest *cell) {
+            [self configureCell:cell atIndexPath:indexPath];
+        }];
     }
 }
 
@@ -182,14 +188,26 @@
         
         return cell;
     }else{
-        NSGoodsShowCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSGoodsShowCell"];
+//        NSGoodsShowCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSGoodsShowCell"];
+//        if (!cell) {
+//            cell = [[NSGoodsShowCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSGoodsShowCell"];
+//        }
+//        WEAKSELF
+//        if (self.tableView.data.count > indexPath.section-1) {
+//            ProductListItemModel *model = self.tableView.data[indexPath.section-1];
+//            cell.productModel = model;
+//            cell.likeBtnClickBlock = ^{
+//                [weakSelf likeClickAtIndexPath:indexPath];
+//            };
+//        }
+//        return cell;
+        NSGoodsShowCellTest *cell = [tableView dequeueReusableCellWithIdentifier:@"NSGoodsShowCellTest"];
         if (!cell) {
-            cell = [[NSGoodsShowCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSGoodsShowCell"];
+            cell = [[NSGoodsShowCellTest alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSGoodsShowCellTest"];
         }
         WEAKSELF
         if (self.tableView.data.count > indexPath.section-1) {
-            ProductListItemModel *model = self.tableView.data[indexPath.section-1];
-            cell.productModel = model;
+            [self configureCell:cell atIndexPath:indexPath];
             cell.likeBtnClickBlock = ^{
                 [weakSelf likeClickAtIndexPath:indexPath];
             };
@@ -197,6 +215,12 @@
         return cell;
     }
     
+}
+
+- (void)configureCell:(NSGoodsShowCellTest *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
+    ProductListItemModel *model = self.tableView.data[indexPath.section-1];
+    cell.productModel = model;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

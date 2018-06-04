@@ -65,6 +65,7 @@ pod 'MJExtension', '~> 3.0.13'
 pod 'FMDB'
 pod 'SDCycleScrollView'
 pod 'ReactiveCocoa', '2.5'
+pod 'UITableView+FDTemplateLayoutCell'
 
 
 end

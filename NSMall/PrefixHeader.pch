@@ -60,6 +60,7 @@
 #import <ReactiveCocoa.h>
 #import "MBProgressHUD+Extension.h"
 #import "UIImage+Extension.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 
 #import <TZImagePickerController/TZImagePickerController.h>
 #import "LxGridViewFlowLayout.h"
