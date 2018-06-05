@@ -165,8 +165,15 @@
 }
 
 -(void)getVcodeWithPhone:(NSString *)phone{
-//    GetVcodeParam *param = [GetVcodeParam new];
+    GetVcodeParam *param = [GetVcodeParam new];
+    param.mobile = phone;
+    param.type = @"1";
     
+    [GetVcodeAPI getVcodeWithParam:param success:^{
+        DLog(@"获取验证码成功");
+    } faulre:^(NSError *error) {
+        DLog(@"获取验证码失败");
+    }];
 }
 
 

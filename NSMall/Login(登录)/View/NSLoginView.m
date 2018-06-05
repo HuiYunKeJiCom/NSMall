@@ -217,6 +217,7 @@
 - (void)actionLogin:(UIButton *)button {
     //测试
     self.nameTextField.textField.text = @"15913120993";
+    self.passTextField.textField.text = @"106126";
 //    self.nameTextField.textField.text = @"test";
 //    self.passTextField.textField.text = @"123456";
     
@@ -252,7 +253,7 @@
     }
 }
 
--(void)getVcodeWithPhone:(NSString *)phone{
+-(void)getVcodeWithPhone{
     if (self.delegate && [self.delegate respondsToSelector:@selector(getVcodeWithPhone:)]) {
         [self.delegate getVcodeWithPhone:[self.nameTextField.text trim]];
     }
@@ -303,7 +304,7 @@
         _sendBtn.titleLabel.font = [UIFont systemFontOfSize:kFontNum12];
         _sendBtn.layer.cornerRadius = 5;
         _sendBtn.layer.masksToBounds = YES;
-        
+        [_sendBtn addTarget:self action:@selector(getVcodeWithPhone) forControlEvents:UIControlEventTouchUpInside];
     }
     return  _sendBtn;
 }
