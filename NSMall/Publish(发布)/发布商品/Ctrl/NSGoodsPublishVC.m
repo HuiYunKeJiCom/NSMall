@@ -835,6 +835,7 @@
             //调用发布接口API
             [GoodsPublishAPI createProductWithParam:self.param success:^{
                 DLog(@"商品发布成功");
+                [self dismissViewControllerAnimated:YES completion:nil];
 //                [kAppDelegate setUpRootVC];
             } faulre:^(NSError *error) {
                 DLog(@"商品发布失败");
@@ -843,7 +844,6 @@
         } faulre:^(NSError *error) {
         }];
     }
-
 }
 
 -(NSString *)convertToJsonData:(NSDictionary *)dict

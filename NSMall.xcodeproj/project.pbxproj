@@ -244,6 +244,7 @@
 		18D71043208DC84C002BA6CD /* DCBaseSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7103D208DC84C002BA6CD /* DCBaseSetViewController.m */; };
 		18D71044208DC84C002BA6CD /* DCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7103E208DC84C002BA6CD /* DCNavigationController.m */; };
 		18D71045208DC84C002BA6CD /* DCTabBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D71041208DC84C002BA6CD /* DCTabBadgeView.m */; };
+		18DA7CF420C8D8AA009277AA /* ShopPublishParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DA7CF320C8D8AA009277AA /* ShopPublishParam.m */; };
 		18DD1562208DC9AB0006475D /* GQGesVCTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD155E208DC9AB0006475D /* GQGesVCTransition.m */; };
 		18DD1569208DCB7E0006475D /* DCSpeedy.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1567208DCB7E0006475D /* DCSpeedy.m */; };
 		18DD1577208DD4140006475D /* NSMyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1576208DD4140006475D /* NSMyCenterViewController.m */; };
@@ -780,6 +781,8 @@
 		18D7103E208DC84C002BA6CD /* DCNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCNavigationController.m; sourceTree = "<group>"; };
 		18D71040208DC84C002BA6CD /* DCTabBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTabBadgeView.h; sourceTree = "<group>"; };
 		18D71041208DC84C002BA6CD /* DCTabBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTabBadgeView.m; sourceTree = "<group>"; };
+		18DA7CF220C8D8AA009277AA /* ShopPublishParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopPublishParam.h; sourceTree = "<group>"; };
+		18DA7CF320C8D8AA009277AA /* ShopPublishParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopPublishParam.m; sourceTree = "<group>"; };
 		18DD155E208DC9AB0006475D /* GQGesVCTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQGesVCTransition.m; sourceTree = "<group>"; };
 		18DD155F208DC9AB0006475D /* GQGesVCTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQGesVCTransition.h; sourceTree = "<group>"; };
 		18DD1567208DCB7E0006475D /* DCSpeedy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSpeedy.m; sourceTree = "<group>"; };
@@ -1194,6 +1197,7 @@
 		184F05FF209FE81900768418 /* 发布店铺 */ = {
 			isa = PBXGroup;
 			children = (
+				18DA7CF120C8D84F009277AA /* Param */,
 				18B0173B20A67B9600826EA4 /* 地址 */,
 				18B0177F20A67B9600826EA4 /* 添加标签 */,
 				18B0177C20A67B9600826EA4 /* API */,
@@ -1913,13 +1917,13 @@
 		18B0178920A67B9600826EA4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18B0178E20A67B9600826EA4 /* CLDispalyTagView.h */,
 				18B0178A20A67B9600826EA4 /* CLDispalyTagView.m */,
 				18B0178B20A67B9600826EA4 /* CLRecentTagView.h */,
-				18B0178C20A67B9600826EA4 /* CLTagView.h */,
-				18B0178D20A67B9600826EA4 /* CLTagButton.h */,
-				18B0178E20A67B9600826EA4 /* CLDispalyTagView.h */,
 				18B0178F20A67B9600826EA4 /* CLRecentTagView.m */,
+				18B0178C20A67B9600826EA4 /* CLTagView.h */,
 				18B0179020A67B9600826EA4 /* CLTagView.m */,
+				18B0178D20A67B9600826EA4 /* CLTagButton.h */,
 				18B0179120A67B9600826EA4 /* CLTagButton.m */,
 			);
 			path = View;
@@ -2535,6 +2539,15 @@
 				18C3D0DB20A44803000FCE7F /* NSNavView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		18DA7CF120C8D84F009277AA /* Param */ = {
+			isa = PBXGroup;
+			children = (
+				18DA7CF220C8D8AA009277AA /* ShopPublishParam.h */,
+				18DA7CF320C8D8AA009277AA /* ShopPublishParam.m */,
+			);
+			path = Param;
 			sourceTree = "<group>";
 		};
 		18DD155B208DC9AB0006475D /* GQGesVCTransition */ = {
@@ -3248,6 +3261,7 @@
 				1842A6E620B59D360090861D /* LZCartTableViewCell.m in Sources */,
 				18C3D0A420A2F190000FCE7F /* UIView+YWFrame.m in Sources */,
 				18C3D0D720A3FAC3000FCE7F /* UIBarButtonItem+gyh.m in Sources */,
+				18DA7CF420C8D8AA009277AA /* ShopPublishParam.m in Sources */,
 				18C3D0A920A2F77E000FCE7F /* CategoryModel.m in Sources */,
 				18B017B220A67B9600826EA4 /* CLRecentTagView.m in Sources */,
 				1831CA6420C788CC00F00BAF /* NSBuyNowModel.m in Sources */,

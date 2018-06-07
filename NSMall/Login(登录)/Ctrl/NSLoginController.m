@@ -103,6 +103,15 @@
 //    param.loginType = @"0";
 //    param.smsCode = pwd;
    
+//    [UserInfoAPI getUserInfo:nil success:^{
+//        NSLog(@"获取用户信息");
+//        [kAppDelegate setUpRootVC];
+////        self.otherTableView.userModel = [UserModel modelFromUnarchive];
+//
+//    } faulre:^(NSError *error) {
+//        NSLog(@"获取用户信息失败");
+//    }];
+    
     [LoginAPI loginWithParam:param success:^{
         DLog(@"登录成功");
         EMError *error = [[EMClient sharedClient] registerWithUsername:param.loginAccount password:param.password];
@@ -111,16 +120,16 @@
         }else{
             NSLog(@"注册失败,%@",error.errorDescription);
         }
-        
+
         error= [[EMClient sharedClient] loginWithUsername:param.loginAccount password:param.password];
-        
+
         if(!error){
             NSLog(@"环信登录成功");
         }else{
             NSLog(@"登录失败");
         }
         [kAppDelegate setUpRootVC];
-        
+
     } faulre:^(NSError *error) {
         DLog(@"登录失败");
         DLog(@"error = %@",error);

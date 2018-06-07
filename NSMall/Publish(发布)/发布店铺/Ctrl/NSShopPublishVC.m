@@ -22,6 +22,8 @@
 #import "GetLabelsAPI.h"
 #import "GetLabelsParam.h"
 #import "LabelItemModel.h"
+#import "ShopPublishParam.h"
+#import "NSShopPublishAPI.h"
 
 @interface NSShopPublishVC ()<NSShopTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,NSAddLabelVCDelegate> {
     NSMutableArray *_selectedPhotos;
@@ -47,6 +49,8 @@
 
 @property(nonatomic,strong)UIScrollView *SV;/* 全局SV */
 @property(nonatomic,strong)NSInfoCustomCell *infoCell;/* 标签Cell */
+
+@property(nonatomic,strong)ShopPublishParam *param;/* 店铺发布参数 */
 @end
 
 @implementation NSShopPublishVC
@@ -96,6 +100,7 @@
     // Do any additional setup after loading the view.
     _selectedPhotos = [NSMutableArray array];
     _selectedAssets = [NSMutableArray array];
+    self.param = [ShopPublishParam new];
     
     self.SV = [[UIScrollView alloc]initWithFrame:CGRectMake(0, TopBarHeight, kScreenWidth, kScreenHeight-TopBarHeight-TabBarHeight)];
     self.SV.scrollEnabled = NO;
@@ -682,7 +687,32 @@
 }
 
 -(void)publish:(UIButton *)btn{
-    
+    NSMutableArray *pathArr = [NSMutableArray array];
+    for(int i=0;i<_selectedPhotos.count;i++){
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        [param setObject:_selectedPhotos[i] forKey:@"pic"];
+        [param setObject:[NSString stringWithFormat:@"pic%d",i] forKey:@"imageName"];
+        [NSShopPublishAPI uploadStorePicWithParam:param success:^(NSString *path) {
+            [pathArr addObject:path];
+            if(i==_selectedPhotos.count-1){
+                self.param.imagePath = [pathArr componentsJoinedByString:@","];
+                DLog(@"商品图片上传 = %lu",pathArr.count);
+               
+                self.param.storeName = self.shopNameTF.text;
+                self.param.introduce = self.detailTV.text;
+                
+                [NSShopPublishAPI createShopWithParam:self.param success:^{
+                    DLog(@"商品发布成功");
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                } faulre:^(NSError *error) {
+                    DLog(@"店铺发布失败");
+                }];
+                
+            }
+        } faulre:^(NSError *error) {
+            
+        }];
+    }
 }
 
 #pragma mark - Click Event

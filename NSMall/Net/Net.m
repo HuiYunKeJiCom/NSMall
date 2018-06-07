@@ -40,6 +40,11 @@ AFHTTPSessionManager *httpManager = nil;
         [Common AppShowHUD:showHUD];
     }else
         ;
+//    NSMutableDictionary *newParam = [NSMutableDictionary dictionaryWithDictionary:params];
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    NSString *appToken = [userDefaults valueForKey:@"appToken"];
+//    DLog(@"appToken = %@",appToken);
+//    [newParam setObject:appToken forKey:@"app_token"];
     
     [httpManager GET:[NSString stringWithFormat:@"%@%@",NetDomainADDR,function] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [Common AppHideHUD];
@@ -62,6 +67,11 @@ AFHTTPSessionManager *httpManager = nil;
         [Common AppShowHUD:showHUD];
     }else
         ;//do nothing
+//    NSMutableDictionary *newParam = [NSMutableDictionary dictionaryWithDictionary:params];
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    NSString *appToken = [userDefaults valueForKey:@"appToken"];
+//    DLog(@"appToken = %@",appToken);
+//    [newParam setObject:appToken forKey:@"app_token"];
     
     [httpManager POST:[NSString stringWithFormat:@"%@%@",NetDomainADDR,function] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [Common AppHideHUD];
@@ -81,6 +91,19 @@ AFHTTPSessionManager *httpManager = nil;
 }
 
 + (void)requestWithGet:(nullable id)params function:(nullable NSString *)function showHUD:(nullable NSString *)showHUD resultClass:(nullable Class)resultClass success:(nullable void (^)(id _Nullable resultObj))success failure:(nullable void (^)(NSError * _Nullable error))failure{
+//    NSMutableDictionary *newParam;
+//    if (params == nil){
+//        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//        NSString *appToken = [userDefaults valueForKey:@"appToken"];
+//        params = [NSDictionary dictionaryWithObject:appToken forKey:@"app_token"];
+//    }else{
+//        newParam = [NSMutableDictionary dictionaryWithDictionary:params];
+//        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//        NSString *appToken = [userDefaults valueForKey:@"appToken"];
+//        DLog(@"appToken = %@",appToken);
+//        [newParam setObject:appToken forKey:@"app_token"];
+//    }
+
     NSDictionary *requestParams = nil;
     if (params == nil || [params isKindOfClass:[NSDictionary class]])
         requestParams = params;
@@ -100,6 +123,19 @@ AFHTTPSessionManager *httpManager = nil;
 }
 
 + (void)requestWithPost:(nullable id)params function:(nullable NSString *)function showHUD:(nullable NSString *)showHUD resultClass:(nullable Class)resultClass success:(nullable void (^)(id _Nullable resultObj))success failure:(nullable void (^)(NSError * _Nullable error))failure{
+    
+//    NSMutableDictionary *newParam = [NSMutableDictionary dictionaryWithDictionary:params];
+//    if (params == nil){
+//        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//        NSString *appToken = [userDefaults valueForKey:@"appToken"];
+//        params = [NSDictionary dictionaryWithObject:appToken forKey:@"app_token"];
+//    }else{
+//        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//        NSString *appToken = [userDefaults valueForKey:@"appToken"];
+//        DLog(@"appToken = %@",appToken);
+//        [newParam setObject:appToken forKey:@"app_token"];
+//    }
+    
     NSDictionary *requestParams = nil;
     if (params == nil || [params isKindOfClass:[NSDictionary class]])
         requestParams = params;

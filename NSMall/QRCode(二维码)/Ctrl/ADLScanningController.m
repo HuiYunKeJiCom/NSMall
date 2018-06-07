@@ -80,6 +80,7 @@
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
         [weakSelf.navigationController popViewControllerAnimated:YES];
+//        [self delayPop];
     };
     [self.view addSubview:topToolView];
 }

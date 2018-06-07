@@ -61,6 +61,11 @@ const static NSString * const kCreateProductAPI = @"auth/createProduct";//商品
 const static NSString * const kUploadProductImageAPI = @"auth/uploadProductImage";//商品图片上传
 const static NSString * const kShelveProductAPI = @"auth/shelveProduct";//上/下架商品
 
+//店铺发布
+const static NSString * const kCreateStoreAPI = @"auth/createStore";//店铺发布
+const static NSString * const kUploadStoreImageAPI = @"auth/uploadStoreImage";//店铺图片上传
+
+
 //商品详情
 const static NSString * const kProductDetailAPI = @"productDetail";//获取商品详情
 const static NSString * const kGetCheckDataAPI = @"auth/getCheckData";//获取立即购买页面数据
