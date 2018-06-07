@@ -11,6 +11,7 @@
 #import "LoginAPI.h"
 #import "GetVcodeAPI.h"
 #import "GetVcodeParam.h"
+#import "UserInfoAPI.h"
 
 @interface NSLoginController ()<NSLoginViewDelegate>
 
@@ -85,13 +86,22 @@
 
 - (void)loginView:(NSLoginView *)logView userName:(NSString *)userName pwd:(NSString *)pwd {
     
+//    [UserInfoAPI getUserInfo:@{@"":@"app_token"} success:^{
+//        DLog(@"获取用户信息成功");
+//    [kAppDelegate setUpRootVC];
+//    } faulre:^(NSError *error) {
+//        DLog(@"获取用户信息失败");
+//    }];
+    
     LoginParam *param = [LoginParam new];
-//    param.loginAccount = @"test3";
-//    param.password = @"123456";
-//    param.loginType = @"1";
-    param.loginAccount = @"15913120993";
-    param.loginType = @"0";
-    param.smsCode = pwd;
+    param.loginAccount = @"test3";
+    param.password = @"123456";
+    param.loginType = @"1";
+    
+    
+//    param.loginAccount = userName;
+//    param.loginType = @"0";
+//    param.smsCode = pwd;
    
     [LoginAPI loginWithParam:param success:^{
         DLog(@"登录成功");

@@ -31,7 +31,7 @@
 - (void)setUpUI
 {
     self.goodsIV = [[UIImageView alloc] init];
-    [self.goodsIV setContentMode:UIViewContentModeScaleAspectFill];
+    [self.goodsIV setContentMode:UIViewContentModeScaleAspectFit];
     [self addSubview:self.goodsIV];
     
     self.detailLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum14 TextColor:[UIColor blackColor]];
@@ -54,10 +54,11 @@
     self.goodsIV.y = 6;
     self.goodsIV.size = CGSizeMake(53, 53);
     [self.goodsIV sd_setImageWithURL:[NSURL URLWithString:model.product_imge]];
-    self.detailLab.y = 59;
     self.detailLab.x =  CGRectGetMaxX(self.goodsIV.frame)+12;
     self.detailLab.text = model.introduce;
+    CGSize detailSize = [self contentSizeWithTitle:model.introduce andFont:14];
     [self.detailLab sizeToFit];
+    self.detailLab.y = self.goodsIV.centerY-detailSize.height*0.5;
     self.lineView2.x = 0;
     self.lineView2.y = CGRectGetMaxY(self.goodsIV.frame)+6;
     self.lineView2.size = CGSizeMake(kScreenWidth, 1);
@@ -67,6 +68,12 @@
 #pragma mark - 消失
 - (void)dealloc
 {
+}
+
+- (CGSize)contentSizeWithTitle:(NSString *)title andFont:(float)font{
+    CGSize maxSize = CGSizeMake(kScreenWidth *0.5, MAXFLOAT);
+    // 计算文字的高度
+    return  [title boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:font]} context:nil].size;
 }
 
 @end

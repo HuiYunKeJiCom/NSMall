@@ -10,6 +10,10 @@
 #import "NSGoodsDetailModel.h"
 #import "NSCollectModel.h"
 #import "NSAddCartParam.h"
+#import "NSBuildOrderNowParam.h"
+#import "NSWalletListModel.h"
+#import "NSBuyNowModel.h"
+
 
 @interface GoodsDetailAPI : NSObject
 
@@ -27,4 +31,14 @@
  *添加商品到购物车
  */
 + (void)addProductToCartWithParam:(NSAddCartParam *)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure;
+
+/*
+ *获取立即购买页面数据
+ */
++ (void)getBuyNowProductToCartWithParam:(NSAddCartParam *)param success:(void (^)(NSBuyNowModel *buyNowModel))success faulre:(void (^)(NSError *))failure;
+
+/*
+ *立即购买提交订单
+ */
++ (void)buildOrderNowWithParam:(NSBuildOrderNowParam *)param success:(void (^)(NSWalletListModel *walletList))success faulre:(void (^)(NSError *))failure;
 @end

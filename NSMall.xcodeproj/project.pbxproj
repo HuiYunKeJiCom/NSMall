@@ -11,6 +11,9 @@
 		18230F66208D793F00D3E55F /* BaseViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 18230F65208D793F00D3E55F /* BaseViewCtrl.m */; };
 		18230F6A208D795E00D3E55F /* FFLoadFailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18230F68208D795D00D3E55F /* FFLoadFailView.m */; };
 		182DC49120905E3C0066E667 /* ADOrderTopToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DC49020905E3C0066E667 /* ADOrderTopToolView.m */; };
+		1831CA6420C788CC00F00BAF /* NSBuyNowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831CA6320C788CC00F00BAF /* NSBuyNowModel.m */; };
+		1831CA6720C78F7500F00BAF /* NSNewFirmOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831CA6620C78F7500F00BAF /* NSNewFirmOrderVC.m */; };
+		1831CA6A20C7B33D00F00BAF /* NSNewFirmOrderTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831CA6920C7B33D00F00BAF /* NSNewFirmOrderTVCell.m */; };
 		18335F7620BBEF79006264EF /* NSChangeCartNumParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18335F7520BBEF79006264EF /* NSChangeCartNumParam.m */; };
 		18335F7920BC0310006264EF /* NSAreaItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18335F7820BC0310006264EF /* NSAreaItemModel.m */; };
 		18350890207F653600BCF7CE /* Net.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835088F207F653600BCF7CE /* Net.m */; };
@@ -92,6 +95,14 @@
 		18A7AB7F20ADB0BB009FC725 /* NSMyGoodsTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A7AB7E20ADB0BB009FC725 /* NSMyGoodsTVCell.m */; };
 		18A7AB8320ADB57E009FC725 /* NSMyProductListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A7AB8220ADB57E009FC725 /* NSMyProductListModel.m */; };
 		18A7AB8620ADB5AD009FC725 /* NSMyProductListItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A7AB8520ADB5AD009FC725 /* NSMyProductListItemModel.m */; };
+		18AD9FD320C626EC00275CC5 /* NSBuildOrderNowParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD9FD220C626EC00275CC5 /* NSBuildOrderNowParam.m */; };
+		18AD9FD820C6308900275CC5 /* NSCreateQRCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD9FD720C6308900275CC5 /* NSCreateQRCodeVC.m */; };
+		18AD9FDF20C67CCF00275CC5 /* ADLScanningController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD9FDE20C67CCF00275CC5 /* ADLScanningController.m */; };
+		18AD9FE320C67DAE00275CC5 /* ADAudioTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD9FE220C67DAE00275CC5 /* ADAudioTool.m */; };
+		18AD9FE620C67E8B00275CC5 /* ADLWebCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD9FE520C67E8B00275CC5 /* ADLWebCtrl.m */; };
+		18AD9FEA20C67F1000275CC5 /* GPLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD9FE920C67F1000275CC5 /* GPLoadingView.m */; };
+		18AD9FEE20C6806C00275CC5 /* NSPredicate+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD9FED20C6806C00275CC5 /* NSPredicate+Utility.m */; };
+		18AD9FF020C6822A00275CC5 /* qrcode_found.wav in Resources */ = {isa = PBXBuildFile; fileRef = 18AD9FEF20C6822900275CC5 /* qrcode_found.wav */; };
 		18ADC51720BAD57100961CD8 /* GoodAttributesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ADC51620BAD57100961CD8 /* GoodAttributesView.m */; };
 		18ADC51A20BAD5AE00961CD8 /* GoodAttrModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ADC51920BAD5AD00961CD8 /* GoodAttrModel.m */; };
 		18ADC51E20BADFCF00961CD8 /* NSAddCartParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ADC51D20BADFCF00961CD8 /* NSAddCartParam.m */; };
@@ -235,7 +246,6 @@
 		18D71045208DC84C002BA6CD /* DCTabBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D71041208DC84C002BA6CD /* DCTabBadgeView.m */; };
 		18DD1562208DC9AB0006475D /* GQGesVCTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD155E208DC9AB0006475D /* GQGesVCTransition.m */; };
 		18DD1569208DCB7E0006475D /* DCSpeedy.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1567208DCB7E0006475D /* DCSpeedy.m */; };
-		18DD156D208DCF3F0006475D /* NSHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD156C208DCF3F0006475D /* NSHomePageViewController.m */; };
 		18DD1577208DD4140006475D /* NSMyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1576208DD4140006475D /* NSMyCenterViewController.m */; };
 		18DD157A208DD5AA0006475D /* NSMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1579208DD5AA0006475D /* NSMessageViewController.m */; };
 		18DD157D208DD5F40006475D /* NSNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD157C208DD5F40006475D /* NSNearbyViewController.m */; };
@@ -307,6 +317,12 @@
 		18230F80208D835300D3E55F /* GlobalColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalColor.h; sourceTree = "<group>"; };
 		182DC48F20905E3C0066E667 /* ADOrderTopToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADOrderTopToolView.h; sourceTree = "<group>"; };
 		182DC49020905E3C0066E667 /* ADOrderTopToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADOrderTopToolView.m; sourceTree = "<group>"; };
+		1831CA6220C788CC00F00BAF /* NSBuyNowModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSBuyNowModel.h; sourceTree = "<group>"; };
+		1831CA6320C788CC00F00BAF /* NSBuyNowModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSBuyNowModel.m; sourceTree = "<group>"; };
+		1831CA6520C78F7500F00BAF /* NSNewFirmOrderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSNewFirmOrderVC.h; sourceTree = "<group>"; };
+		1831CA6620C78F7500F00BAF /* NSNewFirmOrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSNewFirmOrderVC.m; sourceTree = "<group>"; };
+		1831CA6820C7B33D00F00BAF /* NSNewFirmOrderTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSNewFirmOrderTVCell.h; sourceTree = "<group>"; };
+		1831CA6920C7B33D00F00BAF /* NSNewFirmOrderTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSNewFirmOrderTVCell.m; sourceTree = "<group>"; };
 		18335F7420BBEF79006264EF /* NSChangeCartNumParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSChangeCartNumParam.h; sourceTree = "<group>"; };
 		18335F7520BBEF79006264EF /* NSChangeCartNumParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSChangeCartNumParam.m; sourceTree = "<group>"; };
 		18335F7720BC0310006264EF /* NSAreaItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAreaItemModel.h; sourceTree = "<group>"; };
@@ -469,6 +485,21 @@
 		18A7AB8220ADB57E009FC725 /* NSMyProductListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSMyProductListModel.m; sourceTree = "<group>"; };
 		18A7AB8420ADB5AD009FC725 /* NSMyProductListItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSMyProductListItemModel.h; sourceTree = "<group>"; };
 		18A7AB8520ADB5AD009FC725 /* NSMyProductListItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSMyProductListItemModel.m; sourceTree = "<group>"; };
+		18AD9FD120C626EC00275CC5 /* NSBuildOrderNowParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSBuildOrderNowParam.h; sourceTree = "<group>"; };
+		18AD9FD220C626EC00275CC5 /* NSBuildOrderNowParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSBuildOrderNowParam.m; sourceTree = "<group>"; };
+		18AD9FD620C6308900275CC5 /* NSCreateQRCodeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCreateQRCodeVC.h; sourceTree = "<group>"; };
+		18AD9FD720C6308900275CC5 /* NSCreateQRCodeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCreateQRCodeVC.m; sourceTree = "<group>"; };
+		18AD9FDD20C67CCE00275CC5 /* ADLScanningController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADLScanningController.h; sourceTree = "<group>"; };
+		18AD9FDE20C67CCF00275CC5 /* ADLScanningController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADLScanningController.m; sourceTree = "<group>"; };
+		18AD9FE120C67DAE00275CC5 /* ADAudioTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADAudioTool.h; sourceTree = "<group>"; };
+		18AD9FE220C67DAE00275CC5 /* ADAudioTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADAudioTool.m; sourceTree = "<group>"; };
+		18AD9FE420C67E8B00275CC5 /* ADLWebCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADLWebCtrl.h; sourceTree = "<group>"; };
+		18AD9FE520C67E8B00275CC5 /* ADLWebCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADLWebCtrl.m; sourceTree = "<group>"; };
+		18AD9FE820C67F1000275CC5 /* GPLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPLoadingView.h; sourceTree = "<group>"; };
+		18AD9FE920C67F1000275CC5 /* GPLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPLoadingView.m; sourceTree = "<group>"; };
+		18AD9FEC20C6806C00275CC5 /* NSPredicate+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPredicate+Utility.h"; sourceTree = "<group>"; };
+		18AD9FED20C6806C00275CC5 /* NSPredicate+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPredicate+Utility.m"; sourceTree = "<group>"; };
+		18AD9FEF20C6822900275CC5 /* qrcode_found.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = qrcode_found.wav; sourceTree = "<group>"; };
 		18ADC51520BAD57100961CD8 /* GoodAttributesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodAttributesView.h; sourceTree = "<group>"; };
 		18ADC51620BAD57100961CD8 /* GoodAttributesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodAttributesView.m; sourceTree = "<group>"; };
 		18ADC51820BAD5AD00961CD8 /* GoodAttrModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodAttrModel.h; sourceTree = "<group>"; };
@@ -753,8 +784,6 @@
 		18DD155F208DC9AB0006475D /* GQGesVCTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQGesVCTransition.h; sourceTree = "<group>"; };
 		18DD1567208DCB7E0006475D /* DCSpeedy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSpeedy.m; sourceTree = "<group>"; };
 		18DD1568208DCB7E0006475D /* DCSpeedy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSpeedy.h; sourceTree = "<group>"; };
-		18DD156B208DCF3F0006475D /* NSHomePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSHomePageViewController.h; sourceTree = "<group>"; };
-		18DD156C208DCF3F0006475D /* NSHomePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSHomePageViewController.m; sourceTree = "<group>"; };
 		18DD1575208DD4140006475D /* NSMyCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSMyCenterViewController.h; sourceTree = "<group>"; };
 		18DD1576208DD4140006475D /* NSMyCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSMyCenterViewController.m; sourceTree = "<group>"; };
 		18DD1578208DD5AA0006475D /* NSMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSMessageViewController.h; sourceTree = "<group>"; };
@@ -898,6 +927,7 @@
 		18230F61208D790B00D3E55F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				18AD9FEB20C6806C00275CC5 /* NSPredicate */,
 				18D0C0E720AC1E4A007F0784 /* JFDatePickerController */,
 				18D0C0E320AC1E19007F0784 /* JFPickerController */,
 				18D0C0B820AC1149007F0784 /* AJPhotoBrowser */,
@@ -909,6 +939,8 @@
 		18230F62208D792100D3E55F /* SelfLibs */ = {
 			isa = PBXGroup;
 			children = (
+				18AD9FE720C67F1000275CC5 /* GPLoadingView */,
+				18AD9FE020C67DAE00275CC5 /* ADAudioTool */,
 				1842A6EA20B59DE20090861D /* LZConfigFile.h */,
 				184F0620209FFB7F00768418 /* Category(分类) */,
 				18DD1566208DCB630006475D /* Tools(工具) */,
@@ -1395,8 +1427,6 @@
 		1863D26320A96A9000047A7D /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
-				18DD156B208DCF3F0006475D /* NSHomePageViewController.h */,
-				18DD156C208DCF3F0006475D /* NSHomePageViewController.m */,
 				18D092FF2091BE9000E091E0 /* NSHomePageVC.h */,
 				18D093002091BE9000E091E0 /* NSHomePageVC.m */,
 			);
@@ -1505,6 +1535,7 @@
 		188CC647207F5430007D749E /* NSMall */ = {
 			isa = PBXGroup;
 			children = (
+				18AD9FD420C62FF300275CC5 /* QRCode(二维码) */,
 				18C3D08220A2F111000FCE7F /* Model */,
 				18D574CC209AA387001C7875 /* Param */,
 				18D574C8209AA35E001C7875 /* API */,
@@ -1530,6 +1561,7 @@
 				18230F70208D7B4200D3E55F /* Global.h */,
 				18D0823420956CEA0031034A /* GlobalAPI.h */,
 				18230F80208D835300D3E55F /* GlobalColor.h */,
+				18AD9FEF20C6822900275CC5 /* qrcode_found.wav */,
 			);
 			path = NSMall;
 			sourceTree = "<group>";
@@ -1614,11 +1646,61 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		18AD9FD420C62FF300275CC5 /* QRCode(二维码) */ = {
+			isa = PBXGroup;
+			children = (
+				18AD9FD520C6303600275CC5 /* Ctrl */,
+			);
+			path = "QRCode(二维码)";
+			sourceTree = "<group>";
+		};
+		18AD9FD520C6303600275CC5 /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				18AD9FE420C67E8B00275CC5 /* ADLWebCtrl.h */,
+				18AD9FE520C67E8B00275CC5 /* ADLWebCtrl.m */,
+				18AD9FDD20C67CCE00275CC5 /* ADLScanningController.h */,
+				18AD9FDE20C67CCF00275CC5 /* ADLScanningController.m */,
+				18AD9FD620C6308900275CC5 /* NSCreateQRCodeVC.h */,
+				18AD9FD720C6308900275CC5 /* NSCreateQRCodeVC.m */,
+			);
+			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		18AD9FE020C67DAE00275CC5 /* ADAudioTool */ = {
+			isa = PBXGroup;
+			children = (
+				18AD9FE120C67DAE00275CC5 /* ADAudioTool.h */,
+				18AD9FE220C67DAE00275CC5 /* ADAudioTool.m */,
+			);
+			path = ADAudioTool;
+			sourceTree = "<group>";
+		};
+		18AD9FE720C67F1000275CC5 /* GPLoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				18AD9FE820C67F1000275CC5 /* GPLoadingView.h */,
+				18AD9FE920C67F1000275CC5 /* GPLoadingView.m */,
+			);
+			path = GPLoadingView;
+			sourceTree = "<group>";
+		};
+		18AD9FEB20C6806C00275CC5 /* NSPredicate */ = {
+			isa = PBXGroup;
+			children = (
+				18AD9FEC20C6806C00275CC5 /* NSPredicate+Utility.h */,
+				18AD9FED20C6806C00275CC5 /* NSPredicate+Utility.m */,
+			);
+			path = NSPredicate;
+			sourceTree = "<group>";
+		};
 		18ADC51B20BADFA100961CD8 /* Param */ = {
 			isa = PBXGroup;
 			children = (
 				18ADC51C20BADFCF00961CD8 /* NSAddCartParam.h */,
 				18ADC51D20BADFCF00961CD8 /* NSAddCartParam.m */,
+				18AD9FD120C626EC00275CC5 /* NSBuildOrderNowParam.h */,
+				18AD9FD220C626EC00275CC5 /* NSBuildOrderNowParam.m */,
 			);
 			path = Param;
 			sourceTree = "<group>";
@@ -2099,8 +2181,8 @@
 		18D0824420956D2E0031034A /* API */ = {
 			isa = PBXGroup;
 			children = (
-				18D0824520956D2F0031034A /* LoginAPI.m */,
 				18D0824620956D2F0031034A /* LoginAPI.h */,
+				18D0824520956D2F0031034A /* LoginAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -2824,6 +2906,8 @@
 			children = (
 				18E1E33A20B6546700B0FD0C /* NSGoodsDetailVC.h */,
 				18E1E33B20B6546700B0FD0C /* NSGoodsDetailVC.m */,
+				1831CA6520C78F7500F00BAF /* NSNewFirmOrderVC.h */,
+				1831CA6620C78F7500F00BAF /* NSNewFirmOrderVC.m */,
 			);
 			path = Ctrl;
 			sourceTree = "<group>";
@@ -2837,6 +2921,8 @@
 				18C2DDE920B7A8FB00A3B851 /* NSMessageTV.m */,
 				18C2DDEB20B7A92300A3B851 /* NSMessageTVCell.h */,
 				18C2DDEC20B7A92300A3B851 /* NSMessageTVCell.m */,
+				1831CA6820C7B33D00F00BAF /* NSNewFirmOrderTVCell.h */,
+				1831CA6920C7B33D00F00BAF /* NSNewFirmOrderTVCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2854,6 +2940,8 @@
 				18C2DDEF20B7A97D00A3B851 /* NSMessageModel.m */,
 				18DD2F2420B95B0D00521B61 /* NSCollectModel.h */,
 				18DD2F2520B95B0D00521B61 /* NSCollectModel.m */,
+				1831CA6220C788CC00F00BAF /* NSBuyNowModel.h */,
+				1831CA6320C788CC00F00BAF /* NSBuyNowModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3082,6 +3170,7 @@
 				188CC652207F5431007D749E /* Assets.xcassets in Resources */,
 				188CC650207F5431007D749E /* Main.storyboard in Resources */,
 				18B0179A20A67B9600826EA4 /* YWAddressTableViewCell2.xib in Resources */,
+				18AD9FF020C6822A00275CC5 /* qrcode_found.wav in Resources */,
 				18B0179B20A67B9600826EA4 /* YWAddressTableViewCell3.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3161,7 +3250,9 @@
 				18C3D0D720A3FAC3000FCE7F /* UIBarButtonItem+gyh.m in Sources */,
 				18C3D0A920A2F77E000FCE7F /* CategoryModel.m in Sources */,
 				18B017B220A67B9600826EA4 /* CLRecentTagView.m in Sources */,
+				1831CA6420C788CC00F00BAF /* NSBuyNowModel.m in Sources */,
 				18D0C0B420AC0D01007F0784 /* TDUserCertifySectionHeader.m in Sources */,
+				18AD9FEA20C67F1000275CC5 /* GPLoadingView.m in Sources */,
 				18E3A42920B263F000F847ED /* NSWaitDeliverSaleVC.m in Sources */,
 				18ADC51E20BADFCF00961CD8 /* NSAddCartParam.m in Sources */,
 				18D0C0B320AC0D01007F0784 /* TDUserCertifyCellPics.m in Sources */,
@@ -3196,6 +3287,7 @@
 				18D0C0AB20AC0D01007F0784 /* TDUserCertifyCellTxtInput.m in Sources */,
 				18B017AE20A67B9600826EA4 /* CLTools.m in Sources */,
 				18D0C0E220AC1CA5007F0784 /* TDCountryCodesModel.m in Sources */,
+				18AD9FD320C626EC00275CC5 /* NSBuildOrderNowParam.m in Sources */,
 				18D71044208DC84C002BA6CD /* DCNavigationController.m in Sources */,
 				1819B65620A71DC8009EAF87 /* NSSecondaryCategoryVC.m in Sources */,
 				18C3D0C520A3DD76000FCE7F /* NSString+Extension.m in Sources */,
@@ -3230,6 +3322,7 @@
 				18D0C0AA20AC0D01007F0784 /* TDUserCertifyDataBasic.m in Sources */,
 				18DD2F1320B90B1D00521B61 /* HistorySearchHistroyViewP.m in Sources */,
 				184F061B209FE81A00768418 /* TZTestCell.m in Sources */,
+				18AD9FEE20C6806C00275CC5 /* NSPredicate+Utility.m in Sources */,
 				18DD2F1D20B90B1E00521B61 /* LLSearchHistorySaveUtils.m in Sources */,
 				18B0179D20A67B9600826EA4 /* ADAddressLabelTableViewCell.m in Sources */,
 				18B0179720A67B9600826EA4 /* YWAddressViewController.m in Sources */,
@@ -3256,12 +3349,12 @@
 				18D0C0A620AC0D01007F0784 /* TDUserCertifySubVCConfirm.m in Sources */,
 				18D71042208DC84C002BA6CD /* DCTabBarController.m in Sources */,
 				18DD158B208DEAD80006475D /* BaseTableView.m in Sources */,
-				18DD156D208DCF3F0006475D /* NSHomePageViewController.m in Sources */,
 				18A7AB7F20ADB0BB009FC725 /* NSMyGoodsTVCell.m in Sources */,
 				18E3A42020B2633200F847ED /* NSAbolishBuyVC.m in Sources */,
 				184F065D20A2E37300768418 /* StoreItemModel.m in Sources */,
 				184F064A209FFB7F00768418 /* UIView+Layout.m in Sources */,
 				18E1E34620B65CD000B0FD0C /* GoodsDetailAPI.m in Sources */,
+				1831CA6A20C7B33D00F00BAF /* NSNewFirmOrderTVCell.m in Sources */,
 				18D0824F20956D2F0031034A /* LoginParam.m in Sources */,
 				18D092FE20917A1400E091E0 /* DCTabBarCenterButton.m in Sources */,
 				18DD2F1620B90B1D00521B61 /* TagTypeModel.m in Sources */,
@@ -3276,6 +3369,7 @@
 				18DD2F1020B90B1D00521B61 /* NBSSearchShopCategoryView.m in Sources */,
 				18DD2F1520B90B1D00521B61 /* HistoryAndCategorySearchVC.m in Sources */,
 				18D0C0E620AC1E19007F0784 /* JFPickerController.m in Sources */,
+				18AD9FDF20C67CCF00275CC5 /* ADLScanningController.m in Sources */,
 				18D574D2209AB1D6001C7875 /* HeaderModel.m in Sources */,
 				1899B7B620B57643002FF2A8 /* NSLikeModel.m in Sources */,
 				18C3CFF020A2EF3B000FCE7F /* YWAddressDataTool.m in Sources */,
@@ -3324,11 +3418,13 @@
 				18B017B420A67B9600826EA4 /* CLTagButton.m in Sources */,
 				184F0648209FFB7F00768418 /* UIView+DCRolling.m in Sources */,
 				18E1E34320B6599D00B0FD0C /* NSDetailItemModel.m in Sources */,
+				18AD9FE320C67DAE00275CC5 /* ADAudioTool.m in Sources */,
 				184F0643209FFB7F00768418 /* UIImage+wrapper.m in Sources */,
 				18DD2F1F20B90B1E00521B61 /* HistoryVC.m in Sources */,
 				184F0640209FFB7F00768418 /* MBProgressHUD+MJ.m in Sources */,
 				18B1CB1420BF9B5C00235CFA /* WalletItemModel.m in Sources */,
 				1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */,
+				1831CA6720C78F7500F00BAF /* NSNewFirmOrderVC.m in Sources */,
 				18DD2F1120B90B1D00521B61 /* NBSSearchShopHistoryView.m in Sources */,
 				18D0824C20956D2F0031034A /* NSLImageField.m in Sources */,
 				18DD2F1E20B90B1E00521B61 /* LLSearchNaviBarView.m in Sources */,
@@ -3336,6 +3432,7 @@
 				18ADC52520BAEA9C00961CD8 /* CartAPI.m in Sources */,
 				18B017A420A67B9600826EA4 /* GetAreaParam.m in Sources */,
 				18C3CFFB20A2EFE0000FCE7F /* NSTimer+BlockSupport.m in Sources */,
+				18AD9FD820C6308900275CC5 /* NSCreateQRCodeVC.m in Sources */,
 				18B0179520A67B9600826EA4 /* YWAddressTableViewCell.m in Sources */,
 				188CC64A207F5430007D749E /* AppDelegate.mm in Sources */,
 				18DD2F1920B90B1E00521B61 /* UIView+LLRect.m in Sources */,
@@ -3408,6 +3505,7 @@
 				18B1CAFE20BF902100235CFA /* NSWalletListModel.m in Sources */,
 				1842A6D520B59D350090861D /* LZGoodsModel.m in Sources */,
 				1878478020AED12100AC0E0F /* NSMyShopTVCell.m in Sources */,
+				18AD9FE620C67E8B00275CC5 /* ADLWebCtrl.m in Sources */,
 				18C3D08720A2F111000FCE7F /* LabelListModel.m in Sources */,
 				18D0C0CD20AC167C007F0784 /* TDNameCertifyModel.m in Sources */,
 				183ED91420BE3FE200DB0487 /* NSFirmOrderCell.m in Sources */,

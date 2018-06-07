@@ -24,16 +24,17 @@
         DLog(@"userModel.app_token = %@",userModel.app_token);
         
         // 读取数据
-        NSString *appToken = [userDefaults valueForKey:@"appToken"];
+//        NSString *appToken = [userDefaults valueForKey:@"appToken"];
+//        DLog(@"appToken = %@",appToken);
         
-//        [httpManager.requestSerializer setValue:userModel.app_token forHTTPHeaderField:@"app_token"];
+//        [httpManager.requestSerializer setValue:@"db3198c079d0a699fc89cee9e6d30588" forHTTPHeaderField:@"app_token"];
         
-        if(appToken){
-            [httpManager.requestSerializer setValue:appToken forHTTPHeaderField:@"app_token"];
-        }else{
+//        if(appToken){
+//            [httpManager.requestSerializer setValue:appToken forHTTPHeaderField:@"app_token"];
+//        }else{
             [httpManager.requestSerializer setValue:userModel.app_token forHTTPHeaderField:@"app_token"];
-        }
-        
+//        }
+//
         
         
         success?success():nil;

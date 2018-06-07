@@ -37,11 +37,11 @@
 }
 
 -(void)buildUI{
-    _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(183))];
+    _bgView = [[UIView alloc] init];
     _bgView.backgroundColor = kWhiteColor;
     [self addSubview:self.bgView];
     
-    self.headerIV = [[UIImageView alloc] initWithFrame:CGRectMake(18, 5, 29, 29)];
+    self.headerIV = [[UIImageView alloc] init];
     [self.headerIV setContentMode:UIViewContentModeScaleAspectFill];
     [self.bgView addSubview:self.headerIV];
     
@@ -75,6 +75,11 @@
     [self.bgView addSubview:self.nextOperation];
 }
 
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    [self makeConstraints];
+}
+
 -(void)setFrame:(CGRect)frame {
     //    frame.origin.y += 15;
     [super setFrame:frame];
@@ -85,13 +90,13 @@
     _model = model;
     [self.headerIV sd_setImageWithURL:[NSURL URLWithString:model.user_avatar]];
     self.userName.text = model.user_name;
-    CGSize userSize = [self contentSizeWithTitle:model.user_name andFont:14];
-    self.userName.y = CGRectGetMidY(self.headerIV.frame)-userSize.height*0.5;
-    self.userName.x = CGRectGetMaxX(self.headerIV.frame)+12;
-    [self.userName sizeToFit];
-    self.arrowIV.x = CGRectGetMaxX(self.userName.frame)+11;
-    self.arrowIV.y = 13;
-    self.arrowIV.size = CGSizeMake(5, 9);
+//    CGSize userSize = [self contentSizeWithTitle:model.user_name andFont:14];
+//    self.userName.y = CGRectGetMidY(self.headerIV.frame)-userSize.height*0.5;
+//    self.userName.x = CGRectGetMaxX(self.headerIV.frame)+12;
+//    [self.userName sizeToFit];
+//    self.arrowIV.x = CGRectGetMaxX(self.userName.frame)+11;
+//    self.arrowIV.y = 13;
+//    self.arrowIV.size = CGSizeMake(5, 9);
     self.arrowIV.image = IMAGE(@"my_ico_right_arrow");
     switch (model.order_status) {
         case 1:{
@@ -131,13 +136,13 @@
         default:
             break;
     }
-    CGSize stateSize = [self contentSizeWithTitle:self.stateLab.text andFont:14];
-    self.stateLab.y = CGRectGetMidY(self.headerIV.frame)-stateSize.height *0.5;
-    self.stateLab.x =  kScreenWidth -19-stateSize.width;
-    [self.stateLab sizeToFit];
-    self.lineView1.x = 0;
-    self.lineView1.y = CGRectGetMaxY(self.headerIV.frame)+7;
-    self.lineView1.size = CGSizeMake(kScreenWidth, 1);
+//    CGSize stateSize = [self contentSizeWithTitle:self.stateLab.text andFont:14];
+//    self.stateLab.y = CGRectGetMidY(self.headerIV.frame)-stateSize.height *0.5;
+//    self.stateLab.x =  kScreenWidth -19-stateSize.width;
+//    [self.stateLab sizeToFit];
+//    self.lineView1.x = 0;
+//    self.lineView1.y = CGRectGetMaxY(self.headerIV.frame)+7;
+//    self.lineView1.size = CGSizeMake(kScreenWidth, 1);
     
     float height = 41;
     NSLog(@"productList = %lu",model.productList.count);
@@ -147,18 +152,18 @@
         goodsView.x = 0;
         goodsView.y = height;
         goodsView.size = CGSizeMake(kScreenWidth, 65);
+        [self.bgView addSubview:goodsView];
         
         height+=65;
     }
-    
     self.totalLab.text = [NSString stringWithFormat:@"共%lu件商品,小计N%.2f/¥%.2f",model.buy_number,model.pay_amount,model.order_score];
-    self.nextOperation.x = kScreenWidth-67-19;
-    self.nextOperation.y = CGRectGetMaxY(self.bgView.frame)-14-28;
-    self.nextOperation.size = CGSizeMake(67, 28);
-    CGSize totalSize = [self contentSizeWithTitle:self.totalLab.text andFont:14];
-    [self.totalLab sizeToFit];
-    self.totalLab.x =  kScreenWidth-18-totalSize.width;
-    self.totalLab.y = CGRectGetMinY(self.nextOperation.frame)-10-totalSize.height;
+//    CGSize totalSize = [self contentSizeWithTitle:self.totalLab.text andFont:14];
+//    [self.totalLab sizeToFit];
+//    self.totalLab.x =  kScreenWidth-18-totalSize.width;
+//    self.totalLab.y = height+15;
+//    self.nextOperation.x = kScreenWidth-67-19;
+//    self.nextOperation.y = CGRectGetMaxY(self.totalLab.frame)+10;
+//    self.nextOperation.size = CGSizeMake(67, 28);
 }
 
 -(void)nextOperationClick{
@@ -169,5 +174,57 @@
     CGSize maxSize = CGSizeMake(kScreenWidth *0.5, MAXFLOAT);
     // 计算文字的高度
     return  [title boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:font]} context:nil].size;
+}
+
+#pragma mark - makeConstraints
+
+- (void)makeConstraints {
+    WEAKSELF
+    
+    [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.contentView.mas_left);
+        make.top.equalTo(weakSelf.contentView.mas_top);
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth, GetScaleWidth(173)));
+    }];
+    
+    [self.headerIV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.bgView.mas_left).with.offset(18);
+        make.top.equalTo(weakSelf.bgView.mas_top).with.offset(5);
+        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(29), GetScaleWidth(29)));
+    }];
+    
+    [self.userName mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.headerIV.mas_right).with.offset(12);
+        make.centerY.equalTo(weakSelf.headerIV.mas_centerY);
+    }];
+    
+    [self.arrowIV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.userName.mas_right).with.offset(11);
+        make.top.equalTo(weakSelf.bgView.mas_top).with.offset(13);
+        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(5), GetScaleWidth(9)));
+    }];
+
+    [self.stateLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(weakSelf.bgView.mas_right).with.offset(-19);
+        make.centerY.equalTo(weakSelf.headerIV.mas_centerY);
+    }];
+    
+    [self.lineView1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.bgView.mas_left);
+        make.top.equalTo(weakSelf.headerIV.mas_bottom).with.offset(7);
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth, GetScaleWidth(1)));
+    }];
+    
+    [self.nextOperation mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(weakSelf.bgView.mas_right).with.offset(-19);
+        make.bottom.equalTo(weakSelf.bgView.mas_bottom).with.offset(GetScaleWidth(-10));
+        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(67), GetScaleWidth(28)));
+    }];
+    
+    [self.totalLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(weakSelf.bgView.mas_right).with.offset(-19);
+        make.bottom.equalTo(weakSelf.nextOperation.mas_top).with.offset(-10);
+    }];
+
 }
 @end

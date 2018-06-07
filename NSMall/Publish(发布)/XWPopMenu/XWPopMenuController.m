@@ -64,23 +64,16 @@
 
 //重新初始化主视图样式 透明->
 -(void)loadView{
-    
     UIView *view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    
     [view setBackgroundColor:[UIColor whiteColor]];
-    
     //获取截取的背景图片，便于达到模糊背景效果
     UIImageView *imgView = [[UIImageView alloc]initWithImage:_backImg];
-    
     //模糊效果层
     UIView *blurView =[[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
 //    [UIColor colorWithWhite:0.9 alpha:0.9] ColorWithRGBA(64, 64, 64, 0.9)
     [blurView setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:0.95]];// [UIColor colorWithWhite:0.9 alpha:0.8]];
-
     [imgView addSubview:blurView];
-    
     [view addSubview:imgView];
-    
     self.view = view;
     
 }

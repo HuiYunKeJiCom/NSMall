@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "NSLoginController.h"
 #import "CYLTabBarController.h"
-#import "NSHomePageViewController.h"//首页
 #import "NSNearbyViewController.h"//附近
 #import "NSMyCenterViewController.h"//我的
 #import "NSMessageViewController.h"//消息

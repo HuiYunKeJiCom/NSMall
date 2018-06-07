@@ -18,8 +18,8 @@
 #define Host  [NSString stringWithFormat:@"http%@/adel-shop/app/",CurrentHost]
 
 //#define NetDomainADDR @"://2008503qw3.51mypc.cn"
-//const static NSString * const NetDomainADDR = @"http://adelshop.iok.la:41831/nsshop/app/";
-const static NSString * const NetDomainADDR = @"https://stagewww.neublockchain.com/nsshop/app/";
+const static NSString * const NetDomainADDR = @"http://adelshop.iok.la:41831/nsshop/app/";
+//const static NSString * const NetDomainADDR = @"https://stagewww.neublockchain.com/nsshop/app/";
 
 const static NSString * const kLoginAPI = @"login";
 const static NSString * const kHomePageProductListAPI = @"productList";//获取首页的商品列表
@@ -64,7 +64,7 @@ const static NSString * const kShelveProductAPI = @"auth/shelveProduct";//上/�
 //商品详情
 const static NSString * const kProductDetailAPI = @"productDetail";//获取商品详情
 const static NSString * const kGetCheckDataAPI = @"auth/getCheckData";//获取立即购买页面数据
-
+const static NSString * const kBuildOrderNowAPI = @"auth/buildOrder";//立即购买提交订单
 
 const static NSString * const kSearchAPI = @"search";//商品/店铺搜索、分类商品列表、卖家商品/店铺列表
 

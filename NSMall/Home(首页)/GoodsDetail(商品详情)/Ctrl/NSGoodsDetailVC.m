@@ -17,7 +17,7 @@
 #import "GoodAttrModel.h"
 #import "NSAddCartParam.h"
 #import "LZCartViewController.h"
-
+#import "NSNewFirmOrderVC.h"
 
 @interface NSGoodsDetailVC ()<UIScrollViewDelegate,NSMessageTVDelegate>
 @property(nonatomic,strong)UIScrollView *SV;/* 滚动 */
@@ -356,7 +356,18 @@
         }
         
     }else{
-        
+        //立即购买
+        if(self.model.productSpecList.count == 0){
+            NSAddCartParam *param = [NSAddCartParam new];
+            param.productId = self.productID;
+            param.buyNumber = @"1";
+            NSNewFirmOrderVC *firmOrderVC = [NSNewFirmOrderVC new];
+            [firmOrderVC loadDataWithParam:param];
+            [self.navigationController pushViewController:firmOrderVC animated:YES];
+            
+        }else{
+            [self addBuyNowGoodAttributesView];
+        }
     }
 }
 
@@ -387,6 +398,55 @@
         } faulre:^(NSError *error) {
             DLog(@"加入购物车失败");
         }];
+    };
+    
+    NSString *str = [NSString stringWithFormat:@"N%.2f/¥%.2f",self.model.show_price,self.model.show_score];
+    NSArray *strArr = [str componentsSeparatedByString:@"/¥"];
+    
+    attributesView.good_img = self.model.productImageList[0];
+    if(self.model.stock == -1){
+        attributesView.good_price = @"无限供应";
+    }else{
+        attributesView.good_price = [NSString stringWithFormat:@"库存 %lu 件",self.model.stock];
+    }
+    
+    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:str];
+    [AttributedStr addAttribute:NSForegroundColorAttributeName
+     
+                          value:kRedColor
+     
+                          range:[str rangeOfString:strArr[0]]];
+    
+    attributesView.goodsNameLbl.attributedText = AttributedStr;
+    
+    [attributesView showInView:self.navigationController.view];
+}
+
+-(void)addBuyNowGoodAttributesView{
+    
+    GoodAttrModel *model1 = [GoodAttrModel new];
+    model1.attr_id = @"12";
+    model1.attr_name = nil;
+    model1.attr_value = [NSMutableArray array];
+    for(int i=0;i<self.model.productSpecList.count;i++){
+        NSDetailItemModel *itemModel = self.model.productSpecList[i];
+        GoodAttrValueModel *value = [GoodAttrValueModel new];
+        value.attr_value = itemModel.spec_name;
+        [model1.attr_value addObject:value];
+        [self.goodSpecDict setValue:itemModel.product_spec_id forKey:itemModel.spec_name];
+    }
+    
+    self.goodAttrsArr = [NSArray arrayWithObjects: model1, nil];
+    
+    GoodAttributesView *attributesView = [[GoodAttributesView alloc] initWithFrame:(CGRect){0, 0, kScreenWidth, kScreenHeight}];
+    attributesView.goodAttrsArr = self.goodAttrsArr;
+    attributesView.sureBtnsClick = ^(NSString *num, NSString *attrs, NSString *goods_attr_value_1) {
+        NSAddCartParam *param = [NSAddCartParam new];
+        param.productId = self.productID;
+        param.buyNumber = num;
+        NSNewFirmOrderVC *firmOrderVC = [NSNewFirmOrderVC new];
+        [firmOrderVC loadDataWithParam:param];
+        [self.navigationController pushViewController:firmOrderVC animated:YES];
     };
     
     NSString *str = [NSString stringWithFormat:@"N%.2f/¥%.2f",self.model.show_price,self.model.show_score];

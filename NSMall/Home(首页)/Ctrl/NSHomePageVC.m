@@ -23,6 +23,8 @@
 #import "HistoryVC.h"
 #import "LZCartViewController.h"
 #import "NSGoodsShowCellTest.h"
+#import "NSCreateQRCodeVC.h"
+#import "ADLScanningController.h"
 
 @interface NSHomePageVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
 
@@ -61,8 +63,8 @@
     WEAKSELF
     _topToolView.rightItemClickBlock = ^{
         NSLog(@"点击了首页扫一扫");
-//        DCCommodityViewController *dcComVc = [DCCommodityViewController new];
-//        [weakSelf.navigationController pushViewController:dcComVc animated:YES];
+        ADLScanningController *scanVC = [ADLScanningController new];
+        [weakSelf.navigationController pushViewController:scanVC animated:YES];
     };
     _topToolView.searchButtonClickBlock = ^{
         NSLog(@"点击了首页搜索");
@@ -91,35 +93,86 @@
 
 - (void)requestAllOrder:(BOOL)more {
     [self.tableView updateLoadState:more];
-
     WEAKSELF
+    
+    //异步加载数据
+    
+    [self.imageGroupArray removeAllObjects];
+    [self.imageDict removeAllObjects];
+    
+    //    dispatch_queue_t queue = dispatch_queue_create("HomePageDataRequest", DISPATCH_QUEUE_CONCURRENT);
+    
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_group_enter(group);
+    
     [HomePageAPI getProductList:nil success:^(ProductListModel * _Nullable result) {
         NSLog(@"获取产品列表成功");
         weakSelf.tableView.data = [NSMutableArray arrayWithArray:result.productList];
         [weakSelf.tableView updatePage:more];
         weakSelf.tableView.noDataView.hidden = weakSelf.tableView.data.count;
-        [weakSelf.tableView reloadData];
+        //            [weakSelf.tableView reloadData];
+        dispatch_group_leave(group);
     } failure:^(NSError *error) {
         NSLog(@"获取产品列表失败");
     }];
     
-    [self.imageGroupArray removeAllObjects];
-    [self.imageDict removeAllObjects];
+    dispatch_group_enter(group);
     
     [HomePageAPI getHomePageAdvertInfro:@{@"advertCode":@"indexHeadAdvert"} success:^(AdvertListModel * _Nullable result) {
         NSLog(@"count = %lu",result.advertList.count);
         NSLog(@"获取广告数据成功");
         for(AdvertItemModel *model in result.advertList){
-//            NSLog(@"path = %@",model.pic_img);
+            //            NSLog(@"path = %@",model.pic_img);
             [weakSelf.imageGroupArray addObject:model.pic_img];
             [weakSelf.imageDict setValue:model forKey:model.pic_img];
         }
-        [weakSelf
-         .tableView reloadData];
+        //            [weakSelf.tableView reloadData];
+        //处理数据
+        dispatch_group_leave(group);
     } failure:^(NSError *error) {
         NSLog(@"获取广告数据失败");
     }];
-
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        //请求完成后的处理、
+        NSLog(@"完成");
+        [weakSelf.tableView reloadData];
+    });
+    
+    
+    
+//    dispatch_group_t group = dispatch_group_create();
+//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//
+//    dispatch_group_async(group, dispatch_get_main_queue(), ^{
+//        [HomePageAPI getProductList:nil success:^(ProductListModel * _Nullable result) {
+//            NSLog(@"获取产品列表成功");
+//            weakSelf.tableView.data = [NSMutableArray arrayWithArray:result.productList];
+//            [weakSelf.tableView updatePage:more];
+//            weakSelf.tableView.noDataView.hidden = weakSelf.tableView.data.count;
+//            //            [weakSelf.tableView reloadData];
+//        } failure:^(NSError *error) {
+//            NSLog(@"获取产品列表失败");
+//        }];
+//    });
+//
+//    dispatch_group_async(group, queue, ^{
+//        [HomePageAPI getHomePageAdvertInfro:@{@"advertCode":@"indexHeadAdvert"} success:^(AdvertListModel * _Nullable result) {
+//            NSLog(@"count = %lu",result.advertList.count);
+//            NSLog(@"获取广告数据成功");
+//            for(AdvertItemModel *model in result.advertList){
+//                //            NSLog(@"path = %@",model.pic_img);
+//                [weakSelf.imageGroupArray addObject:model.pic_img];
+//                [weakSelf.imageDict setValue:model forKey:model.pic_img];
+//            }
+//            //            [weakSelf.tableView reloadData];
+//        } failure:^(NSError *error) {
+//            NSLog(@"获取广告数据失败");
+//        }];
+//    });
+//    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+//        [weakSelf.tableView reloadData];
+//    });
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -161,6 +214,9 @@
         };
         carouselView.QRBtnClickBlock = ^{
             DLog(@"点击了二维码");
+            NSCreateQRCodeVC *qrCodeVC = [NSCreateQRCodeVC new];
+            qrCodeVC.QRString = @"shshfeihashasds";
+            [self.navigationController pushViewController:qrCodeVC animated:YES];
         };
         carouselView.shopCartBtnClickBlock = ^{
             DLog(@"点击了购物车");

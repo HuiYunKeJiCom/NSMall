@@ -1,35 +1,36 @@
 //
-//  NSFirmOrderVC.m
+//  NSNewFirmOrderVC.m
 //  NSMall
 //
-//  Created by 张锐凌 on 2018/5/30.
+//  Created by 张锐凌 on 2018/6/6.
 //  Copyright © 2018年 www. All rights reserved.
 //
 
-#import "NSFirmOrderVC.h"
+#import "NSNewFirmOrderVC.h"
 #import "ADOrderTopToolView.h"
-#import "NSFirmOrderModel.h"
-#import "NSFirmOrderCell.h"
+#import "NSNewFirmOrderTVCell.h"
 #import "NSAddressTVCell.h"
-#import "CartAPI.h"
-#import "NSBuildOrderParam.h"
-
+#import "GoodsDetailAPI.h"
+#import "NSBuildOrderNowParam.h"
 #import "ADReceivingAddressViewController.h"//地址列表
 #import "NSWalletListModel.h"
 #import "NSPayView.h"
 #import "WalletAPI.h"
 #import "NSInputPwView.h"
+#import "NSBuyNowModel.h"
+#import "NSPayOrderParam.h"
+#import "CartAPI.h"
 
-@interface NSFirmOrderVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate,NSInputPwViewDelegate>
+@interface NSNewFirmOrderVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate,NSInputPwViewDelegate>
 @property (nonatomic, strong) BaseTableView         *goodsTable;
-@property(nonatomic,strong)NSFirmOrderModel *firmOrderModel;/* 数据模型 */
-@property(nonatomic,copy)NSString *cartId;/* 购物车Id */
+@property(nonatomic,strong)NSAddCartParam *cartParam;/* 立即购买参数 */
 @property(nonatomic,copy)NSString *walletID;/* 购物车Id */
 @property(nonatomic,strong)NSWalletListModel *walletListModel;/* 订单模型 */
 //@property(nonatomic,strong)NSMutableArray *walletNameArr;/* 钱包名称 */
+@property(nonatomic,strong)NSBuyNowModel *buyNowModel;/* 商品立即模型 */
 @end
 
-@implementation NSFirmOrderVC
+@implementation NSNewFirmOrderVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,7 +38,7 @@
     [self.view addSubview:self.goodsTable];
     [self setUpNavTopView];
     [self makeConstraints];
-//    [self requestAllOrder:NO];
+    //    [self requestAllOrder:NO];
 }
 
 #pragma mark - 导航栏处理
@@ -78,7 +79,7 @@
     
     UILabel *sumLab = [[UILabel alloc]init];
     sumLab.textColor = KBGCOLOR;
-    NSString *str = [NSString stringWithFormat:@"N%.2f/¥%.2f",self.firmOrderModel.payment_price,self.firmOrderModel.payment_score];
+    NSString *str = [NSString stringWithFormat:@"N%.2f/¥%.2f",self.buyNowModel.payment_price,self.buyNowModel.payment_score];
     NSArray *strArr = [str componentsSeparatedByString:@"/¥"];
     NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:str];
     [AttributedStr addAttribute:NSForegroundColorAttributeName
@@ -116,8 +117,8 @@
     
 }
 
--(void)loadDataWithNSString:(NSString *)string{
-    self.cartId = string;
+-(void)loadDataWithParam:(NSAddCartParam *)param{
+    self.cartParam = param;
     [self requestAllOrder:NO];
 }
 
@@ -125,16 +126,16 @@
     [self.goodsTable updateLoadState:more];
     
     WEAKSELF
-    [CartAPI checkCartDataWithParam:self.cartId success:^(NSFirmOrderModel *firmOrderModel) {
-        NSLog(@"获取获取购物车结算页面数据成功");
-        weakSelf.firmOrderModel = firmOrderModel;
-        weakSelf.goodsTable.data = [NSMutableArray arrayWithArray:firmOrderModel.cartList];
+    [GoodsDetailAPI getBuyNowProductToCartWithParam:self.cartParam success:^(NSBuyNowModel *buyNowModel) {
+        DLog(@"立即购买成功");
+        self.buyNowModel = buyNowModel;
+        weakSelf.goodsTable.data = [NSMutableArray arrayWithObject:buyNowModel];
         [self.goodsTable updatePage:more];
         self.goodsTable.noDataView.hidden = self.goodsTable.data.count;
         [self.goodsTable reloadData];
         [self setUpButtomView];
     } faulre:^(NSError *error) {
-        NSLog(@"获取获取购物车结算页面数据失败");
+        DLog(@"立即购买失败");
     }];
     
 }
@@ -147,7 +148,7 @@
         _goodsTable.isLoadMore = YES;
         _goodsTable.isRefresh = YES;
         _goodsTable.delegateBase = self;
-        [_goodsTable registerClass:[NSFirmOrderCell class] forCellReuseIdentifier:@"NSFirmOrderCell"];
+        [_goodsTable registerClass:[NSNewFirmOrderTVCell class] forCellReuseIdentifier:@"NSNewFirmOrderTVCell"];
         [_goodsTable registerClass:[NSAddressTVCell class] forCellReuseIdentifier:@"NSAddressTVCell"];
     }
     return _goodsTable;
@@ -183,9 +184,7 @@
     if(indexPath.section == 0){
         return GetScaleWidth(65);
     }else{
-        LZShopModel *shopModel = self.goodsTable.data[indexPath.section-1];
-//        DLog(@"cellHeight = %.2f",shopModel.cellHeight);
-        return shopModel.cellHeight;
+        return GetScaleWidth(176+48+34);
     }
 }
 
@@ -193,14 +192,14 @@
     
     if(indexPath.section == 0){
         NSAddressTVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSAddressTVCell"];
-        cell.addressModel = self.firmOrderModel.defaultAddress;
+        cell.addressModel = self.buyNowModel.defaultAddress;
         return cell;
     }else{
-        NSFirmOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSFirmOrderCell"];
+        NSNewFirmOrderTVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSNewFirmOrderTVCell"];
         if (self.goodsTable.data.count > indexPath.section-1) {
-            LZShopModel *model = self.goodsTable.data[indexPath.section-1];
+            NSBuyNowModel *model = self.goodsTable.data[indexPath.section-1];
             //        NSLog(@"model = %@",model.mj_keyValues);
-            cell.shopModel = model;
+            cell.model = model;
         }
         
         return cell;
@@ -212,7 +211,7 @@
         
         ADReceivingAddressViewController *receivingAddressVC = [[ADReceivingAddressViewController alloc] init];
         receivingAddressVC.addressBlock = ^(NSAddressItemModel *model) {
-            self.firmOrderModel.defaultAddress = model;
+            self.buyNowModel.defaultAddress = model;
             [self.goodsTable reloadData];
         };
         [self.navigationController pushViewController:receivingAddressVC animated:YES];
@@ -220,11 +219,11 @@
 }
 
 - (void)baseTableVIew:(BaseTableView *)tableView refresh:(BOOL)flag {
-//    [self requestAllOrder:NO];
+    //    [self requestAllOrder:NO];
 }
 
 - (void)baseTableView:(BaseTableView *)tableView loadMore:(BOOL)flag {
-//    [self requestAllOrder:YES];
+    //    [self requestAllOrder:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -239,10 +238,12 @@
 }
 
 -(void)buildOrder{
-    NSBuildOrderParam *param = [NSBuildOrderParam new];
-    param.cartIds = self.cartId;
-    param.addressId = self.firmOrderModel.defaultAddress.address_id;
-    [CartAPI buildOrderWithParam:param success:^(NSWalletListModel *walletList) {
+    NSBuildOrderNowParam *param = [NSBuildOrderNowParam new];
+    param.productSpecNumber = [NSString stringWithFormat:@"%ld",self.buyNowModel.product_spec_number];
+    param.buyNumber = [NSString stringWithFormat:@"%lu",self.buyNowModel.buy_number] ;
+    param.addressId = self.buyNowModel.defaultAddress.address_id;
+    
+    [GoodsDetailAPI buildOrderNowWithParam:param success:^(NSWalletListModel *walletList) {
         DLog(@"创建订单成功");
         self.walletListModel = walletList;
     } faulre:^(NSError *error) {
@@ -254,13 +255,9 @@
     
     [WalletAPI getWalletListWithParam:nil success:^(NSWalletModel *walletModel) {
         NSLog(@"获取钱包列表成功");
-//        [self.walletNameArr removeAllObjects];
-//        for (WalletItemModel* model in walletModel.walletList) {
-//            [self.walletNameArr addObject:model];
-//        }
         NSPayView *payView = [[NSPayView alloc] initWithFrame:(CGRect){0, 0, kScreenWidth, kScreenHeight}];
         payView.userInteractionEnabled = YES;
-        payView.payString = [NSString stringWithFormat:@"N%.2f/¥%.2f",self.firmOrderModel.payment_price,self.firmOrderModel.payment_score];
+        payView.payString = [NSString stringWithFormat:@"N%.2f/¥%.2f",self.buyNowModel.payment_price,self.buyNowModel.payment_score];
         payView.walletNameArr = [NSMutableArray arrayWithArray:walletModel.walletList];
         __weak typeof(payView) PayView = payView;
         payView.confirmClickBlock = ^{
@@ -302,11 +299,5 @@
     }];
 }
 
-//-(NSMutableArray *)walletNameArr{
-//    if (!_walletNameArr) {
-//        _walletNameArr = [NSMutableArray array];
-//    }
-//    return _walletNameArr;
-//}
 
 @end

@@ -39,4 +39,27 @@
     }];
 }
 
+/*
+ *获取立即购买页面数据
+ */
++ (void)getBuyNowProductToCartWithParam:(NSAddCartParam *)param success:(void (^)(NSBuyNowModel *buyNowModel))success faulre:(void (^)(NSError *))failure{
+    [Net requestWithPost:param function:kGetCheckDataAPI showHUD:NetNullStr resultClass:[NSBuyNowModel class] success:^(NSBuyNowModel  *_Nullable resultObj) {
+        success?success(resultObj):nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+}
+
+/*
+ *立即购买提交订单
+ */
++ (void)buildOrderNowWithParam:(NSBuildOrderNowParam *)param success:(void (^)(NSWalletListModel *walletList))success faulre:(void (^)(NSError *))failure{
+    [Net requestWithPost:param function:kBuildOrderNowAPI showHUD:NetNullStr resultClass:[NSWalletListModel class] success:^(NSWalletListModel  *_Nullable resultObj) {
+        success?success(resultObj):nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+    
+}
+
 @end

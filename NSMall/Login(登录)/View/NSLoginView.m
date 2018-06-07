@@ -48,6 +48,10 @@
 //    [self addSubview:self.forgetButton];
 //    [self addSubview:self.phoneButton];
     
+    //测试
+    self.nameTextField.textField.text = @"15913120993";
+    self.passTextField.textField.text = @"123456";
+    
     [self refreshView];
     
     [self makeConstraints];
@@ -215,9 +219,7 @@
  *登陆
  */
 - (void)actionLogin:(UIButton *)button {
-    //测试
-    self.nameTextField.textField.text = @"15913120993";
-    self.passTextField.textField.text = @"106126";
+    
 //    self.nameTextField.textField.text = @"test";
 //    self.passTextField.textField.text = @"123456";
     
