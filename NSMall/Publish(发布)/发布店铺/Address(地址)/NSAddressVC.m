@@ -1,23 +1,25 @@
 //
-//  NSNearbyViewController.m
+//  NSAddressVC.m
 //  NSMall
 //
-//  Created by 张锐凌 on 2018/4/23.
+//  Created by 张锐凌 on 2018/6/8.
 //  Copyright © 2018年 www. All rights reserved.
 //
 
-#import "NSNearbyViewController.h"
+#import "NSAddressVC.h"
 
-@interface NSNearbyViewController ()<BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,BMKPoiSearchDelegate,BMKMapViewDelegate>
+@interface NSAddressVC ()<BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,BMKPoiSearchDelegate,BMKMapViewDelegate,UITextFieldDelegate>
 @property(nonatomic,strong)BMKMapView *mapView;/* 地图view */
 @property(nonatomic,strong)BMKLocationService *locService;/* 定位 */
 @property(nonatomic,strong)UIImageView *pinIV;/* 大头针 */
 @property(nonatomic,strong)UILabel *geographicLab;/* 地理信息 */
+@property(nonatomic,strong)UIImageView *labelBgV;/* 地理信息背景图 */
 @property(nonatomic,strong)BMKGeoCodeSearch *searcher;/* 云检索 */
+@property(nonatomic,strong)UITextField *searchTF;/* 搜索地址 */
 
 @end
 
-@implementation NSNearbyViewController
+@implementation NSAddressVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,10 +39,10 @@
     self.mapView.userTrackingMode = BMKUserTrackingModeHeading;//设置定位的状态为定位罗盘模式，我的位置始终在地图中心，我的位置图标和地图都会跟着旋转
     //以下_mapView为BMKMapView对象
     self.mapView.showsUserLocation = NO;//显示定位图层
-//    self.mapView.userTrackingMode = BMKUserTrackingModeHeading;
+    //    self.mapView.userTrackingMode = BMKUserTrackingModeHeading;
     [self.view addSubview:_mapView];
     self.mapView.userInteractionEnabled = YES;
-
+    
     self.pinIV = [[UIImageView alloc]init];
     self.pinIV.image = IMAGE(@"pin");
     self.pinIV.contentMode = UIViewContentModeScaleAspectFit;
@@ -48,20 +50,41 @@
     self.pinIV.center = self.view.center;
     [self.view addSubview:self.pinIV];
     
+    self.searchTF = [[UITextField alloc]init];
+    self.searchTF.delegate = self;
+    self.searchTF.textColor = kBlackColor;
+    self.searchTF.backgroundColor = kWhiteColor;
+    self.searchTF.x = 40;
+    self.searchTF.y = 30;
+    UIView *paddingView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, GetScaleWidth(30))];
+    self.searchTF.leftView = paddingView;
+    self.searchTF.leftViewMode = UITextFieldViewModeAlways;
+    self.searchTF.size = CGSizeMake(kScreenWidth-80, 30);
+    self.searchTF.alpha = 0.7;
+    [self.view addSubview:self.searchTF];
+    
+    self.labelBgV = [[UIImageView alloc] init];
+    self.labelBgV.alpha = 0.9;
+    self.labelBgV.x = 40;
+    self.labelBgV.y = kScreenHeight-130;
+    self.labelBgV.size = CGSizeMake(kScreenWidth-80, 30);
+    self.labelBgV.backgroundColor = kWhiteColor;
+    [self.view addSubview:self.labelBgV];
+    
     self.geographicLab = [[UILabel alloc]init];
-    self.geographicLab.x = 40;
-    self.geographicLab.y = kScreenHeight-120;
-    self.geographicLab.size = CGSizeMake(kScreenWidth-80, 40);
+    self.geographicLab.x = 10;
+    self.geographicLab.y = 0;
+    self.geographicLab.size = CGSizeMake(kScreenWidth-90, 30);
     self.geographicLab.textColor = kBlackColor;
     self.geographicLab.font = UISystemFontSize(14);
     self.geographicLab.textAlignment = NSTextAlignmentLeft;
-    self.geographicLab.backgroundColor = kWhiteColor;
-    [self.view addSubview:self.geographicLab];
+    self.geographicLab.backgroundColor = [UIColor clearColor];
+    [self.labelBgV addSubview:self.geographicLab];
     
     //logo位置
     self.mapView.logoPosition = BMKLogoPositionLeftBottom;
     
-
+    
     
     
 }
@@ -70,18 +93,18 @@
 //处理方向变更信息
 - (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
 {
-//    NSLog(@"heading is %@",userLocation.heading);
+    //    NSLog(@"heading is %@",userLocation.heading);
 }
 
 //处理位置坐标更新
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
-//    NSLog(@"didUpdateUserLocation lat %.6f,long %.6f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
-
+    //    NSLog(@"didUpdateUserLocation lat %.6f,long %.6f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    
     NSLog(@"定位成功！！！");
     [self.mapView updateLocationData:userLocation];//更新位置 前提是MapView.showsUserLocation=YES;
     self.mapView.centerCoordinate = userLocation.location.coordinate;//移动到中心点
-
+    
     BMKCoordinateRegion region ;//表示范围的结构体
     region.center = userLocation.location.coordinate;//中心点
     region.span.latitudeDelta = 0.001;//经度范围（设置为0.1表示显示范围为0.2的纬度范围）
@@ -126,6 +149,7 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [self.mapView viewWillDisappear];
     self.mapView.delegate = nil;
+    _searcher.delegate = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -134,7 +158,7 @@
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
-
+    
     CGRect pinFrame = self.pinIV.frame;
     [UIView animateWithDuration:0.4 animations:^{
         self.pinIV.frame = CGRectMake(pinFrame.origin.x, pinFrame.origin.y-10, pinFrame.size.width, pinFrame.size.height);
@@ -149,8 +173,8 @@
     MKCoordinateRegion region;
     CLLocationCoordinate2D centerCoordinate = mapView.region.center;
     region.center= centerCoordinate;
-
-//    NSLog(@" regionDidChangeAnimated %f,%f",centerCoordinate.latitude, centerCoordinate.longitude);
+    
+    //    NSLog(@" regionDidChangeAnimated %f,%f",centerCoordinate.latitude, centerCoordinate.longitude);
     _searcher =[[BMKGeoCodeSearch alloc]init];
     _searcher.delegate = self;
     
@@ -165,26 +189,61 @@
     {
         NSLog(@"geo检索发送失败");
     }
-
+    
 }
 
 //接收反向地理编码结果
 -(void) onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result
                         errorCode:(BMKSearchErrorCode)error{
     
-    DLog(@"error = %u",error);
-    DLog(@"BMK_SEARCH_NO_ERROR = %d",BMK_SEARCH_NO_ERROR);
+    //    DLog(@"error = %u",error);
+    //    DLog(@"BMK_SEARCH_NO_ERROR = %d",BMK_SEARCH_NO_ERROR);
     if (error == BMK_SEARCH_NO_ERROR) {
         
-        
-        
-        NSLog(@"address = %@",result.address);
-        NSLog(@"addressDetail = %@",result.addressDetail);
-        NSLog(@"sematicDescription = %@",result.sematicDescription);
+        //        NSLog(@"address = %@",result.address);
+        //        NSLog(@"addressDetail = %@",result.addressDetail);
+        //        NSLog(@"sematicDescription = %@",result.sematicDescription);
         
         self.geographicLab.text = [NSString stringWithFormat:@"%@",result.address];
     }
 }
 
+//实现Deleage处理回调结果
+//返回地址信息搜索结果
+- (void)onGetGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error {
+    
+    if (error == BMK_SEARCH_NO_ERROR) {
+        //在此处理正常结果
+        DLog(@"latitude = %f,longitude = %f",result.location.latitude,result.location.longitude);
+        self.mapView.centerCoordinate = result.location;
+        //        result.location
+    }
+    else {
+        NSLog(@"抱歉，未找到结果");
+    }
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.searchTF resignFirstResponder];// 使当前文本框失去第一响应者的特权，就会回收键盘了
+    
+    _searcher =[[BMKGeoCodeSearch alloc]init];
+    _searcher.delegate = self;
+    //发起地理位置检索
+    BMKGeoCodeSearchOption *geoCodeSearchOption = [[BMKGeoCodeSearchOption alloc]init];
+    geoCodeSearchOption.address = self.searchTF.text;
+    //    @"广东省深圳市宝安区海汇路105";
+    //    geoCodeSearchOption.city = @"北京";
+    BOOL flag = [_searcher geoCode:geoCodeSearchOption];
+    if(flag)
+    {
+        NSLog(@"geo检索发送成功");
+    }
+    else
+    {
+        NSLog(@"geo检索发送失败");
+    }
+    
+    return YES;
+}
 
 @end

@@ -644,7 +644,7 @@
                 }
                 [self.otherTableView reloadData];
             };
-            [self presentViewController:ctrl animated:YES completion:nil];
+            [self.navigationController pushViewController:ctrl animated:YES];
         }
             break;
         case 2:{
@@ -662,7 +662,7 @@
                 }
                 [self.otherTableView reloadData];
             };
-            [self presentViewController:ctrl animated:YES completion:nil];
+            [self.navigationController pushViewController:ctrl animated:YES];
         }
             break;
         case 3:{
@@ -686,7 +686,7 @@
                 }
                 [self.otherTableView reloadData];
             };
-            [self presentViewController:ctrl animated:YES completion:nil];
+            [self.navigationController pushViewController:ctrl animated:YES];
         }
             break;
         case 5:{

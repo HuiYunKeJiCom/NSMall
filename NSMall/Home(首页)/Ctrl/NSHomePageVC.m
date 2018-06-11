@@ -102,9 +102,60 @@
     
     //    dispatch_queue_t queue = dispatch_queue_create("HomePageDataRequest", DISPATCH_QUEUE_CONCURRENT);
     
+//    __block NSInteger requestCount = 0;
+//
+//    //第一个网络请求
+//    [HomePageAPI getProductList:nil success:^(ProductListModel * _Nullable result) {
+//        NSLog(@"获取产品列表成功");
+//        weakSelf.tableView.data = [NSMutableArray arrayWithArray:result.productList];
+//        [weakSelf.tableView updatePage:more];
+//        weakSelf.tableView.noDataView.hidden = weakSelf.tableView.data.count;
+//        //            [weakSelf.tableView reloadData];
+//        requestCount++;
+//        if (self.complete) {
+//            self.complete();
+//        }
+//
+//    } failure:^(NSError *error) {
+//        NSLog(@"获取产品列表失败");
+//    }];
+//
+//    //第二个网络请求
+//    [HomePageAPI getHomePageAdvertInfro:@{@"advertCode":@"indexHeadAdvert"} success:^(AdvertListModel * _Nullable result) {
+//        NSLog(@"count = %lu",result.advertList.count);
+//        NSLog(@"获取广告数据成功");
+//        for(AdvertItemModel *model in result.advertList){
+//            //            NSLog(@"path = %@",model.pic_img);
+//            [weakSelf.imageGroupArray addObject:model.pic_img];
+//            [weakSelf.imageDict setValue:model forKey:model.pic_img];
+//        }
+//        //            [weakSelf.tableView reloadData];
+//
+//        requestCount++;
+//        if (self.complete) {
+//            self.complete();
+//        }
+//
+//    } failure:^(NSError *error) {
+//        NSLog(@"获取广告数据失败");
+//    }];
+//
+//    self.complete = ^{
+//        //请求网络的数量等于3表示三个网络请求已完成
+//        if (requestCount == 2) {
+//            //在这里 进行请求后的方法，回到主线程
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                //更新UI操作
+//                [weakSelf.tableView reloadData];
+//            });
+//        }
+//    };
+    
+    
+    
     dispatch_group_t group = dispatch_group_create();
     dispatch_group_enter(group);
-    
+
     [HomePageAPI getProductList:nil success:^(ProductListModel * _Nullable result) {
         NSLog(@"获取产品列表成功");
         weakSelf.tableView.data = [NSMutableArray arrayWithArray:result.productList];
@@ -115,9 +166,9 @@
     } failure:^(NSError *error) {
         NSLog(@"获取产品列表失败");
     }];
-    
+
     dispatch_group_enter(group);
-    
+
     [HomePageAPI getHomePageAdvertInfro:@{@"advertCode":@"indexHeadAdvert"} success:^(AdvertListModel * _Nullable result) {
         NSLog(@"count = %lu",result.advertList.count);
         NSLog(@"获取广告数据成功");
@@ -132,47 +183,13 @@
     } failure:^(NSError *error) {
         NSLog(@"获取广告数据失败");
     }];
-    
+
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         //请求完成后的处理、
         NSLog(@"完成");
         [weakSelf.tableView reloadData];
     });
-    
-    
-    
-//    dispatch_group_t group = dispatch_group_create();
-//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//
-//    dispatch_group_async(group, dispatch_get_main_queue(), ^{
-//        [HomePageAPI getProductList:nil success:^(ProductListModel * _Nullable result) {
-//            NSLog(@"获取产品列表成功");
-//            weakSelf.tableView.data = [NSMutableArray arrayWithArray:result.productList];
-//            [weakSelf.tableView updatePage:more];
-//            weakSelf.tableView.noDataView.hidden = weakSelf.tableView.data.count;
-//            //            [weakSelf.tableView reloadData];
-//        } failure:^(NSError *error) {
-//            NSLog(@"获取产品列表失败");
-//        }];
-//    });
-//
-//    dispatch_group_async(group, queue, ^{
-//        [HomePageAPI getHomePageAdvertInfro:@{@"advertCode":@"indexHeadAdvert"} success:^(AdvertListModel * _Nullable result) {
-//            NSLog(@"count = %lu",result.advertList.count);
-//            NSLog(@"获取广告数据成功");
-//            for(AdvertItemModel *model in result.advertList){
-//                //            NSLog(@"path = %@",model.pic_img);
-//                [weakSelf.imageGroupArray addObject:model.pic_img];
-//                [weakSelf.imageDict setValue:model forKey:model.pic_img];
-//            }
-//            //            [weakSelf.tableView reloadData];
-//        } failure:^(NSError *error) {
-//            NSLog(@"获取广告数据失败");
-//        }];
-//    });
-//    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-//        [weakSelf.tableView reloadData];
-//    });
+  
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

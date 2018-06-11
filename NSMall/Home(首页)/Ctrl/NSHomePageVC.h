@@ -15,4 +15,7 @@
 
 @interface NSHomePageVC : UIViewController
 
+typedef void(^Complete)(void);
+@property (copy, nonatomic) Complete complete;
+
 @end

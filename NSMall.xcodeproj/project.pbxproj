@@ -302,6 +302,8 @@
 		18E3A44E20B2E5D900F847ED /* GoodsPublishAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E3A44D20B2E5D900F847ED /* GoodsPublishAPI.m */; };
 		18E3A45420B2E63D00F847ED /* GoodsPublishParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E3A45320B2E63D00F847ED /* GoodsPublishParam.m */; };
 		18E3A45720B2EF5000F847ED /* ShelveProductParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E3A45620B2EF5000F847ED /* ShelveProductParam.m */; };
+		18E854BC20CA5A03007C23F5 /* NSAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E854BB20CA5A03007C23F5 /* NSAddressVC.m */; };
+		18E854C520CA6CE0007C23F5 /* AnimatedAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E854C420CA6CE0007C23F5 /* AnimatedAnnotationView.m */; };
 		18EB286220A548EE00B45958 /* NSSpecView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB286120A548EE00B45958 /* NSSpecView.m */; };
 		D94C1DAA8AC2D84A9BDB1A9D /* libPods-NSMall.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC0BFBB703FAFE6E76D201D /* libPods-NSMall.a */; };
 /* End PBXBuildFile section */
@@ -897,6 +899,10 @@
 		18E3A45320B2E63D00F847ED /* GoodsPublishParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsPublishParam.m; sourceTree = "<group>"; };
 		18E3A45520B2EF5000F847ED /* ShelveProductParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShelveProductParam.h; sourceTree = "<group>"; };
 		18E3A45620B2EF5000F847ED /* ShelveProductParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShelveProductParam.m; sourceTree = "<group>"; };
+		18E854BA20CA5A03007C23F5 /* NSAddressVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAddressVC.h; sourceTree = "<group>"; };
+		18E854BB20CA5A03007C23F5 /* NSAddressVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAddressVC.m; sourceTree = "<group>"; };
+		18E854C320CA6CE0007C23F5 /* AnimatedAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimatedAnnotationView.h; sourceTree = "<group>"; };
+		18E854C420CA6CE0007C23F5 /* AnimatedAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimatedAnnotationView.m; sourceTree = "<group>"; };
 		18EB286020A548EE00B45958 /* NSSpecView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSpecView.h; sourceTree = "<group>"; };
 		18EB286120A548EE00B45958 /* NSSpecView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSpecView.m; sourceTree = "<group>"; };
 		8FEDDD97CEA9FCAA52E970F0 /* Pods-NSMall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSMall.release.xcconfig"; path = "Pods/Target Support Files/Pods-NSMall/Pods-NSMall.release.xcconfig"; sourceTree = "<group>"; };
@@ -1197,8 +1203,8 @@
 		184F05FF209FE81900768418 /* 发布店铺 */ = {
 			isa = PBXGroup;
 			children = (
+				18E854B920CA596E007C23F5 /* Address(地址) */,
 				18DA7CF120C8D84F009277AA /* Param */,
-				18B0173B20A67B9600826EA4 /* 地址 */,
 				18B0177F20A67B9600826EA4 /* 添加标签 */,
 				18B0177C20A67B9600826EA4 /* API */,
 				18B0177B20A67B9600826EA4 /* Model */,
@@ -2597,8 +2603,9 @@
 		18DD1571208DD32B0006475D /* Nearby(附近) */ = {
 			isa = PBXGroup;
 			children = (
-				18DD157B208DD5F40006475D /* NSNearbyViewController.h */,
-				18DD157C208DD5F40006475D /* NSNearbyViewController.m */,
+				18E854BF20CA6B0F007C23F5 /* View */,
+				18E854BE20CA6B09007C23F5 /* Model */,
+				18E854BD20CA6AF9007C23F5 /* Ctrl */,
 			);
 			path = "Nearby(附近)";
 			sourceTree = "<group>";
@@ -2905,6 +2912,7 @@
 		18E1E33620B652F400B0FD0C /* GoodsDetail(商品详情) */ = {
 			isa = PBXGroup;
 			children = (
+				18B0173B20A67B9600826EA4 /* 地址 */,
 				18ADC51B20BADFA100961CD8 /* Param */,
 				18E1E33D20B654A700B0FD0C /* API */,
 				18E1E33920B6531B00B0FD0C /* Model */,
@@ -3100,6 +3108,40 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		18E854B920CA596E007C23F5 /* Address(地址) */ = {
+			isa = PBXGroup;
+			children = (
+				18E854BA20CA5A03007C23F5 /* NSAddressVC.h */,
+				18E854BB20CA5A03007C23F5 /* NSAddressVC.m */,
+			);
+			path = "Address(地址)";
+			sourceTree = "<group>";
+		};
+		18E854BD20CA6AF9007C23F5 /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				18DD157B208DD5F40006475D /* NSNearbyViewController.h */,
+				18DD157C208DD5F40006475D /* NSNearbyViewController.m */,
+			);
+			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		18E854BE20CA6B09007C23F5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18E854BF20CA6B0F007C23F5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18E854C320CA6CE0007C23F5 /* AnimatedAnnotationView.h */,
+				18E854C420CA6CE0007C23F5 /* AnimatedAnnotationView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		8F123AEEBF3F7D66C38531D5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -3272,6 +3314,7 @@
 				18D0C0B320AC0D01007F0784 /* TDUserCertifyCellPics.m in Sources */,
 				18DD2F2620B95B0D00521B61 /* NSCollectModel.m in Sources */,
 				18B017AF20A67B9600826EA4 /* NSAddLabelVC.m in Sources */,
+				18E854C520CA6CE0007C23F5 /* AnimatedAnnotationView.m in Sources */,
 				18C60DE820C13635002920D2 /* GLTextField.m in Sources */,
 				18ADC51720BAD57100961CD8 /* GoodAttributesView.m in Sources */,
 				18E3A43820B273E600F847ED /* NSOrderListItemModel.m in Sources */,
@@ -3389,6 +3432,7 @@
 				18C3CFF020A2EF3B000FCE7F /* YWAddressDataTool.m in Sources */,
 				18B0179920A67B9600826EA4 /* YWAddressTableViewCell2.m in Sources */,
 				18D0825320956EB70031034A /* HomePageAPI.m in Sources */,
+				18E854BC20CA5A03007C23F5 /* NSAddressVC.m in Sources */,
 				18B0179F20A67B9600826EA4 /* YWAddressTableViewCell3.m in Sources */,
 				184043322099FA8D00685F80 /* ADLUpdateUserTableCell.m in Sources */,
 				184F061F209FE81A00768418 /* XWPopMenuController.m in Sources */,

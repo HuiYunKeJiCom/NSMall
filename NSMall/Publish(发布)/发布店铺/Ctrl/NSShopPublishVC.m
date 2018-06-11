@@ -15,7 +15,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "UITextView+ZWPlaceHolder.h"
 #import "NSChangePhoneVC.h"
-#import "ADReceivingAddressViewController.h"
+#import "NSAddressVC.h"
 #import "NSAddLabelVC.h"//添加标签
 #import "CLTagsModel.h"
 #import "NSInfoCustomCell.h"
@@ -606,21 +606,21 @@
             tagVC.tagsModelArray = @[model];  // 传入多个模型，显示多个标签组
             tagVC.tagsDisplayArray = _tagArrayM;
             tagVC.highlightTag = YES;
-            [self presentViewController:tagVC animated:YES completion:nil];
+            [self.navigationController pushViewController:tagVC animated:YES];
             self.infoCell.numLb.text = @"";
         }
             break;
         case 1:{
             NSLog(@"点击了地址");
-//            ADReceivingAddressViewController *ctrl = [[ADReceivingAddressViewController alloc] init];
-//            [self presentViewController:ctrl animated:YES completion:nil];
+            NSAddressVC *ctrl = [[NSAddressVC alloc] init];
+            [self.navigationController pushViewController:ctrl animated:YES];
         }
             break;
         case 2:{
             NSLog(@"点击了电话");
             NSChangePhoneVC *ctrl = [[NSChangePhoneVC alloc] init];
             ctrl.editTitle = KLocalizableStr(@"电话");
-            [self presentViewController:ctrl animated:YES completion:nil];
+            [self.navigationController pushViewController:ctrl animated:YES];
         }
             break;
         case 3:{
@@ -765,17 +765,24 @@
 
     _tagArrayM = [NSMutableArray array];
     [tagController dismissViewControllerAnimated:YES completion:nil];
-    for (LabelItemModel *tag in tags) {
-        if (![_recentTagsM containsObject:tag]) {
-            [_recentTagsM addObject:tag];
+    
+    if(tags.count>0){
+        for (LabelItemModel *tag in tags) {
+            if (![_recentTagsM containsObject:tag]) {
+                [_recentTagsM addObject:tag];
+            }
+            
+            [_tagArrayM addObject:tag];
+            
+            self.infoCell.numLb.text = [[self.infoCell.numLb.text stringByAppendingString:tag.label_name] stringByAppendingString:@"、"];
         }
-        
-        [_tagArrayM addObject:tag];
-        
-        self.infoCell.numLb.text = [[self.infoCell.numLb.text stringByAppendingString:tag.label_name] stringByAppendingString:@"、"];
+        NSString *tagString = [self removeLastOneChar:self.infoCell.numLb.text];
+        self.infoCell.numLb.text = tagString;
+    }else{
+        self.infoCell.numLb.text = @"餐饮、快餐";
     }
-    NSString *tagString = [self removeLastOneChar:self.infoCell.numLb.text];
-    self.infoCell.numLb.text = tagString;
+    
+    
     
 }
 

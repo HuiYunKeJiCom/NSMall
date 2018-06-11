@@ -239,7 +239,9 @@
     }else{
         //线下店铺
         NSShopPublishVC *ctrl = [[NSShopPublishVC alloc] init];
-        [self presentViewController:ctrl animated:YES completion:nil];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:ctrl];
+        [nav setNavigationBarHidden:YES];
+        [self presentViewController:nav animated:YES completion:nil];
     }
     
 //    NSLog(@"%ld为btn.tag的值，根据不同的按钮需要做什么操作可以写这里",btn.tag);
