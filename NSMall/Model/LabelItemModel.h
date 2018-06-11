@@ -16,4 +16,5 @@
 @interface LabelItemModel : NSObject
 @property (nonatomic,copy)NSString *label_id;//标签ID
 @property (nonatomic,copy)NSString *label_name;//标签名称
+@property (nonatomic,copy)NSString *sort;//标签排序号
 @end

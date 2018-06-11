@@ -7,15 +7,26 @@
 //
 
 #import "NSNearbyViewController.h"
-#import "AnimatedAnnotationView.h"
+#import "NearbyStoreParam.h"
+#import "NearbyStoreAPI.h"
+#import "NearbyStoreModel.h"
+#import "NSClusterAnnotationView.h"
+#import "NSClusterAnnotation.h"
+#import "ShopInfoView.h"
+#import "BMKClusterManager.h"
 
-@interface NSNearbyViewController ()<BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,BMKPoiSearchDelegate,BMKMapViewDelegate,UITextFieldDelegate>
+@interface NSNearbyViewController ()<BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,BMKPoiSearchDelegate,BMKMapViewDelegate,UITextFieldDelegate,NSClusterAnnotationViewDelegate>{
+    BMKClusterManager *_clusterManager;//点聚合管理类
+    NSInteger _clusterZoom;//聚合级别
+    NSMutableArray *_clusterCaches;//点聚合缓存标注
+}
 @property(nonatomic,strong)BMKMapView *mapView;/* 地图view */
 @property(nonatomic,strong)BMKLocationService *locService;/* 定位 */
 @property(nonatomic,strong)UIImageView *pinIV;/* 大头针 */
 @property(nonatomic,strong)BMKGeoCodeSearch *searcher;/* 云检索 */
-
-
+@property(nonatomic,strong)NearbyStoreModel *shopListModel;/* 商品列表模型 */
+@property(nonatomic,strong)ShopInfoView *shopInfoV;/* 店铺信息 */
+@property (nonatomic) CLLocationCoordinate2D centerCoordinate;/* 中心点坐标 */
 @end
 
 @implementation NSNearbyViewController
@@ -38,24 +49,27 @@
     self.mapView.userTrackingMode = BMKUserTrackingModeHeading;//设置定位的状态为定位罗盘模式，我的位置始终在地图中心，我的位置图标和地图都会跟着旋转
     //以下_mapView为BMKMapView对象
     self.mapView.showsUserLocation = NO;//显示定位图层
-//    self.mapView.userTrackingMode = BMKUserTrackingModeHeading;
     [self.view addSubview:_mapView];
     self.mapView.userInteractionEnabled = YES;
-
-//    self.pinIV = [[UIImageView alloc]init];
-//    self.pinIV.image = IMAGE(@"pin");
-//    self.pinIV.contentMode = UIViewContentModeScaleAspectFit;
-//    self.pinIV.size = CGSizeMake(32, 32);
-//    self.pinIV.center = self.view.center;
-//    [self.view addSubview:self.pinIV];
-    
-    
     
     //logo位置
     self.mapView.logoPosition = BMKLogoPositionLeftBottom;
     
+    WEAKSELF
+    self.shopInfoV = [[ShopInfoView alloc]initWithFrame:CGRectMake(kScreenWidth*0.15, kScreenHeight, kScreenWidth*0.7, kScreenHeight*0.5)];
+    self.shopInfoV.backgroundColor = [UIColor whiteColor];
+    self.shopInfoV.closeClickBlock = ^{
+        [weakSelf mapViewClick];
+    };
+    [self.view addSubview:self.shopInfoV];
 
-    
+    _mapView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *mapViewTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapViewClick)];
+    // 2. 将点击事件添加到label上
+    [_mapView addGestureRecognizer:mapViewTapGestureRecognizer];
+    _mapView.userInteractionEnabled = YES; // 可以理解为设置label可被点击
+
+    _clusterManager = [[BMKClusterManager alloc] init];
     
 }
 
@@ -63,64 +77,23 @@
 //处理方向变更信息
 - (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
 {
-//    NSLog(@"heading is %@",userLocation.heading);
+    //    NSLog(@"heading is %@",userLocation.heading);
 }
 
 //处理位置坐标更新
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
-//    NSLog(@"didUpdateUserLocation lat %.6f,long %.6f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
-
+    //    NSLog(@"didUpdateUserLocation lat %.6f,long %.6f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    
     NSLog(@"定位成功！！！");
-    [self.mapView updateLocationData:userLocation];//更新位置 前提是MapView.showsUserLocation=YES;
+    
+    
+    //设置地图中心为用户经纬度
+    [_mapView updateLocationData:userLocation];
     self.mapView.centerCoordinate = userLocation.location.coordinate;//移动到中心点
-
-    BMKCoordinateRegion region ;//表示范围的结构体
-    region.center = userLocation.location.coordinate;//中心点
-    region.span.latitudeDelta = 0.001;//经度范围（设置为0.1表示显示范围为0.2的纬度范围）
-    region.span.longitudeDelta = 0.001;//纬度范围
-    [_mapView setRegion:region animated:YES];
-    
-    
-    
-    
+    self.centerCoordinate = userLocation.location.coordinate;
     
 }
-
-//设置标注样式
-- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
-{
-    NSLog(@"设置标注样式");
-    //动画annotation
-    NSString *AnnotationViewID = @"AnimatedAnnotation";
-    AnimatedAnnotationView *annotationView = nil;
-    if (annotationView == nil) {
-        annotationView = [[AnimatedAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
-    }
-    NSMutableArray *images = [NSMutableArray array];
-    for (int i = 1; i < 4; i++) {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"poi_%d.png", i]];
-        [images addObject:image];
-    }
-    annotationView.annotationImages = images;
-    
-//        MarkerOptions ooD = new MarkerOptions().position(llD).icons(giflist)
-//        .zIndex(0).period(10);
-//
-//        if (animationBox.isChecked()) {
-//            // 生长动画
-//            ooD.animateType(MarkerAnimateType.grow);
-//        }
-//        Marker  mMarkerD = (Marker) (mBaiduMap.addOverlay(ooD));
-    
-    return annotationView;
-}
-
-////点击标注后切换中心点
-//- (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view{
-//    NSLog(@"点击标注后切换中心点");
-//    self.mapView.centerCoordinate = view.annotation.coordinate;
-//}
 
 -(void)viewWillAppear:(BOOL)animated{
     [self.mapView viewWillAppear];
@@ -139,23 +112,11 @@
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
-
-    CGRect pinFrame = self.pinIV.frame;
-    [UIView animateWithDuration:0.4 animations:^{
-        self.pinIV.frame = CGRectMake(pinFrame.origin.x, pinFrame.origin.y-10, pinFrame.size.width, pinFrame.size.height);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.3 animations:^{
-            self.pinIV.frame = CGRectMake(pinFrame.origin.x, pinFrame.origin.y, pinFrame.size.width, pinFrame.size.height);
-        } completion:^(BOOL finished) {
-            
-        }];
-    }];
     
     MKCoordinateRegion region;
     CLLocationCoordinate2D centerCoordinate = mapView.region.center;
     region.center= centerCoordinate;
-
-//    NSLog(@" regionDidChangeAnimated %f,%f",centerCoordinate.latitude, centerCoordinate.longitude);
+    
     _searcher =[[BMKGeoCodeSearch alloc]init];
     _searcher.delegate = self;
     
@@ -170,26 +131,175 @@
     {
         NSLog(@"geo检索发送失败");
     }
-
+    
 }
 
 //接收反向地理编码结果
 -(void) onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result
                         errorCode:(BMKSearchErrorCode)error{
     
-//    DLog(@"error = %u",error);
-//    DLog(@"BMK_SEARCH_NO_ERROR = %d",BMK_SEARCH_NO_ERROR);
     if (error == BMK_SEARCH_NO_ERROR) {
-        
-//        NSLog(@"address = %@",result.address);
-//        NSLog(@"addressDetail = %@",result.addressDetail);
-//        NSLog(@"sematicDescription = %@",result.sematicDescription);
-        
-//        self.geographicLab.text = [NSString stringWithFormat:@"%@",result.address];
     }
 }
 
+-(void)searchNearbyStore:(CLLocationCoordinate2D )center{
+    NearbyStoreParam *param = [NearbyStoreParam new];
+    param.longitude = [NSString stringWithFormat:@"%f",center.longitude];
+    param.latitude = [NSString stringWithFormat:@"%f",center.latitude];
+    
+    [NearbyStoreAPI getNearbyStoreList:param success:^(NearbyStoreModel *result) {
+        DLog(@"获取附近店铺列表成功");
+        self.shopListModel = result;
+        
+        [_clusterManager clearClusterItems];
+        for (NSStoreModel *storeModel in result.storeList) {
+            //            NSStoreModel *storeModel = [[NSStoreModel alloc] init];
+            //            storeModel.name = poiInfo.name;
+            //            storeModel.latitude = poiInfo.pt.latitude;
+            //            storeModel.longitude = poiInfo.pt.longitude;
+            
+            [self addAnnoWithPT:storeModel];
+        }
+        
+    } failure:^(NSError *error) {
+        DLog(@"获取附近店铺列表失败");
+    }];
+}
 
+#pragma mark - BMKMapViewDelegate
+- (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view {
+    
+    //    view.backgroundColor = [UIColor cyanColor];
+    //点击了商店
+    NSClusterAnnotationView *clusterAnnotation = (NSClusterAnnotationView *)view.annotation;
+//    [self positionButtonClick];
+    
+    NSLog(@"点击了%@", clusterAnnotation.storeModel.name);
+    //    NSLog(@"name = %@",clusterAnnotation.storeModel.name);
+    
+}
+
+// 根据anntation生成对应的View
+- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation{
+    
+    //普通annotation
+    NSString *AnnotationViewID = @"ClusterMark";
+    NSClusterAnnotation *cluster = (NSClusterAnnotation*)annotation;
+    NSClusterAnnotationView *annotationView = [[NSClusterAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
+    annotationView.size = cluster.size;
+    annotationView.storeModel = cluster.storeModel;
+    annotationView.delegate = self;
+    annotationView.canShowCallout = NO;//在点击大头针的时候会弹出那个黑框框
+    annotationView.draggable = NO;//禁止标注在地图上拖动
+    annotationView.annotation = cluster;
+    
+    annotationView.frame = CGRectMake(0, 0, 100, 100);
+    
+    return annotationView;
+}
+
+#pragma mark - XJClusterAnnotationViewDelegate
+-(void)showShopInfoViewWithClusterAnnotationView:(NSStoreModel *)storeModel clusterAnnotationView:(NSClusterAnnotationView *)clusterAnnotationView{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.shopInfoV.frame = CGRectMake(kScreenWidth*0.15, kScreenHeight*0.5, kScreenWidth*0.7, kScreenHeight*0.5);
+    }];
+    self.shopInfoV.storeModel = storeModel;
+}
+
+-(void)mapViewClick{
+    //    NSLog(@"收起");
+    [UIView animateWithDuration:0.3 animations:^{
+        self.shopInfoV.frame = CGRectMake(kScreenWidth*0.15, kScreenHeight, kScreenWidth*0.7, kScreenHeight*0.5);
+    }];
+}
+
+#pragma mark - 添加PT
+- (void)addAnnoWithPT:(NSStoreModel *)storeModel {
+    
+    BMKClusterItem *clusterItem = [[BMKClusterItem alloc] init];
+    clusterItem.coor = CLLocationCoordinate2DMake(storeModel.latitude, storeModel.longitude);
+    clusterItem.title = storeModel.name;
+    clusterItem.v = storeModel;
+    [_clusterManager addClusterItem:clusterItem];
+}
+
+//更新聚合状态(数据数组)
+- (void)updateClusters {
+    
+    
+    _clusterZoom = (NSInteger)_mapView.zoomLevel;
+    @synchronized(_clusterCaches) {
+        
+        
+        NSMutableArray *clusters = [NSMutableArray array];
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            ///获取聚合后的标注
+            __block NSArray *array = [_clusterManager getClusters:_clusterZoom];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                for (BMKCluster *item in array) {
+                    NSClusterAnnotation *annotation = [[NSClusterAnnotation alloc] init];
+                    annotation.coordinate = item.coordinate;
+                    annotation.size = item.size;
+                    annotation.title = item.title;
+                    annotation.storeModel = item.storeModel;
+                    [clusters addObject:annotation];
+                }
+                [_mapView removeOverlays:_mapView.overlays];
+                [_mapView removeAnnotations:_mapView.annotations];
+                [_mapView addAnnotations:clusters];
+                
+            });
+        });
+    }
+    //    }
+}
+
+/**
+ *地图初始化完毕时会调用此接口
+ *@param mapView 地图View
+ */
+- (void)mapViewDidFinishLoading:(BMKMapView *)mapView {
+    BMKLocationViewDisplayParam *displayParam = [[BMKLocationViewDisplayParam alloc]init];
+    displayParam.isAccuracyCircleShow = NO;//精度圈是否显示
+    [_mapView updateLocationViewWithParam:displayParam];
+
+    BMKCoordinateRegion region ;//表示范围的结构体
+    region.center = self.centerCoordinate;//中心点
+    region.span.latitudeDelta = 0.001;//经度范围（设置为0.1表示显示范围为0.2的纬度范围）
+    region.span.longitudeDelta = 0.001;//纬度范围
+    [_mapView setRegion:region animated:YES];
+    
+    [self searchNearbyStore:self.centerCoordinate];
+    
+    [self updateClusters];
+}
+
+/**
+ *当点击annotation view弹出的泡泡时，调用此接口
+ *@param mapView 地图View
+ *@param view 泡泡所属的annotation view
+ */
+- (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view {
+    if ([view isKindOfClass:[NSClusterAnnotationView class]]) {
+        NSClusterAnnotationView *clusterAnnotation = (NSClusterAnnotationView*)view.annotation;
+        if (clusterAnnotation.size > 3) {
+            [mapView setCenterCoordinate:view.annotation.coordinate];
+            [mapView zoomIn];
+        }
+    }
+}
+
+/**
+ *地图渲染每一帧画面过程中，以及每次需要重绘地图时（例如添加覆盖物）都会调用此接口
+ *@param mapView 地图View
+ *@param status 此时地图的状态
+ */
+- (void)mapView:(BMKMapView *)mapView onDrawMapFrame:(BMKMapStatus *)status {
+    if (_clusterZoom != 0 && _clusterZoom != (NSInteger)mapView.zoomLevel) {
+        [self updateClusters];
+    }
+}
 
 
 @end

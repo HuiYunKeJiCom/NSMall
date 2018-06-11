@@ -18,8 +18,8 @@
 #define Host  [NSString stringWithFormat:@"http%@/adel-shop/app/",CurrentHost]
 
 //#define NetDomainADDR @"://2008503qw3.51mypc.cn"
-const static NSString * const NetDomainADDR = @"http://adelshop.iok.la:41831/nsshop/app/";
-//const static NSString * const NetDomainADDR = @"https://stagewww.neublockchain.com/nsshop/app/";
+//const static NSString * const NetDomainADDR = @"http://adelshop.iok.la:41831/nsshop/app/";
+const static NSString * const NetDomainADDR = @"https://stagewww.neublockchain.com/nsshop/app/";
 
 const static NSString * const kLoginAPI = @"login";
 const static NSString * const kHomePageProductListAPI = @"productList";//获取首页的商品列表
@@ -88,4 +88,7 @@ const static NSString * const kPayOrderAPI = @"auth/payOrder";//订单支付
 const static NSString * const kWalletListAPI = @"auth/walletList";//获取已绑定的钱包列表
 const static NSString * const kBindWalletAPI = @"auth/bindWallet";//绑定钱包
 const static NSString * const kSetWalletAPI = @"auth/setSellWallet";//设置默认收款钱包
+
+//附近
+const static NSString * const kNearbyStoreAPI = @"nearbyStore";//获取附近店铺列表
 

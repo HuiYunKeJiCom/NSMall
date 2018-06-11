@@ -86,54 +86,50 @@
 
 - (void)loginView:(NSLoginView *)logView userName:(NSString *)userName pwd:(NSString *)pwd {
     
-//    [UserInfoAPI getUserInfo:@{@"":@"app_token"} success:^{
-//        DLog(@"获取用户信息成功");
-//    [kAppDelegate setUpRootVC];
-//    } faulre:^(NSError *error) {
-//        DLog(@"获取用户信息失败");
-//    }];
-    
-    LoginParam *param = [LoginParam new];
-    param.loginAccount = @"test3";
-    param.password = @"123456";
-    param.loginType = @"1";
+//    LoginParam *param = [LoginParam new];
+//    param.loginAccount = @"test3";
+//    param.password = @"123456";
+//    param.loginType = @"1";
     
     
 //    param.loginAccount = userName;
 //    param.loginType = @"0";
 //    param.smsCode = pwd;
    
-//    [UserInfoAPI getUserInfo:nil success:^{
-//        NSLog(@"获取用户信息");
-//        [kAppDelegate setUpRootVC];
-////        self.otherTableView.userModel = [UserModel modelFromUnarchive];
-//
-//    } faulre:^(NSError *error) {
-//        NSLog(@"获取用户信息失败");
-//    }];
     
-    [LoginAPI loginWithParam:param success:^{
-        DLog(@"登录成功");
-        EMError *error = [[EMClient sharedClient] registerWithUsername:param.loginAccount password:param.password];
-        if (error==nil) {
-            NSLog(@"注册成功");
-        }else{
-            NSLog(@"注册失败,%@",error.errorDescription);
-        }
-
-        error= [[EMClient sharedClient] loginWithUsername:param.loginAccount password:param.password];
-
-        if(!error){
-            NSLog(@"环信登录成功");
-        }else{
-            NSLog(@"登录失败");
-        }
+    [httpManager.requestSerializer setValue:@"187fd97941849726c11a6d3e8edc775f" forHTTPHeaderField:@"app_token"];
+    
+    [UserInfoAPI getUserInfo:nil success:^{
+        NSLog(@"获取用户信息");
         [kAppDelegate setUpRootVC];
+//        self.otherTableView.userModel = [UserModel modelFromUnarchive];
 
     } faulre:^(NSError *error) {
-        DLog(@"登录失败");
-        DLog(@"error = %@",error);
+        NSLog(@"获取用户信息失败");
     }];
+    
+//    [LoginAPI loginWithParam:param success:^{
+//        DLog(@"登录成功");
+//        EMError *error = [[EMClient sharedClient] registerWithUsername:param.loginAccount password:param.password];
+//        if (error==nil) {
+//            NSLog(@"注册成功");
+//        }else{
+//            NSLog(@"注册失败,%@",error.errorDescription);
+//        }
+//
+//        error= [[EMClient sharedClient] loginWithUsername:param.loginAccount password:param.password];
+//
+//        if(!error){
+//            NSLog(@"环信登录成功");
+//        }else{
+//            NSLog(@"登录失败");
+//        }
+//        [kAppDelegate setUpRootVC];
+//
+//    } faulre:^(NSError *error) {
+//        DLog(@"登录失败");
+//        DLog(@"error = %@",error);
+//    }];
     
 }
 
