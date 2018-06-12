@@ -36,6 +36,11 @@
 		1842A6D620B59D350090861D /* LZShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6A620B59D350090861D /* LZShopModel.m */; };
 		1842A6E520B59D350090861D /* LZTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6C820B59D350090861D /* LZTableHeaderView.m */; };
 		1842A6E620B59D360090861D /* LZCartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842A6CA20B59D350090861D /* LZCartTableViewCell.m */; };
+		184779F620CF9F36000DB448 /* BRStringPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184779E520CF9F36000DB448 /* BRStringPickerView.m */; };
+		184779F720CF9F36000DB448 /* NSDate+BRPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184779EA20CF9F36000DB448 /* NSDate+BRPickerView.m */; };
+		184779F820CF9F36000DB448 /* BRDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184779EB20CF9F36000DB448 /* BRDatePickerView.m */; };
+		184779F920CF9F36000DB448 /* BRBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184779EE20CF9F36000DB448 /* BRBaseView.m */; };
+		184779FF20CFB55F000DB448 /* NSSearchAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184779FE20CFB55F000DB448 /* NSSearchAddressVC.m */; };
 		184DE7A6208F081400E776F3 /* ADLMyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7A5208F081400E776F3 /* ADLMyInfoTableViewCell.m */; };
 		184DE7A9208F088E00E776F3 /* BaseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7A7208F088E00E776F3 /* BaseTableCell.m */; };
 		184DE7AC208F08B400E776F3 /* BaseRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7AB208F08B300E776F3 /* BaseRefreshGifHeader.m */; };
@@ -383,6 +388,18 @@
 		1842A6C820B59D350090861D /* LZTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZTableHeaderView.m; sourceTree = "<group>"; };
 		1842A6CA20B59D350090861D /* LZCartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZCartTableViewCell.m; sourceTree = "<group>"; };
 		1842A6EA20B59DE20090861D /* LZConfigFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZConfigFile.h; sourceTree = "<group>"; };
+		184779E420CF9F36000DB448 /* BRStringPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRStringPickerView.h; sourceTree = "<group>"; };
+		184779E520CF9F36000DB448 /* BRStringPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRStringPickerView.m; sourceTree = "<group>"; };
+		184779E620CF9F36000DB448 /* BRPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRPickerView.h; sourceTree = "<group>"; };
+		184779E720CF9F36000DB448 /* BRPickerViewMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRPickerViewMacro.h; sourceTree = "<group>"; };
+		184779E920CF9F36000DB448 /* BRDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRDatePickerView.h; sourceTree = "<group>"; };
+		184779EA20CF9F36000DB448 /* NSDate+BRPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+BRPickerView.m"; sourceTree = "<group>"; };
+		184779EB20CF9F36000DB448 /* BRDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRDatePickerView.m; sourceTree = "<group>"; };
+		184779EC20CF9F36000DB448 /* NSDate+BRPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+BRPickerView.h"; sourceTree = "<group>"; };
+		184779EE20CF9F36000DB448 /* BRBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRBaseView.m; sourceTree = "<group>"; };
+		184779EF20CF9F36000DB448 /* BRBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRBaseView.h; sourceTree = "<group>"; };
+		184779FD20CFB55F000DB448 /* NSSearchAddressVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSearchAddressVC.h; sourceTree = "<group>"; };
+		184779FE20CFB55F000DB448 /* NSSearchAddressVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSearchAddressVC.m; sourceTree = "<group>"; };
 		184DE7A4208F081400E776F3 /* ADLMyInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADLMyInfoTableViewCell.h; sourceTree = "<group>"; };
 		184DE7A5208F081400E776F3 /* ADLMyInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADLMyInfoTableViewCell.m; sourceTree = "<group>"; };
 		184DE7A7208F088E00E776F3 /* BaseTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableCell.m; sourceTree = "<group>"; };
@@ -1187,6 +1204,47 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		184779E220CF9F36000DB448 /* BRPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				184779E320CF9F36000DB448 /* StringPickerView */,
+				184779E620CF9F36000DB448 /* BRPickerView.h */,
+				184779E720CF9F36000DB448 /* BRPickerViewMacro.h */,
+				184779E820CF9F36000DB448 /* DatePickerView */,
+				184779ED20CF9F36000DB448 /* Base */,
+			);
+			path = BRPickerView;
+			sourceTree = "<group>";
+		};
+		184779E320CF9F36000DB448 /* StringPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				184779E420CF9F36000DB448 /* BRStringPickerView.h */,
+				184779E520CF9F36000DB448 /* BRStringPickerView.m */,
+			);
+			path = StringPickerView;
+			sourceTree = "<group>";
+		};
+		184779E820CF9F36000DB448 /* DatePickerView */ = {
+			isa = PBXGroup;
+			children = (
+				184779E920CF9F36000DB448 /* BRDatePickerView.h */,
+				184779EB20CF9F36000DB448 /* BRDatePickerView.m */,
+				184779EC20CF9F36000DB448 /* NSDate+BRPickerView.h */,
+				184779EA20CF9F36000DB448 /* NSDate+BRPickerView.m */,
+			);
+			path = DatePickerView;
+			sourceTree = "<group>";
+		};
+		184779ED20CF9F36000DB448 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				184779EF20CF9F36000DB448 /* BRBaseView.h */,
+				184779EE20CF9F36000DB448 /* BRBaseView.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		184F05EA209AE39600768418 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1236,6 +1294,7 @@
 		184F05FF209FE81900768418 /* 发布店铺 */ = {
 			isa = PBXGroup;
 			children = (
+				184779E220CF9F36000DB448 /* BRPickerView */,
 				18E854B920CA596E007C23F5 /* Address(地址) */,
 				18DA7CF120C8D84F009277AA /* Param */,
 				18B0177F20A67B9600826EA4 /* 添加标签 */,
@@ -3149,6 +3208,8 @@
 			children = (
 				18E854BA20CA5A03007C23F5 /* NSAddressVC.h */,
 				18E854BB20CA5A03007C23F5 /* NSAddressVC.m */,
+				184779FD20CFB55F000DB448 /* NSSearchAddressVC.h */,
+				184779FE20CFB55F000DB448 /* NSSearchAddressVC.m */,
 			);
 			path = "Address(地址)";
 			sourceTree = "<group>";
@@ -3511,12 +3572,14 @@
 				18AD9FDF20C67CCF00275CC5 /* ADLScanningController.m in Sources */,
 				18D574D2209AB1D6001C7875 /* HeaderModel.m in Sources */,
 				1899B7B620B57643002FF2A8 /* NSLikeModel.m in Sources */,
+				184779F820CF9F36000DB448 /* BRDatePickerView.m in Sources */,
 				18C3CFF020A2EF3B000FCE7F /* YWAddressDataTool.m in Sources */,
 				18B0179920A67B9600826EA4 /* YWAddressTableViewCell2.m in Sources */,
 				18D0825320956EB70031034A /* HomePageAPI.m in Sources */,
 				18E854BC20CA5A03007C23F5 /* NSAddressVC.m in Sources */,
 				18B0179F20A67B9600826EA4 /* YWAddressTableViewCell3.m in Sources */,
 				184043322099FA8D00685F80 /* ADLUpdateUserTableCell.m in Sources */,
+				184779F720CF9F36000DB448 /* NSDate+BRPickerView.m in Sources */,
 				184F061F209FE81A00768418 /* XWPopMenuController.m in Sources */,
 				18D0C0AC20AC0D01007F0784 /* TDUserCertifyCellPicker.m in Sources */,
 				18335F7620BBEF79006264EF /* NSChangeCartNumParam.m in Sources */,
@@ -3539,6 +3602,7 @@
 				184F05FA209C40DE00768418 /* AdvertItemModel.m in Sources */,
 				1878477D20AECFAE00AC0E0F /* NSMyShopVC.m in Sources */,
 				1840434E2099FB8400685F80 /* ADLTitleField.m in Sources */,
+				184779FF20CFB55F000DB448 /* NSSearchAddressVC.m in Sources */,
 				188CC658207F5431007D749E /* main.m in Sources */,
 				184F061C209FE81A00768418 /* NSGoodsPublishVC.m in Sources */,
 				18350895208086DE00BCF7CE /* UIViewExt.m in Sources */,
@@ -3584,6 +3648,7 @@
 				18DD1588208DEA960006475D /* ADLMyInfoModel.m in Sources */,
 				18D0C0A920AC0D01007F0784 /* TDUserCertifySubVCBasic.m in Sources */,
 				1874D5BE20AABFDA0004B1AF /* NSCarouselView.m in Sources */,
+				184779F920CF9F36000DB448 /* BRBaseView.m in Sources */,
 				1874D5BB20AA8F8A0004B1AF /* DCHomeTopToolView.m in Sources */,
 				18DD2F2020B90B1E00521B61 /* ZYHTFileNameConst.m in Sources */,
 				184043572099FEE900685F80 /* ADLFilterSelectItem.m in Sources */,
@@ -3596,6 +3661,7 @@
 				1851CD77208F23530094A594 /* NSCustomHeadCell.m in Sources */,
 				18B1CB1720BF9E9B00235CFA /* NSWalletTVCell.m in Sources */,
 				18B017A020A67B9600826EA4 /* ADReceivingAddressViewController.m in Sources */,
+				184779F620CF9F36000DB448 /* BRStringPickerView.m in Sources */,
 				18D574CF209AA39A001C7875 /* GetVcodeParam.m in Sources */,
 				185DFDFE20B3C7E800437168 /* NSCategoryTV.m in Sources */,
 				184DE7A6208F081400E776F3 /* ADLMyInfoTableViewCell.m in Sources */,

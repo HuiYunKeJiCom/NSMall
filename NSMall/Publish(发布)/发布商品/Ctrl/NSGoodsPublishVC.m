@@ -781,10 +781,25 @@
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
-        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+//        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    [weakSelf dismissModalStack];
     };
     
     [self.view addSubview:topToolView];
+    
+}
+
+-(void)dismissModalStack {
+    
+    UIViewController *vc = self.presentingViewController;
+    
+    while (vc.presentingViewController) {
+        
+        vc = vc.presentingViewController;
+        
+    }
+    
+    [vc dismissViewControllerAnimated:NO completion:NULL];
     
 }
 
@@ -835,7 +850,8 @@
             //调用发布接口API
             [GoodsPublishAPI createProductWithParam:self.param success:^{
                 DLog(@"商品发布成功");
-                [self dismissViewControllerAnimated:YES completion:nil];
+//                [self dismissViewControllerAnimated:YES completion:nil];
+                [self dismissModalStack];
 //                [kAppDelegate setUpRootVC];
             } faulre:^(NSError *error) {
                 DLog(@"商品发布失败");

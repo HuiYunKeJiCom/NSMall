@@ -14,7 +14,7 @@
 #import "UIView+Layout.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "UITextView+ZWPlaceHolder.h"
-#import "NSChangePhoneVC.h"
+//#import "NSChangePhoneVC.h"
 #import "NSAddressVC.h"
 #import "NSAddLabelVC.h"//添加标签
 #import "CLTagsModel.h"
@@ -24,6 +24,8 @@
 #import "LabelItemModel.h"
 #import "ShopPublishParam.h"
 #import "NSShopPublishAPI.h"
+#import "NSChangeParamVC.h"
+#import "BRPickerView.h"
 
 @interface NSShopPublishVC ()<NSShopTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,NSAddLabelVCDelegate> {
     NSMutableArray *_selectedPhotos;
@@ -108,7 +110,7 @@
     self.SV.backgroundColor = KBGCOLOR;
     [self.view addSubview:self.SV];
     
-    self.otherTableView = [[NSShopTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(150+5+130), kScreenWidth, GetScaleWidth(172)) style:UITableViewStyleGrouped];
+    self.otherTableView = [[NSShopTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(150+5+130), kScreenWidth, GetScaleWidth(215)) style:UITableViewStyleGrouped];
     self.otherTableView.backgroundColor = [UIColor clearColor];
     self.otherTableView.bounces = NO;
     self.otherTableView.tbDelegate = self;
@@ -574,9 +576,10 @@
 - (void)setUpData
 {
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"标签") imageName:nil num:@"餐饮、快餐"]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"地址") imageName:nil num:@"杭州市省政府旁"]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"地址") imageName:nil num:@"请输入地址"]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"电话") imageName:nil num:@"请输入电话"]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"营业时间") imageName:nil num:@"9:00~18:00"]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"营业开始时间") imageName:nil num:@"9:00"]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"营业结束时间") imageName:nil num:@"18:00"]];
 }
 
 #pragma mark - initialize
@@ -613,18 +616,81 @@
         case 1:{
             NSLog(@"点击了地址");
             NSAddressVC *ctrl = [[NSAddressVC alloc] init];
+            ctrl.stringBlock = ^(NSString *string) {
+                for (ADLMyInfoModel *model in self.otherTableView.data) {
+                    if([model.title isEqualToString:@"地址"]){
+                        if(string){
+                            model.num = [NSString stringWithFormat:@"%@",string];
+                            self.param.address = string;
+                        }else{
+                            model.num = @"请输入地址";
+                        }
+                    }
+                }
+                [self.otherTableView reloadData];
+            };
+            [self.navigationController setNavigationBarHidden:YES];
             [self.navigationController pushViewController:ctrl animated:YES];
         }
             break;
         case 2:{
             NSLog(@"点击了电话");
-            NSChangePhoneVC *ctrl = [[NSChangePhoneVC alloc] init];
+//            NSChangePhoneVC *ctrl = [[NSChangePhoneVC alloc] init];
+//            ctrl.editTitle = KLocalizableStr(@"电话");
+//            [self.navigationController pushViewController:ctrl animated:YES];
+            
+            EditUserType type = [self getEditType:KLocalizableStr(@"电话")];
+            
+            NSChangeParamVC *ctrl = [[NSChangeParamVC alloc] initEditType:type];
             ctrl.editTitle = KLocalizableStr(@"电话");
+            
+            ctrl.stringBlock = ^(NSString *string) {
+                for (ADLMyInfoModel *model in self.otherTableView.data) {
+                    if([model.title isEqualToString:@"电话"]){
+                        if(string){
+                            model.num = [NSString stringWithFormat:@"%@",string];
+                            self.param.mobile = string;
+                        }else{
+                            model.num = @"请输入电话";
+                        }
+                    }
+                }
+                [self.otherTableView reloadData];
+            };
             [self.navigationController pushViewController:ctrl animated:YES];
         }
             break;
         case 3:{
-            NSLog(@"点击了营业时间");
+            NSLog(@"点击了开始营业时间");
+            
+            NSDate *minDate = [NSDate br_setHour:1 minute:0];
+            NSDate *maxDate = [NSDate br_setHour:23 minute:59];
+            for (ADLMyInfoModel *model in self.otherTableView.data) {
+                if([model.title isEqualToString:@"营业开始时间"]){
+                    
+                    [BRDatePickerView showDatePickerWithTitle:@"营业开始时间" dateType:BRDatePickerModeTime defaultSelValue:@"9:00" minDate:minDate maxDate:maxDate isAutoSelect:YES themeColor:KMainColor resultBlock:^(NSString *selectValue) {
+                        model.num = selectValue;
+                        self.param.businessHoursStart = selectValue;
+                        [self.otherTableView reloadData];
+                    }];
+                }
+            }
+        }
+            break;
+        case 4:{
+            
+            NSLog(@"点击了结束营业时间");
+            NSDate *minDate = [NSDate br_setHour:1 minute:0];
+            NSDate *maxDate = [NSDate br_setHour:23 minute:59];
+            for (ADLMyInfoModel *model in self.otherTableView.data) {
+                if([model.title isEqualToString:@"营业结束时间"]){
+                    [BRDatePickerView showDatePickerWithTitle:@"营业结束时间" dateType:BRDatePickerModeTime defaultSelValue:@"18:00" minDate:minDate maxDate:maxDate isAutoSelect:YES themeColor:KMainColor resultBlock:^(NSString *selectValue) {
+                        model.num = selectValue;
+                        self.param.businessHoursEnd = selectValue;
+                        [self.otherTableView reloadData];
+                    }];
+                }
+            }
         }
             break;
         default:
@@ -645,7 +711,7 @@
     [btn addTarget:self action:@selector(addPhoto:) forControlEvents:UIControlEventTouchUpInside];
     [self.addView addSubview:btn];
     
-    CGSize contentSize = [self contentSizeWithTitle:@"添加照片"];
+    CGSize contentSize = [self contentSizeWithTitle:@"添加照片" andFont:14];
     
     UILabel *addPhotoLab=[[UILabel alloc] initWithFrame:CGRectMake(self.addView.centerX- contentSize.width*0.5, CGRectGetMaxY(btn.frame)+3, contentSize.width, contentSize.height)];
     [addPhotoLab setText:@"添加照片"];
@@ -669,10 +735,25 @@
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
-        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+//        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        [weakSelf dismissModalStack];
     };
 
     [self.view addSubview:topToolView];
+    
+}
+
+-(void)dismissModalStack {
+    
+    UIViewController *vc = self.presentingViewController;
+    
+    while (vc.presentingViewController) {
+        
+        vc = vc.presentingViewController;
+        
+    }
+    
+    [vc dismissViewControllerAnimated:NO completion:NULL];
     
 }
 
@@ -703,7 +784,7 @@
                 
                 [NSShopPublishAPI createShopWithParam:self.param success:^{
                     DLog(@"商品发布成功");
-                    [self dismissViewControllerAnimated:YES completion:nil];
+                    [self dismissModalStack];
                 } faulre:^(NSError *error) {
                     DLog(@"店铺发布失败");
                 }];
@@ -754,17 +835,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (CGSize)contentSizeWithTitle:(NSString *)title {
+- (CGSize)contentSizeWithTitle:(NSString *)title andFont:(float)font{
     CGSize maxSize = CGSizeMake(kScreenWidth *0.5, MAXFLOAT);
     // 计算文字的高度
-    return  [title boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} context:nil].size;
+    return  [title boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:font]} context:nil].size;
 }
     
 #pragma mark - CLTagViewControllerDelegate 返回贴上的标签，并做相关处理
 - (void)tagViewController:(NSAddLabelVC *)tagController tags:(NSArray<LabelItemModel *> *)tags {
 
     _tagArrayM = [NSMutableArray array];
-    [tagController dismissViewControllerAnimated:YES completion:nil];
+    [tagController.navigationController popViewControllerAnimated:YES];
     
     if(tags.count>0){
         for (LabelItemModel *tag in tags) {
@@ -795,6 +876,24 @@
         cutted = origin;
     }
     return cutted;
+}
+
+- (EditUserType)getEditType:(NSString *)title {
+    EditUserType type = 0;
+    
+    if ([title isEqualToString:KLocalizableStr(@"电话")]) {
+        type = EditUserTypePhone;
+        
+        }
+//     else if ([title isEqualToString:KLocalizableStr(@"数量")]) {
+//        type = EditUserTypeNumber;
+//
+//    } else if ([title isEqualToString:KLocalizableStr(@"运费")]) {
+//        type = EditUserTypeFee;
+//
+//    }
+    
+    return type;
 }
 
 @end

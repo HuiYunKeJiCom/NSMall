@@ -7,6 +7,8 @@
 //
 
 #import "NSAddressVC.h"
+#import "ADOrderTopToolView.h"
+#import "NSSearchAddressVC.h"
 
 @interface NSAddressVC ()<BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,BMKPoiSearchDelegate,BMKMapViewDelegate,UITextFieldDelegate>
 @property(nonatomic,strong)BMKMapView *mapView;/* 地图view */
@@ -16,7 +18,7 @@
 @property(nonatomic,strong)UIImageView *labelBgV;/* 地理信息背景图 */
 @property(nonatomic,strong)BMKGeoCodeSearch *searcher;/* 云检索 */
 @property(nonatomic,strong)UITextField *searchTF;/* 搜索地址 */
-
+@property(nonatomic,copy)NSString *shopAddress;/* 店铺地址 */
 @end
 
 @implementation NSAddressVC
@@ -33,7 +35,7 @@
     //启动LocationService
     [_locService startUserLocationService];
     
-    self.mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-44)];
+    self.mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, TopBarHeight, kScreenWidth, kScreenHeight-44)];
     self.mapView.showsUserLocation = NO;//先关闭显示的定位图层
     [self.mapView setMapType:BMKMapTypeStandard]; //切换为标准地图
     self.mapView.userTrackingMode = BMKUserTrackingModeHeading;//设置定位的状态为定位罗盘模式，我的位置始终在地图中心，我的位置图标和地图都会跟着旋转
@@ -55,11 +57,12 @@
     self.searchTF.textColor = kBlackColor;
     self.searchTF.backgroundColor = kWhiteColor;
     self.searchTF.x = 40;
-    self.searchTF.y = 30;
+    self.searchTF.y = 30+TopBarHeight;
     UIView *paddingView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, GetScaleWidth(30))];
     self.searchTF.leftView = paddingView;
     self.searchTF.leftViewMode = UITextFieldViewModeAlways;
     self.searchTF.size = CGSizeMake(kScreenWidth-80, 30);
+    self.searchTF.clearsOnBeginEditing = YES;
     self.searchTF.alpha = 0.7;
     [self.view addSubview:self.searchTF];
     
@@ -81,11 +84,36 @@
     self.geographicLab.backgroundColor = [UIColor clearColor];
     [self.labelBgV addSubview:self.geographicLab];
     
+    self.labelBgV.userInteractionEnabled = YES;
+    self.geographicLab.userInteractionEnabled = YES;
+    UITapGestureRecognizer *TapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick)];
+    // 2. 将点击事件添加到imageView上
+    [self.geographicLab addGestureRecognizer:TapGestureRecognizer];
+    
     //logo位置
     self.mapView.logoPosition = BMKLogoPositionLeftBottom;
     
+    [self setUpNavTopView];
     
     
+}
+
+#pragma mark - 导航栏处理
+- (void)setUpNavTopView
+{
+    ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
+    topToolView.backgroundColor = kWhiteColor;
+    [topToolView setTopTitleWithNSString:KLocalizableStr(@"地址")];
+    WEAKSELF
+    topToolView.leftItemClickBlock = ^{
+        NSLog(@"点击了返回");
+        if (weakSelf.stringBlock) {
+            weakSelf.stringBlock(weakSelf.searchTF.text);
+        }
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    };
+    
+    [self.view addSubview:topToolView];
     
 }
 
@@ -196,15 +224,17 @@
 -(void) onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result
                         errorCode:(BMKSearchErrorCode)error{
     
-    //    DLog(@"error = %u",error);
-    //    DLog(@"BMK_SEARCH_NO_ERROR = %d",BMK_SEARCH_NO_ERROR);
     if (error == BMK_SEARCH_NO_ERROR) {
         
-        //        NSLog(@"address = %@",result.address);
-        //        NSLog(@"addressDetail = %@",result.addressDetail);
-        //        NSLog(@"sematicDescription = %@",result.sematicDescription);
-        
-        self.geographicLab.text = [NSString stringWithFormat:@"%@",result.address];
+//                NSLog(@"address = %@",result.address);
+
+        BMKPoiInfo *poiInfo = result.poiList[0];
+
+        self.geographicLab.text = [NSString stringWithFormat:@"%@",poiInfo.name];
+        self.searchTF.text = result.address;
+        if (self.stringBlock) {
+            self.stringBlock(self.searchTF.text);
+        }
     }
 }
 
@@ -226,24 +256,33 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self.searchTF resignFirstResponder];// 使当前文本框失去第一响应者的特权，就会回收键盘了
     
-    _searcher =[[BMKGeoCodeSearch alloc]init];
-    _searcher.delegate = self;
-    //发起地理位置检索
-    BMKGeoCodeSearchOption *geoCodeSearchOption = [[BMKGeoCodeSearchOption alloc]init];
-    geoCodeSearchOption.address = self.searchTF.text;
-    //    @"广东省深圳市宝安区海汇路105";
-    //    geoCodeSearchOption.city = @"北京";
-    BOOL flag = [_searcher geoCode:geoCodeSearchOption];
-    if(flag)
-    {
-        NSLog(@"geo检索发送成功");
-    }
-    else
-    {
-        NSLog(@"geo检索发送失败");
-    }
-    
     return YES;
+}
+
+- (void)tapClick {
+    NSLog(@"点击图片");
+  
+    NSSearchAddressVC *saVC = [NSSearchAddressVC new];
+    saVC.stringBlock = ^(NSString *string) {
+        _searcher =[[BMKGeoCodeSearch alloc]init];
+        _searcher.delegate = self;
+        //发起地理位置检索
+        BMKGeoCodeSearchOption *geoCodeSearchOption = [[BMKGeoCodeSearchOption alloc]init];
+        geoCodeSearchOption.address = string;
+        //    @"广东省深圳市宝安区海汇路105";
+        //    geoCodeSearchOption.city = @"北京";
+        BOOL flag = [_searcher geoCode:geoCodeSearchOption];
+        if(flag)
+        {
+            NSLog(@"geo检索发送成功");
+        }
+        else
+        {
+            NSLog(@"geo检索发送失败");
+        }
+    };
+    [self.navigationController pushViewController:saVC animated:YES];
+    
 }
 
 @end

@@ -12,7 +12,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{
     BMKMapManager *_mapManager;
 }
-
+@property (strong, nonatomic) UIImageView *splashView;//欢迎页图片
 @property (strong, nonatomic) UIWindow *window;
 
 //用来替代以往的 NSString 方法

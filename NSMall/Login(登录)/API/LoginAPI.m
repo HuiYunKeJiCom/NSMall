@@ -15,8 +15,8 @@
         [userModel archive];
         DLog(@"userModel From Unarchive : %@",[UserModel userModel]);
         
-//        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//        // 保存数据
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        // 保存数据
 //        [userDefaults setValue:userModel.app_token forKey:@"appToken"];
 //        [userDefaults synchronize];
 //

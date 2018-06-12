@@ -6,6 +6,11 @@
 //  Copyright © 2018年 www. All rights reserved.
 //
 
+/* 环信 */
+static NSString * const kHuanXinAppKey       = @"1125180610177403#nsapp";
+/* 百度 */
+static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
+
 #import "AppDelegate.h"
 #import "NSLoginController.h"
 #import "CYLTabBarController.h"
@@ -19,6 +24,7 @@
 //#import <BuglyExtension/CrashReporterLite.h>
 
 
+
 @interface AppDelegate ()<CYLPlusButtonSubclassing,EMChatManagerDelegate>
 /** tabbar */
 @property(nonatomic,strong)CYLTabBarController *tabBarController;
@@ -26,6 +32,7 @@
 
 @implementation AppDelegate
 
+@synthesize splashView;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -38,7 +45,7 @@
     //环信
     //AppKey:注册的AppKey，详细见下面注释。
     //apnsCertName:推送证书名（不需要加后缀），详细见下面注释。
-    EMOptions *options = [EMOptions optionsWithAppkey:@"1153180424099290#huist-oomall"];
+    EMOptions *options = [EMOptions optionsWithAppkey:kHuanXinAppKey];
     options.apnsCertName = @"NSMall";
     EMError *error = [[EMClient sharedClient] initializeSDKWithOptions:options];
     if(!error){
@@ -56,7 +63,7 @@
     //百度地图
     _mapManager = [[BMKMapManager alloc] init];
     // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
-    BOOL ret = [_mapManager start:@"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2"  generalDelegate:nil];
+    BOOL ret = [_mapManager start:kBaiDuAK  generalDelegate:nil];
     if (!ret) {
         NSLog(@"manager start failed!");
     }
@@ -69,8 +76,27 @@
     // 设置chatManager代理
     [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
     
+    
+//    [self.window makeKeyAndVisible];
+    
+//    splashView = [[UIImageView alloc]initWithFrame:CGRectMake(0,0,kScreenWidth,kScreenHeight)];
+//
+//    [splashView setImage:[UIImage imageNamed:@"start"]];
+//
+//    [self.window addSubview:splashView];
+//
+//    [self.window bringSubviewToFront:splashView];
+
+    [self showWord];
+    
+    [self.window makeKeyAndVisible];
+    
+    return YES;
+}
+
+-(void)showWord{
     BOOL isAuLogin = [[EMClient sharedClient] isAutoLogin];
-//    NSLog(@"isAuLogin = %@",isAuLogin == 0?NO:YES);
+    //    NSLog(@"isAuLogin = %@",isAuLogin == 0?NO:YES);
     
     // 如果登录过，直接来到主界面
     if ([[EMClient sharedClient] isAutoLogin]) {
@@ -80,10 +106,6 @@
         NSLoginController *login = [[NSLoginController alloc]init];
         [self.window setRootViewController:login];
     }
-    
-    [self.window makeKeyAndVisible];
-    
-    return YES;
 }
 
 #pragma mark - 根控制器
