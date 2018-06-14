@@ -69,16 +69,8 @@
         self.detail1Label.text = [NSString stringWithFormat:@"尺寸规格:%@",model.spec_name];
     }
     
-    NSString *str = [NSString stringWithFormat:@"N%.2f/¥%.2f",model.price,model.score];
-    NSArray *strArr = [str componentsSeparatedByString:@"/¥"];
-    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:str];
-    [AttributedStr addAttribute:NSForegroundColorAttributeName
-     
-                          value:kRedColor
-     
-                          range:[str rangeOfString:strArr[0]]];
-    
-    self.detail2Label.attributedText = AttributedStr;
+    self.detail2Label.text = [NSString stringWithFormat:@"N%.2f",model.price];
+
 //    self.dateLabel.text = [NSString stringWithFormat:@"%.2f 元",model.price];
     self.numberTF.text = [NSString stringWithFormat:@"%ld",(long)model.buy_number];
 //    self.sizeLabel.text = model.sizeStr;
@@ -225,7 +217,7 @@
     UILabel* detail2Label = [[UILabel alloc]init];
     detail2Label.frame = CGRectMake(imageBgView.right + 14, CGRectGetMaxY(nameLabel.frame)+30, nameLabel.width-10-imageView.width, 12);
     detail2Label.font = [UIFont boldSystemFontOfSize:14];
-    detail2Label.textColor = KBGCOLOR;
+    detail2Label.textColor = kRedColor;
     detail2Label.textAlignment = NSTextAlignmentLeft;
     [bgView addSubview:detail2Label];
     self.detail2Label = detail2Label;

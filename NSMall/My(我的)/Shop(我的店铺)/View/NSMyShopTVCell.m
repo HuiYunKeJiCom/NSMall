@@ -36,13 +36,13 @@
 }
 
 -(void)buildUI{
-    _bgView = [[UIView alloc] initWithFrame:self.frame];
-    _bgView.backgroundColor = kWhiteColor;
+    self.bgView = [[UIView alloc] init];
+    self.bgView.backgroundColor = kWhiteColor;
     [self addSubview:self.bgView];
     
-    self.goodsIV = [[UIImageView alloc] initWithFrame:CGRectMake(19, 12, 40, 40)];
-    //    self.goodsIV.backgroundColor = kGreyColor;
-    [self.goodsIV setContentMode:UIViewContentModeScaleAspectFill];
+    self.goodsIV = [[UIImageView alloc] init];
+    self.goodsIV.backgroundColor = [UIColor greenColor];
+    [self.goodsIV setContentMode:UIViewContentModeScaleAspectFit];
     [self.bgView addSubview:self.goodsIV];
     
     self.goodsName = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum14 TextColor:[UIColor blackColor]];
@@ -57,6 +57,7 @@
     
     self.pin = [[UIImageView alloc] init];
     [self.pin setContentMode:UIViewContentModeScaleAspectFill];
+    self.pin.image = IMAGE(@"myshop_ico_ coordinate");
     [self.bgView addSubview:self.pin];
     
     self.addressLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum13 TextColor:kGreyColor];
@@ -71,7 +72,7 @@
     _editBtn.layer.borderColor = [KMainColor CGColor];
     [_editBtn setTitleColor:KMainColor forState:UIControlStateNormal];
     [_editBtn setTitle:@"编辑" forState:UIControlStateNormal];
-    //    [_editBtn addTarget:self action:@selector(evaluateBtnButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [_editBtn addTarget:self action:@selector(editButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.bgView addSubview:self.editBtn];
     
     _delBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -83,7 +84,7 @@
     _delBtn.layer.borderColor = [kRedColor CGColor];
     [_delBtn setTitleColor:kRedColor forState:UIControlStateNormal];
     [_delBtn setTitle:@"删除" forState:UIControlStateNormal];
-    //    [_delBtn addTarget:self action:@selector(evaluateBtnButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [_delBtn addTarget:self action:@selector(deleteButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.bgView addSubview:self.delBtn];
     
 }
@@ -94,39 +95,90 @@
     
 }
 
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    
+    [self makeConstraints];
+}
+
 - (void)setModel:(NSShopListItemModel *)model {
     _model = model;
     
-    self.goodsName.x = CGRectGetMaxX(self.goodsIV.frame)+11;
-    self.goodsName.y = CGRectGetMinY(self.goodsIV.frame)+4;
+    [self.goodsIV sd_setImageWithURL:[NSURL URLWithString:model.storeImageList[0]]];
     self.goodsName.text = self.model.name;
-    [self.goodsName sizeToFit];
-    
-    self.detailLab.x = CGRectGetMaxX(self.goodsIV.frame)+11;
-    self.detailLab.y = CGRectGetMaxY(self.goodsName.frame)+6;
     self.detailLab.text = self.model.introduce;
-    [self.detailLab sizeToFit];
+    self.addressLab.text = self.model.address;
+}
+
+-(void)makeConstraints {
+    WEAKSELF
     
-    self.lineView.x = 0;
-    self.lineView.y = CGRectGetMaxY(self.goodsIV.frame)+12;
-    self.lineView.size = CGSizeMake(kScreenWidth, 1);
+    [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.mas_left);
+        make.right.equalTo(weakSelf.mas_right);
+        make.top.equalTo(weakSelf);
+        make.bottom.equalTo(weakSelf.mas_bottom);
+    }];
     
-    self.pin.x = 19;
-    self.pin.y = CGRectGetMaxY(self.lineView.frame)+25;
-    self.pin.size = CGSizeMake(8, 12);
+    [self.goodsIV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.bgView.mas_left).with.offset(19);
+        make.top.equalTo(weakSelf.bgView.mas_top).with.offset(12);
+        make.width.mas_equalTo(GetScaleWidth(53));
+        make.height.mas_equalTo(GetScaleWidth(53));
+    }];
     
-    self.addressLab.x = CGRectGetMaxX(self.pin.frame)+5;
-    self.addressLab.y = CGRectGetMaxY(self.lineView.frame)+25;
-    self.addressLab.text = @"浙江省杭州市省政府旁边";
-    [self.addressLab sizeToFit];
+    [self.goodsName mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.goodsIV.mas_right).with.offset(11);
+        make.top.equalTo(weakSelf.bgView.mas_top).with.offset(20);
+    }];
     
-    self.editBtn.x = kScreenWidth-19-53;
-    self.editBtn.y = CGRectGetMaxY(self.lineView.frame)+7;
-    self.editBtn.size = CGSizeMake(53, 23);
+    [self.detailLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.goodsIV.mas_right).with.offset(11);
+        make.top.equalTo(weakSelf.goodsName.mas_bottom).with.offset(6);
+    }];
     
-    self.delBtn.x = kScreenWidth-19-53-13-53;
-    self.delBtn.y = CGRectGetMaxY(self.lineView.frame)+7;
-    self.delBtn.size = CGSizeMake(53, 23);
+    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.bgView.mas_left);
+        make.top.equalTo(weakSelf.goodsIV.mas_bottom).with.offset(12);
+        make.width.mas_equalTo(kScreenWidth);
+        make.height.mas_equalTo(GetScaleWidth(1));
+    }];
+
+    [self.editBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.bgView.mas_right).with.offset(-19);
+        make.bottom.equalTo(self.bgView.mas_bottom).with.offset(-10);
+        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(53),GetScaleWidth(23)));
+    }];
+    
+    [self.delBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.editBtn.mas_left).with.offset(-13);
+        make.bottom.equalTo(self.bgView.mas_bottom).with.offset(-10);
+        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(53),GetScaleWidth(23)));
+    }];
+    
+    [self.pin mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.bgView.mas_left).with.offset(19);
+        make.bottom.equalTo(self.bgView.mas_bottom).with.offset(-17);
+        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(8),GetScaleWidth(12)));
+    }];
+
+    [self.addressLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.pin.mas_right).with.offset(5);
+        make.bottom.equalTo(self.bgView.mas_bottom).with.offset(-17);
+    }];
+
+}
+
+#pragma mark - 编辑 点击
+- (void)editButtonClick {
+        NSLog(@"编辑 点击");
+    !_editBtnClickBlock ? : _editBtnClickBlock();
+}
+
+#pragma mark - 删除 点击
+- (void)deleteButtonClick {
+    NSLog(@"删除 点击");
+    !_deleteBtnClickBlock ? : _deleteBtnClickBlock();
 }
 
 @end

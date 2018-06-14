@@ -7,8 +7,9 @@
 //
 
 #import "DCBaseSetViewController.h"
+#import "ShopAddressParam.h"
 
 @interface NSAddressVC : DCBaseSetViewController
-typedef void(^stringBlock)(NSString *string);
-@property (nonatomic, copy) stringBlock                   stringBlock;/* 保存修改的信息回调 */
+typedef void(^paramBlock)(ShopAddressParam *param);
+@property (nonatomic, copy) paramBlock                   paramBlock;/* 保存修改的信息回调 */
 @end

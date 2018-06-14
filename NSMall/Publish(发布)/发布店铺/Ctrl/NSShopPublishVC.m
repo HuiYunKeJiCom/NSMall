@@ -26,6 +26,7 @@
 #import "NSShopPublishAPI.h"
 #import "NSChangeParamVC.h"
 #import "BRPickerView.h"
+#import "ShopAddressParam.h"
 
 @interface NSShopPublishVC ()<NSShopTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,NSAddLabelVCDelegate> {
     NSMutableArray *_selectedPhotos;
@@ -616,12 +617,14 @@
         case 1:{
             NSLog(@"点击了地址");
             NSAddressVC *ctrl = [[NSAddressVC alloc] init];
-            ctrl.stringBlock = ^(NSString *string) {
+            ctrl.paramBlock = ^(ShopAddressParam *param) {
                 for (ADLMyInfoModel *model in self.otherTableView.data) {
                     if([model.title isEqualToString:@"地址"]){
-                        if(string){
-                            model.num = [NSString stringWithFormat:@"%@",string];
-                            self.param.address = string;
+                        if(param){
+                            model.num = [NSString stringWithFormat:@"%@",param.address];
+                            self.param.address = param.address;
+                            self.param.longitude = [NSString stringWithFormat:@"%f",param.location.longitude];
+                            self.param.latitude = [NSString stringWithFormat:@"%f",param.location.latitude];
                         }else{
                             model.num = @"请输入地址";
                         }
@@ -715,7 +718,7 @@
     
     UILabel *addPhotoLab=[[UILabel alloc] initWithFrame:CGRectMake(self.addView.centerX- contentSize.width*0.5, CGRectGetMaxY(btn.frame)+3, contentSize.width, contentSize.height)];
     [addPhotoLab setText:@"添加照片"];
-    addPhotoLab.font = UISystemFontSize(15);
+    addPhotoLab.font = UISystemFontSize(14);
     addPhotoLab.textColor= [UIColor blackColor];
     [self.addView addSubview:addPhotoLab];
 }
@@ -781,17 +784,15 @@
                
                 self.param.storeName = self.shopNameTF.text;
                 self.param.introduce = self.detailTV.text;
-                
                 [NSShopPublishAPI createShopWithParam:self.param success:^{
-                    DLog(@"商品发布成功");
+                    DLog(@"店铺发布成功");
+                    [Common AppShowToast:@"店铺发布成功"];
                     [self dismissModalStack];
                 } faulre:^(NSError *error) {
                     DLog(@"店铺发布失败");
                 }];
-                
             }
         } faulre:^(NSError *error) {
-            
         }];
     }
 }
@@ -843,9 +844,11 @@
     
 #pragma mark - CLTagViewControllerDelegate 返回贴上的标签，并做相关处理
 - (void)tagViewController:(NSAddLabelVC *)tagController tags:(NSArray<LabelItemModel *> *)tags {
-
+    
     _tagArrayM = [NSMutableArray array];
     [tagController.navigationController popViewControllerAnimated:YES];
+    
+    NSString *labelID = @"";
     
     if(tags.count>0){
         for (LabelItemModel *tag in tags) {
@@ -856,9 +859,12 @@
             [_tagArrayM addObject:tag];
             
             self.infoCell.numLb.text = [[self.infoCell.numLb.text stringByAppendingString:tag.label_name] stringByAppendingString:@"、"];
+            labelID = [[labelID stringByAppendingString:tag.label_id] stringByAppendingString:@","];
         }
         NSString *tagString = [self removeLastOneChar:self.infoCell.numLb.text];
+        NSString *tagID = [self removeLastOneChar:labelID];
         self.infoCell.numLb.text = tagString;
+        self.param.labelId = labelID;
     }else{
         self.infoCell.numLb.text = @"餐饮、快餐";
     }
@@ -894,6 +900,20 @@
 //    }
     
     return type;
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+    [theTextField resignFirstResponder];// 使当前文本框失去第一响应者的特权，就会回收键盘了
+    return YES;
 }
 
 @end

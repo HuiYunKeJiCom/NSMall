@@ -10,6 +10,7 @@
 #import "ADOrderTopToolView.h"
 #import "NSSearchAddressVC.h"
 
+
 @interface NSAddressVC ()<BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,BMKPoiSearchDelegate,BMKMapViewDelegate,UITextFieldDelegate>
 @property(nonatomic,strong)BMKMapView *mapView;/* 地图view */
 @property(nonatomic,strong)BMKLocationService *locService;/* 定位 */
@@ -18,7 +19,8 @@
 @property(nonatomic,strong)UIImageView *labelBgV;/* 地理信息背景图 */
 @property(nonatomic,strong)BMKGeoCodeSearch *searcher;/* 云检索 */
 @property(nonatomic,strong)UITextField *searchTF;/* 搜索地址 */
-@property(nonatomic,copy)NSString *shopAddress;/* 店铺地址 */
+@property(nonatomic,strong)ShopAddressParam *shopAddressParam;/* 店铺住址和坐标 */
+
 @end
 
 @implementation NSAddressVC
@@ -27,6 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.shopAddressParam = [ShopAddressParam new];
     //初始化BMKLocationService
     _locService = [[BMKLocationService alloc]init];
     _locService.delegate = self;
@@ -107,8 +110,8 @@
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
-        if (weakSelf.stringBlock) {
-            weakSelf.stringBlock(weakSelf.searchTF.text);
+        if (weakSelf.paramBlock) {
+            weakSelf.paramBlock(weakSelf.shopAddressParam);
         }
         [weakSelf.navigationController popViewControllerAnimated:YES];
     };
@@ -232,8 +235,10 @@
 
         self.geographicLab.text = [NSString stringWithFormat:@"%@",poiInfo.name];
         self.searchTF.text = result.address;
-        if (self.stringBlock) {
-            self.stringBlock(self.searchTF.text);
+        self.shopAddressParam.address = result.address;
+        self.shopAddressParam.location = result.location;
+        if (self.paramBlock) {
+            self.paramBlock(self.shopAddressParam);
         }
     }
 }

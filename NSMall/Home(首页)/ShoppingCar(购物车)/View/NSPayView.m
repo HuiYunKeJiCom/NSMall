@@ -90,7 +90,7 @@
     
     self.payLab = [[UILabel alloc]init];
     self.payLab.font = UISystemFontSize(14);
-    self.payLab.textColor = KBGCOLOR;
+    self.payLab.textColor = kRedColor;
     [self.contentView addSubview:self.payLab];
     
     self.payTitle = [[UILabel alloc]init];
@@ -137,15 +137,7 @@
 -(void)setPayString:(NSString *)payString{
     _payString = payString;
     
-    NSArray *strArr = [payString componentsSeparatedByString:@"/¥"];
-    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:payString];
-    [AttributedStr addAttribute:NSForegroundColorAttributeName
-     
-                          value:kRedColor
-     
-                          range:[payString rangeOfString:strArr[0]]];
-    
-    self.payLab.attributedText = AttributedStr;
+    self.payLab.text = payString;
     CGSize sum = [self contentSizeWithTitle:payString andFont:14];
     self.payLab.y = kATTR_VIEW_HEIGHT-44-15-sum.height-20;
     self.payLab.x = kScreenWidth-19-sum.width;

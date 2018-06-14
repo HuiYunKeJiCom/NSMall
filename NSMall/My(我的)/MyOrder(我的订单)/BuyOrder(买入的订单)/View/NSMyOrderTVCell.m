@@ -156,14 +156,7 @@
         
         height+=65;
     }
-    self.totalLab.text = [NSString stringWithFormat:@"共%lu件商品,小计N%.2f/¥%.2f",model.buy_number,model.pay_amount,model.order_score];
-//    CGSize totalSize = [self contentSizeWithTitle:self.totalLab.text andFont:14];
-//    [self.totalLab sizeToFit];
-//    self.totalLab.x =  kScreenWidth-18-totalSize.width;
-//    self.totalLab.y = height+15;
-//    self.nextOperation.x = kScreenWidth-67-19;
-//    self.nextOperation.y = CGRectGetMaxY(self.totalLab.frame)+10;
-//    self.nextOperation.size = CGSizeMake(67, 28);
+    self.totalLab.text = [NSString stringWithFormat:@"共%lu件商品,小计N%.2f",model.buy_number,model.pay_amount];
 }
 
 -(void)nextOperationClick{

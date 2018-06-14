@@ -33,6 +33,7 @@ const static NSString * const kLikeProductAPI = @"auth/likeProduct";//点赞，�
 
 const static NSString * const kGetInfoAPI = @"auth/getUserInfo";//获取用户信息
 
+//我的页面
 const static NSString * const kChangeMobileAPI = @"auth/changeMobile";//更换手机号
 const static NSString * const kUpdateUserAPI = @"auth/updateUser";//修改用户信息
 const static NSString * const kUploadHeaderAPI = @"auth/uploadAvatar";//上传用户头像
@@ -44,6 +45,9 @@ const static NSString * const kMyProductListAPI = @"auth/myProductList";//获取
 const static NSString * const kMyStoreListAPI = @"auth/myStoreList";//获取我的店铺列表
 const static NSString * const kCollectionListAPI = @"auth/collectProductList";//我的收藏商品列表
 const static NSString * const kOrderListAPI = @"auth/orderList";//我的订单列表
+
+//我的店铺
+const static NSString * const kRemoveStoreAPI = @"auth/removeStore";//删除店铺
 
 const static NSString * const kGetVcodeAPI = @"getSmsVerifyCode";//获取短信验证码
 const static NSString * const kGetLabelsAPI = @"getLabels";//获取标签列表

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LabelItemModel.h"
 
 @interface NSShopListItemModel : NSObject
 /*
@@ -16,6 +17,13 @@
 
 @property (nonatomic,copy)NSString *store_id;//店铺id
 @property (nonatomic,copy)NSString *name;//店铺名称
+@property (nonatomic,copy)NSString *business_hours_start;//开始营业时间
+@property (nonatomic,copy)NSString *business_hours_end;//结束营业时间
 @property (nonatomic,copy)NSString *introduce;//店铺简介描述
-@property (nonatomic,copy)NSString *store_imge;//店铺主图片
+@property (nonatomic,copy)NSString *user_phone;//店铺电话
+@property (nonatomic)double longitude;//经度
+@property (nonatomic)double latitude;//纬度
+@property (nonatomic,copy)NSString *address;//店铺地址
+@property (nonatomic,strong)NSArray *storeImageList;//店铺图片
+@property (nonatomic,strong)NSArray<LabelItemModel *> *labelList;//
 @end

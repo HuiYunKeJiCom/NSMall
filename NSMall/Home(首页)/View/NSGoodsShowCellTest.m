@@ -60,7 +60,7 @@
     
     self.priceLab = [[UILabel alloc] init];
     self.priceLab.font = [UIFont systemFontOfSize:kFontNum13];
-    self.priceLab.textColor = [UIColor lightGrayColor];
+    self.priceLab.textColor = kRedColor;
     [self.bgView addSubview:self.priceLab];
     
     self.imageSV = [[UIScrollView alloc]init];
@@ -184,15 +184,7 @@
     self.userName.text = productModel.user_name;
     self.timeLab.text = productModel.update_time;
 
-    NSString *str = [NSString stringWithFormat:@"N%.2f/¥%.2f",[productModel.show_price floatValue],[productModel.show_score floatValue]];
-    NSArray *strArr = [str componentsSeparatedByString:@"/¥"];
-    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:str];
-    [AttributedStr addAttribute:NSForegroundColorAttributeName
-     
-                          value:kRedColor
-     
-                          range:[str rangeOfString:strArr[0]]];
-    self.priceLab.attributedText = AttributedStr;
+    self.priceLab.text = [NSString stringWithFormat:@"N%.2f",[productModel.show_price floatValue]];
     
     float itemWidth = (kScreenWidth-GetScaleWidth(22)-GetScaleWidth(16))/3.0;
     self.imageSV.contentSize = CGSizeMake((itemWidth+GetScaleWidth(8))*productModel.productImageList.count, 0);

@@ -10,5 +10,7 @@
 
 
 @implementation NSShopListItemModel
-
++ (NSDictionary *)modelContainerPropertyGenericClass{
+    return @{@"labelList":[LabelItemModel class]};
+}
 @end

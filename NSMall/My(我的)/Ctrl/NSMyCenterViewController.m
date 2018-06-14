@@ -15,6 +15,7 @@
 #import "NSCollectionListVC.h"//我的收藏
 #import "NSOrderListVC.h"//我的订单
 #import "NSMyWalletListVC.h"//我的钱包
+#import "NSMyShopVC.h"//我的店铺
 
 @interface NSMyCenterViewController ()<ADLMyInfoTableViewDelegate>
 @property (strong, nonatomic) ADLMyInfoTableView   *otherTableView;
@@ -115,6 +116,10 @@
             break;
         case 3:{
             NSLog(@"点击了我的店铺");
+            [self.navigationController setNavigationBarHidden:YES];
+            //跳转至我的店铺
+            NSMyShopVC *shopListVC = [NSMyShopVC new];
+            [self.navigationController pushViewController:shopListVC animated:YES];
         }
             break;
         case 4:{

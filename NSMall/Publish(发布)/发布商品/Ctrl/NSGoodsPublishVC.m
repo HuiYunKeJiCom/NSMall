@@ -760,7 +760,7 @@
     
     UILabel *addPhotoLab=[[UILabel alloc] initWithFrame:CGRectMake(self.addView.centerX- contentSize.width*0.5, CGRectGetMaxY(btn.frame)+6, contentSize.width, contentSize.height)];
     [addPhotoLab setText:@"添加照片"];
-    addPhotoLab.font = UISystemFontSize(15);
+    addPhotoLab.font = UISystemFontSize(14);
     addPhotoLab.textColor= [UIColor blackColor];
     [self.addView addSubview:addPhotoLab];
 }
@@ -851,6 +851,7 @@
             [GoodsPublishAPI createProductWithParam:self.param success:^{
                 DLog(@"商品发布成功");
 //                [self dismissViewControllerAnimated:YES completion:nil];
+                [Common AppShowToast:@"商品发布成功"];
                 [self dismissModalStack];
 //                [kAppDelegate setUpRootVC];
             } faulre:^(NSError *error) {

@@ -85,7 +85,7 @@
     
     UILabel *goodsNameLbl = [[UILabel alloc] init];
     goodsNameLbl.text = @"商品名字";
-    goodsNameLbl.textColor = KBGCOLOR;
+    goodsNameLbl.textColor = kRedColor;
     goodsNameLbl.font = [UIFont systemFontOfSize:15];
     CGFloat goodsNameLblX = CGRectGetMaxX(iconBackView.frame) + 12;
     CGFloat goodsNameLblY = 14;

@@ -156,6 +156,8 @@
 		18B1CB1720BF9E9B00235CFA /* NSWalletTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1CB1620BF9E9B00235CFA /* NSWalletTVCell.m */; };
 		18B1CB1A20BFCB1C00235CFA /* NSAddWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1CB1920BFCB1C00235CFA /* NSAddWalletVC.m */; };
 		18B1CB1D20BFE6D700235CFA /* NSBindWalletParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1CB1C20BFE6D700235CFA /* NSBindWalletParam.m */; };
+		18BD2DB320D0AFB9003C57B3 /* ShopAddressParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BD2DB220D0AFB9003C57B3 /* ShopAddressParam.m */; };
+		18BD2DB720D113BB003C57B3 /* MyShopAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BD2DB620D113BB003C57B3 /* MyShopAPI.m */; };
 		18C2DDEA20B7A8FB00A3B851 /* NSMessageTV.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2DDE920B7A8FB00A3B851 /* NSMessageTV.m */; };
 		18C2DDED20B7A92300A3B851 /* NSMessageTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2DDEC20B7A92300A3B851 /* NSMessageTVCell.m */; };
 		18C2DDF020B7A97D00A3B851 /* NSMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2DDEF20B7A97D00A3B851 /* NSMessageModel.m */; };
@@ -624,6 +626,10 @@
 		18B1CB1920BFCB1C00235CFA /* NSAddWalletVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAddWalletVC.m; sourceTree = "<group>"; };
 		18B1CB1B20BFE6D700235CFA /* NSBindWalletParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSBindWalletParam.h; sourceTree = "<group>"; };
 		18B1CB1C20BFE6D700235CFA /* NSBindWalletParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSBindWalletParam.m; sourceTree = "<group>"; };
+		18BD2DB120D0AFB9003C57B3 /* ShopAddressParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopAddressParam.h; sourceTree = "<group>"; };
+		18BD2DB220D0AFB9003C57B3 /* ShopAddressParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopAddressParam.m; sourceTree = "<group>"; };
+		18BD2DB520D113BB003C57B3 /* MyShopAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyShopAPI.h; sourceTree = "<group>"; };
+		18BD2DB620D113BB003C57B3 /* MyShopAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyShopAPI.m; sourceTree = "<group>"; };
 		18C2DDE820B7A8FB00A3B851 /* NSMessageTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSMessageTV.h; sourceTree = "<group>"; };
 		18C2DDE920B7A8FB00A3B851 /* NSMessageTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSMessageTV.m; sourceTree = "<group>"; };
 		18C2DDEB20B7A92300A3B851 /* NSMessageTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSMessageTVCell.h; sourceTree = "<group>"; };
@@ -1691,6 +1697,7 @@
 		18A7AB7120AD8B85009FC725 /* Shop(我的店铺) */ = {
 			isa = PBXGroup;
 			children = (
+				18BD2DB420D11367003C57B3 /* API */,
 				1878477320AECBE700AC0E0F /* Model */,
 				1878477220AECBE200AC0E0F /* View */,
 				1878477120AECBDB00AC0E0F /* Ctrl */,
@@ -2087,6 +2094,15 @@
 				18B1CB1C20BFE6D700235CFA /* NSBindWalletParam.m */,
 			);
 			path = Param;
+			sourceTree = "<group>";
+		};
+		18BD2DB420D11367003C57B3 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				18BD2DB520D113BB003C57B3 /* MyShopAPI.h */,
+				18BD2DB620D113BB003C57B3 /* MyShopAPI.m */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		18C2DE1020B7F55E00A3B851 /* Sort(分类) */ = {
@@ -2645,6 +2661,8 @@
 			children = (
 				18DA7CF220C8D8AA009277AA /* ShopPublishParam.h */,
 				18DA7CF320C8D8AA009277AA /* ShopPublishParam.m */,
+				18BD2DB120D0AFB9003C57B3 /* ShopAddressParam.h */,
+				18BD2DB220D0AFB9003C57B3 /* ShopAddressParam.m */,
 			);
 			path = Param;
 			sourceTree = "<group>";
@@ -3510,6 +3528,7 @@
 				18B0179220A67B9600826EA4 /* YWAddressModel.m in Sources */,
 				18F5D51320CE6A740037F825 /* BMKClusterQuadtree.m in Sources */,
 				18D0C0C220AC114A007F0784 /* AJPhotoZoomingScrollView.m in Sources */,
+				18BD2DB320D0AFB9003C57B3 /* ShopAddressParam.m in Sources */,
 				184F0645209FFB7F00768418 /* UILabel+LBExt.m in Sources */,
 				18D0C0C120AC114A007F0784 /* AJPhotoBrowserViewController.m in Sources */,
 				18C3D07B20A2F0E8000FCE7F /* GetLabelsAPI.m in Sources */,
@@ -3527,6 +3546,7 @@
 				18B0179720A67B9600826EA4 /* YWAddressViewController.m in Sources */,
 				18C3D0AA20A2F77E000FCE7F /* CategoryListModel.m in Sources */,
 				18C3CFF220A2EF3B000FCE7F /* PPUntil.m in Sources */,
+				18BD2DB720D113BB003C57B3 /* MyShopAPI.m in Sources */,
 				18C3CFF120A2EF3B000FCE7F /* YWTool.m in Sources */,
 				184F05F0209AE39700768418 /* ProductListModel.m in Sources */,
 				18F5D50820CE63380037F825 /* ShopInfoView.m in Sources */,

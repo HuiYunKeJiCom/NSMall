@@ -61,7 +61,7 @@
     
     //初始化显示状态
     _allSellectedButton.selected = NO;
-    _totlePriceLabel.attributedText = [self LZSetString:@"N0.00/¥0.00"];
+    _totlePriceLabel.attributedText = [self LZSetString:@"N0.00"];
     
     [self loadData];
 }
@@ -128,7 +128,7 @@
         totlePrice += price * model.buy_number;
         totleScore += score * model.buy_number;
     }
-    NSString *string = [NSString stringWithFormat:@"N%.2f/¥%.2f",totlePrice,totleScore];
+    NSString *string = [NSString stringWithFormat:@"N%.2f",totlePrice];
     self.totlePriceLabel.attributedText = [self LZSetString:string];
 }
 
@@ -211,10 +211,10 @@
     //合计
     UILabel *label = [[UILabel alloc]init];
     label.font = [UIFont systemFontOfSize:14];
-    label.textColor = KBGCOLOR;
+    label.textColor = kRedColor;
     [backgroundView addSubview:label];
     
-    label.attributedText = [self LZSetString:@"N0.00/¥0.00"];
+    label.attributedText = [self LZSetString:@"N0.00"];
     CGFloat maxWidth = LZSCREEN_WIDTH - selectAll.bounds.size.width - btn.bounds.size.width - 30;
 //    CGSize size = [label sizeThatFits:CGSizeMake(maxWidth, LZTabBarHeight)];
     label.frame = CGRectMake(selectAll.bounds.size.width, 0, maxWidth - 10, LZTabBarHeight);
@@ -226,9 +226,9 @@
     NSString *text = [NSString stringWithFormat:@"合计:%@",string];
     NSMutableAttributedString *LZString = [[NSMutableAttributedString alloc]initWithString:text];
     NSRange rang = [text rangeOfString:@"合计:"];
-    NSArray *strArr = [text componentsSeparatedByString:@"/¥"];
-    NSRange rang2 = [text rangeOfString:strArr[0]];
-    [LZString addAttribute:NSForegroundColorAttributeName value:kRedColor range:rang2];
+//    NSArray *strArr = [text componentsSeparatedByString:@"/¥"];
+//    NSRange rang2 = [text rangeOfString:strArr[0]];
+//    [LZString addAttribute:NSForegroundColorAttributeName value:kRedColor range:rang2];
     
     [LZString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:rang];
     [LZString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:rang];

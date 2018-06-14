@@ -103,19 +103,10 @@
         }
         
         UILabel *priceLab = [[UILabel alloc]init];
-        priceLab.textColor = KBGCOLOR;
+        priceLab.textColor = kRedColor;
         priceLab.font = UISystemFontSize(14);
         [goodsV addSubview:priceLab];
-        NSString *str = [NSString stringWithFormat:@"N%.2f/¥%.2f",model.price,model.score];
-        NSArray *strArr = [str componentsSeparatedByString:@"/¥"];
-        NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:str];
-        [AttributedStr addAttribute:NSForegroundColorAttributeName
-         
-                              value:kRedColor
-         
-                              range:[str rangeOfString:strArr[0]]];
-        
-        priceLab.attributedText = AttributedStr;
+        priceLab.text = [NSString stringWithFormat:@"N%.2f",model.price];
         priceLab.x = CGRectGetMaxX(goodsIV.frame)+14;
         priceLab.y = CGRectGetMaxY(userName.frame)+25;
         [priceLab sizeToFit];
@@ -164,19 +155,10 @@
         [goodsV addSubview:shipTitle];
         
         UILabel *shipLab = [[UILabel alloc]init];
-        shipLab.textColor = KBGCOLOR;
-        NSString *shipStr = [NSString stringWithFormat:@"N%.2f/¥%.2f",model.ship_price,model.ship_score];
-        NSArray *shipStrArr = [shipStr componentsSeparatedByString:@"/¥"];
-        NSMutableAttributedString *AttributedStr2 = [[NSMutableAttributedString alloc]initWithString:shipStr];
-        [AttributedStr2 addAttribute:NSForegroundColorAttributeName
-         
-                               value:kRedColor
-         
-                               range:[shipStr rangeOfString:shipStrArr[0]]];
+        shipLab.textColor = kRedColor;
+        shipLab.text = [NSString stringWithFormat:@"N%.2f",model.ship_price];
         
-        shipLab.attributedText = AttributedStr2;
-        
-        CGSize shipSize = [self contentSizeWithTitle:shipStr andFont:14];
+        CGSize shipSize = [self contentSizeWithTitle:shipLab.text andFont:14];
         shipLab.x = kScreenWidth-20-shipSize.width;
         shipLab.y = CGRectGetMaxY(line2.frame)+23-shipSize.height*0.5;
         [shipLab sizeToFit];
@@ -201,19 +183,10 @@
     
     UILabel *totalLab = [[UILabel alloc]init];
     totalLab.font = UISystemFontSize(14);
-    totalLab.textColor = KBGCOLOR;
-    NSString *totalStr = [NSString stringWithFormat:@"N%.2f/¥%.2f",model.payment_price,model.payment_score];
-    NSArray *totalStrArr = [totalStr componentsSeparatedByString:@"/¥"];
-    NSMutableAttributedString *AttributedStr3 = [[NSMutableAttributedString alloc]initWithString:totalStr];
-    [AttributedStr3 addAttribute:NSForegroundColorAttributeName
-     
-                           value:kRedColor
-     
-                           range:[totalStr rangeOfString:totalStrArr[0]]];
+    totalLab.textColor = kRedColor;
+    totalLab.text = [NSString stringWithFormat:@"N%.2f",model.payment_price];
     
-    totalLab.attributedText = AttributedStr3;
-    
-    CGSize totalPriceSize = [self contentSizeWithTitle:totalStr andFont:14];
+    CGSize totalPriceSize = [self contentSizeWithTitle:totalLab.text andFont:14];
     totalLab.x = kScreenWidth-20-totalPriceSize.width;
     totalLab.y = 12;
     [totalLab sizeToFit];

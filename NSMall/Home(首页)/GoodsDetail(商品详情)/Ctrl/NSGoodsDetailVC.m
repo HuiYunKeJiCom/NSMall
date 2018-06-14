@@ -61,21 +61,12 @@
     goodsName.text = self.model.name;
     [goodsView addSubview:goodsName];
     
-    NSString *str = [NSString stringWithFormat:@"N%.2f/¥%.2f",self.model.show_price,self.model.show_score];
-    NSArray *strArr = [str componentsSeparatedByString:@"/¥"];
-    CGSize priceSize = [self contentSizeWithTitle:str andFont:14];
-    UILabel *goodsPrice = [[UILabel alloc] initWithFrame:CGRectMake(GetScaleWidth(18), CGRectGetMaxY(goodsName.frame)+GetScaleWidth(7),priceSize.width,priceSize.height) FontSize:14];
-    goodsPrice.textColor = [UIColor lightGrayColor];
+    UILabel *goodsPrice = [[UILabel alloc] initWithFrame:CGRectZero FontSize:14];
+    goodsPrice.text = [NSString stringWithFormat:@"N%.2f",self.model.show_price];
+    CGSize priceSize = [self contentSizeWithTitle:goodsPrice.text andFont:14];
+    goodsPrice.frame = CGRectMake(GetScaleWidth(18), CGRectGetMaxY(goodsName.frame)+GetScaleWidth(7),priceSize.width,priceSize.height);
+    goodsPrice.textColor = kRedColor;
     [goodsView addSubview:goodsPrice];
-    
-    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:str];
-    [AttributedStr addAttribute:NSForegroundColorAttributeName
-     
-                          value:[UIColor redColor]
-     
-                          range:[str rangeOfString:strArr[0]]];
-    
-    goodsPrice.attributedText = AttributedStr;
     
     CGSize shipSize = [self contentSizeWithTitle:[NSString stringWithFormat:@"运费:N%.2f",self.model.ship_price] andFont:14];
     UILabel *goodsShip = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(goodsPrice.frame)+GetScaleWidth(10), CGRectGetMaxY(goodsName.frame)+GetScaleWidth(7),shipSize.width,shipSize.height) FontSize:14];
@@ -400,9 +391,6 @@
         }];
     };
     
-    NSString *str = [NSString stringWithFormat:@"N%.2f/¥%.2f",self.model.show_price,self.model.show_score];
-    NSArray *strArr = [str componentsSeparatedByString:@"/¥"];
-    
     attributesView.good_img = self.model.productImageList[0];
     if(self.model.stock == -1){
         attributesView.good_price = @"无限供应";
@@ -410,14 +398,7 @@
         attributesView.good_price = [NSString stringWithFormat:@"库存 %lu 件",self.model.stock];
     }
     
-    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:str];
-    [AttributedStr addAttribute:NSForegroundColorAttributeName
-     
-                          value:kRedColor
-     
-                          range:[str rangeOfString:strArr[0]]];
-    
-    attributesView.goodsNameLbl.attributedText = AttributedStr;
+    attributesView.goodsNameLbl.text = [NSString stringWithFormat:@"N%.2f",self.model.show_price];
     
     [attributesView showInView:self.navigationController.view];
 }
@@ -449,24 +430,13 @@
         [self.navigationController pushViewController:firmOrderVC animated:YES];
     };
     
-    NSString *str = [NSString stringWithFormat:@"N%.2f/¥%.2f",self.model.show_price,self.model.show_score];
-    NSArray *strArr = [str componentsSeparatedByString:@"/¥"];
-    
     attributesView.good_img = self.model.productImageList[0];
     if(self.model.stock == -1){
         attributesView.good_price = @"无限供应";
     }else{
         attributesView.good_price = [NSString stringWithFormat:@"库存 %lu 件",self.model.stock];
     }
-    
-    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:str];
-    [AttributedStr addAttribute:NSForegroundColorAttributeName
-     
-                          value:kRedColor
-     
-                          range:[str rangeOfString:strArr[0]]];
-    
-    attributesView.goodsNameLbl.attributedText = AttributedStr;
+    attributesView.goodsNameLbl.text = [NSString stringWithFormat:@"N%.2f",self.model.show_price];
     
     [attributesView showInView:self.navigationController.view];
 }

@@ -77,18 +77,9 @@
     [buttomView addSubview:submission];
     
     UILabel *sumLab = [[UILabel alloc]init];
-    sumLab.textColor = KBGCOLOR;
-    NSString *str = [NSString stringWithFormat:@"N%.2f/¥%.2f",self.firmOrderModel.payment_price,self.firmOrderModel.payment_score];
-    NSArray *strArr = [str componentsSeparatedByString:@"/¥"];
-    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:str];
-    [AttributedStr addAttribute:NSForegroundColorAttributeName
-     
-                          value:kRedColor
-     
-                          range:[str rangeOfString:strArr[0]]];
-    
-    sumLab.attributedText = AttributedStr;
-    CGSize sum = [self contentSizeWithTitle:str andFont:14];
+    sumLab.textColor = kRedColor;
+    sumLab.text = [NSString stringWithFormat:@"N%.2f",self.firmOrderModel.payment_price];
+    CGSize sum = [self contentSizeWithTitle:sumLab.text andFont:14];
     sumLab.x = CGRectGetMinX(submission.frame)-13-sum.width;
     sumLab.y = 24-sum.height*0.5;
     sumLab.font = UISystemFontSize(14);
@@ -260,7 +251,7 @@
 //        }
         NSPayView *payView = [[NSPayView alloc] initWithFrame:(CGRect){0, 0, kScreenWidth, kScreenHeight}];
         payView.userInteractionEnabled = YES;
-        payView.payString = [NSString stringWithFormat:@"N%.2f/¥%.2f",self.firmOrderModel.payment_price,self.firmOrderModel.payment_score];
+        payView.payString = [NSString stringWithFormat:@"N%.2f",self.firmOrderModel.payment_price];
         payView.walletNameArr = [NSMutableArray arrayWithArray:walletModel.walletList];
         __weak typeof(payView) PayView = payView;
         payView.confirmClickBlock = ^{

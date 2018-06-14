@@ -10,10 +10,11 @@
 #import "NSShopListModel.h"
 #import "NSShopListItemModel.h"
 
-#import "NSGoodsShowCell.h"
+#import "NSMyShopTVCell.h"
 #import "UserInfoAPI.h"
 #import "ADOrderTopToolView.h"
 #import "NSCommonParam.h"
+#import "MyShopAPI.h"
 
 @interface NSMyShopVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
 @property (nonatomic, strong) BaseTableView         *goodsTable;
@@ -26,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = KBGCOLOR;
     [self.view addSubview:self.goodsTable];
     [self setUpNavTopView];
     [self makeConstraints];
@@ -38,11 +40,11 @@
 {
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     topToolView.backgroundColor = kWhiteColor;
-    [topToolView setTopTitleWithNSString:KLocalizableStr(@"我的商品")];
+    [topToolView setTopTitleWithNSString:KLocalizableStr(@"我的店铺")];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
-        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
     };
     
     [self.view addSubview:topToolView];
@@ -53,8 +55,8 @@
 - (void)makeConstraints {
     
     [self.goodsTable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.bottom.equalTo(self.view);
-        //        make.top.equalTo(self.view.mas_bottom).with.offset(GetScaleWidth(10));
+        make.left.right.bottom.equalTo(self.view);
+        make.top.equalTo(self.view.mas_top).with.offset(TopBarHeight+1);
     }];
     
 }
@@ -66,16 +68,17 @@
     param.currentPage = [NSString stringWithFormat:@"%@",[NSNumber numberWithInteger:self.currentPage]];
     
     WEAKSELF
-    [UserInfoAPI getMyCollectionList:param success:^(ProductListModel * _Nullable result) {
-        NSLog(@"获取我的收藏成功");
-        weakSelf.goodsTable.data = [NSMutableArray arrayWithArray:result.productList];
+    [UserInfoAPI getMyShopList:param success:^(NSShopListModel * _Nullable result) {
+        NSLog(@"获取我的店铺成功");
+        weakSelf.goodsTable.data = [NSMutableArray arrayWithArray:result.storeList];
         [self.goodsTable updatePage:more];
         self.goodsTable.noDataView.hidden = self.goodsTable.data.count;
         [self.goodsTable reloadData];
     } failure:^(NSError *error) {
-        NSLog(@"获取我的收藏失败");
+        NSLog(@"获取我的店铺失败");
         [self cutCurrentPag];
     }];
+    
 }
 
 - (BaseTableView *)goodsTable {
@@ -86,7 +89,7 @@
         _goodsTable.isLoadMore = YES;
         _goodsTable.isRefresh = YES;
         _goodsTable.delegateBase = self;
-        [_goodsTable registerClass:[NSGoodsShowCell class] forCellReuseIdentifier:@"NSGoodsShowCell"];
+        [_goodsTable registerClass:[NSMyShopTVCell class] forCellReuseIdentifier:@"NSMyShopTVCell"];
         
     }
     return _goodsTable;
@@ -99,31 +102,39 @@
         return GetScaleWidth(0);
     }else{
         //设置间隔高度
-        return GetScaleWidth(15);
+        return GetScaleWidth(5);
     }
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(5))];
-    sectionView.backgroundColor = kGreyColor;
+    sectionView.backgroundColor = KBGCOLOR;
     return sectionView;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return self.goodsTable.data.count;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return GetScaleWidth(191);
+    return GetScaleWidth(120);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSGoodsShowCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSGoodsShowCell"];
+    NSMyShopTVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSMyShopTVCell"];
     if (self.goodsTable.data.count > indexPath.row) {
-        ProductListItemModel *model = self.goodsTable.data[indexPath.row];
+        NSShopListItemModel *model = self.goodsTable.data[indexPath.row];
         //        NSLog(@"model = %@",model.mj_keyValues);
-        cell.productModel = model;
+        cell.model = model;
+        cell.deleteBtnClickBlock = ^{
+            [self deleteShopWith:model];
+        };
     }
     
     return cell;
@@ -151,6 +162,15 @@
     if(self.currentPage != 1){
         self.currentPage -= 1;
     }
+}
+
+-(void)deleteShopWith:(NSShopListItemModel *)model{
+    [MyShopAPI delShopWithParam:model.store_id success:^{
+        [Common AppShowToast:@"店铺删除成功"];
+        [self requestAllOrder:NO];
+    } faulre:^(NSError *error) {
+        DLog(@"店铺删除失败");
+    }];
 }
 
 
