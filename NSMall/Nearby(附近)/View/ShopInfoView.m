@@ -61,7 +61,7 @@
 - (void)initViews {
     self.shopIV = [[UIImageView alloc] initWithFrame:CGRectZero];
     self.shopIV.backgroundColor = [UIColor greenColor];
-    [self.shopIV setContentMode:UIViewContentModeScaleAspectFill];
+    [self.shopIV setContentMode:UIViewContentModeScaleAspectFit];
     [self addSubview:self.shopIV];
     
     self.shopNameL = [[UILabel alloc]init];
@@ -153,6 +153,20 @@
     self.line4.backgroundColor = [UIColor lightGrayColor];
     [self addSubview:self.line4];
     
+    self.shopSV = [[UIScrollView alloc]init];
+    self.shopSV.backgroundColor = kWhiteColor;
+    self.shopSV.pagingEnabled = NO;
+    self.shopSV.showsHorizontalScrollIndicator = NO;
+    [self addSubview:self.shopSV];
+    
+    self.introduceLab = [[UILabel alloc]init];
+    self.introduceLab.font = [UIFont systemFontOfSize:14];
+    [self addSubview:self.introduceLab];
+    
+    self.createLab = [[UILabel alloc]init];
+    self.createLab.font = [UIFont systemFontOfSize:14];
+    self.createLab.textColor = KBGCOLOR;
+    [self addSubview:self.createLab];
 }
 
 - (CGSize)contentSizeWithTitle:(NSString *)title andFont:(float)font{
@@ -175,15 +189,30 @@
     self.shopAddrL.text = [NSString stringWithFormat:@"地址: %@",self.storeModel.address];
     self.distanceLabel.text = [NSString stringWithFormat:@"%@ 步行约%@",self.storeModel.distance,self.storeModel.walk_time];
     self.workStateL.text = @"营业中";
-    
+//    DLog(@"labelList = %lu",storeModel.labelList.count);
     for (LabelItemModel *tag in storeModel.labelList) {
         
         self.shopDescrL.text = [[self.shopDescrL.text stringByAppendingString:tag.label_name] stringByAppendingString:@"、"];
     }
     NSString *tagString = [self removeLastOneChar:self.shopDescrL.text];
+//    DLog(@"shopDescrL.text = %@",self.shopDescrL.text);
+//    DLog(@"tagString = %@",tagString);
     self.shopDescrL.text = tagString;
     self.shopTelL.text = [NSString stringWithFormat:@"电话: %@",self.storeModel.user_phone];
     self.shopHoursL.text = [NSString stringWithFormat:@"营业时间: %@~%@",storeModel.business_hours_start,storeModel.business_hours_end];
+    
+    float itemWidth = GetScaleWidth(45);
+    self.shopSV.contentSize = CGSizeMake(storeModel.storeImageList.count *52, itemWidth);
+    for(int i=0;i<storeModel.storeImageList.count;i++){
+        UIImageView *goodsIV = [[UIImageView alloc]initWithFrame:CGRectMake((itemWidth+GetScaleWidth(7))*i, 0, itemWidth, itemWidth)];
+        [goodsIV sd_setImageWithURL:[NSURL URLWithString:storeModel.storeImageList[i]]];
+        [self.shopSV addSubview:goodsIV];
+    }
+    self.introduceLab.text = storeModel.introduce;
+    
+    NSArray *timeArr = [storeModel.create_time componentsSeparatedByString:@" "];
+    
+    self.createLab.text = [NSString stringWithFormat:@"发表于%@",timeArr[0]];
     
     [self layoutSubviews];
 }
@@ -275,7 +304,22 @@
         make.left.equalTo(weakSelf.mas_left).with.offset(kScreenWidth*0.7-60);
         make.centerY.equalTo(weakSelf.shopHoursL.mas_centerY);
     }];
+    
+    [self.shopSV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.mas_left).with.offset(5);
+        make.top.equalTo(weakSelf.line4.mas_bottom).with.offset(7);
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth*0.7-10, 45));
+    }];
+    
+    [self.introduceLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.mas_left).with.offset(5);
+        make.top.equalTo(weakSelf.shopSV.mas_bottom).with.offset(10);
+    }];
 
+    [self.createLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(weakSelf.mas_right).with.offset(-20);
+        make.top.equalTo(weakSelf.introduceLab.mas_bottom).with.offset(10);
+    }];
 }
 
 -(NSString*) removeLastOneChar:(NSString*)origin

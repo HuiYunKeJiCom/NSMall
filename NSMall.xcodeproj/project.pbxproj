@@ -97,6 +97,11 @@
 		188CC652207F5431007D749E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188CC651207F5431007D749E /* Assets.xcassets */; };
 		188CC655207F5431007D749E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188CC653207F5431007D749E /* LaunchScreen.storyboard */; };
 		188CC658207F5431007D749E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 188CC657207F5431007D749E /* main.m */; };
+		18999B2120DA4C58003BCF23 /* NSOrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18999B2020DA4C58003BCF23 /* NSOrderDetailVC.m */; };
+		18999B2420DA549A003BCF23 /* NSOrderDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18999B2320DA5499003BCF23 /* NSOrderDetailModel.m */; };
+		18999B2B20DA5DF6003BCF23 /* UserPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18999B2A20DA5DF6003BCF23 /* UserPageVC.m */; };
+		18999B3020DA7ED5003BCF23 /* UserPageAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18999B2F20DA7ED5003BCF23 /* UserPageAPI.m */; };
+		18999B3320DA8580003BCF23 /* UserPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18999B3220DA8580003BCF23 /* UserPageModel.m */; };
 		1899B7B620B57643002FF2A8 /* NSLikeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1899B7B520B57643002FF2A8 /* NSLikeModel.m */; };
 		18A7AB7920ADAAFC009FC725 /* NSMyGoodsListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A7AB7820ADAAFC009FC725 /* NSMyGoodsListVC.m */; };
 		18A7AB7C20ADAC95009FC725 /* NSCommonParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A7AB7B20ADAC95009FC725 /* NSCommonParam.m */; };
@@ -515,6 +520,16 @@
 		188CC654207F5431007D749E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		188CC656207F5431007D749E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		188CC657207F5431007D749E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		18999B1F20DA4C58003BCF23 /* NSOrderDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSOrderDetailVC.h; sourceTree = "<group>"; };
+		18999B2020DA4C58003BCF23 /* NSOrderDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSOrderDetailVC.m; sourceTree = "<group>"; };
+		18999B2220DA5499003BCF23 /* NSOrderDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSOrderDetailModel.h; sourceTree = "<group>"; };
+		18999B2320DA5499003BCF23 /* NSOrderDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSOrderDetailModel.m; sourceTree = "<group>"; };
+		18999B2920DA5DF6003BCF23 /* UserPageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserPageVC.h; sourceTree = "<group>"; };
+		18999B2A20DA5DF6003BCF23 /* UserPageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserPageVC.m; sourceTree = "<group>"; };
+		18999B2E20DA7ED5003BCF23 /* UserPageAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserPageAPI.h; sourceTree = "<group>"; };
+		18999B2F20DA7ED5003BCF23 /* UserPageAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserPageAPI.m; sourceTree = "<group>"; };
+		18999B3120DA8580003BCF23 /* UserPageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserPageModel.h; sourceTree = "<group>"; };
+		18999B3220DA8580003BCF23 /* UserPageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserPageModel.m; sourceTree = "<group>"; };
 		1899B7B420B57643002FF2A8 /* NSLikeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSLikeModel.h; sourceTree = "<group>"; };
 		1899B7B520B57643002FF2A8 /* NSLikeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSLikeModel.m; sourceTree = "<group>"; };
 		18A7AB7720ADAAFC009FC725 /* NSMyGoodsListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSMyGoodsListVC.h; sourceTree = "<group>"; };
@@ -1684,6 +1699,92 @@
 			path = NSMall;
 			sourceTree = "<group>";
 		};
+		18999B1B20DA46B2003BCF23 /* OrderDetail(订单详情) */ = {
+			isa = PBXGroup;
+			children = (
+				18999B1E20DA485F003BCF23 /* Model */,
+				18999B1D20DA4858003BCF23 /* View */,
+				18999B1C20DA4852003BCF23 /* Ctrl */,
+			);
+			path = "OrderDetail(订单详情)";
+			sourceTree = "<group>";
+		};
+		18999B1C20DA4852003BCF23 /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				18999B1F20DA4C58003BCF23 /* NSOrderDetailVC.h */,
+				18999B2020DA4C58003BCF23 /* NSOrderDetailVC.m */,
+			);
+			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		18999B1D20DA4858003BCF23 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18999B1E20DA485F003BCF23 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18999B2520DA5CAF003BCF23 /* User(个人页面) */ = {
+			isa = PBXGroup;
+			children = (
+				18999B2D20DA7DA1003BCF23 /* Param */,
+				18999B2C20DA7D9C003BCF23 /* API */,
+				18999B2820DA5DA2003BCF23 /* View */,
+				18999B2720DA5D9B003BCF23 /* Model */,
+				18999B2620DA5CEE003BCF23 /* Ctrl */,
+			);
+			path = "User(个人页面)";
+			sourceTree = "<group>";
+		};
+		18999B2620DA5CEE003BCF23 /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				18999B2920DA5DF6003BCF23 /* UserPageVC.h */,
+				18999B2A20DA5DF6003BCF23 /* UserPageVC.m */,
+			);
+			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		18999B2720DA5D9B003BCF23 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18999B3120DA8580003BCF23 /* UserPageModel.h */,
+				18999B3220DA8580003BCF23 /* UserPageModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18999B2820DA5DA2003BCF23 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18999B2C20DA7D9C003BCF23 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				18999B2E20DA7ED5003BCF23 /* UserPageAPI.h */,
+				18999B2F20DA7ED5003BCF23 /* UserPageAPI.m */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		18999B2D20DA7DA1003BCF23 /* Param */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Param;
+			sourceTree = "<group>";
+		};
 		1899B7B320B575E4002FF2A8 /* Like */ = {
 			isa = PBXGroup;
 			children = (
@@ -1717,6 +1818,7 @@
 		18A7AB7220AD8B9B009FC725 /* MyOrder(我的订单) */ = {
 			isa = PBXGroup;
 			children = (
+				18999B1B20DA46B2003BCF23 /* OrderDetail(订单详情) */,
 				18E3A43D20B29BA300F847ED /* API */,
 				18E3A43C20B29ABF00F847ED /* Param */,
 				18E3A40E20B2613300F847ED /* SaleOrder(卖出的订单) */,
@@ -2300,8 +2402,8 @@
 		18D0824120956D2E0031034A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				18D0824220956D2E0031034A /* UserModel.m */,
 				18D0824320956D2E0031034A /* UserModel.h */,
+				18D0824220956D2E0031034A /* UserModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2751,6 +2853,7 @@
 		18DD1573208DD3740006475D /* My(我的) */ = {
 			isa = PBXGroup;
 			children = (
+				18999B2520DA5CAF003BCF23 /* User(个人页面) */,
 				18B1CB0320BF966000235CFA /* Wallet(我的钱包) */,
 				18D574C4209A9E67001C7875 /* Param */,
 				18404358209A023B00685F80 /* API */,
@@ -3145,6 +3248,8 @@
 				18E3A43720B273E600F847ED /* NSOrderListItemModel.m */,
 				18E3A43920B2763C00F847ED /* NSOrderProductItemModel.h */,
 				18E3A43A20B2763C00F847ED /* NSOrderProductItemModel.m */,
+				18999B2220DA5499003BCF23 /* NSOrderDetailModel.h */,
+				18999B2320DA5499003BCF23 /* NSOrderDetailModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3504,6 +3609,7 @@
 				18A7AB7C20ADAC95009FC725 /* NSCommonParam.m in Sources */,
 				184EC18320BD8DE9009BBFE6 /* NSFirmOrderModel.m in Sources */,
 				18F5D51520CE6A740037F825 /* BMKClusterAlgorithm.m in Sources */,
+				18999B3020DA7ED5003BCF23 /* UserPageAPI.m in Sources */,
 				18C3D0BE20A3DD2A000FCE7F /* AddViewButton.m in Sources */,
 				18C3D0D420A3FA99000FCE7F /* FriendsViewController.m in Sources */,
 				18A7AB8320ADB57E009FC725 /* NSMyProductListModel.m in Sources */,
@@ -3634,6 +3740,7 @@
 				184F0642209FFB7F00768418 /* UIBarButtonItem+DCBarButtonItem.m in Sources */,
 				184043382099FABE00685F80 /* ADLEditUserInformCtrl.m in Sources */,
 				183ED91720BE845100DB0487 /* NSAddressTVCell.m in Sources */,
+				18999B2120DA4C58003BCF23 /* NSOrderDetailVC.m in Sources */,
 				18C3D0BD20A3DD2A000FCE7F /* HyperlinksButton.m in Sources */,
 				184F05FA209C40DE00768418 /* AdvertItemModel.m in Sources */,
 				1878477D20AECFAE00AC0E0F /* NSMyShopVC.m in Sources */,
@@ -3698,6 +3805,7 @@
 				18B1CB1720BF9E9B00235CFA /* NSWalletTVCell.m in Sources */,
 				18B017A020A67B9600826EA4 /* ADReceivingAddressViewController.m in Sources */,
 				184779F620CF9F36000DB448 /* BRStringPickerView.m in Sources */,
+				18999B3320DA8580003BCF23 /* UserPageModel.m in Sources */,
 				18D574CF209AA39A001C7875 /* GetVcodeParam.m in Sources */,
 				185DFDFE20B3C7E800437168 /* NSCategoryTV.m in Sources */,
 				184DE7A6208F081400E776F3 /* ADLMyInfoTableViewCell.m in Sources */,
@@ -3710,6 +3818,7 @@
 				18B017AA20A67B9600826EA4 /* ADReceivingAddressCell.m in Sources */,
 				18C3D08B20A2F13F000FCE7F /* NSChangeParamVC.m in Sources */,
 				1889AF9320D398F000FBA33E /* NSShopViewTVCell.m in Sources */,
+				18999B2420DA549A003BCF23 /* NSOrderDetailModel.m in Sources */,
 				18DD2F1220B90B1D00521B61 /* HistoryAndCategorySearchCategoryViewP.m in Sources */,
 				184043352099FAA200685F80 /* ADLUpdateUserPhotoCell.m in Sources */,
 				18350890207F653600BCF7CE /* Net.m in Sources */,
@@ -3727,6 +3836,7 @@
 				18C3D08820A2F111000FCE7F /* LabelItemModel.m in Sources */,
 				18C2DE1920B7F8F000A3B851 /* NSSortLeftTVCell.m in Sources */,
 				18C3D0C020A3DD2A000FCE7F /* AddView.m in Sources */,
+				18999B2B20DA5DF6003BCF23 /* UserPageVC.m in Sources */,
 				18B017B320A67B9600826EA4 /* CLTagView.m in Sources */,
 				18B1CB0920BF980F00235CFA /* NSMyWalletListVC.m in Sources */,
 				18B017B120A67B9600826EA4 /* CLDispalyTagView.m in Sources */,

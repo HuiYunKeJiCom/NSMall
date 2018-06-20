@@ -84,10 +84,16 @@
     self.totalStoreV.delegate = self;
     [self.view addSubview:self.totalStoreV];
     
+    UISwipeGestureRecognizer *upSwipe = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipe:)];
+    upSwipe.numberOfTouchesRequired = 1;
+    upSwipe.direction = UISwipeGestureRecognizerDirectionUp;
+    [self.totalStoreV addGestureRecognizer:upSwipe];
+    
     UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipe:)];
     swipe.numberOfTouchesRequired = 1;
-    swipe.direction = UISwipeGestureRecognizerDirectionUp;
+    swipe.direction = UISwipeGestureRecognizerDirectionDown;
     [self.totalStoreV addGestureRecognizer:swipe];
+    
     
     
     

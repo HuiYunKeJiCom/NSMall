@@ -171,6 +171,7 @@ static CGFloat const kDotWith_height = 10;
 
     if (_passwordField.text.length == 6)
     {
+        [self removeView];
         if (_tbDelegate && [_tbDelegate respondsToSelector:@selector(payOrder:)]) {
             [_tbDelegate payOrder:_passwordField.text];
         }

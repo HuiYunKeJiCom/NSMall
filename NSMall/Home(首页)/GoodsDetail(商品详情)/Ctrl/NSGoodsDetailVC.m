@@ -339,6 +339,7 @@
             param.buyNumber = @"1";
             [GoodsDetailAPI addProductToCartWithParam:param success:^{
                 DLog(@"加入购物车成功");
+                
             } faulre:^(NSError *error) {
                 DLog(@"加入购物车失败");
             }];

@@ -51,7 +51,7 @@
 -(void)setModel:(NSOrderProductItemModel *)model{
     _model = model;
     self.goodsIV.x = 18;
-    self.goodsIV.y = 6;
+    self.goodsIV.y = 10;
     self.goodsIV.size = CGSizeMake(53, 53);
     [self.goodsIV sd_setImageWithURL:[NSURL URLWithString:model.product_imge]];
     self.detailLab.x =  CGRectGetMaxX(self.goodsIV.frame)+12;

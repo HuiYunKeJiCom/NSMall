@@ -98,6 +98,7 @@
     switch (index) {
         case 0:{
             NSLog(@"点击了头像");
+            
         }
             break;
         case 1:{

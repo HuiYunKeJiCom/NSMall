@@ -283,6 +283,7 @@
     NSPayOrderParam *param = [NSPayOrderParam new];
     param.walletId = self.walletID;
     param.orderId = self.walletListModel.orderId;
+    DLog(@"订单id  orderId = %@",param.orderId);
     param.tradePassword = tradePw;
     DLog(@"param = %@",param.mj_keyValues);
     [CartAPI payOrderWithParam:param success:^{
