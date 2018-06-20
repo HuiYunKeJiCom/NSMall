@@ -35,7 +35,7 @@
         
         _pharmacyLabel = [[UILabel alloc] init];
         _pharmacyLabel.textColor = [UIColor whiteColor];
-        _pharmacyLabel.font = [UIFont systemFontOfSize:14];
+        _pharmacyLabel.font = [UIFont systemFontOfSize:13];
         _pharmacyLabel.textAlignment = NSTextAlignmentCenter;
         _pharmacyLabel.numberOfLines = 0;
         [_labelIV addSubview:_pharmacyLabel];
@@ -46,16 +46,16 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    CGSize imageSize = [self contentSizeWithTitle:self.storeModel.name andFont:14];
-    _imageView.frame = CGRectMake(imageSize.width*0.5 -35, -90-5+100, 90,90 );
-    _imageView.layer.cornerRadius = 45;
-    _imageView.layer.masksToBounds = YES;
+    CGSize imageSize = [self contentSizeWithTitle:self.storeModel.name andFont:13];
+    _imageView.frame = CGRectMake(imageSize.width*0.5 -20, -60-5+100, 60,60 );
+//    _imageView.layer.cornerRadius = 45;
+//    _imageView.layer.masksToBounds = YES;
     
-    _labelIV.frame = CGRectMake(0, 0+100, imageSize.width + 20,imageSize.height );
+    _labelIV.frame = CGRectMake(2.5, 100, imageSize.width + 15,imageSize.height );
     _labelIV.layer.cornerRadius = imageSize.height/2;
     //    将多余的部分切掉
     _labelIV.layer.masksToBounds = YES;
-    _pharmacyLabel.frame = CGRectMake(10, 0, imageSize.width ,imageSize.height);
+    _pharmacyLabel.frame = CGRectMake(7.5, 0, imageSize.width ,imageSize.height);
     
     _labelIV.backgroundColor = UIColorFromRGB(0x0aa1e0);
 //    _imageView.backgroundColor = [UIColor redColor];
@@ -77,8 +77,8 @@
 -(void)setStoreModel:(NSStoreModel *)storeModel{
     _storeModel = storeModel;
     self.pharmacyLabel.text = storeModel.name;
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:storeModel.store_imge]];
-    DLog(@"storeModel.store_imge = %@",storeModel.store_imge);
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:storeModel.storeImageList[0]]];
+//    DLog(@"storeModel.store_imge = %@",storeModel.store_imge);
 
 }
 

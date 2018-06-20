@@ -64,7 +64,11 @@
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
-        [weakSelf.navigationController popViewControllerAnimated:YES];
+//        [weakSelf.navigationController popViewControllerAnimated:YES];
+        if (weakSelf.stringBlock) {
+            weakSelf.stringBlock(_contentField.text);
+        }
+        [weakSelf back];
     };
     
     [self.view addSubview:topToolView];
@@ -215,6 +219,7 @@
 }
 
 - (void)back {
+    
     [self.navigationController popViewControllerAnimated:YES];
 
 }

@@ -27,6 +27,7 @@
 @property (nonatomic)double latitude;//纬度
 @property (nonatomic,copy)NSString *distance;//距离
 @property (nonatomic,copy)NSString *walk_time;//步行时间
-@property (nonatomic,copy)NSString *store_imge;//店铺主图片
+@property (nonatomic,copy)NSString *create_time;//店铺创建时间
+@property (nonatomic,strong)NSArray *storeImageList;//店铺图片
 @property (nonatomic,strong)NSArray<LabelItemModel *> *labelList;//商品标签集合参数
 @end

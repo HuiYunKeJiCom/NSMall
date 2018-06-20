@@ -89,6 +89,9 @@
 		1878478020AED12100AC0E0F /* NSMyShopTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1878477F20AED12100AC0E0F /* NSMyShopTVCell.m */; };
 		1878478620AEDD9E00AC0E0F /* NSOrderListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1878478520AEDD9E00AC0E0F /* NSOrderListVC.m */; };
 		1878478920AEE93600AC0E0F /* NSOrderHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1878478820AEE93500AC0E0F /* NSOrderHeader.m */; };
+		1889AF9020D398BC00FBA33E /* NSShopViewTV.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889AF8F20D398BC00FBA33E /* NSShopViewTV.m */; };
+		1889AF9320D398F000FBA33E /* NSShopViewTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889AF9220D398F000FBA33E /* NSShopViewTVCell.m */; };
+		1889AF9620D3B43E00FBA33E /* NSTotalStoreV.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889AF9520D3B43E00FBA33E /* NSTotalStoreV.m */; };
 		188CC64A207F5430007D749E /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 188CC649207F5430007D749E /* AppDelegate.mm */; };
 		188CC650207F5431007D749E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188CC64E207F5431007D749E /* Main.storyboard */; };
 		188CC652207F5431007D749E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188CC651207F5431007D749E /* Assets.xcassets */; };
@@ -498,6 +501,12 @@
 		1878478520AEDD9E00AC0E0F /* NSOrderListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSOrderListVC.m; sourceTree = "<group>"; };
 		1878478720AEE93500AC0E0F /* NSOrderHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSOrderHeader.h; sourceTree = "<group>"; };
 		1878478820AEE93500AC0E0F /* NSOrderHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSOrderHeader.m; sourceTree = "<group>"; };
+		1889AF8E20D398BC00FBA33E /* NSShopViewTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSShopViewTV.h; sourceTree = "<group>"; };
+		1889AF8F20D398BC00FBA33E /* NSShopViewTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSShopViewTV.m; sourceTree = "<group>"; };
+		1889AF9120D398F000FBA33E /* NSShopViewTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSShopViewTVCell.h; sourceTree = "<group>"; };
+		1889AF9220D398F000FBA33E /* NSShopViewTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSShopViewTVCell.m; sourceTree = "<group>"; };
+		1889AF9420D3B43E00FBA33E /* NSTotalStoreV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTotalStoreV.h; sourceTree = "<group>"; };
+		1889AF9520D3B43E00FBA33E /* NSTotalStoreV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSTotalStoreV.m; sourceTree = "<group>"; };
 		188CC645207F5430007D749E /* NSMall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSMall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188CC648207F5430007D749E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		188CC649207F5430007D749E /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -3261,6 +3270,12 @@
 				18F5D50120CE54A00037F825 /* NSClusterAnnotationView.m */,
 				18F5D50320CE60C30037F825 /* NSClusterAnnotation.h */,
 				18F5D50420CE60C30037F825 /* NSClusterAnnotation.m */,
+				1889AF8E20D398BC00FBA33E /* NSShopViewTV.h */,
+				1889AF8F20D398BC00FBA33E /* NSShopViewTV.m */,
+				1889AF9120D398F000FBA33E /* NSShopViewTVCell.h */,
+				1889AF9220D398F000FBA33E /* NSShopViewTVCell.m */,
+				1889AF9420D3B43E00FBA33E /* NSTotalStoreV.h */,
+				1889AF9520D3B43E00FBA33E /* NSTotalStoreV.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3460,6 +3475,7 @@
 				1842A6E620B59D360090861D /* LZCartTableViewCell.m in Sources */,
 				18C3D0A420A2F190000FCE7F /* UIView+YWFrame.m in Sources */,
 				18C3D0D720A3FAC3000FCE7F /* UIBarButtonItem+gyh.m in Sources */,
+				1889AF9620D3B43E00FBA33E /* NSTotalStoreV.m in Sources */,
 				18DA7CF420C8D8AA009277AA /* ShopPublishParam.m in Sources */,
 				18C3D0A920A2F77E000FCE7F /* CategoryModel.m in Sources */,
 				18B017B220A67B9600826EA4 /* CLRecentTagView.m in Sources */,
@@ -3693,6 +3709,7 @@
 				18D0824D20956D2F0031034A /* UserModel.m in Sources */,
 				18B017AA20A67B9600826EA4 /* ADReceivingAddressCell.m in Sources */,
 				18C3D08B20A2F13F000FCE7F /* NSChangeParamVC.m in Sources */,
+				1889AF9320D398F000FBA33E /* NSShopViewTVCell.m in Sources */,
 				18DD2F1220B90B1D00521B61 /* HistoryAndCategorySearchCategoryViewP.m in Sources */,
 				184043352099FAA200685F80 /* ADLUpdateUserPhotoCell.m in Sources */,
 				18350890207F653600BCF7CE /* Net.m in Sources */,
@@ -3705,6 +3722,7 @@
 				184F0617209FE81A00768418 /* NSShopPublishVC.m in Sources */,
 				18ADC52120BAE9B500961CD8 /* NSCartModel.m in Sources */,
 				18B017B720A67C0F00826EA4 /* NSChangePhoneVC.m in Sources */,
+				1889AF9020D398BC00FBA33E /* NSShopViewTV.m in Sources */,
 				184F05F7209C40C700768418 /* AdvertListModel.m in Sources */,
 				18C3D08820A2F111000FCE7F /* LabelItemModel.m in Sources */,
 				18C2DE1920B7F8F000A3B851 /* NSSortLeftTVCell.m in Sources */,

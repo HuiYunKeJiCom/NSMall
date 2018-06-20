@@ -847,20 +847,21 @@
                 
             }
                 DLog(@"categoryId = %@",self.param.categoryId);
-            //调用发布接口API
-            [GoodsPublishAPI createProductWithParam:self.param success:^{
-                DLog(@"商品发布成功");
-//                [self dismissViewControllerAnimated:YES completion:nil];
-                [Common AppShowToast:@"商品发布成功"];
-                [self dismissModalStack];
-//                [kAppDelegate setUpRootVC];
-            } faulre:^(NSError *error) {
-                DLog(@"商品发布失败");
-            }];
             }
         } faulre:^(NSError *error) {
         }];
     }
+    DLog(@"self.param = %@",self.param.mj_keyValues);
+    //调用发布接口API
+    [GoodsPublishAPI createProductWithParam:self.param success:^{
+        DLog(@"商品发布成功");
+        //                [self dismissViewControllerAnimated:YES completion:nil];
+        [Common AppShowToast:@"商品发布成功"];
+        [self dismissModalStack];
+        //                [kAppDelegate setUpRootVC];
+    } faulre:^(NSError *error) {
+        DLog(@"商品发布失败");
+    }];
 }
 
 -(NSString *)convertToJsonData:(NSDictionary *)dict

@@ -16,7 +16,8 @@
 
 @end
 
-@interface NSClusterAnnotationView : BMKPinAnnotationView
+//BMKPinAnnotationView
+@interface NSClusterAnnotationView : BMKAnnotationView
 @property (nonatomic, strong)UIImageView *imageView;
 @property (nonatomic, assign) NSInteger size;
 @property(nonatomic,strong)NSStoreModel *storeModel;/* 商品模型 */

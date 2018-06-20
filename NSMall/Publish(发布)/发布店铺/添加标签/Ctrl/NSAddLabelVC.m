@@ -77,7 +77,7 @@
     
     // 点击保存，获取输入的标签
 - (void)saveItemClick{
-    //    NSLog(@"%@", _displayTagView.tags);
+    NSLog(@"%@", _displayTagView.tags);
     if ([self.tagsDelegate respondsToSelector:@selector(tagViewController:tags:)]) {
         [self.tagsDelegate tagViewController:self tags:_displayTagView.tags];
     }

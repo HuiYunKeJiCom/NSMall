@@ -64,6 +64,8 @@
 - (void)requestAllOrder:(BOOL)more {
     [self.goodsTable updateLoadState:more];
     
+    [self.goodsTable.data removeAllObjects];
+    
     NSCommonParam *param = [NSCommonParam new];
     param.currentPage = [NSString stringWithFormat:@"%@",[NSNumber numberWithInteger:self.currentPage]];
     
@@ -165,9 +167,12 @@
 }
 
 -(void)deleteShopWith:(NSShopListItemModel *)model{
+    
     [MyShopAPI delShopWithParam:model.store_id success:^{
         [Common AppShowToast:@"店铺删除成功"];
+//        sleep(1);
         [self requestAllOrder:NO];
+        [self.goodsTable reloadData];
     } faulre:^(NSError *error) {
         DLog(@"店铺删除失败");
     }];

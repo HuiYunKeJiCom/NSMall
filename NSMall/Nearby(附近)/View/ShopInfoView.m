@@ -19,6 +19,7 @@
 @property(nonatomic,strong)UIView *line2;/* 横线2 */
 @property(nonatomic,strong)UILabel *shopTelL;/* 店铺电话 */
 @property(nonatomic,strong)UIImageView *telIV;/* 电话 */
+@property(nonatomic,strong)UIButton *callBtn;/* 拨打电话 */
 @property(nonatomic,strong)UIView *line3;/* 横线3 */
 @property(nonatomic,strong)UILabel *shopHoursL;/* 店铺营业时间 */
 @property(nonatomic,strong)UIView *line4;/* 横线3 */
@@ -27,6 +28,9 @@
 @property(nonatomic,strong)UILabel *distanceLabel;/* 距离 */
 @property(nonatomic,strong)UILabel *arrivalTimeLabel;/* 步行时间 */
 @property(nonatomic,strong)UILabel *workStateL;/* 店铺状态 */
+@property(nonatomic,strong)UIScrollView *shopSV;/* 店铺所有图片 */
+@property(nonatomic,strong)UILabel *introduceLab;/* 店铺简述 */
+@property(nonatomic,strong)UILabel *createLab;/* 创建日期 */
 @end
 
 @implementation ShopInfoView
@@ -44,53 +48,18 @@
 -(void)layoutSubviews{
     [super layoutSubviews];
     
-    CGSize nameSize =  [self contentSizeWithTitle:self.storeModel.name andFont:15];
-    self.shopNameL.frame = CGRectMake(75, 20, nameSize.width ,nameSize.height);
+    [self makeConstraints];
     
-    CGSize descrSize =  [self contentSizeWithTitle:@"餐饮,快餐" andFont:14];
-    self.shopDescrL.frame = CGRectMake(75, 40, descrSize.width ,descrSize.height);
-    
-    CGSize addrSize =  [self contentSizeWithTitle:[NSString stringWithFormat:@"地址: %@",self.storeModel.address] andFont:14];
-    self.shopAddrL.frame = CGRectMake(5, 160, kScreenWidth*0.7-10 ,addrSize.height);
-    
-    self.navView.frame = CGRectMake(5, 95, kScreenWidth*0.7-10, addrSize.height+20);
-    
-    CGSize disSize =  [self contentSizeWithTitle:self.storeModel.distance andFont:14];
+    CGSize disSize =  [self contentSizeWithTitle:[NSString stringWithFormat:@"%@ 步行约%@",self.storeModel.distance,self.storeModel.walk_time] andFont:14];
     self.distanceLabel.size = disSize;
     
-    CGSize atSize =  [self contentSizeWithTitle:[NSString stringWithFormat:@"步行约%@",self.storeModel.walk_time] andFont:14];
-    self.arrivalTimeLabel.size = atSize;
+//    CGSize atSize =  [self contentSizeWithTitle:[NSString stringWithFormat:@"步行约%@",self.storeModel.walk_time] andFont:14];
+//    self.arrivalTimeLabel.size = atSize;
     
-    CGSize telSize =  [self contentSizeWithTitle:[NSString stringWithFormat:@"电话: %@",self.storeModel.user_phone] andFont:14];
-    self.shopTelL.frame = CGRectMake(5, CGRectGetMaxY(self.shopAddrL.frame)+20, telSize.width ,telSize.height);
-    
-    self.telIV.frame = CGRectMake(kScreenWidth*0.7-60, CGRectGetMidY(self.shopTelL.frame)-10, 20, 20);
-    
-    CGSize hoursSize =  [self contentSizeWithTitle:@"营业时间: 00:00~23:59" andFont:14];
-    self.shopHoursL.frame = CGRectMake(5, CGRectGetMaxY(self.shopTelL.frame)+20, hoursSize.width ,hoursSize.height);
-    
-    CGSize workStateSize =  [self contentSizeWithTitle:@"营业中" andFont:14];
-    self.workStateL.frame = CGRectMake(kScreenWidth*0.7-60, CGRectGetMidY(self.shopHoursL.frame)-workStateSize.height*0.5, workStateSize.width ,workStateSize.height);
-
-    self.line1.x = 0;
-    self.line1.y = CGRectGetMaxY(self.shopIV.frame)+10;
-    self.line1.size = CGSizeMake(kScreenWidth*0.7, 1);
-    
-    self.line2.x = 0;
-    self.line2.y = CGRectGetMaxY(self.shopAddrL.frame)+10;
-    self.line2.size = CGSizeMake(kScreenWidth*0.7, 1);
-
-    self.line3.x = 0;
-    self.line3.y = CGRectGetMaxY(self.shopTelL.frame)+10;
-    self.line3.size = CGSizeMake(kScreenWidth*0.7, 1);
-    
-    self.line4.x = 0;
-    self.line4.y = CGRectGetMaxY(self.shopHoursL.frame)+10;
-    self.line4.size = CGSizeMake(kScreenWidth*0.7, 1);
 }
 
 - (void)initViews {
-    self.shopIV = [[UIImageView alloc] initWithFrame:CGRectMake(5, 10, 60, 60)];
+    self.shopIV = [[UIImageView alloc] initWithFrame:CGRectZero];
     self.shopIV.backgroundColor = [UIColor greenColor];
     [self.shopIV setContentMode:UIViewContentModeScaleAspectFill];
     [self addSubview:self.shopIV];
@@ -114,17 +83,22 @@
     [self addSubview:self.shopAddrL];
     
     self.navView = [[UIView alloc]init];
-    self.navView.backgroundColor = [UIColor lightGrayColor];
+    self.navView.backgroundColor = KBGCOLOR;
     [self addSubview:self.navView];
     
-    UIImageView *navIV = [[UIImageView alloc]initWithFrame:CGRectMake(75, 8, 20, 20)];
+    UIImageView *navIV = [[UIImageView alloc]initWithFrame:CGRectMake(55, 12, 18, 18)];
     navIV.image = IMAGE(@"map_ico_coordinate");
     [self.navView addSubview:navIV];
+    
+    UIButton *navBtn = [[UIButton alloc]initWithFrame:CGRectMake(55, 12, 18, 18)];
+    [navBtn addTarget:self action:@selector(navigateToTargetPositionWithThird) forControlEvents:UIControlEventTouchUpInside];
+    //    self.closeBtn.backgroundColor = [UIColor greenColor];
+    [self.navView addSubview:navBtn];
     
     self.distanceLabel = [[UILabel alloc]init];
     self.distanceLabel.font = [UIFont systemFontOfSize:14];
     self.distanceLabel.x = CGRectGetMaxX(navIV.frame)+10;
-    self.distanceLabel.y = 10;
+    self.distanceLabel.y = 12;
     [self.navView addSubview:self.distanceLabel];
     
     self.arrivalTimeLabel = [[UILabel alloc]init];
@@ -143,6 +117,11 @@
     self.telIV.image = IMAGE(@"map_ico_telephone");
     [self addSubview:self.telIV];
     
+    self.callBtn = [[UIButton alloc]init];
+    [self.callBtn addTarget:self action:@selector(callUp) forControlEvents:UIControlEventTouchUpInside];
+    //    self.closeBtn.backgroundColor = [UIColor greenColor];
+    [self addSubview:self.callBtn];
+    
     self.shopHoursL = [[UILabel alloc]init];
     self.shopHoursL.textColor = [UIColor blackColor];
     self.shopHoursL.font = [UIFont systemFontOfSize:14];
@@ -150,7 +129,6 @@
     [self addSubview:self.shopHoursL];
     
     self.closeBtn = [[UIButton alloc]init];
-    self.closeBtn.frame = CGRectMake(kScreenWidth*0.7-20, 5, 15, 15);
     [self.closeBtn addTarget:self action:@selector(closeButtonClick) forControlEvents:UIControlEventTouchUpInside];
     //    self.closeBtn.backgroundColor = [UIColor greenColor];
     [self addSubview:self.closeBtn];
@@ -192,16 +170,136 @@
 -(void)setStoreModel:(NSStoreModel *)storeModel{
     _storeModel = storeModel;
     
-    [self.shopIV sd_setImageWithURL:[NSURL URLWithString:storeModel.store_imge]];
+    [self.shopIV sd_setImageWithURL:[NSURL URLWithString:storeModel.storeImageList[0]]];
     self.shopNameL.text = storeModel.name;
     self.shopAddrL.text = [NSString stringWithFormat:@"地址: %@",self.storeModel.address];
-    self.distanceLabel.text = self.storeModel.distance;
+    self.distanceLabel.text = [NSString stringWithFormat:@"%@ 步行约%@",self.storeModel.distance,self.storeModel.walk_time];
     self.workStateL.text = @"营业中";
-    self.shopDescrL.text = @"餐饮,快餐";
+    
+    for (LabelItemModel *tag in storeModel.labelList) {
+        
+        self.shopDescrL.text = [[self.shopDescrL.text stringByAppendingString:tag.label_name] stringByAppendingString:@"、"];
+    }
+    NSString *tagString = [self removeLastOneChar:self.shopDescrL.text];
+    self.shopDescrL.text = tagString;
     self.shopTelL.text = [NSString stringWithFormat:@"电话: %@",self.storeModel.user_phone];
-    self.shopHoursL.text = @"营业时间: 00:00~23:59";
+    self.shopHoursL.text = [NSString stringWithFormat:@"营业时间: %@~%@",storeModel.business_hours_start,storeModel.business_hours_end];
     
     [self layoutSubviews];
+}
+
+#pragma mark - Constraints
+- (void)makeConstraints {
+    
+    WEAKSELF
+    [self.shopIV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.mas_left).with.offset(5);
+        make.top.equalTo(weakSelf.mas_top).with.offset(10);
+        make.size.mas_equalTo(CGSizeMake(60, 60));
+    }];
+    
+    [self.shopNameL mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.shopIV.mas_right).with.offset(10);
+        make.top.equalTo(weakSelf.mas_top).with.offset(20);
+    }];
+
+    [self.shopDescrL mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.shopIV.mas_right).with.offset(10);
+        make.top.equalTo(weakSelf.shopNameL.mas_bottom).with.offset(5);
+    }];
+    
+    [self.navView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.mas_left).with.offset(5);
+        make.top.equalTo(weakSelf.mas_top).with.offset(95);
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth*0.7-10, 40));
+    }];
+    
+    [self.line1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.mas_left);
+        make.top.equalTo(weakSelf.shopIV.mas_bottom).with.offset(10);
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth*0.7, 1));
+    }];
+
+    [self.shopAddrL mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.mas_left).with.offset(5);
+        make.top.equalTo(weakSelf.mas_top).with.offset(145);
+    }];
+    
+    [self.line2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.mas_left);
+        make.top.equalTo(weakSelf.shopAddrL.mas_bottom).with.offset(10);
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth*0.7, 1));
+    }];
+    
+    [self.shopTelL mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.mas_left).with.offset(5);
+        make.top.equalTo(weakSelf.shopAddrL.mas_bottom).with.offset(20);
+    }];
+
+    [self.telIV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.mas_left).with.offset(kScreenWidth*0.7-60);
+        make.top.equalTo(weakSelf.shopTelL.mas_centerY).with.offset(-10);
+        make.size.mas_equalTo(CGSizeMake(20, 20));
+    }];
+    
+    [self.callBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.mas_left).with.offset(kScreenWidth*0.7-60);
+        make.top.equalTo(weakSelf.shopTelL.mas_centerY).with.offset(-10);
+        make.size.mas_equalTo(CGSizeMake(20, 20));
+    }];
+
+    [self.line3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.mas_left);
+        make.top.equalTo(weakSelf.shopTelL.mas_bottom).with.offset(10);
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth*0.7, 1));
+    }];
+    
+    [self.shopHoursL mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.mas_left).with.offset(5);
+        make.top.equalTo(weakSelf.shopTelL.mas_bottom).with.offset(20);
+    }];
+    
+    [self.line4 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.mas_left);
+        make.top.equalTo(weakSelf.shopHoursL.mas_bottom).with.offset(10);
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth*0.7, 1));
+    }];
+
+    [self.closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.mas_left).with.offset(kScreenWidth*0.7-20);
+        make.top.equalTo(weakSelf.mas_top).with.offset(5);
+        make.size.mas_equalTo(CGSizeMake(15, 15));
+    }];
+    
+    [self.workStateL mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.mas_left).with.offset(kScreenWidth*0.7-60);
+        make.centerY.equalTo(weakSelf.shopHoursL.mas_centerY);
+    }];
+
+}
+
+-(NSString*) removeLastOneChar:(NSString*)origin
+{
+    NSString* cutted;
+    if([origin length] > 0){
+        cutted = [origin substringToIndex:([origin length]-1)];// 去掉最后一个","
+    }else{
+        cutted = origin;
+    }
+    return cutted;
+}
+
+-(void)callUp{
+    if ([self.delegate respondsToSelector:@selector(callUpWithPhoneNumber:)]) {
+        [self.delegate callUpWithPhoneNumber:self.storeModel.user_phone];
+    }
+}
+
+-(void)navigateToTargetPositionWithThird{
+    DLog(@"点击了导航");
+    if ([self.delegate respondsToSelector:@selector(navigateToTargetPositionWithThird)]) {
+        [self.delegate navigateToTargetPositionWithThird];
+    }
 }
 
 @end

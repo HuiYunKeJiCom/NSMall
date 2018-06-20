@@ -54,6 +54,7 @@
 @property(nonatomic,strong)NSInfoCustomCell *infoCell;/* 标签Cell */
 
 @property(nonatomic,strong)ShopPublishParam *param;/* 店铺发布参数 */
+@property(nonatomic,strong)NSString *tagString;/* 店铺标签 */
 @end
 
 @implementation NSShopPublishVC
@@ -78,7 +79,6 @@
         self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
     }
     
-    
     if (!_tagArrayM) {
         _tagArrayM = [NSMutableArray array];
     }
@@ -86,16 +86,7 @@
     if (!_recentTagsM) {
         _recentTagsM = [NSMutableArray array];
     }
-    
-    [_recentTagsM removeAllObjects];
-    GetLabelsParam *param = [GetLabelsParam new];
-    param.type = @"1";
-    [GetLabelsAPI getLabels:param success:^(LabelListModel * _Nullable result) {
-        DLog(@"获取标签成功");
-        [_recentTagsM addObjectsFromArray:result.labelList];
-    } failure:^(NSError *error) {
-        DLog(@"获取标签失败");
-    }];
+    [self getTag];
 }
 
 - (void)viewDidLoad {
@@ -161,6 +152,28 @@
     [self setUpAddView];
     [self setUpNavTopView];
     [self setUpBottomBtn];
+    
+}
+
+-(void)getTag{
+    
+    for (ADLMyInfoModel *model in self.otherTableView.data) {
+        if([model.title isEqualToString:@"标签"]){
+            if(self.tagString){
+                model.num = self.tagString;
+            }
+        }
+    }
+    
+    [_recentTagsM removeAllObjects];
+    GetLabelsParam *param = [GetLabelsParam new];
+    param.type = @"1";
+    [GetLabelsAPI getLabels:param success:^(LabelListModel * _Nullable result) {
+        DLog(@"获取标签成功");
+        [_recentTagsM addObjectsFromArray:result.labelList];
+    } failure:^(NSError *error) {
+        DLog(@"获取标签失败");
+    }];
 }
 
 - (void)configCollectionView {
@@ -176,6 +189,7 @@
     [self.SV addSubview:_collectionView];
     [_collectionView registerClass:[TZTestCell class] forCellWithReuseIdentifier:@"TZTestCell"];
 }
+
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
@@ -310,6 +324,15 @@
     imagePickerVc.allowTakeVideo = NO;   // 在内部显示拍视频按
     imagePickerVc.videoMaximumDuration = 10; // 视频最大拍摄时间
     
+    // 2. 在这里设置imagePickerVc的外观
+     if (iOS7Later) {
+     imagePickerVc.navigationBar.barTintColor = KMainColor;
+     }
+     imagePickerVc.oKButtonTitleColorDisabled = [UIColor lightGrayColor];
+     imagePickerVc.oKButtonTitleColorNormal = KMainColor;
+     imagePickerVc.navigationBar.translucent = NO;
+    
+    
     // 3. 设置是否可以选择视频/图片/原图
     imagePickerVc.allowPickingVideo = NO;
     imagePickerVc.allowPickingImage = YES;
@@ -328,6 +351,7 @@
     NSInteger left = 30;
     NSInteger widthHeight = self.view.tz_width - 2 * left;
     NSInteger top = (self.view.tz_height - widthHeight) / 2;
+//    DLog(@"widthHeight = %d",widthHeight);
     imagePickerVc.cropRect = CGRectMake(left, top, widthHeight, widthHeight);
     // 设置横屏下的裁剪尺寸
     imagePickerVc.statusBarStyle = UIStatusBarStyleLightContent;
@@ -434,16 +458,16 @@
                         if (tzImagePickerVc.sortAscendingByModificationDate) {
                             assetModel = [models lastObject];
                         }
-                        if (1) { // 允许裁剪,去裁剪
+//                        if ( 1) { // 允许裁剪,去裁剪
                             TZImagePickerController *imagePicker = [[TZImagePickerController alloc] initCropTypeWithAsset:assetModel.asset photo:image completion:^(UIImage *cropImage, id asset) {
                                 [self refreshCollectionViewWithAddedAsset:asset image:cropImage];
                             }];
                             imagePicker.needCircleCrop = NO;
                             imagePicker.circleCropRadius = 100;
                             [self presentViewController:imagePicker animated:YES completion:nil];
-                        } else {
-                            [self refreshCollectionViewWithAddedAsset:assetModel.asset image:image];
-                        }
+//                        } else {
+//                            [self refreshCollectionViewWithAddedAsset:assetModel.asset image:image];
+//                        }
                     }];
                 }];
             }
@@ -512,11 +536,18 @@
 
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos {
     
+//    cell.imageView.image = _selectedPhotos[indexPath.row];
+//    cell.asset = _selectedAssets[indexPath.row];
+    
+    
     _selectedPhotos = [NSMutableArray arrayWithArray:photos];
     _selectedAssets = [NSMutableArray arrayWithArray:assets];
+ 
     _isSelectOriginalPhoto = isSelectOriginalPhoto;
+
+
     [_collectionView reloadData];
-    
+
     if(photos.count >0){
         if(_selectedPhotos.count>7){
             self.SV.scrollEnabled = YES;
@@ -528,7 +559,7 @@
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
         self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
         self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
-        
+
     }else{
         self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
@@ -537,7 +568,7 @@
         self.middleView.dc_y = GetScaleWidth(109);
         self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
     }
-    
+
     // 1.打印图片名字
     [self printAssetsName:assets];
     // 2.图片位置信息
@@ -576,11 +607,14 @@
 #pragma mark - 获取数据
 - (void)setUpData
 {
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"标签") imageName:nil num:@"餐饮、快餐"]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"标签") imageName:nil num:@"请选择标签"]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"地址") imageName:nil num:@"请输入地址"]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"电话") imageName:nil num:@"请输入电话"]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"营业开始时间") imageName:nil num:@"9:00"]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"营业结束时间") imageName:nil num:@"18:00"]];
+    
+    self.param.businessHoursStart = @"9:00";
+    self.param.businessHoursEnd= @"18:00";
 }
 
 #pragma mark - initialize
@@ -772,6 +806,10 @@
 
 -(void)publish:(UIButton *)btn{
     NSMutableArray *pathArr = [NSMutableArray array];
+    
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_group_enter(group);
+    
     for(int i=0;i<_selectedPhotos.count;i++){
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
         [param setObject:_selectedPhotos[i] forKey:@"pic"];
@@ -782,19 +820,26 @@
                 self.param.imagePath = [pathArr componentsJoinedByString:@","];
                 DLog(@"商品图片上传 = %lu",pathArr.count);
                
-                self.param.storeName = self.shopNameTF.text;
-                self.param.introduce = self.detailTV.text;
-                [NSShopPublishAPI createShopWithParam:self.param success:^{
-                    DLog(@"店铺发布成功");
-                    [Common AppShowToast:@"店铺发布成功"];
-                    [self dismissModalStack];
-                } faulre:^(NSError *error) {
-                    DLog(@"店铺发布失败");
-                }];
+                dispatch_group_leave(group);
             }
         } faulre:^(NSError *error) {
         }];
     }
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        //请求完成后的处理、
+        self.param.storeName = self.shopNameTF.text;
+        self.param.introduce = self.detailTV.text;
+        DLog(@"self.param = %@",self.param.mj_keyValues);
+        [NSShopPublishAPI createShopWithParam:self.param success:^{
+            DLog(@"店铺发布成功");
+            [Common AppShowToast:@"店铺发布成功"];
+            [self dismissModalStack];
+        } faulre:^(NSError *error) {
+            DLog(@"店铺发布失败");
+        }];
+    });
+    
 }
 
 #pragma mark - Click Event
@@ -863,10 +908,12 @@
         }
         NSString *tagString = [self removeLastOneChar:self.infoCell.numLb.text];
         NSString *tagID = [self removeLastOneChar:labelID];
+        
         self.infoCell.numLb.text = tagString;
-        self.param.labelId = labelID;
+        self.tagString = tagString;
+        self.param.labelId = tagID;
     }else{
-        self.infoCell.numLb.text = @"餐饮、快餐";
+        self.infoCell.numLb.text = @"请选择标签";
     }
     
     

@@ -226,7 +226,6 @@
 //接收反向地理编码结果
 -(void) onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result
                         errorCode:(BMKSearchErrorCode)error{
-    
     if (error == BMK_SEARCH_NO_ERROR) {
         
 //                NSLog(@"address = %@",result.address);
@@ -246,10 +245,10 @@
 //实现Deleage处理回调结果
 //返回地址信息搜索结果
 - (void)onGetGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error {
-    
+    DLog(@"返回地址信息搜索结果");
     if (error == BMK_SEARCH_NO_ERROR) {
         //在此处理正常结果
-        DLog(@"latitude = %f,longitude = %f",result.location.latitude,result.location.longitude);
+//        DLog(@"latitude = %f,longitude = %f",result.location.latitude,result.location.longitude);
         self.mapView.centerCoordinate = result.location;
         //        result.location
     }
