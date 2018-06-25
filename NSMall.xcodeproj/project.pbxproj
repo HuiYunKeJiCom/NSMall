@@ -92,6 +92,7 @@
 		1889AF9020D398BC00FBA33E /* NSShopViewTV.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889AF8F20D398BC00FBA33E /* NSShopViewTV.m */; };
 		1889AF9320D398F000FBA33E /* NSShopViewTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889AF9220D398F000FBA33E /* NSShopViewTVCell.m */; };
 		1889AF9620D3B43E00FBA33E /* NSTotalStoreV.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889AF9520D3B43E00FBA33E /* NSTotalStoreV.m */; };
+		188CAB7920DB3B69006A547A /* UserHeaderV.m in Sources */ = {isa = PBXBuildFile; fileRef = 188CAB7820DB3B69006A547A /* UserHeaderV.m */; };
 		188CC64A207F5430007D749E /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 188CC649207F5430007D749E /* AppDelegate.mm */; };
 		188CC650207F5431007D749E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188CC64E207F5431007D749E /* Main.storyboard */; };
 		188CC652207F5431007D749E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188CC651207F5431007D749E /* Assets.xcassets */; };
@@ -512,6 +513,8 @@
 		1889AF9220D398F000FBA33E /* NSShopViewTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSShopViewTVCell.m; sourceTree = "<group>"; };
 		1889AF9420D3B43E00FBA33E /* NSTotalStoreV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTotalStoreV.h; sourceTree = "<group>"; };
 		1889AF9520D3B43E00FBA33E /* NSTotalStoreV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSTotalStoreV.m; sourceTree = "<group>"; };
+		188CAB7720DB3B69006A547A /* UserHeaderV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserHeaderV.h; sourceTree = "<group>"; };
+		188CAB7820DB3B69006A547A /* UserHeaderV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserHeaderV.m; sourceTree = "<group>"; };
 		188CC645207F5430007D749E /* NSMall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSMall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188CC648207F5430007D749E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		188CC649207F5430007D749E /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -1765,6 +1768,8 @@
 		18999B2820DA5DA2003BCF23 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				188CAB7720DB3B69006A547A /* UserHeaderV.h */,
+				188CAB7820DB3B69006A547A /* UserHeaderV.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3808,6 +3813,7 @@
 				18999B3320DA8580003BCF23 /* UserPageModel.m in Sources */,
 				18D574CF209AA39A001C7875 /* GetVcodeParam.m in Sources */,
 				185DFDFE20B3C7E800437168 /* NSCategoryTV.m in Sources */,
+				188CAB7920DB3B69006A547A /* UserHeaderV.m in Sources */,
 				184DE7A6208F081400E776F3 /* ADLMyInfoTableViewCell.m in Sources */,
 				18E3A43B20B2763C00F847ED /* NSOrderProductItemModel.m in Sources */,
 				18D0C0C420AC114A007F0784 /* AJPhotoTapDetectingImageView.m in Sources */,

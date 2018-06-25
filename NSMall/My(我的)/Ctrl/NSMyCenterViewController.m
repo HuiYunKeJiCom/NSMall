@@ -16,6 +16,7 @@
 #import "NSOrderListVC.h"//我的订单
 #import "NSMyWalletListVC.h"//我的钱包
 #import "NSMyShopVC.h"//我的店铺
+#import "UserPageVC.h"
 
 @interface NSMyCenterViewController ()<ADLMyInfoTableViewDelegate>
 @property (strong, nonatomic) ADLMyInfoTableView   *otherTableView;
@@ -98,7 +99,9 @@
     switch (index) {
         case 0:{
             NSLog(@"点击了头像");
-            
+            //跳转至个人页面
+            UserPageVC *userPageVC = [UserPageVC new];
+            [self.navigationController pushViewController:userPageVC animated:YES];
         }
             break;
         case 1:{
