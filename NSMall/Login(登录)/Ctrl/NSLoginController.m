@@ -98,7 +98,7 @@
    
     
     [httpManager.requestSerializer setValue:@"187fd97941849726c11a6d3e8edc775f" forHTTPHeaderField:@"app_token"];
-    
+
     [UserInfoAPI getUserInfo:nil success:^{
         NSLog(@"获取用户信息");
         [kAppDelegate setUpRootVC];

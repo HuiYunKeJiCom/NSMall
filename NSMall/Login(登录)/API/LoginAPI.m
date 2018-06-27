@@ -17,11 +17,11 @@
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         // 保存数据
-//        [userDefaults setValue:userModel.app_token forKey:@"appToken"];
-//        [userDefaults synchronize];
+        [userDefaults setValue:userModel.app_token forKey:@"appToken"];
+        [userDefaults synchronize];
 //
 //
-//        DLog(@"userModel.app_token = %@",userModel.app_token);
+        DLog(@"userModel.app_token = %@",userModel.app_token);
         
         // 读取数据
 //        NSString *appToken = [userDefaults valueForKey:@"appToken"];

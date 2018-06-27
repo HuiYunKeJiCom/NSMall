@@ -11,6 +11,7 @@
 #import "NSOrderListItemModel.h"
 #import "MyOrderAPI.h"
 #import "MyOrderParam.h"
+#import "NSOrderDetailVC.h"
 
 @interface NSAllBuyVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
 @property (nonatomic, strong) BaseTableView         *allOrderTable;
@@ -124,8 +125,6 @@
     return GetScaleWidth(173);
 }
 
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSMyOrderTVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSMyOrderTVCell"];
     if (self.allOrderTable.data.count > indexPath.section) {
@@ -139,6 +138,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    DLog(@"跳转到订单详情");
+    
+    NSOrderListItemModel *model = self.allOrderTable.data[indexPath.section];
+    
+    
+    //跳转到订单详情
+    NSOrderDetailVC *orderDetailVC = [NSOrderDetailVC new];
+    [orderDetailVC loadDataWithType:@"0" andOrderID:model.order_id];
+    [self.navigationController pushViewController:orderDetailVC animated:YES];
     
 }
 

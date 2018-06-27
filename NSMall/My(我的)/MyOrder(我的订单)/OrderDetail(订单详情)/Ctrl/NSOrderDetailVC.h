@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface NSOrderDetailVC : UIViewController
--(void)loadDataWithNSString:(NSString *)string;
+-(void)loadDataWithType:(NSString *)type andOrderID:(NSString *)orderID;
 @end

@@ -16,7 +16,7 @@
 
 @interface NSMyWalletListVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
 @property (nonatomic, strong) BaseTableView         *walletTable;
-
+@property(nonatomic,strong)UIButton *bindWallet;/* 绑定钱包 */
 @end
 
 @implementation NSMyWalletListVC
@@ -58,12 +58,12 @@
 #pragma mark -- 自定义底部视图
 - (void)setupCustomBottomView {
     
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.backgroundColor = KMainColor;
-    btn.frame = CGRectMake(0, kScreenHeight-TabBarHeight, kScreenWidth, TabBarHeight);
-    [btn setTitle:@"绑定钱包" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(addBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
+    self.bindWallet = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.bindWallet.backgroundColor = KMainColor;
+    self.bindWallet.frame = CGRectMake(0, kScreenHeight-TabBarHeight, kScreenWidth, TabBarHeight);
+    [self.bindWallet setTitle:@"绑定钱包" forState:UIControlStateNormal];
+    [self.bindWallet addTarget:self action:@selector(addBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.bindWallet];
 }
 
 #pragma mark - Constraints
@@ -88,11 +88,20 @@
         self.walletTable.data = [NSMutableArray arrayWithArray:walletModel.walletList];
         [self.walletTable updatePage:more];
         self.walletTable.noDataView.hidden = self.walletTable.data.count;
+        [self showBindWalletWithNSArray:walletModel.walletList];
         [self.walletTable reloadData];
     } faulre:^(NSError *error) {
         NSLog(@"获取钱包列表失败");
     }];
     
+}
+
+-(void)showBindWalletWithNSArray:(NSArray *)array{
+    if(array.count>0){
+        self.bindWallet.alpha = 0.0;
+    }else{
+        self.bindWallet.alpha = 1.0;
+    }
 }
 
 - (BaseTableView *)walletTable {

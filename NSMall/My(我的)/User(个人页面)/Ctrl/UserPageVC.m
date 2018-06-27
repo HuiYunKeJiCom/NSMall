@@ -12,16 +12,38 @@
 #import "UserHeaderV.h"
 #import "ADOrderTopToolView.h"
 #import "UIButton+Bootstrap.h"
+#import "ThreePageSelectBar.h"
+#import "NSGoodsVM.h"
+#import "NSShopVM.h"
+#import "SearchParam.h"
+#import "HomePageAPI.h"
+#import "SearchModel.h"
 
 
 @interface UserPageVC ()
 @property(nonatomic,strong)UserPageModel *userPageM;/* 个人页面模型 */
+@property(nonatomic,strong)UIScrollView *totalSV;/* 总的滚动SV */
 @property(nonatomic,strong)UserHeaderV *headerV;/* 头部View */
 @property(nonatomic,strong)UIView *btnV;/* 按钮View */
 @property(nonatomic,strong)UIView * identificateV;/* 实名认证View */
+@property(nonatomic,strong)UIView * listV;/* 列表View */
 @property(nonatomic,strong)UIButton *classifyBtn;/* 发起聊天 按钮 */
 @property(nonatomic,strong)UIButton *shopCartBtn;/* 加为好友 按钮 */
 @property(nonatomic,strong)UIButton *QRBtn;/* 二维码 按钮 */
+
+@property (nonatomic,strong)ThreePageSelectBar *pageSelectBar;//标签页选择bar
+@property (nonatomic,strong)UIScrollView *mainScrollView;//主scrollView
+@property (nonatomic,strong)NSMutableArray *shellViews;//shellViews数组
+
+@property (nonatomic,strong)NSGoodsVM *goodsVM;//商品
+@property (nonatomic,strong)NSShopVM *shopVM;//店铺
+//@property (nonatomic,strong)ADGoodsParameterViewModel *parameterViewModel;//
+//@property (nonatomic,strong)ADUserEvaluationViewModel *userEvaluationiViewModel;//
+//@property (nonatomic,strong)ADRelatedGoodsViewModel *relatedGoodsViewModel;//
+
+@property(nonatomic)NSInteger currentPage;/* 当前页数 */
+@property(nonatomic,strong)SearchModel *searchModel;/* 搜索结果模型 */
+
 @end
 
 @implementation UserPageVC
@@ -29,6 +51,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    _shellViews = [NSMutableArray array];
+    _goodsVM = [[NSGoodsVM alloc]init];
+    _shopVM = [[NSShopVM alloc]init];
     
     self.view.backgroundColor = KBGCOLOR;
     [self createUI];
@@ -54,9 +80,21 @@
 }
 
 -(void)createUI{
+    self.currentPage = 1;
+    
+    self.totalSV = [[UIScrollView alloc]initWithFrame:CGRectMake(0, TopBarHeight, kScreenWidth, kScreenHeight-TopBarHeight)];
+    [self.view addSubview:self.totalSV];
+    self.totalSV.showsVerticalScrollIndicator = NO;
+//    self.totalSV.backgroundColor = kRedColor;
+    
+    
+    //头部
     self.headerV = [[UserHeaderV alloc]init];
     self.headerV.backgroundColor = kWhiteColor;
-    [self.view addSubview:self.headerV];
+    [self.totalSV addSubview:self.headerV];
+    self.headerV.x = 0;
+    self.headerV.y = 0;
+    self.headerV.size = CGSizeMake(kScreenWidth, GetScaleWidth(184));
     
     self.headerV.editBtnClickBlock = ^{
         DLog(@"点击编辑");
@@ -65,9 +103,13 @@
         DLog(@"点击分享");
     };
     
+    //按钮View
     self.btnV = [[UIView alloc]init];
     self.btnV.backgroundColor = kWhiteColor;
-    [self.view addSubview:self.btnV];
+    [self.totalSV addSubview:self.btnV];
+    self.btnV.x = 0;
+    self.btnV.y = CGRectGetMaxY(self.headerV.frame)+GetScaleWidth(10);
+    self.btnV.size = CGSizeMake(kScreenWidth, GetScaleWidth(90));
     
     float itemWidth = GetScaleWidth(70);
     float spaceWidth = (kScreenWidth-3*GetScaleWidth(70))/4.0;
@@ -102,9 +144,17 @@
     self.QRBtn.size = CGSizeMake(itemWidth, GetScaleWidth(112));
     [self.QRBtn addTarget:self action:@selector(QRButtonClick) forControlEvents:UIControlEventTouchUpInside];
 
+    //实名认证View
     self.identificateV = [[UIView alloc]init];
     self.identificateV.backgroundColor = kWhiteColor;
-    [self.view addSubview:self.identificateV];
+    [self.totalSV addSubview:self.identificateV];
+    self.identificateV.x = 0;
+    self.identificateV.y = CGRectGetMaxY(self.btnV.frame)+GetScaleWidth(10);
+    self.identificateV.size = CGSizeMake(kScreenWidth, GetScaleWidth(48));
+    
+    UITapGestureRecognizer *viewTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(identificateClick)];
+    // 2. 将点击事件添加到imageView上
+    [self.identificateV addGestureRecognizer:viewTapGestureRecognizer];
     
     UIImageView *certificationIV = [[UIImageView alloc]init];
     certificationIV.backgroundColor = [UIColor purpleColor];
@@ -128,39 +178,136 @@
     arrowIV.x = kScreenWidth - GetScaleWidth(19)-GetScaleWidth(9);
     arrowIV.y = GetScaleWidth(19);
     arrowIV.size = CGSizeMake(GetScaleWidth(5), GetScaleWidth(9));
+    
+    self.listV = [[UIView alloc]init];
+    self.listV.backgroundColor = kWhiteColor;
+    [self.totalSV addSubview:self.listV];
+    
+    self.listV.x = 0;
+    self.listV.y = GetScaleWidth(352);
+    
+    
+//    self.listV.backgroundColor = kRedColor;
+    
+    
+}
+
+
+- (void)buildUI{
+    //副标题
+    _pageSelectBar = [[ThreePageSelectBar alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 40) options:@[@"商品",@"店铺",@"评论"] selectBlock:^(NSString *option, NSInteger index) {
+        _mainScrollView.contentOffset = CGPointMake((_mainScrollView.contentSize.width/3) * index, 0);
+        if(index == 0){
+            [self searchWithType:@"0"];
+        }else if(index == 1){
+            [self searchWithType:@"1"];
+        }
+    }];
+    //    _pageSelectBar.backgroundColor = [UIColor redColor];
+    _pageSelectBar.top = 0;
+    _pageSelectBar.left = 0;
+    [self.listV addSubview:_pageSelectBar];
+    
+    _mainScrollView = [UIScrollView new];
+    _mainScrollView.size = CGSizeMake(kScreenWidth, self.listV.height);
+    //    AppHeight - _pageSelectBar.bottom
+    _mainScrollView.left = 0;
+    _mainScrollView.top = _pageSelectBar.bottom;
+    _mainScrollView.contentSize = CGSizeMake(_mainScrollView.width * 3, 0);
+    _mainScrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    _mainScrollView.showsVerticalScrollIndicator = NO;
+    _mainScrollView.showsHorizontalScrollIndicator = NO;
+    _mainScrollView.alwaysBounceHorizontal = YES;
+    _mainScrollView.pagingEnabled = YES;
+    _mainScrollView.backgroundColor = [UIColor whiteColor];
+    [self.listV addSubview:_mainScrollView];
+    
+    for (int i = 0; i < 3; i++) {
+        UIView *shellView = [[UIView alloc]init];
+        shellView.size = _mainScrollView.size;
+        shellView.top = 0;
+        shellView.left = _mainScrollView.width * i;
+        shellView.backgroundColor = [UIColor whiteColor];
+        [_mainScrollView addSubview:shellView];
+        [_shellViews addObject:shellView];
+    }
+    
+    _goodsVM.goodsTV.frame = ((UIView *)_shellViews[0]).bounds;
+    [(UIView *)_shellViews[0] addSubview:_goodsVM.goodsTV];
+
+    _shopVM = [[NSShopVM alloc]init];
+    _shopVM.shopTV.frame = ((UIView *)_shellViews[1]).bounds;
+    [(UIView *)_shellViews[1] addSubview:_shopVM.shopTV];
+
+// _userEvaluationiViewModel.userEvaluationListView.frame = ((UIView *)_shellViews[2]).bounds;
+//    [(UIView *)_shellViews[2] addSubview:_userEvaluationiViewModel.userEvaluationListView];
+
 }
 
 -(void)setUpData{
     UserModel *userModel = [UserModel modelFromUnarchive];
+    
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_group_enter(group);
+    
     [UserPageAPI getUserById:userModel.user_id success:^(UserPageModel * _Nullable result) {
         DLog(@"获取指定用户信息成功");
         self.userPageM = result;
         self.headerV.userPageM = self.userPageM;
+        dispatch_group_leave(group);
     } faulre:^(NSError *error) {
         DLog(@"获取指定用户信息失败");
     }];
+
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        //请求完成后的处理、
+        NSLog(@"完成");
+        [self searchWithType:@"0"];
+    });
+    
 }
+
+-(void)searchWithType:(NSString *)searchType {
+    
+    SearchParam *param = [SearchParam new];
+    
+    param.currentPage = [NSString stringWithFormat:@"%@",[NSNumber numberWithInteger:self.currentPage]];
+    param.searchType = searchType;
+    param.sortType = @"ASC";
+    
+    WEAKSELF
+    [HomePageAPI searchProductOrShop:param success:^(SearchModel *result) {
+        NSLog(@"获取列表成功");
+        if([searchType isEqualToString:@"0"]){
+            weakSelf.goodsVM.goodsTV.data = [NSMutableArray arrayWithArray:result.productList];
+            weakSelf.listV.size = CGSizeMake(kScreenWidth, GetScaleWidth(40)+result.productList.count*GetScaleWidth(265));
+            [self buildUI];
+            [weakSelf.goodsVM reloadData];
+            
+        }else if([searchType isEqualToString:@"1"]){
+            weakSelf.shopVM.shopTV.data = [NSMutableArray arrayWithArray:result.storeList];
+            self.listV.size = CGSizeMake(kScreenWidth, GetScaleWidth(40)+result.storeList.count*GetScaleWidth(126));
+            [self buildUI];
+            [self.shopVM.shopTV reloadData];
+        }
+        
+        
+        self.totalSV.contentSize = CGSizeMake(0, self.listV.size.height+GetScaleWidth(352));
+        
+        
+        
+    } failure:^(NSError *error) {
+        NSLog(@"获取列表失败");
+        [self cutCurrentPage];
+    }];
+}
+
+
 
 - (void)makeConstraints {
     
-    WEAKSELF
-    [self.headerV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.view.mas_left);
-        make.top.equalTo(weakSelf.view.mas_top).with.offset(TopBarHeight);
-        make.size.mas_equalTo(CGSizeMake(kScreenWidth, GetScaleWidth(184)));
-    }];
+//    WEAKSELF
     
-    [self.btnV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.view.mas_left);
-        make.top.equalTo(weakSelf.self.headerV.mas_bottom).with.offset(10);
-        make.size.mas_equalTo(CGSizeMake(kScreenWidth, GetScaleWidth(90)));
-    }];
-    
-    [self.identificateV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.view.mas_left);
-        make.top.equalTo(weakSelf.self.btnV.mas_bottom).with.offset(10);
-        make.size.mas_equalTo(CGSizeMake(kScreenWidth, GetScaleWidth(48)));
-    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -178,6 +325,16 @@
 
 - (void)QRButtonClick {
     DLog(@"点击二维码");
+}
+
+- (void)identificateClick {
+    DLog(@"实名认证");
+}
+
+-(void)cutCurrentPage{
+    if(self.currentPage != 1){
+        self.currentPage -= 1;
+    }
 }
 
 @end

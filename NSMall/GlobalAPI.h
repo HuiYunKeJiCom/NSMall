@@ -99,3 +99,6 @@ const static NSString * const kSetWalletAPI = @"auth/setSellWallet";//设置默�
 //附近
 const static NSString * const kNearbyStoreAPI = @"nearbyStore";//获取附近店铺列表
 
+//
+const static NSString * const kOrderDetailAPI = @"auth/orderDetail";//订单详情
+

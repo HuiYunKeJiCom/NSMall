@@ -76,7 +76,7 @@
 }
 
 - (void)buildUI{
-    _tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, TopBarHeight, kScreenWidth, AppHeight - TopBarHeight-TabBarHeight) style:UITableViewStyleGrouped];
+    _tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, TopBarHeight, kScreenWidth, AppHeight - TopBarHeight-TabBarHeight) style:UITableViewStylePlain];
     _tableView.backgroundColor = [UIColor lightGrayColor];
     _tableView.separatorColor = [UIColor clearColor];
     _tableView.delegate = self;

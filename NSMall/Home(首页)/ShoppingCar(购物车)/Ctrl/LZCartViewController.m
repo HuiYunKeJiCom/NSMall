@@ -14,7 +14,7 @@
 #import "LZTableHeaderView.h"
 #import "ADOrderTopToolView.h"
 //#import "ADPlaceOrderViewController.h"
-//#import "ADHomePageViewController.h"//首页
+//#import "NSHomePageVC.h"//首页
 #import "DCTabBarController.h"
 #import "CartAPI.h"
 
@@ -294,6 +294,15 @@
 -(void)goToHomeBtnClick:(UIButton *)btn{
     NSLog(@"跳转回主页");
     //这里需要修改
+    
+    for (UIViewController *vc in self.navigationController.viewControllers) {
+        DLog(@"VCName = %@",[vc className]);
+        if([[vc className] isEqualToString:@"DCTabBarController"]){
+            [self.navigationController popToViewController:vc animated:YES];
+        }
+    }
+    
+    
 //    DCTabBarController *vc = [[DCTabBarController alloc]init];
 //    [vc goToSelectedViewControllerWith:0];
 //    [self.navigationController pushViewController:vc animated:YES];

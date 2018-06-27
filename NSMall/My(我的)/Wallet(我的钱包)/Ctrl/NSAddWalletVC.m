@@ -49,7 +49,7 @@
     self.nameTF.font = [UIFont systemFontOfSize:14];
     self.nameTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.nameTF.placeholder = @"点击输入文本";
-    self.nameTF.textColor = KBGCOLOR;
+    self.nameTF.textColor = kGreyColor;
     self.nameTF.backgroundColor = kWhiteColor;
     self.nameTF.delegate = self;
     UIView *paddingView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, GetScaleWidth(17))];
@@ -73,7 +73,7 @@
     self.accountTF.font = [UIFont systemFontOfSize:14];
     self.accountTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.accountTF.placeholder = @"请输入钱包账号";
-    self.accountTF.textColor = KBGCOLOR;
+    self.accountTF.textColor = kGreyColor;
     self.accountTF.backgroundColor = kWhiteColor;
     self.accountTF.delegate = self;
     UIView *paddingView1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, GetScaleWidth(17))];
@@ -97,7 +97,7 @@
     self.loginPwTF.font = [UIFont systemFontOfSize:14];
     self.loginPwTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.loginPwTF.placeholder = @"请输入钱包登录密码";
-    self.loginPwTF.textColor = KBGCOLOR;
+    self.loginPwTF.textColor = kGreyColor;
     self.loginPwTF.secureTextEntry = YES;
     self.loginPwTF.backgroundColor = kWhiteColor;
     self.loginPwTF.delegate = self;
@@ -123,7 +123,7 @@
     self.tradePwTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.tradePwTF.placeholder = @"请输入6位钱包交易密码";
     self.tradePwTF.secureTextEntry = YES;
-    self.tradePwTF.textColor = KBGCOLOR;
+    self.tradePwTF.textColor = kGreyColor;
     self.tradePwTF.backgroundColor = kWhiteColor;
     self.tradePwTF.delegate = self;
     UIView *paddingView3 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, GetScaleWidth(17))];

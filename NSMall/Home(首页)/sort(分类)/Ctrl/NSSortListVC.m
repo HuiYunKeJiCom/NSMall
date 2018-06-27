@@ -87,6 +87,7 @@
         [self.dataTV reloadData];
     } failure:^(NSError *error) {
         NSLog(@"获取列表失败");
+        [self cutCurrentPage];
     }];
     
 }
@@ -171,7 +172,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)cutCurrentPag{
+-(void)cutCurrentPage{
     if(self.currentPage != 1){
         self.currentPage -= 1;
     }

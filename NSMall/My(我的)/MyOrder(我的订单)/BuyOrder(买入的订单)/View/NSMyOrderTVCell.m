@@ -59,7 +59,7 @@
     self.lineView1.backgroundColor = KBGCOLOR;
     [self.bgView addSubview:self.lineView1];
     
-    self.totalLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum14 TextColor:KBGCOLOR];
+    self.totalLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum14 TextColor:kGreyColor];
     [self.bgView addSubview:self.totalLab];
     
     self.nextOperation = [UIButton buttonWithType:UIButtonTypeCustom];

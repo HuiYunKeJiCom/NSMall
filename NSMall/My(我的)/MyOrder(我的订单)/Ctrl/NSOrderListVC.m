@@ -74,6 +74,7 @@
     
     self.buyView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, self.SV.bounds.size.height)];
     self.buyView.backgroundColor = [UIColor clearColor];
+//    self.buyView.backgroundColor = [UIColor yellowColor];
     [self.SV addSubview:self.buyView];
     
     _headView1 = [[NSOrderHeader alloc]initWithFrame:CGRectMake(0, 1, self.buyView.bounds.size.width, 40)];
@@ -97,6 +98,7 @@
     
     self.saleView = [[UIView alloc]initWithFrame:CGRectMake(kScreenWidth, 0, kScreenWidth, self.SV.bounds.size.height)];
     self.saleView.backgroundColor = [UIColor clearColor];
+//    self.saleView.backgroundColor = [UIColor purpleColor];
     [self.SV addSubview:self.saleView];
     
     _headView2 = [[NSOrderHeader alloc]initWithFrame:CGRectMake(0, 1, self.saleView.bounds.size.width, 40)];
@@ -159,8 +161,14 @@
 -(void)change:(UISegmentedControl *)sender{
     if (sender.selectedSegmentIndex == 0) {
         NSLog(@"1");
+        [UIView animateWithDuration:0 animations:^{
+            self.SV.contentOffset = CGPointMake(0, 0);
+        }];
     }else if (sender.selectedSegmentIndex == 1){
         NSLog(@"2");
+        [UIView animateWithDuration:0 animations:^{
+            self.SV.contentOffset = CGPointMake(self.SV.bounds.size.width, 0);
+        }];
     }
 }
 
@@ -173,22 +181,22 @@
     [self addChildViewController:allvc];
     
     NSWaitPayBuyVC * waitPayvc = [[NSWaitPayBuyVC alloc]init];
-    waitPayvc.view.frame = CGRectMake(0, 0, self.scrollView1.bounds.size.width, self.scrollView1.bounds.size.height);
+    waitPayvc.view.frame = CGRectMake(kScreenWidth, 0, self.scrollView1.bounds.size.width, self.scrollView1.bounds.size.height);
     [self.scrollView1 addSubview:waitPayvc.view];
     [self addChildViewController:waitPayvc];
     
     NSWaitReceiveBuyVC * waitReceivevc = [[NSWaitReceiveBuyVC alloc]init];
-    waitReceivevc.view.frame = CGRectMake(0, 0, self.scrollView1.bounds.size.width, self.scrollView1.bounds.size.height);
+    waitReceivevc.view.frame = CGRectMake(kScreenWidth*2, 0, self.scrollView1.bounds.size.width, self.scrollView1.bounds.size.height);
     [self.scrollView1 addSubview:waitReceivevc.view];
     [self addChildViewController:waitReceivevc];
     
     NSCompletedBuyVC * completedBuyvc = [[NSCompletedBuyVC alloc]init];
-    completedBuyvc.view.frame = CGRectMake(0, 0, self.scrollView1.bounds.size.width, self.scrollView1.bounds.size.height);
+    completedBuyvc.view.frame = CGRectMake(kScreenWidth*3, 0, self.scrollView1.bounds.size.width, self.scrollView1.bounds.size.height);
     [self.scrollView1 addSubview:completedBuyvc.view];
     [self addChildViewController:completedBuyvc];
     
     NSAbolishBuyVC * abolishBuyvc = [[NSAbolishBuyVC alloc]init];
-    abolishBuyvc.view.frame = CGRectMake(0, 0, self.scrollView1.bounds.size.width, self.scrollView1.bounds.size.height);
+    abolishBuyvc.view.frame = CGRectMake(kScreenWidth*4, 0, self.scrollView1.bounds.size.width, self.scrollView1.bounds.size.height);
     [self.scrollView1 addSubview:abolishBuyvc.view];
     [self addChildViewController:abolishBuyvc];
 }
@@ -201,17 +209,17 @@
     [self addChildViewController:allvc];
     
     NSWaitPaySaleVC * waitPayvc = [[NSWaitPaySaleVC alloc]init];
-    waitPayvc.view.frame = CGRectMake(0, 0, self.scrollView2.bounds.size.width, self.scrollView2.bounds.size.height);
+    waitPayvc.view.frame = CGRectMake(kScreenWidth, 0, self.scrollView2.bounds.size.width, self.scrollView2.bounds.size.height);
     [self.scrollView2 addSubview:waitPayvc.view];
     [self addChildViewController:waitPayvc];
     
     NSWaitDeliverSaleVC * waitDelivervc = [[NSWaitDeliverSaleVC alloc]init];
-    waitDelivervc.view.frame = CGRectMake(0, 0, self.scrollView2.bounds.size.width, self.scrollView2.bounds.size.height);
+    waitDelivervc.view.frame = CGRectMake(kScreenWidth*2, 0, self.scrollView2.bounds.size.width, self.scrollView2.bounds.size.height);
     [self.scrollView2 addSubview:waitDelivervc.view];
     [self addChildViewController:waitDelivervc];
     
     NSWaitReceiveSaleVC * waitReceivevc = [[NSWaitReceiveSaleVC alloc]init];
-    waitReceivevc.view.frame = CGRectMake(0, 0, self.scrollView2.bounds.size.width, self.scrollView2.bounds.size.height);
+    waitReceivevc.view.frame = CGRectMake(kScreenWidth*3, 0, self.scrollView2.bounds.size.width, self.scrollView2.bounds.size.height);
     [self.scrollView2 addSubview:waitReceivevc.view];
     [self addChildViewController:waitReceivevc];
     
@@ -221,7 +229,7 @@
 //    [self addChildViewController:rejectedBuyvc];
     
     NSAbolishSaleVC * abolishBuyvc = [[NSAbolishSaleVC alloc]init];
-    abolishBuyvc.view.frame = CGRectMake(0, 0, self.scrollView2.bounds.size.width, self.scrollView2.bounds.size.height);
+    abolishBuyvc.view.frame = CGRectMake(kScreenWidth*4, 0, self.scrollView2.bounds.size.width, self.scrollView2.bounds.size.height);
     [self.scrollView2 addSubview:abolishBuyvc.view];
     [self addChildViewController:abolishBuyvc];
     

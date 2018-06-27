@@ -18,12 +18,12 @@
     http://doc.huist.cn/index.php?s=/10&page_id=289
  */
 
-@property (nonatomic,assign)NSInteger totalPage;//
-@property (nonatomic,assign)NSInteger pageSize;//
-@property (nonatomic,assign)NSInteger rows;//
-@property (nonatomic,assign)NSInteger currentPage;//
-@property (nonatomic,strong)NSArray<ProductListItemModel *> *productList;//
-@property (nonatomic,strong)NSArray<StoreItemModel *> *storeList;//
-@property (nonatomic,strong)NSArray<LabelItemModel*> *labelList;//
+@property (nonatomic,assign)NSInteger totalPage;//总页数
+@property (nonatomic,assign)NSInteger pageSize;//显示个数
+@property (nonatomic,assign)NSInteger rows;//总条数
+@property (nonatomic,assign)NSInteger currentPage;//当前页数
+@property (nonatomic,strong)NSArray<ProductListItemModel *> *productList;//商品集合参数
+@property (nonatomic,strong)NSArray<StoreItemModel *> *storeList;//店铺集合参数
+@property (nonatomic,strong)NSArray<LabelItemModel*> *labelList;//店铺标签集合参数
 
 @end

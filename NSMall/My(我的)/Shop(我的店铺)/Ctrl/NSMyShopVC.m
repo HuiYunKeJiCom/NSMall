@@ -104,13 +104,13 @@
         return GetScaleWidth(0);
     }else{
         //设置间隔高度
-        return GetScaleWidth(5);
+        return GetScaleWidth(6);
     }
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
-    UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(5))];
+    UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(6))];
     sectionView.backgroundColor = KBGCOLOR;
     return sectionView;
 }
