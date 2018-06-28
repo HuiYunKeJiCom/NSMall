@@ -43,15 +43,15 @@
     // Do any additional setup after loading the view.
     
 //    self.view.backgroundColor = kWhiteColor;
-    
+    [self buildUI];
+    [self requestAllOrder:NO];
     [self setUpNavTopView];
     
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self buildUI];
-    [self requestAllOrder:NO];
+    
     
 }
 
@@ -76,8 +76,8 @@
 }
 
 - (void)buildUI{
-    _tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, TopBarHeight, kScreenWidth, AppHeight - TopBarHeight-TabBarHeight) style:UITableViewStylePlain];
-    _tableView.backgroundColor = [UIColor lightGrayColor];
+    _tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, TopBarHeight, kScreenWidth, AppHeight - TopBarHeight-TabBarHeight) style:UITableViewStyleGrouped];
+    _tableView.backgroundColor = KBGCOLOR;
     _tableView.separatorColor = [UIColor clearColor];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -248,7 +248,7 @@
         return carouselView;
     }else{
         UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(6))];
-        sectionView.backgroundColor = KBGCOLOR;
+        sectionView.backgroundColor = kClearColor;
         return sectionView;
     }
 }
@@ -307,7 +307,7 @@
 }
 
 - (void)baseTableView:(BaseTableView *)tableView loadMore:(BOOL)flag {
-    [self requestAllOrder:YES];
+    [self requestAllOrder:NO];
 }
 
 - (void)didReceiveMemoryWarning {

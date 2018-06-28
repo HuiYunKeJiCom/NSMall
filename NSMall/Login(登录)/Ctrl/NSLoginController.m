@@ -97,7 +97,7 @@
 //    param.smsCode = pwd;
    
     
-    [httpManager.requestSerializer setValue:@"187fd97941849726c11a6d3e8edc775f" forHTTPHeaderField:@"app_token"];
+    [httpManager.requestSerializer setValue:@"3c4313535c7487f207ed9a898bc32719" forHTTPHeaderField:@"app_token"];
 
     [UserInfoAPI getUserInfo:nil success:^{
         NSLog(@"获取用户信息");

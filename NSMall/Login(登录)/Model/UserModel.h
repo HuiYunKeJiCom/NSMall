@@ -16,27 +16,29 @@
 @interface UserModel : NSObject
 
 @property (nonatomic,copy)NSString *user_id;//用户ID
-@property (nonatomic,copy)NSString *user_number;//用户序号
+@property (nonatomic,copy)NSString *user_number;//用户编码
 @property (nonatomic,copy)NSString *regeist_time;//注册时间
+@property (nonatomic,copy)NSString *regeist_day;//注册天数（带单位：天）
 @property (nonatomic,copy)NSString *login_name;//登录名
 @property (nonatomic,copy)NSString *user_name;//昵称
 @property (nonatomic,copy)NSString *real_name;//真实姓名
-@property (nonatomic,assign)NSInteger is_certification;//
+@property (nonatomic,assign)NSInteger is_certification;//是否已实名认证【0=否，1=是】
 @property (nonatomic,copy)NSString *idcard;//身份证号码
-@property (nonatomic,copy)NSString *pic_img;//头像url路径
-@property (nonatomic,copy)NSString *birthday;//出生日期
-@property (nonatomic,assign)NSInteger sex;//性别
+@property (nonatomic,copy)NSString *pic_img;//头像路径
+@property (nonatomic,copy)NSString *birthday;//生日
+@property (nonatomic,assign)NSInteger sex;//性别【0=保密，1=男，2=女】
 @property (nonatomic,assign)NSInteger age;//年龄
-@property (nonatomic,assign)NSInteger status;//
+@property (nonatomic,assign)NSInteger status;//账号状态【0=禁用，1=正常】
 @property (nonatomic,copy)NSString *telephone;//电话号码
-@property (nonatomic,copy)NSString *email;//电子邮箱
-@property (nonatomic,assign)NSInteger email_is_active;//
-@property (nonatomic,copy)NSString *last_login_time;//上次登录时间
-@property (nonatomic,copy)NSString *last_login_ip;//上次登录IP
-@property (nonatomic,assign)NSInteger login_number;//登录号
-@property (nonatomic,copy)NSString *app_token;//登录token？
-@property (nonatomic,copy)NSString *regeist_day;//注册天数【该参数不够一天显示小时，不够一个小时则显示分钟】
-
+@property (nonatomic,copy)NSString *email;//邮箱地址
+@property (nonatomic,assign)NSInteger email_is_active;//邮箱激活【0=未激活，1=已激活】
+@property (nonatomic,copy)NSString *last_login_time;//最后登录时间
+@property (nonatomic,copy)NSString *last_login_ip;//最后登录IP
+@property (nonatomic,assign)NSInteger login_number;//登录次数
+@property (nonatomic,copy)NSString *app_token;//app登录密钥
+@property (nonatomic,copy)NSString *has_wallet;//是否绑定了钱包【0=否，1=是】
+@property (nonatomic,copy)NSString *hx_user_name;//环信用户名
+@property (nonatomic,copy)NSString *hx_password;//环信密码
 
 + (instancetype)userModel;//供全局使用的userModel，如果为空则从硬盘中归档导出，如果硬盘中没有则返回为空
 + (instancetype)modelFromUnarchive;//从硬盘归档出模型数据（全局可取出）

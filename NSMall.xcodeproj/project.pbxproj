@@ -103,6 +103,7 @@
 		188CC652207F5431007D749E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188CC651207F5431007D749E /* Assets.xcassets */; };
 		188CC655207F5431007D749E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188CC653207F5431007D749E /* LaunchScreen.storyboard */; };
 		188CC658207F5431007D749E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 188CC657207F5431007D749E /* main.m */; };
+		188F4CC820E38A3E00FD113B /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F4CC620E38A3E00FD113B /* ChatViewController.m */; };
 		18999B2120DA4C58003BCF23 /* NSOrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18999B2020DA4C58003BCF23 /* NSOrderDetailVC.m */; };
 		18999B2B20DA5DF6003BCF23 /* UserPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18999B2A20DA5DF6003BCF23 /* UserPageVC.m */; };
 		18999B3020DA7ED5003BCF23 /* UserPageAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18999B2F20DA7ED5003BCF23 /* UserPageAPI.m */; };
@@ -193,7 +194,6 @@
 		18C3D0A420A2F190000FCE7F /* UIView+YWFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0A220A2F190000FCE7F /* UIView+YWFrame.m */; };
 		18C3D0A920A2F77E000FCE7F /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0A520A2F77D000FCE7F /* CategoryModel.m */; };
 		18C3D0AA20A2F77E000FCE7F /* CategoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0A720A2F77E000FCE7F /* CategoryListModel.m */; };
-		18C3D0BC20A3DD2A000FCE7F /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0AC20A3DD29000FCE7F /* ChatViewController.m */; };
 		18C3D0BD20A3DD2A000FCE7F /* HyperlinksButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0AF20A3DD29000FCE7F /* HyperlinksButton.m */; };
 		18C3D0BE20A3DD2A000FCE7F /* AddViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0B120A3DD29000FCE7F /* AddViewButton.m */; };
 		18C3D0BF20A3DD2A000FCE7F /* MessageVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0B220A3DD29000FCE7F /* MessageVideoCell.m */; };
@@ -543,6 +543,8 @@
 		188CC654207F5431007D749E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		188CC656207F5431007D749E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		188CC657207F5431007D749E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		188F4CC620E38A3E00FD113B /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatViewController.m; path = "NSMall/Message(消息)/聊天/Ctrl/ChatViewController.m"; sourceTree = SOURCE_ROOT; };
+		188F4CC720E38A3E00FD113B /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatViewController.h; path = "NSMall/Message(消息)/聊天/Ctrl/ChatViewController.h"; sourceTree = SOURCE_ROOT; };
 		18999B1F20DA4C58003BCF23 /* NSOrderDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSOrderDetailVC.h; sourceTree = "<group>"; };
 		18999B2020DA4C58003BCF23 /* NSOrderDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSOrderDetailVC.m; sourceTree = "<group>"; };
 		18999B2920DA5DF6003BCF23 /* UserPageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserPageVC.h; sourceTree = "<group>"; };
@@ -719,7 +721,6 @@
 		18C3D0A620A2F77D000FCE7F /* CategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryModel.h; sourceTree = "<group>"; };
 		18C3D0A720A2F77E000FCE7F /* CategoryListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryListModel.m; sourceTree = "<group>"; };
 		18C3D0A820A2F77E000FCE7F /* CategoryListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryListModel.h; sourceTree = "<group>"; };
-		18C3D0AC20A3DD29000FCE7F /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		18C3D0AE20A3DD29000FCE7F /* HyperlinksButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HyperlinksButton.h; sourceTree = "<group>"; };
 		18C3D0AF20A3DD29000FCE7F /* HyperlinksButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HyperlinksButton.m; sourceTree = "<group>"; };
 		18C3D0B120A3DD29000FCE7F /* AddViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewButton.m; sourceTree = "<group>"; };
@@ -732,7 +733,6 @@
 		18C3D0B820A3DD29000FCE7F /* AddView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddView.m; sourceTree = "<group>"; };
 		18C3D0B920A3DD29000FCE7F /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		18C3D0BA20A3DD29000FCE7F /* MessageImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageImageCell.m; sourceTree = "<group>"; };
-		18C3D0BB20A3DD29000FCE7F /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		18C3D0C320A3DD76000FCE7F /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		18C3D0C420A3DD76000FCE7F /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		18C3D0C620A3DD8F000FCE7F /* GYHTimeTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GYHTimeTool.m; sourceTree = "<group>"; };
@@ -1759,6 +1759,59 @@
 			path = NSMall;
 			sourceTree = "<group>";
 		};
+		188F4CC520E38A2100FD113B /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				188F4CC720E38A3E00FD113B /* ChatViewController.h */,
+				188F4CC620E38A3E00FD113B /* ChatViewController.m */,
+			);
+			name = Ctrl;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		1893557220E33664001CB380 /* 会话 */ = {
+			isa = PBXGroup;
+			children = (
+				1893557620E33BDB001CB380 /* View */,
+				1893557520E33BD3001CB380 /* Ctrl */,
+			);
+			path = "会话";
+			sourceTree = "<group>";
+		};
+		1893557320E336BC001CB380 /* 添加好友 */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D0CF20A3F27B000FCE7F /* AddFriendViewController.h */,
+				18C3D0D020A3F27B000FCE7F /* AddFriendViewController.m */,
+			);
+			path = "添加好友";
+			sourceTree = "<group>";
+		};
+		1893557420E336C9001CB380 /* 好友列表 */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D0D320A3FA99000FCE7F /* FriendsViewController.h */,
+				18C3D0D220A3FA98000FCE7F /* FriendsViewController.m */,
+			);
+			path = "好友列表";
+			sourceTree = "<group>";
+		};
+		1893557520E33BD3001CB380 /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				18C3D0CD20A3E11C000FCE7F /* ConverseViewController.h */,
+				18C3D0CC20A3E11B000FCE7F /* ConverseViewController.m */,
+			);
+			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		1893557620E33BDB001CB380 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		18999B1B20DA46B2003BCF23 /* OrderDetail(订单详情) */ = {
 			isa = PBXGroup;
 			children = (
@@ -2407,8 +2460,7 @@
 		18C3D0AB20A3DD29000FCE7F /* 聊天 */ = {
 			isa = PBXGroup;
 			children = (
-				18C3D0BB20A3DD29000FCE7F /* ChatViewController.h */,
-				18C3D0AC20A3DD29000FCE7F /* ChatViewController.m */,
+				188F4CC520E38A2100FD113B /* Ctrl */,
 				18C3D0AD20A3DD29000FCE7F /* Model */,
 				18C3D0B020A3DD29000FCE7F /* View */,
 			);
@@ -2926,15 +2978,12 @@
 		18DD1572208DD35A0006475D /* Message(消息) */ = {
 			isa = PBXGroup;
 			children = (
+				1893557420E336C9001CB380 /* 好友列表 */,
+				1893557320E336BC001CB380 /* 添加好友 */,
+				1893557220E33664001CB380 /* 会话 */,
 				18C3D0AB20A3DD29000FCE7F /* 聊天 */,
 				18DD1578208DD5AA0006475D /* NSMessageViewController.h */,
 				18DD1579208DD5AA0006475D /* NSMessageViewController.m */,
-				18C3D0CD20A3E11C000FCE7F /* ConverseViewController.h */,
-				18C3D0CC20A3E11B000FCE7F /* ConverseViewController.m */,
-				18C3D0CF20A3F27B000FCE7F /* AddFriendViewController.h */,
-				18C3D0D020A3F27B000FCE7F /* AddFriendViewController.m */,
-				18C3D0D320A3FA99000FCE7F /* FriendsViewController.h */,
-				18C3D0D220A3FA98000FCE7F /* FriendsViewController.m */,
 			);
 			path = "Message(消息)";
 			sourceTree = "<group>";
@@ -3622,7 +3671,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-NSMall/Pods-NSMall-frameworks.sh",
-				"${PODS_ROOT}/Hyphenate/iOS_Pods_IMFullSDK_V3.4.0/Hyphenate.framework",
+				"${PODS_ROOT}/Hyphenate/iOS_Pods_IMFullSDK_V3.4.2/Hyphenate.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -3642,7 +3691,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-NSMall/Pods-NSMall-resources.sh",
 				"${PODS_ROOT}/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Map.framework/Resources/mapapi.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
-				$PODS_CONFIGURATION_BUILD_DIR/MWPhotoBrowser/MWPhotoBrowser.bundle,
+				"${PODS_ROOT}/MWPhotoBrowser/MWPhotoBrowser/MWPhotoBrowser.bundle",
 				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -3776,7 +3825,6 @@
 				18DD2F0C20B90B1D00521B61 /* LLSearchBar.m in Sources */,
 				18D71043208DC84C002BA6CD /* DCBaseSetViewController.m in Sources */,
 				18D0C0AF20AC0D01007F0784 /* TDUserCertifyDataSource.m in Sources */,
-				18C3D0BC20A3DD2A000FCE7F /* ChatViewController.m in Sources */,
 				185DFE0120B3FA8A00437168 /* NSCategoryTVCell.m in Sources */,
 				18D0C0A620AC0D01007F0784 /* TDUserCertifySubVCConfirm.m in Sources */,
 				18D71042208DC84C002BA6CD /* DCTabBarController.m in Sources */,
@@ -3946,6 +3994,7 @@
 				18B017A520A67B9600826EA4 /* GetAddressParam.m in Sources */,
 				18DD1569208DCB7E0006475D /* DCSpeedy.m in Sources */,
 				18B1CB0E20BF994900235CFA /* WalletAPI.m in Sources */,
+				188F4CC820E38A3E00FD113B /* ChatViewController.m in Sources */,
 				18DD2F1C20B90B1E00521B61 /* LLTagViewUtils.m in Sources */,
 				18D0C0C720AC13C7007F0784 /* MBProgressHUD+Extension.m in Sources */,
 				18DD1585208DEA8D0006475D /* ADLMyInfoTableView.m in Sources */,
@@ -4122,6 +4171,7 @@
 			baseConfigurationReference = 162AA1D6179FA2D4019BE742 /* Pods-NSMall.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 688YLU4D2F;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4198,6 +4248,7 @@
 			baseConfigurationReference = 8FEDDD97CEA9FCAA52E970F0 /* Pods-NSMall.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 688YLU4D2F;
 				FRAMEWORK_SEARCH_PATHS = (

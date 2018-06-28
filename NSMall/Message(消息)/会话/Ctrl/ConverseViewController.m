@@ -56,8 +56,6 @@
     //消息，聊天
     [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
     
-    [self loadConversations];
-    
     UITableView *tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, TopBarHeight, kScreenWidth, kScreenHeight-TopBarHeight)];
     tableview.delegate = self;
     tableview.dataSource = self;
@@ -72,6 +70,8 @@
 //
     [self.navigationController setNavigationBarHidden:YES];
     [self setUpNavTopView];
+    
+    [self loadConversations];
 }
 
 #pragma mark - 导航栏处理
@@ -100,7 +100,11 @@
     NSLog(@"zzzzzzz %@",conversations);
     self.conversations = conversations;
     //显示总的未读数
-    [self showTabBarBadge];
+    if (conversations.count != 0) {
+        //        DLog(@"conversations.count != 0");
+        //显示总的未读数
+        [self showTabBarBadge];
+    }
 }
 
 

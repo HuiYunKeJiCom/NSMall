@@ -26,6 +26,8 @@
     [centerBtn setTitleColor:UIColorFromRGB(0xd2d2d2) forState:UIControlStateNormal];
     [centerBtn addTarget:centerBtn action:@selector(centerBtnWasClicked:) forControlEvents:UIControlEventTouchDown];
     centerBtn.backgroundColor = [UIColor clearColor];
+    
+    
     return centerBtn;
 }
 
@@ -41,6 +43,7 @@
 }
 
 - (void)layoutSubviews{
+//    self.backgroundColor = [UIColor clearColor];
     self.imageView.frame = CGRectMake(0, -GetScaleWidth(18), GetScaleWidth(55), GetScaleWidth(55));
     self.imageView.image = [UIImage imageNamed:@"main_ico_add"];
     self.titleLabel.frame = CGRectMake(-GetScaleWidth(10), GetScaleWidth(42), 80, 14);

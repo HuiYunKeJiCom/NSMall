@@ -19,7 +19,7 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
 #import "NSMessageViewController.h"//消息
 
 #import "DCTabBarController.h"
-#import "DCTabBarCenterButton.h"
+//#import "DCTabBarCenterButton.h"
 //#import <Bugly/Bugly.h>
 //#import <BuglyExtension/CrashReporterLite.h>
 
@@ -70,6 +70,7 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [DCTabBarCenterButton registerPlusButton];
+    
 //    [self setUpRootVC]; //跟控制器判断
     
     // 监听自动登录的状态

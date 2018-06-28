@@ -51,6 +51,7 @@
             sharedTabBarVC = [self tabBarControllerWithViewControllers:[self ViewControllers] tabBarItemsAttributes:[self tabBarItemAttributes] imageInsets:imageInsets titlePositionAdjustment:titlePositionAdjustment context:context];
             sharedTabBarVC.delegate = sharedTabBarVC;
         });
+        [sharedTabBarVC setTintColor:[UIColor clearColor]];
     }
     return sharedTabBarVC;
 }
@@ -106,14 +107,14 @@
 #pragma mark - initialize
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    //登录接口相关的代理
-//    [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
-//    //联系人模块代理
-//    [[EMClient sharedClient].contactManager addDelegate:self delegateQueue:nil];
-//    //消息，聊天
-//    [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
-//
-//    [self loadConversations];
+    //登录接口相关的代理
+    [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
+    //联系人模块代理
+    [[EMClient sharedClient].contactManager addDelegate:self delegateQueue:nil];
+    //消息，聊天
+    [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+
+    [self loadConversations];
 }
 
 
@@ -124,13 +125,17 @@
 
 -(void)loadConversations{
     //获取历史会话记录
+    
+    DLog(@"获取历史会话记录");
     NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
     if (conversations.count == 0) {
+//        DLog(@"conversations.count == 0");
         conversations =  [[EMClient sharedClient].chatManager loadAllConversationsFromDB];
     }
-    NSLog(@"zzzzzzz %@",conversations);
+//    NSLog(@"zzzzzzz %@",conversations);
     self.conversations = conversations;
     if (conversations.count != 0) {
+//        DLog(@"conversations.count != 0");
         //显示总的未读数
         [self showTabBarBadge];
     }
@@ -157,6 +162,7 @@
 //}
 
 -(void)goToSelectedViewControllerWith:(NSInteger)index{
+    DLog(@"index = %lu",index);
     self.selectedViewController = [self.viewControllers objectAtIndex:index];
 }
 
