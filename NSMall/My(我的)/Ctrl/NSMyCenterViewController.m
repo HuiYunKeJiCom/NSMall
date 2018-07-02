@@ -50,7 +50,7 @@
     WEAKSELF
     [self.otherTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(weakSelf.view);
-        make.bottom.mas_equalTo(weakSelf.view).with.offset(-50);
+        make.bottom.mas_equalTo(weakSelf.view);
         make.left.right.mas_equalTo(weakSelf.view);
     }];
 }

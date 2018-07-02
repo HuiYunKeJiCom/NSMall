@@ -53,7 +53,7 @@
     WEAKSELF
     [MyOrderAPI getMyOrderList:param success:^(NSOrderListModel * _Nullable result) {
         DLog(@"获取订单列表成功");
-        DLog(@"result = %@",result.mj_keyValues);
+//        DLog(@"result = %@",result.mj_keyValues);
         weakSelf.allOrderTable.data = [NSMutableArray arrayWithArray:result.orderList];
         [self.allOrderTable updatePage:more];
         self.allOrderTable.noDataView.hidden = self.allOrderTable.data.count;

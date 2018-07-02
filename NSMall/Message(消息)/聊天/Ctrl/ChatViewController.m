@@ -48,6 +48,8 @@
  *  会话
  */
 @property (nonatomic , strong)  EMConversation *conversation;
+
+@property(nonatomic,strong)ADOrderTopToolView *topToolView;/* 导航view */
 @end
 
 @implementation ChatViewController
@@ -106,18 +108,18 @@
 #pragma mark - 导航栏处理
 - (void)setUpNavTopView
 {
-    ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
-    topToolView.backgroundColor = kWhiteColor;
-    [topToolView setTopTitleWithNSString:KLocalizableStr(self.fromname)];
+    self.topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
+    self.topToolView.backgroundColor = kWhiteColor;
+    [self.topToolView setTopTitleWithNSString:KLocalizableStr(self.fromname)];
     WEAKSELF
-    topToolView.leftItemClickBlock = ^{
+    self.topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
         //        [weakSelf dismissViewControllerAnimated:YES completion:nil];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     };
     
-    [self.view addSubview:topToolView];
-    [self.view bringSubviewToFront:topToolView];
+    [self.view addSubview:self.topToolView];
+    [self.view bringSubviewToFront:self.topToolView];
 }
 
 
@@ -396,6 +398,8 @@
     NSString *from = [[EMClient sharedClient] currentUsername];
     EMMessage *message = [[EMMessage alloc] initWithConversationID:self.fromname from:from to:self.fromname body:body ext:nil];
     message.chatType = EMChatTypeChat;
+    UserModel *userModel = [UserModel modelFromUnarchive];
+    message.ext = @{@"nick":userModel.user_name,@"user_id":userModel.user_id,@"avatar_url":userModel.pic_img,@"hx_username":userModel.hx_user_name};//扩展消息部分
     
     [[EMClient sharedClient].chatManager asyncSendMessage:message progress:^(int progress) {
         
@@ -451,6 +455,7 @@
 #pragma mark - 录音
 - (IBAction)soundvoice
 {
+    DLog(@"开始录音");
     UIWindow *window = [[UIApplication sharedApplication].windows firstObject];
     UIButton *backrecordBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
 //    backrecordBtn.backgroundColor = [UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:0.4];
@@ -507,6 +512,7 @@
     CGRect keyboardFrame = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat transformY = keyboardFrame.origin.y - self.view.frame.size.height;
     [UIView animateWithDuration:duration animations:^{
+        self.topToolView.y = -transformY;
         self.view.transform = CGAffineTransformMakeTranslation(0, transformY);
     }];
 }

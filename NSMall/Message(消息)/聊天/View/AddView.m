@@ -48,6 +48,12 @@
         [btn1 setImage:[UIImage imageNamed:imageArr[i]] forState:UIControlStateNormal];
         [btn1 addTarget:self action:@selector(btn1click:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:btn1];
+        
+        btn1.backgroundColor = kWhiteColor;
+        btn1.layer.cornerRadius = 2.0;//2.0是圆角的弧度，根据需求自己更改
+        btn1.layer.borderColor = KBGCOLOR.CGColor;//设置边框颜色
+        btn1.layer.borderWidth = 1.0f;//设置边框颜色
+        
         self.btn1 = btn1;
     }
 }

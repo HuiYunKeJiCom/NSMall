@@ -22,6 +22,7 @@
 //
 //
         DLog(@"userModel.app_token = %@",userModel.app_token);
+        DLog(@"userModel = %@",userModel.mj_keyValues);
         
         // 读取数据
 //        NSString *appToken = [userDefaults valueForKey:@"appToken"];

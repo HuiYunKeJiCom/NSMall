@@ -66,6 +66,7 @@
     topToolView.rightItemClickBlock = ^{
         [weakSelf addFriend];
     };
+    [topToolView setRightItemTitle:@"添加好友"];
     
     [self.view addSubview:topToolView];
     [self.view bringSubviewToFront:topToolView];

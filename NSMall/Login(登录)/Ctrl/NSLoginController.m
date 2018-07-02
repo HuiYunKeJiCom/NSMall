@@ -86,44 +86,36 @@
 
 - (void)loginView:(NSLoginView *)logView userName:(NSString *)userName pwd:(NSString *)pwd {
     
-//    LoginParam *param = [LoginParam new];
-//    param.loginAccount = @"test3";
-//    param.password = @"123456";
-//    param.loginType = @"1";
-    
-    
-//    param.loginAccount = userName;
-//    param.loginType = @"0";
-//    param.smsCode = pwd;
-   
-    
-    [httpManager.requestSerializer setValue:@"3c4313535c7487f207ed9a898bc32719" forHTTPHeaderField:@"app_token"];
+    [httpManager.requestSerializer setValue:@"a5ef51bda07a4c5e6f629a4083a8f89e" forHTTPHeaderField:@"app_token"];
 
     [UserInfoAPI getUserInfo:nil success:^{
         NSLog(@"获取用户信息");
+
+        UserModel *userModel = [UserModel modelFromUnarchive];
+        DLog(@"userModel = %@",userModel.mj_keyValues);
+        DLog(@"userName = %@,pW = %@",userModel.hx_user_name,userModel.hx_password);
+        EMError *error = [[EMClient sharedClient] loginWithUsername:userModel.hx_user_name password:userModel.hx_password];
+        
+        if(!error){
+            NSLog(@"环信登录成功");
+        }else{
+            DLog(@"error = %@",error);
+            NSLog(@"环信登录失败");
+        }
         [kAppDelegate setUpRootVC];
-//        self.otherTableView.userModel = [UserModel modelFromUnarchive];
 
     } faulre:^(NSError *error) {
         NSLog(@"获取用户信息失败");
     }];
     
+//    LoginParam *param = [LoginParam new];
+//    param.loginAccount = userName;
+//    param.loginType = @"0";
+//    param.smsCode = pwd;
+//
 //    [LoginAPI loginWithParam:param success:^{
 //        DLog(@"登录成功");
-//        EMError *error = [[EMClient sharedClient] registerWithUsername:param.loginAccount password:param.password];
-//        if (error==nil) {
-//            NSLog(@"注册成功");
-//        }else{
-//            NSLog(@"注册失败,%@",error.errorDescription);
-//        }
 //
-//        error= [[EMClient sharedClient] loginWithUsername:param.loginAccount password:param.password];
-//
-//        if(!error){
-//            NSLog(@"环信登录成功");
-//        }else{
-//            NSLog(@"登录失败");
-//        }
 //        [kAppDelegate setUpRootVC];
 //
 //    } faulre:^(NSError *error) {

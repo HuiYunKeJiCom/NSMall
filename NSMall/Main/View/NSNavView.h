@@ -18,4 +18,5 @@
 @property (strong , nonatomic)UIButton *rightItemButton;
 /** 右边Item点击 */
 @property (nonatomic, copy) dispatch_block_t rightItemClickBlock;
+-(void)setRightItemTitle:(NSString *)string;
 @end

@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSODItemModel : NSObject
+@interface NSODItemModel : NSObject<YYModel>
 @property (nonatomic,copy)NSString *product_id;//商品id
-@property (nonatomic,copy)NSString *name;//商品名称
+@property (nonatomic,copy)NSString *product_name;//商品名称
 @property (nonatomic,copy)NSString *introduce;//商品简介描述
 @property (nonatomic,copy)NSString *product_imge;//商品主图片
 @property (nonatomic,copy)NSString *product_spec_name;//商品规格

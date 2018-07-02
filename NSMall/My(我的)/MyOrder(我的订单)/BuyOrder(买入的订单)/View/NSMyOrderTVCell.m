@@ -145,7 +145,7 @@
 //    self.lineView1.size = CGSizeMake(kScreenWidth, 1);
     
     float height = 41;
-    NSLog(@"productList = %lu",model.productList.count);
+//    NSLog(@"productList = %lu",model.productList.count);
     for(int i=0;i<model.productList.count;i++){
         NSGoodsView *goodsView = [[NSGoodsView alloc]init];
         goodsView.model = model.productList[i];

@@ -4,7 +4,7 @@
 //
 //  Created by 张锐凌 on 2018/6/20.
 //  Copyright © 2018年 www. All rights reserved.
-//
+//  买入订单详情
 
 #import "NSOrderDetailVC.h"
 #import "ADOrderTopToolView.h"
@@ -12,18 +12,15 @@
 #import "OrderDetailParam.h"
 #import "NSOrderDetailModel.h"
 
-//#import "NSFirmOrderCell.h"
+#import "NSODTVCell.h"
 #import "NSODAddressTVCell.h"
-//#import "CartAPI.h"
-//#import "NSBuildOrderParam.h"
-//
-//#import "ADReceivingAddressViewController.h"//地址列表
-//#import "NSWalletListModel.h"
-//#import "WalletAPI.h"
+
 
 @interface NSOrderDetailVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
+@property(nonatomic,strong)UIButton *stateBtn;/* 状态 */
 @property (nonatomic, strong) BaseTableView         *goodsTable;
 @property(nonatomic,strong)NSOrderDetailModel *orderDetailModel;/* 订单详情模型 */
+@property(nonatomic,strong)OrderDetailParam *param;/* 参数 */
 @end
 
 @implementation NSOrderDetailVC
@@ -33,8 +30,14 @@
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = KBGCOLOR;
-    [self.view addSubview:self.goodsTable];
+    
     [self setUpNavTopView];
+}
+
+-(void)buildUI{
+    
+    [self.view addSubview:self.goodsTable];
+    
     [self makeConstraints];
 }
 
@@ -59,41 +62,96 @@
     
     [self.goodsTable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
-        make.top.equalTo(self.view.mas_top).with.offset(TopBarHeight);
+        make.top.equalTo(self.view.mas_top).with.offset(TopBarHeight+33);
     }];
     
 }
 
 -(void)loadDataWithType:(NSString *)type andOrderID:(NSString *)orderID{
-    
-    OrderDetailParam *param = [OrderDetailParam new];
-    param.type = type;
-    param.orderId = orderID;
-    
-    [OrderDetailAPI getOrderDetailWithParam:param success:^(NSOrderDetailModel *orderDetailModel) {
+
+    self.param = [OrderDetailParam new];
+    self.param.type = type;
+    self.param.orderId = orderID;
+    [self requestAllOrder:NO];
+}
+
+- (void)requestAllOrder:(BOOL)more {
+    [self.goodsTable.data removeAllObjects];
+//    DLog(@"param = %@",self.param.mj_keyValues);
+    [OrderDetailAPI getOrderDetailWithParam:self.param success:^(NSOrderDetailModel *orderDetailModel) {
         DLog(@"获取订单详情成功");
         self.orderDetailModel = orderDetailModel;
+        //        DLog(@"orderDetailModel = %@",orderDetailModel.mj_keyValues);
+        [self createStateBtn];
+        self.goodsTable.data = [NSMutableArray arrayWithObjects:orderDetailModel, nil];
+        self.goodsTable.noDataView.hidden = self.goodsTable.data.count;
+        [self.goodsTable reloadData];
+        
+        [self buildUI];
     } faulre:^(NSError *error) {
         DLog(@"获取订单详情失败");
     }];
 }
 
-- (void)requestAllOrder:(BOOL)more {
-    [self.goodsTable updateLoadState:more];
+-(void)createStateBtn{
     
-    WEAKSELF
-//    [CartAPI checkCartDataWithParam:self.cartId success:^(NSFirmOrderModel *firmOrderModel) {
-//        NSLog(@"获取获取购物车结算页面数据成功");
-//        weakSelf.firmOrderModel = firmOrderModel;
-//        weakSelf.goodsTable.data = [NSMutableArray arrayWithArray:firmOrderModel.cartList];
-//        [self.goodsTable updatePage:more];
-//        self.goodsTable.noDataView.hidden = self.goodsTable.data.count;
-//        [self.goodsTable reloadData];
-//        [self setUpButtomView];
-//    } faulre:^(NSError *error) {
-//        NSLog(@"获取获取购物车结算页面数据失败");
-//    }];
+    if(self.stateBtn){
+        [self.stateBtn removeFromSuperview];
+    }
     
+    self.stateBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, TopBarHeight, kScreenWidth, 33)];
+    [self.stateBtn setBackgroundColor:KMainColor];
+    [self.stateBtn setTitleColor:kWhiteColor forState:UIControlStateNormal];
+    [self.view addSubview:self.stateBtn];
+    //    [self.stateBtn setTitle:@"待发货" forState:UIControlStateNormal];
+    
+    switch (self.orderDetailModel.order_status) {
+        case 1:
+        {
+            //待支付
+            [self.stateBtn setTitle:@"待支付" forState:UIControlStateNormal];
+        }
+            break;
+        case 2:
+        {
+            //待发货
+            [self.stateBtn setTitle:@"待发货" forState:UIControlStateNormal];
+        }
+            break;
+        case 3:
+        {
+            //待收货
+            [self.stateBtn setTitle:@"待收货" forState:UIControlStateNormal];
+        }
+            break;
+        case 4:
+        {
+            //已完成（待评价）
+            [self.stateBtn setTitle:@"已完成" forState:UIControlStateNormal];
+        }
+            break;
+        case 10:
+        {
+            //交易完成（交易结束，不可评价和退换货）
+            [self.stateBtn setTitle:@"交易完成" forState:UIControlStateNormal];
+        }
+            break;
+        case 11:
+        {
+            //已取消（手动）
+            [self.stateBtn setTitle:@"已取消" forState:UIControlStateNormal];
+        }
+            break;
+        case 12:
+        {
+            //已取消（超时自动取消）
+            [self.stateBtn setTitle:@"已取消" forState:UIControlStateNormal];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (BaseTableView *)goodsTable {
@@ -104,7 +162,7 @@
         _goodsTable.isLoadMore = YES;
         _goodsTable.isRefresh = YES;
         _goodsTable.delegateBase = self;
-//        [_goodsTable registerClass:[NSFirmOrderCell class] forCellReuseIdentifier:@"NSFirmOrderCell"];
+        [_goodsTable registerClass:[NSODTVCell class] forCellReuseIdentifier:@"NSODTVCell"];
         [_goodsTable registerClass:[NSODAddressTVCell class] forCellReuseIdentifier:@"NSODAddressTVCell"];
     }
     return _goodsTable;
@@ -122,7 +180,7 @@
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
+
     UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(15))];
     sectionView.backgroundColor = KBGCOLOR;
     return sectionView;
@@ -137,51 +195,43 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if(indexPath.section == 0){
+    if(indexPath.section == 0){
         return GetScaleWidth(65);
-//    }else{
+    }else{
 //        LZShopModel *shopModel = self.goodsTable.data[indexPath.section-1];
 //        //        DLog(@"cellHeight = %.2f",shopModel.cellHeight);
 //        return shopModel.cellHeight;
-//    }
+        return GetScaleWidth(165);
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-//    if(indexPath.section == 0){
-        NSODAddressTVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSAddressTVCell"];
+
+    if(indexPath.section == 0){
+        NSODAddressTVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSODAddressTVCell"];
         cell.orderDetailModel = self.orderDetailModel;
         return cell;
-//    }else{
-//        NSFirmOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSFirmOrderCell"];
-//        if (self.goodsTable.data.count > indexPath.section-1) {
-//            LZShopModel *model = self.goodsTable.data[indexPath.section-1];
-//            //        NSLog(@"model = %@",model.mj_keyValues);
-//            cell.shopModel = model;
-//        }
-//
-//        return cell;
-//    }
+    }else{
+        NSODTVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSODTVCell"];
+        if (self.goodsTable.data.count > indexPath.section-1) {
+            NSOrderDetailModel *model = self.goodsTable.data[indexPath.section-1];
+            //        NSLog(@"model = %@",model.mj_keyValues);
+            cell.orderDetailModel = model;
+        }
+
+        return cell;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if(indexPath.section==0){
-//        
-//        ADReceivingAddressViewController *receivingAddressVC = [[ADReceivingAddressViewController alloc] init];
-//        receivingAddressVC.addressBlock = ^(NSAddressItemModel *model) {
-//            self.firmOrderModel.defaultAddress = model;
-//            [self.goodsTable reloadData];
-//        };
-//        [self.navigationController pushViewController:receivingAddressVC animated:YES];
-//    }
 }
 
 - (void)baseTableVIew:(BaseTableView *)tableView refresh:(BOOL)flag {
-    //    [self requestAllOrder:NO];
+        [self requestAllOrder:NO];
 }
 
 - (void)baseTableView:(BaseTableView *)tableView loadMore:(BOOL)flag {
-    //    [self requestAllOrder:YES];
+        [self requestAllOrder:YES];
 }
 
 - (void)didReceiveMemoryWarning {

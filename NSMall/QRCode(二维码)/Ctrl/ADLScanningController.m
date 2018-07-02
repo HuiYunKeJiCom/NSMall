@@ -44,7 +44,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setUpNavTopView];
+    
     [self.view addSubview:self.loadingView];
 
     imageView = [[UIImageView alloc]initWithFrame:CGRectMake((kScreenWidth-SWidth)/2,GetScaleWidth(160),SWidth,SWidth)];
@@ -68,11 +68,14 @@
     labIntroudction.textColor=[UIColor whiteColor];
     labIntroudction.text=KLocalizableStr(@"将二维码/条码放入框内，即可自动扫描");
     [self.view addSubview:labIntroudction];
+    
+    
 }
 
 #pragma mark - 导航栏处理
 - (void)setUpNavTopView
 {
+    [self.navigationController setNavigationBarHidden:YES];
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     topToolView.backgroundColor = kWhiteColor;
     [topToolView setTopTitleWithNSString:KLocalizableStr(@"二维码")];
@@ -83,6 +86,7 @@
 //        [self delayPop];
     };
     [self.view addSubview:topToolView];
+    [self.view bringSubviewToFront:topToolView];
 }
 
 #pragma mark - getter
@@ -161,6 +165,8 @@
 
     [self setOverView];
     
+    [self setUpNavTopView];
+    
     // Start
     [_session startRunning];
 }
@@ -206,7 +212,24 @@
 //上传二维码扫描的房间信息
 - (void)commitInfoWithQrcode:(NSString *)qrcode {
     DLog(@"扫描到的字符串 = %@",qrcode);
-    [Common AppShowToast:qrcode];
+    
+    UserModel *userModel = [UserModel modelFromUnarchive];
+
+    NSArray *array = [qrcode componentsSeparatedByString:@"uid:"];
+    NSString *string = [array lastObject];
+
+    NSString *msg = [userModel.hx_user_name stringByAppendingString:@"要加你为好友"];
+    EMError *error = [[EMClient sharedClient].contactManager addContact:string message:msg];
+    if (!error) {
+        NSLog(@"添加好友成功");
+        [MBProgressHUD showSuccess:@"添加好友成功"];
+//        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        NSLog(@"添加好友失败,%@",error);
+        [MBProgressHUD showSuccess:@"添加好友失败"];
+    }
+    
+//    [Common AppShowToast:qrcode];
     [self delayPop];
 }
 

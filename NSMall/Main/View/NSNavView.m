@@ -43,7 +43,7 @@
     
     _rightItemButton = ({
         UIButton * button = [UIButton new];
-        [button setTitle:@"添加好友" forState:UIControlStateNormal];
+        [button setTitle:@"通讯录" forState:UIControlStateNormal];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         button.titleLabel.font = [UIFont systemFontOfSize:kFontNum17];
 //        [button setImage:[UIImage imageNamed:@"ico_my_unSelected"] forState:UIControlStateNormal];
@@ -60,6 +60,11 @@
     layer.colors = @[(id)[UIColor colorWithWhite:0 alpha:0.2].CGColor,(id)[UIColor colorWithWhite:0 alpha:0.15].CGColor,(id)[UIColor colorWithWhite:0 alpha:0.1].CGColor,(id)[UIColor colorWithWhite:0 alpha:0.05].CGColor,(id)[UIColor colorWithWhite:0 alpha:0.03].CGColor,(id)[UIColor colorWithWhite:0 alpha:0.01].CGColor,(id)[UIColor colorWithWhite:0 alpha:0.0].CGColor];
     [self.layer addSublayer:layer];
 }
+
+-(void)setRightItemTitle:(NSString *)string{
+    [self.rightItemButton setTitle:string forState:UIControlStateNormal];
+}
+
 #pragma mark - 布局
 - (void)layoutSubviews
 {

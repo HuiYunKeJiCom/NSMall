@@ -51,7 +51,7 @@
             sharedTabBarVC = [self tabBarControllerWithViewControllers:[self ViewControllers] tabBarItemsAttributes:[self tabBarItemAttributes] imageInsets:imageInsets titlePositionAdjustment:titlePositionAdjustment context:context];
             sharedTabBarVC.delegate = sharedTabBarVC;
         });
-        [sharedTabBarVC setTintColor:[UIColor clearColor]];
+//        [sharedTabBarVC setTintColor:[UIColor clearColor]];
     }
     return sharedTabBarVC;
 }
@@ -114,6 +114,9 @@
     //消息，聊天
     [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
 
+    [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
+    [UITabBar appearance].translucent = NO;
+    
     [self loadConversations];
 }
 

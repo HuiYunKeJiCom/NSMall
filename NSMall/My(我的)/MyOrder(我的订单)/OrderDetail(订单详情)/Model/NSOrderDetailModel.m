@@ -9,5 +9,7 @@
 #import "NSOrderDetailModel.h"
 
 @implementation NSOrderDetailModel
-
++ (NSDictionary *)modelContainerPropertyGenericClass{
+    return @{@"productList":[NSODItemModel class]};
+}
 @end

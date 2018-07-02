@@ -9,7 +9,7 @@
 #import "ConverseViewController.h"
 #import "GYHTimeTool.h"
 #import "ChatViewController.h"
-#import "ADOrderTopToolView.h"
+#import "NSNavView.h"
 #import "AddFriendViewController.h"
 #import "FriendsViewController.h"
 #import "UIBarButtonItem+gyh.h"
@@ -71,24 +71,31 @@
     [self.navigationController setNavigationBarHidden:YES];
     [self setUpNavTopView];
     
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
     [self loadConversations];
 }
 
 #pragma mark - 导航栏处理
 - (void)setUpNavTopView
 {
-    ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
-    topToolView.backgroundColor = kWhiteColor;
-    [topToolView setTopTitleWithNSString:KLocalizableStr(@"消息")];
+    NSNavView *navView = [[NSNavView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
+    navView.backgroundColor = kWhiteColor;
+    [navView setTopTitleWithNSString:KLocalizableStr(@"消息")];
     WEAKSELF
-    topToolView.leftItemClickBlock = ^{
+    navView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
-//        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        [[DCTabBarController sharedTabBarVC] goToSelectedViewControllerWith:0];
+    };
+    
+    navView.rightItemClickBlock = ^{
         [weakSelf addFriend];
     };
 
-    [self.view addSubview:topToolView];
-    [self.view bringSubviewToFront:topToolView];
+    [self.view addSubview:navView];
+    [self.view bringSubviewToFront:navView];
 }
 
 -(void)loadConversations{
@@ -97,14 +104,12 @@
     if (conversations.count == 0) {
         conversations =  [[EMClient sharedClient].chatManager loadAllConversationsFromDB];
     }
-    NSLog(@"zzzzzzz %@",conversations);
+//    NSLog(@"zzzzzzz %@",conversations);
     self.conversations = conversations;
     //显示总的未读数
-    if (conversations.count != 0) {
         //        DLog(@"conversations.count != 0");
         //显示总的未读数
         [self showTabBarBadge];
-    }
 }
 
 
@@ -113,8 +118,12 @@
     for (EMConversation *conversation in self.conversations) {
         totalUnreadCount += [conversation unreadMessagesCount];
     }
-    NSLog(@"未读消息总数:%ld",(long)totalUnreadCount);
-    self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",totalUnreadCount];
+    if (totalUnreadCount > 0) {
+        NSLog(@"未读消息总数:%ld",(long)totalUnreadCount);
+        self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",totalUnreadCount];
+    }else{
+        self.tabBarItem.badgeValue = nil;
+    }
     [self.tableview reloadData];
 }
 
@@ -148,10 +157,19 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     }
-    
+
     EMConversation *conversaion = self.conversations[indexPath.row];
+    
+    UserModel *userModel = [UserModel modelFromUnarchive];
+    NSString *chatUser = nil;
+    if([userModel.hx_user_name isEqualToString:conversaion.latestMessage.from]){
+        chatUser = conversaion.latestMessage.to;
+    }else{
+        chatUser = conversaion.latestMessage.from;
+    }
+    
     cell.imageView.image = [UIImage imageNamed:@"1"];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@  %d   %@",conversaion.latestMessage.from,[conversaion unreadMessagesCount],[GYHTimeTool timeStr:conversaion.latestMessage.timestamp]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@         %@",chatUser,[GYHTimeTool timeStr:conversaion.latestMessage.timestamp]];
 //    ,[conversaion unreadMessagesCount]
     // 获取消息体
     id body = conversaion.latestMessage.body;
@@ -171,13 +189,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UserModel *userModel = [UserModel modelFromUnarchive];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     ChatViewController *chatVC = [[ChatViewController alloc]init];
     EMConversation *conversaion = self.conversations[indexPath.row];
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     chatVC = [story instantiateViewControllerWithIdentifier:@"ChatViewControl"];
-    chatVC.fromname = conversaion.latestMessage.from;
+    if([userModel.hx_user_name isEqualToString:conversaion.latestMessage.from]){
+        chatVC.fromname = conversaion.latestMessage.to;
+    }else{
+        chatVC.fromname = conversaion.latestMessage.from;
+    }
+    
     [self.navigationController pushViewController:chatVC animated:YES];
     
 }

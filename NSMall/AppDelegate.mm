@@ -7,7 +7,8 @@
 //
 
 /* 环信 */
-static NSString * const kHuanXinAppKey       = @"1125180610177403#nsapp";
+static NSString * const kHuanXinAppKey       = @"1153180424099290#huist-oomall";
+//1125180610177403#nsapp
 /* 百度 */
 static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
 

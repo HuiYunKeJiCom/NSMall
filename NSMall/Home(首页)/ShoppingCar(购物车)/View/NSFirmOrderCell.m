@@ -79,7 +79,7 @@
         goodsIV.contentMode = UIViewContentModeScaleAspectFit;
         goodsIV.x = 19;
         goodsIV.y = 15;
-        goodsIV.backgroundColor = KBGCOLOR;
+//        goodsIV.backgroundColor = KBGCOLOR;
         goodsIV.size = CGSizeMake(53, 53);
         [goodsV addSubview:goodsIV];
         [goodsIV sd_setImageWithURL:[NSURL URLWithString:goodsModel.product_image]];
@@ -206,7 +206,7 @@
     totalTitle.x = CGRectGetMinX(totalLab.frame)-totalSize.width-3;
     totalTitle.y = 12;
     [totalTitle sizeToFit];
-    totalTitle.textColor = KBGCOLOR;
+    totalTitle.textColor = kGreyColor;
     [footView addSubview:totalTitle];
     
     self.bgView.size = CGSizeMake(kScreenWidth, height+34);
