@@ -1,1 +1,1 @@
-../../../../Hyphenate/iOS_Pods_IMFullSDK_V3.4.0/Hyphenate.framework/Headers/EMChatManagerDelegate.h
+../../../../Hyphenate/iOS_Pods_IMFullSDK_V3.4.2/Hyphenate.framework/Headers/EMChatManagerDelegate.h

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1818F29E20E4D14F004B59CE /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818F29D20E4D14F004B59CE /* ChatViewController.m */; };
 		1818F2A120E4E31B004B59CE /* NSODTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818F2A020E4E31B004B59CE /* NSODTVCell.m */; };
 		1819B65620A71DC8009EAF87 /* NSSecondaryCategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819B65520A71DC8009EAF87 /* NSSecondaryCategoryVC.m */; };
 		18230F66208D793F00D3E55F /* BaseViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 18230F65208D793F00D3E55F /* BaseViewCtrl.m */; };
@@ -77,6 +76,54 @@
 		184F065D20A2E37300768418 /* StoreItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F065C20A2E37300768418 /* StoreItemModel.m */; };
 		1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD6F208F0DD00094A594 /* NetBaseModel.m */; };
 		1851CD77208F23530094A594 /* NSCustomHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD76208F23530094A594 /* NSCustomHeadCell.m */; };
+		1854114220EC9D60003C7696 /* UserProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 185410D220EC9D60003C7696 /* UserProfileManager.m */; };
+		1854114320EC9D60003C7696 /* InvitationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 185410D320EC9D60003C7696 /* InvitationManager.m */; };
+		1854114420EC9D60003C7696 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185410DA20EC9D60003C7696 /* ChatViewController.m */; };
+		1854114520EC9D60003C7696 /* DingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185410DC20EC9D60003C7696 /* DingViewController.m */; };
+		1854114620EC9D60003C7696 /* EMDingMessageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 185410DD20EC9D60003C7696 /* EMDingMessageHelper.m */; };
+		1854114720EC9D60003C7696 /* DingAcksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185410DE20EC9D60003C7696 /* DingAcksViewController.m */; };
+		1854114820EC9D60003C7696 /* ConversationListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185410E120EC9D60003C7696 /* ConversationListController.m */; };
+		1854114920EC9D60003C7696 /* ChatDemoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 185410E420EC9D60003C7696 /* ChatDemoHelper.m */; };
+		1854114A20EC9D60003C7696 /* ContactListSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185410E920EC9D60003C7696 /* ContactListSelectViewController.m */; };
+		1854114B20EC9D60003C7696 /* ContactListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185410EA20EC9D60003C7696 /* ContactListViewController.m */; };
+		1854114C20EC9D60003C7696 /* RealtimeSearchUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 185410EB20EC9D60003C7696 /* RealtimeSearchUtil.m */; };
+		1854114D20EC9D60003C7696 /* EMRobotChatTextBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185410EE20EC9D60003C7696 /* EMRobotChatTextBubbleView.m */; };
+		1854114E20EC9D60003C7696 /* EMRotbotChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185410F120EC9D60003C7696 /* EMRotbotChatViewCell.m */; };
+		1854114F20EC9D60003C7696 /* RobotListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185410F220EC9D60003C7696 /* RobotListViewController.m */; };
+		1854115020EC9D60003C7696 /* RobotChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185410F420EC9D60003C7696 /* RobotChatViewController.m */; };
+		1854115120EC9D60003C7696 /* RobotManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 185410F520EC9D60003C7696 /* RobotManager.m */; };
+		1854115320EC9D60003C7696 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185410FA20EC9D60003C7696 /* UserProfileViewController.m */; };
+		1854115420EC9D60003C7696 /* EMChatroomMembersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185410FF20EC9D60003C7696 /* EMChatroomMembersViewController.m */; };
+		1854115520EC9D60003C7696 /* EMCreateChatroomController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854110020EC9D60003C7696 /* EMCreateChatroomController.m */; };
+		1854115620EC9D60003C7696 /* ChatroomListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854110120EC9D60003C7696 /* ChatroomListViewController.m */; };
+		1854115720EC9D60003C7696 /* EMChatroomBansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854110220EC9D60003C7696 /* EMChatroomBansViewController.m */; };
+		1854115820EC9D60003C7696 /* ChatroomDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854110420EC9D60003C7696 /* ChatroomDetailViewController.m */; };
+		1854115920EC9D60003C7696 /* EMChatroomMutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854110620EC9D60003C7696 /* EMChatroomMutesViewController.m */; };
+		1854115A20EC9D60003C7696 /* EMChatroomAdminsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854110720EC9D60003C7696 /* EMChatroomAdminsViewController.m */; };
+		1854115B20EC9D60003C7696 /* ContactSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854110F20EC9D60003C7696 /* ContactSelectionViewController.m */; };
+		1854115C20EC9D60003C7696 /* CreateGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854111020EC9D60003C7696 /* CreateGroupViewController.m */; };
+		1854115D20EC9D60003C7696 /* EMMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854111720EC9D60003C7696 /* EMMemberCell.m */; };
+		1854115E20EC9D60003C7696 /* EMMemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1854111820EC9D60003C7696 /* EMMemberCell.xib */; };
+		1854115F20EC9D60003C7696 /* PublicGroupDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854111920EC9D60003C7696 /* PublicGroupDetailViewController.m */; };
+		1854116020EC9D60003C7696 /* PublicGroupListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854111A20EC9D60003C7696 /* PublicGroupListViewController.m */; };
+		1854116120EC9D60003C7696 /* ContactView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854111B20EC9D60003C7696 /* ContactView.m */; };
+		1854116220EC9D60003C7696 /* GroupSubjectChangingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854111C20EC9D60003C7696 /* GroupSubjectChangingViewController.m */; };
+		1854116320EC9D60003C7696 /* EMGroupMembersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854111E20EC9D60003C7696 /* EMGroupMembersViewController.m */; };
+		1854116420EC9D60003C7696 /* EMGroupAdminsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854111F20EC9D60003C7696 /* EMGroupAdminsViewController.m */; };
+		1854116520EC9D60003C7696 /* EMGroupSharedFilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854112320EC9D60003C7696 /* EMGroupSharedFilesViewController.m */; };
+		1854116620EC9D60003C7696 /* GroupSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854112820EC9D60003C7696 /* GroupSettingViewController.m */; };
+		1854116720EC9D60003C7696 /* EMGroupInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854112920EC9D60003C7696 /* EMGroupInfoViewController.m */; };
+		1854116820EC9D60003C7696 /* EMGroupBansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854112A20EC9D60003C7696 /* EMGroupBansViewController.m */; };
+		1854116920EC9D60003C7696 /* EMGroupMutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854112C20EC9D60003C7696 /* EMGroupMutesViewController.m */; };
+		1854116A20EC9D60003C7696 /* EMGroupTransferOwnerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854112D20EC9D60003C7696 /* EMGroupTransferOwnerViewController.m */; };
+		1854116B20EC9D60003C7696 /* GroupListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854112E20EC9D60003C7696 /* GroupListViewController.m */; };
+		1854116C20EC9D60003C7696 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854113120EC9D60003C7696 /* BaseTableViewCell.m */; };
+		1854116D20EC9D60003C7696 /* EMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854113420EC9D60003C7696 /* EMTextView.m */; };
+		1854116E20EC9D60003C7696 /* EMRemarkImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854113520EC9D60003C7696 /* EMRemarkImageView.m */; };
+		1854116F20EC9D60003C7696 /* ApplyFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854113A20EC9D60003C7696 /* ApplyFriendCell.m */; };
+		1854117020EC9D60003C7696 /* ApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854113B20EC9D60003C7696 /* ApplyViewController.m */; };
+		1854117120EC9D60003C7696 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854113D20EC9D60003C7696 /* AddFriendViewController.m */; };
+		1854117220EC9D60003C7696 /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854113F20EC9D60003C7696 /* AddFriendCell.m */; };
 		185DFDFE20B3C7E800437168 /* NSCategoryTV.m in Sources */ = {isa = PBXBuildFile; fileRef = 185DFDFD20B3C7E800437168 /* NSCategoryTV.m */; };
 		185DFE0120B3FA8A00437168 /* NSCategoryTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185DFE0020B3FA8A00437168 /* NSCategoryTVCell.m */; };
 		1863D26720A96C8800047A7D /* NSGoodsShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863D26620A96C8800047A7D /* NSGoodsShowCell.m */; };
@@ -195,18 +242,9 @@
 		18C3D0A420A2F190000FCE7F /* UIView+YWFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0A220A2F190000FCE7F /* UIView+YWFrame.m */; };
 		18C3D0A920A2F77E000FCE7F /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0A520A2F77D000FCE7F /* CategoryModel.m */; };
 		18C3D0AA20A2F77E000FCE7F /* CategoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0A720A2F77E000FCE7F /* CategoryListModel.m */; };
-		18C3D0BD20A3DD2A000FCE7F /* HyperlinksButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0AF20A3DD29000FCE7F /* HyperlinksButton.m */; };
-		18C3D0BE20A3DD2A000FCE7F /* AddViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0B120A3DD29000FCE7F /* AddViewButton.m */; };
-		18C3D0BF20A3DD2A000FCE7F /* MessageVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0B220A3DD29000FCE7F /* MessageVideoCell.m */; };
-		18C3D0C020A3DD2A000FCE7F /* AddView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0B820A3DD29000FCE7F /* AddView.m */; };
-		18C3D0C120A3DD2A000FCE7F /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0B920A3DD29000FCE7F /* MessageCell.m */; };
-		18C3D0C220A3DD2A000FCE7F /* MessageImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0BA20A3DD29000FCE7F /* MessageImageCell.m */; };
 		18C3D0C520A3DD76000FCE7F /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0C420A3DD76000FCE7F /* NSString+Extension.m */; };
 		18C3D0C820A3DD8F000FCE7F /* GYHTimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0C620A3DD8F000FCE7F /* GYHTimeTool.m */; };
 		18C3D0CB20A3DDC8000FCE7F /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0CA20A3DDC8000FCE7F /* UIImage+Extension.m */; };
-		18C3D0CE20A3E11C000FCE7F /* ConverseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0CC20A3E11B000FCE7F /* ConverseViewController.m */; };
-		18C3D0D120A3F27C000FCE7F /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0D020A3F27B000FCE7F /* AddFriendViewController.m */; };
-		18C3D0D420A3FA99000FCE7F /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0D220A3FA98000FCE7F /* FriendsViewController.m */; };
 		18C3D0D720A3FAC3000FCE7F /* UIBarButtonItem+gyh.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0D620A3FAC3000FCE7F /* UIBarButtonItem+gyh.m */; };
 		18C3D0DC20A44803000FCE7F /* NSNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3D0DB20A44803000FCE7F /* NSNavView.m */; };
 		18C60DDC20C0DDAF002920D2 /* NSPayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C60DDB20C0DDAF002920D2 /* NSPayView.m */; };
@@ -275,7 +313,6 @@
 		18DD1562208DC9AB0006475D /* GQGesVCTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD155E208DC9AB0006475D /* GQGesVCTransition.m */; };
 		18DD1569208DCB7E0006475D /* DCSpeedy.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1567208DCB7E0006475D /* DCSpeedy.m */; };
 		18DD1577208DD4140006475D /* NSMyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1576208DD4140006475D /* NSMyCenterViewController.m */; };
-		18DD157A208DD5AA0006475D /* NSMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1579208DD5AA0006475D /* NSMessageViewController.m */; };
 		18DD157D208DD5F40006475D /* NSNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD157C208DD5F40006475D /* NSNearbyViewController.m */; };
 		18DD1585208DEA8D0006475D /* ADLMyInfoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1583208DEA8C0006475D /* ADLMyInfoTableView.m */; };
 		18DD1588208DEA960006475D /* ADLMyInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1586208DEA960006475D /* ADLMyInfoModel.m */; };
@@ -348,8 +385,6 @@
 
 /* Begin PBXFileReference section */
 		162AA1D6179FA2D4019BE742 /* Pods-NSMall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSMall.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NSMall/Pods-NSMall.debug.xcconfig"; sourceTree = "<group>"; };
-		1818F29C20E4D14F004B59CE /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
-		1818F29D20E4D14F004B59CE /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		1818F29F20E4E31B004B59CE /* NSODTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSODTVCell.h; sourceTree = "<group>"; };
 		1818F2A020E4E31B004B59CE /* NSODTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSODTVCell.m; sourceTree = "<group>"; };
 		1819B65420A71DC8009EAF87 /* NSSecondaryCategoryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSecondaryCategoryVC.h; sourceTree = "<group>"; };
@@ -494,6 +529,101 @@
 		1851CD6F208F0DD00094A594 /* NetBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetBaseModel.m; sourceTree = "<group>"; };
 		1851CD75208F23530094A594 /* NSCustomHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCustomHeadCell.h; sourceTree = "<group>"; };
 		1851CD76208F23530094A594 /* NSCustomHeadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCustomHeadCell.m; sourceTree = "<group>"; };
+		185410D220EC9D60003C7696 /* UserProfileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileManager.m; sourceTree = "<group>"; };
+		185410D320EC9D60003C7696 /* InvitationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationManager.m; sourceTree = "<group>"; };
+		185410D420EC9D60003C7696 /* UserProfileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileManager.h; sourceTree = "<group>"; };
+		185410D520EC9D60003C7696 /* InvitationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationManager.h; sourceTree = "<group>"; };
+		185410D820EC9D60003C7696 /* DingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DingViewController.h; sourceTree = "<group>"; };
+		185410D920EC9D60003C7696 /* EMDingMessageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMDingMessageHelper.h; sourceTree = "<group>"; };
+		185410DA20EC9D60003C7696 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		185410DB20EC9D60003C7696 /* DingAcksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DingAcksViewController.h; sourceTree = "<group>"; };
+		185410DC20EC9D60003C7696 /* DingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DingViewController.m; sourceTree = "<group>"; };
+		185410DD20EC9D60003C7696 /* EMDingMessageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMDingMessageHelper.m; sourceTree = "<group>"; };
+		185410DE20EC9D60003C7696 /* DingAcksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DingAcksViewController.m; sourceTree = "<group>"; };
+		185410DF20EC9D60003C7696 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		185410E120EC9D60003C7696 /* ConversationListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationListController.m; sourceTree = "<group>"; };
+		185410E220EC9D60003C7696 /* ConversationListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationListController.h; sourceTree = "<group>"; };
+		185410E320EC9D60003C7696 /* ChatDemoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDemoHelper.h; sourceTree = "<group>"; };
+		185410E420EC9D60003C7696 /* ChatDemoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDemoHelper.m; sourceTree = "<group>"; };
+		185410E620EC9D60003C7696 /* ContactListSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListSelectViewController.h; sourceTree = "<group>"; };
+		185410E720EC9D60003C7696 /* RealtimeSearchUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealtimeSearchUtil.h; sourceTree = "<group>"; };
+		185410E820EC9D60003C7696 /* ContactListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListViewController.h; sourceTree = "<group>"; };
+		185410E920EC9D60003C7696 /* ContactListSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactListSelectViewController.m; sourceTree = "<group>"; };
+		185410EA20EC9D60003C7696 /* ContactListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactListViewController.m; sourceTree = "<group>"; };
+		185410EB20EC9D60003C7696 /* RealtimeSearchUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealtimeSearchUtil.m; sourceTree = "<group>"; };
+		185410ED20EC9D60003C7696 /* RobotListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RobotListViewController.h; sourceTree = "<group>"; };
+		185410EE20EC9D60003C7696 /* EMRobotChatTextBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMRobotChatTextBubbleView.m; sourceTree = "<group>"; };
+		185410EF20EC9D60003C7696 /* RobotChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RobotChatViewController.h; sourceTree = "<group>"; };
+		185410F020EC9D60003C7696 /* RobotManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RobotManager.h; sourceTree = "<group>"; };
+		185410F120EC9D60003C7696 /* EMRotbotChatViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMRotbotChatViewCell.m; sourceTree = "<group>"; };
+		185410F220EC9D60003C7696 /* RobotListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RobotListViewController.m; sourceTree = "<group>"; };
+		185410F320EC9D60003C7696 /* EMRobotChatTextBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMRobotChatTextBubbleView.h; sourceTree = "<group>"; };
+		185410F420EC9D60003C7696 /* RobotChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RobotChatViewController.m; sourceTree = "<group>"; };
+		185410F520EC9D60003C7696 /* RobotManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RobotManager.m; sourceTree = "<group>"; };
+		185410F620EC9D60003C7696 /* EMRotbotChatViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMRotbotChatViewCell.h; sourceTree = "<group>"; };
+		185410F920EC9D60003C7696 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
+		185410FA20EC9D60003C7696 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
+		185410FC20EC9D60003C7696 /* EMChatroomBansViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMChatroomBansViewController.h; sourceTree = "<group>"; };
+		185410FD20EC9D60003C7696 /* EMChatroomMutesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMChatroomMutesViewController.h; sourceTree = "<group>"; };
+		185410FE20EC9D60003C7696 /* EMChatroomAdminsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMChatroomAdminsViewController.h; sourceTree = "<group>"; };
+		185410FF20EC9D60003C7696 /* EMChatroomMembersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMChatroomMembersViewController.m; sourceTree = "<group>"; };
+		1854110020EC9D60003C7696 /* EMCreateChatroomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMCreateChatroomController.m; sourceTree = "<group>"; };
+		1854110120EC9D60003C7696 /* ChatroomListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatroomListViewController.m; sourceTree = "<group>"; };
+		1854110220EC9D60003C7696 /* EMChatroomBansViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMChatroomBansViewController.m; sourceTree = "<group>"; };
+		1854110420EC9D60003C7696 /* ChatroomDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatroomDetailViewController.m; sourceTree = "<group>"; };
+		1854110520EC9D60003C7696 /* ChatroomDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatroomDetailViewController.h; sourceTree = "<group>"; };
+		1854110620EC9D60003C7696 /* EMChatroomMutesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMChatroomMutesViewController.m; sourceTree = "<group>"; };
+		1854110720EC9D60003C7696 /* EMChatroomAdminsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMChatroomAdminsViewController.m; sourceTree = "<group>"; };
+		1854110820EC9D60003C7696 /* ChatroomListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatroomListViewController.h; sourceTree = "<group>"; };
+		1854110920EC9D60003C7696 /* EMCreateChatroomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCreateChatroomController.h; sourceTree = "<group>"; };
+		1854110A20EC9D60003C7696 /* EMChatroomMembersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMChatroomMembersViewController.h; sourceTree = "<group>"; };
+		1854110C20EC9D60003C7696 /* GroupSubjectChangingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupSubjectChangingViewController.h; sourceTree = "<group>"; };
+		1854110D20EC9D60003C7696 /* GroupListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupListViewController.h; sourceTree = "<group>"; };
+		1854110F20EC9D60003C7696 /* ContactSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactSelectionViewController.m; sourceTree = "<group>"; };
+		1854111020EC9D60003C7696 /* CreateGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupViewController.m; sourceTree = "<group>"; };
+		1854111120EC9D60003C7696 /* ContactSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactSelectionViewController.h; sourceTree = "<group>"; };
+		1854111220EC9D60003C7696 /* CreateGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupViewController.h; sourceTree = "<group>"; };
+		1854111420EC9D60003C7696 /* EMMemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMMemberCell.h; sourceTree = "<group>"; };
+		1854111520EC9D60003C7696 /* PublicGroupDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicGroupDetailViewController.h; sourceTree = "<group>"; };
+		1854111620EC9D60003C7696 /* PublicGroupListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicGroupListViewController.h; sourceTree = "<group>"; };
+		1854111720EC9D60003C7696 /* EMMemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMMemberCell.m; sourceTree = "<group>"; };
+		1854111820EC9D60003C7696 /* EMMemberCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EMMemberCell.xib; sourceTree = "<group>"; };
+		1854111920EC9D60003C7696 /* PublicGroupDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicGroupDetailViewController.m; sourceTree = "<group>"; };
+		1854111A20EC9D60003C7696 /* PublicGroupListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicGroupListViewController.m; sourceTree = "<group>"; };
+		1854111B20EC9D60003C7696 /* ContactView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactView.m; sourceTree = "<group>"; };
+		1854111C20EC9D60003C7696 /* GroupSubjectChangingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupSubjectChangingViewController.m; sourceTree = "<group>"; };
+		1854111E20EC9D60003C7696 /* EMGroupMembersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMGroupMembersViewController.m; sourceTree = "<group>"; };
+		1854111F20EC9D60003C7696 /* EMGroupAdminsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMGroupAdminsViewController.m; sourceTree = "<group>"; };
+		1854112020EC9D60003C7696 /* EMGroupInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMGroupInfoViewController.h; sourceTree = "<group>"; };
+		1854112120EC9D60003C7696 /* GroupSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupSettingViewController.h; sourceTree = "<group>"; };
+		1854112220EC9D60003C7696 /* EMGroupMutesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMGroupMutesViewController.h; sourceTree = "<group>"; };
+		1854112320EC9D60003C7696 /* EMGroupSharedFilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMGroupSharedFilesViewController.m; sourceTree = "<group>"; };
+		1854112420EC9D60003C7696 /* EMGroupBansViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMGroupBansViewController.h; sourceTree = "<group>"; };
+		1854112520EC9D60003C7696 /* EMGroupTransferOwnerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMGroupTransferOwnerViewController.h; sourceTree = "<group>"; };
+		1854112620EC9D60003C7696 /* EMGroupAdminsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMGroupAdminsViewController.h; sourceTree = "<group>"; };
+		1854112720EC9D60003C7696 /* EMGroupMembersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMGroupMembersViewController.h; sourceTree = "<group>"; };
+		1854112820EC9D60003C7696 /* GroupSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupSettingViewController.m; sourceTree = "<group>"; };
+		1854112920EC9D60003C7696 /* EMGroupInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMGroupInfoViewController.m; sourceTree = "<group>"; };
+		1854112A20EC9D60003C7696 /* EMGroupBansViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMGroupBansViewController.m; sourceTree = "<group>"; };
+		1854112B20EC9D60003C7696 /* EMGroupSharedFilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMGroupSharedFilesViewController.h; sourceTree = "<group>"; };
+		1854112C20EC9D60003C7696 /* EMGroupMutesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMGroupMutesViewController.m; sourceTree = "<group>"; };
+		1854112D20EC9D60003C7696 /* EMGroupTransferOwnerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMGroupTransferOwnerViewController.m; sourceTree = "<group>"; };
+		1854112E20EC9D60003C7696 /* GroupListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupListViewController.m; sourceTree = "<group>"; };
+		1854112F20EC9D60003C7696 /* ContactView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactView.h; sourceTree = "<group>"; };
+		1854113120EC9D60003C7696 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
+		1854113220EC9D60003C7696 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
+		1854113420EC9D60003C7696 /* EMTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMTextView.m; sourceTree = "<group>"; };
+		1854113520EC9D60003C7696 /* EMRemarkImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMRemarkImageView.m; sourceTree = "<group>"; };
+		1854113620EC9D60003C7696 /* EMTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMTextView.h; sourceTree = "<group>"; };
+		1854113720EC9D60003C7696 /* EMRemarkImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMRemarkImageView.h; sourceTree = "<group>"; };
+		1854113A20EC9D60003C7696 /* ApplyFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyFriendCell.m; sourceTree = "<group>"; };
+		1854113B20EC9D60003C7696 /* ApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyViewController.m; sourceTree = "<group>"; };
+		1854113C20EC9D60003C7696 /* AddFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendCell.h; sourceTree = "<group>"; };
+		1854113D20EC9D60003C7696 /* AddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendViewController.m; sourceTree = "<group>"; };
+		1854113E20EC9D60003C7696 /* ApplyFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyFriendCell.h; sourceTree = "<group>"; };
+		1854113F20EC9D60003C7696 /* AddFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendCell.m; sourceTree = "<group>"; };
+		1854114020EC9D60003C7696 /* ApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyViewController.h; sourceTree = "<group>"; };
+		1854114120EC9D60003C7696 /* AddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendViewController.h; sourceTree = "<group>"; };
 		185DFDFC20B3C7E800437168 /* NSCategoryTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCategoryTV.h; sourceTree = "<group>"; };
 		185DFDFD20B3C7E800437168 /* NSCategoryTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCategoryTV.m; sourceTree = "<group>"; };
 		185DFDFF20B3FA8A00437168 /* NSCategoryTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCategoryTVCell.h; sourceTree = "<group>"; };
@@ -724,30 +854,12 @@
 		18C3D0A620A2F77D000FCE7F /* CategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryModel.h; sourceTree = "<group>"; };
 		18C3D0A720A2F77E000FCE7F /* CategoryListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryListModel.m; sourceTree = "<group>"; };
 		18C3D0A820A2F77E000FCE7F /* CategoryListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryListModel.h; sourceTree = "<group>"; };
-		18C3D0AE20A3DD29000FCE7F /* HyperlinksButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HyperlinksButton.h; sourceTree = "<group>"; };
-		18C3D0AF20A3DD29000FCE7F /* HyperlinksButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HyperlinksButton.m; sourceTree = "<group>"; };
-		18C3D0B120A3DD29000FCE7F /* AddViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewButton.m; sourceTree = "<group>"; };
-		18C3D0B220A3DD29000FCE7F /* MessageVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageVideoCell.m; sourceTree = "<group>"; };
-		18C3D0B320A3DD29000FCE7F /* MessageImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageImageCell.h; sourceTree = "<group>"; };
-		18C3D0B420A3DD29000FCE7F /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
-		18C3D0B520A3DD29000FCE7F /* AddView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddView.h; sourceTree = "<group>"; };
-		18C3D0B620A3DD29000FCE7F /* AddViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddViewButton.h; sourceTree = "<group>"; };
-		18C3D0B720A3DD29000FCE7F /* MessageVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageVideoCell.h; sourceTree = "<group>"; };
-		18C3D0B820A3DD29000FCE7F /* AddView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddView.m; sourceTree = "<group>"; };
-		18C3D0B920A3DD29000FCE7F /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
-		18C3D0BA20A3DD29000FCE7F /* MessageImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageImageCell.m; sourceTree = "<group>"; };
 		18C3D0C320A3DD76000FCE7F /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		18C3D0C420A3DD76000FCE7F /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		18C3D0C620A3DD8F000FCE7F /* GYHTimeTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GYHTimeTool.m; sourceTree = "<group>"; };
 		18C3D0C720A3DD8F000FCE7F /* GYHTimeTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GYHTimeTool.h; sourceTree = "<group>"; };
 		18C3D0C920A3DDC8000FCE7F /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		18C3D0CA20A3DDC8000FCE7F /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
-		18C3D0CC20A3E11B000FCE7F /* ConverseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConverseViewController.m; sourceTree = "<group>"; };
-		18C3D0CD20A3E11C000FCE7F /* ConverseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConverseViewController.h; sourceTree = "<group>"; };
-		18C3D0CF20A3F27B000FCE7F /* AddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendViewController.h; sourceTree = "<group>"; };
-		18C3D0D020A3F27B000FCE7F /* AddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendViewController.m; sourceTree = "<group>"; };
-		18C3D0D220A3FA98000FCE7F /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
-		18C3D0D320A3FA99000FCE7F /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
 		18C3D0D520A3FAC2000FCE7F /* UIBarButtonItem+gyh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+gyh.h"; sourceTree = "<group>"; };
 		18C3D0D620A3FAC3000FCE7F /* UIBarButtonItem+gyh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+gyh.m"; sourceTree = "<group>"; };
 		18C3D0DA20A44803000FCE7F /* NSNavView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSNavView.h; sourceTree = "<group>"; };
@@ -885,8 +997,6 @@
 		18DD1568208DCB7E0006475D /* DCSpeedy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSpeedy.h; sourceTree = "<group>"; };
 		18DD1575208DD4140006475D /* NSMyCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSMyCenterViewController.h; sourceTree = "<group>"; };
 		18DD1576208DD4140006475D /* NSMyCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSMyCenterViewController.m; sourceTree = "<group>"; };
-		18DD1578208DD5AA0006475D /* NSMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSMessageViewController.h; sourceTree = "<group>"; };
-		18DD1579208DD5AA0006475D /* NSMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSMessageViewController.m; sourceTree = "<group>"; };
 		18DD157B208DD5F40006475D /* NSNearbyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSNearbyViewController.h; sourceTree = "<group>"; };
 		18DD157C208DD5F40006475D /* NSNearbyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSNearbyViewController.m; sourceTree = "<group>"; };
 		18DD1583208DEA8C0006475D /* ADLMyInfoTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADLMyInfoTableView.m; sourceTree = "<group>"; };
@@ -1036,15 +1146,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1818F29B20E4D144004B59CE /* Ctrl */ = {
-			isa = PBXGroup;
-			children = (
-				1818F29C20E4D14F004B59CE /* ChatViewController.h */,
-				1818F29D20E4D14F004B59CE /* ChatViewController.m */,
-			);
-			path = Ctrl;
-			sourceTree = "<group>";
-		};
 		18230F60208D788400D3E55F /* Login(登录) */ = {
 			isa = PBXGroup;
 			children = (
@@ -1602,6 +1703,236 @@
 			path = Ctrl;
 			sourceTree = "<group>";
 		};
+		185410D020EC9D60003C7696 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				185410D120EC9D60003C7696 /* Core Data */,
+				185410D620EC9D60003C7696 /* Chat */,
+				185410E520EC9D60003C7696 /* Contacts */,
+				185410EC20EC9D60003C7696 /* Robot */,
+				185410F820EC9D60003C7696 /* Profile */,
+				185410FB20EC9D60003C7696 /* ChatRoom */,
+				1854110B20EC9D60003C7696 /* ChatGroup */,
+				1854113020EC9D60003C7696 /* Custom */,
+				1854113920EC9D60003C7696 /* 添加好友 */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		185410D120EC9D60003C7696 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				185410D420EC9D60003C7696 /* UserProfileManager.h */,
+				185410D220EC9D60003C7696 /* UserProfileManager.m */,
+				185410D520EC9D60003C7696 /* InvitationManager.h */,
+				185410D320EC9D60003C7696 /* InvitationManager.m */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		185410D620EC9D60003C7696 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				185410D720EC9D60003C7696 /* ChatView */,
+				185410E020EC9D60003C7696 /* ChatList */,
+				185410E320EC9D60003C7696 /* ChatDemoHelper.h */,
+				185410E420EC9D60003C7696 /* ChatDemoHelper.m */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		185410D720EC9D60003C7696 /* ChatView */ = {
+			isa = PBXGroup;
+			children = (
+				185410D820EC9D60003C7696 /* DingViewController.h */,
+				185410DC20EC9D60003C7696 /* DingViewController.m */,
+				185410D920EC9D60003C7696 /* EMDingMessageHelper.h */,
+				185410DD20EC9D60003C7696 /* EMDingMessageHelper.m */,
+				185410DF20EC9D60003C7696 /* ChatViewController.h */,
+				185410DA20EC9D60003C7696 /* ChatViewController.m */,
+				185410DB20EC9D60003C7696 /* DingAcksViewController.h */,
+				185410DE20EC9D60003C7696 /* DingAcksViewController.m */,
+			);
+			path = ChatView;
+			sourceTree = "<group>";
+		};
+		185410E020EC9D60003C7696 /* ChatList */ = {
+			isa = PBXGroup;
+			children = (
+				185410E220EC9D60003C7696 /* ConversationListController.h */,
+				185410E120EC9D60003C7696 /* ConversationListController.m */,
+			);
+			path = ChatList;
+			sourceTree = "<group>";
+		};
+		185410E520EC9D60003C7696 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				185410E620EC9D60003C7696 /* ContactListSelectViewController.h */,
+				185410E920EC9D60003C7696 /* ContactListSelectViewController.m */,
+				185410E720EC9D60003C7696 /* RealtimeSearchUtil.h */,
+				185410EB20EC9D60003C7696 /* RealtimeSearchUtil.m */,
+				185410E820EC9D60003C7696 /* ContactListViewController.h */,
+				185410EA20EC9D60003C7696 /* ContactListViewController.m */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
+		185410EC20EC9D60003C7696 /* Robot */ = {
+			isa = PBXGroup;
+			children = (
+				185410ED20EC9D60003C7696 /* RobotListViewController.h */,
+				185410EE20EC9D60003C7696 /* EMRobotChatTextBubbleView.m */,
+				185410EF20EC9D60003C7696 /* RobotChatViewController.h */,
+				185410F020EC9D60003C7696 /* RobotManager.h */,
+				185410F120EC9D60003C7696 /* EMRotbotChatViewCell.m */,
+				185410F220EC9D60003C7696 /* RobotListViewController.m */,
+				185410F320EC9D60003C7696 /* EMRobotChatTextBubbleView.h */,
+				185410F420EC9D60003C7696 /* RobotChatViewController.m */,
+				185410F520EC9D60003C7696 /* RobotManager.m */,
+				185410F620EC9D60003C7696 /* EMRotbotChatViewCell.h */,
+			);
+			path = Robot;
+			sourceTree = "<group>";
+		};
+		185410F820EC9D60003C7696 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				185410F920EC9D60003C7696 /* UserProfileViewController.h */,
+				185410FA20EC9D60003C7696 /* UserProfileViewController.m */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		185410FB20EC9D60003C7696 /* ChatRoom */ = {
+			isa = PBXGroup;
+			children = (
+				185410FC20EC9D60003C7696 /* EMChatroomBansViewController.h */,
+				185410FD20EC9D60003C7696 /* EMChatroomMutesViewController.h */,
+				185410FE20EC9D60003C7696 /* EMChatroomAdminsViewController.h */,
+				185410FF20EC9D60003C7696 /* EMChatroomMembersViewController.m */,
+				1854110020EC9D60003C7696 /* EMCreateChatroomController.m */,
+				1854110120EC9D60003C7696 /* ChatroomListViewController.m */,
+				1854110220EC9D60003C7696 /* EMChatroomBansViewController.m */,
+				1854110320EC9D60003C7696 /* Info */,
+				1854110620EC9D60003C7696 /* EMChatroomMutesViewController.m */,
+				1854110720EC9D60003C7696 /* EMChatroomAdminsViewController.m */,
+				1854110820EC9D60003C7696 /* ChatroomListViewController.h */,
+				1854110920EC9D60003C7696 /* EMCreateChatroomController.h */,
+				1854110A20EC9D60003C7696 /* EMChatroomMembersViewController.h */,
+			);
+			path = ChatRoom;
+			sourceTree = "<group>";
+		};
+		1854110320EC9D60003C7696 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				1854110420EC9D60003C7696 /* ChatroomDetailViewController.m */,
+				1854110520EC9D60003C7696 /* ChatroomDetailViewController.h */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		1854110B20EC9D60003C7696 /* ChatGroup */ = {
+			isa = PBXGroup;
+			children = (
+				1854110C20EC9D60003C7696 /* GroupSubjectChangingViewController.h */,
+				1854111C20EC9D60003C7696 /* GroupSubjectChangingViewController.m */,
+				1854110D20EC9D60003C7696 /* GroupListViewController.h */,
+				1854112E20EC9D60003C7696 /* GroupListViewController.m */,
+				1854112F20EC9D60003C7696 /* ContactView.h */,
+				1854111B20EC9D60003C7696 /* ContactView.m */,
+				1854110E20EC9D60003C7696 /* 新建群组 */,
+				1854111320EC9D60003C7696 /* 加入公开群组 */,
+				1854111D20EC9D60003C7696 /* Info */,
+			);
+			path = ChatGroup;
+			sourceTree = "<group>";
+		};
+		1854110E20EC9D60003C7696 /* 新建群组 */ = {
+			isa = PBXGroup;
+			children = (
+				1854110F20EC9D60003C7696 /* ContactSelectionViewController.m */,
+				1854111020EC9D60003C7696 /* CreateGroupViewController.m */,
+				1854111120EC9D60003C7696 /* ContactSelectionViewController.h */,
+				1854111220EC9D60003C7696 /* CreateGroupViewController.h */,
+			);
+			path = "新建群组";
+			sourceTree = "<group>";
+		};
+		1854111320EC9D60003C7696 /* 加入公开群组 */ = {
+			isa = PBXGroup;
+			children = (
+				1854111420EC9D60003C7696 /* EMMemberCell.h */,
+				1854111520EC9D60003C7696 /* PublicGroupDetailViewController.h */,
+				1854111620EC9D60003C7696 /* PublicGroupListViewController.h */,
+				1854111720EC9D60003C7696 /* EMMemberCell.m */,
+				1854111820EC9D60003C7696 /* EMMemberCell.xib */,
+				1854111920EC9D60003C7696 /* PublicGroupDetailViewController.m */,
+				1854111A20EC9D60003C7696 /* PublicGroupListViewController.m */,
+			);
+			path = "加入公开群组";
+			sourceTree = "<group>";
+		};
+		1854111D20EC9D60003C7696 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				1854111E20EC9D60003C7696 /* EMGroupMembersViewController.m */,
+				1854111F20EC9D60003C7696 /* EMGroupAdminsViewController.m */,
+				1854112020EC9D60003C7696 /* EMGroupInfoViewController.h */,
+				1854112120EC9D60003C7696 /* GroupSettingViewController.h */,
+				1854112220EC9D60003C7696 /* EMGroupMutesViewController.h */,
+				1854112320EC9D60003C7696 /* EMGroupSharedFilesViewController.m */,
+				1854112420EC9D60003C7696 /* EMGroupBansViewController.h */,
+				1854112520EC9D60003C7696 /* EMGroupTransferOwnerViewController.h */,
+				1854112620EC9D60003C7696 /* EMGroupAdminsViewController.h */,
+				1854112720EC9D60003C7696 /* EMGroupMembersViewController.h */,
+				1854112820EC9D60003C7696 /* GroupSettingViewController.m */,
+				1854112920EC9D60003C7696 /* EMGroupInfoViewController.m */,
+				1854112A20EC9D60003C7696 /* EMGroupBansViewController.m */,
+				1854112B20EC9D60003C7696 /* EMGroupSharedFilesViewController.h */,
+				1854112C20EC9D60003C7696 /* EMGroupMutesViewController.m */,
+				1854112D20EC9D60003C7696 /* EMGroupTransferOwnerViewController.m */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		1854113020EC9D60003C7696 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				1854113120EC9D60003C7696 /* BaseTableViewCell.m */,
+				1854113220EC9D60003C7696 /* BaseTableViewCell.h */,
+				1854113320EC9D60003C7696 /* View */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		1854113320EC9D60003C7696 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1854113420EC9D60003C7696 /* EMTextView.m */,
+				1854113520EC9D60003C7696 /* EMRemarkImageView.m */,
+				1854113620EC9D60003C7696 /* EMTextView.h */,
+				1854113720EC9D60003C7696 /* EMRemarkImageView.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1854113920EC9D60003C7696 /* 添加好友 */ = {
+			isa = PBXGroup;
+			children = (
+				1854113A20EC9D60003C7696 /* ApplyFriendCell.m */,
+				1854113B20EC9D60003C7696 /* ApplyViewController.m */,
+				1854113C20EC9D60003C7696 /* AddFriendCell.h */,
+				1854113D20EC9D60003C7696 /* AddFriendViewController.m */,
+				1854113E20EC9D60003C7696 /* ApplyFriendCell.h */,
+				1854113F20EC9D60003C7696 /* AddFriendCell.m */,
+				1854114020EC9D60003C7696 /* ApplyViewController.h */,
+				1854114120EC9D60003C7696 /* AddFriendViewController.h */,
+			);
+			path = "添加好友";
+			sourceTree = "<group>";
+		};
 		1863D26320A96A9000047A7D /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
@@ -1769,49 +2100,6 @@
 				18AD9FEF20C6822900275CC5 /* qrcode_found.wav */,
 			);
 			path = NSMall;
-			sourceTree = "<group>";
-		};
-		1893557220E33664001CB380 /* 会话 */ = {
-			isa = PBXGroup;
-			children = (
-				1893557620E33BDB001CB380 /* View */,
-				1893557520E33BD3001CB380 /* Ctrl */,
-			);
-			path = "会话";
-			sourceTree = "<group>";
-		};
-		1893557320E336BC001CB380 /* 添加好友 */ = {
-			isa = PBXGroup;
-			children = (
-				18C3D0CF20A3F27B000FCE7F /* AddFriendViewController.h */,
-				18C3D0D020A3F27B000FCE7F /* AddFriendViewController.m */,
-			);
-			path = "添加好友";
-			sourceTree = "<group>";
-		};
-		1893557420E336C9001CB380 /* 好友列表 */ = {
-			isa = PBXGroup;
-			children = (
-				18C3D0D320A3FA99000FCE7F /* FriendsViewController.h */,
-				18C3D0D220A3FA98000FCE7F /* FriendsViewController.m */,
-			);
-			path = "好友列表";
-			sourceTree = "<group>";
-		};
-		1893557520E33BD3001CB380 /* Ctrl */ = {
-			isa = PBXGroup;
-			children = (
-				18C3D0CD20A3E11C000FCE7F /* ConverseViewController.h */,
-				18C3D0CC20A3E11B000FCE7F /* ConverseViewController.m */,
-			);
-			path = Ctrl;
-			sourceTree = "<group>";
-		};
-		1893557620E33BDB001CB380 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		18999B1B20DA46B2003BCF23 /* OrderDetail(订单详情) */ = {
@@ -2461,42 +2749,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		18C3D0AB20A3DD29000FCE7F /* 聊天 */ = {
-			isa = PBXGroup;
-			children = (
-				1818F29B20E4D144004B59CE /* Ctrl */,
-				18C3D0AD20A3DD29000FCE7F /* Model */,
-				18C3D0B020A3DD29000FCE7F /* View */,
-			);
-			path = "聊天";
-			sourceTree = "<group>";
-		};
-		18C3D0AD20A3DD29000FCE7F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				18C3D0AE20A3DD29000FCE7F /* HyperlinksButton.h */,
-				18C3D0AF20A3DD29000FCE7F /* HyperlinksButton.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		18C3D0B020A3DD29000FCE7F /* View */ = {
-			isa = PBXGroup;
-			children = (
-				18C3D0B120A3DD29000FCE7F /* AddViewButton.m */,
-				18C3D0B220A3DD29000FCE7F /* MessageVideoCell.m */,
-				18C3D0B320A3DD29000FCE7F /* MessageImageCell.h */,
-				18C3D0B420A3DD29000FCE7F /* MessageCell.h */,
-				18C3D0B520A3DD29000FCE7F /* AddView.h */,
-				18C3D0B620A3DD29000FCE7F /* AddViewButton.h */,
-				18C3D0B720A3DD29000FCE7F /* MessageVideoCell.h */,
-				18C3D0B820A3DD29000FCE7F /* AddView.m */,
-				18C3D0B920A3DD29000FCE7F /* MessageCell.m */,
-				18C3D0BA20A3DD29000FCE7F /* MessageImageCell.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		18CD71B220AE6E8800C8F813 /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
@@ -2982,12 +3234,7 @@
 		18DD1572208DD35A0006475D /* Message(消息) */ = {
 			isa = PBXGroup;
 			children = (
-				1893557420E336C9001CB380 /* 好友列表 */,
-				1893557320E336BC001CB380 /* 添加好友 */,
-				1893557220E33664001CB380 /* 会话 */,
-				18C3D0AB20A3DD29000FCE7F /* 聊天 */,
-				18DD1578208DD5AA0006475D /* NSMessageViewController.h */,
-				18DD1579208DD5AA0006475D /* NSMessageViewController.m */,
+				185410D020EC9D60003C7696 /* Demo */,
 			);
 			path = "Message(消息)";
 			sourceTree = "<group>";
@@ -3643,6 +3890,7 @@
 				18F5D51720CE74370037F825 /* icon.png in Resources */,
 				18B0179A20A67B9600826EA4 /* YWAddressTableViewCell2.xib in Resources */,
 				18AD9FF020C6822A00275CC5 /* qrcode_found.wav in Resources */,
+				1854115E20EC9D60003C7696 /* EMMemberCell.xib in Resources */,
 				18B0179B20A67B9600826EA4 /* YWAddressTableViewCell3.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3694,8 +3942,10 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-NSMall/Pods-NSMall-resources.sh",
 				"${PODS_ROOT}/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Map.framework/Resources/mapapi.bundle",
+				"${PODS_ROOT}/EaseUI/EaseUI/resources/EaseUIResource.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
-				"${PODS_ROOT}/MWPhotoBrowser/MWPhotoBrowser/MWPhotoBrowser.bundle",
+				"$PODS_CONFIGURATION_BUILD_DIR/MWPhotoBrowser/MWPhotoBrowser.bundle",
+				"$PODS_CONFIGURATION_BUILD_DIR/Parse/Parse.bundle",
 				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -3714,12 +3964,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1854114920EC9D60003C7696 /* ChatDemoHelper.m in Sources */,
+				1854114A20EC9D60003C7696 /* ContactListSelectViewController.m in Sources */,
 				18C3D0DC20A44803000FCE7F /* NSNavView.m in Sources */,
 				18E3A45420B2E63D00F847ED /* GoodsPublishParam.m in Sources */,
 				1863D26720A96C8800047A7D /* NSGoodsShowCell.m in Sources */,
 				1842A6E620B59D360090861D /* LZCartTableViewCell.m in Sources */,
 				18C3D0A420A2F190000FCE7F /* UIView+YWFrame.m in Sources */,
 				18C3D0D720A3FAC3000FCE7F /* UIBarButtonItem+gyh.m in Sources */,
+				1854116120EC9D60003C7696 /* ContactView.m in Sources */,
 				1889AF9620D3B43E00FBA33E /* NSTotalStoreV.m in Sources */,
 				18DA7CF420C8D8AA009277AA /* ShopPublishParam.m in Sources */,
 				18C3D0A920A2F77E000FCE7F /* CategoryModel.m in Sources */,
@@ -3728,12 +3981,15 @@
 				18D0C0B420AC0D01007F0784 /* TDUserCertifySectionHeader.m in Sources */,
 				18AD9FEA20C67F1000275CC5 /* GPLoadingView.m in Sources */,
 				18E3A42920B263F000F847ED /* NSWaitDeliverSaleVC.m in Sources */,
+				1854114E20EC9D60003C7696 /* EMRotbotChatViewCell.m in Sources */,
 				18ADC51E20BADFCF00961CD8 /* NSAddCartParam.m in Sources */,
 				18D0C0B320AC0D01007F0784 /* TDUserCertifyCellPics.m in Sources */,
 				18DD2F2620B95B0D00521B61 /* NSCollectModel.m in Sources */,
 				18B017AF20A67B9600826EA4 /* NSAddLabelVC.m in Sources */,
 				18C60DE820C13635002920D2 /* GLTextField.m in Sources */,
+				1854114420EC9D60003C7696 /* ChatViewController.m in Sources */,
 				18ADC51720BAD57100961CD8 /* GoodAttributesView.m in Sources */,
+				1854117020EC9D60003C7696 /* ApplyViewController.m in Sources */,
 				18E3A43820B273E600F847ED /* NSOrderListItemModel.m in Sources */,
 				18B1CB1D20BFE6D700235CFA /* NSBindWalletParam.m in Sources */,
 				18D0824E20956D2F0031034A /* LoginAPI.m in Sources */,
@@ -3746,12 +4002,11 @@
 				18DD157D208DD5F40006475D /* NSNearbyViewController.m in Sources */,
 				18E3A44320B29C0A00F847ED /* MyOrderParam.m in Sources */,
 				18C60DEE20C14D70002920D2 /* NSPayOrderParam.m in Sources */,
+				1854114220EC9D60003C7696 /* UserProfileManager.m in Sources */,
 				18A7AB7C20ADAC95009FC725 /* NSCommonParam.m in Sources */,
 				184EC18320BD8DE9009BBFE6 /* NSFirmOrderModel.m in Sources */,
 				18F5D51520CE6A740037F825 /* BMKClusterAlgorithm.m in Sources */,
 				18999B3020DA7ED5003BCF23 /* UserPageAPI.m in Sources */,
-				18C3D0BE20A3DD2A000FCE7F /* AddViewButton.m in Sources */,
-				18C3D0D420A3FA99000FCE7F /* FriendsViewController.m in Sources */,
 				18A7AB8320ADB57E009FC725 /* NSMyProductListModel.m in Sources */,
 				18D0824A20956D2F0031034A /* NSLoginController.m in Sources */,
 				18D0C0DE20AC1BC3007F0784 /* TDCountryCtrl.m in Sources */,
@@ -3759,6 +4014,7 @@
 				18DD1577208DD4140006475D /* NSMyCenterViewController.m in Sources */,
 				18DD2F1B20B90B1E00521B61 /* LLSearchVCConst.m in Sources */,
 				18C2DDF020B7A97D00A3B851 /* NSMessageModel.m in Sources */,
+				1854115120EC9D60003C7696 /* RobotManager.m in Sources */,
 				18D574C7209A9EAB001C7875 /* ChangeMobileParam.m in Sources */,
 				18D0C0AB20AC0D01007F0784 /* TDUserCertifyCellTxtInput.m in Sources */,
 				18B017AE20A67B9600826EA4 /* CLTools.m in Sources */,
@@ -3767,15 +4023,17 @@
 				18D71044208DC84C002BA6CD /* DCNavigationController.m in Sources */,
 				1819B65620A71DC8009EAF87 /* NSSecondaryCategoryVC.m in Sources */,
 				18C3D0C520A3DD76000FCE7F /* NSString+Extension.m in Sources */,
-				18C3D0C120A3DD2A000FCE7F /* MessageCell.m in Sources */,
 				18E3A44E20B2E5D900F847ED /* GoodsPublishAPI.m in Sources */,
 				1863D26B20A9873C00047A7D /* UIButton+Bootstrap.m in Sources */,
 				18D0C0B720AC0F93007F0784 /* BaseCellTextFiled.m in Sources */,
 				18C3D0CB20A3DDC8000FCE7F /* UIImage+Extension.m in Sources */,
 				18DD2F0F20B90B1D00521B61 /* LLSearchResultListView.m in Sources */,
+				1854116820EC9D60003C7696 /* EMGroupBansViewController.m in Sources */,
 				184DE7A9208F088E00E776F3 /* BaseTableCell.m in Sources */,
+				1854116E20EC9D60003C7696 /* EMRemarkImageView.m in Sources */,
 				18D71045208DC84C002BA6CD /* DCTabBadgeView.m in Sources */,
 				184F061D209FE81A00768418 /* PublishMenuButton.m in Sources */,
+				1854116620EC9D60003C7696 /* GroupSettingViewController.m in Sources */,
 				18D574CB209AA380001C7875 /* GetVcodeAPI.m in Sources */,
 				18C60DDF20C0E039002920D2 /* NSPayViewTVCell.m in Sources */,
 				184F064D209FFC4D00768418 /* UpdateUserParam.m in Sources */,
@@ -3786,7 +4044,6 @@
 				18D62C5820C2737300F66C4C /* NSGoodsShowCellTest.m in Sources */,
 				18D0C0EA20AC1E4A007F0784 /* JFDatePickerController.m in Sources */,
 				184F0644209FFB7F00768418 /* UIImageView+WebCache.m in Sources */,
-				18DD157A208DD5AA0006475D /* NSMessageViewController.m in Sources */,
 				18B0179220A67B9600826EA4 /* YWAddressModel.m in Sources */,
 				18F5D51320CE6A740037F825 /* BMKClusterQuadtree.m in Sources */,
 				18D0C0C220AC114A007F0784 /* AJPhotoZoomingScrollView.m in Sources */,
@@ -3794,9 +4051,11 @@
 				184F0645209FFB7F00768418 /* UILabel+LBExt.m in Sources */,
 				18887B7E20E0808D00F6177F /* PageSelectBar.m in Sources */,
 				18D0C0C120AC114A007F0784 /* AJPhotoBrowserViewController.m in Sources */,
+				1854115920EC9D60003C7696 /* EMChatroomMutesViewController.m in Sources */,
 				18C3D07B20A2F0E8000FCE7F /* GetLabelsAPI.m in Sources */,
-				18C3D0C220A3DD2A000FCE7F /* MessageImageCell.m in Sources */,
 				18C60DE520C1361B002920D2 /* NSInputPwView.m in Sources */,
+				1854116A20EC9D60003C7696 /* EMGroupTransferOwnerViewController.m in Sources */,
+				1854114320EC9D60003C7696 /* InvitationManager.m in Sources */,
 				18E3A42620B263B800F847ED /* NSWaitPaySaleVC.m in Sources */,
 				18F5D4E920CE0E790037F825 /* NearbyStoreAPI.m in Sources */,
 				18D0C0AA20AC0D01007F0784 /* TDUserCertifyDataBasic.m in Sources */,
@@ -3810,19 +4069,25 @@
 				18B0179720A67B9600826EA4 /* YWAddressViewController.m in Sources */,
 				18C3D0AA20A2F77E000FCE7F /* CategoryListModel.m in Sources */,
 				18C3CFF220A2EF3B000FCE7F /* PPUntil.m in Sources */,
+				1854115B20EC9D60003C7696 /* ContactSelectionViewController.m in Sources */,
 				18BD2DB720D113BB003C57B3 /* MyShopAPI.m in Sources */,
 				18C3CFF120A2EF3B000FCE7F /* YWTool.m in Sources */,
 				184F05F0209AE39700768418 /* ProductListModel.m in Sources */,
 				18F5D50820CE63380037F825 /* ShopInfoView.m in Sources */,
 				18B017A220A67B9600826EA4 /* SetDefaultAddressParam.m in Sources */,
+				1854114720EC9D60003C7696 /* DingAcksViewController.m in Sources */,
 				184F0619209FE81A00768418 /* NSInfoCustomCell.m in Sources */,
 				18D0C0B020AC0D01007F0784 /* TDSegmentView.m in Sources */,
+				1854116320EC9D60003C7696 /* EMGroupMembersViewController.m in Sources */,
+				1854116F20EC9D60003C7696 /* ApplyFriendCell.m in Sources */,
 				184043412099FB0600685F80 /* ADLChangePhoneViewController.m in Sources */,
 				18230F66208D793F00D3E55F /* BaseViewCtrl.m in Sources */,
 				1874D5C120AAD50A0004B1AF /* NSFunctionCell.m in Sources */,
 				182DC49120905E3C0066E667 /* ADOrderTopToolView.m in Sources */,
 				18DB5D3A20E21876000E99E6 /* FivePageSelectBar.m in Sources */,
+				1854116520EC9D60003C7696 /* EMGroupSharedFilesViewController.m in Sources */,
 				18C3D08020A2F0FA000FCE7F /* SaveLabelParam.m in Sources */,
+				1854115520EC9D60003C7696 /* EMCreateChatroomController.m in Sources */,
 				18E3A42C20B2641800F847ED /* NSWaitReceiveSaleVC.m in Sources */,
 				18B017A620A67B9600826EA4 /* NSAddressItemModel.m in Sources */,
 				18335F7920BC0310006264EF /* NSAreaItemModel.m in Sources */,
@@ -3835,10 +4100,14 @@
 				18DD158B208DEAD80006475D /* BaseTableView.m in Sources */,
 				18A7AB7F20ADB0BB009FC725 /* NSMyGoodsTVCell.m in Sources */,
 				18DB5D5520E23497000E99E6 /* OrderDetailAPI.m in Sources */,
+				1854115720EC9D60003C7696 /* EMChatroomBansViewController.m in Sources */,
 				18E3A42020B2633200F847ED /* NSAbolishBuyVC.m in Sources */,
+				1854116020EC9D60003C7696 /* PublicGroupListViewController.m in Sources */,
 				184F065D20A2E37300768418 /* StoreItemModel.m in Sources */,
 				184F064A209FFB7F00768418 /* UIView+Layout.m in Sources */,
+				1854115020EC9D60003C7696 /* RobotChatViewController.m in Sources */,
 				18E1E34620B65CD000B0FD0C /* GoodsDetailAPI.m in Sources */,
+				1854115820EC9D60003C7696 /* ChatroomDetailViewController.m in Sources */,
 				1831CA6A20C7B33D00F00BAF /* NSNewFirmOrderTVCell.m in Sources */,
 				18D0824F20956D2F0031034A /* LoginParam.m in Sources */,
 				18D092FE20917A1400E091E0 /* DCTabBarCenterButton.m in Sources */,
@@ -3847,14 +4116,18 @@
 				1842A6D120B59D350090861D /* LZCartViewController.m in Sources */,
 				18A7AB8620ADB5AD009FC725 /* NSMyProductListItemModel.m in Sources */,
 				184F065320A2DC2D00768418 /* SearchParam.m in Sources */,
+				1854116D20EC9D60003C7696 /* EMTextView.m in Sources */,
 				18E3A43520B2731700F847ED /* NSOrderListModel.m in Sources */,
 				18E3A41A20B2628D00F847ED /* NSWaitReceiveBuyVC.m in Sources */,
+				1854115320EC9D60003C7696 /* UserProfileViewController.m in Sources */,
 				18C2DE1620B7F5C700A3B851 /* NSSortVC.m in Sources */,
 				18B017AD20A67B9600826EA4 /* NSShopPublishAPI.m in Sources */,
 				18DD2F0E20B90B1D00521B61 /* NBSSearchShopCategoryViewCellP.m in Sources */,
 				18DD2F1020B90B1D00521B61 /* NBSSearchShopCategoryView.m in Sources */,
 				18DD2F1520B90B1D00521B61 /* HistoryAndCategorySearchVC.m in Sources */,
+				1854114F20EC9D60003C7696 /* RobotListViewController.m in Sources */,
 				18D0C0E620AC1E19007F0784 /* JFPickerController.m in Sources */,
+				1854115620EC9D60003C7696 /* ChatroomListViewController.m in Sources */,
 				18AD9FDF20C67CCF00275CC5 /* ADLScanningController.m in Sources */,
 				18D574D2209AB1D6001C7875 /* HeaderModel.m in Sources */,
 				1899B7B620B57643002FF2A8 /* NSLikeModel.m in Sources */,
@@ -3865,15 +4138,16 @@
 				18E854BC20CA5A03007C23F5 /* NSAddressVC.m in Sources */,
 				18B0179F20A67B9600826EA4 /* YWAddressTableViewCell3.m in Sources */,
 				184043322099FA8D00685F80 /* ADLUpdateUserTableCell.m in Sources */,
+				1854115F20EC9D60003C7696 /* PublicGroupDetailViewController.m in Sources */,
 				184779F720CF9F36000DB448 /* NSDate+BRPickerView.m in Sources */,
 				184F061F209FE81A00768418 /* XWPopMenuController.m in Sources */,
 				18D0C0AC20AC0D01007F0784 /* TDUserCertifyCellPicker.m in Sources */,
 				18335F7620BBEF79006264EF /* NSChangeCartNumParam.m in Sources */,
-				18C3D0D120A3F27C000FCE7F /* AddFriendViewController.m in Sources */,
 				18E3A41420B2621000F847ED /* NSAllBuyVC.m in Sources */,
 				18887B8220E0898200F6177F /* NSGoodsVM.m in Sources */,
 				18DD1562208DC9AB0006475D /* GQGesVCTransition.m in Sources */,
 				184F061A209FE81A00768418 /* NSShopTableView.m in Sources */,
+				1854114D20EC9D60003C7696 /* EMRobotChatTextBubbleView.m in Sources */,
 				18D0C0D420AC1A52007F0784 /* UIButton+BtnExt.m in Sources */,
 				18D0824B20956D2F0031034A /* NSLoginView.m in Sources */,
 				18B017AC20A67B9600826EA4 /* GetAreaAPI.m in Sources */,
@@ -3886,11 +4160,12 @@
 				184043382099FABE00685F80 /* ADLEditUserInformCtrl.m in Sources */,
 				183ED91720BE845100DB0487 /* NSAddressTVCell.m in Sources */,
 				18999B2120DA4C58003BCF23 /* NSOrderDetailVC.m in Sources */,
-				18C3D0BD20A3DD2A000FCE7F /* HyperlinksButton.m in Sources */,
+				1854116220EC9D60003C7696 /* GroupSubjectChangingViewController.m in Sources */,
 				184F05FA209C40DE00768418 /* AdvertItemModel.m in Sources */,
 				1878477D20AECFAE00AC0E0F /* NSMyShopVC.m in Sources */,
 				1840434E2099FB8400685F80 /* ADLTitleField.m in Sources */,
 				184779FF20CFB55F000DB448 /* NSSearchAddressVC.m in Sources */,
+				1854116920EC9D60003C7696 /* EMGroupMutesViewController.m in Sources */,
 				188CC658207F5431007D749E /* main.m in Sources */,
 				184F061C209FE81A00768418 /* NSGoodsPublishVC.m in Sources */,
 				18350895208086DE00BCF7CE /* UIViewExt.m in Sources */,
@@ -3898,10 +4173,11 @@
 				18D0C0B220AC0D01007F0784 /* TDUserCertifyDataPics.m in Sources */,
 				18D0C0D120AC1739007F0784 /* NSDate+Addition.m in Sources */,
 				18E3A44920B2B9BE00F847ED /* NSGoodsView.m in Sources */,
+				1854116420EC9D60003C7696 /* EMGroupAdminsViewController.m in Sources */,
 				18B017A720A67B9600826EA4 /* NSAreaModel.m in Sources */,
 				18D0C0C320AC114A007F0784 /* AJTapDetectingView.m in Sources */,
+				1854114620EC9D60003C7696 /* EMDingMessageHelper.m in Sources */,
 				18C60DDC20C0DDAF002920D2 /* NSPayView.m in Sources */,
-				18C3D0BF20A3DD2A000FCE7F /* MessageVideoCell.m in Sources */,
 				184F061E209FE81A00768418 /* UIImage+XW.m in Sources */,
 				18D0C0DF20AC1BC3007F0784 /* TDCountryDataSource.m in Sources */,
 				18C3D0A120A2F151000FCE7F /* NSCategoryTableViewCell.m in Sources */,
@@ -3933,6 +4209,7 @@
 				18DB5D6120E23C31000E99E6 /* NSODItemModel.m in Sources */,
 				188CC64A207F5430007D749E /* AppDelegate.mm in Sources */,
 				18DD2F1920B90B1E00521B61 /* UIView+LLRect.m in Sources */,
+				1854116C20EC9D60003C7696 /* BaseTableViewCell.m in Sources */,
 				18E1E34020B654E200B0FD0C /* NSGoodsDetailModel.m in Sources */,
 				18E1E33C20B6546700B0FD0C /* NSGoodsDetailVC.m in Sources */,
 				18E3A44620B2A3B200F847ED /* NSMyOrderTVCell.m in Sources */,
@@ -3957,8 +4234,10 @@
 				18999B3320DA8580003BCF23 /* UserPageModel.m in Sources */,
 				18D574CF209AA39A001C7875 /* GetVcodeParam.m in Sources */,
 				185DFDFE20B3C7E800437168 /* NSCategoryTV.m in Sources */,
+				1854116720EC9D60003C7696 /* EMGroupInfoViewController.m in Sources */,
 				188CAB7920DB3B69006A547A /* UserHeaderV.m in Sources */,
 				184DE7A6208F081400E776F3 /* ADLMyInfoTableViewCell.m in Sources */,
+				1854115A20EC9D60003C7696 /* EMChatroomAdminsViewController.m in Sources */,
 				18E3A43B20B2763C00F847ED /* NSOrderProductItemModel.m in Sources */,
 				18D0C0C420AC114A007F0784 /* AJPhotoTapDetectingImageView.m in Sources */,
 				18E3A43220B2646700F847ED /* NSAbolishSaleVC.m in Sources */,
@@ -3972,22 +4251,23 @@
 				184043352099FAA200685F80 /* ADLUpdateUserPhotoCell.m in Sources */,
 				18350890207F653600BCF7CE /* Net.m in Sources */,
 				18B017AB20A67B9600826EA4 /* ADAddressTopView.m in Sources */,
-				18C3D0CE20A3E11C000FCE7F /* ConverseViewController.m in Sources */,
 				18C3D0C820A3DD8F000FCE7F /* GYHTimeTool.m in Sources */,
 				18EB286220A548EE00B45958 /* NSSpecView.m in Sources */,
+				1854117220EC9D60003C7696 /* AddFriendCell.m in Sources */,
 				18E3A41D20B262D300F847ED /* NSCompletedBuyVC.m in Sources */,
 				18DD2F1820B90B1E00521B61 /* LLNaviSearchBaseVC.m in Sources */,
 				184F0617209FE81A00768418 /* NSShopPublishVC.m in Sources */,
 				18ADC52120BAE9B500961CD8 /* NSCartModel.m in Sources */,
 				18DB5D5E20E239FC000E99E6 /* NSOrderDetailModel.m in Sources */,
+				1854117120EC9D60003C7696 /* AddFriendViewController.m in Sources */,
 				18B017B720A67C0F00826EA4 /* NSChangePhoneVC.m in Sources */,
 				1889AF9020D398BC00FBA33E /* NSShopViewTV.m in Sources */,
 				184F05F7209C40C700768418 /* AdvertListModel.m in Sources */,
 				18C3D08820A2F111000FCE7F /* LabelItemModel.m in Sources */,
 				18C2DE1920B7F8F000A3B851 /* NSSortLeftTVCell.m in Sources */,
-				18C3D0C020A3DD2A000FCE7F /* AddView.m in Sources */,
 				18999B2B20DA5DF6003BCF23 /* UserPageVC.m in Sources */,
 				18B017B320A67B9600826EA4 /* CLTagView.m in Sources */,
+				1854115D20EC9D60003C7696 /* EMMemberCell.m in Sources */,
 				18B1CB0920BF980F00235CFA /* NSMyWalletListVC.m in Sources */,
 				18B017B120A67B9600826EA4 /* CLDispalyTagView.m in Sources */,
 				18DD2F2320B9336500521B61 /* NSSortListVC.m in Sources */,
@@ -3999,14 +4279,17 @@
 				18B017A520A67B9600826EA4 /* GetAddressParam.m in Sources */,
 				18DD1569208DCB7E0006475D /* DCSpeedy.m in Sources */,
 				18B1CB0E20BF994900235CFA /* WalletAPI.m in Sources */,
-				1818F29E20E4D14F004B59CE /* ChatViewController.m in Sources */,
 				18DD2F1C20B90B1E00521B61 /* LLTagViewUtils.m in Sources */,
 				18D0C0C720AC13C7007F0784 /* MBProgressHUD+Extension.m in Sources */,
+				1854116B20EC9D60003C7696 /* GroupListViewController.m in Sources */,
 				18DD1585208DEA8D0006475D /* ADLMyInfoTableView.m in Sources */,
+				1854115420EC9D60003C7696 /* EMChatroomMembersViewController.m in Sources */,
 				184F0649209FFB7F00768418 /* UIView+Frame.m in Sources */,
 				18F5D50520CE60C30037F825 /* NSClusterAnnotation.m in Sources */,
+				1854114820EC9D60003C7696 /* ConversationListController.m in Sources */,
 				184F0641209FFB7F00768418 /* NSString+wrapper.m in Sources */,
 				18D09304209306B900E091E0 /* DCMainNavController.m in Sources */,
+				1854114B20EC9D60003C7696 /* ContactListViewController.m in Sources */,
 				18DD2EC920B8F1AC00521B61 /* NSAllSortView.m in Sources */,
 				18C60DEB20C136B7002920D2 /* UIView+category.m in Sources */,
 				18A7AB7920ADAAFC009FC725 /* NSMyGoodsListVC.m in Sources */,
@@ -4015,6 +4298,8 @@
 				1878478020AED12100AC0E0F /* NSMyShopTVCell.m in Sources */,
 				18AD9FE620C67E8B00275CC5 /* ADLWebCtrl.m in Sources */,
 				18C3D08720A2F111000FCE7F /* LabelListModel.m in Sources */,
+				1854115C20EC9D60003C7696 /* CreateGroupViewController.m in Sources */,
+				1854114520EC9D60003C7696 /* DingViewController.m in Sources */,
 				18D0C0CD20AC167C007F0784 /* TDNameCertifyModel.m in Sources */,
 				18F5D51420CE6A740037F825 /* BMKClusterManager.m in Sources */,
 				183ED91420BE3FE200DB0487 /* NSFirmOrderCell.m in Sources */,
@@ -4033,6 +4318,7 @@
 				18B1CB0120BF903C00235CFA /* NSWalletItemModel.m in Sources */,
 				18E3A42320B2638900F847ED /* NSAllSaleVC.m in Sources */,
 				18DD2F1A20B90B1E00521B61 /* UIColor+LLHex.m in Sources */,
+				1854114C20EC9D60003C7696 /* RealtimeSearchUtil.m in Sources */,
 				18C2DDED20B7A92300A3B851 /* NSMessageTVCell.m in Sources */,
 				18D0C06D20AC0B58007F0784 /* TDBaseViewController.m in Sources */,
 				18DD2F0D20B90B1D00521B61 /* LLNaviSearchHistorySaveBasePresenter.m in Sources */,
@@ -4179,6 +4465,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 688YLU4D2F;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Hyphenate",
@@ -4256,6 +4543,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 688YLU4D2F;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Hyphenate",

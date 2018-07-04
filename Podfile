@@ -32,6 +32,7 @@ pod 'CYLTabBarController','~>1.17.6'
 pod 'Hyphenate'
 pod 'MWPhotoBrowser'
 
+pod 'Parse'
 pod 'BaiduMapKit'
 pod 'TZImagePickerController'
 pod 'MJExtension', '~> 3.0.13'
@@ -40,6 +41,7 @@ pod 'SDCycleScrollView'
 pod 'ReactiveCocoa', '2.5'
 pod 'UITableView+FDTemplateLayoutCell'
 pod 'MBProgressHUD'
+pod 'EaseUI', :git => 'https://github.com/easemob/easeui-ios-hyphenate-cocoapods.git'
 
 
 end

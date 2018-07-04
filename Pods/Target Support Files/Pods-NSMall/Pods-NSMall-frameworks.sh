@@ -102,10 +102,10 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${PODS_ROOT}/Hyphenate/iOS_Pods_IMFullSDK_V3.4.0/Hyphenate.framework"
+  install_framework "${PODS_ROOT}/Hyphenate/iOS_Pods_IMFullSDK_V3.4.2/Hyphenate.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${PODS_ROOT}/Hyphenate/iOS_Pods_IMFullSDK_V3.4.0/Hyphenate.framework"
+  install_framework "${PODS_ROOT}/Hyphenate/iOS_Pods_IMFullSDK_V3.4.2/Hyphenate.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait
