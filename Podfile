@@ -33,7 +33,7 @@ pod 'Hyphenate'
 pod 'MWPhotoBrowser'
 
 pod 'Parse'
-pod 'BaiduMapKit'
+pod 'BaiduMapKit', '~> 4.0.0'
 pod 'TZImagePickerController'
 pod 'MJExtension', '~> 3.0.13'
 pod 'FMDB'

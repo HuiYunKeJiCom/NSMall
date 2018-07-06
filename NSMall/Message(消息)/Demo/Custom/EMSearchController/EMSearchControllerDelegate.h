@@ -10,8 +10,18 @@
  * from Hyphenate Inc.
  */
 
-#import "EaseMessageCell.h"
+#import <Foundation/Foundation.h>
 
-@interface EMRotbotChatViewCell : EaseMessageCell
+@protocol EMSearchControllerDelegate <NSObject>
+
+@optional
+
+- (void)willSearchBegin;
+
+- (void)didSearchFinish;
+
+- (void)cancelButtonClicked;
+
+- (void)searchTextChangeWithString:(NSString *)aString;
 
 @end

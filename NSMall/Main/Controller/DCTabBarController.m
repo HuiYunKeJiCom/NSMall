@@ -11,15 +11,19 @@
 #import "XWPopMenuController.h"//发布
 #import "DCTabBadgeView.h"
 #import "ChatViewController.h"
+#import "UserProfileManager.h"
 
 static NSString *kMessageType = @"MessageType";
 static NSString *kConversationChatter = @"ConversationChatter";
+//两次提示的默认间隔
+static const CGFloat kDefaultPlaySoundInterval = 3.0;
 
 @interface DCTabBarController ()<UITabBarControllerDelegate,EMClientDelegate>
 {
     UIBarButtonItem *_addFriendItem;
     EMConnectionState _connectionState;
 }
+@property (strong, nonatomic) NSDate *lastPlaySoundDate;
 
 @property (nonatomic , strong) NSArray *conversations;
 ////给item加上badge
@@ -55,7 +59,7 @@ static NSString *kConversationChatter = @"ConversationChatter";
     ConversationListController *messageVC = [[ConversationListController alloc]init];
     messageVC.tabBarItem.title = @"消息";
     
-    [messageVC networkChanged:_connectionState];
+//    [self.chatListVC networkChanged:_connectionState];
     
     NSMyCenterViewController *myCenterVC = [[NSMyCenterViewController alloc]init];
     myCenterVC.tabBarItem.title = @"我的";

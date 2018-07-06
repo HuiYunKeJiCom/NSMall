@@ -19,8 +19,9 @@
 #import "RealtimeSearchUtil.h"
 #import "ChatDemoHelper.h"
 #import "EMDingMessageHelper.h"
-
+#import "NSNavView.h"
 #import "UIViewController+SearchController.h"
+#import "ContactListViewController.h"
 
 @implementation EMConversation (search)
 
@@ -64,6 +65,34 @@
     
     [self tableViewDidTriggerHeaderRefresh];
     [self removeEmptyConversationsFromDB];
+    [self setUpNavTopView];
+}
+
+#pragma mark - 导航栏处理
+- (void)setUpNavTopView
+{
+    NSNavView *topToolView = [[NSNavView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
+    topToolView.backgroundColor = kWhiteColor;
+    [topToolView setTopTitleWithNSString:KLocalizableStr(@"消息")];
+    [topToolView setRightItemTitle:KLocalizableStr(@"通讯录")];
+    WEAKSELF
+    topToolView.leftItemClickBlock = ^{
+        NSLog(@"点击了返回");
+        [[DCTabBarController sharedTabBarVC] goToSelectedViewControllerWith:0];
+    };
+    
+    topToolView.rightItemClickBlock = ^{
+        //跳转到通讯录
+        [weakSelf goToContactListViewController];
+    };
+    
+    [self.view addSubview:topToolView];
+    
+}
+
+-(void)goToContactListViewController{
+    ContactListViewController *contactListVC = [ContactListViewController new];
+    [self.navigationController pushViewController:contactListVC animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -343,7 +372,7 @@
     
     UISearchBar *searchBar = self.searchController.searchBar;
     [self.view addSubview:searchBar];
-    self.tableView.frame = CGRectMake(0, searchBar.frame.size.height, self.view.frame.size.width,self.view.frame.size.height - searchBar.frame.size.height);
+    self.tableView.frame = CGRectMake(0, searchBar.frame.size.height+TopBarHeight, self.view.frame.size.width,self.view.frame.size.height - searchBar.frame.size.height-TopBarHeight);
 //    self.tableView.tableHeaderView = searchBar;
 //    [searchBar sizeToFit];
 }

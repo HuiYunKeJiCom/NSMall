@@ -18,6 +18,7 @@
 #import "BMKClusterManager.h"
 #import "NSTotalStoreV.h"
 
+
 @interface NSNearbyViewController ()<NSTotalStoreVDelegate,ShopInfoViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,BMKPoiSearchDelegate,BMKMapViewDelegate,UITextFieldDelegate,NSClusterAnnotationViewDelegate>{
     BMKClusterManager *_clusterManager;//点聚合管理类
     NSInteger _clusterZoom;//聚合级别

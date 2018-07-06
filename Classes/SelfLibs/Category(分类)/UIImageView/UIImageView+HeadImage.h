@@ -10,8 +10,17 @@
  * from Hyphenate Inc.
  */
 
-#import "EaseMessageCell.h"
 
-@interface EMRotbotChatViewCell : EaseMessageCell
+#import <UIKit/UIKit.h>
+
+@interface UIImageView (HeadImage)
+
+- (void)imageWithUsername:(NSString*)username placeholderImage:(UIImage*)placeholderImage;
+
+@end
+
+@interface UILabel (Prase)
+
+- (void)setTextWithUsername:(NSString *)username;
 
 @end

@@ -22,6 +22,7 @@
 #import "UserProfileManager.h"
 #import "RealtimeSearchUtil.h"
 #import "UserProfileManager.h"
+#import "NSNavView.h"
 
 #import "BaseTableViewCell.h"
 #import "UIViewController+SearchController.h"
@@ -70,6 +71,31 @@
     [[UserProfileManager sharedInstance] loadUserProfileInBackgroundWithBuddy:self.contactsSource saveToLoacal:YES completion:NULL];
     
     [self setupSearchController];
+    [self setUpNavTopView];
+
+}
+
+#pragma mark - 导航栏处理
+- (void)setUpNavTopView
+{
+    NSNavView *topToolView = [[NSNavView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
+    topToolView.backgroundColor = KMainColor;
+    [topToolView setTopTitleWithNSString:KLocalizableStr(@"通讯录")];
+//    [topToolView setRightItemTitle:KLocalizableStr(@"添加好友")];
+    [topToolView setRightItemImage:@"add"];
+    WEAKSELF
+    topToolView.leftItemClickBlock = ^{
+        NSLog(@"点击了返回");
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    };
+    
+    topToolView.rightItemClickBlock = ^{
+        //添加好友
+        [weakSelf addContactAction];
+    };
+    
+    [self.view addSubview:topToolView];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -111,7 +137,7 @@
 {
     // Return the number of rows in the section.
     if (section == 0) {
-        return 5;
+        return 2;
     } else if (section == 1) {
         return [self.otherPlatformIds count];
     }
@@ -144,18 +170,18 @@
             cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/group"];
             cell.titleLabel.text = NSLocalizedString(@"title.group", @"Group");
         }
-        else if (indexPath.row == 2) {
-            cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/group"];
-            cell.titleLabel.text = NSLocalizedString(@"title.chatroom",@"chatroom");
-        }
-        else if (indexPath.row == 3) {
-            cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_videoCall"];
-            cell.titleLabel.text = NSLocalizedString(@"title.conference",@"Mutil Conference");
-        }
-        else if (indexPath.row == 4) {
-            cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_videoCall"];
-            cell.titleLabel.text = NSLocalizedString(@"title.customConference",@"Custom Video Conference");
-        }
+//        else if (indexPath.row == 2) {
+//            cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/group"];
+//            cell.titleLabel.text = NSLocalizedString(@"title.chatroom",@"chatroom");
+//        }
+//        else if (indexPath.row == 3) {
+//            cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_videoCall"];
+//            cell.titleLabel.text = NSLocalizedString(@"title.conference",@"Mutil Conference");
+//        }
+//        else if (indexPath.row == 4) {
+//            cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_videoCall"];
+//            cell.titleLabel.text = NSLocalizedString(@"title.customConference",@"Custom Video Conference");
+//        }
         
         return cell;
     } else if (indexPath.section == 1) {
@@ -243,24 +269,26 @@
             GroupListViewController *groupController = [[GroupListViewController alloc] initWithStyle:UITableViewStylePlain];
             [self.navigationController pushViewController:groupController animated:YES];
         }
-        else if (row == 2)
-        {
-            ChatroomListViewController *controller = [[ChatroomListViewController alloc] initWithStyle:UITableViewStylePlain];
-            [self.navigationController pushViewController:controller animated:YES];
-        }
+//        else if (row == 2)
+//        {
+//            ChatroomListViewController *controller = [[ChatroomListViewController alloc] initWithStyle:UITableViewStylePlain];
+//            [self.navigationController pushViewController:controller animated:YES];
+//        }
+        
+        
 //        else if (row == 3) {
 //            RobotListViewController *robot = [[RobotListViewController alloc] init];
 //            [self.navigationController pushViewController:robot animated:YES];
 //        }
         
-#if DEMO_CALL == 1
-        else if (row == 3) {
-            [[DemoConfManager sharedManager] pushConferenceController];
-        }
-        else if (row == 4) {
-            [[DemoConfManager sharedManager] pushCustomVideoConferenceController];
-        }
-#endif
+//#if DEMO_CALL == 1
+//        else if (row == 3) {
+//            [[DemoConfManager sharedManager] pushConferenceController];
+//        }
+//        else if (row == 4) {
+//            [[DemoConfManager sharedManager] pushCustomVideoConferenceController];
+//        }
+//#endif
     } else if (section == 1) {
        ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:[self.otherPlatformIds objectAtIndex:indexPath.row] conversationType:EMConversationTypeChat];
         [self.navigationController pushViewController:chatController animated:YES];
@@ -442,7 +470,9 @@
                                                        
 - (void)setupSearchController
 {
-    [self enableSearchController];
+//    改动过
+//    [self enableSearchController];
+    [self disableSearchController];
     
     __weak ContactListViewController *weakSelf = self;
     [self.resultController setCellForRowAtIndexPathCompletion:^UITableViewCell *(UITableView *tableView, NSIndexPath *indexPath) {
@@ -485,8 +515,12 @@
     if (height == 0) {
         height = 50;
     }
-    searchBar.frame = CGRectMake(0, 0, self.tableView.frame.size.width, height);
-    self.tableView.tableHeaderView = searchBar;
+    searchBar.frame = CGRectMake(0, TopBarHeight, self.tableView.frame.size.width, height);
+    
+    self.tableView.frame = CGRectMake(0, searchBar.frame.size.height+TopBarHeight, self.view.frame.size.width,self.view.frame.size.height - searchBar.frame.size.height-TopBarHeight);
+//    self.tableView.tableHeaderView = searchBar;
+    
+    
     [self.tableView reloadData];
 }
 

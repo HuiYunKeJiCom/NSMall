@@ -24,6 +24,8 @@
 #import "EMDingMessageHelper.h"
 #import "DingViewController.h"
 #import "DingAcksViewController.h"
+#import "NSNavView.h"
+
 
 #if DEMO_CALL == 1
 #import "DemoConfManager.h"
@@ -50,6 +52,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [ChatDemoHelper shareHelper].chatVC = self;
+
     
     self.showRefreshHeader = YES;
     self.delegate = self;

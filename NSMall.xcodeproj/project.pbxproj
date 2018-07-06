@@ -128,6 +128,16 @@
 		185DFE0120B3FA8A00437168 /* NSCategoryTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185DFE0020B3FA8A00437168 /* NSCategoryTVCell.m */; };
 		1863D26720A96C8800047A7D /* NSGoodsShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863D26620A96C8800047A7D /* NSGoodsShowCell.m */; };
 		1863D26B20A9873C00047A7D /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863D26A20A9873C00047A7D /* UIButton+Bootstrap.m */; };
+		1874523820EDAE5100A67D70 /* EMChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874523720EDAE5100A67D70 /* EMChooseViewController.m */; };
+		1874523C20EDAFA200A67D70 /* TTGlobalUICommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874523A20EDAFA200A67D70 /* TTGlobalUICommon.m */; };
+		1874523F20EDCF3800A67D70 /* UIImageView+HeadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874523E20EDCF3800A67D70 /* UIImageView+HeadImage.m */; };
+		1874524320EDF0E500A67D70 /* UIViewController+SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874524120EDF0E400A67D70 /* UIViewController+SearchController.m */; };
+		1874524820EDF11700A67D70 /* EMSearchResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874524620EDF11600A67D70 /* EMSearchResultController.m */; };
+		1874525120EDF52D00A67D70 /* sr_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 1874524A20EDF52C00A67D70 /* sr_refresh.png */; };
+		1874525220EDF52D00A67D70 /* SRRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874524C20EDF52C00A67D70 /* SRRefreshView.m */; };
+		1874525320EDF52D00A67D70 /* SRSlimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874524D20EDF52C00A67D70 /* SRSlimeView.m */; };
+		1874525420EDF52D00A67D70 /* sr_refresh@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 1874524F20EDF52C00A67D70 /* sr_refresh@2X.png */; };
+		1874525820EDF69600A67D70 /* EMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874525720EDF69600A67D70 /* EMAlertView.m */; };
 		1874D5BB20AA8F8A0004B1AF /* DCHomeTopToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874D5B920AA8F8A0004B1AF /* DCHomeTopToolView.m */; };
 		1874D5BE20AABFDA0004B1AF /* NSCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874D5BD20AABFDA0004B1AF /* NSCarouselView.m */; };
 		1874D5C120AAD50A0004B1AF /* NSFunctionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874D5C020AAD50A0004B1AF /* NSFunctionCell.m */; };
@@ -632,6 +642,26 @@
 		1863D26620A96C8800047A7D /* NSGoodsShowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSGoodsShowCell.m; sourceTree = "<group>"; };
 		1863D26920A9873B00047A7D /* UIButton+Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Bootstrap.h"; sourceTree = "<group>"; };
 		1863D26A20A9873C00047A7D /* UIButton+Bootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Bootstrap.m"; sourceTree = "<group>"; };
+		1874523620EDAE5100A67D70 /* EMChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMChooseViewController.h; sourceTree = "<group>"; };
+		1874523720EDAE5100A67D70 /* EMChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMChooseViewController.m; sourceTree = "<group>"; };
+		1874523A20EDAFA200A67D70 /* TTGlobalUICommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalUICommon.m; sourceTree = "<group>"; };
+		1874523B20EDAFA200A67D70 /* TTGlobalUICommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGlobalUICommon.h; sourceTree = "<group>"; };
+		1874523D20EDCF3700A67D70 /* UIImageView+HeadImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+HeadImage.h"; sourceTree = "<group>"; };
+		1874523E20EDCF3800A67D70 /* UIImageView+HeadImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+HeadImage.m"; sourceTree = "<group>"; };
+		1874524120EDF0E400A67D70 /* UIViewController+SearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SearchController.m"; sourceTree = "<group>"; };
+		1874524220EDF0E500A67D70 /* UIViewController+SearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SearchController.h"; sourceTree = "<group>"; };
+		1874524520EDF11600A67D70 /* EMSearchResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSearchResultController.h; sourceTree = "<group>"; };
+		1874524620EDF11600A67D70 /* EMSearchResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSearchResultController.m; sourceTree = "<group>"; };
+		1874524720EDF11700A67D70 /* EMSearchControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSearchControllerDelegate.h; sourceTree = "<group>"; };
+		1874524A20EDF52C00A67D70 /* sr_refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sr_refresh.png; sourceTree = "<group>"; };
+		1874524B20EDF52C00A67D70 /* SRSlimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRSlimeView.h; sourceTree = "<group>"; };
+		1874524C20EDF52C00A67D70 /* SRRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRRefreshView.m; sourceTree = "<group>"; };
+		1874524D20EDF52C00A67D70 /* SRSlimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRSlimeView.m; sourceTree = "<group>"; };
+		1874524E20EDF52C00A67D70 /* SRDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRDefine.h; sourceTree = "<group>"; };
+		1874524F20EDF52C00A67D70 /* sr_refresh@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sr_refresh@2X.png"; sourceTree = "<group>"; };
+		1874525020EDF52C00A67D70 /* SRRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRRefreshView.h; sourceTree = "<group>"; };
+		1874525620EDF69600A67D70 /* EMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAlertView.h; sourceTree = "<group>"; };
+		1874525720EDF69600A67D70 /* EMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMAlertView.m; sourceTree = "<group>"; };
 		1874D5B920AA8F8A0004B1AF /* DCHomeTopToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCHomeTopToolView.m; sourceTree = "<group>"; };
 		1874D5BA20AA8F8A0004B1AF /* DCHomeTopToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCHomeTopToolView.h; sourceTree = "<group>"; };
 		1874D5BC20AABFDA0004B1AF /* NSCarouselView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCarouselView.h; sourceTree = "<group>"; };
@@ -1161,6 +1191,9 @@
 		18230F61208D790B00D3E55F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1874525520EDF69600A67D70 /* EMAlertView */,
+				1874524920EDF52C00A67D70 /* SlimeRefresh */,
+				1874523920EDAFA200A67D70 /* TTGlobalUICommon */,
 				18887B7B20E0806C00F6177F /* PageSelectBar */,
 				18F5D50920CE6A740037F825 /* Cluster */,
 				18AD9FEB20C6806C00275CC5 /* NSPredicate */,
@@ -1549,6 +1582,7 @@
 		184F0620209FFB7F00768418 /* Category(分类) */ = {
 			isa = PBXGroup;
 			children = (
+				1874524020EDF0CE00A67D70 /* UIViewController */,
 				18D0C0CE20AC172D007F0784 /* NSDate */,
 				1863D26820A9872B00047A7D /* UIButton */,
 				184F0621209FFB7F00768418 /* MBProgressHUD */,
@@ -1624,6 +1658,8 @@
 		184F062E209FFB7F00768418 /* UIImageView */ = {
 			isa = PBXGroup;
 			children = (
+				1874523D20EDCF3700A67D70 /* UIImageView+HeadImage.h */,
+				1874523E20EDCF3800A67D70 /* UIImageView+HeadImage.m */,
 				184F062F209FFB7F00768418 /* UIImageView+WebCache.h */,
 				184F0630209FFB7F00768418 /* UIImageView+WebCache.m */,
 			);
@@ -1900,6 +1936,9 @@
 		1854113020EC9D60003C7696 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				1874524420EDF10900A67D70 /* EMSearchController */,
+				1874523620EDAE5100A67D70 /* EMChooseViewController.h */,
+				1874523720EDAE5100A67D70 /* EMChooseViewController.m */,
 				1854113120EC9D60003C7696 /* BaseTableViewCell.m */,
 				1854113220EC9D60003C7696 /* BaseTableViewCell.h */,
 				1854113320EC9D60003C7696 /* View */,
@@ -1968,6 +2007,57 @@
 				1863D26A20A9873C00047A7D /* UIButton+Bootstrap.m */,
 			);
 			path = UIButton;
+			sourceTree = "<group>";
+		};
+		1874523920EDAFA200A67D70 /* TTGlobalUICommon */ = {
+			isa = PBXGroup;
+			children = (
+				1874523A20EDAFA200A67D70 /* TTGlobalUICommon.m */,
+				1874523B20EDAFA200A67D70 /* TTGlobalUICommon.h */,
+			);
+			path = TTGlobalUICommon;
+			sourceTree = "<group>";
+		};
+		1874524020EDF0CE00A67D70 /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1874524220EDF0E500A67D70 /* UIViewController+SearchController.h */,
+				1874524120EDF0E400A67D70 /* UIViewController+SearchController.m */,
+			);
+			path = UIViewController;
+			sourceTree = "<group>";
+		};
+		1874524420EDF10900A67D70 /* EMSearchController */ = {
+			isa = PBXGroup;
+			children = (
+				1874524720EDF11700A67D70 /* EMSearchControllerDelegate.h */,
+				1874524520EDF11600A67D70 /* EMSearchResultController.h */,
+				1874524620EDF11600A67D70 /* EMSearchResultController.m */,
+			);
+			path = EMSearchController;
+			sourceTree = "<group>";
+		};
+		1874524920EDF52C00A67D70 /* SlimeRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				1874524A20EDF52C00A67D70 /* sr_refresh.png */,
+				1874524B20EDF52C00A67D70 /* SRSlimeView.h */,
+				1874524C20EDF52C00A67D70 /* SRRefreshView.m */,
+				1874524D20EDF52C00A67D70 /* SRSlimeView.m */,
+				1874524E20EDF52C00A67D70 /* SRDefine.h */,
+				1874524F20EDF52C00A67D70 /* sr_refresh@2X.png */,
+				1874525020EDF52C00A67D70 /* SRRefreshView.h */,
+			);
+			path = SlimeRefresh;
+			sourceTree = "<group>";
+		};
+		1874525520EDF69600A67D70 /* EMAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				1874525620EDF69600A67D70 /* EMAlertView.h */,
+				1874525720EDF69600A67D70 /* EMAlertView.m */,
+			);
+			path = EMAlertView;
 			sourceTree = "<group>";
 		};
 		1878477120AECBDB00AC0E0F /* Ctrl */ = {
@@ -3885,11 +3975,13 @@
 			files = (
 				18B0179C20A67B9600826EA4 /* YWAddressTableViewCell1.xib in Resources */,
 				188CC655207F5431007D749E /* LaunchScreen.storyboard in Resources */,
+				1874525120EDF52D00A67D70 /* sr_refresh.png in Resources */,
 				188CC652207F5431007D749E /* Assets.xcassets in Resources */,
 				188CC650207F5431007D749E /* Main.storyboard in Resources */,
 				18F5D51720CE74370037F825 /* icon.png in Resources */,
 				18B0179A20A67B9600826EA4 /* YWAddressTableViewCell2.xib in Resources */,
 				18AD9FF020C6822A00275CC5 /* qrcode_found.wav in Resources */,
+				1874525420EDF52D00A67D70 /* sr_refresh@2X.png in Resources */,
 				1854115E20EC9D60003C7696 /* EMMemberCell.xib in Resources */,
 				18B0179B20A67B9600826EA4 /* YWAddressTableViewCell3.xib in Resources */,
 			);
@@ -3944,8 +4036,8 @@
 				"${PODS_ROOT}/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Map.framework/Resources/mapapi.bundle",
 				"${PODS_ROOT}/EaseUI/EaseUI/resources/EaseUIResource.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/MWPhotoBrowser/MWPhotoBrowser.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/Parse/Parse.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/MWPhotoBrowser/MWPhotoBrowser.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/Parse/Parse.bundle,
 				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -4126,6 +4218,7 @@
 				18DD2F1020B90B1D00521B61 /* NBSSearchShopCategoryView.m in Sources */,
 				18DD2F1520B90B1D00521B61 /* HistoryAndCategorySearchVC.m in Sources */,
 				1854114F20EC9D60003C7696 /* RobotListViewController.m in Sources */,
+				1874523820EDAE5100A67D70 /* EMChooseViewController.m in Sources */,
 				18D0C0E620AC1E19007F0784 /* JFPickerController.m in Sources */,
 				1854115620EC9D60003C7696 /* ChatroomListViewController.m in Sources */,
 				18AD9FDF20C67CCF00275CC5 /* ADLScanningController.m in Sources */,
@@ -4158,6 +4251,7 @@
 				18C2DDEA20B7A8FB00A3B851 /* NSMessageTV.m in Sources */,
 				184F0642209FFB7F00768418 /* UIBarButtonItem+DCBarButtonItem.m in Sources */,
 				184043382099FABE00685F80 /* ADLEditUserInformCtrl.m in Sources */,
+				1874523C20EDAFA200A67D70 /* TTGlobalUICommon.m in Sources */,
 				183ED91720BE845100DB0487 /* NSAddressTVCell.m in Sources */,
 				18999B2120DA4C58003BCF23 /* NSOrderDetailVC.m in Sources */,
 				1854116220EC9D60003C7696 /* GroupSubjectChangingViewController.m in Sources */,
@@ -4170,6 +4264,7 @@
 				184F061C209FE81A00768418 /* NSGoodsPublishVC.m in Sources */,
 				18350895208086DE00BCF7CE /* UIViewExt.m in Sources */,
 				1840432F2099FA5D00685F80 /* ADLUpdateUserInformCtrl.m in Sources */,
+				1874524320EDF0E500A67D70 /* UIViewController+SearchController.m in Sources */,
 				18D0C0B220AC0D01007F0784 /* TDUserCertifyDataPics.m in Sources */,
 				18D0C0D120AC1739007F0784 /* NSDate+Addition.m in Sources */,
 				18E3A44920B2B9BE00F847ED /* NSGoodsView.m in Sources */,
@@ -4197,14 +4292,17 @@
 				18B1CB1420BF9B5C00235CFA /* WalletItemModel.m in Sources */,
 				1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */,
 				1831CA6720C78F7500F00BAF /* NSNewFirmOrderVC.m in Sources */,
+				1874523F20EDCF3800A67D70 /* UIImageView+HeadImage.m in Sources */,
 				18DD2F1120B90B1D00521B61 /* NBSSearchShopHistoryView.m in Sources */,
 				18D0824C20956D2F0031034A /* NSLImageField.m in Sources */,
 				18DD2F1E20B90B1E00521B61 /* LLSearchNaviBarView.m in Sources */,
 				1878477720AECD0300AC0E0F /* NSShopListModel.m in Sources */,
+				1874525820EDF69600A67D70 /* EMAlertView.m in Sources */,
 				18ADC52520BAEA9C00961CD8 /* CartAPI.m in Sources */,
 				18B017A420A67B9600826EA4 /* GetAreaParam.m in Sources */,
 				18C3CFFB20A2EFE0000FCE7F /* NSTimer+BlockSupport.m in Sources */,
 				18AD9FD820C6308900275CC5 /* NSCreateQRCodeVC.m in Sources */,
+				1874525320EDF52D00A67D70 /* SRSlimeView.m in Sources */,
 				18B0179520A67B9600826EA4 /* YWAddressTableViewCell.m in Sources */,
 				18DB5D6120E23C31000E99E6 /* NSODItemModel.m in Sources */,
 				188CC64A207F5430007D749E /* AppDelegate.mm in Sources */,
@@ -4263,6 +4361,7 @@
 				18B017B720A67C0F00826EA4 /* NSChangePhoneVC.m in Sources */,
 				1889AF9020D398BC00FBA33E /* NSShopViewTV.m in Sources */,
 				184F05F7209C40C700768418 /* AdvertListModel.m in Sources */,
+				1874524820EDF11700A67D70 /* EMSearchResultController.m in Sources */,
 				18C3D08820A2F111000FCE7F /* LabelItemModel.m in Sources */,
 				18C2DE1920B7F8F000A3B851 /* NSSortLeftTVCell.m in Sources */,
 				18999B2B20DA5DF6003BCF23 /* UserPageVC.m in Sources */,
@@ -4292,6 +4391,7 @@
 				1854114B20EC9D60003C7696 /* ContactListViewController.m in Sources */,
 				18DD2EC920B8F1AC00521B61 /* NSAllSortView.m in Sources */,
 				18C60DEB20C136B7002920D2 /* UIView+category.m in Sources */,
+				1874525220EDF52D00A67D70 /* SRRefreshView.m in Sources */,
 				18A7AB7920ADAAFC009FC725 /* NSMyGoodsListVC.m in Sources */,
 				18B1CAFE20BF902100235CFA /* NSWalletListModel.m in Sources */,
 				1842A6D520B59D350090861D /* LZGoodsModel.m in Sources */,

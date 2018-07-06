@@ -207,7 +207,9 @@
 
 - (void)setupSearchController
 {
-    [self enableSearchController];
+//    改动过
+//    [self enableSearchController];
+    [self disableSearchController];
     
     __weak PublicGroupListViewController *weakSelf = self;
     [self.resultController setCellForRowAtIndexPathCompletion:^UITableViewCell *(UITableView *tableView, NSIndexPath *indexPath) {

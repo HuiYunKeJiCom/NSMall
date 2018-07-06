@@ -11,6 +11,7 @@
  */
 
 #import "GroupListViewController.h"
+#import "EaseUsersListViewController.h"
 
 @interface ContactListViewController : EaseUsersListViewController
 

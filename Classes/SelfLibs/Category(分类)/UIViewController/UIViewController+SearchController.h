@@ -10,8 +10,22 @@
  * from Hyphenate Inc.
  */
 
-#import "EaseMessageCell.h"
+#import <UIKit/UIKit.h>
 
-@interface EMRotbotChatViewCell : EaseMessageCell
+#import "EMSearchControllerDelegate.h"
+#import "EMSearchResultController.h"
+
+@interface UIViewController (SearchController) <UISearchBarDelegate, UISearchResultsUpdating>
+
+@property (nonatomic, strong) UISearchController *searchController;
+
+@property (nonatomic, strong) EMSearchResultController *resultController;
+
+- (void)enableSearchController;
+
+- (void)disableSearchController;
+
+- (void)cancelSearch;
 
 @end
+

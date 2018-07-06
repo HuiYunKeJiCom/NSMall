@@ -187,3 +187,5 @@ static inline BOOL IsEmpty(id thing) {
 
 #define kContentTextFont   [UIFont systemFontOfSize:14]
 #define kButtonTextFont   [UIFont systemFontOfSize:13]
+
+#define KNOTIFICATIONNAME_DELETEALLMESSAGE @"RemoveAllMessages"

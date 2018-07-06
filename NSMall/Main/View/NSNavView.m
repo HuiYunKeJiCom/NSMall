@@ -41,15 +41,27 @@
         button;
     });
     
-    _rightItemButton = ({
-        UIButton * button = [UIButton new];
-        [button setTitle:@"通讯录" forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        button.titleLabel.font = [UIFont systemFontOfSize:kFontNum17];
-//        [button setImage:[UIImage imageNamed:@"ico_my_unSelected"] forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(rightButtonItemClick) forControlEvents:UIControlEventTouchUpInside];
-        button;
-    });
+//    _rightItemButton = ({
+//        UIButton * button = [UIButton new];
+////        [button setTitle:@"通讯录" forState:UIControlStateNormal];
+//        button.titleLabel.textAlignment = NSTextAlignmentRight;
+//        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        button.titleLabel.font = [UIFont systemFontOfSize:kFontNum17];
+////        [button setImage:[UIImage imageNamed:@"ico_my_unSelected"] forState:UIControlStateNormal];
+//        [button addTarget:self action:@selector(rightButtonItemClick) forControlEvents:UIControlEventTouchUpInside];
+//        button;
+//    });
+    
+//    _rightItemButton = ({
+        _rightItemButton = [UIButton new];
+        //        [button setTitle:@"通讯录" forState:UIControlStateNormal];
+        _rightItemButton.titleLabel.textAlignment = NSTextAlignmentRight;
+        [_rightItemButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        _rightItemButton.titleLabel.font = [UIFont systemFontOfSize:kFontNum17];
+        //        [button setImage:[UIImage imageNamed:@"ico_my_unSelected"] forState:UIControlStateNormal];
+        [_rightItemButton addTarget:self action:@selector(rightButtonItemClick) forControlEvents:UIControlEventTouchUpInside];
+//        button;
+//    });
     
     [self addSubview:_leftItemButton];
     [self addSubview:_rightItemButton];
@@ -63,6 +75,11 @@
 
 -(void)setRightItemTitle:(NSString *)string{
     [self.rightItemButton setTitle:string forState:UIControlStateNormal];
+}
+
+-(void)setRightItemImage:(NSString *)string{
+    
+    [self.rightItemButton setImage:[UIImage imageNamed:string] forState:UIControlStateNormal];
 }
 
 #pragma mark - 布局
@@ -85,7 +102,7 @@
         [_rightItemButton mas_makeConstraints:^(MASConstraintMaker *make) {
             //        make.centerY.equalTo(_leftItemButton.mas_centerY);
             make.top.equalTo(self.mas_top).offset(20);
-            make.right.equalTo(self.mas_right).offset(-34);
+            make.right.equalTo(self.mas_right).offset(-20);
             make.height.equalTo(@44);
             make.width.equalTo(@78);
         }];

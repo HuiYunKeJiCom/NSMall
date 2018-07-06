@@ -15,12 +15,7 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
 #import "AppDelegate.h"
 #import "NSLoginController.h"
 #import "CYLTabBarController.h"
-#import "NSNearbyViewController.h"//附近
-#import "NSMyCenterViewController.h"//我的
-#import "NSMessageViewController.h"//消息
 
-#import "DCTabBarController.h"
-//#import "DCTabBarCenterButton.h"
 //#import <Bugly/Bugly.h>
 //#import <BuglyExtension/CrashReporterLite.h>
 
@@ -97,17 +92,17 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
 }
 
 -(void)showWord{
-    BOOL isAuLogin = [[EMClient sharedClient] isAutoLogin];
+//    BOOL isAuLogin = [[EMClient sharedClient] isAutoLogin];
     //    NSLog(@"isAuLogin = %@",isAuLogin == 0?NO:YES);
     
     // 如果登录过，直接来到主界面
-    if ([[EMClient sharedClient] isAutoLogin]) {
-        NSLog(@"直接进主界面");
-        [self setUpRootVC];
-    }else{
+//    if ([[EMClient sharedClient] isAutoLogin]) {
+//        NSLog(@"直接进主界面");
+//        [self setUpRootVC];
+//    }else{
         NSLoginController *login = [[NSLoginController alloc]init];
         [self.window setRootViewController:login];
-    }
+//    }
 }
 
 #pragma mark - 根控制器
