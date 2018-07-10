@@ -197,6 +197,9 @@
                 model.avatarURLPath = profileEntity.imageUrl;
             }
         }
+        
+//        model.title = @"我是笨蛋";
+        
     } else if (model.conversation.type == EMConversationTypeGroupChat) {
         NSString *imageName = @"groupPublicHeader";
         if (![conversation.ext objectForKey:@"subject"])
@@ -355,6 +358,7 @@
         [weakSelf.searchController.searchBar endEditing:YES];
         id<IConversationModel> model = [weakSelf.resultController.displaySource objectAtIndex:indexPath.row];
         EMConversation *conversation = model.conversation;
+        
         ChatViewController *chatController;
         if ([[RobotManager sharedInstance] isRobotWithUsername:conversation.conversationId]) {
             chatController = [[RobotChatViewController alloc] initWithConversationChatter:conversation.conversationId conversationType:conversation.type];

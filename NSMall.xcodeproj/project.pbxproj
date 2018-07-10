@@ -12,6 +12,7 @@
 		18230F66208D793F00D3E55F /* BaseViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 18230F65208D793F00D3E55F /* BaseViewCtrl.m */; };
 		18230F6A208D795E00D3E55F /* FFLoadFailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18230F68208D795D00D3E55F /* FFLoadFailView.m */; };
 		182DC49120905E3C0066E667 /* ADOrderTopToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DC49020905E3C0066E667 /* ADOrderTopToolView.m */; };
+		182E8E6A20EF0E3A00ECFCA4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182E8E6C20EF0E3A00ECFCA4 /* Localizable.strings */; };
 		1831CA6420C788CC00F00BAF /* NSBuyNowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831CA6320C788CC00F00BAF /* NSBuyNowModel.m */; };
 		1831CA6720C78F7500F00BAF /* NSNewFirmOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831CA6620C78F7500F00BAF /* NSNewFirmOrderVC.m */; };
 		1831CA6A20C7B33D00F00BAF /* NSNewFirmOrderTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831CA6920C7B33D00F00BAF /* NSNewFirmOrderTVCell.m */; };
@@ -407,6 +408,10 @@
 		18230F80208D835300D3E55F /* GlobalColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalColor.h; sourceTree = "<group>"; };
 		182DC48F20905E3C0066E667 /* ADOrderTopToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADOrderTopToolView.h; sourceTree = "<group>"; };
 		182DC49020905E3C0066E667 /* ADOrderTopToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADOrderTopToolView.m; sourceTree = "<group>"; };
+		182E8E6620EF0DB800ECFCA4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		182E8E6720EF0DB900ECFCA4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		182E8E6B20EF0E3A00ECFCA4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		182E8E6D20EF0E4300ECFCA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1831CA6220C788CC00F00BAF /* NSBuyNowModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSBuyNowModel.h; sourceTree = "<group>"; };
 		1831CA6320C788CC00F00BAF /* NSBuyNowModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSBuyNowModel.m; sourceTree = "<group>"; };
 		1831CA6520C78F7500F00BAF /* NSNewFirmOrderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSNewFirmOrderVC.h; sourceTree = "<group>"; };
@@ -1818,15 +1823,15 @@
 			isa = PBXGroup;
 			children = (
 				185410ED20EC9D60003C7696 /* RobotListViewController.h */,
-				185410EE20EC9D60003C7696 /* EMRobotChatTextBubbleView.m */,
-				185410EF20EC9D60003C7696 /* RobotChatViewController.h */,
-				185410F020EC9D60003C7696 /* RobotManager.h */,
-				185410F120EC9D60003C7696 /* EMRotbotChatViewCell.m */,
 				185410F220EC9D60003C7696 /* RobotListViewController.m */,
 				185410F320EC9D60003C7696 /* EMRobotChatTextBubbleView.h */,
+				185410EE20EC9D60003C7696 /* EMRobotChatTextBubbleView.m */,
+				185410EF20EC9D60003C7696 /* RobotChatViewController.h */,
 				185410F420EC9D60003C7696 /* RobotChatViewController.m */,
+				185410F020EC9D60003C7696 /* RobotManager.h */,
 				185410F520EC9D60003C7696 /* RobotManager.m */,
 				185410F620EC9D60003C7696 /* EMRotbotChatViewCell.h */,
+				185410F120EC9D60003C7696 /* EMRotbotChatViewCell.m */,
 			);
 			path = Robot;
 			sourceTree = "<group>";
@@ -2188,6 +2193,7 @@
 				18D0823420956CEA0031034A /* GlobalAPI.h */,
 				18230F80208D835300D3E55F /* GlobalColor.h */,
 				18AD9FEF20C6822900275CC5 /* qrcode_found.wav */,
+				182E8E6C20EF0E3A00ECFCA4 /* Localizable.strings */,
 			);
 			path = NSMall;
 			sourceTree = "<group>";
@@ -3974,6 +3980,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18B0179C20A67B9600826EA4 /* YWAddressTableViewCell1.xib in Resources */,
+				182E8E6A20EF0E3A00ECFCA4 /* Localizable.strings in Resources */,
 				188CC655207F5431007D749E /* LaunchScreen.storyboard in Resources */,
 				1874525120EDF52D00A67D70 /* sr_refresh.png in Resources */,
 				188CC652207F5431007D749E /* Assets.xcassets in Resources */,
@@ -4434,10 +4441,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		182E8E6C20EF0E3A00ECFCA4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				182E8E6B20EF0E3A00ECFCA4 /* zh-Hans */,
+				182E8E6D20EF0E4300ECFCA4 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		188CC64E207F5431007D749E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				188CC64F207F5431007D749E /* Base */,
+				182E8E6620EF0DB800ECFCA4 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -4446,6 +4463,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				188CC654207F5431007D749E /* Base */,
+				182E8E6720EF0DB900ECFCA4 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -4457,6 +4475,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -4512,6 +4531,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

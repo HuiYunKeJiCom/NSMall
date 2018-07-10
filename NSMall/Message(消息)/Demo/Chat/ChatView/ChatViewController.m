@@ -43,7 +43,7 @@
 
 @property (nonatomic) NSMutableDictionary *emotionDic;
 @property (nonatomic, copy) EaseSelectAtTargetCallback selectedCallback;
-
+@property(nonatomic,strong)UIButton *virtualBtn;/* 挂名Btn,无实际用处 */
 @end
 
 @implementation ChatViewController
@@ -57,7 +57,8 @@
     self.showRefreshHeader = YES;
     self.delegate = self;
     self.dataSource = self;
-    [self _setupBarButtonItem];
+//    [self _setupBarButtonItem];
+    [self setUpNavTopView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteAllMessages:) name:KNOTIFICATIONNAME_DELETEALLMESSAGE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCallNotification:) name:@"callControllerClose" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exitChat) name:@"ExitChat" object:nil];
@@ -139,6 +140,48 @@
     }
 }
 
+#pragma mark - 导航栏处理
+- (void)setUpNavTopView
+{
+    NSNavView *topToolView = [[NSNavView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
+    topToolView.backgroundColor = KMainColor;
+    
+    EMMessage *latestMessage = self.conversation.latestMessage;
+    NSDictionary *ext = latestMessage.ext;
+
+    [topToolView setTopTitleWithNSString:KLocalizableStr([ext objectForKey:@"nick"])];
+    //    [topToolView setRightItemTitle:KLocalizableStr(@"添加好友")];
+    
+    WEAKSELF
+    topToolView.leftItemClickBlock = ^{
+        NSLog(@"点击了返回");
+        [weakSelf backAction];
+    };
+    
+    //单聊
+    if (self.conversation.type == EMConversationTypeChat) {
+//        topToolView.rightItemClickBlock = ^{
+            //添加好友
+//                    [weakSelf deleteAllMessages:weakSelf.virtualBtn];
+//        };
+        [topToolView.rightItemButton addTarget:self action:@selector(deleteAllMessages:) forControlEvents:UIControlEventTouchUpInside];
+        [topToolView setRightItemImage:@"delete"];
+        
+    }
+    else{//群聊
+        topToolView.rightItemClickBlock = ^{
+            //添加好友
+            [weakSelf showGroupDetailAction];
+        };
+        [topToolView setRightItemImage:@"group_detail"];
+    }
+
+    [self.view addSubview:topToolView];
+    
+    self.tableView.frame = CGRectMake(0, TopBarHeight, self.view.frame.size.width,self.view.frame.size.height -TopBarHeight);
+}
+
+
 #pragma mark - setup subviews
 
 - (void)_setupBarButtonItem
@@ -200,6 +243,7 @@
                        cellForMessageModel:(id<IMessageModel>)messageModel
 {
     NSDictionary *ext = messageModel.message.ext;
+//    DLog(@"ext = %@",ext);
     if ([ext objectForKey:@"em_recall"]) {
         NSString *TimeCellIdentifier = [EaseMessageTimeCell cellIdentifier];
         EaseMessageTimeCell *recallCell = (EaseMessageTimeCell *)[tableView dequeueReusableCellWithIdentifier:TimeCellIdentifier];
@@ -210,7 +254,7 @@
         }
         
         EMTextMessageBody *body = (EMTextMessageBody*)messageModel.message.body;
-        recallCell.title = body.text;
+//        recallCell.title = body.text;
         return recallCell;
     }
     return nil;
@@ -341,9 +385,24 @@
 - (id<IMessageModel>)messageViewController:(EaseMessageViewController *)viewController
                            modelForMessage:(EMMessage *)message
 {
+    
+//    DLog(@"message.ext = %@",message.ext);
+    
+    if([[message.ext allKeys] containsObject:@"hx_username"]){
+        
+    }else{
+        UserModel *userModel = [UserModel modelFromUnarchive];
+        message.ext = @{@"nick":userModel.user_name,@"user_id":userModel.user_id,@"avatar_url":userModel.pic_img,@"hx_username":userModel.hx_user_name};
+    }
+
     id<IMessageModel> model = nil;
     model = [[EaseMessageModel alloc] initWithMessage:message];
-    model.avatarImage = [UIImage imageNamed:@"EaseUIResource.bundle/user"];
+
+//    model.avatarImage = [UIImage imageNamed:@"EaseUIResource.bundle/user"];
+    NSData *data = [NSData  dataWithContentsOfURL:[NSURL URLWithString:[message.ext objectForKey:@"avatar_url"]]];
+    model.avatarImage =  [UIImage imageWithData:data];
+
+    
     UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.nickname];
     if (profileEntity) {
         model.avatarURLPath = profileEntity.imageUrl;
