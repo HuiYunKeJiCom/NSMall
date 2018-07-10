@@ -194,6 +194,9 @@
         }
         cell.titleLabel.text = [self.otherPlatformIds objectAtIndex:indexPath.row];
         
+//        NSString *showName = [[UserProfileManager sharedInstance] getNickNameWithUsername:[self.otherPlatformIds objectAtIndex:indexPath.row]];
+//        DLog(@"showName = %@",showName);
+        
         return cell;
         
     } else {
@@ -207,7 +210,11 @@
         
         NSArray *userSection = [self.dataArray objectAtIndex:(indexPath.section - 2)];
         EaseUserModel *model = [userSection objectAtIndex:indexPath.row];
+        
+        DLog(@"model = %@",model.nickname);
+        
         UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.buddy];
+        
         if (profileEntity) {
             model.avatarURLPath = profileEntity.imageUrl;
             model.nickname = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;

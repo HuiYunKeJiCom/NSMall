@@ -17,6 +17,7 @@
 #import "CreateGroupViewController.h"
 #import "PublicGroupListViewController.h"
 #import "RealtimeSearchUtil.h"
+#import "ADOrderTopToolView.h"
 
 #import "UIViewController+SearchController.h"
 
@@ -43,15 +44,15 @@
 {
     [super viewDidLoad];
     
-    self.title = NSLocalizedString(@"title.group", @"Group");
+//    self.title = NSLocalizedString(@"title.group", @"Group");
     self.showRefreshHeader = YES;
     
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    backButton.accessibilityIdentifier = @"back";
-    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    [backButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    [self.navigationItem setLeftBarButtonItem:backItem];
+//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+//    backButton.accessibilityIdentifier = @"back";
+//    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+//    [backButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+//    [self.navigationItem setLeftBarButtonItem:backItem];
     
     [self setupSearchController];
     
@@ -61,7 +62,23 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadDataSource) name:@"reloadGroupList" object:nil];
     
+    [self setUpNavTopView];
+    
     [self reloadDataSource];
+}
+
+#pragma mark - 导航栏处理
+- (void)setUpNavTopView
+{
+    ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
+    topToolView.backgroundColor = KMainColor;
+    [topToolView setTopTitleWithNSString:NSLocalizedString(@"title.group", @"Group")];
+    WEAKSELF
+    topToolView.leftItemClickBlock = ^{
+        NSLog(@"点击了返回");
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    };
+    [self.view addSubview:topToolView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -276,7 +293,8 @@
         frame.size.height = 45;
         searchBar.frame = frame;
     }
-    self.tableView.tableHeaderView = searchBar;
+//    self.tableView.tableHeaderView = searchBar;
+    self.tableView.frame = CGRectMake(0, TopBarHeight, self.view.frame.size.width,self.view.frame.size.height-TopBarHeight);
 }
                                                        
 #pragma mark - data

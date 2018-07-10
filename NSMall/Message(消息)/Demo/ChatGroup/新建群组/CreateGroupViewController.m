@@ -15,11 +15,12 @@
 
 #import "ContactSelectionViewController.h"
 #import "EMTextView.h"
+#import "NSNavView.h"
 
 @interface CreateGroupViewController ()<UITextFieldDelegate, UITextViewDelegate, EMChooseViewDelegate>
 
 @property (strong, nonatomic) UIView *switchView;
-@property (strong, nonatomic) UIBarButtonItem *rightItem;
+//@property (strong, nonatomic) UIBarButtonItem *rightItem;
 @property (strong, nonatomic) UITextField *textField;
 @property (strong, nonatomic) EMTextView *textView;
 
@@ -30,6 +31,9 @@
 @property (strong, nonatomic) UILabel *groupMemberTitleLabel;
 @property (strong, nonatomic) UISwitch *groupMemberSwitch;
 @property (strong, nonatomic) UILabel *groupMemberLabel;
+
+@property(nonatomic,strong)UIButton *virtualBtn;/* 虚拟按钮,无真实用处 */
+@property(nonatomic,strong)NSNavView *topToolView;/* 导航栏 */
 
 @end
 
@@ -50,23 +54,24 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
     {
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
-    self.title = NSLocalizedString(@"title.createGroup", @"Create a group");
+//    self.title = NSLocalizedString(@"title.createGroup", @"Create a group");
     self.view.backgroundColor = [UIColor colorWithRed:0.88 green:0.88 blue:0.88 alpha:1.0];
     
-    UIButton *addButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
-    addButton.accessibilityIdentifier = @"add_member";
-    addButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
-    [addButton setTitle:NSLocalizedString(@"group.create.addOccupant", @"add members") forState:UIControlStateNormal];
+//    UIButton *addButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
+//    addButton.accessibilityIdentifier = @"add_member";
+//    addButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
+//    [addButton setTitle:NSLocalizedString(@"group.create.addOccupant", @"add members") forState:UIControlStateNormal];
 //    [addButton setTitleColor:[UIColor colorWithRed:32 / 255.0 green:134 / 255.0 blue:158 / 255.0 alpha:1.0] forState:UIControlStateNormal];
 //    [addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-    [addButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [addButton addTarget:self action:@selector(addContacts:) forControlEvents:UIControlEventTouchUpInside];
-    _rightItem = [[UIBarButtonItem alloc] initWithCustomView:addButton];
-    [self.navigationItem setRightBarButtonItem:_rightItem];
+//    [addButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+//    [addButton addTarget:self action:@selector(addContacts:) forControlEvents:UIControlEventTouchUpInside];
+//    _rightItem = [[UIBarButtonItem alloc] initWithCustomView:addButton];
+//    [self.navigationItem setRightBarButtonItem:_rightItem];
     
     //监听textfield的输入状态
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -74,31 +79,74 @@
                                                  name:UITextFieldTextDidChangeNotification
                                                object:self.textField];
     
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    backButton.accessibilityIdentifier = @"back";
-    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    [backButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    [self.navigationItem setLeftBarButtonItem:backItem];
+//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+//    backButton.accessibilityIdentifier = @"back";
+//    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+//    [backButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+//    [self.navigationItem setLeftBarButtonItem:backItem];
     
     [self.view addSubview:self.textField];
     [self.view addSubview:self.textView];
     [self.view addSubview:self.switchView];
+    
+    [self setUpNavTopView];
+    
 }
+
+#pragma mark - 导航栏处理
+- (void)setUpNavTopView
+{
+    self.topToolView = [[NSNavView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
+    self.topToolView.backgroundColor = KMainColor;
+    
+    [self.topToolView setTopTitleWithNSString:NSLocalizedString(@"title.createGroup", @"Create a group")];
+    
+    WEAKSELF
+    self.topToolView.leftItemClickBlock = ^{
+        NSLog(@"点击了返回");
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    };
+    
+//    UIButton *addButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
+//    addButton.accessibilityIdentifier = @"add_member";
+//    addButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
+//    [addButton setTitle:NSLocalizedString(@"group.create.addOccupant", @"add members") forState:UIControlStateNormal];
+//    [addButton setTitleColor:[UIColor colorWithRed:32 / 255.0 green:134 / 255.0 blue:158 / 255.0 alpha:1.0] forState:UIControlStateNormal];
+//    [addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+//    [addButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+//    [addButton addTarget:self action:@selector(addContacts:) forControlEvents:UIControlEventTouchUpInside];
+//    _rightItem = [[UIBarButtonItem alloc] initWithCustomView:addButton];
+//
+//    topToolView.rightItemButton
+    
+    self.topToolView.rightItemClickBlock = ^{
+        [weakSelf addContacts:weakSelf.virtualBtn];
+    };
+    [self.topToolView setRightItemTitle:NSLocalizedString(@"group.create.addOccupant", @"add members")];
+    [self.topToolView.rightItemButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    self.topToolView.rightItemButton.enabled = NO;
+    
+    [self.view addSubview:self.topToolView];
+}
+
+
 
 //这里可以通过发送object消息获取注册时指定的UITextField对象
 - (void)textFieldDidChangeValue:(NSNotification *)notification
 {
     UITextField *sender = (UITextField *)[notification object];
     
-    UIButton *addButton = self.rightItem.customView;
+    UIButton *addButton = self.topToolView.rightItemButton;
     
     if(sender.text.length != 0)
     {
         [addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        self.topToolView.rightItemButton.enabled = YES;
     }else
     {
         [addButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        self.topToolView.rightItemButton.enabled = NO;
     }
 }
 
@@ -115,7 +163,7 @@
     if (_textField == nil) {
 //        改动过
 //        _textField = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, 300, 40)];
-        _textField = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, kScreenWidth-20, 40)];
+        _textField = [[UITextField alloc] initWithFrame:CGRectMake(10, 10+TopBarHeight, kScreenWidth-20, 40)];
         _textField.accessibilityIdentifier = @"group_name";
         _textField.layer.borderColor = [[UIColor lightGrayColor] CGColor];
         _textField.layer.borderWidth = 0.5;
@@ -139,7 +187,7 @@
     if (_textView == nil) {
 //        改动过
 //        _textView = [[EMTextView alloc] initWithFrame:CGRectMake(10, 70, 300, 80)];
-        _textView = [[EMTextView alloc] initWithFrame:CGRectMake(10, 70, kScreenWidth-20, 80)];
+        _textView = [[EMTextView alloc] initWithFrame:CGRectMake(10, 70+TopBarHeight, kScreenWidth-20, 80)];
         _textView.accessibilityIdentifier = @"group_subject";
         _textView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
         _textView.layer.borderWidth = 0.5;
@@ -157,10 +205,10 @@
 - (UIView *)switchView
 {
     if (_switchView == nil) {
-        _switchView = [[UIView alloc] initWithFrame:CGRectMake(10, 160, 300, 90)];
+        _switchView = [[UIView alloc] initWithFrame:CGRectMake(10, 160+TopBarHeight, 300, 90)];
         _switchView.backgroundColor = [UIColor clearColor];
         
-        CGFloat oY = 0;
+        CGFloat oY = TopBarHeight;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, oY, 100, 35)];
         label.backgroundColor = [UIColor clearColor];
         label.font = [UIFont systemFontOfSize:14.0];

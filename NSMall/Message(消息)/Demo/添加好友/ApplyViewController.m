@@ -14,6 +14,7 @@
 
 #import "ApplyFriendCell.h"
 #import "InvitationManager.h"
+#import "ADOrderTopToolView.h"
 
 static ApplyViewController *controller = nil;
 
@@ -48,19 +49,37 @@ static ApplyViewController *controller = nil;
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations.
-    self.title = NSLocalizedString(@"title.apply", @"Application and notification");
+//    self.title = NSLocalizedString(@"title.apply", @"Application and notification");
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    backButton.accessibilityIdentifier = @"back";
-    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    [self.navigationItem setLeftBarButtonItem:backItem];
+    [self setUpNavTopView];
+    self.tableView.frame = CGRectMake(0, TopBarHeight, self.view.frame.size.width,self.view.frame.size.height-TopBarHeight);
+    
+//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+//    backButton.accessibilityIdentifier = @"back";
+//    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+//    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+//    [self.navigationItem setLeftBarButtonItem:backItem];
     
     [self loadDataSourceFromLocalDB];
 }
+
+#pragma mark - 导航栏处理
+- (void)setUpNavTopView
+{
+    ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
+    topToolView.backgroundColor = KMainColor;
+    [topToolView setTopTitleWithNSString:NSLocalizedString(@"title.apply", @"Application and notification")];
+    WEAKSELF
+    topToolView.leftItemClickBlock = ^{
+        NSLog(@"点击了返回");
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    };
+    [self.view addSubview:topToolView];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

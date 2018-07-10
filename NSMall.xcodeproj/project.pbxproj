@@ -1893,10 +1893,10 @@
 		1854110E20EC9D60003C7696 /* 新建群组 */ = {
 			isa = PBXGroup;
 			children = (
-				1854110F20EC9D60003C7696 /* ContactSelectionViewController.m */,
-				1854111020EC9D60003C7696 /* CreateGroupViewController.m */,
 				1854111120EC9D60003C7696 /* ContactSelectionViewController.h */,
+				1854110F20EC9D60003C7696 /* ContactSelectionViewController.m */,
 				1854111220EC9D60003C7696 /* CreateGroupViewController.h */,
+				1854111020EC9D60003C7696 /* CreateGroupViewController.m */,
 			);
 			path = "新建群组";
 			sourceTree = "<group>";
@@ -1965,14 +1965,14 @@
 		1854113920EC9D60003C7696 /* 添加好友 */ = {
 			isa = PBXGroup;
 			children = (
+				1854113E20EC9D60003C7696 /* ApplyFriendCell.h */,
 				1854113A20EC9D60003C7696 /* ApplyFriendCell.m */,
+				1854114020EC9D60003C7696 /* ApplyViewController.h */,
 				1854113B20EC9D60003C7696 /* ApplyViewController.m */,
 				1854113C20EC9D60003C7696 /* AddFriendCell.h */,
-				1854113D20EC9D60003C7696 /* AddFriendViewController.m */,
-				1854113E20EC9D60003C7696 /* ApplyFriendCell.h */,
 				1854113F20EC9D60003C7696 /* AddFriendCell.m */,
-				1854114020EC9D60003C7696 /* ApplyViewController.h */,
 				1854114120EC9D60003C7696 /* AddFriendViewController.h */,
+				1854113D20EC9D60003C7696 /* AddFriendViewController.m */,
 			);
 			path = "添加好友";
 			sourceTree = "<group>";

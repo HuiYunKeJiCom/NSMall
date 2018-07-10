@@ -92,8 +92,8 @@
         NSLog(@"获取用户信息");
 
         UserModel *userModel = [UserModel modelFromUnarchive];
-        DLog(@"userModel = %@",userModel.mj_keyValues);
-        DLog(@"userName = %@,pW = %@",userModel.hx_user_name,userModel.hx_password);
+//        DLog(@"userModel = %@",userModel.mj_keyValues);
+//        DLog(@"userName = %@,pW = %@",userModel.hx_user_name,userModel.hx_password);
         EMError *error = [[EMClient sharedClient] loginWithUsername:userModel.hx_user_name password:userModel.hx_password];
         
         if(!error){
