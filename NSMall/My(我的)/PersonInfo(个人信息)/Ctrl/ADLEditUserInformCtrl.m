@@ -38,6 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.navigationController setNavigationBarHidden:NO];
     self.view.backgroundColor = KColorTextFFFFFF;
     
     [self.view addSubview:self.selectView];

@@ -70,7 +70,7 @@
     
     CGSize shipSize = [self contentSizeWithTitle:[NSString stringWithFormat:@"运费:N%.2f",self.model.ship_price] andFont:14];
     UILabel *goodsShip = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(goodsPrice.frame)+GetScaleWidth(10), CGRectGetMaxY(goodsName.frame)+GetScaleWidth(7),shipSize.width,shipSize.height) FontSize:14];
-    goodsShip.textColor = [UIColor lightGrayColor];
+    goodsShip.textColor = KBGCOLOR;
     goodsShip.text = [NSString stringWithFormat:@"运费:N%.2f",self.model.ship_price];
     [goodsView addSubview:goodsShip];
     
@@ -95,19 +95,42 @@
     goodsDetail.size = CGSizeMake(expectSize.width, expectSize.height);
     height = height+expectSize.height+16;
     
-    float itemWidth = kScreenWidth-38;//323
-    float itemHeight = 205*(kScreenWidth-38)/323.0;
+
+
+    
+    float itemWidth = (kScreenWidth-GetScaleWidth(22)-GetScaleWidth(16))/3.0;
+    
+    UIScrollView *imageSV = [[UIScrollView alloc]init];
+    //    self.imageSV.backgroundColor = [UIColor greenColor];
+    [goodsIntroductionV addSubview:imageSV];
+    imageSV.x = GetScaleWidth(19);
+    imageSV.y = height;
+    imageSV.size = CGSizeMake(kScreenWidth, itemWidth);
+    
+    imageSV.contentSize = CGSizeMake((itemWidth+GetScaleWidth(8))*self.model.productImageList.count, 0);
+    height = itemWidth+GetScaleWidth(10)+height;
     for(int i=0;i<self.model.productImageList.count;i++){
-        UIImageView *goodsIV = [[UIImageView alloc]initWithFrame:CGRectZero];
-        goodsIV.contentMode = UIViewContentModeScaleAspectFit;
-        goodsIV.x = GetScaleWidth(19);
-        goodsIV.y = height;
-        height += itemHeight+15;
-        goodsIV.size = CGSizeMake(itemWidth, itemHeight);
-//        goodsIV.backgroundColor = kRedColor;
+        UIImageView *goodsIV = [[UIImageView alloc]initWithFrame:CGRectMake((itemWidth+GetScaleWidth(8))*i, 0, itemWidth, itemWidth)];
         [goodsIV sd_setImageWithURL:[NSURL URLWithString:self.model.productImageList[i]]];
-        [goodsIntroductionV addSubview:goodsIV];
+        [imageSV addSubview:goodsIV];
     }
+    
+    
+    
+    
+//    float itemWidth = kScreenWidth-38;//323
+//    float itemHeight = 205*(kScreenWidth-38)/323.0;
+//    for(int i=0;i<self.model.productImageList.count;i++){
+//        UIImageView *goodsIV = [[UIImageView alloc]initWithFrame:CGRectZero];
+//        goodsIV.contentMode = UIViewContentModeScaleAspectFit;
+//        goodsIV.x = GetScaleWidth(19);
+//        goodsIV.y = height;
+//        height += itemHeight+15;
+//        goodsIV.size = CGSizeMake(itemWidth, itemHeight);
+////        goodsIV.backgroundColor = kRedColor;
+//        [goodsIV sd_setImageWithURL:[NSURL URLWithString:self.model.productImageList[i]]];
+//        [goodsIntroductionV addSubview:goodsIV];
+//    }
     goodsIntroductionV.size = CGSizeMake(kScreenWidth, height+GetScaleWidth(4));
     
     //卖家信息

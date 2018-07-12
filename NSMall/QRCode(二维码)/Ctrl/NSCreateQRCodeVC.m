@@ -54,12 +54,21 @@
     self.scanView = [[UIImageView alloc] init];
     self.scanView.layer.cornerRadius = 4;
     self.scanView.layer.masksToBounds = YES;
-    self.scanView.backgroundColor = [UIColor greenColor];
     self.scanView.x = kScreenWidth*0.5-120;
     self.scanView.y = kScreenHeight*0.5*0.55-130;
     self.scanView.size = CGSizeMake(200, 200);
 //    self.scanView.center = self.bgView.center;
     [self.bgView addSubview:self.scanView];
+    
+    UIImageView *headerIV = [[UIImageView alloc] init];
+    headerIV.x = kScreenWidth*0.5-40;
+    headerIV.y = kScreenHeight*0.5*0.55-50;
+    headerIV.size = CGSizeMake(40, 40);
+    //    self.scanView.center = self.bgView.center;
+    [self.bgView addSubview:headerIV];
+    
+    UserModel *userModel = [UserModel modelFromUnarchive];
+    [headerIV sd_setImageWithURL:[NSURL URLWithString:userModel.pic_img]];
     
     self.lineView = [[UIView alloc]init];
     self.lineView.backgroundColor = kGreyColor;
@@ -103,7 +112,6 @@
     arrowImgView.y = 20;
     arrowImgView.size = CGSizeMake(5, 9);
     
-    UserModel *userModel = [UserModel modelFromUnarchive];
     //付款
     [self setUpFilter:[NSString stringWithFormat:@"pid:%@",userModel.user_id]];
 
@@ -183,9 +191,9 @@
     return qrCodeImage;
 }
 
--(void)setQRString:(NSString *)QRString{
-    _QRString = QRString;
-}
+//-(void)setQRString:(NSString *)QRString{
+//    _QRString = QRString;
+//}
 
 -(void)checkReceivableRecord{
     //跳转到转账记录

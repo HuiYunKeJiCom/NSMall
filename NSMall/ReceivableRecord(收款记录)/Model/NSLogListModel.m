@@ -10,6 +10,10 @@
 
 @implementation NSLogListModel
 + (NSDictionary *)modelContainerPropertyGenericClass{
-    return @{@"logs":[NSLogItemModel class]};
+    return @{@"list":[NSLogItemModel class]};
+}
+
+-(float)cellHeight{
+    return self.list.count*(66)+41;
 }
 @end

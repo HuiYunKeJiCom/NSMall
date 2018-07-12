@@ -18,5 +18,5 @@
 @property (nonatomic,copy)NSString *name;//商品名称
 @property (nonatomic,copy)NSString *introduce;//商品简介描述
 @property (nonatomic)NSInteger is_shelve;//商品状态【-1=未发布，0=下架，1=上架】
-@property (nonatomic,copy)NSString *product_imge;//商品主图片
+@property (nonatomic,assign)NSArray *productImageList;//商品图片
 @end

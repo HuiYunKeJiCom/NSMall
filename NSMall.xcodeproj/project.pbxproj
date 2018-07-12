@@ -396,6 +396,8 @@
 		18F5D51420CE6A740037F825 /* BMKClusterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5D50E20CE6A740037F825 /* BMKClusterManager.m */; };
 		18F5D51520CE6A740037F825 /* BMKClusterAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5D51020CE6A740037F825 /* BMKClusterAlgorithm.m */; };
 		18F5D51720CE74370037F825 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F5D51620CE74360037F825 /* icon.png */; };
+		18FBBF4D20F6E6D7008D87FD /* ReceivableRecordAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBBF4C20F6E6D7008D87FD /* ReceivableRecordAPI.m */; };
+		18FBBF5020F7423C008D87FD /* NSRecordTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBBF4F20F7423C008D87FD /* NSRecordTVCell.m */; };
 		D94C1DAA8AC2D84A9BDB1A9D /* libPods-NSMall.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC0BFBB703FAFE6E76D201D /* libPods-NSMall.a */; };
 /* End PBXBuildFile section */
 
@@ -1180,6 +1182,10 @@
 		18F5D51020CE6A740037F825 /* BMKClusterAlgorithm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMKClusterAlgorithm.m; sourceTree = "<group>"; };
 		18F5D51120CE6A740037F825 /* BMKClusterQuadtree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKClusterQuadtree.h; sourceTree = "<group>"; };
 		18F5D51620CE74360037F825 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		18FBBF4B20F6E6D7008D87FD /* ReceivableRecordAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceivableRecordAPI.h; sourceTree = "<group>"; };
+		18FBBF4C20F6E6D7008D87FD /* ReceivableRecordAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceivableRecordAPI.m; sourceTree = "<group>"; };
+		18FBBF4E20F7423C008D87FD /* NSRecordTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSRecordTVCell.h; sourceTree = "<group>"; };
+		18FBBF4F20F7423C008D87FD /* NSRecordTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSRecordTVCell.m; sourceTree = "<group>"; };
 		8FEDDD97CEA9FCAA52E970F0 /* Pods-NSMall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSMall.release.xcconfig"; path = "Pods/Target Support Files/Pods-NSMall/Pods-NSMall.release.xcconfig"; sourceTree = "<group>"; };
 		CEC0BFBB703FAFE6E76D201D /* libPods-NSMall.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NSMall.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -3891,6 +3897,7 @@
 		18ECABCA20F5F88400679857 /* ReceivableRecord(收款记录) */ = {
 			isa = PBXGroup;
 			children = (
+				18FBBF4A20F6E617008D87FD /* API */,
 				18ECABD020F60C3800679857 /* Model */,
 				18ECABCF20F60C3200679857 /* View */,
 				18ECABCE20F60C2A00679857 /* Ctrl */,
@@ -3910,6 +3917,8 @@
 		18ECABCF20F60C3200679857 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18FBBF4E20F7423C008D87FD /* NSRecordTVCell.h */,
+				18FBBF4F20F7423C008D87FD /* NSRecordTVCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3988,6 +3997,15 @@
 				18F5D51120CE6A740037F825 /* BMKClusterQuadtree.h */,
 			);
 			path = Cluster;
+			sourceTree = "<group>";
+		};
+		18FBBF4A20F6E617008D87FD /* API */ = {
+			isa = PBXGroup;
+			children = (
+				18FBBF4B20F6E6D7008D87FD /* ReceivableRecordAPI.h */,
+				18FBBF4C20F6E6D7008D87FD /* ReceivableRecordAPI.m */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		8F123AEEBF3F7D66C38531D5 /* Pods */ = {
@@ -4305,6 +4323,7 @@
 				18DB5D6420E24613000E99E6 /* NSODAddressTVCell.m in Sources */,
 				1842A6D120B59D350090861D /* LZCartViewController.m in Sources */,
 				18A7AB8620ADB5AD009FC725 /* NSMyProductListItemModel.m in Sources */,
+				18FBBF4D20F6E6D7008D87FD /* ReceivableRecordAPI.m in Sources */,
 				184F065320A2DC2D00768418 /* SearchParam.m in Sources */,
 				1854116D20EC9D60003C7696 /* EMTextView.m in Sources */,
 				18E3A43520B2731700F847ED /* NSOrderListModel.m in Sources */,
@@ -4491,6 +4510,7 @@
 				1854114B20EC9D60003C7696 /* ContactListViewController.m in Sources */,
 				18DD2EC920B8F1AC00521B61 /* NSAllSortView.m in Sources */,
 				18C60DEB20C136B7002920D2 /* UIView+category.m in Sources */,
+				18FBBF5020F7423C008D87FD /* NSRecordTVCell.m in Sources */,
 				1874525220EDF52D00A67D70 /* SRRefreshView.m in Sources */,
 				18A7AB7920ADAAFC009FC725 /* NSMyGoodsListVC.m in Sources */,
 				18B1CAFE20BF902100235CFA /* NSWalletListModel.m in Sources */,

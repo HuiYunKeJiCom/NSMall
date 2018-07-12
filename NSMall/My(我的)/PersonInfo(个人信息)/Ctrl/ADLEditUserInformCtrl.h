@@ -20,6 +20,8 @@ typedef NS_ENUM(NSInteger, EditUserType) {
     EditUserTypeGender,
     /** 手机*/
     EditUserTypePhone,
+    /** 收货地址*/
+    EditUserTypeAddress,
 //    /** 电话*/
 //    EditUserTypeMobile,
 //    /** 微信*/

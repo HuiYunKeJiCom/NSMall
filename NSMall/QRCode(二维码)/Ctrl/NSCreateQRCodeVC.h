@@ -16,5 +16,5 @@ typedef NS_ENUM(NSInteger, QRCodeType){
     QRCodeTypePaymePnt,
 };
 
-@property(nonatomic,copy)NSString *QRString;/* 字符串 */
+//@property(nonatomic,copy)NSString *QRString;/* 字符串 */
 @end

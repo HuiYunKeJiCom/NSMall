@@ -22,6 +22,7 @@
 #import "UserInfoAPI.h"
 
 #import "TDUserCertifyViewCtrl.h"
+#import "ADReceivingAddressViewController.h"
 
 
 @interface ADLUpdateUserInformCtrl ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
@@ -49,6 +50,7 @@
 //    self.title = KLocalizableStr(@"修改个人信息");
     
     self.dataSources = @[@[KLocalizableStr(@"头像"),
+                           KLocalizableStr(@"收货地址"),
                            KLocalizableStr(@"昵称"),
                            KLocalizableStr(@"性别"),
                            KLocalizableStr(@"手机号"),
@@ -65,7 +67,7 @@
 {
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth,  TopBarHeight)];
     topToolView.backgroundColor = kWhiteColor;
-    [topToolView setTopTitleWithNSString:KLocalizableStr(@"修改个人信息")];
+    [topToolView setTopTitleWithNSString:KLocalizableStr(@"个人信息")];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
@@ -129,11 +131,15 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return GetScaleWidth(1);
+//    if(section == 1 || section == 2){
+//        return GetScaleWidth(10);
+//    }else{
+        return GetScaleWidth(1);
+//    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.001;
+        return 0.001;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -214,7 +220,11 @@
                     ctrl.editTitle = title;
                     [self.navigationController pushViewController:ctrl animated:YES];
                     
-                } else if (type == EditUserTypeCertification) {
+                } else if (type == EditUserTypeAddress) {
+                    //收货地址
+                    ADReceivingAddressViewController *addressCtrl = [[ADReceivingAddressViewController alloc] init];
+                    [self.navigationController pushViewController:addressCtrl animated:YES];
+                }else if (type == EditUserTypeCertification) {
 //                    [self.navigationController setNavigationBarHidden:NO];
                     TDUserCertifyViewCtrl *ctrl = [[TDUserCertifyViewCtrl alloc] init];
 //                    ctrl.editTitle = title;
@@ -236,6 +246,9 @@
     if ([title isEqualToString:KLocalizableStr(@"昵称")]) {
         type = EditUserTypeNickName;
         
+    } else if ([title isEqualToString:KLocalizableStr(@"收货地址")]) {
+        type = EditUserTypeAddress;
+        
     } else if ([title isEqualToString:KLocalizableStr(@"性别")]) {
         type = EditUserTypeGender;
         
@@ -251,7 +264,7 @@
 
 
 - (void)handleUserCell:(ADLUpdateUserTableCell *)cell title:(NSString *)title {
-    
+//    ADReceivingAddressViewController
     cell.titleLb.text = title;
     //这里已修改
     if ([title isEqualToString:KLocalizableStr(@"昵称")]) {

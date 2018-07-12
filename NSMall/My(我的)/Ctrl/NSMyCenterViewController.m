@@ -17,6 +17,7 @@
 #import "NSMyWalletListVC.h"//我的钱包
 #import "NSMyShopVC.h"//我的店铺
 #import "UserPageVC.h"
+#import "NSCreateQRCodeVC.h"
 
 @interface NSMyCenterViewController ()<ADLMyInfoTableViewDelegate>
 @property (strong, nonatomic) ADLMyInfoTableView   *otherTableView;
@@ -59,6 +60,7 @@
 - (void)setUpData
 {
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"我的钱包") imageName:@"my_ico_wallet" num:nil]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"我的收款码") imageName:@"my_ico_wallet" num:nil]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"我的商品") imageName:@"my_ico_goods" num:nil]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"我的店铺") imageName:@"my_ico_shop" num:nil]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"我的订单") imageName:@"my_ico_order" num:nil]];
@@ -112,13 +114,21 @@
         }
             break;
         case 2:{
+            NSLog(@"点击了我的收款码");
+            //跳转至我的收款码
+            NSCreateQRCodeVC *qrCodeVC = [NSCreateQRCodeVC new];
+//            qrCodeVC.QRString = @"shshfeihashasds";
+            [self.navigationController pushViewController:qrCodeVC animated:YES];
+        }
+            break;
+        case 3:{
             NSLog(@"点击了我的商品");
             //跳转至我的商品
             NSMyGoodsListVC *goodsVC = [NSMyGoodsListVC new];
             [self.navigationController pushViewController:goodsVC animated:YES];
         }
             break;
-        case 3:{
+        case 4:{
             NSLog(@"点击了我的店铺");
             [self.navigationController setNavigationBarHidden:YES];
             //跳转至我的店铺
@@ -126,7 +136,7 @@
             [self.navigationController pushViewController:shopListVC animated:YES];
         }
             break;
-        case 4:{
+        case 5:{
             NSLog(@"点击了我的订单");
             [self.navigationController setNavigationBarHidden:YES];
             //跳转至我的订单
@@ -134,14 +144,14 @@
             [self.navigationController pushViewController:orderListVC animated:YES];
         }
             break;
-        case 5:{
+        case 6:{
             NSLog(@"点击了我的收藏");
             //跳转至我的收藏
             NSCollectionListVC *collectionVC = [NSCollectionListVC new];
             [self.navigationController pushViewController:collectionVC animated:YES];
         }
             break;
-        case 6:{
+        case 7:{
             NSLog(@"点击了设置");
             //跳转至个人信息
             ADLUpdateUserInformCtrl *userInfoVC = [ADLUpdateUserInformCtrl new];

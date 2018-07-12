@@ -103,3 +103,6 @@ const static NSString * const kNearbyStoreAPI = @"nearbyStore";//获取附近店
 //
 const static NSString * const kOrderDetailAPI = @"auth/orderDetail";//订单详情
 
+//收款记录
+const static NSString * const kTradeLogAPI = @"auth/tradeLog";//收款记录
+

@@ -17,4 +17,5 @@
 
 @property (nonatomic,copy)NSString *day;//交易ID
 @property (nonatomic,strong)NSArray<NSLogItemModel *> *list;
+@property(nonatomic)float cellHeight;/* cell高度 */
 @end

@@ -43,8 +43,8 @@
     [self addSubview:self.bgView];
     
     self.goodsIV = [[UIImageView alloc] initWithFrame:CGRectMake(GetScaleWidth(19), GetScaleWidth(12), GetScaleWidth(53), GetScaleWidth(53))];
-    [self.goodsIV setContentMode:UIViewContentModeScaleAspectFill];
-    self.goodsIV.backgroundColor = kRedColor;
+    [self.goodsIV setContentMode:UIViewContentModeScaleAspectFit];
+//    self.goodsIV.backgroundColor = kRedColor;
     [self.bgView addSubview:self.goodsIV];
     
     self.goodsName = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum14 TextColor:[UIColor blackColor]];
@@ -95,7 +95,7 @@
 - (void)setModel:(NSMyProductListItemModel *)model {
     _model = model;
     
-    [self.goodsIV sd_setImageWithURL:[NSURL URLWithString:model.product_imge]];
+    [self.goodsIV sd_setImageWithURL:[NSURL URLWithString:model.productImageList[0]]];
     self.goodsName.x = CGRectGetMaxX(self.goodsIV.frame)+GetScaleWidth(14);
     self.goodsName.y = CGRectGetMinY(self.goodsIV.frame);
     self.goodsName.text = self.model.name;

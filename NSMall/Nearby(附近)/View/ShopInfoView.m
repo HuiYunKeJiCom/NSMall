@@ -138,7 +138,14 @@
     
     self.workStateL = [[UILabel alloc]init];
     self.workStateL.font = [UIFont systemFontOfSize:14];
+    self.workStateL.textColor = kWhiteColor;
     [self addSubview:self.workStateL];
+    
+    self.workStateL.layer.cornerRadius = 5;//设置那个圆角的有多圆
+//    self.workStateL.layer.borderWidth = 10;//设置边框的宽度，当然可以不要
+//    self.workStateL.layer.borderColor = [KMainColor CGColor];//设置边框的颜色
+    self.workStateL.layer.masksToBounds = YES;//设为NO去试试
+
     
     self.line1 = [[UIView alloc]init];
     self.line1.backgroundColor = [UIColor lightGrayColor];
@@ -191,7 +198,26 @@
     self.shopNameL.text = storeModel.name;
     self.shopAddrL.text = [NSString stringWithFormat:@"地址: %@",self.storeModel.address];
     self.distanceLabel.text = [NSString stringWithFormat:@"%@ 步行约%@",self.storeModel.distance,self.storeModel.walk_time];
-    self.workStateL.text = @"营业中";
+    
+    if([self judgeTimeByStartAndEnd:self.storeModel.business_hours_start withExpireTime:self.storeModel.business_hours_end]){
+        self.workStateL.text = @" 营业中";
+        self.workStateL.backgroundColor = KMainColor;
+//        self.workStateL.layer.cornerRadius = 2;//设置那个圆角的有多圆
+//        self.workStateL.layer.borderWidth = 10;//设置边框的宽度，当然可以不要
+//        self.workStateL.layer.borderColor = [KMainColor CGColor];//设置边框的颜色
+//        self.workStateL.layer.masksToBounds = YES;//设为NO去试试
+    }else{
+        self.workStateL.text = @" 未营业";
+        self.workStateL.backgroundColor = KBGCOLOR;
+//        self.workStateL.layer.cornerRadius = 2;//设置那个圆角的有多圆
+//        self.workStateL.layer.borderWidth = 10;//设置边框的宽度，当然可以不要
+//        self.workStateL.layer.borderColor = [KMainColor CGColor];//设置边框的颜色
+//        self.workStateL.layer.masksToBounds = YES;//设为NO去试试
+    }
+    
+    
+    
+    
 //    DLog(@"labelList = %lu",storeModel.labelList.count);
     for (LabelItemModel *tag in storeModel.labelList) {
         
@@ -304,8 +330,9 @@
     }];
     
     [self.workStateL mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.mas_left).with.offset(kScreenWidth*0.7-60);
+        make.left.equalTo(weakSelf.mas_left).with.offset(kScreenWidth*0.7-75);
         make.centerY.equalTo(weakSelf.shopHoursL.mas_centerY);
+            make.size.mas_equalTo(CGSizeMake(50, 20));
     }];
     
     [self.shopSV mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -348,5 +375,23 @@
         [self.delegate navigateToTargetPositionWithThird];
     }
 }
+
+- (BOOL)judgeTimeByStartAndEnd:(NSString *)startTime withExpireTime:(NSString *)expireTime {
+    NSDate *today = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    // 时间格式,此处遇到过坑,建议时间HH大写,手机24小时进制和12小时禁止都可以完美格式化
+    [dateFormat setDateFormat:@"HH:mm:ss"];
+    NSString * todayStr=[dateFormat stringFromDate:today];//将日期转换成字符串
+    today=[ dateFormat dateFromString:todayStr];//转换成NSDate类型。日期置为方法默认日期
+    //startTime格式为 02:22   expireTime格式为 12:44
+    NSDate *start = [dateFormat dateFromString:startTime];
+    NSDate *expire = [dateFormat dateFromString:expireTime];
+    
+    if ([today compare:start] == NSOrderedDescending && [today compare:expire] == NSOrderedAscending) {
+        return YES;
+    }
+    return NO;
+}
+
 
 @end

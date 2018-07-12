@@ -51,7 +51,6 @@
 - (void)setUpNavTopView
 {
     _topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
-    _topToolView.hidden = NO;
     _topToolView.backgroundColor = [UIColor whiteColor];
     [_topToolView setTopTitleWithNSString:KLocalizableStr(@"管理收货地址")];
     WEAKSELF
