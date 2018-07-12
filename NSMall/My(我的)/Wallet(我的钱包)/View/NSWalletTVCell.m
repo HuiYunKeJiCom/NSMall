@@ -12,7 +12,7 @@
 @property (nonatomic, strong) UIView  *bgView;
 @property(nonatomic,strong)UILabel *walletName;/* 钱包名称 */
 @property(nonatomic,strong)UILabel *walletAddress;/* 钱包地址 */
-@property(nonatomic,strong)UIButton *defaultBtn;/* 默认按钮 */
+//@property(nonatomic,strong)UIButton *defaultBtn;/* 默认按钮 */
 @end
 
 @implementation NSWalletTVCell
@@ -51,18 +51,18 @@
     self.walletAddress.textColor = kBlackColor;
     [self.bgView addSubview:self.walletAddress];
     
-    self.defaultBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.defaultBtn .titleLabel.font = UISystemFontSize(14);
+//    self.defaultBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    self.defaultBtn .titleLabel.font = UISystemFontSize(14);
 //    [self.defaultBtn setTitle:@"默认" forState:UIControlStateNormal];
 //    [self.defaultBtn  setTitleColor:kWhiteColor forState:UIControlStateNormal];
 //    self.defaultBtn.backgroundColor = kWhiteColor;
 //    self.defaultBtn.layer.cornerRadius = 5;//设置那个圆角的有多圆
 //    self.defaultBtn.layer.masksToBounds = YES;//设为NO去试试
-    [self.defaultBtn  addTarget:self action:@selector(defaultButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.bgView addSubview:self.defaultBtn];
-    self.defaultBtn.x = kScreenWidth-19-66;
-    self.defaultBtn.y = 15;
-    self.defaultBtn.size = CGSizeMake(66, 20);
+//    [self.defaultBtn  addTarget:self action:@selector(defaultButtonClick) forControlEvents:UIControlEventTouchUpInside];
+//    [self.bgView addSubview:self.defaultBtn];
+//    self.defaultBtn.x = kScreenWidth-19-66;
+//    self.defaultBtn.y = 15;
+//    self.defaultBtn.size = CGSizeMake(66, 20);
 //    self.defaultBtn.backgroundColor = [UIColor greenColor];
 }
 
@@ -77,27 +77,27 @@
     self.walletAddress.text = [NSString stringWithFormat:@"钱包地址:%@",walletModel.wallet_address];
     [self.walletAddress sizeToFit];
     
-    if(walletModel.is_sell_default == 1){
-        [self.defaultBtn setTitle:@"默认收款" forState:UIControlStateNormal];
-        self.defaultBtn.userInteractionEnabled = NO;
-        [self.defaultBtn.layer setMasksToBounds:NO];
-        [self.defaultBtn.layer setBorderWidth:0];
-        [self.defaultBtn setTitleColor:KMainColor forState:UIControlStateNormal];
-    }else{
-        [self.defaultBtn setTitle:@"设为默认" forState:UIControlStateNormal];
-        self.defaultBtn.userInteractionEnabled = YES;
-        [self.defaultBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [self.defaultBtn.layer setBorderColor:[UIColor blackColor].CGColor];
-        [self.defaultBtn.layer setBorderWidth:1];
-        [self.defaultBtn.layer setMasksToBounds:YES];
-        self.defaultBtn.layer.cornerRadius = 3.0;
-    }
+//    if(walletModel.is_sell_default == 1){
+//        [self.defaultBtn setTitle:@"默认收款" forState:UIControlStateNormal];
+//        self.defaultBtn.userInteractionEnabled = NO;
+//        [self.defaultBtn.layer setMasksToBounds:NO];
+//        [self.defaultBtn.layer setBorderWidth:0];
+//        [self.defaultBtn setTitleColor:KMainColor forState:UIControlStateNormal];
+//    }else{
+//        [self.defaultBtn setTitle:@"设为默认" forState:UIControlStateNormal];
+//        self.defaultBtn.userInteractionEnabled = YES;
+//        [self.defaultBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        [self.defaultBtn.layer setBorderColor:[UIColor blackColor].CGColor];
+//        [self.defaultBtn.layer setBorderWidth:1];
+//        [self.defaultBtn.layer setMasksToBounds:YES];
+//        self.defaultBtn.layer.cornerRadius = 3.0;
+//    }
 }
 
-#pragma mark - 默认 点击
-- (void)defaultButtonClick {
-    NSLog(@"默认 点击");
-    !_defaultClickBlock ? : _defaultClickBlock();
-}
+//#pragma mark - 默认 点击
+//- (void)defaultButtonClick {
+//    NSLog(@"默认 点击");
+//    !_defaultClickBlock ? : _defaultClickBlock();
+//}
 
 @end

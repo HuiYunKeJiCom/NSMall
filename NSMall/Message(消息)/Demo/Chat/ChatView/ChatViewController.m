@@ -146,11 +146,13 @@
     NSNavView *topToolView = [[NSNavView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     topToolView.backgroundColor = KMainColor;
     
-    EMMessage *latestMessage = self.conversation.latestMessage;
-    NSDictionary *ext = latestMessage.ext;
+//    EMMessage *latestMessage = self.conversation.latestMessage;
+//    NSDictionary *ext = latestMessage.ext;
 
-    [topToolView setTopTitleWithNSString:KLocalizableStr([ext objectForKey:@"nick"])];
-    //    [topToolView setRightItemTitle:KLocalizableStr(@"添加好友")];
+    [topToolView setTopTitleWithNSString:KLocalizableStr(self.title)];
+//[ext objectForKey:@"nick"]
+    
+    
     
     WEAKSELF
     topToolView.leftItemClickBlock = ^{

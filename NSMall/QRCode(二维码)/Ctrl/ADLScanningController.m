@@ -47,7 +47,7 @@
     
     [self.view addSubview:self.loadingView];
 
-    imageView = [[UIImageView alloc]initWithFrame:CGRectMake((kScreenWidth-SWidth)/2,GetScaleWidth(160),SWidth,SWidth)];
+    imageView = [[UIImageView alloc]initWithFrame:CGRectMake((kScreenWidth-SWidth)/2,GetScaleWidth(160)+TopBarHeight/2.0,SWidth,SWidth)];
     imageView.image = [UIImage imageNamed:@"scanscanBg"];
     [self.view addSubview:imageView];
     

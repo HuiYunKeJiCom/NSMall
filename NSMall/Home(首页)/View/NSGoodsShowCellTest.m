@@ -172,6 +172,8 @@
 -(void)setProductModel:(ProductListItemModel *)productModel{
     _productModel = productModel;
     
+    [self makeConstraints];
+    
     if(productModel.is_like == 1){
         self.isLike = YES;
         [self.likeBtn setImageWithTitle:IMAGE(@"home_ico_like_press") withTitle:[NSString stringWithFormat:@"喜欢(%@)",[NSNumber numberWithInteger:productModel.like_number]] position:@"left" font:UISystemFontSize(14) forState:UIControlStateNormal];
@@ -179,8 +181,9 @@
         self.isLike = NO;
         [self.likeBtn setImageWithTitle:IMAGE(@"ico_like") withTitle:@"喜欢" position:@"left" font:UISystemFontSize(14) forState:UIControlStateNormal];
     }
-    
     [self.headerIV sd_setImageWithURL:[NSURL URLWithString:productModel.user_avatar]];
+//    self.headerIV.backgroundColor = [UIColor greenColor];
+    
     self.userName.text = productModel.user_name;
     self.timeLab.text = productModel.update_time;
 

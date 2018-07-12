@@ -35,7 +35,7 @@
 - (void)setUpUI
 {
     self.backgroundColor = [UIColor whiteColor];
-    _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, self.dc_height-GetScaleWidth(112)) delegate:self placeholderImage:nil];
+    _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, self.dc_height-GetScaleWidth(112+8)) delegate:self placeholderImage:nil];
     _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
     _cycleScrollView.autoScrollTimeInterval = 5.0;
     [self addSubview:_cycleScrollView];

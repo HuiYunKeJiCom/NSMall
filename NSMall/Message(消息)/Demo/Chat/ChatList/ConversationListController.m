@@ -173,6 +173,7 @@
             } else {
                 UIViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:conversation.conversationId conversationType:conversation.type];
                 chatController.title = conversationModel.title;
+//                DLog(@"chatController.title = %@",chatController.title);
                 [self.navigationController pushViewController:chatController animated:YES];
             }
         }

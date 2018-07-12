@@ -94,11 +94,6 @@
         make.width.equalTo(@44);
     }];
     
-    [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.mas_centerX);
-        make.centerY.equalTo(_leftItemButton.mas_centerY);
-    }];
-    
         [_rightItemButton mas_makeConstraints:^(MASConstraintMaker *make) {
             //        make.centerY.equalTo(_leftItemButton.mas_centerY);
             make.top.equalTo(self.mas_top).offset(20);
@@ -106,6 +101,13 @@
             make.height.equalTo(@44);
             make.width.equalTo(@78);
         }];
+    
+    [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        //        make.centerX.equalTo(self.mas_centerX);
+        make.left.equalTo(self.leftItemButton.mas_right);
+        make.right.equalTo(self.rightItemButton.mas_left);
+        make.centerY.equalTo(_leftItemButton.mas_centerY);
+    }];
     
 }
 
@@ -118,6 +120,7 @@
     if (!_titleLab) {
         _titleLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum17 TextColor:kWhiteColor];
         _titleLab.textColor = [UIColor blackColor];
+        _titleLab.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLab;
 }

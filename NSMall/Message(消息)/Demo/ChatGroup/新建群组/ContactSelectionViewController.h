@@ -11,6 +11,7 @@
   */
 
 #import "EMChooseViewController.h"
+#import "ADOrderTopToolView.h"
 
 @interface ContactSelectionViewController : EMChooseViewController
 

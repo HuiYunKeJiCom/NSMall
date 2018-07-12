@@ -17,12 +17,14 @@
 #import "ChatViewController.h"
 #import "RobotListViewController.h"
 #import "ChatroomListViewController.h"
-#import "AddFriendViewController.h"
+//#import "AddFriendViewController.h"
+#import "NSAddFriendVC.h"
 #import "ApplyViewController.h"
 #import "UserProfileManager.h"
 #import "RealtimeSearchUtil.h"
 #import "UserProfileManager.h"
 #import "NSNavView.h"
+
 
 #import "BaseTableViewCell.h"
 #import "UIViewController+SearchController.h"
@@ -211,7 +213,7 @@
         NSArray *userSection = [self.dataArray objectAtIndex:(indexPath.section - 2)];
         EaseUserModel *model = [userSection objectAtIndex:indexPath.row];
         
-        DLog(@"model = %@",model.nickname);
+//        DLog(@"model = %@",model.nickname);
         
         UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.buddy];
         
@@ -469,7 +471,10 @@
 
 - (void)addContactAction
 {
-    AddFriendViewController *addController = [[AddFriendViewController alloc] init];
+//    AddFriendViewController *addController = [[AddFriendViewController alloc] init];
+//    [self.navigationController pushViewController:addController animated:YES];
+    
+    NSAddFriendVC *addController = [[NSAddFriendVC alloc] init];
     [self.navigationController pushViewController:addController animated:YES];
 }
 
@@ -677,10 +682,10 @@
     }
 }
 
-- (void)addFriendAction
-{
-    AddFriendViewController *addController = [[AddFriendViewController alloc] init];
-    [self.navigationController pushViewController:addController animated:YES];
-}
+//- (void)addFriendAction
+//{
+//    AddFriendViewController *addController = [[AddFriendViewController alloc] init];
+//    [self.navigationController pushViewController:addController animated:YES];
+//}
 
 @end

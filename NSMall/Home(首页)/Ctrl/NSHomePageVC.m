@@ -43,8 +43,9 @@
     // Do any additional setup after loading the view.
     
 //    self.view.backgroundColor = kWhiteColor;
-    [self buildUI];
     [self requestAllOrder:NO];
+    [self buildUI];
+    
     [self setUpNavTopView];
     
 }
@@ -170,8 +171,8 @@
     dispatch_group_enter(group);
 
     [HomePageAPI getHomePageAdvertInfro:@{@"advertCode":@"indexHeadAdvert"} success:^(AdvertListModel * _Nullable result) {
-        NSLog(@"count = %lu",result.advertList.count);
-        NSLog(@"获取广告数据成功");
+//        NSLog(@"count = %lu",result.advertList.count);
+//        NSLog(@"获取广告数据成功");
         for(AdvertItemModel *model in result.advertList){
             //            NSLog(@"path = %@",model.pic_img);
             [weakSelf.imageGroupArray addObject:model.pic_img];

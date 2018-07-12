@@ -60,7 +60,7 @@
 
 - (void)initViews {
     self.shopIV = [[UIImageView alloc] initWithFrame:CGRectZero];
-    self.shopIV.backgroundColor = [UIColor greenColor];
+//    self.shopIV.backgroundColor = [UIColor greenColor];
     [self.shopIV setContentMode:UIViewContentModeScaleAspectFit];
     [self addSubview:self.shopIV];
     
@@ -86,14 +86,17 @@
     self.navView.backgroundColor = KBGCOLOR;
     [self addSubview:self.navView];
     
+    UITapGestureRecognizer *myTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(navigateToTargetPositionWithThird)];
+    [self.navView addGestureRecognizer:myTap];
+    
     UIImageView *navIV = [[UIImageView alloc]initWithFrame:CGRectMake(55, 12, 18, 18)];
     navIV.image = IMAGE(@"map_ico_coordinate");
     [self.navView addSubview:navIV];
     
-    UIButton *navBtn = [[UIButton alloc]initWithFrame:CGRectMake(55, 12, 18, 18)];
-    [navBtn addTarget:self action:@selector(navigateToTargetPositionWithThird) forControlEvents:UIControlEventTouchUpInside];
-    //    self.closeBtn.backgroundColor = [UIColor greenColor];
-    [self.navView addSubview:navBtn];
+//    UIButton *navBtn = [[UIButton alloc]initWithFrame:CGRectMake(55, 12, 18, 18)];
+//    [navBtn addTarget:self action:@selector(navigateToTargetPositionWithThird) forControlEvents:UIControlEventTouchUpInside];
+//    //    self.closeBtn.backgroundColor = [UIColor greenColor];
+//    [self.navView addSubview:navBtn];
     
     self.distanceLabel = [[UILabel alloc]init];
     self.distanceLabel.font = [UIFont systemFontOfSize:14];
@@ -165,7 +168,7 @@
     
     self.createLab = [[UILabel alloc]init];
     self.createLab.font = [UIFont systemFontOfSize:14];
-    self.createLab.textColor = KBGCOLOR;
+    self.createLab.textColor = kGreyColor;
     [self addSubview:self.createLab];
 }
 

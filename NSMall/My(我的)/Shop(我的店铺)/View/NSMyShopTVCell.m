@@ -41,7 +41,7 @@
     [self addSubview:self.bgView];
     
     self.goodsIV = [[UIImageView alloc] init];
-    self.goodsIV.backgroundColor = [UIColor greenColor];
+//    self.goodsIV.backgroundColor = [UIColor greenColor];
     [self.goodsIV setContentMode:UIViewContentModeScaleAspectFit];
     [self.bgView addSubview:self.goodsIV];
     

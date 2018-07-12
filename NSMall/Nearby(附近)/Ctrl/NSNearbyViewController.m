@@ -177,15 +177,17 @@
 //接收反向地理编码结果
 -(void) onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result
                         errorCode:(BMKSearchErrorCode)error{
+//    DLog(@"result = %@",result.mj_keyValues);
+//    DLog(@"self.address = %@",self.address);
+//    DLog(@"result.address = %@",result.address);
     
     if (error == BMK_SEARCH_NO_ERROR) {
-        
-        if([self.address isEqualToString:result.address]){
+        BMKPoiInfo *poiInfo = result.poiList[0];
+        if([self.address isEqualToString:poiInfo.name]){
             DLog(@"定位相同");
         }else{
             DLog(@"定位不同");
 //            self.address = result.address;
-            BMKPoiInfo *poiInfo = result.poiList[0];
             self.address = [NSString stringWithFormat:@"%@",poiInfo.name];
             
             self.endCoordinate = result.location;
@@ -220,6 +222,8 @@
         
     } failure:^(NSError *error) {
         DLog(@"获取附近店铺列表失败");
+        NSArray *nilArr = [NSArray array];
+        self.totalStoreV.storeList = nilArr;
     }];
 }
 

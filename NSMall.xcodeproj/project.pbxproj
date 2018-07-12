@@ -379,6 +379,11 @@
 		18E3A45720B2EF5000F847ED /* ShelveProductParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E3A45620B2EF5000F847ED /* ShelveProductParam.m */; };
 		18E854BC20CA5A03007C23F5 /* NSAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E854BB20CA5A03007C23F5 /* NSAddressVC.m */; };
 		18EB286220A548EE00B45958 /* NSSpecView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB286120A548EE00B45958 /* NSSpecView.m */; };
+		18ECABCD20F5FAC300679857 /* ReceivableRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ECABCC20F5FAC300679857 /* ReceivableRecordVC.m */; };
+		18ECABD320F60E4E00679857 /* NSRecordLogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ECABD220F60E4E00679857 /* NSRecordLogModel.m */; };
+		18ECABD620F624D500679857 /* NSLogItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ECABD520F624D500679857 /* NSLogItemModel.m */; };
+		18ECABD920F6256900679857 /* NSLogListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ECABD820F6256900679857 /* NSLogListModel.m */; };
+		18EE48F020F4B7370015DC12 /* NSAddFriendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE48EF20F4B7370015DC12 /* NSAddFriendVC.m */; };
 		18F5D4E920CE0E790037F825 /* NearbyStoreAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5D4E820CE0E790037F825 /* NearbyStoreAPI.m */; };
 		18F5D4ED20CE0EF00037F825 /* NearbyStoreParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5D4EC20CE0EF00037F825 /* NearbyStoreParam.m */; };
 		18F5D4F020CE17B20037F825 /* NearbyStoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5D4EF20CE17B20037F825 /* NearbyStoreModel.m */; };
@@ -1142,6 +1147,16 @@
 		18E854BB20CA5A03007C23F5 /* NSAddressVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAddressVC.m; sourceTree = "<group>"; };
 		18EB286020A548EE00B45958 /* NSSpecView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSpecView.h; sourceTree = "<group>"; };
 		18EB286120A548EE00B45958 /* NSSpecView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSpecView.m; sourceTree = "<group>"; };
+		18ECABCB20F5FAC300679857 /* ReceivableRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceivableRecordVC.h; sourceTree = "<group>"; };
+		18ECABCC20F5FAC300679857 /* ReceivableRecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceivableRecordVC.m; sourceTree = "<group>"; };
+		18ECABD120F60E4E00679857 /* NSRecordLogModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSRecordLogModel.h; sourceTree = "<group>"; };
+		18ECABD220F60E4E00679857 /* NSRecordLogModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSRecordLogModel.m; sourceTree = "<group>"; };
+		18ECABD420F624D500679857 /* NSLogItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSLogItemModel.h; sourceTree = "<group>"; };
+		18ECABD520F624D500679857 /* NSLogItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSLogItemModel.m; sourceTree = "<group>"; };
+		18ECABD720F6256900679857 /* NSLogListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSLogListModel.h; sourceTree = "<group>"; };
+		18ECABD820F6256900679857 /* NSLogListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSLogListModel.m; sourceTree = "<group>"; };
+		18EE48EE20F4B7370015DC12 /* NSAddFriendVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAddFriendVC.h; sourceTree = "<group>"; };
+		18EE48EF20F4B7370015DC12 /* NSAddFriendVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAddFriendVC.m; sourceTree = "<group>"; };
 		18F5D4E720CE0E790037F825 /* NearbyStoreAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NearbyStoreAPI.h; sourceTree = "<group>"; };
 		18F5D4E820CE0E790037F825 /* NearbyStoreAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NearbyStoreAPI.m; sourceTree = "<group>"; };
 		18F5D4EB20CE0EF00037F825 /* NearbyStoreParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NearbyStoreParam.h; sourceTree = "<group>"; };
@@ -1809,6 +1824,9 @@
 		185410E520EC9D60003C7696 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				18EE48EC20F498B10015DC12 /* Model */,
+				18EE48EB20F498A10015DC12 /* API */,
+				18EE48EA20F498870015DC12 /* View */,
 				185410E620EC9D60003C7696 /* ContactListSelectViewController.h */,
 				185410E920EC9D60003C7696 /* ContactListSelectViewController.m */,
 				185410E720EC9D60003C7696 /* RealtimeSearchUtil.h */,
@@ -1905,11 +1923,11 @@
 			isa = PBXGroup;
 			children = (
 				1854111420EC9D60003C7696 /* EMMemberCell.h */,
-				1854111520EC9D60003C7696 /* PublicGroupDetailViewController.h */,
-				1854111620EC9D60003C7696 /* PublicGroupListViewController.h */,
 				1854111720EC9D60003C7696 /* EMMemberCell.m */,
 				1854111820EC9D60003C7696 /* EMMemberCell.xib */,
+				1854111520EC9D60003C7696 /* PublicGroupDetailViewController.h */,
 				1854111920EC9D60003C7696 /* PublicGroupDetailViewController.m */,
+				1854111620EC9D60003C7696 /* PublicGroupListViewController.h */,
 				1854111A20EC9D60003C7696 /* PublicGroupListViewController.m */,
 			);
 			path = "加入公开群组";
@@ -1918,21 +1936,21 @@
 		1854111D20EC9D60003C7696 /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				1854112720EC9D60003C7696 /* EMGroupMembersViewController.h */,
 				1854111E20EC9D60003C7696 /* EMGroupMembersViewController.m */,
+				1854112620EC9D60003C7696 /* EMGroupAdminsViewController.h */,
 				1854111F20EC9D60003C7696 /* EMGroupAdminsViewController.m */,
 				1854112020EC9D60003C7696 /* EMGroupInfoViewController.h */,
+				1854112920EC9D60003C7696 /* EMGroupInfoViewController.m */,
 				1854112120EC9D60003C7696 /* GroupSettingViewController.h */,
+				1854112820EC9D60003C7696 /* GroupSettingViewController.m */,
 				1854112220EC9D60003C7696 /* EMGroupMutesViewController.h */,
+				1854112C20EC9D60003C7696 /* EMGroupMutesViewController.m */,
+				1854112B20EC9D60003C7696 /* EMGroupSharedFilesViewController.h */,
 				1854112320EC9D60003C7696 /* EMGroupSharedFilesViewController.m */,
 				1854112420EC9D60003C7696 /* EMGroupBansViewController.h */,
-				1854112520EC9D60003C7696 /* EMGroupTransferOwnerViewController.h */,
-				1854112620EC9D60003C7696 /* EMGroupAdminsViewController.h */,
-				1854112720EC9D60003C7696 /* EMGroupMembersViewController.h */,
-				1854112820EC9D60003C7696 /* GroupSettingViewController.m */,
-				1854112920EC9D60003C7696 /* EMGroupInfoViewController.m */,
 				1854112A20EC9D60003C7696 /* EMGroupBansViewController.m */,
-				1854112B20EC9D60003C7696 /* EMGroupSharedFilesViewController.h */,
-				1854112C20EC9D60003C7696 /* EMGroupMutesViewController.m */,
+				1854112520EC9D60003C7696 /* EMGroupTransferOwnerViewController.h */,
 				1854112D20EC9D60003C7696 /* EMGroupTransferOwnerViewController.m */,
 			);
 			path = Info;
@@ -1965,6 +1983,7 @@
 		1854113920EC9D60003C7696 /* 添加好友 */ = {
 			isa = PBXGroup;
 			children = (
+				18EE48ED20F4B6EE0015DC12 /* 扫一扫加我好友 */,
 				1854113E20EC9D60003C7696 /* ApplyFriendCell.h */,
 				1854113A20EC9D60003C7696 /* ApplyFriendCell.m */,
 				1854114020EC9D60003C7696 /* ApplyViewController.h */,
@@ -2166,6 +2185,7 @@
 		188CC647207F5430007D749E /* NSMall */ = {
 			isa = PBXGroup;
 			children = (
+				18ECABCA20F5F88400679857 /* ReceivableRecord(收款记录) */,
 				18AD9FD420C62FF300275CC5 /* QRCode(二维码) */,
 				18C3D08220A2F111000FCE7F /* Model */,
 				18D574CC209AA387001C7875 /* Param */,
@@ -3868,6 +3888,75 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		18ECABCA20F5F88400679857 /* ReceivableRecord(收款记录) */ = {
+			isa = PBXGroup;
+			children = (
+				18ECABD020F60C3800679857 /* Model */,
+				18ECABCF20F60C3200679857 /* View */,
+				18ECABCE20F60C2A00679857 /* Ctrl */,
+			);
+			path = "ReceivableRecord(收款记录)";
+			sourceTree = "<group>";
+		};
+		18ECABCE20F60C2A00679857 /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				18ECABCB20F5FAC300679857 /* ReceivableRecordVC.h */,
+				18ECABCC20F5FAC300679857 /* ReceivableRecordVC.m */,
+			);
+			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		18ECABCF20F60C3200679857 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18ECABD020F60C3800679857 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18ECABD120F60E4E00679857 /* NSRecordLogModel.h */,
+				18ECABD220F60E4E00679857 /* NSRecordLogModel.m */,
+				18ECABD720F6256900679857 /* NSLogListModel.h */,
+				18ECABD820F6256900679857 /* NSLogListModel.m */,
+				18ECABD420F624D500679857 /* NSLogItemModel.h */,
+				18ECABD520F624D500679857 /* NSLogItemModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18EE48EA20F498870015DC12 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18EE48EB20F498A10015DC12 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		18EE48EC20F498B10015DC12 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18EE48ED20F4B6EE0015DC12 /* 扫一扫加我好友 */ = {
+			isa = PBXGroup;
+			children = (
+				18EE48EE20F4B7370015DC12 /* NSAddFriendVC.h */,
+				18EE48EF20F4B7370015DC12 /* NSAddFriendVC.m */,
+			);
+			path = "扫一扫加我好友";
+			sourceTree = "<group>";
+		};
 		18F5D4E620CE0D6C0037F825 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -4093,6 +4182,7 @@
 				18B1CB1D20BFE6D700235CFA /* NSBindWalletParam.m in Sources */,
 				18D0824E20956D2F0031034A /* LoginAPI.m in Sources */,
 				18B017A120A67B9600826EA4 /* SaveAddressParam.m in Sources */,
+				18ECABD620F624D500679857 /* NSLogItemModel.m in Sources */,
 				18B1CAFB20BF8F9900235CFA /* NSBuildOrderParam.m in Sources */,
 				184F05EF209AE39700768418 /* ProductListItemModel.m in Sources */,
 				1878478920AEE93600AC0E0F /* NSOrderHeader.m in Sources */,
@@ -4126,6 +4216,7 @@
 				1863D26B20A9873C00047A7D /* UIButton+Bootstrap.m in Sources */,
 				18D0C0B720AC0F93007F0784 /* BaseCellTextFiled.m in Sources */,
 				18C3D0CB20A3DDC8000FCE7F /* UIImage+Extension.m in Sources */,
+				18EE48F020F4B7370015DC12 /* NSAddFriendVC.m in Sources */,
 				18DD2F0F20B90B1D00521B61 /* LLSearchResultListView.m in Sources */,
 				1854116820EC9D60003C7696 /* EMGroupBansViewController.m in Sources */,
 				184DE7A9208F088E00E776F3 /* BaseTableCell.m in Sources */,
@@ -4303,6 +4394,7 @@
 				18DD2F1120B90B1D00521B61 /* NBSSearchShopHistoryView.m in Sources */,
 				18D0824C20956D2F0031034A /* NSLImageField.m in Sources */,
 				18DD2F1E20B90B1E00521B61 /* LLSearchNaviBarView.m in Sources */,
+				18ECABD320F60E4E00679857 /* NSRecordLogModel.m in Sources */,
 				1878477720AECD0300AC0E0F /* NSShopListModel.m in Sources */,
 				1874525820EDF69600A67D70 /* EMAlertView.m in Sources */,
 				18ADC52520BAEA9C00961CD8 /* CartAPI.m in Sources */,
@@ -4369,6 +4461,7 @@
 				1889AF9020D398BC00FBA33E /* NSShopViewTV.m in Sources */,
 				184F05F7209C40C700768418 /* AdvertListModel.m in Sources */,
 				1874524820EDF11700A67D70 /* EMSearchResultController.m in Sources */,
+				18ECABCD20F5FAC300679857 /* ReceivableRecordVC.m in Sources */,
 				18C3D08820A2F111000FCE7F /* LabelItemModel.m in Sources */,
 				18C2DE1920B7F8F000A3B851 /* NSSortLeftTVCell.m in Sources */,
 				18999B2B20DA5DF6003BCF23 /* UserPageVC.m in Sources */,
@@ -4428,6 +4521,7 @@
 				1854114C20EC9D60003C7696 /* RealtimeSearchUtil.m in Sources */,
 				18C2DDED20B7A92300A3B851 /* NSMessageTVCell.m in Sources */,
 				18D0C06D20AC0B58007F0784 /* TDBaseViewController.m in Sources */,
+				18ECABD920F6256900679857 /* NSLogListModel.m in Sources */,
 				18DD2F0D20B90B1D00521B61 /* LLNaviSearchHistorySaveBasePresenter.m in Sources */,
 				1842A6D620B59D350090861D /* LZShopModel.m in Sources */,
 				1878477A20AECD4000AC0E0F /* NSShopListItemModel.m in Sources */,

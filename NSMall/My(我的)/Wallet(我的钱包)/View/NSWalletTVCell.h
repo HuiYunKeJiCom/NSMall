@@ -11,6 +11,6 @@
 
 @interface NSWalletTVCell : BaseTableCell
 @property(nonatomic,strong)WalletItemModel *walletModel;/* 钱包模型 */
-/* 查看详情 点击回调 */
-@property (nonatomic, copy) dispatch_block_t defaultClickBlock;
+///* 查看详情 点击回调 */
+//@property (nonatomic, copy) dispatch_block_t defaultClickBlock;
 @end

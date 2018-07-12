@@ -145,12 +145,49 @@
         NSString *imageName = @"group_header";
 //        NSString *imageName = group.isPublic ? @"groupPublicHeader" : @"groupPrivateHeader";
         cell.imageView.image = [UIImage imageNamed:imageName];
+        
         if (group.subject && group.subject.length > 0) {
-            cell.textLabel.text = group.subject;
+//            cell.textLabel.text = group.subject;
+            
+            if([group.subject rangeOfString:@"groupName"].location !=NSNotFound){
+                NSDictionary *dict = [self dictionaryWithJsonString:group.subject];
+                if(dict[@"groupName"] && [[dict[@"groupName"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] isEqualToString:@"未命名"]){
+                    NSLog(@"群组未命名");
+                    
+                    NSArray *memberArr = dict[@"jsonArray"];
+                    NSString *titleStr = @"";
+                    if(memberArr.count >3){
+                        for(int i=0;i<3;i++){
+                            NSDictionary *dictionary = memberArr[i];
+                            if(i==0){
+                                titleStr = [titleStr stringByAppendingFormat:@"%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                            }else{
+                                titleStr = [titleStr stringByAppendingFormat:@"、%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                            }
+                        }
+                    }else{
+                        for(int i=0;i<memberArr.count;i++){
+                            NSDictionary *dictionary = memberArr[i];
+                            if(i==0){
+                                titleStr = [titleStr stringByAppendingFormat:@"%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                            }else{
+                                titleStr = [titleStr stringByAppendingFormat:@"、%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                            }
+                        }
+                    }
+                    cell.textLabel.text = titleStr;
+                    NSLog(@"titleStr = %@",titleStr);
+                    
+                }else if(dict[@"groupName"]){
+                    cell.textLabel.text = dict[@"groupName"];
+                }
+        }
         }
         else {
             cell.textLabel.text = group.groupId;
         }
+        DLog(@"subject = %@",group.subject);
+        DLog(@"groupId = %@",group.groupId);
     }
     
     return cell;
@@ -182,7 +219,42 @@
         EMGroup *group = [self.dataSource objectAtIndex:indexPath.row];
         
         UIViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:group.groupId conversationType:EMConversationTypeGroupChat];
-        chatController.title = group.subject;
+        
+        NSString *titleStr = @"";
+        if (group.subject && group.subject.length > 0) {
+            if([group.subject rangeOfString:@"groupName"].location !=NSNotFound){
+                NSDictionary *dict = [self dictionaryWithJsonString:group.subject];
+                if(dict[@"groupName"] && [[dict[@"groupName"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] isEqualToString:@"未命名"]){
+                    NSLog(@"群组未命名");
+                    
+                    NSArray *memberArr = dict[@"jsonArray"];
+                    
+                    if(memberArr.count >3){
+                        for(int i=0;i<3;i++){
+                            NSDictionary *dictionary = memberArr[i];
+                            if(i==0){
+                                titleStr = [titleStr stringByAppendingFormat:@"%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                            }else{
+                                titleStr = [titleStr stringByAppendingFormat:@"、%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                            }
+                        }
+                    }else{
+                        for(int i=0;i<memberArr.count;i++){
+                            NSDictionary *dictionary = memberArr[i];
+                            if(i==0){
+                                titleStr = [titleStr stringByAppendingFormat:@"%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                            }else{
+                                titleStr = [titleStr stringByAppendingFormat:@"、%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                            }
+                        }
+                    }
+                }else if(dict[@"groupName"]){
+                    titleStr = dict[@"groupName"];
+                }
+            }
+        }
+        chatController.title = titleStr;
+        
         [self.navigationController pushViewController:chatController animated:YES];
     }
 }
@@ -376,5 +448,23 @@
     [self.navigationController pushViewController:createChatroom animated:YES];
 }
 
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString
+{
+    if (jsonString == nil) {
+        return nil;
+    }
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSLog(@"jsonData = %@",jsonData);
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:&err];
+    if(err)
+    {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
+}
 
 @end

@@ -16,6 +16,7 @@
 #import "RealtimeSearchUtil.h"
 #import <Hyphenate/EMCursorResult.h>
 #import "BaseTableViewCell.h"
+#import "ADOrderTopToolView.h"
 
 #import "UIViewController+SearchController.h"
 
@@ -46,20 +47,39 @@
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations.
-    self.title = NSLocalizedString(@"title.publicGroup", @"Public group");
+//    self.title = NSLocalizedString(@"title.publicGroup", @"Public group");
     
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    backButton.accessibilityIdentifier = @"back";
-    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    [backButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    [self.navigationItem setLeftBarButtonItem:backItem];
+//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+//    backButton.accessibilityIdentifier = @"back";
+//    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+//    [backButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+//    [self.navigationItem setLeftBarButtonItem:backItem];
     
     self.showRefreshHeader = YES;
     [self setupSearchController];
+    [self setUpNavTopView];
 
     [self tableViewDidTriggerHeaderRefresh];
+
 }
+
+#pragma mark - 导航栏处理
+- (void)setUpNavTopView
+{
+    ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
+    topToolView.backgroundColor = KMainColor;
+    [topToolView setTopTitleWithNSString:NSLocalizedString(@"title.publicGroup", @"Public group")];
+    WEAKSELF
+    topToolView.leftItemClickBlock = ^{
+        NSLog(@"点击了返回");
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    };
+    
+    [self.view addSubview:topToolView];
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -103,13 +123,52 @@
     
     EMGroup *group = [self.dataSource objectAtIndex:indexPath.row];
     cell.imageView.image = [UIImage imageNamed:@"groupPublicHeader"];
+    
+    NSString *titleStr = @"";
     if (group.subject && group.subject.length > 0) {
-        cell.textLabel.text = group.subject;
+        if([group.subject rangeOfString:@"groupName"].location !=NSNotFound){
+            NSDictionary *dict = [self dictionaryWithJsonString:group.subject];
+            if(dict[@"groupName"] && [[dict[@"groupName"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] isEqualToString:@"未命名"]){
+                NSLog(@"群组未命名");
+                
+                NSArray *memberArr = dict[@"jsonArray"];
+//                NSString *titleStr = @"";
+                if(memberArr.count >3){
+                    for(int i=0;i<3;i++){
+                        NSDictionary *dictionary = memberArr[i];
+                        if(i==0){
+                            titleStr = [titleStr stringByAppendingFormat:@"%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                        }else{
+                            titleStr = [titleStr stringByAppendingFormat:@"、%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                        }
+                    }
+                }else{
+                    for(int i=0;i<memberArr.count;i++){
+                        NSDictionary *dictionary = memberArr[i];
+                        if(i==0){
+                            titleStr = [titleStr stringByAppendingFormat:@"%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                        }else{
+                            titleStr = [titleStr stringByAppendingFormat:@"、%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                        }
+                    }
+                }
+                cell.textLabel.text = titleStr;
+            }else if(dict[@"groupName"]){
+                cell.textLabel.text = dict[@"groupName"];
+            }
+        }
     }
     else {
         cell.textLabel.text = group.groupId;
     }
     
+//    if (group.subject && group.subject.length > 0) {
+//        cell.textLabel.text = group.subject;
+//    }
+//    else {
+//        cell.textLabel.text = group.groupId;
+//    }
+
     return cell;
 }
 
@@ -245,8 +304,9 @@
         [weakSelf cancelSearch];
     }];
     
-    UISearchBar *searchBar = self.searchController.searchBar;
-    self.tableView.tableHeaderView = searchBar;
+//    UISearchBar *searchBar = self.searchController.searchBar;
+//    self.tableView.tableHeaderView = searchBar;
+    self.tableView.frame = CGRectMake(0, TopBarHeight, self.view.frame.size.width,self.view.frame.size.height-TopBarHeight);
 }
 
 #pragma mark - data
@@ -306,5 +366,25 @@
         });
     });
 }
+
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString
+{
+    if (jsonString == nil) {
+        return nil;
+    }
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSLog(@"jsonData = %@",jsonData);
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err)
+    {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
+}
+
 
 @end

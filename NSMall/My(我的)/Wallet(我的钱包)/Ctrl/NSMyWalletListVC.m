@@ -151,9 +151,9 @@
     if (self.walletTable.data.count > indexPath.section) {
         WalletItemModel *model = self.walletTable.data[indexPath.section];
         cell.walletModel = model;
-        cell.defaultClickBlock = ^{
-            [self setDefaultWalletWithID:model.wallet_id];
-        };
+//        cell.defaultClickBlock = ^{
+//            [self setDefaultWalletWithID:model.wallet_id];
+//        };
     }
     
     return cell;

@@ -122,8 +122,8 @@
 -(UIImageView *)shopIV{
     if (!_shopIV) {
         _shopIV = [[UIImageView alloc] init];
-        [_shopIV setBackgroundColor:[UIColor greenColor]];
-        [_shopIV setContentMode:UIViewContentModeScaleAspectFill];
+//        [_shopIV setBackgroundColor:[UIColor greenColor]];
+        [_shopIV setContentMode:UIViewContentModeScaleAspectFit];
         //        [_goodsIV setClipsToBounds:YES];
     }
     return _shopIV;

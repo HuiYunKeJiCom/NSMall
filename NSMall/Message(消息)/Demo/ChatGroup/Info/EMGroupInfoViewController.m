@@ -21,6 +21,7 @@
 #import "EMGroupSharedFilesViewController.h"
 
 #import "EMDingMessageHelper.h"
+#import "NSNavView.h"
 
 @interface EMGroupInfoViewController ()<EMChooseViewDelegate>
 
@@ -76,19 +77,42 @@
 
 - (void)_setupNavigationBar
 {
-    self.title = NSLocalizedString(@"title.groupInfo", @"Group Info");
+//    self.title = NSLocalizedString(@"title.groupInfo", @"Group Info");
     
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-    [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    self.navigationItem.leftBarButtonItem = backItem;
+//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+//    [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+//    [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+//    self.navigationItem.leftBarButtonItem = backItem;
     
-    UIButton *addButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-    [addButton setTitle:@"+" forState:UIControlStateNormal];
-    addButton.titleLabel.font = [UIFont boldSystemFontOfSize:30];
-    [addButton addTarget:self action:@selector(addMemberAction) forControlEvents:UIControlEventTouchUpInside];
-    self.addItem = [[UIBarButtonItem alloc] initWithCustomView:addButton];
+//    UIButton *addButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+//    [addButton setTitle:@"+" forState:UIControlStateNormal];
+//    addButton.titleLabel.font = [UIFont boldSystemFontOfSize:30];
+//    [addButton addTarget:self action:@selector(addMemberAction) forControlEvents:UIControlEventTouchUpInside];
+//    self.addItem = [[UIBarButtonItem alloc] initWithCustomView:addButton];
+}
+
+#pragma mark - 导航栏处理
+- (void)setUpNavTopView
+{
+    NSNavView *topToolView = [[NSNavView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
+    topToolView.backgroundColor = kWhiteColor;
+    [topToolView setTopTitleWithNSString:NSLocalizedString(@"title.groupInfo", @"Group Info")];
+    
+    WEAKSELF
+    topToolView.leftItemClickBlock = ^{
+        NSLog(@"点击了返回");
+        [weakSelf backAction];
+    };
+    
+    topToolView.rightItemClickBlock = ^{
+        //增加群组成员
+        [weakSelf addMemberAction];
+    };
+    [topToolView setRightItemImage:@"add"];
+    
+    [self.view addSubview:topToolView];
+    
 }
 
 #pragma mark - Subviews
