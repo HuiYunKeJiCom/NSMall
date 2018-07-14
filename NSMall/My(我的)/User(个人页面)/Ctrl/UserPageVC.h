@@ -9,5 +9,5 @@
 #import "DCBaseSetViewController.h"
 
 @interface UserPageVC : DCBaseSetViewController
-
+-(void)setUpDataWithUserId:(NSString *)userId;
 @end

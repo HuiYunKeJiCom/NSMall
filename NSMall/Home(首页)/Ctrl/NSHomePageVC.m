@@ -35,7 +35,7 @@
 @property(nonatomic,strong)NSMutableDictionary *imageDict;/* 图片字典 */
 @property(nonatomic,strong)UIView *shareView;/* 分享View */
 @property(nonatomic,strong)UIImageView * scanView;
-
+@property(nonatomic,strong)UIView *bgView;/* 二维码背景图 */
 @end
 
 @implementation NSHomePageVC
@@ -55,12 +55,13 @@
     self.shareView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.9];
     self.shareView.alpha = 0;
     
-    UIView *bgView = [[UIView alloc]init];
-    bgView.backgroundColor = kWhiteColor;
-    [self.shareView addSubview:bgView];
-    bgView.x = 30;
-    bgView.y = kScreenHeight*0.25;
-    bgView.size = CGSizeMake(kScreenWidth-60, kScreenHeight*0.5);
+    self.bgView = [[UIView alloc]init];
+    self.bgView.backgroundColor = kWhiteColor;
+    [[[UIApplication  sharedApplication ]keyWindow ] addSubview:self.bgView];
+    self.bgView.x = 30;
+    self.bgView.y = kScreenHeight*0.25;
+    self.bgView.size = CGSizeMake(kScreenWidth-60, kScreenHeight*0.5);
+    self.bgView.alpha = 0;
     
     self.scanView = [[UIImageView alloc] init];
     self.scanView.layer.cornerRadius = 4;
@@ -70,14 +71,14 @@
     self.scanView.y = kScreenHeight*0.5*0.55-105;
     self.scanView.size = CGSizeMake(150, 150);
     //    self.scanView.center = self.bgView.center;
-    [bgView addSubview:self.scanView];
+    [self.bgView addSubview:self.scanView];
 
     UIButton *closeBtn = [[UIButton alloc]init];
     closeBtn.backgroundColor = kRedColor;
     closeBtn.x = kScreenWidth-60-10;
     closeBtn.y = -10;
     closeBtn.size = CGSizeMake(20, 20);
-    [bgView addSubview:closeBtn];
+    [self.bgView addSubview:closeBtn];
     [closeBtn addTarget:self action:@selector(hideGoodsQRCode) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -385,6 +386,7 @@
 -(void)showGoodsQRCode:(NSIndexPath *)indexPath{
     
     self.shareView.alpha = 0.9;
+    self.bgView.alpha = 1;
     NSGoodsShowCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
 //    NSString *goodsID = cell.productModel.product_id;
     [self setUpFilter:[NSString stringWithFormat:@"gid:%@",cell.productModel.product_id]];
@@ -393,6 +395,7 @@
 -(void)hideGoodsQRCode{
     DLog(@"隐藏二维码");
     self.shareView.alpha = 0;
+    self.bgView.alpha = 0;
 }
 
 -(void)setUpFilter:(NSString*)string {

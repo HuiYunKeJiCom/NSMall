@@ -14,7 +14,7 @@
 @optional
 
 - (void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
-
+-(void)deleteCommentWithIndexPath:(NSIndexPath *)indexPath;
 @end
 
 @interface NSMessageTV : BaseTableView

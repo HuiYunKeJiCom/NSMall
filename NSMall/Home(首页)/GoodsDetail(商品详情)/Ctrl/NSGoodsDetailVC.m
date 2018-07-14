@@ -21,8 +21,10 @@
 
 #import "NSProductCommentParam.h"
 #import "NSCommentItemModel.h"
+#import "NSPublishCommentParam.h"
+#import "UserPageVC.h"
 
-@interface NSGoodsDetailVC ()<UIScrollViewDelegate,NSMessageTVDelegate>
+@interface NSGoodsDetailVC ()<UIScrollViewDelegate,NSMessageTVDelegate,UIAlertViewDelegate,UITextFieldDelegate>
 @property(nonatomic,strong)UIScrollView *SV;/* 滚动 */
 @property(nonatomic,strong)NSGoodsDetailModel *model;/* 商品详情模型 */
 @property(nonatomic,copy)NSString *productID;/* 商品ID */
@@ -34,6 +36,11 @@
 @property(nonatomic,strong)NSProductCommentParam *param;/* 获取评论列表的参数 */
 @property(nonatomic)float height;/* 高度 */
 @property(nonatomic,strong)UIView *noMoreV;/* 无更多数据 */
+
+@property(nonatomic,strong)UIView *messageView;/* 留言View */
+@property (nonatomic, copy) NSIndexPath *deleteIndexPath;/* 待删除的评论IndexPath */
+@property(nonatomic,strong)UIView *bottomV;/* 底部留言View */
+@property(nonatomic,strong)UITextField *messageTF;/* 评论框 */
 @end
 
 @implementation NSGoodsDetailVC
@@ -46,6 +53,11 @@
     [self setUpNavTopView];
 //    self.currentPage = 1;
 //    [self requestAllOrder:NO];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didClickKeyboard:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didKboardDisappear:) name:UIKeyboardWillHideNotification object:nil];
+
 }
 
 -(void)buildUI{
@@ -169,6 +181,11 @@
 //    sellerIV.backgroundColor = kRedColor;
     [sellerIV sd_setImageWithURL:[NSURL URLWithString:self.model.user_avatar]];
     [sellerView addSubview:sellerIV];
+    sellerIV.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *myTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(checkUserPage)];
+    [sellerIV addGestureRecognizer:myTap];
+    
     
     NSString *shopContentStr = [NSString stringWithFormat:@"%lu商品  %lu店铺  %lu评价",self.model.product_number,self.model.store_number,self.model.comment_number];
     
@@ -179,19 +196,19 @@
     [sellerView addSubview:shopContent];
     
     //留言
-    UIView *messageView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(sellerView.frame), kScreenWidth, GetScaleWidth(312))];
-    messageView.backgroundColor = kWhiteColor;
-    [self.SV addSubview:messageView];
+    self.messageView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(sellerView.frame), kScreenWidth, GetScaleWidth(312))];
+    self.messageView.backgroundColor = kWhiteColor;
+    [self.SV addSubview:self.messageView];
     
     CGSize titleSize = [self contentSizeWithTitle:@"留言" andFont:15];
     UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(GetScaleWidth(18), GetScaleWidth(25),titleSize.width,titleSize.height) FontSize:15];
     titleLab.textColor = kBlackColor;
     titleLab.text = @"留言";
-    [messageView addSubview:titleLab];
+    [self.messageView addSubview:titleLab];
     
     UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(titleLab.frame)+GetScaleWidth(12), kScreenWidth, GetScaleWidth(1))];
     lineView.backgroundColor = [UIColor lightGrayColor];
-    [messageView addSubview:lineView];
+    [self.messageView addSubview:lineView];
     
     self.messageTV = [[NSMessageTV alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.messageTV.backgroundColor = kWhiteColor;
@@ -207,13 +224,13 @@
     }
     self.messageTV.x = 0;
     self.messageTV.y = CGRectGetMaxY(lineView.frame)+GetScaleWidth(10);
-    [messageView addSubview:self.messageTV];
+    [self.messageView addSubview:self.messageTV];
 
     [self requestAllOrder:NO];
     
     self.noMoreV = [[UIView alloc]init];
     self.noMoreV.backgroundColor = kWhiteColor;
-    [messageView addSubview:self.noMoreV];
+    [self.messageView addSubview:self.noMoreV];
     
     UILabel *noMoreLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(40)) FontSize:14];
     [self.noMoreV addSubview:noMoreLabel];
@@ -263,6 +280,9 @@
     [self setUpLeftTwoButton];//收藏 留言 购物车
     
     [self setUpRightTwoButton];//加入购物车 立即购买
+    
+    [self createBottomView];
+    
 }
 
 #pragma mark - 收藏 购物车
@@ -297,7 +317,7 @@
     [messageBtn setTitleColor:kBlackColor forState:UIControlStateNormal];
     [messageBtn setImageWithTitle:IMAGE(@"goods_detail_ico_message") withTitle:@"留言" position:@"left" font:UISystemFontSize(13) forState:UIControlStateNormal];
     messageBtn.tag = 3;
-    //        [messageBtn addTarget:self action:@selector(bottomButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [messageBtn addTarget:self action:@selector(showBottomV) forControlEvents:UIControlEventTouchUpInside];
     messageBtn.frame = CGRectMake(buttonW+10, 2, buttonW, buttonH);
     [bottomView addSubview:messageBtn];
     
@@ -335,6 +355,90 @@
 
         [self.view addSubview:button];
     }
+}
+
+-(void)createBottomView{
+    self.bottomV = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-GetScaleWidth(50), kScreenWidth, GetScaleWidth(50))];
+    self.bottomV.backgroundColor = kWhiteColor;
+    self.bottomV.layer.borderWidth = 1;
+    self.bottomV.alpha = 0.0;
+    self.bottomV.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    [self.view addSubview:self.bottomV];
+    
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.backgroundColor = kRedColor;
+    backBtn.x = 19;
+    backBtn.y = 15;
+    backBtn.size = CGSizeMake(20, 20);
+    [backBtn addTarget:self action:@selector(hideBottomV) forControlEvents:UIControlEventTouchUpInside];
+    [self.bottomV addSubview:backBtn];
+    
+    self.messageTF = [[UITextField alloc]init];
+    self.messageTF.delegate = self;
+    self.messageTF.textColor = kBlackColor;
+    self.messageTF.backgroundColor = kWhiteColor;
+    self.messageTF.font = UISystemFontSize(14);
+    self.messageTF.x = 58;
+    self.messageTF.y = 10;
+    UIView *paddingView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 5, GetScaleWidth(25))];
+    self.messageTF.leftView = paddingView;
+    self.messageTF.leftViewMode = UITextFieldViewModeAlways;
+    self.messageTF.size = CGSizeMake(kScreenWidth-136, 25);
+    self.messageTF.clearsOnBeginEditing = YES;
+    [self.bottomV addSubview:self.messageTF];
+    self.messageTF.layer.cornerRadius = 5.0;//2.0是圆角的弧度，根据需求自己更改
+    self.messageTF.layer.borderColor = kBlackColor.CGColor;//设置边框颜色
+    self.messageTF.layer.borderWidth = 1.0f;//设置边框宽度
+    
+    UIButton *sendBtn = [[UIButton alloc]init];
+    [sendBtn setTitleColor:kWhiteColor forState:0];
+    sendBtn.titleLabel.font = UISystemFontSize(13);
+    //    [snedBtn addTarget:self action:@selector(delButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+    sendBtn.layer.cornerRadius = 5.0;//2.0是圆角的弧度，根据需求自己更改
+    //    snedBtn.layer.borderColor = KMainColor.CGColor;//设置边框颜色
+    //    snedBtn.layer.borderWidth = 1.0f;//设置边框宽度
+    sendBtn.backgroundColor = KMainColor;
+    [sendBtn addTarget:self action:@selector(sendComment) forControlEvents:UIControlEventTouchUpInside];
+    [self.bottomV addSubview:sendBtn];
+    sendBtn.x = kScreenWidth-GetScaleWidth(59);
+    sendBtn.y = 15;
+    sendBtn.size = CGSizeMake(GetScaleWidth(40), GetScaleWidth(20));
+}
+
+-(void)showBottomV{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.bottomV.alpha = 1.0;
+    }];
+}
+
+-(void)hideBottomV{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.bottomV.alpha = 0.0;
+    }];
+}
+
+-(void)sendComment{
+    NSPublishCommentParam *param = [NSPublishCommentParam new];
+    param.productId = self.productID;
+    param.content = self.messageTF.text;
+    
+    [GoodsDetailAPI publishComment:param success:^(NSCommentItemModel * _Nullable result) {
+        DLog(@"发布商品评论成功");
+        
+        [self.messageTV.data insertObject:[[NSMessageModel alloc] initWithUserName:result.user_name imagePath:result.user_avatar content:result.content time:result.create_time commentId:result.comment_id] atIndex:0];
+        
+        self.messageView.size = CGSizeMake(kScreenWidth, self.messageTV.data.count*GetScaleWidth(95)+GetScaleWidth(172));
+        self.messageTV.size = CGSizeMake(kScreenWidth, self.messageTV.data.count*GetScaleWidth(95));
+        self.SV.contentSize = CGSizeMake(self.SV.bounds.size.width, self.height+GetScaleWidth(203)+GetScaleWidth(40)+(self.messageTV.data.count)*GetScaleWidth(95));
+        self.noMoreV.y = CGRectGetMaxY(self.messageTV.frame);
+        [self.messageTV reloadData];
+        self.messageTF.text = @"";
+        
+    } failure:^(NSError *error) {
+        DLog(@"发布商品评论失败");
+    }];
+    
 }
 
 -(void)setModel:(NSGoodsDetailModel *)model{
@@ -505,8 +609,9 @@
 //        weakSelf.messageTV.data = [NSMutableArray arrayWithArray:result.commentList];
         
         for (NSCommentItemModel *itemModel in result.commentList) {
-            [weakSelf.messageTV.data addObject:[[NSMessageModel alloc] initWithUserName:itemModel.user_name imagePath:itemModel.user_avatar content:itemModel.content time:itemModel.create_time]];
+            [weakSelf.messageTV.data addObject:[[NSMessageModel alloc] initWithUserName:itemModel.user_name imagePath:itemModel.user_avatar content:itemModel.content time:itemModel.create_time commentId:itemModel.comment_id]];
         }
+        self.messageView.size = CGSizeMake(kScreenWidth, result.commentList.count*GetScaleWidth(95)+GetScaleWidth(172));
         self.messageTV.size = CGSizeMake(kScreenWidth, result.commentList.count*GetScaleWidth(95));
         self.SV.contentSize = CGSizeMake(self.SV.bounds.size.width, self.height+GetScaleWidth(203)+GetScaleWidth(40)+(result.commentList.count)*GetScaleWidth(95));
         self.noMoreV.x = 0;
@@ -518,5 +623,90 @@
     }];
 
 }
+
+-(void)deleteCommentWithIndexPath:(NSIndexPath *)indexPath{
+    
+    self.deleteIndexPath = indexPath;
+    
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"确定删除该评论?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alert show];
+    
+}
+
+-(void)removeComment{
+    DLog(@"removeComment");
+    NSMessageModel *model = self.messageTV.data[self.deleteIndexPath.section];
+    
+    [GoodsDetailAPI delCommentWithParam:model.commentId success:^{
+        DLog(@"删除评论成功");
+        [self.messageTV.data removeObjectAtIndex:self.deleteIndexPath.section];
+        
+        self.messageView.size = CGSizeMake(kScreenWidth, self.messageTV.data.count*GetScaleWidth(95)+GetScaleWidth(172));
+        self.messageTV.size = CGSizeMake(kScreenWidth, self.messageTV.data.count*GetScaleWidth(95));
+        self.SV.contentSize = CGSizeMake(self.SV.bounds.size.width, self.height+GetScaleWidth(203)+GetScaleWidth(40)+(self.messageTV.data.count)*GetScaleWidth(95));
+        self.noMoreV.y = CGRectGetMaxY(self.messageTV.frame);
+        
+        [self.messageTV reloadData];
+    } faulre:^(NSError *error) {
+        DLog(@"删除评论失败");
+    }];
+
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) { //
+        [self removeComment];
+    }
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];// 使当前文本框失去第一响应者的特权，就会回收键盘了
+    
+    return YES;
+}
+
+#pragma mark -      键盘即将跳出
+
+-(void)didClickKeyboard:(NSNotification *)sender{
+    
+    CGFloat durition = [sender.userInfo[@"UIKeyboardAnimationDurationUserInfoKey"] doubleValue];
+    
+    CGRect keyboardRect = [sender.userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
+    
+    CGFloat keyboardHeight = keyboardRect.size.height;
+    
+    [UIView animateWithDuration:durition animations:^{
+        
+        self.bottomV.transform = CGAffineTransformMakeTranslation(0, -keyboardHeight);
+        
+    }];
+    
+}
+
+#pragma mark -      当键盘即将消失
+
+-(void)didKboardDisappear:(NSNotification *)sender{
+    
+    CGFloat duration = [sender.userInfo[@"UIKeyboardAnimationDurationUserInfoKey"] doubleValue];
+    
+    [UIView animateWithDuration:duration animations:^{
+        
+        self.bottomV.transform = CGAffineTransformIdentity;
+        
+    }];
+    
+}
+
+-(void)checkUserPage{
+    DLog(@"跳转至个人页面");
+    //跳转至个人页面
+    UserPageVC *userPageVC = [UserPageVC new];
+    [userPageVC setUpDataWithUserId:self.model.user_id];
+    [self.navigationController pushViewController:userPageVC animated:YES];
+}
+
 
 @end

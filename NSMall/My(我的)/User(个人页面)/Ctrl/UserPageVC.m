@@ -43,7 +43,7 @@
 
 @property(nonatomic)NSInteger currentPage;/* 当前页数 */
 @property(nonatomic,strong)SearchModel *searchModel;/* 搜索结果模型 */
-
+@property(nonatomic,strong)NSString *userId;/* 查询的userId */
 @end
 
 @implementation UserPageVC
@@ -58,7 +58,7 @@
     
     self.view.backgroundColor = KBGCOLOR;
     [self createUI];
-    [self setUpData];
+//    [self setUpDataWithUserId:nil];
     [self setUpNavTopView];
     [self makeConstraints];
 }
@@ -198,9 +198,9 @@
     _pageSelectBar = [[ThreePageSelectBar alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 40) options:@[@"商品",@"店铺",@"评论"] selectBlock:^(NSString *option, NSInteger index) {
         _mainScrollView.contentOffset = CGPointMake((_mainScrollView.contentSize.width/3) * index, 0);
         if(index == 0){
-            [self searchWithType:@"0"];
+            [self searchWithType:@"0" andUserId:self.userId];
         }else if(index == 1){
-            [self searchWithType:@"1"];
+            [self searchWithType:@"1" andUserId:self.userId];
         }
     }];
     //    _pageSelectBar.backgroundColor = [UIColor redColor];
@@ -244,13 +244,14 @@
 
 }
 
--(void)setUpData{
-    UserModel *userModel = [UserModel modelFromUnarchive];
+-(void)setUpDataWithUserId:(NSString *)userId{
+    
+    self.userId = userId;
     
     dispatch_group_t group = dispatch_group_create();
     dispatch_group_enter(group);
     
-    [UserPageAPI getUserById:userModel.user_id success:^(UserPageModel * _Nullable result) {
+    [UserPageAPI getUserById:userId success:^(UserPageModel * _Nullable result) {
         DLog(@"获取指定用户信息成功");
         self.userPageM = result;
         self.headerV.userPageM = self.userPageM;
@@ -262,18 +263,19 @@
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         //请求完成后的处理、
         NSLog(@"完成");
-        [self searchWithType:@"0"];
+        [self searchWithType:@"0" andUserId:userId];
     });
     
 }
 
--(void)searchWithType:(NSString *)searchType {
+-(void)searchWithType:(NSString *)searchType andUserId:(NSString *)userId{
     
     SearchParam *param = [SearchParam new];
     
     param.currentPage = [NSString stringWithFormat:@"%@",[NSNumber numberWithInteger:self.currentPage]];
     param.searchType = searchType;
     param.sortType = @"ASC";
+    param.userId = userId;
     
     WEAKSELF
     [HomePageAPI searchProductOrShop:param success:^(SearchModel *result) {

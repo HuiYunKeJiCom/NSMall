@@ -103,6 +103,8 @@
             NSLog(@"点击了头像");
             //跳转至个人页面
             UserPageVC *userPageVC = [UserPageVC new];
+            UserModel *userModel = [UserModel modelFromUnarchive];
+            [userPageVC setUpDataWithUserId:userModel.user_id];
             [self.navigationController pushViewController:userPageVC animated:YES];
         }
             break;

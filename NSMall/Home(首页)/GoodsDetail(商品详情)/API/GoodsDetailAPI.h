@@ -15,6 +15,7 @@
 #import "NSBuyNowModel.h"
 #import "NSProductCommentParam.h"
 #import "NSCommentListModel.h"
+#import "NSPublishCommentParam.h"
 
 
 @interface GoodsDetailAPI : NSObject
@@ -48,4 +49,14 @@
  获取商品评论列表
  */
 + (void)getkProductCommentList:(nullable NSProductCommentParam *)param success:(void (^)(NSCommentListModel * _Nullable result))success failure:(void (^)(NSError *error))failure;
+
+/*
+ 删除商品评论
+ */
++ (void)delCommentWithParam:(NSString *)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure;
+
+/*
+ 发布商品评论
+ */
++ (void)publishComment:(nullable NSPublishCommentParam *)param success:(void (^)(NSCommentItemModel * _Nullable result))success failure:(void (^)(NSError *error))failure;
 @end

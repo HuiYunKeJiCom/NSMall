@@ -13,5 +13,69 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NSMall/My(&#x6211;&#x7684;)/MyOrder(&#x6211;&#x7684;&#x8ba2;&#x5355;)/Ctrl/NSOrderListVC.m"
+            timestampString = "553258429.94137"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
+            landmarkName = "-changeScrollview:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[NSOrderListVC changeScrollview:]"
+                  moduleName = "NSMall"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/NSMall/NSMall/My(%E6%88%91%E7%9A%84)/MyOrder(%E6%88%91%E7%9A%84%E8%AE%A2%E5%8D%95)/Ctrl/NSOrderListVC.m"
+                  timestampString = "553258432.3376451"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "270"
+                  endingLineNumber = "270"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__34-[NSOrderListVC changeScrollview:]_block_invoke"
+                  moduleName = "NSMall"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/NSMall/NSMall/My(%E6%88%91%E7%9A%84)/MyOrder(%E6%88%91%E7%9A%84%E8%AE%A2%E5%8D%95)/Ctrl/NSOrderListVC.m"
+                  timestampString = "553258432.341676"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "271"
+                  endingLineNumber = "271"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NSMall/My(&#x6211;&#x7684;)/MyOrder(&#x6211;&#x7684;&#x8ba2;&#x5355;)/Ctrl/NSOrderListVC.m"
+            timestampString = "553258429.975637"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
+            landmarkName = "-scrollViewDidScroll:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

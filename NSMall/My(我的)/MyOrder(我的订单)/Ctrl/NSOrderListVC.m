@@ -36,6 +36,7 @@
 @property(nonatomic,strong)UIScrollView *scrollView2;/* 卖出的订单SV */
 @property(nonatomic,strong)UIView *saleView;/* 卖出View */
 @property(nonatomic,strong)UIScrollView *SV;/* 总的 */
+@property(nonatomic,strong)UISegmentedControl *segment;/* 选择器 */
 @end
 
 @implementation NSOrderListVC
@@ -142,18 +143,18 @@
     //先生成存放标题的数据
     NSArray *array = [NSArray arrayWithObjects:@"我买到的",@"我卖出的", nil];
     //初始化UISegmentedControl
-    UISegmentedControl *segment = [[UISegmentedControl alloc]initWithItems:array];
+    self.segment = [[UISegmentedControl alloc]initWithItems:array];
     //设置frame
-    segment.frame = CGRectMake(kScreenWidth*0.3, (NavBarHeight-25)*0.5+StatusBarHeight, kScreenWidth*0.4, 25);
+    self.segment.frame = CGRectMake(kScreenWidth*0.3, (NavBarHeight-25)*0.5+StatusBarHeight, kScreenWidth*0.4, 25);
     //开始时默认选中下标(第一个下标默认是0)
-    segment.selectedSegmentIndex = 0;
+    self.segment.selectedSegmentIndex = 0;
     //控件渲染色(也就是外观字体颜色)
-    segment.tintColor = KMainColor;
+    self.segment.tintColor = KMainColor;
     //添加到视图
-    [self.topToolView addSubview:segment];
+    [self.topToolView addSubview:self.segment];
     
     //添加事件
-    [segment addTarget:self action:@selector(change:) forControlEvents:UIControlEventValueChanged];
+    [self.segment addTarget:self action:@selector(change:) forControlEvents:UIControlEventValueChanged];
     
 }
 
@@ -252,6 +253,12 @@
         [_headView1 setSelectAtIndex:index];
     }else if (scrollView.tag == 10){
         [_headView2 setSelectAtIndex:index];
+    }else if (scrollView.tag == 1000){
+        if(index == 1){
+            self.segment.selectedSegmentIndex = 0;
+        }else{
+            self.segment.selectedSegmentIndex = 1;
+        }
     }
     
 }

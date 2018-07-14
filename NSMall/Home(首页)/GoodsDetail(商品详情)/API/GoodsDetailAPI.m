@@ -73,5 +73,26 @@
     }];
 }
 
+/*
+ 删除商品评论
+ */
++ (void)delCommentWithParam:(NSString *)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure{
+    [Net requestWithPost:@{@"id":param} function:kRemoveCommentAPI showHUD:NetNullStr resultClass:[NSDictionary class] success:^(id  _Nullable resultObj) {
+        success?success():nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+}
+
+/*
+ 发布商品评论
+ */
++ (void)publishComment:(nullable NSPublishCommentParam *)param success:(void (^)(NSCommentItemModel * _Nullable result))success failure:(void (^)(NSError *error))failure{
+    [Net requestWithGet:param function:kPublishCommentAPI showHUD:NetNullStr resultClass:[NSCommentItemModel class] success:^(NSCommentItemModel  * _Nullable  resultObj){
+        success?success(resultObj):nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+}
 
 @end

@@ -33,6 +33,9 @@
         if (self.data.count > indexPath.section) {
             NSMessageModel *infoModel = [self.data objectAtIndex:indexPath.section];
             cell.messageModel = infoModel;
+            cell.delBtnClickBlock = ^{
+                [self deleteCommentWithIndexPath:indexPath];
+            };
         }
         return cell;
 }
@@ -66,6 +69,12 @@
 {
     if (_tbDelegate && [_tbDelegate respondsToSelector:@selector(didSelectRowAtIndexPath:)]) {
         [_tbDelegate didSelectRowAtIndexPath:indexPath];
+    }
+}
+
+-(void)deleteCommentWithIndexPath:(NSIndexPath *)indexPath{
+    if (_tbDelegate && [_tbDelegate respondsToSelector:@selector(deleteCommentWithIndexPath:)]) {
+        [_tbDelegate deleteCommentWithIndexPath:indexPath];
     }
 }
 
