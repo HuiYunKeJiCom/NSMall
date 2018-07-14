@@ -11,7 +11,7 @@
 @interface NSMessageTVCell ()
 
 @property (strong, nonatomic) UIView *bottomLineView;
-
+@property(nonatomic,strong)UIButton *delBtn;/* 删除按钮 */
 @end
 
 @implementation NSMessageTVCell
@@ -51,7 +51,7 @@
     
     if (!_userIV) {
         _userIV = [[UIImageView alloc] initWithImage:IMAGE(@"draw_right_icon")];
-        _userIV.backgroundColor =kRedColor;
+//        _userIV.backgroundColor =kRedColor;
     }
     
     return _userIV;
@@ -69,7 +69,7 @@
 
 -(UILabel *)timeLb{
     if (!_timeLb) {
-        _timeLb = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum13 TextColor:[UIColor lightGrayColor]];
+        _timeLb = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum13 TextColor:kGreyColor];
     }
     return _timeLb;
 }
@@ -95,14 +95,31 @@
     return _bottomLineView;
 }
 
+-(UIButton *)delBtn{
+    if (!_delBtn) {
+        _delBtn = [[UIButton alloc]init];
+        [_delBtn setTitleColor:kRedColor forState:0];
+        
+        
+//        [_delBtn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _delBtn;
+}
+
 #pragma mark - setter
 
 - (void)setMessageModel:(NSMessageModel *)messageModel {
     _messageModel = messageModel;
     
+    [self.userIV sd_setImageWithURL:[NSURL URLWithString:messageModel.imagePath]];
     self.userNameLb.text = messageModel.userName;
     self.contentLb.text = messageModel.content;
     self.timeLb.text = messageModel.time;
+    
+    [_delBtn setTitle:@"删除" forState:UIControlStateNormal];
+    _delBtn.layer.cornerRadius = 2.0;//2.0是圆角的弧度，根据需求自己更改
+    _delBtn.layer.borderColor = kRedColor.CGColor;//设置边框颜色
+    _delBtn.layer.borderWidth = 1.0f;//设置边框颜色
 }
 
 #pragma mark - private methord
@@ -138,6 +155,12 @@
     [self.timeLb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.userIV.mas_right).with.offset(GetScaleWidth(6));
         make.top.equalTo(weakSelf.contentLb.mas_bottom).with.offset(GetScaleWidth(10));
+    }];
+    
+    [self.delBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(weakSelf.mas_right).with.offset(-GetScaleWidth(19));
+        make.bottom.equalTo(weakSelf.timeLb.mas_bottom);
+         make.size.mas_equalTo(CGSizeMake(GetScaleWidth(80), GetScaleWidth(20)));
     }];
     
     [self.bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {

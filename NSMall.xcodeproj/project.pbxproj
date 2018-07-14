@@ -16,6 +16,10 @@
 		1831CA6420C788CC00F00BAF /* NSBuyNowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831CA6320C788CC00F00BAF /* NSBuyNowModel.m */; };
 		1831CA6720C78F7500F00BAF /* NSNewFirmOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831CA6620C78F7500F00BAF /* NSNewFirmOrderVC.m */; };
 		1831CA6A20C7B33D00F00BAF /* NSNewFirmOrderTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831CA6920C7B33D00F00BAF /* NSNewFirmOrderTVCell.m */; };
+		18333C4320F83F30004571FE /* NSProductCommentParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18333C4220F83F30004571FE /* NSProductCommentParam.m */; };
+		18333C4620F83FE2004571FE /* NSCommentListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18333C4520F83FE2004571FE /* NSCommentListModel.m */; };
+		18333C4920F84026004571FE /* NSCommentItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18333C4820F84026004571FE /* NSCommentItemModel.m */; };
+		18333C4C20F8404C004571FE /* NSReplyItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18333C4A20F8404B004571FE /* NSReplyItemModel.m */; };
 		18335F7620BBEF79006264EF /* NSChangeCartNumParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18335F7520BBEF79006264EF /* NSChangeCartNumParam.m */; };
 		18335F7920BC0310006264EF /* NSAreaItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18335F7820BC0310006264EF /* NSAreaItemModel.m */; };
 		18350890207F653600BCF7CE /* Net.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835088F207F653600BCF7CE /* Net.m */; };
@@ -425,6 +429,14 @@
 		1831CA6620C78F7500F00BAF /* NSNewFirmOrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSNewFirmOrderVC.m; sourceTree = "<group>"; };
 		1831CA6820C7B33D00F00BAF /* NSNewFirmOrderTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSNewFirmOrderTVCell.h; sourceTree = "<group>"; };
 		1831CA6920C7B33D00F00BAF /* NSNewFirmOrderTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSNewFirmOrderTVCell.m; sourceTree = "<group>"; };
+		18333C4120F83F30004571FE /* NSProductCommentParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSProductCommentParam.h; sourceTree = "<group>"; };
+		18333C4220F83F30004571FE /* NSProductCommentParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSProductCommentParam.m; sourceTree = "<group>"; };
+		18333C4420F83FE2004571FE /* NSCommentListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCommentListModel.h; sourceTree = "<group>"; };
+		18333C4520F83FE2004571FE /* NSCommentListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCommentListModel.m; sourceTree = "<group>"; };
+		18333C4720F84026004571FE /* NSCommentItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCommentItemModel.h; sourceTree = "<group>"; };
+		18333C4820F84026004571FE /* NSCommentItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCommentItemModel.m; sourceTree = "<group>"; };
+		18333C4A20F8404B004571FE /* NSReplyItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NSReplyItemModel.m; path = "/Users/apple/NSMall/NSMall/Home(首页)/GoodsDetail(商品详情)/Model/NSReplyItemModel.m"; sourceTree = "<absolute>"; };
+		18333C4B20F8404B004571FE /* NSReplyItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NSReplyItemModel.h; path = "/Users/apple/NSMall/NSMall/Home(首页)/GoodsDetail(商品详情)/Model/NSReplyItemModel.h"; sourceTree = "<absolute>"; };
 		18335F7420BBEF79006264EF /* NSChangeCartNumParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSChangeCartNumParam.h; sourceTree = "<group>"; };
 		18335F7520BBEF79006264EF /* NSChangeCartNumParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSChangeCartNumParam.m; sourceTree = "<group>"; };
 		18335F7720BC0310006264EF /* NSAreaItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAreaItemModel.h; sourceTree = "<group>"; };
@@ -2460,6 +2472,8 @@
 				18ADC51D20BADFCF00961CD8 /* NSAddCartParam.m */,
 				18AD9FD120C626EC00275CC5 /* NSBuildOrderNowParam.h */,
 				18AD9FD220C626EC00275CC5 /* NSBuildOrderNowParam.m */,
+				18333C4120F83F30004571FE /* NSProductCommentParam.h */,
+				18333C4220F83F30004571FE /* NSProductCommentParam.m */,
 			);
 			path = Param;
 			sourceTree = "<group>";
@@ -3687,6 +3701,8 @@
 		18E1E33920B6531B00B0FD0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18333C4B20F8404B004571FE /* NSReplyItemModel.h */,
+				18333C4A20F8404B004571FE /* NSReplyItemModel.m */,
 				18ADC51820BAD5AD00961CD8 /* GoodAttrModel.h */,
 				18ADC51920BAD5AD00961CD8 /* GoodAttrModel.m */,
 				18E1E33E20B654E200B0FD0C /* NSGoodsDetailModel.h */,
@@ -3699,6 +3715,10 @@
 				18DD2F2520B95B0D00521B61 /* NSCollectModel.m */,
 				1831CA6220C788CC00F00BAF /* NSBuyNowModel.h */,
 				1831CA6320C788CC00F00BAF /* NSBuyNowModel.m */,
+				18333C4420F83FE2004571FE /* NSCommentListModel.h */,
+				18333C4520F83FE2004571FE /* NSCommentListModel.m */,
+				18333C4720F84026004571FE /* NSCommentItemModel.h */,
+				18333C4820F84026004571FE /* NSCommentItemModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4173,6 +4193,7 @@
 				1854114920EC9D60003C7696 /* ChatDemoHelper.m in Sources */,
 				1854114A20EC9D60003C7696 /* ContactListSelectViewController.m in Sources */,
 				18C3D0DC20A44803000FCE7F /* NSNavView.m in Sources */,
+				18333C4620F83FE2004571FE /* NSCommentListModel.m in Sources */,
 				18E3A45420B2E63D00F847ED /* GoodsPublishParam.m in Sources */,
 				1863D26720A96C8800047A7D /* NSGoodsShowCell.m in Sources */,
 				1842A6E620B59D360090861D /* LZCartTableViewCell.m in Sources */,
@@ -4206,6 +4227,7 @@
 				1878478920AEE93600AC0E0F /* NSOrderHeader.m in Sources */,
 				1842A6E520B59D350090861D /* LZTableHeaderView.m in Sources */,
 				18B1CB1A20BFCB1C00235CFA /* NSAddWalletVC.m in Sources */,
+				18333C4920F84026004571FE /* NSCommentItemModel.m in Sources */,
 				18DD157D208DD5F40006475D /* NSNearbyViewController.m in Sources */,
 				18E3A44320B29C0A00F847ED /* MyOrderParam.m in Sources */,
 				18C60DEE20C14D70002920D2 /* NSPayOrderParam.m in Sources */,
@@ -4337,6 +4359,7 @@
 				1854114F20EC9D60003C7696 /* RobotListViewController.m in Sources */,
 				1874523820EDAE5100A67D70 /* EMChooseViewController.m in Sources */,
 				18D0C0E620AC1E19007F0784 /* JFPickerController.m in Sources */,
+				18333C4C20F8404C004571FE /* NSReplyItemModel.m in Sources */,
 				1854115620EC9D60003C7696 /* ChatroomListViewController.m in Sources */,
 				18AD9FDF20C67CCF00275CC5 /* ADLScanningController.m in Sources */,
 				18D574D2209AB1D6001C7875 /* HeaderModel.m in Sources */,
@@ -4394,6 +4417,7 @@
 				18D0C0DF20AC1BC3007F0784 /* TDCountryDataSource.m in Sources */,
 				18C3D0A120A2F151000FCE7F /* NSCategoryTableViewCell.m in Sources */,
 				18E3A42F20B2644B00F847ED /* NSRejectedSaleVC.m in Sources */,
+				18333C4320F83F30004571FE /* NSProductCommentParam.m in Sources */,
 				18F5D51220CE6A740037F825 /* BMKClusterItem.m in Sources */,
 				1840435B209A028100685F80 /* UserInfoAPI.m in Sources */,
 				184F065620A2DD5500768418 /* SearchModel.m in Sources */,

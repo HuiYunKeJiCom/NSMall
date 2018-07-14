@@ -62,4 +62,16 @@
     
 }
 
+/*
+ 获取商品评论列表
+ */
++ (void)getkProductCommentList:(nullable NSProductCommentParam *)param success:(void (^)(NSCommentListModel * _Nullable result))success failure:(void (^)(NSError *error))failure{
+    [Net requestWithGet:param function:kProductCommentAPI showHUD:NetNullStr resultClass:[NSCommentListModel class] success:^(NSCommentListModel  * _Nullable  resultObj){
+        success?success(resultObj):nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+}
+
+
 @end

@@ -15,5 +15,7 @@
 @property (strong, nonatomic) UILabel        *contentLb;
 @property (strong, nonatomic) UILabel        *timeLb;
 
+@property (nonatomic, copy) dispatch_block_t delBtnClickBlock;/* 分享按钮回调 */
+
 @property (strong, nonatomic) NSMessageModel *messageModel;
 @end

@@ -13,6 +13,8 @@
 #import "NSBuildOrderNowParam.h"
 #import "NSWalletListModel.h"
 #import "NSBuyNowModel.h"
+#import "NSProductCommentParam.h"
+#import "NSCommentListModel.h"
 
 
 @interface GoodsDetailAPI : NSObject
@@ -41,4 +43,9 @@
  *立即购买提交订单
  */
 + (void)buildOrderNowWithParam:(NSBuildOrderNowParam *)param success:(void (^)(NSWalletListModel *walletList))success faulre:(void (^)(NSError *))failure;
+
+/*
+ 获取商品评论列表
+ */
++ (void)getkProductCommentList:(nullable NSProductCommentParam *)param success:(void (^)(NSCommentListModel * _Nullable result))success failure:(void (^)(NSError *error))failure;
 @end

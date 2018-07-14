@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/apple/NSMall/NSMall/Home(&#x9996;&#x9875;)/GoodsDetail(&#x5546;&#x54c1;&#x8be6;&#x60c5;)/Model/NSReplyItemModel.h">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/apple/NSMall/NSMall/Home(&#x9996;&#x9875;)/GoodsDetail(&#x5546;&#x54c1;&#x8be6;&#x60c5;)/Model/NSReplyItemModel.m">
+   </FileRef>
+   <FileRef
       location = "group:NSMall.xcodeproj">
    </FileRef>
    <FileRef
