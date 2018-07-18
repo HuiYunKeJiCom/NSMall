@@ -110,3 +110,11 @@ const static NSString * const kTradeLogAPI = @"auth/tradeLog";//收款记录
 const static NSString * const kProductCommentAPI = @"productComment";//获取商品评论列表
 const static NSString * const kRemoveCommentAPI = @"auth/removeComment";//删除商品评论
 const static NSString * const kPublishCommentAPI = @"auth/publishComment";//发布商品评论
+
+//检测APP版本
+const static NSString * const kAppVersionAPI = @"getAppVersion";//检测APP版本
+
+
+
+
+

@@ -84,44 +84,26 @@
  */
 #pragma mark - ADLLoginViewDelegate
 
+- (void)extracted:(LoginParam *)param {
+    [LoginAPI loginWithParam:param success:^{
+        DLog(@"登录成功");
+        
+        [kAppDelegate setUpRootVC];
+        
+    } faulre:^(NSError *error) {
+        DLog(@"登录失败");
+        DLog(@"error = %@",error);
+    }];
+}
+
 - (void)loginView:(NSLoginView *)logView userName:(NSString *)userName pwd:(NSString *)pwd {
     
-    [httpManager.requestSerializer setValue:@"a5ef51bda07a4c5e6f629a4083a8f89e" forHTTPHeaderField:@"app_token"];
-
-    [UserInfoAPI getUserInfo:nil success:^{
-        NSLog(@"获取用户信息");
-
-        UserModel *userModel = [UserModel modelFromUnarchive];
-//        DLog(@"userModel = %@",userModel.mj_keyValues);
-//        DLog(@"userName = %@,pW = %@",userModel.hx_user_name,userModel.hx_password);
-        EMError *error = [[EMClient sharedClient] loginWithUsername:userModel.hx_user_name password:userModel.hx_password];
-        
-        if(!error){
-            NSLog(@"环信登录成功");
-        }else{
-            DLog(@"error = %@",error);
-            NSLog(@"环信登录失败");
-        }
-        [kAppDelegate setUpRootVC];
-
-    } faulre:^(NSError *error) {
-        NSLog(@"获取用户信息失败");
-    }];
+    LoginParam *param = [LoginParam new];
+    param.loginAccount = userName;
+    param.loginType = @"0";
+    param.smsCode = pwd;
     
-//    LoginParam *param = [LoginParam new];
-//    param.loginAccount = userName;
-//    param.loginType = @"0";
-//    param.smsCode = pwd;
-//
-//    [LoginAPI loginWithParam:param success:^{
-//        DLog(@"登录成功");
-//
-//        [kAppDelegate setUpRootVC];
-//
-//    } faulre:^(NSError *error) {
-//        DLog(@"登录失败");
-//        DLog(@"error = %@",error);
-//    }];
+    [self extracted:param];
     
 }
 
@@ -191,3 +173,4 @@
 
 
 @end
+

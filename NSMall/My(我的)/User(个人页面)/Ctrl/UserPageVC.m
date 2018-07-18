@@ -25,7 +25,7 @@
 @property(nonatomic,strong)UIScrollView *totalSV;/* 总的滚动SV */
 @property(nonatomic,strong)UserHeaderV *headerV;/* 头部View */
 @property(nonatomic,strong)UIView *btnV;/* 按钮View */
-@property(nonatomic,strong)UIView * identificateV;/* 实名认证View */
+//@property(nonatomic,strong)UIView * identificateV;/* 实名认证View */
 @property(nonatomic,strong)UIView * listV;/* 列表View */
 @property(nonatomic,strong)UIButton *classifyBtn;/* 发起聊天 按钮 */
 @property(nonatomic,strong)UIButton *shopCartBtn;/* 加为好友 按钮 */
@@ -144,47 +144,47 @@
     self.QRBtn.size = CGSizeMake(itemWidth, GetScaleWidth(112));
     [self.QRBtn addTarget:self action:@selector(QRButtonClick) forControlEvents:UIControlEventTouchUpInside];
 
-    //实名认证View
-    self.identificateV = [[UIView alloc]init];
-    self.identificateV.backgroundColor = kWhiteColor;
-    [self.totalSV addSubview:self.identificateV];
-    self.identificateV.x = 0;
-    self.identificateV.y = CGRectGetMaxY(self.btnV.frame)+GetScaleWidth(10);
-    self.identificateV.size = CGSizeMake(kScreenWidth, GetScaleWidth(48));
-    
-    UITapGestureRecognizer *viewTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(identificateClick)];
-    // 2. 将点击事件添加到imageView上
-    [self.identificateV addGestureRecognizer:viewTapGestureRecognizer];
-    
-    UIImageView *certificationIV = [[UIImageView alloc]init];
-    certificationIV.backgroundColor = [UIColor purpleColor];
-    [self.identificateV addSubview:certificationIV];
-    certificationIV.x = GetScaleWidth(18);
-    certificationIV.y = GetScaleWidth(15);
-    certificationIV.size = CGSizeMake(GetScaleWidth(23), GetScaleWidth(19));
-    
-    UILabel *certificationL = [[UILabel alloc]init];
-    certificationL.textColor = kBlackColor;
-    certificationL.font = UISystemFontSize(14);
-    certificationL.text = @"实名认证";
-    [self.identificateV addSubview:certificationL];
-    certificationL.x = GetScaleWidth(48);
-    certificationL.y = GetScaleWidth(18);
-    certificationL.size = CGSizeMake(GetScaleWidth(53), GetScaleWidth(13));
-    
-    UIImageView *arrowIV = [[UIImageView alloc]init];
-    arrowIV.image = IMAGE(@"my_ico_right_arrow");
-    [self.identificateV addSubview:arrowIV];
-    arrowIV.x = kScreenWidth - GetScaleWidth(19)-GetScaleWidth(9);
-    arrowIV.y = GetScaleWidth(19);
-    arrowIV.size = CGSizeMake(GetScaleWidth(5), GetScaleWidth(9));
+//    //实名认证View
+//    self.identificateV = [[UIView alloc]init];
+//    self.identificateV.backgroundColor = kWhiteColor;
+//    [self.totalSV addSubview:self.identificateV];
+//    self.identificateV.x = 0;
+//    self.identificateV.y = CGRectGetMaxY(self.btnV.frame)+GetScaleWidth(10);
+//    self.identificateV.size = CGSizeMake(kScreenWidth, GetScaleWidth(48));
+//
+//    UITapGestureRecognizer *viewTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(identificateClick)];
+//    // 2. 将点击事件添加到imageView上
+//    [self.identificateV addGestureRecognizer:viewTapGestureRecognizer];
+//
+//    UIImageView *certificationIV = [[UIImageView alloc]init];
+//    certificationIV.backgroundColor = [UIColor purpleColor];
+//    [self.identificateV addSubview:certificationIV];
+//    certificationIV.x = GetScaleWidth(18);
+//    certificationIV.y = GetScaleWidth(15);
+//    certificationIV.size = CGSizeMake(GetScaleWidth(23), GetScaleWidth(19));
+//
+//    UILabel *certificationL = [[UILabel alloc]init];
+//    certificationL.textColor = kBlackColor;
+//    certificationL.font = UISystemFontSize(14);
+//    certificationL.text = @"实名认证";
+//    [self.identificateV addSubview:certificationL];
+//    certificationL.x = GetScaleWidth(48);
+//    certificationL.y = GetScaleWidth(18);
+//    certificationL.size = CGSizeMake(GetScaleWidth(53), GetScaleWidth(13));
+//
+//    UIImageView *arrowIV = [[UIImageView alloc]init];
+//    arrowIV.image = IMAGE(@"my_ico_right_arrow");
+//    [self.identificateV addSubview:arrowIV];
+//    arrowIV.x = kScreenWidth - GetScaleWidth(19)-GetScaleWidth(9);
+//    arrowIV.y = GetScaleWidth(19);
+//    arrowIV.size = CGSizeMake(GetScaleWidth(5), GetScaleWidth(9));
     
     self.listV = [[UIView alloc]init];
     self.listV.backgroundColor = kWhiteColor;
     [self.totalSV addSubview:self.listV];
     
     self.listV.x = 0;
-    self.listV.y = GetScaleWidth(352);
+    self.listV.y = GetScaleWidth(294);
     
     
 //    self.listV.backgroundColor = kRedColor;

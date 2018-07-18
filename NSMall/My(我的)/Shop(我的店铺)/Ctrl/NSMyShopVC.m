@@ -15,6 +15,7 @@
 #import "ADOrderTopToolView.h"
 #import "NSCommonParam.h"
 #import "MyShopAPI.h"
+#import "NSShopEditVC.h"
 
 @interface NSMyShopVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
 @property (nonatomic, strong) BaseTableView         *goodsTable;
@@ -137,6 +138,9 @@
         cell.deleteBtnClickBlock = ^{
             [self deleteShopWith:model];
         };
+        cell.editBtnClickBlock = ^{
+            [self editShopWith:model];
+        };
     }
     
     return cell;
@@ -176,6 +180,12 @@
     } faulre:^(NSError *error) {
         DLog(@"店铺删除失败");
     }];
+}
+
+-(void)editShopWith:(NSShopListItemModel *)model{
+    NSShopEditVC *shopEditVC = [NSShopEditVC new];
+    [self.navigationController pushViewController:shopEditVC animated:YES];
+    [shopEditVC getDataWithShopModel:model];
 }
 
 

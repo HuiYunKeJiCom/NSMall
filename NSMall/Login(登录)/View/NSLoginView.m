@@ -49,8 +49,8 @@
 //    [self addSubview:self.phoneButton];
     
     //测试
-    self.nameTextField.textField.text = @"15913120993";
-    self.passTextField.textField.text = @"123456";
+//    self.nameTextField.textField.text = @"15913120993";
+//    self.passTextField.textField.text = @"123456";
     
     [self refreshView];
     

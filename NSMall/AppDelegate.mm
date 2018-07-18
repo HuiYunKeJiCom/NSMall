@@ -15,13 +15,18 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
 #import "AppDelegate.h"
 #import "NSLoginController.h"
 #import "CYLTabBarController.h"
+#import "XTGuidePagesViewController.h"
+#import "CALayer+Transition.h"
+#import "UserInfoAPI.h"
+#import "LoginAPI.h"
+#import "AppVersionParam.h"
 
 //#import <Bugly/Bugly.h>
 //#import <BuglyExtension/CrashReporterLite.h>
 
 
 
-@interface AppDelegate ()<CYLPlusButtonSubclassing,EMChatManagerDelegate>
+@interface AppDelegate ()<CYLPlusButtonSubclassing,EMChatManagerDelegate,selectDelegate>
 /** tabbar */
 @property(nonatomic,strong)CYLTabBarController *tabBarController;
 @end
@@ -32,15 +37,11 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-   
-    
-    [NSThread sleepForTimeInterval:3.0];
-
     
     //打印日志
-//    [Bugly startWithAppId:@"f01e247410"];
+    //    [Bugly startWithAppId:@"f01e247410"];
     
-//    [[CrashReporter sharedInstance] installWithAppId:@"f01e247410"  applicationGroupIdentifier:@"41e18687-72ba-4fbe-969f-ab863821726c"];
+    //    [[CrashReporter sharedInstance] installWithAppId:@"f01e247410"  applicationGroupIdentifier:@"41e18687-72ba-4fbe-969f-ab863821726c"];
     
     //环信
     //AppKey:注册的AppKey，详细见下面注释。
@@ -51,14 +52,6 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
     if(!error){
         NSLog(@"初始化成功");
     }
-    
-//    error= [[EMClient sharedClient] loginWithUsername:@"CarLing01" password:@"rl123456"];
-//
-//    if(!error){
-//        NSLog(@"环信登录成功");
-//    }else{
-//        NSLog(@"登录失败");
-//    }
     
     //百度地图
     _mapManager = [[BMKMapManager alloc] init];
@@ -71,24 +64,23 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [DCTabBarCenterButton registerPlusButton];
     
-//    [self setUpRootVC]; //跟控制器判断
+    //    [self setUpRootVC]; //跟控制器判断
     
     // 监听自动登录的状态
     // 设置chatManager代理
     [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
     
-    
-//    [self.window makeKeyAndVisible];
-    
-//    splashView = [[UIImageView alloc]initWithFrame:CGRectMake(0,0,kScreenWidth,kScreenHeight)];
-//
-//    [splashView setImage:[UIImage imageNamed:@"start"]];
-//
-//    [self.window addSubview:splashView];
-//
-//    [self.window bringSubviewToFront:splashView];
-
-    [self showWord];
+    // 测试的时候改变info 里的版本号就可以了
+    NSArray *images = @[@"pic_start1", @"pic_start2", @"pic_start3", @"pic_start4"];
+    BOOL y = [XTGuidePagesViewController isShow];
+    if (y) {
+        XTGuidePagesViewController *xt = [[XTGuidePagesViewController alloc] init];
+        self.window.rootViewController = xt;
+        xt.delegate = self;
+        [xt guidePageControllerWithImages:images];
+    }else{
+        [self showWord];
+    }
     
     [self.window makeKeyAndVisible];
     
@@ -96,18 +88,68 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
 }
 
 -(void)showWord{
-//    BOOL isAuLogin = [[EMClient sharedClient] isAutoLogin];
-    //    NSLog(@"isAuLogin = %@",isAuLogin == 0?NO:YES);
     
-    // 如果登录过，直接来到主界面
-//    if ([[EMClient sharedClient] isAutoLogin]) {
-//        NSLog(@"直接进主界面");
-//        [self setUpRootVC];
-//    }else{
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *currentVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
+    //    NSLog(@"currentVersion = %@",currentVersion);
+    
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if (![userDefaults objectForKey:@"first"]) {
+        NSLog(@"是第一次");
+        NSString *identifierForVendor = [[UIDevice currentDevice].identifierForVendor UUIDString];
+        [userDefaults setValue:identifierForVendor forKey:@"uuid"];
+        [userDefaults setBool:YES forKey:@"first"];
+        [userDefaults synchronize];
+        //        DLog(@"identifierForVendor = %@",identifierForVendor);
+        [httpManager.requestSerializer setValue:identifierForVendor forHTTPHeaderField:@"device_id"];
+        
         NSLoginController *login = [[NSLoginController alloc]init];
         [self.window setRootViewController:login];
-//    }
+    }else{
+        NSLog(@"不是第一次");
+        
+        if([userDefaults valueForKey:@"appToken"]){
+            NSString *appToken = [userDefaults valueForKey:@"appToken"];
+            //                DLog(@"appToken = %@",appToken);
+            NSString *uuid = [userDefaults valueForKey:@"uuid"];
+            DLog(@"uuid = %@",uuid);
+            [httpManager.requestSerializer setValue:appToken forHTTPHeaderField:@"app_token"];
+            [httpManager.requestSerializer setValue:uuid forHTTPHeaderField:@"device_id"];
+            
+            [self updateVersion:currentVersion];
+            
+            [self setUpRootVC];
+        }else{
+            [self updateVersion:currentVersion];
+            NSLoginController *login = [[NSLoginController alloc]init];
+            [self.window setRootViewController:login];
+        }
+    }
 }
+
+- (void)updateVersion:(NSString *)version
+{
+    AppVersionParam *param = [[AppVersionParam alloc]init];
+    param.versionCode = version;
+    param.appType = @"1";
+    
+    [LoginAPI getAppVersion:param success:^(AppVersionModel * _Nullable result) {
+        //        NSLog(@"检测版本result = %@",result.mj_keyValues);
+        UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectZero];
+        //    1.1、加载一个网页url：
+        NSURL *url = [NSURL URLWithString:result.downloadUrl];//创建URL
+        //                                     @"itms-services:///?action=download-manifest&url=https://www.neublockchain.com/neu.plist"
+        NSURLRequest* request = [NSURLRequest requestWithURL:url];//创建
+        [webView loadRequest:request];//加载
+        [[[UIApplication  sharedApplication]keyWindow] addSubview:webView];
+        
+    } failure:^(NSError *error) {
+        return;
+    }];
+}
+
 
 #pragma mark - 根控制器
 - (void)setUpRootVC
@@ -173,4 +215,7 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
 }
 
 
+
+
 @end
+
