@@ -105,8 +105,7 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
         //        DLog(@"identifierForVendor = %@",identifierForVendor);
         [httpManager.requestSerializer setValue:identifierForVendor forHTTPHeaderField:@"device_id"];
         
-        NSLoginController *login = [[NSLoginController alloc]init];
-        [self.window setRootViewController:login];
+        [self goToLoginPage];
     }else{
         NSLog(@"不是第一次");
         
@@ -114,7 +113,7 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
             NSString *appToken = [userDefaults valueForKey:@"appToken"];
             //                DLog(@"appToken = %@",appToken);
             NSString *uuid = [userDefaults valueForKey:@"uuid"];
-            DLog(@"uuid = %@",uuid);
+//            DLog(@"uuid = %@",uuid);
             [httpManager.requestSerializer setValue:appToken forHTTPHeaderField:@"app_token"];
             [httpManager.requestSerializer setValue:uuid forHTTPHeaderField:@"device_id"];
             
@@ -123,8 +122,7 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
             [self setUpRootVC];
         }else{
             [self updateVersion:currentVersion];
-            NSLoginController *login = [[NSLoginController alloc]init];
-            [self.window setRootViewController:login];
+            [self goToLoginPage];
         }
     }
 }
@@ -214,7 +212,10 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
     [[DCTabBarController sharedTabBarVC] goToSelectedViewControllerWith:0];
 }
 
-
+-(void)goToLoginPage{
+    NSLoginController *login = [[NSLoginController alloc]init];
+    [self.window setRootViewController:login];
+}
 
 
 @end

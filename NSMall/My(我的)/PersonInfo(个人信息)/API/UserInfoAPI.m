@@ -10,7 +10,7 @@
 
 @implementation UserInfoAPI
 + (void)getUserInfo:(nullable id)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure{
-    [Net requestWithGet:param function:kGetInfoAPI showHUD:NetNullStr resultClass:[UserModel class] success:^(UserModel *userModel) {
+    [Net requestWithGet:param function:kGetInfoAPI showHUD:nil resultClass:[UserModel class] success:^(UserModel *userModel) {
         [userModel archive];
         success?success():nil;
     } failure:^(NSError * _Nullable error) {
@@ -100,6 +100,17 @@
  */
 + (void)getMyShopList:(nullable NSCommonParam *)param success:(void (^)(NSShopListModel * _Nullable result))success failure:(void (^)(NSError *error))failure{
     [Net requestWithGet:param function:kMyStoreListAPI showHUD:NetNullStr resultClass:[NSShopListModel class] success:^(NSShopListModel  * _Nullable  resultObj){
+        success?success(resultObj):nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+}
+
+/*
+ 退出登录
+ */
++ (void)loginOut:(nullable NSString *)param success:(void (^)(NSDictionary * _Nullable result))success failure:(void (^)(NSError *error))failure{
+    [Net requestWithGet:param function:kLogoutAPI showHUD:NetNullStr resultClass:[NSDictionary class] success:^(NSDictionary  * _Nullable  resultObj){
         success?success(resultObj):nil;
     } failure:^(NSError * _Nullable error) {
         failure?failure(error):nil;

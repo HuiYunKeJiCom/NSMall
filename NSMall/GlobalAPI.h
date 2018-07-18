@@ -46,6 +46,7 @@ const static NSString * const kUploadIDCardAPI = @"auth/uploadIDCardImage";//上
 const static NSString * const kCertificationAPI = @"auth/certification";//提交实名认证信息
 const static NSString * const kMyProductListAPI = @"auth/myProductList";//获取我的商品列表
 const static NSString * const kMyStoreListAPI = @"auth/myStoreList";//获取我的店铺列表
+
 const static NSString * const kCollectionListAPI = @"auth/collectProductList";//我的收藏商品列表
 const static NSString * const kOrderListAPI = @"auth/orderList";//我的订单列表
 
@@ -113,7 +114,6 @@ const static NSString * const kPublishCommentAPI = @"auth/publishComment";//发�
 
 //检测APP版本
 const static NSString * const kAppVersionAPI = @"getAppVersion";//检测APP版本
-
 
 
 

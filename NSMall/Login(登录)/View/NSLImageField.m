@@ -69,7 +69,7 @@
     if (!_textField) {
         _textField = [[UITextField alloc] initWithFrame:CGRectZero];
         _textField.font = [UIFont systemFontOfSize:kFontNum12];
-        _textField.textColor = KBGCOLOR;
+        _textField.textColor = kGreyColor;
     }
     return _textField;
 }

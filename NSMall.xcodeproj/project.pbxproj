@@ -167,6 +167,13 @@
 		1878477020AEC46A00AC0E0F /* NSCollectionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1878476F20AEC46A00AC0E0F /* NSCollectionListVC.m */; };
 		1878478620AEDD9E00AC0E0F /* NSOrderListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1878478520AEDD9E00AC0E0F /* NSOrderListVC.m */; };
 		1878478920AEE93600AC0E0F /* NSOrderHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1878478820AEE93500AC0E0F /* NSOrderHeader.m */; };
+		187DE34320FF222D0098BC95 /* CertificationParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DE33D20FF222C0098BC95 /* CertificationParam.m */; };
+		187DE34420FF222D0098BC95 /* GetListParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DE33E20FF222C0098BC95 /* GetListParam.m */; };
+		187DE34520FF222D0098BC95 /* UpdatePwdParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DE33F20FF222C0098BC95 /* UpdatePwdParam.m */; };
+		187DE34E20FF22D70098BC95 /* NSProductItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DE34720FF22D60098BC95 /* NSProductItemModel.m */; };
+		187DE34F20FF22D70098BC95 /* NSStoreItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DE34920FF22D70098BC95 /* NSStoreItemModel.m */; };
+		187DE35020FF22D70098BC95 /* NSProductListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DE34A20FF22D70098BC95 /* NSProductListModel.m */; };
+		187DE35120FF22D70098BC95 /* NSStoreListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DE34C20FF22D70098BC95 /* NSStoreListModel.m */; };
 		18887B7E20E0808D00F6177F /* PageSelectBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18887B7D20E0808C00F6177F /* PageSelectBar.m */; };
 		18887B8B20E0D94600F6177F /* ThreePageSelectBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18887B8A20E0D94600F6177F /* ThreePageSelectBar.m */; };
 		1889AF9020D398BC00FBA33E /* NSShopViewTV.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889AF8F20D398BC00FBA33E /* NSShopViewTV.m */; };
@@ -740,6 +747,20 @@
 		1878478520AEDD9E00AC0E0F /* NSOrderListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSOrderListVC.m; sourceTree = "<group>"; };
 		1878478720AEE93500AC0E0F /* NSOrderHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSOrderHeader.h; sourceTree = "<group>"; };
 		1878478820AEE93500AC0E0F /* NSOrderHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSOrderHeader.m; sourceTree = "<group>"; };
+		187DE33C20FF222C0098BC95 /* UpdatePwdParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatePwdParam.h; sourceTree = "<group>"; };
+		187DE33D20FF222C0098BC95 /* CertificationParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CertificationParam.m; sourceTree = "<group>"; };
+		187DE33E20FF222C0098BC95 /* GetListParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetListParam.m; sourceTree = "<group>"; };
+		187DE33F20FF222C0098BC95 /* UpdatePwdParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatePwdParam.m; sourceTree = "<group>"; };
+		187DE34020FF222C0098BC95 /* GetListParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetListParam.h; sourceTree = "<group>"; };
+		187DE34120FF222C0098BC95 /* CertificationParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CertificationParam.h; sourceTree = "<group>"; };
+		187DE34620FF22D60098BC95 /* NSStoreItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStoreItemModel.h; sourceTree = "<group>"; };
+		187DE34720FF22D60098BC95 /* NSProductItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSProductItemModel.m; sourceTree = "<group>"; };
+		187DE34820FF22D70098BC95 /* NSProductItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSProductItemModel.h; sourceTree = "<group>"; };
+		187DE34920FF22D70098BC95 /* NSStoreItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStoreItemModel.m; sourceTree = "<group>"; };
+		187DE34A20FF22D70098BC95 /* NSProductListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSProductListModel.m; sourceTree = "<group>"; };
+		187DE34B20FF22D70098BC95 /* NSProductListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSProductListModel.h; sourceTree = "<group>"; };
+		187DE34C20FF22D70098BC95 /* NSStoreListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStoreListModel.m; sourceTree = "<group>"; };
+		187DE34D20FF22D70098BC95 /* NSStoreListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStoreListModel.h; sourceTree = "<group>"; };
 		18887B7C20E0808C00F6177F /* PageSelectBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageSelectBar.h; sourceTree = "<group>"; };
 		18887B7D20E0808C00F6177F /* PageSelectBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageSelectBar.m; sourceTree = "<group>"; };
 		18887B8920E0D94600F6177F /* ThreePageSelectBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreePageSelectBar.h; sourceTree = "<group>"; };
@@ -1310,6 +1331,8 @@
 		182DC49220905E690066E667 /* PersonInfo(个人信息) */ = {
 			isa = PBXGroup;
 			children = (
+				18D574C4209A9E67001C7875 /* Param */,
+				18404358209A023B00685F80 /* API */,
 				18D0C07520AC0D01007F0784 /* 实名认证 */,
 				182DC498209061270066E667 /* Ctrl */,
 				182DC497209061200066E667 /* Model */,
@@ -1402,8 +1425,7 @@
 				18404359209A028100685F80 /* UserInfoAPI.h */,
 				1840435A209A028100685F80 /* UserInfoAPI.m */,
 			);
-			name = API;
-			path = "PersonInfo(个人信息)/API";
+			path = API;
 			sourceTree = "<group>";
 		};
 		1842A69820B59D350090861D /* ShoppingCar(购物车) */ = {
@@ -2288,6 +2310,19 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		187DE33B20FF222C0098BC95 /* Param */ = {
+			isa = PBXGroup;
+			children = (
+				187DE33C20FF222C0098BC95 /* UpdatePwdParam.h */,
+				187DE33D20FF222C0098BC95 /* CertificationParam.m */,
+				187DE33E20FF222C0098BC95 /* GetListParam.m */,
+				187DE33F20FF222C0098BC95 /* UpdatePwdParam.m */,
+				187DE34020FF222C0098BC95 /* GetListParam.h */,
+				187DE34120FF222C0098BC95 /* CertificationParam.h */,
+			);
+			path = Param;
 			sourceTree = "<group>";
 		};
 		18887B7B20E0806C00F6177F /* PageSelectBar */ = {
@@ -3292,8 +3327,7 @@
 				18A7AB7A20ADAC95009FC725 /* NSCommonParam.h */,
 				18A7AB7B20ADAC95009FC725 /* NSCommonParam.m */,
 			);
-			name = Param;
-			path = "PersonInfo(个人信息)/Param";
+			path = Param;
 			sourceTree = "<group>";
 		};
 		18D574C8209AA35E001C7875 /* API */ = {
@@ -3456,10 +3490,9 @@
 		18DD1573208DD3740006475D /* My(我的) */ = {
 			isa = PBXGroup;
 			children = (
+				187DE33B20FF222C0098BC95 /* Param */,
 				18999B2520DA5CAF003BCF23 /* User(个人页面) */,
 				18B1CB0320BF966000235CFA /* Wallet(我的钱包) */,
-				18D574C4209A9E67001C7875 /* Param */,
-				18404358209A023B00685F80 /* API */,
 				18A7AB7320AD8C22009FC725 /* Collection(我的收藏) */,
 				18A7AB7220AD8B9B009FC725 /* MyOrder(我的订单) */,
 				18A7AB7120AD8B85009FC725 /* Shop(我的店铺) */,
@@ -3498,6 +3531,14 @@
 		18DD1582208DEA780006475D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				187DE34820FF22D70098BC95 /* NSProductItemModel.h */,
+				187DE34720FF22D60098BC95 /* NSProductItemModel.m */,
+				187DE34B20FF22D70098BC95 /* NSProductListModel.h */,
+				187DE34A20FF22D70098BC95 /* NSProductListModel.m */,
+				187DE34620FF22D60098BC95 /* NSStoreItemModel.h */,
+				187DE34920FF22D70098BC95 /* NSStoreItemModel.m */,
+				187DE34D20FF22D70098BC95 /* NSStoreListModel.h */,
+				187DE34C20FF22D70098BC95 /* NSStoreListModel.m */,
 				18DD1587208DEA960006475D /* ADLMyInfoModel.h */,
 				18DD1586208DEA960006475D /* ADLMyInfoModel.m */,
 			);
@@ -4284,6 +4325,7 @@
 				18DD157D208DD5F40006475D /* NSNearbyViewController.m in Sources */,
 				18E3A44320B29C0A00F847ED /* MyOrderParam.m in Sources */,
 				18C60DEE20C14D70002920D2 /* NSPayOrderParam.m in Sources */,
+				187DE34420FF222D0098BC95 /* GetListParam.m in Sources */,
 				1868F77E20FEF391000BB6EB /* EMGroupAdminsViewController.m in Sources */,
 				18A7AB7C20ADAC95009FC725 /* NSCommonParam.m in Sources */,
 				184EC18320BD8DE9009BBFE6 /* NSFirmOrderModel.m in Sources */,
@@ -4337,6 +4379,7 @@
 				18D0C0C120AC114A007F0784 /* AJPhotoBrowserViewController.m in Sources */,
 				18C3D07B20A2F0E8000FCE7F /* GetLabelsAPI.m in Sources */,
 				18C60DE520C1361B002920D2 /* NSInputPwView.m in Sources */,
+				187DE34520FF222D0098BC95 /* UpdatePwdParam.m in Sources */,
 				18E3A42620B263B800F847ED /* NSWaitPaySaleVC.m in Sources */,
 				18F5D4E920CE0E790037F825 /* NearbyStoreAPI.m in Sources */,
 				18D0C0AA20AC0D01007F0784 /* TDUserCertifyDataBasic.m in Sources */,
@@ -4425,6 +4468,7 @@
 				184043322099FA8D00685F80 /* ADLUpdateUserTableCell.m in Sources */,
 				184779F720CF9F36000DB448 /* NSDate+BRPickerView.m in Sources */,
 				184F061F209FE81A00768418 /* XWPopMenuController.m in Sources */,
+				187DE35020FF22D70098BC95 /* NSProductListModel.m in Sources */,
 				18D0C0AC20AC0D01007F0784 /* TDUserCertifyCellPicker.m in Sources */,
 				18335F7620BBEF79006264EF /* NSChangeCartNumParam.m in Sources */,
 				18E3A41420B2621000F847ED /* NSAllBuyVC.m in Sources */,
@@ -4486,6 +4530,7 @@
 				1831CA6720C78F7500F00BAF /* NSNewFirmOrderVC.m in Sources */,
 				1874523F20EDCF3800A67D70 /* UIImageView+HeadImage.m in Sources */,
 				18DD2F1120B90B1D00521B61 /* NBSSearchShopHistoryView.m in Sources */,
+				187DE35120FF22D70098BC95 /* NSStoreListModel.m in Sources */,
 				18D0824C20956D2F0031034A /* NSLImageField.m in Sources */,
 				18DD2F1E20B90B1E00521B61 /* LLSearchNaviBarView.m in Sources */,
 				18ECABD320F60E4E00679857 /* NSRecordLogModel.m in Sources */,
@@ -4505,6 +4550,7 @@
 				18E1E34020B654E200B0FD0C /* NSGoodsDetailModel.m in Sources */,
 				18E1E33C20B6546700B0FD0C /* NSGoodsDetailVC.m in Sources */,
 				1868F76520FEF391000BB6EB /* ContactListSelectViewController.m in Sources */,
+				187DE34F20FF22D70098BC95 /* NSStoreItemModel.m in Sources */,
 				18E3A44620B2A3B200F847ED /* NSMyOrderTVCell.m in Sources */,
 				1868F78D20FEF391000BB6EB /* ApplyViewController.m in Sources */,
 				18DD1588208DEA960006475D /* ADLMyInfoModel.m in Sources */,
@@ -4542,6 +4588,7 @@
 				18230F6A208D795E00D3E55F /* FFLoadFailView.m in Sources */,
 				1868F75F20FEF391000BB6EB /* ChatViewController.m in Sources */,
 				18DD2F1720B90B1E00521B61 /* HistorySearchVC.m in Sources */,
+				187DE34E20FF22D70098BC95 /* NSProductItemModel.m in Sources */,
 				1868F78120FEF391000BB6EB /* EMGroupInfoViewController.m in Sources */,
 				18D0824D20956D2F0031034A /* UserModel.m in Sources */,
 				18B017AA20A67B9600826EA4 /* ADReceivingAddressCell.m in Sources */,
@@ -4552,6 +4599,7 @@
 				184043352099FAA200685F80 /* ADLUpdateUserPhotoCell.m in Sources */,
 				18350890207F653600BCF7CE /* Net.m in Sources */,
 				18B017AB20A67B9600826EA4 /* ADAddressTopView.m in Sources */,
+				187DE34320FF222D0098BC95 /* CertificationParam.m in Sources */,
 				18C3D0C820A3DD8F000FCE7F /* GYHTimeTool.m in Sources */,
 				1868F76920FEF391000BB6EB /* EMRotbotChatViewCell.m in Sources */,
 				18EB286220A548EE00B45958 /* NSSpecView.m in Sources */,

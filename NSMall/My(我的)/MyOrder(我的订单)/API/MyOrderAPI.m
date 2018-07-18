@@ -13,7 +13,7 @@
  获取我的订单列表
  */
 + (void)getMyOrderList:(nullable MyOrderParam *)param success:(void (^)(NSOrderListModel * _Nullable result))success failure:(void (^)(NSError *error))failure{
-    [Net requestWithGet:param function:kOrderListAPI showHUD:NetNullStr resultClass:[NSOrderListModel class] success:^(NSOrderListModel  * _Nullable  resultObj){
+    [Net requestWithGet:param function:kOrderListAPI showHUD:nil resultClass:[NSOrderListModel class] success:^(NSOrderListModel  * _Nullable  resultObj){
         success?success(resultObj):nil;
     } failure:^(NSError * _Nullable error) {
         failure?failure(error):nil;

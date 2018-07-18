@@ -7,8 +7,16 @@
 //
 
 #import "NSRejectedSaleVC.h"
+#import "NSMyOrderTVCell.h"
+#import "NSOrderListItemModel.h"
+#import "MyOrderAPI.h"
+#import "MyOrderParam.h"
+#import "NSOrderDetailVC.h"
 
-@interface NSRejectedSaleVC ()
+@interface NSRejectedSaleVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
+@property (nonatomic, strong) BaseTableView         *allOrderTable;
+/** 当前页数 */
+@property(nonatomic)NSInteger currentPage;
 
 @end
 

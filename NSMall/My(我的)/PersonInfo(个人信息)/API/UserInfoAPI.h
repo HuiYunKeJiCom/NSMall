@@ -43,4 +43,9 @@
  获取我的店铺
  */
 + (void)getMyShopList:(nullable NSCommonParam *)param success:(void (^)(NSShopListModel * _Nullable result))success failure:(void (^)(NSError *error))failure;
+
+/*
+ 退出登录
+ */
++ (void)loginOut:(nullable NSString *)param success:(void (^)(NSDictionary * _Nullable result))success failure:(void (^)(NSError *error))failure;
 @end

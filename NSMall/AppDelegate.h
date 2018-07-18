@@ -19,5 +19,6 @@
 -(NSString *)showText:(NSString *)key;
 - (void)setUpRootVC;
 -(void)comeBackToRootVC;
+-(void)goToLoginPage;
 @end
 

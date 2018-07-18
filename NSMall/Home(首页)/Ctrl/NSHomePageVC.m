@@ -66,7 +66,7 @@
     self.scanView = [[UIImageView alloc] init];
     self.scanView.layer.cornerRadius = 4;
     self.scanView.layer.masksToBounds = YES;
-    self.scanView.backgroundColor = [UIColor greenColor];
+//    self.scanView.backgroundColor = [UIColor greenColor];
     self.scanView.x = kScreenWidth*0.5-95;
     self.scanView.y = kScreenHeight*0.5*0.55-105;
     self.scanView.size = CGSizeMake(150, 150);

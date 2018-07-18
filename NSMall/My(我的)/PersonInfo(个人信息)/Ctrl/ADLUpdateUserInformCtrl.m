@@ -31,6 +31,7 @@
 @property (nonatomic, strong) NSArray                  *dataSources;
 @property (nonatomic, strong) NSIndexPath              *selectIndexPath;
 @property (nonatomic, strong) UserModel              *userModel;
+@property(nonatomic,strong)UIButton *outBtn;/* 登出按钮 */
 @end
 
 @implementation ADLUpdateUserInformCtrl
@@ -48,7 +49,7 @@
     [super viewDidLoad];
     
 //    self.title = KLocalizableStr(@"修改个人信息");
-    
+    self.view.backgroundColor = UIColorFromRGB(0xf4f5f9);
     self.dataSources = @[@[KLocalizableStr(@"头像"),
                            KLocalizableStr(@"收货地址"),
                            KLocalizableStr(@"昵称"),
@@ -57,6 +58,7 @@
                            KLocalizableStr(@"实名认证")]];
     
     [self.view addSubview:self.userTable];
+    [self.view addSubview:self.outBtn];
     
     [self setUpNavTopView];
     [self makeConstraints];
@@ -96,6 +98,22 @@
     return _userTable;
 }
 
+-(UIButton *)outBtn{
+    if (!_outBtn) {
+        _outBtn = [[UIButton alloc]init];
+        [_outBtn setTitleColor:kWhiteColor forState:0];
+        _outBtn.titleLabel.font = UISystemFontSize(14);
+        _outBtn.backgroundColor = KMainColor;
+        [_outBtn setTitle:@"退出登录" forState:UIControlStateNormal];
+        [_outBtn addTarget:self action:@selector(loginOut) forControlEvents:UIControlEventTouchUpInside];
+        
+        _outBtn.layer.cornerRadius = 10.0;//2.0是圆角的弧度，根据需求自己更改
+        [_outBtn.layer setMasksToBounds:YES];
+//        _outBtn.layer.borderColor = KMainColor;//设置边框颜色
+//        _outBtn.layer.borderWidth = 1.0f;//设置边框颜色
+    }
+    return _outBtn;
+}
 
 #pragma mark - makeConstraints
 
@@ -103,8 +121,16 @@
     
     WEAKSELF
     [self.userTable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(weakSelf.view);
+        make.left.right.mas_equalTo(weakSelf.view);
         make.top.equalTo(self.view.mas_top).with.offset(TopBarHeight);
+        
+        make.bottom.equalTo(self.view.mas_bottom).with.offset(-200);
+    }];
+    
+    [self.outBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(weakSelf.view.mas_left).with.offset(kScreenWidth*0.15);
+        make.top.equalTo(self.userTable.mas_bottom).with.offset(10);
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth*0.7, 50));
     }];
     
 }
@@ -384,6 +410,21 @@
         [weakSelf.userTable reloadData];
     } faulre:^(NSError *error) {
         NSLog(@"头像上传失败");
+    }];
+}
+
+-(void)loginOut{
+    [UserInfoAPI loginOut:nil success:^(NSDictionary * _Nullable result) {
+        [Common AppShowToast:@"登出成功"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults removeObjectForKey:@"appToken"];
+            [kAppDelegate comeBackToRootVC];
+            [kAppDelegate goToLoginPage];
+        });
+        
+    } failure:^(NSError *error) {
+        
     }];
 }
 

@@ -24,7 +24,9 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define KColorMainBackground [UIColor blackColor]
 //[UIColor blackColor]
 // 背景色  淡灰色
-#define KBGCOLOR [UIColor colorWithHexString:@"#E0E0E0"]
+#define KBGCOLOR UIColorFromRGB(0xf4f5f9)
+
+//[UIColor colorWithHexString:@"#E0E0E0"]
 
 /** 次红*/
 #define KColorTextFBECEE                UIColorFromRGB(0XFBECEE)

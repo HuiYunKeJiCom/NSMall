@@ -66,7 +66,7 @@
     
     self.SV = [[UIScrollView alloc]initWithFrame:CGRectMake(0, TopBarHeight,kScreenWidth,kScreenHeight-TopBarHeight)];
     self.SV.backgroundColor = kBACKGROUNDCOLOR;
-    self.SV.contentSize = CGSizeMake(self.SV.bounds.size.width*2, self.SV.bounds.size.height);
+    self.SV.contentSize = CGSizeMake(0, self.SV.bounds.size.height);
     self.SV.pagingEnabled = YES;
     self.SV.delegate = self;
     self.SV.directionalLockEnabled = YES;
@@ -253,12 +253,6 @@
         [_headView1 setSelectAtIndex:index];
     }else if (scrollView.tag == 10){
         [_headView2 setSelectAtIndex:index];
-    }else if (scrollView.tag == 1000){
-        if(index == 1){
-            self.segment.selectedSegmentIndex = 0;
-        }else{
-            self.segment.selectedSegmentIndex = 1;
-        }
     }
     
 }

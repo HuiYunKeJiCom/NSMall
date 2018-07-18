@@ -65,9 +65,9 @@
     self.nextOperation = [UIButton buttonWithType:UIButtonTypeCustom];
     self.nextOperation.titleLabel.font = UISystemFontSize(14);
     
-//    // 设置圆角的大小
-//    self.nextOperation.layer.cornerRadius = 5;
-//    [self.nextOperation.layer setMasksToBounds:YES];
+    // 设置圆角的大小
+    self.nextOperation.layer.cornerRadius = 5.0;
+    [self.nextOperation.layer setMasksToBounds:YES];
 //    self.nextOperation.layer.borderWidth = 1;
 //    self.nextOperation.layer.borderColor = [KMainColor CGColor];
     [self.nextOperation setTitleColor:kWhiteColor forState:UIControlStateNormal];
@@ -97,6 +97,9 @@
 //    self.arrowIV.x = CGRectGetMaxX(self.userName.frame)+11;
 //    self.arrowIV.y = 13;
 //    self.arrowIV.size = CGSizeMake(5, 9);
+    
+    DLog(@"order_status = %ld",model.order_status);
+    
     self.arrowIV.image = IMAGE(@"my_ico_right_arrow");
     switch (model.order_status) {
         case 1:{
@@ -107,8 +110,8 @@
             break;
         case 2:{
             self.stateLab.text = @"待发货";
-            [self.nextOperation setTitle:@"去发货" forState:UIControlStateNormal];
-            self.nextOperation.backgroundColor = kRedColor;
+//            [self.nextOperation setTitle:@"去发货" forState:UIControlStateNormal];
+//            self.nextOperation.backgroundColor = kRedColor;
         }
             break;
         case 3:{

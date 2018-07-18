@@ -155,8 +155,12 @@
 }
 
 - (void)baseTableView:(BaseTableView *)tableView loadMore:(BOOL)flag {
-    self.currentPage += 1;
-    [self requestAllOrder:YES];
+    if(tableView.data.count >20){
+        self.currentPage += 1;
+        [self requestAllOrder:YES];
+    }else{
+        [self requestAllOrder:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
