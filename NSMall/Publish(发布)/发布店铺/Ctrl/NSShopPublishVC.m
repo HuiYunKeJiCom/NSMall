@@ -143,7 +143,7 @@
     self.detailTV.backgroundColor = kWhiteColor;
     self.detailTV.font = [UIFont systemFontOfSize:14];
     self.detailTV.delegate = self;
-    self.detailTV.zw_placeHolder = @"描述下你的店铺吧,比如特色、优惠等~";
+    self.detailTV.zw_placeHolder = NSLocalizedString(@"shop description", nil);
     self.detailTV.zw_placeHolderColor = [UIColor lightGrayColor];
     
     self.detailTV.textContainerInset = UIEdgeInsetsMake(0, 15, 0, 0);
@@ -158,7 +158,7 @@
 -(void)getTag{
     
     for (ADLMyInfoModel *model in self.otherTableView.data) {
-        if([model.title isEqualToString:@"标签"]){
+        if([model.title isEqualToString:NSLocalizedString(@"label", nil)]){
             if(self.tagString){
                 model.num = self.tagString;
             }
@@ -374,10 +374,10 @@
     if ((authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied) && iOS7Later) {
         // 无相机权限 做一个友好的提示
         if (iOS8Later) {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"无法使用相机" message:@"请在iPhone的""设置-隐私-相机""中允许访问相机" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"设置", nil];
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"unable use camera", nil) message:NSLocalizedString(@"allow camera", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:NSLocalizedString(@"setting", nil), nil];
             [alert show];
         } else {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"无法使用相机" message:@"请在iPhone的""设置-隐私-相机""中允许访问相机" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"unable use camera", nil) message:NSLocalizedString(@"allow camera", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"confirm", nil) otherButtonTitles:nil];
             [alert show];
         }
     } else if (authStatus == AVAuthorizationStatusNotDetermined) {
@@ -396,10 +396,10 @@
         // 拍照之前还需要检查相册权限
     } else if ([TZImageManager authorizationStatus] == 2) { // 已被拒绝，没有相册权限，将无法保存拍的照片
         if (iOS8Later) {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"无法访问相册" message:@"请在iPhone的""设置-隐私-相册""中允许访问相册" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"设置", nil];
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"unable access album", nil) message:NSLocalizedString(@"allow album", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:NSLocalizedString(@"setting", nil), nil];
             [alert show];
         } else {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"无法访问相册" message:@"请在iPhone的""设置-隐私-相册""中允许访问相册" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"unable access album", nil) message:NSLocalizedString(@"allow album", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"confirm", nil) otherButtonTitles:nil];
             [alert show];
         }
     } else if ([TZImageManager authorizationStatus] == 0) { // 未请求过相册权限
@@ -607,11 +607,11 @@
 #pragma mark - 获取数据
 - (void)setUpData
 {
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"标签") imageName:nil num:@"请选择标签"]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"地址") imageName:nil num:@"请输入地址"]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"电话") imageName:nil num:@"请输入电话"]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"营业开始时间") imageName:nil num:@"9:00"]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"营业结束时间") imageName:nil num:@"18:00"]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"label", nil) imageName:nil num:NSLocalizedString(@"select label", nil)]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"address", nil) imageName:nil num:NSLocalizedString(@"enter address", nil)]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"telephone", nil) imageName:nil num:NSLocalizedString(@"enter telephone", nil)]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"business start time", nil) imageName:nil num:@"9:00"]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"business end time", nil) imageName:nil num:@"18:00"]];
     
     self.param.businessHoursStart = @"9:00";
     self.param.businessHoursEnd= @"18:00";
@@ -636,7 +636,7 @@
             self.infoCell = [self.otherTableView cellForRowAtIndexPath:indexPath];
 
             CLTagsModel *model = [[CLTagsModel alloc] init];
-            model.title = @"所有标签";
+            model.title = NSLocalizedString(@"all labels", nil);
             model.tagsArray = _recentTagsM.copy;
             
             NSAddLabelVC *tagVC = [[NSAddLabelVC alloc] init];
@@ -653,14 +653,14 @@
             NSAddressVC *ctrl = [[NSAddressVC alloc] init];
             ctrl.paramBlock = ^(ShopAddressParam *param) {
                 for (ADLMyInfoModel *model in self.otherTableView.data) {
-                    if([model.title isEqualToString:@"地址"]){
+                    if([model.title isEqualToString:NSLocalizedString(@"address", nil)]){
                         if(param){
                             model.num = [NSString stringWithFormat:@"%@",param.address];
                             self.param.address = param.address;
                             self.param.longitude = [NSString stringWithFormat:@"%f",param.location.longitude];
                             self.param.latitude = [NSString stringWithFormat:@"%f",param.location.latitude];
                         }else{
-                            model.num = @"请输入地址";
+                            model.num = NSLocalizedString(@"enter address", nil);
                         }
                     }
                 }
@@ -676,19 +676,19 @@
 //            ctrl.editTitle = KLocalizableStr(@"电话");
 //            [self.navigationController pushViewController:ctrl animated:YES];
             
-            EditUserType type = [self getEditType:KLocalizableStr(@"电话")];
+            EditUserType type = [self getEditType:NSLocalizedString(@"telephone", nil)];
             
             NSChangeParamVC *ctrl = [[NSChangeParamVC alloc] initEditType:type];
-            ctrl.editTitle = KLocalizableStr(@"电话");
+            ctrl.editTitle = NSLocalizedString(@"telephone", nil);
             
             ctrl.stringBlock = ^(NSString *string) {
                 for (ADLMyInfoModel *model in self.otherTableView.data) {
-                    if([model.title isEqualToString:@"电话"]){
+                    if([model.title isEqualToString:NSLocalizedString(@"telephone", nil)]){
                         if(string){
                             model.num = [NSString stringWithFormat:@"%@",string];
                             self.param.mobile = string;
                         }else{
-                            model.num = @"请输入电话";
+                            model.num = NSLocalizedString(@"enter telephone", nil);
                         }
                     }
                 }
@@ -703,9 +703,9 @@
             NSDate *minDate = [NSDate br_setHour:1 minute:0];
             NSDate *maxDate = [NSDate br_setHour:23 minute:59];
             for (ADLMyInfoModel *model in self.otherTableView.data) {
-                if([model.title isEqualToString:@"营业开始时间"]){
+                if([model.title isEqualToString:NSLocalizedString(@"business start time", nil)]){
                     
-                    [BRDatePickerView showDatePickerWithTitle:@"营业开始时间" dateType:BRDatePickerModeTime defaultSelValue:@"9:00" minDate:minDate maxDate:maxDate isAutoSelect:YES themeColor:KMainColor resultBlock:^(NSString *selectValue) {
+                    [BRDatePickerView showDatePickerWithTitle:NSLocalizedString(@"business start time", nil) dateType:BRDatePickerModeTime defaultSelValue:@"9:00" minDate:minDate maxDate:maxDate isAutoSelect:YES themeColor:KMainColor resultBlock:^(NSString *selectValue) {
                         model.num = selectValue;
                         self.param.businessHoursStart = selectValue;
                         [self.otherTableView reloadData];
@@ -720,8 +720,8 @@
             NSDate *minDate = [NSDate br_setHour:1 minute:0];
             NSDate *maxDate = [NSDate br_setHour:23 minute:59];
             for (ADLMyInfoModel *model in self.otherTableView.data) {
-                if([model.title isEqualToString:@"营业结束时间"]){
-                    [BRDatePickerView showDatePickerWithTitle:@"营业结束时间" dateType:BRDatePickerModeTime defaultSelValue:@"18:00" minDate:minDate maxDate:maxDate isAutoSelect:YES themeColor:KMainColor resultBlock:^(NSString *selectValue) {
+                if([model.title isEqualToString:NSLocalizedString(@"business end time", nil)]){
+                    [BRDatePickerView showDatePickerWithTitle:NSLocalizedString(@"business end time", nil) dateType:BRDatePickerModeTime defaultSelValue:@"18:00" minDate:minDate maxDate:maxDate isAutoSelect:YES themeColor:KMainColor resultBlock:^(NSString *selectValue) {
                         model.num = selectValue;
                         self.param.businessHoursEnd = selectValue;
                         [self.otherTableView reloadData];
@@ -748,17 +748,17 @@
     [btn addTarget:self action:@selector(addPhoto:) forControlEvents:UIControlEventTouchUpInside];
     [self.addView addSubview:btn];
     
-    CGSize contentSize = [self contentSizeWithTitle:@"添加照片" andFont:14];
+    CGSize contentSize = [self contentSizeWithTitle:NSLocalizedString(@"add photo", nil) andFont:14];
     
     UILabel *addPhotoLab=[[UILabel alloc] initWithFrame:CGRectMake(self.addView.centerX- contentSize.width*0.5, CGRectGetMaxY(btn.frame)+3, contentSize.width, contentSize.height)];
-    [addPhotoLab setText:@"添加照片"];
+    [addPhotoLab setText:NSLocalizedString(@"add photo", nil)];
     addPhotoLab.font = UISystemFontSize(14);
     addPhotoLab.textColor= [UIColor blackColor];
     [self.addView addSubview:addPhotoLab];
 }
 
 -(void)addPhoto:(UIButton *)button{
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"去相册选择", nil];
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"take photo", nil),NSLocalizedString(@"photo album selection", nil), nil];
     [sheet showInView:self.view];
 }
 
@@ -768,7 +768,7 @@
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     topToolView.hidden = NO;
     topToolView.backgroundColor = kWhiteColor;
-    [topToolView setTopTitleWithNSString:KLocalizableStr(@"发布店铺")];
+    [topToolView setTopTitleWithNSString:NSLocalizedString(@"shop publish", nil)];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
@@ -799,7 +799,7 @@
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.backgroundColor = KMainColor;
     btn.frame = CGRectMake(0, kScreenHeight-TabBarHeight, kScreenWidth, TabBarHeight);
-    [btn setTitle:@"发布" forState:UIControlStateNormal];
+    [btn setTitle:NSLocalizedString(@"publish", nil) forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(publish:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
 }
@@ -833,7 +833,7 @@
         DLog(@"self.param = %@",self.param.mj_keyValues);
         [NSShopPublishAPI createShopWithParam:self.param success:^{
             DLog(@"店铺发布成功");
-            [Common AppShowToast:@"店铺发布成功"];
+            [Common AppShowToast:NSLocalizedString(@"shop publish success", nil)];
             [self dismissModalStack];
         } faulre:^(NSError *error) {
             DLog(@"店铺发布失败");
@@ -913,7 +913,7 @@
         self.tagString = tagString;
         self.param.labelId = tagID;
     }else{
-        self.infoCell.numLb.text = @"请选择标签";
+        self.infoCell.numLb.text = NSLocalizedString(@"select label", nil);
     }
     
     
@@ -934,7 +934,7 @@
 - (EditUserType)getEditType:(NSString *)title {
     EditUserType type = 0;
     
-    if ([title isEqualToString:KLocalizableStr(@"电话")]) {
+    if ([title isEqualToString:NSLocalizedString(@"telephone", nil)]) {
         type = EditUserTypePhone;
         
         }

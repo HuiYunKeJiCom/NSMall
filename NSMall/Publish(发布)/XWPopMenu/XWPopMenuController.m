@@ -186,7 +186,7 @@
     for (int i = 0; i < self.ary.count; i++) {
         
 //        NSArray *arrTitle = @[@"文字",@"照片",@"链接",@"视频",@"寻亲",@"文章"];
-        NSArray *arrTitle = @[@"线上商品",@"线下店铺"];
+        NSArray *arrTitle = @[NSLocalizedString(@"online goods", nil),NSLocalizedString(@"offline shop", nil)];
         
         
         PublishMenuButton *btn = [PublishMenuButton buttonWithType:UIButtonTypeCustom];

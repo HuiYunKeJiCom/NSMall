@@ -42,7 +42,7 @@
     [self addSubview:self.bgView];
     
     self.specLabel = [[UILabel alloc] init];
-    self.specLabel.text = @"规格";
+    self.specLabel.text = NSLocalizedString(@"specifications", nil);
     self.specLabel.font = UISystemFontSize(14);
     self.specLabel.x = 29;
     self.specLabel.y = 14;
@@ -55,7 +55,7 @@
     self.specTF.tag = 10;
     self.specTF.font = [UIFont systemFontOfSize:14];
     self.specTF.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.specTF.placeholder = @"尺寸、大小、颜色等";
+    self.specTF.placeholder = NSLocalizedString(@"size, size, color, etc", nil);
     self.specTF.textColor = [UIColor lightGrayColor];
     self.specTF.backgroundColor = kWhiteColor;
     UIView *paddingView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, GetScaleWidth(30))];
@@ -71,7 +71,7 @@
     [self.bgView addSubview:self.specLineV];
     
     self.priceLabel = [[UILabel alloc] init];
-    self.priceLabel.text = @"价格";
+    self.priceLabel.text = NSLocalizedString(@"price", nil);
     self.priceLabel.font = UISystemFontSize(14);
     self.priceLabel.x = 29;
     self.priceLabel.y = CGRectGetMaxY(self.specLineV.frame)+14;
@@ -84,7 +84,7 @@
     self.priceTF.tag = 100;
     self.priceTF.font = [UIFont systemFontOfSize:14];
     self.priceTF.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.priceTF.placeholder = @"给商品定个好价格";
+    self.priceTF.placeholder = NSLocalizedString(@"make a good price for the goods", nil);
     self.priceTF.textColor = [UIColor lightGrayColor];
     self.priceTF.backgroundColor = kWhiteColor;
     UIView *paddingView2 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, GetScaleWidth(30))];
@@ -100,7 +100,7 @@
     [self.bgView addSubview:self.priceLineV];
     
     self.inventoryLabel = [[UILabel alloc] init];
-    self.inventoryLabel.text = @"库存";
+    self.inventoryLabel.text = NSLocalizedString(@"stock", nil);
     self.inventoryLabel.font = UISystemFontSize(14);
     self.inventoryLabel.x = 29;
     self.inventoryLabel.y = CGRectGetMaxY(self.priceLineV.frame)+14;
@@ -113,7 +113,7 @@
     self.inventoryTF.tag = 1000;
     self.inventoryTF.font = [UIFont systemFontOfSize:14];
     self.inventoryTF.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.inventoryTF.placeholder = @"设置合理库存避免超卖";
+    self.inventoryTF.placeholder = NSLocalizedString(@"setting up reasonable stock", nil);
     self.inventoryTF.textColor = [UIColor lightGrayColor];
     self.inventoryTF.backgroundColor = kWhiteColor;
     UIView *paddingView3 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, GetScaleWidth(30))];

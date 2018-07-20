@@ -60,7 +60,7 @@
 {
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     topToolView.backgroundColor = kWhiteColor;
-    [topToolView setTopTitleWithNSString:[NSString stringWithFormat:@"%@ %@",KLocalizableStr(@"修改"),_editTitle]];
+    [topToolView setTopTitleWithNSString:[NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"modify", nil),_editTitle]];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
@@ -93,7 +93,7 @@
     
 //    self.title = [NSString stringWithFormat:@"%@ %@",KLocalizableStr(@"修改"),_editTitle];
     
-    self.contentField.placeholder = [NSString stringWithFormat:@"%@ %@",KLocalizableStr(@"请输入"),_editTitle];
+    self.contentField.placeholder = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"enter", nil),_editTitle];
 }
 
 - (UITextField *)contentField {
@@ -116,7 +116,7 @@
 - (UIButton *)commitButton {
     if (!_commitButton) {
         _commitButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_commitButton setTitle:KLocalizableStr(@"确定") forState:UIControlStateNormal];
+        [_commitButton setTitle:NSLocalizedString(@"confirm", nil) forState:UIControlStateNormal];
         [_commitButton setTitleColor:KColorTextFFFFFF forState:UIControlStateNormal];
         _commitButton.titleLabel.font = UISystemFontSize(15);
         _commitButton.backgroundColor = KMainColor;
@@ -232,7 +232,7 @@
     if ([changeString isEmptyOrNull]) {
         _contentField.text = @"";
         [_contentField animateShake];
-        errorMsg = [NSString stringWithFormat:@"%@%@",KLocalizableStr(@"请输入"),_editTitle];
+        errorMsg = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"enter", nil),_editTitle];
         return errorMsg;
     }
     
