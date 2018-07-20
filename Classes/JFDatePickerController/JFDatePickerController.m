@@ -189,7 +189,7 @@
         [_cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_cancelBtn setTitleColor:[UIColor colorWithWhite:1 alpha:0.5] forState:UIControlStateHighlighted];
         _cancelBtn.layer.cornerRadius = 5;
-        [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+        [_cancelBtn setTitle:NSLocalizedString(@"cancel", nil) forState:UIControlStateNormal];
         _cancelBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     }
     return _cancelBtn;
@@ -203,7 +203,7 @@
         [_sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_sureBtn setTitleColor:[UIColor colorWithWhite:1 alpha:0.5] forState:UIControlStateHighlighted];
         _sureBtn.layer.cornerRadius = 5;
-        [_sureBtn setTitle:@"确定" forState:UIControlStateNormal];
+        [_sureBtn setTitle:NSLocalizedString(@"confirm", nil) forState:UIControlStateNormal];
         _sureBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     }
     return _sureBtn;

@@ -114,7 +114,7 @@
     
     //done
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setTitle:@"完成" forState:UIControlStateNormal];
+    [btn setTitle:NSLocalizedString(@"complete", nil) forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(doneBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [topView addSubview:btn];
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -127,7 +127,7 @@
     //delbtn
     UIButton *delBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     delBtn.hidden = YES;
-    [delBtn setTitle:@"删除" forState:UIControlStateNormal];
+    [delBtn setTitle:NSLocalizedString(@"delete", nil) forState:UIControlStateNormal];
     [delBtn addTarget:self action:@selector(delBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [topView addSubview:delBtn];
     [delBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -244,7 +244,7 @@
 }
 
 - (void)delBtnAction:(UIButton *)sender {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil, nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) destructiveButtonTitle:NSLocalizedString(@"delete", nil) otherButtonTitles:nil, nil];
     actionSheet.tag = 2;
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     

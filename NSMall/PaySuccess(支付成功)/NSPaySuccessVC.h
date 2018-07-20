@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserPageModel.h"
 
 @interface NSPaySuccessVC : UIViewController
-
+-(void)setUpDataWithModel:(UserPageModel *)userPageM andAmount:(NSString *)amount;
 @end

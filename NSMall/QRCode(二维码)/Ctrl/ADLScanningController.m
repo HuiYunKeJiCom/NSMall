@@ -14,6 +14,7 @@
 #import "NSGoodsDetailVC.h"
 #import "UserPageVC.h"
 #import "NSPayVC.h"
+#import "NSMessageAPI.h"
 
 #define XCenter self.view.center.x
 #define YCenter self.view.center.y
@@ -24,13 +25,13 @@
 //#define SWidth 200
 
 
-@interface ADLScanningController ()
+@interface ADLScanningController ()<EMContactManagerDelegate>
 {
     UIImageView * imageView;
 }
 
 @property (strong, nonatomic) GPLoadingView *loadingView;
-
+@property(nonatomic,copy)NSString *friendName;/* 要加的好友 */
 @end
 
 @implementation ADLScanningController
@@ -225,9 +226,12 @@
         EMError *error = [[EMClient sharedClient].contactManager addContact:string message:msg];
         if (!error) {
             [Common AppShowToast:@"添加好友成功"];
+            self.friendName = string;
         }else{
+            DLog(@"添加好友error = %@",error.mj_keyValues);
             [Common AppShowToast:@"添加好友失败"];
         }
+        [[EMClient sharedClient].contactManager addDelegate:self delegateQueue:nil];
         [self delayPop];
     }else if ([qrcode hasPrefix:@"gid:"]){
         NSArray *array = [qrcode componentsSeparatedByString:@"gid:"];
@@ -238,8 +242,8 @@
         [self.navigationController pushViewController:detailVC animated:YES];
         
     }else if ([qrcode hasPrefix:@"sid:"]){
-        NSArray *array = [qrcode componentsSeparatedByString:@"sid:"];
-        NSString *string = [array lastObject];
+//        NSArray *array = [qrcode componentsSeparatedByString:@"sid:"];
+//        NSString *string = [array lastObject];
     }else if ([qrcode hasPrefix:@"hid:"]){
         NSArray *array = [qrcode componentsSeparatedByString:@"hid:"];
         NSString *string = [array lastObject];
@@ -337,6 +341,32 @@
         [weakSelf.navigationController popViewControllerAnimated:YES];
     });
 }
+
+//#pragma mark - 好友申请处理结果回调
+///*!
+// @method
+// @brief 用户A发送加用户B为好友的申请，用户B同意后，用户A会收到这个回调
+// */
+//- (void)didReceiveAgreedFromUsername:(NSString *)aUsername
+//{
+//    DLog(@"添加好友同意");
+//    [NSMessageAPI acceptFriendWithParam:self.friendName success:^{
+//        DLog(@"添加好友成功");
+//    } faulre:^(NSError *error) {
+//    }];
+//}
+//
+///*!
+// @method
+// @brief 用户A发送加用户B为好友的申请，用户B拒绝后，用户A会收到这个回调
+// */
+//- (void)didReceiveDeclinedFromUsername:(NSString *)aUsername
+//{
+//    NSLog(@"%@",aUsername);
+//    NSString *message = [NSString stringWithFormat:@"%@ 拒绝了你的好友请求",aUsername];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"好友添加消息" message:message delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+//    [alert show];
+//}
 
 @end
 

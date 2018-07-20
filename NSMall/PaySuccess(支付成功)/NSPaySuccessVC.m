@@ -8,6 +8,7 @@
 
 #import "NSPaySuccessVC.h"
 
+
 @interface NSPaySuccessVC ()
 @property(nonatomic,strong)UIImageView *paySuccessIV;/* 成功图标 */
 @property(nonatomic,strong)UILabel *paySuccessLab;/* 成功文字 */
@@ -38,6 +39,16 @@
     [self.view addSubview:self.payeeHeaderIV];
     [self.view addSubview:self.payeeNameLab];
     [self.view addSubview:self.completeBtn];
+}
+
+-(void)setUpDataWithModel:(UserPageModel *)userPageM andAmount:(NSString *)amount{
+    self.paySuccessIV.image = IMAGE(@"money_ico_success");
+    self.paySuccessLab.text = @"支付成功";
+    self.amountLab.text = [NSString stringWithFormat:@"N%.2f",[amount floatValue]];
+    self.payeeLab.text = @"收款人";
+    [self.payeeHeaderIV sd_setImageWithURL:[NSURL URLWithString:userPageM.pic_img]];
+    self.payeeNameLab.text = userPageM.nick_name;
+    [self.completeBtn setTitle:@"完成" forState:UIControlStateNormal];
 }
 
 -(void)makeConstraints {
@@ -114,9 +125,39 @@
     return _payeeLab;
 }
 
-@property(nonatomic,strong)UIImageView *payeeHeaderIV;/* 收款人头像 */
-@property(nonatomic,strong)UILabel *payeeNameLab;/* 收款人昵称 */
-@property(nonatomic,strong)UIButton *completeBtn;/* 完成按钮 */
+-(UIImageView *)payeeHeaderIV{
+    if (!_payeeHeaderIV) {
+        _payeeHeaderIV = [[UIImageView alloc] init];
+        [_payeeHeaderIV setContentMode:UIViewContentModeScaleAspectFit];
+    }
+    return _payeeHeaderIV;
+}
+
+- (UILabel *)payeeNameLab {
+    if (!_payeeNameLab) {
+        _payeeNameLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum14 TextColor:kBlackColor];
+    }
+    return _payeeNameLab;
+}
+
+-(UIButton *)completeBtn{
+    if (!_completeBtn) {
+        _completeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _completeBtn.showsTouchWhenHighlighted = YES;
+        _completeBtn.backgroundColor = KMainColor;
+        [_completeBtn setTitleColor:kWhiteColor forState:UIControlStateNormal];
+        _completeBtn.titleLabel.font = UISystemFontSize(14);
+        _completeBtn.layer.masksToBounds = YES;
+        _completeBtn.layer.cornerRadius = 10;
+        
+        [_completeBtn addTarget:self action:@selector(complete) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _completeBtn;
+}
+
+-(void)complete{
+    [kAppDelegate comeBackToRootVC];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

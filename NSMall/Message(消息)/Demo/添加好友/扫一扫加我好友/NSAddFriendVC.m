@@ -20,7 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = kGreyColor;
+    self.view.backgroundColor = KBGCOLOR;
     [self setUpNavTopView];
     
     self.scanView = [[UIImageView alloc] init];

@@ -14,6 +14,7 @@
 #import "NSInputPwView.h"
 #import "NSPayParam.h"
 #import "ReceivableRecordAPI.h"
+#import "NSPaySuccessVC.h"
 
 @interface NSPayVC ()<NSInputPwViewDelegate,UITextFieldDelegate>
 @property(nonatomic,strong)UIView *payeeV;/* 收款人View */
@@ -316,7 +317,9 @@
     
     WEAKSELF
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
-        [weakSelf.navigationController popViewControllerAnimated:YES];
+        NSPaySuccessVC *paySuccessVC = [NSPaySuccessVC new];
+        [paySuccessVC setUpDataWithModel:self.userPageM andAmount:self.amountTF.text];
+        [weakSelf.navigationController pushViewController:paySuccessVC animated:YES];
     });
 }
 

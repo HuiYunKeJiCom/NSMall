@@ -65,13 +65,14 @@
     [self setUpNavTopView];
     
     [self reloadDataSource];
+    self.tableView.backgroundColor = KBGCOLOR;
 }
 
 #pragma mark - 导航栏处理
 - (void)setUpNavTopView
 {
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
-    topToolView.backgroundColor = KMainColor;
+    topToolView.backgroundColor = kWhiteColor;
     [topToolView setTopTitleWithNSString:NSLocalizedString(@"title.group", @"Group")];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{

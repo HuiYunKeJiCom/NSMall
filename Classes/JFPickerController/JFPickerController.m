@@ -288,7 +288,7 @@ static CGFloat const JFPickerAnimationTimeInterval = 0.3;
         [_sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_sureBtn setTitleColor:[UIColor colorWithWhite:1 alpha:0.5] forState:UIControlStateHighlighted];
         _sureBtn.layer.cornerRadius = 5;
-        [_sureBtn setTitle:@"确定" forState:UIControlStateNormal];
+        [_sureBtn setTitle:NSLocalizedString(@"confirm", nil) forState:UIControlStateNormal];
         _sureBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     }
     return _sureBtn;
@@ -297,7 +297,7 @@ static CGFloat const JFPickerAnimationTimeInterval = 0.3;
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.text = @"(未选中)";
+        _titleLabel.text = NSLocalizedString(@"(unselected)", nil);
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.font = UIBoldFontSize(14);
     }

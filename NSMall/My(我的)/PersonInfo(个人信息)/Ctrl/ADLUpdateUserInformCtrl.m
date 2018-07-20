@@ -251,10 +251,16 @@
                     ADReceivingAddressViewController *addressCtrl = [[ADReceivingAddressViewController alloc] init];
                     [self.navigationController pushViewController:addressCtrl animated:YES];
                 }else if (type == EditUserTypeCertification) {
+                    UserModel *userModel = [UserModel modelFromUnarchive];
+                    if(userModel.is_certification == 0){
+                        TDUserCertifyViewCtrl *ctrl = [[TDUserCertifyViewCtrl alloc] init];
+                        //                    ctrl.editTitle = title;
+                        [self.navigationController pushViewController:ctrl animated:YES];
+                    }else{
+                        [Common AppShowToast:@"你已进行过实名认证"];
+                    }
 //                    [self.navigationController setNavigationBarHidden:NO];
-                    TDUserCertifyViewCtrl *ctrl = [[TDUserCertifyViewCtrl alloc] init];
-//                    ctrl.editTitle = title;
-                    [self.navigationController pushViewController:ctrl animated:YES];
+                    
                 } else {
                     
                     ADLEditUserInformCtrl *ctrl = [[ADLEditUserInformCtrl alloc] initEditType:type];
@@ -305,7 +311,15 @@
     } else if ([title isEqualToString:KLocalizableStr(@"实名认证")]) {
         //这里需要修改 已认证的需要修改
 //        cell.descLabel.text = [NSString limitStringNotEmpty:self.userModel.mobile];
-        cell.descLabel.text = [NSString limitStringNotEmpty:KLocalizableStr(@"未认证")];
+        
+        UserModel *userModel = [UserModel modelFromUnarchive];
+        if(userModel.is_certification == 0){
+            cell.descLabel.text = [NSString limitStringNotEmpty:KLocalizableStr(@"未认证")];
+        }else{
+            cell.descLabel.text = [NSString limitStringNotEmpty:KLocalizableStr(@"已认证")];
+        }
+        
+        
     }
 }
 
@@ -419,8 +433,12 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             [userDefaults removeObjectForKey:@"appToken"];
-            [kAppDelegate comeBackToRootVC];
+            EMError *error = [[EMClient sharedClient] logout:YES];
+            if (!error) {
+                NSLog(@"退出成功");
+            }
             [kAppDelegate goToLoginPage];
+            [kAppDelegate comeBackToRootVC];
         });
         
     } failure:^(NSError *error) {

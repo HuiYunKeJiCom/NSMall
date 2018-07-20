@@ -81,6 +81,7 @@
 		184F065D20A2E37300768418 /* StoreItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F065C20A2E37300768418 /* StoreItemModel.m */; };
 		1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD6F208F0DD00094A594 /* NetBaseModel.m */; };
 		1851CD77208F23530094A594 /* NSCustomHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD76208F23530094A594 /* NSCustomHeadCell.m */; };
+		18559955210187F300D95602 /* NSMessageAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18559954210187F300D95602 /* NSMessageAPI.m */; };
 		185DFDFE20B3C7E800437168 /* NSCategoryTV.m in Sources */ = {isa = PBXBuildFile; fileRef = 185DFDFD20B3C7E800437168 /* NSCategoryTV.m */; };
 		185DFE0120B3FA8A00437168 /* NSCategoryTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185DFE0020B3FA8A00437168 /* NSCategoryTVCell.m */; };
 		1863D26720A96C8800047A7D /* NSGoodsShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863D26620A96C8800047A7D /* NSGoodsShowCell.m */; };
@@ -579,6 +580,8 @@
 		1851CD6F208F0DD00094A594 /* NetBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetBaseModel.m; sourceTree = "<group>"; };
 		1851CD75208F23530094A594 /* NSCustomHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCustomHeadCell.h; sourceTree = "<group>"; };
 		1851CD76208F23530094A594 /* NSCustomHeadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCustomHeadCell.m; sourceTree = "<group>"; };
+		18559953210187F300D95602 /* NSMessageAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSMessageAPI.h; sourceTree = "<group>"; };
+		18559954210187F300D95602 /* NSMessageAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSMessageAPI.m; sourceTree = "<group>"; };
 		185DFDFC20B3C7E800437168 /* NSCategoryTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCategoryTV.h; sourceTree = "<group>"; };
 		185DFDFD20B3C7E800437168 /* NSCategoryTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCategoryTV.m; sourceTree = "<group>"; };
 		185DFDFF20B3FA8A00437168 /* NSCategoryTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCategoryTVCell.h; sourceTree = "<group>"; };
@@ -1827,6 +1830,15 @@
 			path = Ctrl;
 			sourceTree = "<group>";
 		};
+		185599522101857F00D95602 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				18559953210187F300D95602 /* NSMessageAPI.h */,
+				18559954210187F300D95602 /* NSMessageAPI.m */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		1863D26320A96A9000047A7D /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
@@ -2022,13 +2034,13 @@
 			isa = PBXGroup;
 			children = (
 				1868F6E920FEF391000BB6EB /* DingViewController.h */,
+				1868F6ED20FEF391000BB6EB /* DingViewController.m */,
 				1868F6EA20FEF391000BB6EB /* EMDingMessageHelper.h */,
+				1868F6EE20FEF391000BB6EB /* EMDingMessageHelper.m */,
+				1868F6F020FEF391000BB6EB /* ChatViewController.h */,
 				1868F6EB20FEF391000BB6EB /* ChatViewController.m */,
 				1868F6EC20FEF391000BB6EB /* DingAcksViewController.h */,
-				1868F6ED20FEF391000BB6EB /* DingViewController.m */,
-				1868F6EE20FEF391000BB6EB /* EMDingMessageHelper.m */,
 				1868F6EF20FEF391000BB6EB /* DingAcksViewController.m */,
-				1868F6F020FEF391000BB6EB /* ChatViewController.h */,
 			);
 			path = ChatView;
 			sourceTree = "<group>";
@@ -2036,8 +2048,8 @@
 		1868F6F120FEF391000BB6EB /* ChatList */ = {
 			isa = PBXGroup;
 			children = (
-				1868F6F220FEF391000BB6EB /* ConversationListController.m */,
 				1868F6F320FEF391000BB6EB /* ConversationListController.h */,
+				1868F6F220FEF391000BB6EB /* ConversationListController.m */,
 			);
 			path = ChatList;
 			sourceTree = "<group>";
@@ -2046,14 +2058,14 @@
 			isa = PBXGroup;
 			children = (
 				1868F6F720FEF391000BB6EB /* ContactListSelectViewController.h */,
+				1868F6FD20FEF391000BB6EB /* ContactListSelectViewController.m */,
 				1868F6F820FEF391000BB6EB /* RealtimeSearchUtil.h */,
+				1868F6FF20FEF391000BB6EB /* RealtimeSearchUtil.m */,
 				1868F6F920FEF391000BB6EB /* ContactListViewController.h */,
+				1868F6FE20FEF391000BB6EB /* ContactListViewController.m */,
 				1868F6FA20FEF391000BB6EB /* Model */,
 				1868F6FB20FEF391000BB6EB /* View */,
 				1868F6FC20FEF391000BB6EB /* API */,
-				1868F6FD20FEF391000BB6EB /* ContactListSelectViewController.m */,
-				1868F6FE20FEF391000BB6EB /* ContactListViewController.m */,
-				1868F6FF20FEF391000BB6EB /* RealtimeSearchUtil.m */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -2138,14 +2150,14 @@
 			isa = PBXGroup;
 			children = (
 				1868F71F20FEF391000BB6EB /* GroupSubjectChangingViewController.h */,
+				1868F72F20FEF391000BB6EB /* GroupSubjectChangingViewController.m */,
 				1868F72020FEF391000BB6EB /* GroupListViewController.h */,
+				1868F74120FEF391000BB6EB /* GroupListViewController.m */,
 				1868F72120FEF391000BB6EB /* 新建群组 */,
 				1868F72620FEF391000BB6EB /* 加入公开群组 */,
-				1868F72E20FEF391000BB6EB /* ContactView.m */,
-				1868F72F20FEF391000BB6EB /* GroupSubjectChangingViewController.m */,
-				1868F73020FEF391000BB6EB /* Info */,
-				1868F74120FEF391000BB6EB /* GroupListViewController.m */,
 				1868F74220FEF391000BB6EB /* ContactView.h */,
+				1868F72E20FEF391000BB6EB /* ContactView.m */,
+				1868F73020FEF391000BB6EB /* Info */,
 			);
 			path = ChatGroup;
 			sourceTree = "<group>";
@@ -2178,21 +2190,21 @@
 		1868F73020FEF391000BB6EB /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				1868F73A20FEF391000BB6EB /* EMGroupMembersViewController.h */,
 				1868F73120FEF391000BB6EB /* EMGroupMembersViewController.m */,
+				1868F73920FEF391000BB6EB /* EMGroupAdminsViewController.h */,
 				1868F73220FEF391000BB6EB /* EMGroupAdminsViewController.m */,
 				1868F73320FEF391000BB6EB /* EMGroupInfoViewController.h */,
+				1868F73C20FEF391000BB6EB /* EMGroupInfoViewController.m */,
 				1868F73420FEF391000BB6EB /* GroupSettingViewController.h */,
+				1868F73B20FEF391000BB6EB /* GroupSettingViewController.m */,
 				1868F73520FEF391000BB6EB /* EMGroupMutesViewController.h */,
+				1868F73F20FEF391000BB6EB /* EMGroupMutesViewController.m */,
+				1868F73E20FEF391000BB6EB /* EMGroupSharedFilesViewController.h */,
 				1868F73620FEF391000BB6EB /* EMGroupSharedFilesViewController.m */,
 				1868F73720FEF391000BB6EB /* EMGroupBansViewController.h */,
-				1868F73820FEF391000BB6EB /* EMGroupTransferOwnerViewController.h */,
-				1868F73920FEF391000BB6EB /* EMGroupAdminsViewController.h */,
-				1868F73A20FEF391000BB6EB /* EMGroupMembersViewController.h */,
-				1868F73B20FEF391000BB6EB /* GroupSettingViewController.m */,
-				1868F73C20FEF391000BB6EB /* EMGroupInfoViewController.m */,
 				1868F73D20FEF391000BB6EB /* EMGroupBansViewController.m */,
-				1868F73E20FEF391000BB6EB /* EMGroupSharedFilesViewController.h */,
-				1868F73F20FEF391000BB6EB /* EMGroupMutesViewController.m */,
+				1868F73820FEF391000BB6EB /* EMGroupTransferOwnerViewController.h */,
 				1868F74020FEF391000BB6EB /* EMGroupTransferOwnerViewController.m */,
 			);
 			path = Info;
@@ -2202,10 +2214,10 @@
 			isa = PBXGroup;
 			children = (
 				1868F74420FEF391000BB6EB /* EMChooseViewController.h */,
+				1868F74B20FEF391000BB6EB /* EMChooseViewController.m */,
+				1868F74A20FEF391000BB6EB /* BaseTableViewCell.h */,
 				1868F74520FEF391000BB6EB /* BaseTableViewCell.m */,
 				1868F74620FEF391000BB6EB /* EMSearchController */,
-				1868F74A20FEF391000BB6EB /* BaseTableViewCell.h */,
-				1868F74B20FEF391000BB6EB /* EMChooseViewController.m */,
 				1868F74C20FEF391000BB6EB /* View */,
 			);
 			path = Custom;
@@ -2214,9 +2226,9 @@
 		1868F74620FEF391000BB6EB /* EMSearchController */ = {
 			isa = PBXGroup;
 			children = (
+				1868F74920FEF391000BB6EB /* EMSearchResultController.h */,
 				1868F74720FEF391000BB6EB /* EMSearchResultController.m */,
 				1868F74820FEF391000BB6EB /* EMSearchControllerDelegate.h */,
-				1868F74920FEF391000BB6EB /* EMSearchResultController.h */,
 			);
 			path = EMSearchController;
 			sourceTree = "<group>";
@@ -2224,10 +2236,10 @@
 		1868F74C20FEF391000BB6EB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1868F74D20FEF391000BB6EB /* EMTextView.m */,
-				1868F74E20FEF391000BB6EB /* EMRemarkImageView.m */,
 				1868F74F20FEF391000BB6EB /* EMTextView.h */,
+				1868F74D20FEF391000BB6EB /* EMTextView.m */,
 				1868F75020FEF391000BB6EB /* EMRemarkImageView.h */,
+				1868F74E20FEF391000BB6EB /* EMRemarkImageView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2236,14 +2248,14 @@
 			isa = PBXGroup;
 			children = (
 				1868F75220FEF391000BB6EB /* 扫一扫加我好友 */,
-				1868F75520FEF391000BB6EB /* ApplyFriendCell.m */,
+				1868F75B20FEF391000BB6EB /* ApplyViewController.h */,
 				1868F75620FEF391000BB6EB /* ApplyViewController.m */,
 				1868F75720FEF391000BB6EB /* AddFriendCell.h */,
-				1868F75820FEF391000BB6EB /* AddFriendViewController.m */,
-				1868F75920FEF391000BB6EB /* ApplyFriendCell.h */,
 				1868F75A20FEF391000BB6EB /* AddFriendCell.m */,
-				1868F75B20FEF391000BB6EB /* ApplyViewController.h */,
+				1868F75920FEF391000BB6EB /* ApplyFriendCell.h */,
+				1868F75520FEF391000BB6EB /* ApplyFriendCell.m */,
 				1868F75C20FEF391000BB6EB /* AddFriendViewController.h */,
+				1868F75820FEF391000BB6EB /* AddFriendViewController.m */,
 			);
 			path = "添加好友";
 			sourceTree = "<group>";
@@ -2251,8 +2263,8 @@
 		1868F75220FEF391000BB6EB /* 扫一扫加我好友 */ = {
 			isa = PBXGroup;
 			children = (
-				1868F75320FEF391000BB6EB /* NSAddFriendVC.m */,
 				1868F75420FEF391000BB6EB /* NSAddFriendVC.h */,
+				1868F75320FEF391000BB6EB /* NSAddFriendVC.m */,
 			);
 			path = "扫一扫加我好友";
 			sourceTree = "<group>";
@@ -3520,6 +3532,7 @@
 		18DD1572208DD35A0006475D /* Message(消息) */ = {
 			isa = PBXGroup;
 			children = (
+				185599522101857F00D95602 /* API */,
 				1868F6E120FEF391000BB6EB /* Demo */,
 			);
 			path = "Message(消息)";
@@ -4407,6 +4420,7 @@
 				18B0179420A67B9600826EA4 /* YWChooseAddressView.m in Sources */,
 				18B017B020A67B9600826EA4 /* CLTagsModel.m in Sources */,
 				18D62C5820C2737300F66C4C /* NSGoodsShowCellTest.m in Sources */,
+				18559955210187F300D95602 /* NSMessageAPI.m in Sources */,
 				18D0C0EA20AC1E4A007F0784 /* JFDatePickerController.m in Sources */,
 				184F0644209FFB7F00768418 /* UIImageView+WebCache.m in Sources */,
 				18B0179220A67B9600826EA4 /* YWAddressModel.m in Sources */,

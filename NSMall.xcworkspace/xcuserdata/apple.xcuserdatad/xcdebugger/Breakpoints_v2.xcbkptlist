@@ -6,91 +6,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             scope = "0"
             stopOnStyle = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NSMall/My(&#x6211;&#x7684;)/MyOrder(&#x6211;&#x7684;&#x8ba2;&#x5355;)/Ctrl/NSOrderListVC.m"
-            timestampString = "553614181.154598"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
-            landmarkName = "-changeScrollview:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[NSOrderListVC changeScrollview:]"
-                  moduleName = "NSMall"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/NSMall/NSMall/My(%E6%88%91%E7%9A%84)/MyOrder(%E6%88%91%E7%9A%84%E8%AE%A2%E5%8D%95)/Ctrl/NSOrderListVC.m"
-                  timestampString = "553701303.472972"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "264"
-                  endingLineNumber = "264"
-                  offsetFromSymbolStart = "64">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__34-[NSOrderListVC changeScrollview:]_block_invoke"
-                  moduleName = "NSMall"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/NSMall/NSMall/My(%E6%88%91%E7%9A%84)/MyOrder(%E6%88%91%E7%9A%84%E8%AE%A2%E5%8D%95)/Ctrl/NSOrderListVC.m"
-                  timestampString = "553701303.477634"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "265"
-                  endingLineNumber = "265"
-                  offsetFromSymbolStart = "24">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NSMall/Publish(&#x53d1;&#x5e03;)/&#x53d1;&#x5e03;&#x5546;&#x54c1;/Ctrl/NSGoodsPublishVC.m"
-            timestampString = "553614181.155285"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "531"
-            endingLineNumber = "531"
-            landmarkName = "-imagePickerController:didFinishPickingPhotos:sourceAssets:isSelectOriginalPhoto:infos:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NSMall/Publish(&#x53d1;&#x5e03;)/&#x53d1;&#x5e03;&#x5546;&#x54c1;/Ctrl/NSGoodsPublishVC.m"
-            timestampString = "553614181.155706"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "406"
-            endingLineNumber = "406"
-            landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

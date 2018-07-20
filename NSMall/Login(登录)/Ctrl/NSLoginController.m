@@ -88,6 +88,16 @@
     [LoginAPI loginWithParam:param success:^{
         DLog(@"登录成功");
         
+        UserModel *userModel = [UserModel modelFromUnarchive];
+
+        BOOL isAutoLogin = [EMClient sharedClient].options.isAutoLogin;
+        if (!isAutoLogin) {
+            EMError *error = [[EMClient sharedClient] loginWithUsername:userModel.hx_user_name password:userModel.hx_password];
+            if (!error) {
+                NSLog(@"环信登录成功");
+                [[EMClient sharedClient].options setIsAutoLogin:YES];
+            }
+        }
         [kAppDelegate setUpRootVC];
         
     } faulre:^(NSError *error) {
@@ -160,6 +170,7 @@
     
     [GetVcodeAPI getVcodeWithParam:param success:^{
         DLog(@"获取验证码成功");
+        [Common AppShowToast:@"获取验证码成功"];
     } faulre:^(NSError *error) {
         DLog(@"获取验证码失败");
     }];

@@ -49,6 +49,11 @@ AFHTTPSessionManager *httpManager = nil;
     [httpManager GET:[NSString stringWithFormat:@"%@%@",NetDomainADDR,function] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [Common AppHideHUD];
         NetBaseModel *result = [NetBaseModel yy_modelWithDictionary:responseObject];
+        
+        if((result.code == -1) || (result.code == -2)){
+            [kAppDelegate goToLoginPage];
+        }
+        
         if (!result.success) {
             [Common AppShowToast:result.message];
             failure?failure(nil):nil;
@@ -91,18 +96,6 @@ AFHTTPSessionManager *httpManager = nil;
 }
 
 + (void)requestWithGet:(nullable id)params function:(nullable NSString *)function showHUD:(nullable NSString *)showHUD resultClass:(nullable Class)resultClass success:(nullable void (^)(id _Nullable resultObj))success failure:(nullable void (^)(NSError * _Nullable error))failure{
-//    NSMutableDictionary *newParam;
-//    if (params == nil){
-//        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//        NSString *appToken = [userDefaults valueForKey:@"appToken"];
-//        params = [NSDictionary dictionaryWithObject:appToken forKey:@"app_token"];
-//    }else{
-//        newParam = [NSMutableDictionary dictionaryWithDictionary:params];
-//        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//        NSString *appToken = [userDefaults valueForKey:@"appToken"];
-//        DLog(@"appToken = %@",appToken);
-//        [newParam setObject:appToken forKey:@"app_token"];
-//    }
 
     NSDictionary *requestParams = nil;
     if (params == nil || [params isKindOfClass:[NSDictionary class]])
@@ -111,7 +104,7 @@ AFHTTPSessionManager *httpManager = nil;
         requestParams = [params yy_modelToJSONObject];
     
     [self requestWithGet:requestParams function:function showHUD:showHUD success:^(NSDictionary * _Nullable responseObj) {
-//        NSLog(@"responseObj = %@",responseObj);
+        NSLog(@"responseObj = %@",responseObj);
         id resultObj = nil;
         if (resultClass == Nil || [resultClass isKindOfClass:[NSDictionary class]] || [resultClass isKindOfClass:[NSArray class]])
             resultObj = responseObj;

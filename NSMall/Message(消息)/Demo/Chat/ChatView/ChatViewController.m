@@ -59,6 +59,8 @@
     self.dataSource = self;
 //    [self _setupBarButtonItem];
     [self setUpNavTopView];
+    self.tableView.backgroundColor = KBGCOLOR;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteAllMessages:) name:KNOTIFICATIONNAME_DELETEALLMESSAGE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCallNotification:) name:@"callControllerClose" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exitChat) name:@"ExitChat" object:nil];
@@ -144,7 +146,7 @@
 - (void)setUpNavTopView
 {
     NSNavView *topToolView = [[NSNavView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
-    topToolView.backgroundColor = KMainColor;
+    topToolView.backgroundColor = kWhiteColor;
     
 //    EMMessage *latestMessage = self.conversation.latestMessage;
 //    NSDictionary *ext = latestMessage.ext;

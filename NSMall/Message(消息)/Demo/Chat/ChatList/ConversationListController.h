@@ -15,7 +15,8 @@
 @interface ConversationListController : EaseConversationListViewController
 
 @property (strong, nonatomic) NSMutableArray *conversationsArray;
-
+/** 好友的名称 */
+@property (nonatomic, copy) NSString *buddyUsername;
 - (void)refresh;
 - (void)refreshDataSource;
 

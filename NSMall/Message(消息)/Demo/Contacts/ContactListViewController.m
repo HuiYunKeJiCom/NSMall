@@ -65,26 +65,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.showRefreshHeader = YES;
-    
+//    [self.navigationController setNavigationBarHidden:YES];
     _contactsSource = [NSMutableArray array];
     _sectionTitles = [NSMutableArray array];
     
     // 环信UIdemo中有用到Parse, 加载用户好友个人信息
-    [[UserProfileManager sharedInstance] loadUserProfileInBackgroundWithBuddy:self.contactsSource saveToLoacal:YES completion:NULL];
+//    [[UserProfileManager sharedInstance] loadUserProfileInBackgroundWithBuddy:self.contactsSource saveToLoacal:YES completion:NULL];
     
     [self setupSearchController];
     [self setUpNavTopView];
-
+    self.tableView.backgroundColor = KBGCOLOR;
 }
 
 #pragma mark - 导航栏处理
 - (void)setUpNavTopView
 {
     NSNavView *topToolView = [[NSNavView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
-    topToolView.backgroundColor = KMainColor;
+    topToolView.backgroundColor = kWhiteColor;
     [topToolView setTopTitleWithNSString:KLocalizableStr(@"通讯录")];
 //    [topToolView setRightItemTitle:KLocalizableStr(@"添加好友")];
-    [topToolView setRightItemImage:@"add"];
+    [topToolView setRightItemImage:@"ico_add"];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
@@ -454,6 +454,7 @@
     if ([UIDevice currentDevice].systemVersion.floatValue < 11.0) {
         UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:NSLocalizedString(@"delete",@"Delete") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
             [self deleteCellAction:indexPath];
+            [self.tableView reloadData];
         }];
         deleteAction.backgroundColor = [UIColor redColor];
         return @[deleteAction];

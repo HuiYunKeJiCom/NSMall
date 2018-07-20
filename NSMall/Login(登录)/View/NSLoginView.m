@@ -191,7 +191,7 @@
 //    _nameTextField.imgView.image = selected ? IMAGE(@"ico_login_name_H") : IMAGE(@"ico_login_name");
     _nameTextField.imgView.image = IMAGE(@"login_ico_mobile");
     _nameTextField.lineView.backgroundColor = KBGCOLOR;
-    _nameTextField.textField.textColor = KBGCOLOR;
+    _nameTextField.textField.textColor = [UIColor lightGrayColor];
     _nameTextField.backgroundColor = [UIColor whiteColor];
 }
 
@@ -199,7 +199,7 @@
     
     _passTextField.imgView.image = IMAGE(@"login_ico_envelope");
     _passTextField.lineView.backgroundColor = KBGCOLOR;
-    _passTextField.textField.textColor = KBGCOLOR;
+    _passTextField.textField.textColor = [UIColor lightGrayColor];
     _passTextField.backgroundColor = [UIColor whiteColor];
 }
 
@@ -282,8 +282,8 @@
     
     self.errorLabel.text = @"";
     
-    [self.nameTextField placeholder:KLocalizableStr(@"手机号码") color:KBGCOLOR];
-    [self.passTextField placeholder:KLocalizableStr(@"短信验证码") color:KBGCOLOR];
+    [self.nameTextField placeholder:KLocalizableStr(@"手机号码") color:[UIColor lightGrayColor]];
+    [self.passTextField placeholder:KLocalizableStr(@"短信验证码") color:[UIColor lightGrayColor]];
     [self.loginButton setTitle:KLocalizableStr(@"登录") forState:UIControlStateNormal];
 //    [self.phoneButton setTitle:KLocalizableStr(@"注册账号") forState:UIControlStateNormal];
 //    [self.forgetButton setTitle:KLocalizableStr(@"忘记密码") forState:UIControlStateNormal];

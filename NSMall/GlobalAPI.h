@@ -116,6 +116,8 @@ const static NSString * const kPublishCommentAPI = @"auth/publishComment";//发�
 //检测APP版本
 const static NSString * const kAppVersionAPI = @"getAppVersion";//检测APP版本
 
+//环信相关
+const static NSString * const kAcceptFriendAPI = @"auth/acceptFriend";//同意添加好友
 
 
 

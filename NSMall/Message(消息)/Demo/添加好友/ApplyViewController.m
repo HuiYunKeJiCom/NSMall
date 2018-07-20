@@ -1,20 +1,19 @@
 /************************************************************
-  *  * Hyphenate CONFIDENTIAL 
-  * __________________ 
-  * Copyright (C) 2016 Hyphenate Inc. All rights reserved. 
-  *  
-  * NOTICE: All information contained herein is, and remains 
-  * the property of Hyphenate Inc.
-  * Dissemination of this information or reproduction of this material 
-  * is strictly forbidden unless prior written permission is obtained
-  * from Hyphenate Inc.
-  */
+ *  * Hyphenate CONFIDENTIAL
+ * __________________
+ * Copyright (C) 2016 Hyphenate Inc. All rights reserved.
+ *
+ * NOTICE: All information contained herein is, and remains
+ * the property of Hyphenate Inc.
+ * Dissemination of this information or reproduction of this material
+ * is strictly forbidden unless prior written permission is obtained
+ * from Hyphenate Inc.
+ */
 
 #import "ApplyViewController.h"
 
 #import "ApplyFriendCell.h"
 #import "InvitationManager.h"
-#import "ADOrderTopToolView.h"
 
 static ApplyViewController *controller = nil;
 
@@ -49,37 +48,20 @@ static ApplyViewController *controller = nil;
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations.
-//    self.title = NSLocalizedString(@"title.apply", @"Application and notification");
+    self.title = NSLocalizedString(@"title.apply", @"Application and notification");
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    [self setUpNavTopView];
-    self.tableView.frame = CGRectMake(0, TopBarHeight, self.view.frame.size.width,self.view.frame.size.height-TopBarHeight);
-    
-//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-//    backButton.accessibilityIdentifier = @"back";
-//    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-//    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-//    [self.navigationItem setLeftBarButtonItem:backItem];
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    backButton.accessibilityIdentifier = @"back";
+    [backButton setImage:[UIImage imageNamed:@"top_left_arrow"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    [self.navigationItem setLeftBarButtonItem:backItem];
     
     [self loadDataSourceFromLocalDB];
+    self.tableView.backgroundColor = KBGCOLOR;
 }
-
-#pragma mark - 导航栏处理
-- (void)setUpNavTopView
-{
-    ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
-    topToolView.backgroundColor = KMainColor;
-    [topToolView setTopTitleWithNSString:NSLocalizedString(@"title.apply", @"Application and notification")];
-    WEAKSELF
-    topToolView.leftItemClickBlock = ^{
-        NSLog(@"点击了返回");
-        [weakSelf.navigationController popViewControllerAnimated:YES];
-    };
-    [self.view addSubview:topToolView];
-}
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -91,7 +73,8 @@ static ApplyViewController *controller = nil;
 {
     [super viewWillAppear:animated];
     
-//    [self.tableView reloadData];
+    [self.navigationController setNavigationBarHidden:NO];
+    //    [self.tableView reloadData];
 }
 
 #pragma mark - getter
@@ -253,7 +236,7 @@ static ApplyViewController *controller = nil;
             [[InvitationManager sharedInstance] removeInvitation:entity loginUser:loginUsername];
             
             [self.tableView reloadData];
-
+            
         }
     }
 }
@@ -308,7 +291,7 @@ static ApplyViewController *controller = nil;
             
             [_dataSource insertObject:newEntity atIndex:0];
             [self.tableView reloadData];
-
+            
         }
     }
 }
@@ -346,6 +329,7 @@ static ApplyViewController *controller = nil;
 - (void)back
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"setupUntreatedApplyCount" object:nil];
+    [self.navigationController setNavigationBarHidden:YES];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -357,3 +341,4 @@ static ApplyViewController *controller = nil;
 }
 
 @end
+

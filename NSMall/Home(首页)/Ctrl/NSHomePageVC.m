@@ -45,6 +45,19 @@
     // Do any additional setup after loading the view.
     
 //    self.view.backgroundColor = kWhiteColor;
+    
+    UserModel *userModel = [UserModel modelFromUnarchive];
+//    DLog(@"userModel = %@",userModel.mj_keyValues);
+    
+    BOOL isAutoLogin = [EMClient sharedClient].options.isAutoLogin;
+    if (!isAutoLogin) {
+        EMError *error = [[EMClient sharedClient] loginWithUsername:userModel.hx_user_name password:userModel.hx_password];
+        if (!error) {
+            NSLog(@"环信登录成功");
+            [[EMClient sharedClient].options setIsAutoLogin:YES];
+        }
+    }
+
     [self requestAllOrder:NO];
     [self buildUI];
     
@@ -451,6 +464,16 @@
     CGImageRelease(bitmapImage);
     UIImage *qrCodeImage = [UIImage imageWithCGImage:scaledImage];
     return qrCodeImage;
+}
+
+/*!
+ *  自动登录返回结果
+ *
+ *  @param error 错误信息
+ */
+- (void)autoLoginDidCompleteWithError:(EMError *)error{
+
+//添加回调监听代理: [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
 }
 
 @end

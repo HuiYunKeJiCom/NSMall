@@ -144,6 +144,7 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
         [[[UIApplication  sharedApplication]keyWindow] addSubview:webView];
         
     } failure:^(NSError *error) {
+        
         return;
     }];
 }
