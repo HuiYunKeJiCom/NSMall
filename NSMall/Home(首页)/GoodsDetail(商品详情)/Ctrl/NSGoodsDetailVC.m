@@ -295,16 +295,16 @@
     UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, buttonY, kScreenWidth, buttonH)];
     bottomView.backgroundColor = kWhiteColor;
     bottomView.layer.borderWidth = 1;
-    bottomView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    bottomView.layer.borderColor = [KBGCOLOR CGColor];
     [self.view addSubview:bottomView];
     
     UIButton *collectionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     if(self.isCollect){
-        [collectionBtn setImageWithTitle:IMAGE(@"goods_detail_ico_fav") withTitle:[NSString stringWithFormat:@"收藏(%@)",[NSNumber numberWithInteger:self.collectNum]] position:@"left" font:UISystemFontSize(13) forState:UIControlStateNormal];
+        [collectionBtn setImageWithTitle:IMAGE(@"goods_detail_ico_fav_on") withTitle:@"收藏" position:@"left" font:UISystemFontSize(13) forState:UIControlStateNormal];
     }else{
         [collectionBtn setImageWithTitle:IMAGE(@"goods_detail_ico_fav") withTitle:@"收藏" position:@"left" font:UISystemFontSize(13) forState:UIControlStateNormal];
     }
-//    [collectionBtn setImageWithTitle:IMAGE(@"goods_detail_ico_fav") withTitle:@"收藏" position:@"left" font:UISystemFontSize(13) forState:UIControlStateNormal];
+
     collectionBtn.frame = CGRectMake(0, 2, buttonW+20, buttonH);
     [bottomView addSubview:collectionBtn];
         collectionBtn.tag = 2;
@@ -453,23 +453,19 @@
 
 -(void)collectionGoods:(UIButton *)btn{
     
-//    UserModel *userModel = [UserModel modelFromUnarchive];
-//    if(self.model.user_id == userModel.user_id){
-//        [Common AppShowHUD:@""];
-//    }else{
         [GoodsDetailAPI changeProductCollectState:self.productID success:^(NSCollectModel *model) {
             DLog(@"收藏成功");
             if(self.isCollect){
-                [btn setTitle:@"收藏" forState:UIControlStateNormal];
+                [btn setImageWithTitle:IMAGE(@"goods_detail_ico_fav") withTitle:@"收藏" position:@"left" font:UISystemFontSize(13) forState:UIControlStateNormal];
                 self.isCollect = NO;
             }else{
-                [btn setTitle:[NSString stringWithFormat:@"收藏(%@)",[NSNumber numberWithInteger:model.favorite_number]] forState:UIControlStateNormal];
+                [btn setImageWithTitle:IMAGE(@"goods_detail_ico_fav_on") withTitle:@"收藏" position:@"left" font:UISystemFontSize(13) forState:UIControlStateNormal];
                 self.isCollect = YES;
             }
+            btn.frame = CGRectMake(0, -12, kScreenWidth * 0.5*0.35+20, GetScaleWidth(50));
         } failure:^(NSError *error) {
             DLog(@"收藏失败");
         }];
-//    }
 }
 
 
@@ -615,8 +611,8 @@
         self.messageTV.size = CGSizeMake(kScreenWidth, result.commentList.count*GetScaleWidth(95));
         self.SV.contentSize = CGSizeMake(self.SV.bounds.size.width, self.height+GetScaleWidth(203)+GetScaleWidth(40)+(result.commentList.count)*GetScaleWidth(95));
         self.noMoreV.x = 0;
-        self.noMoreV.size = CGSizeMake(kScreenWidth, GetScaleWidth(40));
         self.noMoreV.y = CGRectGetMaxY(self.messageTV.frame);
+        self.noMoreV.size = CGSizeMake(kScreenWidth, kScreenHeight -self.noMoreV.y);
         [weakSelf.messageTV reloadData];
     } failure:^(NSError *error) {
         NSLog(@"获取商品评论列表失败");

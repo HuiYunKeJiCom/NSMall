@@ -119,6 +119,14 @@
     _delBtn.layer.cornerRadius = 5.0;//2.0是圆角的弧度，根据需求自己更改
     _delBtn.layer.borderColor = kRedColor.CGColor;//设置边框颜色
     _delBtn.layer.borderWidth = 1.0f;//设置边框宽度
+    
+    UserModel *userModel = [UserModel modelFromUnarchive];
+    if([userModel.user_name isEqualToString:messageModel.userName]){
+        _delBtn.alpha = 0.0;
+    }else{
+        _delBtn.alpha = 1.0;
+    }
+    
 }
 
 #pragma mark - private methord

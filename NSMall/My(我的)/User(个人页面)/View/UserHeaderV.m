@@ -39,11 +39,12 @@
 - (void)initViews {
 
     self.bgIV = [[UIImageView alloc]init];
-    self.bgIV.backgroundColor = kBlueColor;
+//    self.bgIV.backgroundColor = kBlueColor;
+    self.bgIV.image = IMAGE(@"default_personal_head");
     [self addSubview:self.bgIV];
     
     self.headerIV = [[UIImageView alloc]init];
-    self.headerIV.backgroundColor = [UIColor greenColor];
+//    self.headerIV.backgroundColor = [UIColor greenColor];
     [self addSubview:self.headerIV];
     
     self.userNameL = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum15 TextColor:kBlackColor];
@@ -53,7 +54,8 @@
     [self addSubview:self.regeistDayL];
     
     self.idenIV = [[UIImageView alloc]init];
-    self.idenIV.backgroundColor = kRedColor;
+//    self.idenIV.backgroundColor = kRedColor;
+    self.idenIV.image = IMAGE(@"mypage_ico_realname");
     self.idenIV.contentMode = UIViewContentModeScaleToFill;
     [self addSubview:self.idenIV];
     
@@ -72,13 +74,13 @@
     
     self.shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.shareBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [self.shareBtn setImageWithTitle:IMAGE(@"ico_share") withTitle:@"分享" position:@"left" font:[UIFont systemFontOfSize:kFontNum12] forState:UIControlStateNormal];
+    [self.shareBtn setImageWithTitle:IMAGE(@"mypage_ico_share") withTitle:@"分享" position:@"left" font:[UIFont systemFontOfSize:kFontNum12] forState:UIControlStateNormal];
     [self addSubview:self.shareBtn];
     [self.shareBtn addTarget:self action:@selector(shareButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.editBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [self.editBtn setImageWithTitle:IMAGE(@"ico_comment") withTitle:@"编辑" position:@"left" font:[UIFont systemFontOfSize:kFontNum12] forState:UIControlStateNormal];
+    [self.editBtn setImageWithTitle:IMAGE(@"mypage_ico_edit") withTitle:@"编辑" position:@"left" font:[UIFont systemFontOfSize:kFontNum12] forState:UIControlStateNormal];
     [self addSubview:self.editBtn];
     [self.editBtn addTarget:self action:@selector(editButtonClick) forControlEvents:UIControlEventTouchUpInside];
 
@@ -124,14 +126,14 @@
     
     [self.regeistDayL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.mas_left).with.offset(GetScaleWidth(18));
-        make.top.equalTo(weakSelf.userNameL.mas_bottom).with.offset(GetScaleWidth(8));
+        make.top.equalTo(weakSelf.userNameL.mas_bottom).with.offset(GetScaleWidth(15));
         make.height.mas_equalTo(GetScaleWidth(12));
         
     }];
     
     [self.idenLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(weakSelf.mas_right).with.offset(GetScaleWidth(-18));
-        make.top.equalTo(weakSelf.userNameL.mas_bottom).with.offset(GetScaleWidth(8));
+        make.top.equalTo(weakSelf.userNameL.mas_bottom).with.offset(GetScaleWidth(15));
         make.height.mas_equalTo(GetScaleWidth(12));
         
     }];
@@ -145,7 +147,7 @@
     
     [self.goodsL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.mas_left).with.offset(GetScaleWidth(18));
-        make.top.equalTo(weakSelf.regeistDayL.mas_bottom).with.offset(GetScaleWidth(10));
+        make.bottom.equalTo(weakSelf.mas_bottom).with.offset(GetScaleWidth(-13));
         
         make.height.mas_equalTo(GetScaleWidth(9));
         
@@ -153,13 +155,13 @@
     
     [self.shopL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.goodsL.mas_right).with.offset(GetScaleWidth(12));
-        make.top.equalTo(weakSelf.regeistDayL.mas_bottom).with.offset(GetScaleWidth(10));
+        make.bottom.equalTo(weakSelf.mas_bottom).with.offset(GetScaleWidth(-13));
         make.height.mas_equalTo(GetScaleWidth(9));
     }];
 
     [self.commentL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.shopL.mas_right).with.offset(GetScaleWidth(15));
-        make.top.equalTo(weakSelf.regeistDayL.mas_bottom).with.offset(GetScaleWidth(10));
+        make.bottom.equalTo(weakSelf.mas_bottom).with.offset(GetScaleWidth(-13));
         make.height.mas_equalTo(GetScaleWidth(9));
     }];
     
@@ -170,7 +172,7 @@
     }];
     
     [self.editBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(weakSelf.shareBtn.mas_left);
+        make.right.equalTo(weakSelf.shareBtn.mas_left).with.offset(GetScaleWidth(14));
         make.bottom.equalTo(weakSelf.mas_bottom).with.offset(GetScaleWidth(-7));
         make.size.mas_equalTo(CGSizeMake(GetScaleWidth(80), GetScaleWidth(20)));
     }];

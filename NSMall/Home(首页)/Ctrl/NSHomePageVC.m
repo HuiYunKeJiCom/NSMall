@@ -74,10 +74,11 @@
     [self.bgView addSubview:self.scanView];
 
     UIButton *closeBtn = [[UIButton alloc]init];
-    closeBtn.backgroundColor = kRedColor;
-    closeBtn.x = kScreenWidth-60-10;
-    closeBtn.y = -10;
-    closeBtn.size = CGSizeMake(20, 20);
+//    closeBtn.backgroundColor = kRedColor;
+    closeBtn.x = kScreenWidth-60-15;
+    closeBtn.y = -15;
+    closeBtn.size = CGSizeMake(30, 30);
+    [closeBtn setImage:[UIImage imageNamed:@"ic_close"] forState:UIControlStateNormal];
     [self.bgView addSubview:closeBtn];
     [closeBtn addTarget:self action:@selector(hideGoodsQRCode) forControlEvents:UIControlEventTouchUpInside];
 }

@@ -20,4 +20,16 @@
         failure?failure(error):nil;
     }];
 }
+
+/*
+ 收付款
+ */
++ (void)tradeWithParam:(NSPayParam *)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure{
+    [Net requestWithPost:param function:kTradeAPI showHUD:NetNullStr resultClass:[NSDictionary class] success:^(id  _Nullable resultObj) {
+        success?success():nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+}
+
 @end

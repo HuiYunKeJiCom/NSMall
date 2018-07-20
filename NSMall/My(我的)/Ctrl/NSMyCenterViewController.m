@@ -60,7 +60,7 @@
 - (void)setUpData
 {
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"我的钱包") imageName:@"my_ico_wallet" num:nil]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"我的收款码") imageName:@"my_ico_wallet" num:nil]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"我的收款码") imageName:@"my_ico_qrcode" num:nil]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"我的商品") imageName:@"my_ico_goods" num:nil]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"我的店铺") imageName:@"my_ico_shop" num:nil]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"我的订单") imageName:@"my_ico_order" num:nil]];

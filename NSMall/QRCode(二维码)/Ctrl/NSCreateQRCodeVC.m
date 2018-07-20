@@ -89,11 +89,12 @@
 //    self.receivableRecordV.backgroundColor = [UIColor greenColor];
     
     UIImageView *recordIV = [[UIImageView alloc]init];
-    recordIV.backgroundColor = kRedColor;
+//    recordIV.backgroundColor = kRedColor;
+    recordIV.image = IMAGE(@"money_ico_list");
     [self.receivableRecordV addSubview:recordIV];
     recordIV.x = 0;
-    recordIV.y = 15;
-    recordIV.size = CGSizeMake(15, 20);
+    recordIV.y = 16;
+    recordIV.size = CGSizeMake(17, 18);
     
     UILabel *recordLab = [[UILabel alloc]init];
     recordLab.font = UISystemFontSize(14);

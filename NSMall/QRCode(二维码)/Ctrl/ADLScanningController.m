@@ -11,6 +11,9 @@
 #import "ADLWebCtrl.h"
 #import "GPLoadingView.h"
 #import "ADOrderTopToolView.h"
+#import "NSGoodsDetailVC.h"
+#import "UserPageVC.h"
+#import "NSPayVC.h"
 
 #define XCenter self.view.center.x
 #define YCenter self.view.center.y
@@ -213,24 +216,52 @@
 - (void)commitInfoWithQrcode:(NSString *)qrcode {
     DLog(@"扫描到的字符串 = %@",qrcode);
     
-    UserModel *userModel = [UserModel modelFromUnarchive];
-
-    NSArray *array = [qrcode componentsSeparatedByString:@"uid:"];
-    NSString *string = [array lastObject];
-
-    NSString *msg = [userModel.hx_user_name stringByAppendingString:@"要加你为好友"];
-    EMError *error = [[EMClient sharedClient].contactManager addContact:string message:msg];
-    if (!error) {
-        NSLog(@"添加好友成功");
-        [MBProgressHUD showSuccess:@"添加好友成功"];
-//        [self.navigationController popViewControllerAnimated:YES];
-    }else{
-        NSLog(@"添加好友失败,%@",error);
-        [MBProgressHUD showSuccess:@"添加好友失败"];
+    if([qrcode hasPrefix:@"uid:"]){
+        UserModel *userModel = [UserModel modelFromUnarchive];
+        NSArray *array = [qrcode componentsSeparatedByString:@"uid:"];
+        NSString *string = [array lastObject];
+        
+        NSString *msg = [userModel.hx_user_name stringByAppendingString:@"要加你为好友"];
+        EMError *error = [[EMClient sharedClient].contactManager addContact:string message:msg];
+        if (!error) {
+            [Common AppShowToast:@"添加好友成功"];
+        }else{
+            [Common AppShowToast:@"添加好友失败"];
+        }
+        [self delayPop];
+    }else if ([qrcode hasPrefix:@"gid:"]){
+        NSArray *array = [qrcode componentsSeparatedByString:@"gid:"];
+        NSString *string = [array lastObject];
+        
+        NSGoodsDetailVC *detailVC = [NSGoodsDetailVC new];
+        [detailVC getDataWithProductID:string andCollectNum:0];
+        [self.navigationController pushViewController:detailVC animated:YES];
+        
+    }else if ([qrcode hasPrefix:@"sid:"]){
+        NSArray *array = [qrcode componentsSeparatedByString:@"sid:"];
+        NSString *string = [array lastObject];
+    }else if ([qrcode hasPrefix:@"hid:"]){
+        NSArray *array = [qrcode componentsSeparatedByString:@"hid:"];
+        NSString *string = [array lastObject];
+        
+        //跳转至个人页面
+        UserPageVC *userPageVC = [UserPageVC new];
+        [userPageVC setUpDataWithUserId:string];
+        [self.navigationController pushViewController:userPageVC animated:YES];
+        
+    }else if ([qrcode hasPrefix:@"pid:"]){
+        NSArray *array = [qrcode componentsSeparatedByString:@"pid:"];
+        NSString *string = [array lastObject];
+        
+        //跳转至付款页面
+        NSPayVC *payVC = [NSPayVC new];
+        [payVC setUpDataWithUserId:string];
+        [self.navigationController pushViewController:payVC animated:YES];
+        
     }
     
-//    [Common AppShowToast:qrcode];
-    [self delayPop];
+    
+    
 }
 
 -(NSString*)dictionaryToJson:(NSDictionary *)dic

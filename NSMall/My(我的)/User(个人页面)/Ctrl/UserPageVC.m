@@ -94,7 +94,7 @@
     [self.totalSV addSubview:self.headerV];
     self.headerV.x = 0;
     self.headerV.y = 0;
-    self.headerV.size = CGSizeMake(kScreenWidth, GetScaleWidth(184));
+    self.headerV.size = CGSizeMake(kScreenWidth, GetScaleWidth(204));
     
     self.headerV.editBtnClickBlock = ^{
         DLog(@"点击编辑");
@@ -115,7 +115,7 @@
     float spaceWidth = (kScreenWidth-3*GetScaleWidth(70))/4.0;
     self.classifyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.classifyBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.classifyBtn setImageWithTitle:IMAGE(@"home_ico_category")
+    [self.classifyBtn setImageWithTitle:IMAGE(@"mypage_ico_create_chat")
                               withTitle:@"发起聊天" position:@"top" font:[UIFont systemFontOfSize:kFontNum14] forState:UIControlStateNormal];
     [self.btnV addSubview:self.classifyBtn];
     
@@ -126,7 +126,7 @@
     
     self.shopCartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.shopCartBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.shopCartBtn setImageWithTitle:IMAGE(@"home_ico_buycar")
+    [self.shopCartBtn setImageWithTitle:IMAGE(@"mypage_ico_add_friend")
                               withTitle:@"加为好友" position:@"top" font:[UIFont systemFontOfSize:kFontNum14] forState:UIControlStateNormal];
     [self.btnV addSubview:self.shopCartBtn];
     self.shopCartBtn.x = itemWidth+2*spaceWidth;
@@ -136,7 +136,7 @@
     
     self.QRBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.QRBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.QRBtn setImageWithTitle:IMAGE(@"home_ico_qrcode")
+    [self.QRBtn setImageWithTitle:IMAGE(@"mypage_ico_qrcode")
                         withTitle:@"二维码" position:@"top" font:[UIFont systemFontOfSize:kFontNum14] forState:UIControlStateNormal];
     [self.btnV addSubview:self.QRBtn];
     self.QRBtn.x = itemWidth*2+3*spaceWidth;
@@ -184,7 +184,7 @@
     [self.totalSV addSubview:self.listV];
     
     self.listV.x = 0;
-    self.listV.y = GetScaleWidth(294);
+    self.listV.y = GetScaleWidth(314);
     
     
 //    self.listV.backgroundColor = kRedColor;

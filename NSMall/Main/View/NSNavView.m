@@ -34,34 +34,15 @@
 {
     self.backgroundColor = [UIColor clearColor];
     
-    _leftItemButton = ({
-        UIButton * button = [UIButton new];
-        [button setImage:[UIImage imageNamed:@"top_left_arrow"] forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(leftButtonItemClick) forControlEvents:UIControlEventTouchUpInside];
-        button;
-    });
+    _leftItemButton = [UIButton new];
+    [_leftItemButton setImage:[UIImage imageNamed:@"top_left_arrow"] forState:UIControlStateNormal];
+    [_leftItemButton addTarget:self action:@selector(leftButtonItemClick) forControlEvents:UIControlEventTouchUpInside];
     
-//    _rightItemButton = ({
-//        UIButton * button = [UIButton new];
-////        [button setTitle:@"通讯录" forState:UIControlStateNormal];
-//        button.titleLabel.textAlignment = NSTextAlignmentRight;
-//        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        button.titleLabel.font = [UIFont systemFontOfSize:kFontNum17];
-////        [button setImage:[UIImage imageNamed:@"ico_my_unSelected"] forState:UIControlStateNormal];
-//        [button addTarget:self action:@selector(rightButtonItemClick) forControlEvents:UIControlEventTouchUpInside];
-//        button;
-//    });
-    
-//    _rightItemButton = ({
         _rightItemButton = [UIButton new];
-        //        [button setTitle:@"通讯录" forState:UIControlStateNormal];
-        _rightItemButton.titleLabel.textAlignment = NSTextAlignmentRight;
+      _rightItemButton.titleLabel.textAlignment = NSTextAlignmentRight;
         [_rightItemButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         _rightItemButton.titleLabel.font = [UIFont systemFontOfSize:kFontNum17];
-        //        [button setImage:[UIImage imageNamed:@"ico_my_unSelected"] forState:UIControlStateNormal];
         [_rightItemButton addTarget:self action:@selector(rightButtonItemClick) forControlEvents:UIControlEventTouchUpInside];
-//        button;
-//    });
     
     [self addSubview:_leftItemButton];
     [self addSubview:_rightItemButton];
@@ -88,10 +69,10 @@
     [super layoutSubviews];
     
     [_leftItemButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).offset(20);
-        make.left.equalTo(self.mas_left).offset(0);
-        make.height.equalTo(@44);
-        make.width.equalTo(@44);
+        make.top.equalTo(self.mas_top).offset(21);
+        make.left.equalTo(self.mas_left).offset(5);
+        make.height.equalTo(@22);
+        make.width.equalTo(@22);
     }];
     
         [_rightItemButton mas_makeConstraints:^(MASConstraintMaker *make) {

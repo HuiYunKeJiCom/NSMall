@@ -247,6 +247,9 @@
 		18B1CB1720BF9E9B00235CFA /* NSWalletTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1CB1620BF9E9B00235CFA /* NSWalletTVCell.m */; };
 		18B1CB1A20BFCB1C00235CFA /* NSAddWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1CB1920BFCB1C00235CFA /* NSAddWalletVC.m */; };
 		18B1CB1D20BFE6D700235CFA /* NSBindWalletParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1CB1C20BFE6D700235CFA /* NSBindWalletParam.m */; };
+		18B839542100337E0019F9D5 /* NSPayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B839532100337E0019F9D5 /* NSPayVC.m */; };
+		18B839582100812A0019F9D5 /* NSPayParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B839572100812A0019F9D5 /* NSPayParam.m */; };
+		18B8395C2100D0B00019F9D5 /* NSPaySuccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8395B2100D0B00019F9D5 /* NSPaySuccessVC.m */; };
 		18BAC16F20F9DAAD003599D6 /* NSPublishCommentParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BAC16E20F9DAAD003599D6 /* NSPublishCommentParam.m */; };
 		18BD2DB320D0AFB9003C57B3 /* ShopAddressParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BD2DB220D0AFB9003C57B3 /* ShopAddressParam.m */; };
 		18C2DDEA20B7A8FB00A3B851 /* NSMessageTV.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2DDE920B7A8FB00A3B851 /* NSMessageTV.m */; };
@@ -901,6 +904,12 @@
 		18B1CB1920BFCB1C00235CFA /* NSAddWalletVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAddWalletVC.m; sourceTree = "<group>"; };
 		18B1CB1B20BFE6D700235CFA /* NSBindWalletParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSBindWalletParam.h; sourceTree = "<group>"; };
 		18B1CB1C20BFE6D700235CFA /* NSBindWalletParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSBindWalletParam.m; sourceTree = "<group>"; };
+		18B839522100337E0019F9D5 /* NSPayVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSPayVC.h; sourceTree = "<group>"; };
+		18B839532100337E0019F9D5 /* NSPayVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSPayVC.m; sourceTree = "<group>"; };
+		18B839562100812A0019F9D5 /* NSPayParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSPayParam.h; sourceTree = "<group>"; };
+		18B839572100812A0019F9D5 /* NSPayParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSPayParam.m; sourceTree = "<group>"; };
+		18B8395A2100D0B00019F9D5 /* NSPaySuccessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSPaySuccessVC.h; sourceTree = "<group>"; };
+		18B8395B2100D0B00019F9D5 /* NSPaySuccessVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSPaySuccessVC.m; sourceTree = "<group>"; };
 		18BAC16D20F9DAAD003599D6 /* NSPublishCommentParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSPublishCommentParam.h; sourceTree = "<group>"; };
 		18BAC16E20F9DAAD003599D6 /* NSPublishCommentParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSPublishCommentParam.m; sourceTree = "<group>"; };
 		18BD2DB120D0AFB9003C57B3 /* ShopAddressParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopAddressParam.h; sourceTree = "<group>"; };
@@ -1934,8 +1943,8 @@
 		1868F6CA20FEF0D3000BB6EB /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
-				1868F6CB20FEF0D3000BB6EB /* UserPageVC.m */,
 				1868F6CC20FEF0D3000BB6EB /* UserPageVC.h */,
+				1868F6CB20FEF0D3000BB6EB /* UserPageVC.m */,
 			);
 			path = Ctrl;
 			sourceTree = "<group>";
@@ -2361,6 +2370,8 @@
 		188CC647207F5430007D749E /* NSMall */ = {
 			isa = PBXGroup;
 			children = (
+				18B839592100CFF60019F9D5 /* PaySuccess(支付成功) */,
+				18B83951210030C30019F9D5 /* Pay(付款) */,
 				18ECABCA20F5F88400679857 /* ReceivableRecord(收款记录) */,
 				18AD9FD420C62FF300275CC5 /* QRCode(二维码) */,
 				18C3D08220A2F111000FCE7F /* Model */,
@@ -2875,6 +2886,33 @@
 				18B1CB1C20BFE6D700235CFA /* NSBindWalletParam.m */,
 			);
 			path = Param;
+			sourceTree = "<group>";
+		};
+		18B83951210030C30019F9D5 /* Pay(付款) */ = {
+			isa = PBXGroup;
+			children = (
+				18B839522100337E0019F9D5 /* NSPayVC.h */,
+				18B839532100337E0019F9D5 /* NSPayVC.m */,
+			);
+			path = "Pay(付款)";
+			sourceTree = "<group>";
+		};
+		18B83955210080D00019F9D5 /* Param */ = {
+			isa = PBXGroup;
+			children = (
+				18B839562100812A0019F9D5 /* NSPayParam.h */,
+				18B839572100812A0019F9D5 /* NSPayParam.m */,
+			);
+			path = Param;
+			sourceTree = "<group>";
+		};
+		18B839592100CFF60019F9D5 /* PaySuccess(支付成功) */ = {
+			isa = PBXGroup;
+			children = (
+				18B8395A2100D0B00019F9D5 /* NSPaySuccessVC.h */,
+				18B8395B2100D0B00019F9D5 /* NSPaySuccessVC.m */,
+			);
+			path = "PaySuccess(支付成功)";
 			sourceTree = "<group>";
 		};
 		18C2DE1020B7F55E00A3B851 /* Sort(分类) */ = {
@@ -4036,6 +4074,7 @@
 		18ECABCA20F5F88400679857 /* ReceivableRecord(收款记录) */ = {
 			isa = PBXGroup;
 			children = (
+				18B83955210080D00019F9D5 /* Param */,
 				18FBBF4A20F6E617008D87FD /* API */,
 				18ECABD020F60C3800679857 /* Model */,
 				18ECABCF20F60C3200679857 /* View */,
@@ -4289,6 +4328,7 @@
 				18C3D0D720A3FAC3000FCE7F /* UIBarButtonItem+gyh.m in Sources */,
 				1868F78920FEF391000BB6EB /* EMTextView.m in Sources */,
 				1868F6DD20FEF0D4000BB6EB /* UserHeaderV.m in Sources */,
+				18B8395C2100D0B00019F9D5 /* NSPaySuccessVC.m in Sources */,
 				1889AF9620D3B43E00FBA33E /* NSTotalStoreV.m in Sources */,
 				1868F6C320FEEFC9000BB6EB /* NSShopListModel.m in Sources */,
 				1868F76E20FEF391000BB6EB /* EMChatroomMembersViewController.m in Sources */,
@@ -4334,6 +4374,7 @@
 				18D0824A20956D2F0031034A /* NSLoginController.m in Sources */,
 				1868F78E20FEF391000BB6EB /* AddFriendViewController.m in Sources */,
 				18D0C0DE20AC1BC3007F0784 /* TDCountryCtrl.m in Sources */,
+				18B839582100812A0019F9D5 /* NSPayParam.m in Sources */,
 				1835089920808CCD00BCF7CE /* Common.m in Sources */,
 				18DD1577208DD4140006475D /* NSMyCenterViewController.m in Sources */,
 				18DD2F1B20B90B1E00521B61 /* LLSearchVCConst.m in Sources */,
@@ -4565,6 +4606,7 @@
 				18C3D08120A2F0FA000FCE7F /* GetLabelsParam.m in Sources */,
 				1868F77C20FEF391000BB6EB /* GroupSubjectChangingViewController.m in Sources */,
 				184043542099FE8B00685F80 /* FFSpearteLineView.m in Sources */,
+				18B839542100337E0019F9D5 /* NSPayVC.m in Sources */,
 				18C3D09D20A2F151000FCE7F /* NSGoodsTableView.m in Sources */,
 				1868F76020FEF391000BB6EB /* DingViewController.m in Sources */,
 				184F0646209FFB7F00768418 /* UITextView+ZWPlaceHolder.m in Sources */,

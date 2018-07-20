@@ -106,6 +106,7 @@ const static NSString * const kOrderDetailAPI = @"auth/orderDetail";//订单详�
 
 //收款记录
 const static NSString * const kTradeLogAPI = @"auth/tradeLog";//收款记录
+const static NSString * const kTradeAPI = @"auth/trade";//收付款
 
 //商品评论
 const static NSString * const kProductCommentAPI = @"productComment";//获取商品评论列表

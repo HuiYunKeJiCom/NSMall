@@ -35,12 +35,16 @@
 {
     self.backgroundColor = [UIColor clearColor];
     
-        _leftItemButton = ({
-            UIButton * button = [UIButton new];
-            [button setImage:[UIImage imageNamed:@"top_left_arrow"] forState:UIControlStateNormal];
-            [button addTarget:self action:@selector(leftButtonItemClick) forControlEvents:UIControlEventTouchUpInside];
-            button;
-        });
+//        _leftItemButton = ({
+//            UIButton * button = [UIButton new];
+//            [button setImage:[UIImage imageNamed:@"top_left_arrow"] forState:UIControlStateNormal];
+//            [button addTarget:self action:@selector(leftButtonItemClick) forControlEvents:UIControlEventTouchUpInside];
+//            button;
+//        });
+    
+    _leftItemButton = [UIButton new];
+    [_leftItemButton setImage:[UIImage imageNamed:@"top_left_arrow"] forState:UIControlStateNormal];
+    [_leftItemButton addTarget:self action:@selector(leftButtonItemClick) forControlEvents:UIControlEventTouchUpInside];
 
         [self addSubview:_leftItemButton];
         [self addSubview:self.titleLab];
@@ -56,10 +60,10 @@
     [super layoutSubviews];
     
         [_leftItemButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.mas_top).offset(20);
-            make.left.equalTo(self.mas_left).offset(0);
-            make.height.equalTo(@44);
-            make.width.equalTo(@44);
+            make.top.equalTo(self.mas_top).offset(21);
+            make.left.equalTo(self.mas_left).offset(5);
+            make.height.equalTo(@22);
+            make.width.equalTo(@22);
         }];
     
         [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
