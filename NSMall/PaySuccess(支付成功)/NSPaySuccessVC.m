@@ -43,12 +43,12 @@
 
 -(void)setUpDataWithModel:(UserPageModel *)userPageM andAmount:(NSString *)amount{
     self.paySuccessIV.image = IMAGE(@"money_ico_success");
-    self.paySuccessLab.text = @"支付成功";
+    self.paySuccessLab.text = NSLocalizedString(@"pay success", nil);
     self.amountLab.text = [NSString stringWithFormat:@"N%.2f",[amount floatValue]];
-    self.payeeLab.text = @"收款人";
+    self.payeeLab.text = NSLocalizedString(@"payee", nil);
     [self.payeeHeaderIV sd_setImageWithURL:[NSURL URLWithString:userPageM.pic_img]];
     self.payeeNameLab.text = userPageM.nick_name;
-    [self.completeBtn setTitle:@"完成" forState:UIControlStateNormal];
+    [self.completeBtn setTitle:NSLocalizedString(@"complete", nil) forState:UIControlStateNormal];
 }
 
 -(void)makeConstraints {

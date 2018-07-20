@@ -23,7 +23,7 @@ void EMNoTitleAlert(NSString* message) {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:message
                                                     message:nil
                                                    delegate:nil
-                                          cancelButtonTitle:NSLocalizedString(@"confirm", nil);
+                                          cancelButtonTitle:NSLocalizedString(@"confirm", nil)
                                           otherButtonTitles:nil];
     [alert show];
 }

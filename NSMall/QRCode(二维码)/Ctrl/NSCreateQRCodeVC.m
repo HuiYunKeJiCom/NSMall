@@ -49,7 +49,7 @@
     self.tipLab.x = 20;
     self.tipLab.y = 30;
     self.tipLab.size = CGSizeMake(kScreenWidth-80, 20);
-    self.tipLab.text = @"扫描二维码向我付款";
+    self.tipLab.text = NSLocalizedString(@"pay with QR code", nil);
 
     self.scanView = [[UIImageView alloc] init];
     self.scanView.layer.cornerRadius = 4;
@@ -104,7 +104,7 @@
     recordLab.x = CGRectGetMaxX(recordIV.frame)+10;
     recordLab.y = 15;
     recordLab.size = CGSizeMake(100, 20);
-    recordLab.text = @"收款记录";
+    recordLab.text = NSLocalizedString(@"receivables record", nil);
     
     UIImageView *arrowImgView = [[UIImageView alloc]init];
     arrowImgView.image = IMAGE(@"my_ico_right_arrow");
@@ -124,7 +124,7 @@
 {
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     topToolView.backgroundColor = kWhiteColor;
-    [topToolView setTopTitleWithNSString:KLocalizableStr(@"二维码收款")];
+    [topToolView setTopTitleWithNSString:NSLocalizedString(@"QR code receipt", nil)];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");

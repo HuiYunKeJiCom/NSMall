@@ -46,7 +46,7 @@ static NSString * const kLock_IconFace                         =  @"icon_face";
     [_noDataView addSubview:self.imgView];
     
     self.mesageLab = [[UILabel alloc] initWithFrame:CGRectMake((30)/2.0, self.imgView.frame.origin.y + 94+30, kScreenWidth-30, 30)];
-    self.mesageLab.text = KLocalizableStr(@"暂时没有数据");
+    self.mesageLab.text = NSLocalizedString(@"No data", nil);
     
     self.mesageLab.font = [UIFont systemFontOfSize:15];
     self.mesageLab.textColor = [UIColor lightGrayColor];
@@ -125,7 +125,7 @@ static NSString * const kLock_IconFace                         =  @"icon_face";
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return @"删除";
+    return NSLocalizedString(@"delete", nil);
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

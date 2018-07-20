@@ -41,7 +41,7 @@
     
     UILabel *titleLabel = [[UILabel alloc] init];
     self.titleLabel = titleLabel;
-    titleLabel.text = @"所有标签";
+    titleLabel.text = NSLocalizedString(@"all labels", nil);
     titleLabel.font = [UIFont systemFontOfSize:kCLRecentTitleFont];
     titleLabel.textColor = [UIColor blackColor];//cl_colorWithHex(0x8a949b);
     [headView addSubview:titleLabel];

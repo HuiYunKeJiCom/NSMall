@@ -30,7 +30,7 @@
 
 - (void)creatSearchNaviBar{
     LLSearchNaviBarView *searchNaviBarView = [LLSearchNaviBarView new];
-    searchNaviBarView.searbarPlaceHolder = @"请输入搜索关键词";
+    searchNaviBarView.searbarPlaceHolder = NSLocalizedString(@"search keyword", nil);
     
     
     @LLWeakObj(self);

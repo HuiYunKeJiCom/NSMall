@@ -58,11 +58,11 @@
 
 -(void)setUpData:(UserPageModel *)model{
     
-    self.payeeLab.text = [NSString stringWithFormat:@"付款给%@",model.nick_name];
+    self.payeeLab.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"payment to", nil),model.nick_name];
     [self.payeeHeaderIV sd_setImageWithURL:[NSURL URLWithString:model.pic_img]];
-    self.amountTitlelab.text = @"金额";
+    self.amountTitlelab.text = NSLocalizedString(@"sum", nil);
     self.unitLab.text = @"N";
-    [self.payBtn setTitle:@"付款" forState:UIControlStateNormal];
+    [self.payBtn setTitle:NSLocalizedString(@"payment", nil) forState:UIControlStateNormal];
 }
 
 -(void)setUpDataWithUserId:(NSString *)userId{
@@ -92,7 +92,7 @@
     [self.navigationController setNavigationBarHidden:YES];
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     topToolView.backgroundColor = kWhiteColor;
-    [topToolView setTopTitleWithNSString:KLocalizableStr(@"付款")];
+    [topToolView setTopTitleWithNSString:NSLocalizedString(@"payment", nil)];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
@@ -304,7 +304,7 @@
     param.tradePassword = tradePw;
     
     [ReceivableRecordAPI tradeWithParam:param success:^{
-        [Common AppShowToast:@"支付成功"];
+        [Common AppShowToast:NSLocalizedString(@"pay success", nil)];
         [self delayPop];
         //跳转到成功页面
     } faulre:^(NSError *error) {

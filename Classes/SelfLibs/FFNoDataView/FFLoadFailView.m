@@ -46,7 +46,7 @@ static int const k_loadFailTitleColor            =  0X727373;
 - (void)initUIWithTitle:(NSString *)title
 {
     if ([NSString isEmptyOrNull:title]) {
-        self.noDataTitle = KLocalizableStr(@"暂无数据");
+        self.noDataTitle = NSLocalizedString(@"No data", nil);
     } else {
         self.noDataTitle = title;
     }

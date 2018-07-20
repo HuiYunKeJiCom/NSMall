@@ -36,7 +36,7 @@
         ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
         topToolView.hidden = NO;
         topToolView.backgroundColor = kWhiteColor;
-        [topToolView setTopTitleWithNSString:KLocalizableStr(@"添加标签")];
+        [topToolView setTopTitleWithNSString:NSLocalizedString(@"add labels", nil)];
         WEAKSELF
         topToolView.leftItemClickBlock = ^{
             NSLog(@"点击了返回");

@@ -63,7 +63,7 @@ alpha:1.0]
         _messageLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, 80, 30)];
         _messageLab.textColor = [UIColor whiteColor];
         _messageLab.textAlignment = NSTextAlignmentCenter;
-        _messageLab.text = [NSString stringWithFormat:@"%@...",KLocalizableStr(@"加载中")];
+        _messageLab.text = [NSString stringWithFormat:@"%@...",NSLocalizedString(@"loading", nil)];
         _messageLab.font = [UIFont systemFontOfSize:13];
         [self addSubview:_messageLab];
     }
@@ -73,14 +73,14 @@ alpha:1.0]
 - (void)setLoadType:(BOOL)loadType {
     _loadType = loadType;
     if (_loadType) {
-        _messageLab.text = [NSString stringWithFormat:@"%@...",KLocalizableStr(@"加载中")];
+        _messageLab.text = [NSString stringWithFormat:@"%@...",NSLocalizedString(@"loading", nil)];
     }
 }
 
 - (void)setCommitType:(BOOL)commitType {
     _commitType = commitType;
     if (_commitType) {
-        _messageLab.text = [NSString stringWithFormat:@"%@...",KLocalizableStr(@"提交中")];
+        _messageLab.text = [NSString stringWithFormat:@"%@...",NSLocalizedString(@"submission", nil)];
     }
 }
 
@@ -106,7 +106,7 @@ alpha:1.0]
         _messageLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, 80, 30)];
         _messageLab.textColor = [UIColor whiteColor];
         _messageLab.textAlignment = NSTextAlignmentCenter;
-        _messageLab.text = [NSString stringWithFormat:@"%@...",KLocalizableStr(@"加载中")];
+        _messageLab.text = [NSString stringWithFormat:@"%@...",NSLocalizedString(@"loading", nil)];
         _messageLab.font = [UIFont systemFontOfSize:13];
         [self addSubview:_messageLab];
     }

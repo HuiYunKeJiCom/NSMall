@@ -70,7 +70,7 @@
     labIntroudction.numberOfLines=2;
     labIntroudction.font = [UIFont systemFontOfSize:14];
     labIntroudction.textColor=[UIColor whiteColor];
-    labIntroudction.text=KLocalizableStr(@"将二维码/条码放入框内，即可自动扫描");
+    labIntroudction.text=NSLocalizedString(@"Put the QR code", nil);
     [self.view addSubview:labIntroudction];
     
     
@@ -82,7 +82,7 @@
     [self.navigationController setNavigationBarHidden:YES];
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     topToolView.backgroundColor = kWhiteColor;
-    [topToolView setTopTitleWithNSString:KLocalizableStr(@"二维码")];
+    [topToolView setTopTitleWithNSString:NSLocalizedString(@"QR code", nil)];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
@@ -191,7 +191,7 @@
         [_session stopRunning];
 
         if([NSString isEmptyOrNull:stringValue]) {
-            [Common AppShowToast:@"扫描失败!"];
+            [Common AppShowToast:NSLocalizedString(@"scan failed!", nil)];
             [self delayPop];
             return;
         }
@@ -222,14 +222,14 @@
         NSArray *array = [qrcode componentsSeparatedByString:@"uid:"];
         NSString *string = [array lastObject];
         
-        NSString *msg = [userModel.hx_user_name stringByAppendingString:@"要加你为好友"];
+        NSString *msg = [userModel.hx_user_name stringByAppendingString:NSLocalizedString(@"add friend with you", nil)];
         EMError *error = [[EMClient sharedClient].contactManager addContact:string message:msg];
         if (!error) {
-            [Common AppShowToast:@"添加好友成功"];
+            [Common AppShowToast:NSLocalizedString(@"add friends success", nil)];
             self.friendName = string;
         }else{
             DLog(@"添加好友error = %@",error.mj_keyValues);
-            [Common AppShowToast:@"添加好友失败"];
+            [Common AppShowToast:NSLocalizedString(@"add friends fail", nil)];
         }
         [[EMClient sharedClient].contactManager addDelegate:self delegateQueue:nil];
         [self delayPop];

@@ -91,7 +91,7 @@
     _inputField = [[CLTagTextField alloc] init];
     _inputField.autocorrectionType = UITextAutocorrectionTypeNo;
     _inputField.returnKeyType = UIReturnKeyDone;
-    _inputField.placeholder = @"输入标签";
+    _inputField.placeholder = NSLocalizedString(@"enter labels", nil);
     _inputField.borderStyle = UITextBorderStyleNone;
     _inputField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     _inputField.autocorrectionType = UITextAutocorrectionTypeNo;

@@ -126,7 +126,7 @@
     self.shopNameTF.frame = CGRectMake(0, 0, kScreenWidth, GetScaleWidth(30));
     self.shopNameTF.font = [UIFont systemFontOfSize:14];
     self.shopNameTF.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.shopNameTF.placeholder = @"店铺名称";
+    self.shopNameTF.placeholder = NSLocalizedString(@"shop name", nil);
     self.shopNameTF.textColor = [UIColor lightGrayColor];
     self.shopNameTF.backgroundColor = kWhiteColor;
     UIView *paddingView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, GetScaleWidth(30))];

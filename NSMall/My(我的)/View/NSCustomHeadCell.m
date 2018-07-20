@@ -82,7 +82,7 @@
     _userModel = userModel;
     self.userName.text = KLocalizableStr([userModel.user_name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
     [self.userName sizeToFit];
-    NSString *daysRecordStr = [NSString stringWithFormat:@"来诺商%@了!",userModel.regeist_day];
+    NSString *daysRecordStr = [NSString stringWithFormat:@"%@%@%@",NSLocalizedString(@"come NS", nil),userModel.regeist_day,NSLocalizedString(@"!", nil)];
     self.daysRecord.x = CGRectGetMaxX(self.goodsIV.frame)+GetScaleWidth(12);
     self.daysRecord.y = CGRectGetMaxY(self.userName.frame)+GetScaleWidth(9);
     self.daysRecord.text = KLocalizableStr(daysRecordStr);

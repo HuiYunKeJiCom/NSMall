@@ -82,7 +82,7 @@
     if (self.selected) {
         _menuController = [UIMenuController sharedMenuController];
         
-        UIMenuItem *resetMenuItem = [[UIMenuItem alloc] initWithTitle:@"删除" action:@selector(deleteItemClicked:)];
+        UIMenuItem *resetMenuItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"delete", nil) action:@selector(deleteItemClicked:)];
         
         NSAssert([self becomeFirstResponder], @"Sorry, UIMenuController will not work with %@ since it cannot become first responder", self);
         [_menuController setMenuItems:[NSArray arrayWithObject:resetMenuItem]];
