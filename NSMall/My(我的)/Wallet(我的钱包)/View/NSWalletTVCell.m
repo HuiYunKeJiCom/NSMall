@@ -69,12 +69,12 @@
 -(void)setWalletModel:(WalletItemModel *)walletModel{
     _walletModel = walletModel;
 
-    self.walletName.text = [NSString stringWithFormat:@"钱包名称:%@",walletModel.wallet_name];
+    self.walletName.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"wallet name", nil),walletModel.wallet_name];
     [self.walletName sizeToFit];
 
     self.walletAddress.x = 19;
     self.walletAddress.y = CGRectGetMaxY(self.walletName.frame)+13;
-    self.walletAddress.text = [NSString stringWithFormat:@"钱包地址:%@",walletModel.wallet_address];
+    self.walletAddress.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"wallet address", nil),walletModel.wallet_address];
     [self.walletAddress sizeToFit];
     
 //    if(walletModel.is_sell_default == 1){

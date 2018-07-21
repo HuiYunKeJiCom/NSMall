@@ -44,7 +44,7 @@
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     topToolView.hidden = NO;
     topToolView.backgroundColor = [UIColor whiteColor];
-    [topToolView setTopTitleWithNSString:KLocalizableStr(@"我的钱包")];
+    [topToolView setTopTitleWithNSString:NSLocalizedString(@"my wallet", nil)];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
@@ -61,7 +61,7 @@
     self.bindWallet = [UIButton buttonWithType:UIButtonTypeCustom];
     self.bindWallet.backgroundColor = KMainColor;
     self.bindWallet.frame = CGRectMake(0, kScreenHeight-TabBarHeight, kScreenWidth, TabBarHeight);
-    [self.bindWallet setTitle:@"绑定钱包" forState:UIControlStateNormal];
+    [self.bindWallet setTitle:NSLocalizedString(@"bind wallet", nil) forState:UIControlStateNormal];
     [self.bindWallet addTarget:self action:@selector(addBtnAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.bindWallet];
 }

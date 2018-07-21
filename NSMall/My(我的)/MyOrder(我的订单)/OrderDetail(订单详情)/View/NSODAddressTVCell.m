@@ -58,7 +58,7 @@
 -(void)setOrderDetailModel:(NSOrderDetailModel *)orderDetailModel{
     _orderDetailModel = orderDetailModel;
     
-    self.receiverLab.text = [NSString stringWithFormat:@"收货人:%@",orderDetailModel.recipient_name];
+    self.receiverLab.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"receiver", nil),orderDetailModel.recipient_name];
     [self.receiverLab sizeToFit];
     
     self.phoneLab.x = CGRectGetMaxX(self.receiverLab.frame)+24;
@@ -68,7 +68,7 @@
     
     self.addressLab.x = 19;
     self.addressLab.y = CGRectGetMaxY(self.receiverLab.frame)+13;
-    self.addressLab.text = [NSString stringWithFormat:@"收货地址:%@",orderDetailModel.recipient_address];
+    self.addressLab.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"receiving address", nil),orderDetailModel.recipient_address];
     [self.addressLab sizeToFit];
 }
 

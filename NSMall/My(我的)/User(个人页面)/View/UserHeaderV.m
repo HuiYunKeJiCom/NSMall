@@ -74,13 +74,13 @@
     
     self.shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.shareBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [self.shareBtn setImageWithTitle:IMAGE(@"mypage_ico_share") withTitle:@"分享" position:@"left" font:[UIFont systemFontOfSize:kFontNum12] forState:UIControlStateNormal];
+    [self.shareBtn setImageWithTitle:IMAGE(@"mypage_ico_share") withTitle:NSLocalizedString(@"share", nil) position:@"left" font:[UIFont systemFontOfSize:kFontNum12] forState:UIControlStateNormal];
     [self addSubview:self.shareBtn];
     [self.shareBtn addTarget:self action:@selector(shareButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.editBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [self.editBtn setImageWithTitle:IMAGE(@"mypage_ico_edit") withTitle:@"编辑" position:@"left" font:[UIFont systemFontOfSize:kFontNum12] forState:UIControlStateNormal];
+    [self.editBtn setImageWithTitle:IMAGE(@"mypage_ico_edit") withTitle:NSLocalizedString(@"edit", nil) position:@"left" font:[UIFont systemFontOfSize:kFontNum12] forState:UIControlStateNormal];
     [self addSubview:self.editBtn];
     [self.editBtn addTarget:self action:@selector(editButtonClick) forControlEvents:UIControlEventTouchUpInside];
 
@@ -93,12 +93,12 @@
     _userPageM = userPageM;
     
     self.userNameL.text = [userPageM.nick_name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    self.regeistDayL.text = [NSString stringWithFormat:@"来诺商%@了!",userPageM.regeist_day];
-    self.idenLab.text = @"实名认证";
+    self.regeistDayL.text = [NSString stringWithFormat:@"%@%@%@",NSLocalizedString(@"come NS", nil),userPageM.regeist_day,NSLocalizedString(@"!", nil)];
+    self.idenLab.text = NSLocalizedString(@"user certify", nil);
     [self.headerIV sd_setImageWithURL:[NSURL URLWithString:userPageM.pic_img]];
-    self.goodsL.text = [NSString stringWithFormat:@"%d 商品",userPageM.product_number];
-    self.shopL.text = [NSString stringWithFormat:@"%d 店铺",userPageM.store_number];
-    self.commentL.text = [NSString stringWithFormat:@"%d 评价",userPageM.comment_number];
+    self.goodsL.text = [NSString stringWithFormat:@"%d %@",userPageM.product_number,NSLocalizedString(@"goods", nil)];
+    self.shopL.text = [NSString stringWithFormat:@"%d %@",userPageM.store_number,NSLocalizedString(@"shop", nil)];
+    self.commentL.text = [NSString stringWithFormat:@"%d %@",userPageM.comment_number,NSLocalizedString(@"comment", nil)];
 }
 
 - (void)makeConstraints {

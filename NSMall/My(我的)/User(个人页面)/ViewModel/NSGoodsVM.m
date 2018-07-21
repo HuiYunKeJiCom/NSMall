@@ -104,21 +104,6 @@
 
 -(void)likeClickAtIndexPath:(NSIndexPath *)indexPath{
     DLog(@"点击喜欢");
-//    NSGoodsShowCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-//    [HomePageAPI changeProductLikeState:cell.productModel.product_id success:^(NSLikeModel *model) {
-//        DLog(@"点赞成功");
-//        DLog(@"model = %@",model.mj_keyValues);
-//        if(cell.isLike){
-//            [cell.likeBtn setImageWithTitle:IMAGE(@"ico_like") withTitle:@"喜欢" position:@"left" font:UISystemFontSize(14) forState:UIControlStateNormal];
-//            cell.isLike = NO;
-//        }else{
-//            [cell.likeBtn setImageWithTitle:IMAGE(@"home_ico_like_press") withTitle:[NSString stringWithFormat:@"喜欢(%@)",[NSNumber numberWithInteger:model.like_number]] position:@"left" font:UISystemFontSize(14) forState:UIControlStateNormal];
-//            cell.isLike = YES;
-//        }
-//
-//    } failure:^(NSError *error) {
-//        DLog(@"点赞失败");
-//    }];
 }
 
 -(void)reloadData{

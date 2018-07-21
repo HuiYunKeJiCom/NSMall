@@ -108,7 +108,7 @@
     self.goodsNameTF.frame = CGRectMake(0, 0, kScreenWidth, GetScaleWidth(30));
     self.goodsNameTF.font = [UIFont systemFontOfSize:14];
     self.goodsNameTF.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.goodsNameTF.placeholder = @"商品标题,品类、品牌、型号等";
+    self.goodsNameTF.placeholder = NSLocalizedString(@"goods relevant", nil);
     self.goodsNameTF.textColor = [UIColor lightGrayColor];
     self.goodsNameTF.backgroundColor = kWhiteColor;
     UIView *paddingView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, GetScaleWidth(30))];
@@ -125,7 +125,7 @@
     self.detailTV.backgroundColor = kWhiteColor;
     self.detailTV.font = [UIFont systemFontOfSize:14];
     self.detailTV.delegate = self;
-    self.detailTV.zw_placeHolder = @"在这里详细描述下商品,卖点、优势等~";
+    self.detailTV.zw_placeHolder = NSLocalizedString(@"goods description", nil);
     self.detailTV.zw_placeHolderColor = [UIColor lightGrayColor];
     
     self.detailTV.textContainerInset = UIEdgeInsetsMake(0, 15, 0, 0);
@@ -155,7 +155,7 @@
 -(void)setModel:(CategoryModel *)model{
     _model = model;
     for (ADLMyInfoModel *infoModel in self.otherTableView.data) {
-        if([infoModel.title isEqualToString:@"分类"]){
+        if([infoModel.title isEqualToString:NSLocalizedString(@"sort", nil)]){
             infoModel.num = model.name;
             self.param.categoryId = model.ID;
         }
@@ -340,10 +340,10 @@
     if ((authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied) && iOS7Later) {
         // 无相机权限 做一个友好的提示
         if (iOS8Later) {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"无法使用相机" message:@"请在iPhone的""设置-隐私-相机""中允许访问相机" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"设置", nil];
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"无法使用相机" message:@"请在iPhone的""设置-隐私-相机""中允许访问相机" delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:NSLocalizedString(@"setting", nil), nil];
             [alert show];
         } else {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"无法使用相机" message:@"请在iPhone的""设置-隐私-相机""中允许访问相机" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"无法使用相机" message:@"请在iPhone的""设置-隐私-相机""中允许访问相机" delegate:self cancelButtonTitle:NSLocalizedString(@"confirm", nil) otherButtonTitles:nil];
             [alert show];
         }
     } else if (authStatus == AVAuthorizationStatusNotDetermined) {
@@ -362,10 +362,10 @@
         // 拍照之前还需要检查相册权限
     } else if ([TZImageManager authorizationStatus] == 2) { // 已被拒绝，没有相册权限，将无法保存拍的照片
         if (iOS8Later) {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"无法访问相册" message:@"请在iPhone的""设置-隐私-相册""中允许访问相册" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"设置", nil];
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"无法访问相册" message:@"请在iPhone的""设置-隐私-相册""中允许访问相册" delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:NSLocalizedString(@"setting", nil), nil];
             [alert show];
         } else {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"无法访问相册" message:@"请在iPhone的""设置-隐私-相册""中允许访问相册" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"无法访问相册" message:@"请在iPhone的""设置-隐私-相册""中允许访问相册" delegate:self cancelButtonTitle:NSLocalizedString(@"confirm", nil) otherButtonTitles:nil];
             [alert show];
         }
     } else if ([TZImageManager authorizationStatus] == 0) { // 未请求过相册权限
@@ -472,16 +472,16 @@
         NSString *updateStr = @"";
         if (buttonIndex == 0) { // 是
             NSLog(@"上架");
-            updateStr = @"是";
+            updateStr = NSLocalizedString(@"yes", nil);
             self.param.isShelve = @"1";
         } else if (buttonIndex == 1) {
             NSLog(@"不上架");
-            updateStr = @"否";
+            updateStr = NSLocalizedString(@"no", nil);
             self.param.isShelve = @"-1";
         }
         
         for (ADLMyInfoModel *model in self.otherTableView.data) {
-            if([model.title isEqualToString:@"上架"]){
+            if([model.title isEqualToString:NSLocalizedString(@"on shelf", nil)]){
                 model.num = updateStr;
             }
         }
@@ -590,15 +590,15 @@
 #pragma mark - 获取数据
 - (void)setUpData
 {
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"分类") imageName:nil num:@"选择分类"]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"价格") imageName:nil num:@"开个价"]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"sort", nil) imageName:nil num:NSLocalizedString(@"selection sort", nil)]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"price", nil) imageName:nil num:@"开个价"]];
    
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"数量") imageName:nil num:@"数量"]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"添加商品规格") imageName:@"publish_ico_goods_add" num:nil]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"number", nil) imageName:nil num:NSLocalizedString(@"number", nil)]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"add goods specifications", nil) imageName:@"publish_ico_goods_add" num:nil]];
     
     
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"运费") imageName:nil num:@"运费"]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"上架") imageName:nil num:@"否"]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"fee", nil) imageName:nil num:NSLocalizedString(@"fee", nil)]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"on shelf", nil) imageName:nil num:NSLocalizedString(@"no", nil)]];
 }
 
 #pragma mark - initialize
@@ -618,7 +618,7 @@
             NSCategoryVC *ctrl = [[NSCategoryVC alloc] init];
             ctrl.stringBlock = ^(CategoryModel *model) {
                 for (ADLMyInfoModel *infoModel in self.otherTableView.data) {
-                    if([infoModel.title isEqualToString:@"分类"]){
+                    if([infoModel.title isEqualToString:NSLocalizedString(@"sort", nil)]){
                         infoModel.num = model.name;
                         self.param.categoryId = model.ID;
                     }
@@ -630,10 +630,10 @@
             break;
         case 1:{
             NSLog(@"点击了价格");
-            EditUserType type = [self getEditType:KLocalizableStr(@"价格")];
+            EditUserType type = [self getEditType:NSLocalizedString(@"price", nil)];
             
             NSChangeParamVC *ctrl = [[NSChangeParamVC alloc] initEditType:type];
-            ctrl.editTitle = KLocalizableStr(@"价格");
+            ctrl.editTitle = NSLocalizedString(@"price", nil);
             
             ctrl.stringBlock = ^(NSString *string) {
                 for (ADLMyInfoModel *model in self.otherTableView.data) {
@@ -649,15 +649,15 @@
             break;
         case 2:{
             NSLog(@"点击了数量");
-            EditUserType type = [self getEditType:KLocalizableStr(@"数量")];
+            EditUserType type = [self getEditType:NSLocalizedString(@"number", nil)];
             
             NSChangeParamVC *ctrl = [[NSChangeParamVC alloc] initEditType:type];
-            ctrl.editTitle = KLocalizableStr(@"数量");
+            ctrl.editTitle = NSLocalizedString(@"number", nil);
             ctrl.stringBlock = ^(NSString *string) {
                 for (ADLMyInfoModel *model in self.otherTableView.data) {
-                    if([model.title isEqualToString:@"数量"]){
+                    if([model.title isEqualToString:NSLocalizedString(@"number", nil)]){
                         self.param.stock = string;
-                        model.num = [NSString stringWithFormat:@"%@ 个",string];
+                        model.num = [NSString stringWithFormat:@"%@ %@",string,NSLocalizedString(@"individual", nil)];
                     }
                 }
                 [self.otherTableView reloadData];
@@ -673,13 +673,13 @@
             break;
         case 4:{
             NSLog(@"点击了运费");
-            EditUserType type = [self getEditType:KLocalizableStr(@"运费")];
+            EditUserType type = [self getEditType:NSLocalizedString(@"fee", nil)];
             
             NSChangeParamVC *ctrl = [[NSChangeParamVC alloc] initEditType:type];
-            ctrl.editTitle = KLocalizableStr(@"运费");
+            ctrl.editTitle = NSLocalizedString(@"fee", nil);
             ctrl.stringBlock = ^(NSString *string) {
                 for (ADLMyInfoModel *model in self.otherTableView.data) {
-                    if([model.title isEqualToString:@"运费"]){
+                    if([model.title isEqualToString:NSLocalizedString(@"fee", nil)]){
                         self.param.shipPrice = string;
                         model.num = [NSString stringWithFormat:@"N %@",string];
                     }
@@ -739,7 +739,7 @@
 }
 
 -(void)updateGoods{
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"是",@"否", nil];
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"yes", nil),NSLocalizedString(@"no", nil), nil];
     sheet.tag = 100;
     [sheet showInView:self.view];
 }
@@ -756,17 +756,17 @@
     [btn addTarget:self action:@selector(addPhoto:) forControlEvents:UIControlEventTouchUpInside];
     [self.addView addSubview:btn];
     
-    CGSize contentSize = [self contentSizeWithTitle:@"添加照片"];
+    CGSize contentSize = [self contentSizeWithTitle:NSLocalizedString(@"add photo", nil)];
     
     UILabel *addPhotoLab=[[UILabel alloc] initWithFrame:CGRectMake(self.addView.centerX- contentSize.width*0.5, CGRectGetMaxY(btn.frame)+6, contentSize.width, contentSize.height)];
-    [addPhotoLab setText:@"添加照片"];
+    [addPhotoLab setText:NSLocalizedString(@"add photo", nil)];
     addPhotoLab.font = UISystemFontSize(14);
     addPhotoLab.textColor= [UIColor blackColor];
     [self.addView addSubview:addPhotoLab];
 }
 
 -(void)addPhoto:(UIButton *)button{
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"去相册选择", nil];
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"take photo", nil),NSLocalizedString(@"photo album selection", nil), nil];
     sheet.tag = 10;
     [sheet showInView:self.view];
 }
@@ -777,7 +777,7 @@
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     topToolView.hidden = NO;
     topToolView.backgroundColor = kWhiteColor;
-    [topToolView setTopTitleWithNSString:KLocalizableStr(@"发布商品")];
+    [topToolView setTopTitleWithNSString:NSLocalizedString(@"goods publish", nil)];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
@@ -808,7 +808,7 @@
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.backgroundColor = KMainColor;
     btn.frame = CGRectMake(0, kScreenHeight-TabBarHeight, kScreenWidth, TabBarHeight);
-    [btn setTitle:@"发布" forState:UIControlStateNormal];
+    [btn setTitle:NSLocalizedString(@"publish", nil) forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(publish:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
 }
@@ -856,7 +856,7 @@
     [GoodsPublishAPI createProductWithParam:self.param success:^{
         DLog(@"商品发布成功");
         //                [self dismissViewControllerAnimated:YES completion:nil];
-        [Common AppShowToast:@"商品发布成功"];
+        [Common AppShowToast:NSLocalizedString(@"goods publish success", nil)];
         [self dismissModalStack];
         //                [kAppDelegate setUpRootVC];
     } faulre:^(NSError *error) {
@@ -947,13 +947,13 @@
 - (EditUserType)getEditType:(NSString *)title {
     EditUserType type = 0;
 
-    if ([title isEqualToString:KLocalizableStr(@"价格")]) {
+    if ([title isEqualToString:NSLocalizedString(@"price", nil)]) {
         type = EditUserTypePrice;
         
-    } else if ([title isEqualToString:KLocalizableStr(@"数量")]) {
+    } else if ([title isEqualToString:NSLocalizedString(@"number", nil)]) {
         type = EditUserTypeNumber;
         
-    } else if ([title isEqualToString:KLocalizableStr(@"运费")]) {
+    } else if ([title isEqualToString:NSLocalizedString(@"fee", nil)]) {
         type = EditUserTypeFee;
         
     }

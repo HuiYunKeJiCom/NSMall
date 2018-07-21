@@ -374,10 +374,10 @@
     if ((authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied) && iOS7Later) {
         // 无相机权限 做一个友好的提示
         if (iOS8Later) {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"unable use camera", nil) message:NSLocalizedString(@"allow camera", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:NSLocalizedString(@"setting", nil), nil];
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"unable use camera", nil) message:@"请在iPhone的""设置-隐私-相机""中允许访问相机" delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:NSLocalizedString(@"setting", nil), nil];
             [alert show];
         } else {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"unable use camera", nil) message:NSLocalizedString(@"allow camera", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"confirm", nil) otherButtonTitles:nil];
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"unable use camera", nil) message:@"请在iPhone的""设置-隐私-相机""中允许访问相机" delegate:self cancelButtonTitle:NSLocalizedString(@"confirm", nil) otherButtonTitles:nil];
             [alert show];
         }
     } else if (authStatus == AVAuthorizationStatusNotDetermined) {
@@ -396,10 +396,10 @@
         // 拍照之前还需要检查相册权限
     } else if ([TZImageManager authorizationStatus] == 2) { // 已被拒绝，没有相册权限，将无法保存拍的照片
         if (iOS8Later) {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"unable access album", nil) message:NSLocalizedString(@"allow album", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:NSLocalizedString(@"setting", nil), nil];
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"unable access album", nil) message:@"请在iPhone的""设置-隐私-相册""中允许访问相册" delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:NSLocalizedString(@"setting", nil), nil];
             [alert show];
         } else {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"unable access album", nil) message:NSLocalizedString(@"allow album", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"confirm", nil) otherButtonTitles:nil];
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"unable access album", nil) message:@"请在iPhone的""设置-隐私-相册""中允许访问相册" delegate:self cancelButtonTitle:NSLocalizedString(@"confirm", nil) otherButtonTitles:nil];
             [alert show];
         }
     } else if ([TZImageManager authorizationStatus] == 0) { // 未请求过相册权限

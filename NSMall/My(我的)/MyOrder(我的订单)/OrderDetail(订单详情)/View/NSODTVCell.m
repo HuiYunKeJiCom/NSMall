@@ -126,7 +126,7 @@
         UILabel *numTitle = [[UILabel alloc]init];
         numTitle.x = 19;
         numTitle.y = CGRectGetMaxY(line1.frame)+17;
-        numTitle.text = @"购买数量";
+        numTitle.text = NSLocalizedString(@"purchase quantity", nil);
         numTitle.font = UISystemFontSize(14);
         [numTitle sizeToFit];
         numTitle.textColor = kBlackColor;
@@ -153,7 +153,7 @@
         UILabel *orderNumberTitle = [[UILabel alloc]init];
         orderNumberTitle.x = 19;
         orderNumberTitle.y = CGRectGetMaxY(line2.frame)+17;
-        orderNumberTitle.text = @"订单编号:";
+        orderNumberTitle.text = [NSString stringWithFormat:@"%@:",NSLocalizedString(@"order number", nil)];
         orderNumberTitle.font = UISystemFontSize(14);
         [orderNumberTitle sizeToFit];
         orderNumberTitle.textColor = kBlackColor;
@@ -180,7 +180,7 @@
         UILabel *createTimeTitle = [[UILabel alloc]init];
         createTimeTitle.x = 19;
         createTimeTitle.y = CGRectGetMaxY(line3.frame)+17;
-        createTimeTitle.text = @"下单时间:";
+        createTimeTitle.text = [NSString stringWithFormat:@"%@:",NSLocalizedString(@"order time", nil)];
         createTimeTitle.font = UISystemFontSize(14);
         [createTimeTitle sizeToFit];
         createTimeTitle.textColor = kBlackColor;
@@ -219,7 +219,7 @@
     [footView addSubview:totalLab];
 
     UILabel *totalTitle = [[UILabel alloc]init];
-    totalTitle.text = @"商品总额";
+    totalTitle.text = NSLocalizedString(@"total commodity", nil);
     totalTitle.font = UISystemFontSize(14);
 //    CGSize totalSize = [self contentSizeWithTitle:totalTitle.text andFont:14];
     totalTitle.x = 19;
@@ -238,7 +238,7 @@
     UILabel *shipTitle = [[UILabel alloc]init];
     shipTitle.x = 19;
     shipTitle.y = CGRectGetMaxY(line4.frame)+17;
-    shipTitle.text = @"运费";
+    shipTitle.text = NSLocalizedString(@"fee", nil);
     shipTitle.font = UISystemFontSize(14);
     [shipTitle sizeToFit];
     shipTitle.textColor = kBlackColor;
@@ -274,7 +274,7 @@
     [footView addSubview:allTotalLab];
     
     UILabel *allTotalTitle = [[UILabel alloc]init];
-    allTotalTitle.text = @"合计:";
+    allTotalTitle.text = [NSString stringWithFormat:@"%@:",NSLocalizedString(@"total", nil)];
     allTotalTitle.font = UISystemFontSize(14);
     CGSize allTotalTitleSize = [self contentSizeWithTitle:allTotalTitle.text andFont:14];
     allTotalTitle.x = CGRectGetMinX(allTotalLab.frame)-allTotalTitleSize.width-3;

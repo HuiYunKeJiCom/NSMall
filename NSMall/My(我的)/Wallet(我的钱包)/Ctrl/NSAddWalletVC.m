@@ -38,7 +38,7 @@
     nameTitle.textColor = kBlackColor;
     nameTitle.x = 19;
     nameTitle.y = 12;
-    nameTitle.text = @"钱包名称:";
+    nameTitle.text = [NSString stringWithFormat:@"%@:",NSLocalizedString(@"wallet name", nil)];
     [nameTitle sizeToFit];
     [bgView addSubview:nameTitle];
     
@@ -48,7 +48,7 @@
     self.nameTF.size = CGSizeMake(kScreenWidth-self.nameTF.x, GetScaleWidth(17));
     self.nameTF.font = [UIFont systemFontOfSize:14];
     self.nameTF.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.nameTF.placeholder = @"点击输入文本";
+    self.nameTF.placeholder = NSLocalizedString(@"click the input text", nil);
     self.nameTF.textColor = kGreyColor;
     self.nameTF.backgroundColor = kWhiteColor;
     self.nameTF.delegate = self;
@@ -62,7 +62,7 @@
     accountTitle.textColor = kBlackColor;
     accountTitle.x = 19;
     accountTitle.y = CGRectGetMaxY(nameTitle.frame)+24;
-    accountTitle.text = @"钱包账号:";
+    accountTitle.text = [NSString stringWithFormat:@"%@:",NSLocalizedString(@"wallet account", nil)];
     [accountTitle sizeToFit];
     [bgView addSubview:accountTitle];
     
@@ -72,7 +72,7 @@
     self.accountTF.size = CGSizeMake(kScreenWidth-self.accountTF.x, GetScaleWidth(17));
     self.accountTF.font = [UIFont systemFontOfSize:14];
     self.accountTF.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.accountTF.placeholder = @"请输入钱包账号";
+    self.accountTF.placeholder = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"enter", nil),NSLocalizedString(@"wallet account", nil)];
     self.accountTF.textColor = kGreyColor;
     self.accountTF.backgroundColor = kWhiteColor;
     self.accountTF.delegate = self;
@@ -86,7 +86,7 @@
     loginPw.textColor = kBlackColor;
     loginPw.x = 19;
     loginPw.y = CGRectGetMaxY(accountTitle.frame)+24;
-    loginPw.text = @"登录密码:";
+    loginPw.text = [NSString stringWithFormat:@"%@:",NSLocalizedString(@"login password", nil)];
     [loginPw sizeToFit];
     [bgView addSubview:loginPw];
     
@@ -96,7 +96,7 @@
     self.loginPwTF.size = CGSizeMake(kScreenWidth-self.loginPwTF.x, GetScaleWidth(17));
     self.loginPwTF.font = [UIFont systemFontOfSize:14];
     self.loginPwTF.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.loginPwTF.placeholder = @"请输入钱包登录密码";
+    self.loginPwTF.placeholder = [NSString stringWithFormat:@"%@%@%@",NSLocalizedString(@"enter", nil),NSLocalizedString(@"wallet", nil),NSLocalizedString(@"login password", nil)];
     self.loginPwTF.textColor = kGreyColor;
     self.loginPwTF.secureTextEntry = YES;
     self.loginPwTF.backgroundColor = kWhiteColor;
@@ -111,7 +111,7 @@
     tradePw.textColor = kBlackColor;
     tradePw.x = 19;
     tradePw.y = CGRectGetMaxY(loginPw.frame)+24;
-    tradePw.text = @"交易密码:";
+    tradePw.text = [NSString stringWithFormat:@"%@:",NSLocalizedString(@"trade password", nil)];
     [tradePw sizeToFit];
     [bgView addSubview:tradePw];
     
@@ -121,7 +121,7 @@
     self.tradePwTF.size = CGSizeMake(kScreenWidth-self.tradePwTF.x, GetScaleWidth(17));
     self.tradePwTF.font = [UIFont systemFontOfSize:14];
     self.tradePwTF.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.tradePwTF.placeholder = @"请输入6位钱包交易密码";
+    self.tradePwTF.placeholder = [NSString stringWithFormat:@"%@6%@%@%@",NSLocalizedString(@"enter", nil),NSLocalizedString(@"digit", nil),NSLocalizedString(@"wallet", nil),NSLocalizedString(@"trade password", nil)];
     self.tradePwTF.secureTextEntry = YES;
     self.tradePwTF.textColor = kGreyColor;
     self.tradePwTF.backgroundColor = kWhiteColor;
@@ -136,7 +136,7 @@
     btn.x = 18;
     btn.y = CGRectGetMaxY(bgView.frame)+63;
     btn.size = CGSizeMake(kScreenWidth-36, 44);
-    [btn setTitle:@"确认添加" forState:UIControlStateNormal];
+    [btn setTitle:NSLocalizedString(@"confirm the addition", nil) forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(addWalletAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
     btn.layer.cornerRadius = 5;//设置那个圆角的有多圆
@@ -149,7 +149,7 @@
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     topToolView.hidden = NO;
     topToolView.backgroundColor = [UIColor whiteColor];
-    [topToolView setTopTitleWithNSString:KLocalizableStr(@"添加钱包")];
+    [topToolView setTopTitleWithNSString:NSLocalizedString(@"add wallet", nil)];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
@@ -184,16 +184,16 @@
     param.tradePassword = self.tradePwTF.text;
     
     if (param.walletName.length == 0) {
-        [Common AppShowToast:@"请输入钱包名称!"];
+        [Common AppShowToast:[NSString stringWithFormat:@"%@%@!",NSLocalizedString(@"enter", nil),NSLocalizedString(@"wallet name", nil)]];
         return;
     } else if (param.account.length == 0) {
-        [Common AppShowToast:@"请输入钱包账号!"];
+        [Common AppShowToast:[NSString stringWithFormat:@"%@%@!",NSLocalizedString(@"enter", nil),NSLocalizedString(@"wallet account", nil)]];
         return;
     } else if (param.loginPassword.length == 0) {
-        [Common AppShowToast:@"请输入钱包登录密码!"];
+        [Common AppShowToast:[NSString stringWithFormat:@"%@%@%@!",NSLocalizedString(@"enter", nil),NSLocalizedString(@"wallet", nil),NSLocalizedString(@"login password", nil)]];
         return;
     }else if (param.tradePassword.length == 0) {
-        [Common AppShowToast:@"请输入钱包交易密码!"];
+        [Common AppShowToast:[NSString stringWithFormat:@"%@%@%@!",NSLocalizedString(@"enter", nil),NSLocalizedString(@"wallet", nil),NSLocalizedString(@"trade password", nil)]];
         return;
     }
     

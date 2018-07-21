@@ -71,7 +71,7 @@
     _editBtn.layer.borderWidth = 1;
     _editBtn.layer.borderColor = [KMainColor CGColor];
     [_editBtn setTitleColor:KMainColor forState:UIControlStateNormal];
-    [_editBtn setTitle:@"编辑" forState:UIControlStateNormal];
+    [_editBtn setTitle:NSLocalizedString(@"edit", nil) forState:UIControlStateNormal];
     [_editBtn addTarget:self action:@selector(editButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.bgView addSubview:self.editBtn];
     
@@ -83,7 +83,7 @@
     _delBtn.layer.borderWidth = 1;
     _delBtn.layer.borderColor = [kRedColor CGColor];
     [_delBtn setTitleColor:kRedColor forState:UIControlStateNormal];
-    [_delBtn setTitle:@"删除" forState:UIControlStateNormal];
+    [_delBtn setTitle:NSLocalizedString(@"delete", nil) forState:UIControlStateNormal];
     [_delBtn addTarget:self action:@selector(deleteButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.bgView addSubview:self.delBtn];
     

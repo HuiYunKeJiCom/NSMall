@@ -68,7 +68,7 @@
 {
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     topToolView.backgroundColor = kWhiteColor;
-    [topToolView setTopTitleWithNSString:KLocalizableStr(@"个人中心")];
+    [topToolView setTopTitleWithNSString:NSLocalizedString(@"personal center", nil)];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
@@ -116,7 +116,7 @@
     self.classifyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.classifyBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.classifyBtn setImageWithTitle:IMAGE(@"mypage_ico_create_chat")
-                              withTitle:@"发起聊天" position:@"top" font:[UIFont systemFontOfSize:kFontNum14] forState:UIControlStateNormal];
+                              withTitle:NSLocalizedString(@"launch chat", nil) position:@"top" font:[UIFont systemFontOfSize:kFontNum14] forState:UIControlStateNormal];
     [self.btnV addSubview:self.classifyBtn];
     
     self.classifyBtn.x = spaceWidth;
@@ -127,7 +127,7 @@
     self.shopCartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.shopCartBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.shopCartBtn setImageWithTitle:IMAGE(@"mypage_ico_add_friend")
-                              withTitle:@"加为好友" position:@"top" font:[UIFont systemFontOfSize:kFontNum14] forState:UIControlStateNormal];
+                              withTitle:NSLocalizedString(@"be friend", nil) position:@"top" font:[UIFont systemFontOfSize:kFontNum14] forState:UIControlStateNormal];
     [self.btnV addSubview:self.shopCartBtn];
     self.shopCartBtn.x = itemWidth+2*spaceWidth;
     self.shopCartBtn.y = -GetScaleWidth(10);
@@ -137,7 +137,7 @@
     self.QRBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.QRBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.QRBtn setImageWithTitle:IMAGE(@"mypage_ico_qrcode")
-                        withTitle:@"二维码" position:@"top" font:[UIFont systemFontOfSize:kFontNum14] forState:UIControlStateNormal];
+                        withTitle:NSLocalizedString(@"QR code", nil) position:@"top" font:[UIFont systemFontOfSize:kFontNum14] forState:UIControlStateNormal];
     [self.btnV addSubview:self.QRBtn];
     self.QRBtn.x = itemWidth*2+3*spaceWidth;
     self.QRBtn.y = -GetScaleWidth(10);
@@ -195,7 +195,7 @@
 
 - (void)buildUI{
     //副标题
-    _pageSelectBar = [[ThreePageSelectBar alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 40) options:@[@"商品",@"店铺",@"评论"] selectBlock:^(NSString *option, NSInteger index) {
+    _pageSelectBar = [[ThreePageSelectBar alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 40) options:@[NSLocalizedString(@"goods", nil),NSLocalizedString(@"shop", nil),NSLocalizedString(@"comment", nil)] selectBlock:^(NSString *option, NSInteger index) {
         _mainScrollView.contentOffset = CGPointMake((_mainScrollView.contentSize.width/3) * index, 0);
         if(index == 0){
             [self searchWithType:@"0" andUserId:self.userId];
