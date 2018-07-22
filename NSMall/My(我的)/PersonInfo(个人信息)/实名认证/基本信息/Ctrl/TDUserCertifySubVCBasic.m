@@ -168,7 +168,9 @@
         }
         // 证件类型
         else if ([certifierNode.title isEqualToString:KLocalizableStr(TDUserCertifyTitleIdType)]) {
-            pickerCell.valueLabel.text = [certifierNode.value integerValue] == 1 ? KLocalizableStr(@"身份证") : KLocalizableStr(@"未知");
+            pickerCell.valueLabel.text = [certifierNode.value integerValue] == 1 ? NSLocalizedString(@"ID card", nil)
+ : NSLocalizedString(@"unknown", nil)
+;
         }
     }
 }
@@ -231,7 +233,8 @@
         _commitBtn = [UIButton new];
         _commitBtn.backgroundColor = KMainColor;
         _commitBtn.layer.cornerRadius = 5;
-        [_commitBtn setTitle:KLocalizableStr(@"提交") forState:UIControlStateNormal];
+        [_commitBtn setTitle:NSLocalizedString(@"submit", nil)
+ forState:UIControlStateNormal];
         [_commitBtn setTitleColor:KBGCOLOR forState:UIControlStateNormal];
         [_commitBtn setTitleColor:kWhiteColor forState:UIControlStateHighlighted];
         [_commitBtn setTitleColor:kWhiteColor forState:UIControlStateDisabled];

@@ -116,7 +116,8 @@ static NSString* const TDUserCertifyImgNameDisconfirm = @"user_icon_unselect";
 
 - (UIButton *)agreementBtn {
     if (!_agreementBtn) {
-        _agreementBtn = [[UIButton alloc] initWithFrame:CGRectZero title:KLocalizableStr(@"本人同意") img:TDUserCertifyImgNameDisconfirm fontSize:14];
+        _agreementBtn = [[UIButton alloc] initWithFrame:CGRectZero title:NSLocalizedString(@"I agree", nil)
+ img:TDUserCertifyImgNameDisconfirm fontSize:14];
         [_agreementBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
         [_agreementBtn setTitleColor:KColorText333333 forState:UIControlStateHighlighted];
     }
@@ -125,7 +126,8 @@ static NSString* const TDUserCertifyImgNameDisconfirm = @"user_icon_unselect";
 
 - (UIButton *)disagreementBtn {
     if (!_disagreementBtn) {
-        _disagreementBtn = [[UIButton alloc] initWithFrame:CGRectZero title:KLocalizableStr(@"本人不同意") img:TDUserCertifyImgNameDisconfirm fontSize:14];
+        _disagreementBtn = [[UIButton alloc] initWithFrame:CGRectZero title:NSLocalizedString(@"I disagree", nil)
+ img:TDUserCertifyImgNameDisconfirm fontSize:14];
         [_disagreementBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
         [_disagreementBtn setTitleColor:KColorText333333 forState:UIControlStateHighlighted];
     }

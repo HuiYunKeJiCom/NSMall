@@ -52,7 +52,7 @@
 }
 
 - (void) initializeDatas {
-    self.title = KLocalizableStr(@"实名认证");
+    self.title = NSLocalizedString(@"certification", nil);
     self.view.backgroundColor = KColorMainBackground;
     self.sureBtn.hidden = self.certifyResult == TDUserCertifyResultChecking;
     
@@ -63,12 +63,12 @@
         // 审核拒绝
         if ([x integerValue] == TDUserCertifyResultRefused) {
             // 按钮
-            [self.sureBtn setTitle:@"重新认证" forState:UIControlStateNormal];
+            [self.sureBtn setTitle:NSLocalizedString(@"re certification", nil) forState:UIControlStateNormal];
             self.sureBtn.hidden = NO;
             // 图片
             self.imageView.image = [UIImage imageNamed:@"certify_icon_fail"];
             // 状态标题
-            self.statusLabel.text = KLocalizableStr(@"认证失败!");
+            self.statusLabel.text = [NSString stringWithFormat:@"%@!",NSLocalizedString(@"authentication failure", nil)];
             // 状态正文
             self.contentLabel.text = KLocalizableStr(@"尊敬的用户，您所提交的信息有误被打回，\n不便之处敬请谅解!");
         }
@@ -79,7 +79,7 @@
             // 图片
             self.imageView.image = [UIImage imageNamed:@"certify_icon_success"];
             // 状态标题
-            self.statusLabel.text = KLocalizableStr(@"认证成功!");
+            self.statusLabel.text = [NSString stringWithFormat:@"%@!",NSLocalizedString(@"certification success", nil)];
             // 状态正文
             self.contentLabel.text = KLocalizableStr(@"尊敬的用户，您所提交的信息认证成功，\n您可在平台进行虚拟币交易!");
 
@@ -87,7 +87,7 @@
         // 正在审核
         else {
             // 按钮
-            [self.sureBtn setTitle:@"完成" forState:UIControlStateNormal];
+            [self.sureBtn setTitle:NSLocalizedString(@"complete", nil) forState:UIControlStateNormal];
             self.sureBtn.hidden = NO;
             // 图片
             self.imageView.image = [UIImage imageNamed:@"user_icon_waiting"];

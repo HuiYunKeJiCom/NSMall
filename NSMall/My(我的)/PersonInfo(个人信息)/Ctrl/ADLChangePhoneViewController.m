@@ -62,9 +62,9 @@
 - (void)setEditTitle:(NSString *)editTitle {
     _editTitle = editTitle;
     
-    self.title = [NSString stringWithFormat:@"%@ %@",KLocalizableStr(@"修改"),_editTitle];
+    self.title = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"modify", nil),_editTitle];
     
-    self.phoneField.placeholder = KLocalizableStr(@"请输入新的手机号码");
+    self.phoneField.placeholder = NSLocalizedString(@"enter new number", nil);
 }
 
 
@@ -74,7 +74,7 @@
     if (!_phoneField) {
         _phoneField = [[UITextField alloc] initWithFrame:CGRectZero];
         _phoneField.font = UISystemFontSize(13);
-        _phoneField.placeholder = KLocalizableStr(@"请输入新的手机号");
+        _phoneField.placeholder = NSLocalizedString(@"enter new number", nil);
         _phoneField.keyboardType = UIKeyboardTypeNumberPad;
         _phoneField.delegate = self;
     }
@@ -84,7 +84,7 @@
 - (UIButton *)commitButton {
     if (!_commitButton) {
         _commitButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_commitButton setTitle:KLocalizableStr(@"保存") forState:UIControlStateNormal];
+        [_commitButton setTitle:NSLocalizedString(@"save", nil) forState:UIControlStateNormal];
         [_commitButton setTitleColor:KColorTextFFFFFF forState:UIControlStateNormal];
         _commitButton.titleLabel.font = UISystemFontSize(15);
         _commitButton.backgroundColor = KMainColor;
@@ -98,13 +98,13 @@
 -(void)actionCommit {
     if ([[self.phoneField.text trim] isEmptyOrNull]) {
         [self.phoneField animateShake];
-        _errorLabel.text = KLocalizableStr(@"请输入手机号");
+        _errorLabel.text = NSLocalizedString(@"enter number", nil);
         return;
     }
     
     if ([[self.codeField.text trim] isEmptyOrNull]) {
         [self.codeField animateShake];
-        _errorLabel.text = KLocalizableStr(@"请输入验证码");
+        _errorLabel.text = NSLocalizedString(@"enter verification Code", nil);
         return;
     }
     
@@ -195,7 +195,7 @@
         }
         if (diff == 120) {
             [_timer pauseTimer];
-            NSString *title = [NSString stringWithFormat:@"    %@    ",KLocalizableStr(@"重新获取")];
+            NSString *title = [NSString stringWithFormat:@"    %@    ",NSLocalizedString(@"recapture", nil)];
             [self.codeButton setTitle:title forState:UIControlStateNormal];
             self.codeButton.backgroundColor = [UIColor whiteColor];
             self.codeButton.userInteractionEnabled = YES;
@@ -249,7 +249,7 @@
 - (UIButton *)codeButton {
     if (!_codeButton) {
         _codeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        NSString *title = [NSString stringWithFormat:@"  %@  ",KLocalizableStr(@"获取验证码")];
+        NSString *title = [NSString stringWithFormat:@"  %@  ",NSLocalizedString(@"get verification Code", nil)];
         [_codeButton setTitle:title forState:UIControlStateNormal];
         [_codeButton setTitleColor:KMainColor forState:UIControlStateNormal];
         _codeButton.titleLabel.font = UISystemFontSize(12);
@@ -269,7 +269,7 @@
         _codeField = [[ADLTitleField alloc] initWithFrame:CGRectZero];
         _codeField.backgroundColor = KColorTextF2F4F7;
         _codeField.layer.cornerRadius = GetScaleWidth(20);
-        _codeField.textField.placeholder = KLocalizableStr(@"请输入验证码");
+        _codeField.textField.placeholder = NSLocalizedString(@"enter verification Code", nil);
         _codeField.textField.font = UISystemFontSize(12);
         _codeField.textField.keyboardType = UIKeyboardTypeNumberPad;
         _codeField.textField.delegate = self;
@@ -387,7 +387,7 @@
     WEAKSELF
     if ([[self.phoneField.text trim] isEmptyOrNull]) {
         [self.phoneField animateShake];
-        _errorLabel.text = KLocalizableStr(@"请输入手机号");
+        _errorLabel.text = NSLocalizedString(@"enter number", nil);
         return;
     }
     

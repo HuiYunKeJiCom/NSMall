@@ -50,12 +50,11 @@
     
 //    self.title = KLocalizableStr(@"修改个人信息");
     self.view.backgroundColor = UIColorFromRGB(0xf4f5f9);
-    self.dataSources = @[@[KLocalizableStr(@"头像"),
-                           KLocalizableStr(@"收货地址"),
-                           KLocalizableStr(@"昵称"),
-                           KLocalizableStr(@"性别"),
-                           KLocalizableStr(@"手机号"),
-                           KLocalizableStr(@"实名认证")]];
+    self.dataSources = @[@[NSLocalizedString(@"head portrait", nil),NSLocalizedString(@"receiving address", nil),
+                           NSLocalizedString(@"nickname", nil),
+                           NSLocalizedString(@"sex", nil),
+                           NSLocalizedString(@"phone number", nil),
+                           NSLocalizedString(@"certification", nil)]];
     
     [self.view addSubview:self.userTable];
     [self.view addSubview:self.outBtn];
@@ -69,7 +68,7 @@
 {
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth,  TopBarHeight)];
     topToolView.backgroundColor = kWhiteColor;
-    [topToolView setTopTitleWithNSString:KLocalizableStr(@"个人信息")];
+    [topToolView setTopTitleWithNSString:NSLocalizedString(@"personal information", nil)];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
@@ -104,7 +103,7 @@
         [_outBtn setTitleColor:kWhiteColor forState:0];
         _outBtn.titleLabel.font = UISystemFontSize(14);
         _outBtn.backgroundColor = KMainColor;
-        [_outBtn setTitle:@"退出登录" forState:UIControlStateNormal];
+        [_outBtn setTitle:NSLocalizedString(@"exit logon", nil) forState:UIControlStateNormal];
         [_outBtn addTarget:self action:@selector(loginOut) forControlEvents:UIControlEventTouchUpInside];
         
         _outBtn.layer.cornerRadius = 10.0;//2.0是圆角的弧度，根据需求自己更改
@@ -235,7 +234,7 @@
         if (subArr.count > indexPath.row) {
             NSString *title = subArr[indexPath.row];
             
-            if ([title isEqualToString:KLocalizableStr(@"头像")]) {
+            if ([title isEqualToString:NSLocalizedString(@"head portrait", nil)]) {
                 [self takePhoto];
                 
             } else {
@@ -257,7 +256,7 @@
                         //                    ctrl.editTitle = title;
                         [self.navigationController pushViewController:ctrl animated:YES];
                     }else{
-                        [Common AppShowToast:@"你已进行过实名认证"];
+                        [Common AppShowToast:NSLocalizedString(@"have been authenticated", nil)];
                     }
 //                    [self.navigationController setNavigationBarHidden:NO];
                     
@@ -275,19 +274,19 @@
 - (EditUserType)getEditType:(NSString *)title {
     EditUserType type = 0;
     
-    if ([title isEqualToString:KLocalizableStr(@"昵称")]) {
+    if ([title isEqualToString:NSLocalizedString(@"nickname", nil)]) {
         type = EditUserTypeNickName;
         
-    } else if ([title isEqualToString:KLocalizableStr(@"收货地址")]) {
+    } else if ([title isEqualToString:NSLocalizedString(@"receiving address", nil)]) {
         type = EditUserTypeAddress;
         
-    } else if ([title isEqualToString:KLocalizableStr(@"性别")]) {
+    } else if ([title isEqualToString:NSLocalizedString(@"sex", nil)]) {
         type = EditUserTypeGender;
         
-    } else if ([title isEqualToString:KLocalizableStr(@"手机号")]) {
+    } else if ([title isEqualToString:NSLocalizedString(@"phone number", nil)]) {
         type = EditUserTypePhone;
         
-    } else if ([title isEqualToString:KLocalizableStr(@"实名认证")]) {
+    } else if ([title isEqualToString:NSLocalizedString(@"certification", nil)]) {
         type = EditUserTypeCertification;
     }
     
@@ -299,24 +298,24 @@
 //    ADReceivingAddressViewController
     cell.titleLb.text = title;
     //这里已修改
-    if ([title isEqualToString:KLocalizableStr(@"昵称")]) {
+    if ([title isEqualToString:NSLocalizedString(@"nickname", nil)]) {
         cell.descLabel.text = [NSString limitStringNotEmpty:[self.userModel.user_name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
-    }  else if ([title isEqualToString:KLocalizableStr(@"性别")]) {
-        cell.descLabel.text = self.userModel.sex == 0 ? KLocalizableStr(@"保密") : self.userModel.sex == 1 ? KLocalizableStr(@"男") : KLocalizableStr(@"女");
+    }  else if ([title isEqualToString:NSLocalizedString(@"sex", nil)]) {
+        cell.descLabel.text = self.userModel.sex == 0 ? NSLocalizedString(@"secrecy", nil) : self.userModel.sex == 1 ? NSLocalizedString(@"male", nil) : NSLocalizedString(@"female", nil);
 
-    } else if ([title isEqualToString:KLocalizableStr(@"手机号")]) {
+    } else if ([title isEqualToString:NSLocalizedString(@"phone number", nil)]) {
         cell.descLabel.text = [NSString limitStringNotEmpty:self.userModel.telephone];
 
-    } else if ([title isEqualToString:KLocalizableStr(@"实名认证")]) {
+    } else if ([title isEqualToString:NSLocalizedString(@"certification", nil)]) {
         //这里需要修改 已认证的需要修改
 //        cell.descLabel.text = [NSString limitStringNotEmpty:self.userModel.mobile];
         
         UserModel *userModel = [UserModel modelFromUnarchive];
         if(userModel.is_certification == 0){
-            cell.descLabel.text = [NSString limitStringNotEmpty:KLocalizableStr(@"未认证")];
+            cell.descLabel.text = [NSString limitStringNotEmpty:NSLocalizedString(@"uncertified", nil)];
         }else{
-            cell.descLabel.text = [NSString limitStringNotEmpty:KLocalizableStr(@"已认证")];
+            cell.descLabel.text = [NSString limitStringNotEmpty:NSLocalizedString(@"certified", nil)];
         }
         
         
@@ -330,20 +329,20 @@
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
     
     if (authStatus == AVAuthorizationStatusAuthorized) {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:KLocalizableStr(@"取消") destructiveButtonTitle:nil otherButtonTitles:KLocalizableStr(@"拍照"), KLocalizableStr(@"从手机相册选择"), nil];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"take photo", nil), NSLocalizedString(@"selection from handset album", nil), nil];
         [actionSheet showInView:self.view];
     } else if (authStatus == AVAuthorizationStatusDenied) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:KLocalizableStr(@"提示")
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil)
                                                         message:KLocalizableStr(@"请在设备的 设置-隐私-相机 中允许访问相机")
                                                        delegate:nil
-                                              cancelButtonTitle:KLocalizableStr(@"确定")
+                                              cancelButtonTitle:NSLocalizedString(@"confirm", nil)
                                               otherButtonTitles:nil];
         [alert show];
     } else if (authStatus == AVAuthorizationStatusNotDetermined) {
         
         [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
             if (granted) {
-                UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:KLocalizableStr(@"取消") destructiveButtonTitle:nil otherButtonTitles:KLocalizableStr(@"拍照"), KLocalizableStr(@"从手机相册选择"), nil];
+                UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"take photo", nil), NSLocalizedString(@"selection from handset album", nil), nil];
                 [actionSheet showInView:self.view];
             } else {
             }
@@ -429,7 +428,7 @@
 
 -(void)loginOut{
     [UserInfoAPI loginOut:nil success:^(NSDictionary * _Nullable result) {
-        [Common AppShowToast:@"登出成功"];
+        [Common AppShowToast:NSLocalizedString(@"logout success", nil)];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             [userDefaults removeObjectForKey:@"appToken"];

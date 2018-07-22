@@ -593,15 +593,91 @@
 "my collection" = "我的收藏";
 "receiver" = "收货人";
 "receiving address" = "收货地址";
+
+"goods relevant" = "商品标题,品类、品牌、型号等";
+"goods description" = "在这里详细描述下商品,卖点、优势等~";
+"sort" = "分类";
+"on shelf" = "上架";
+"selection sort" = "选择分类";
+"number" = "数量";
+"add goods specifications" = "添加商品规格";
+"fee" = "运费";
+"individual" = "个";
+"goods publish" = "发布商品";
+"goods publish success" = "商品发布成功";
+"purchase quantity" = "购买数量";
+"order number" = "订单编号";
+"order time" = "下单时间";
+"total commodity" = "商品总额";
+"total" = "合计";
+"size specification" = "尺寸规格";
+"order details" = "订单详情";
 "all" = "全部";
-
-
-
-
-
-
-
-
+"wait pay" = "待支付";
+"wait deliver" = "待发货";
+"wait receive" = "待收货";
+"completed" = "已完成";
+"trade completed" = "交易完成";
+"cancelled" = "已取消";
+"to pay" = "去支付";
+"to evaluate" = "去评价";
+"confirm receipt" = "确认收货";
+"in total" = "共";
+"piece goods,subtotal" = "件商品,小计";
+"buy" = "我买到的";
+"sold" = "我卖出的";
+"my shop" = "我的店铺";
+"shop delete success" = "店铺删除成功";
+"edit shop" = "编辑店铺";
+"edit saved" = "保存编辑";
+"on sale" = "售卖中";
+"my goods" = "我的商品";
+"submit" = "提交";
+"uploading data" = "正在上传数据";
+"authentication failure" = "认证失败";
+"certification" = "实名认证";
+"basic information" = "基础信息";
+"uploading documents" = "上传证件";
+"perfect information" = "完善信息";
+"I agree" = "本人同意";
+"I disagree" = "本人不同意";
+"ID card" = "身份证";
+"unknown" = "未知";
+"name" = "姓名";
+"Country / Region" = "国家/地区";
+"male" = "男";
+"female" = "女";
+"China" = "中国";
+"your ID card number" = "您的身份证号码";
+"your occupation" = "您的职业";
+"your address" = "您的常用地址";
+"re certification" = "重新认证";
+"certification success" = "认证成功";
+"view big picture" = "查看大图";
+"view album" = "查看相册";
+"camera is not available" = "相机不可用";
+"confirm upload" = "确认上传";
+"select" = "请选择";
+"upload front picture" = "请上传清晰的身份证正面照片，拍照时请确保无反光、无遮挡.";
+"upload back picture" = "请上传清晰的身份证反面照片，拍照时请确保无反光、无遮挡.";
+"upload hands picture" = "请上传清晰的双手持身份证照片，需免冠，五官清晰可见，建议未化妆，完整露出双手手臂.";
+"make sure information clearly visible" = "请确保照片中身份证信息清晰可见，否则无法通过审核.";
+"head portrait" = "头像";
+"nickname" = "昵称";
+"sex" = "性别";
+"personal information" = "个人信息";
+"exit logon" = "退出登录";
+"have been authenticated" = "你已进行过实名认证";
+"secrecy" = "保密";
+"uncertified" = "未认证";
+"certified" = "已认证";
+"selection from handset album" = "从手机相册选择";
+"tip" = "提示";
+"logout success" = "登出成功";
+"save" = "保存";
+"my receipt code" = "我的收款码";
+"my order" = "我的订单";
+"phone number" = "手机号";
 
 
 

@@ -59,13 +59,13 @@
 #pragma mark - 获取数据
 - (void)setUpData
 {
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"我的钱包") imageName:@"my_ico_wallet" num:nil]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"我的收款码") imageName:@"my_ico_qrcode" num:nil]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"我的商品") imageName:@"my_ico_goods" num:nil]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"我的店铺") imageName:@"my_ico_shop" num:nil]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"我的订单") imageName:@"my_ico_order" num:nil]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"我的收藏") imageName:@"my_ico_fav" num:nil]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:KLocalizableStr(@"设置") imageName:@"my_ico_setting" num:nil]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"my wallet", nil) imageName:@"my_ico_wallet" num:nil]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"my receipt code", nil) imageName:@"my_ico_qrcode" num:nil]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"my goods", nil) imageName:@"my_ico_goods" num:nil]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"my shop", nil) imageName:@"my_ico_shop" num:nil]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"my order", nil) imageName:@"my_ico_order" num:nil]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"my collection", nil) imageName:@"my_ico_fav" num:nil]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"setting", nil) imageName:@"my_ico_setting" num:nil]];
 }
 
 #pragma mark - initialize

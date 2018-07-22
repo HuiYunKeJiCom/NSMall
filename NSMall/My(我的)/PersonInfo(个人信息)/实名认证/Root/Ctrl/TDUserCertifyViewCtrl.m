@@ -46,7 +46,8 @@
 - (void) uploadingDatas {
     //这里要修改
     __weak typeof(self) wself = self;
-    [MBProgressHUD mb_showWaitingWithText:KLocalizableStr(@"正在上传数据...") detailText:nil inView:self.view];
+    [MBProgressHUD mb_showWaitingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"uploading data", nil)
+] detailText:nil inView:self.view];
     
     [[TDUserCertifyDataSource sharedRealNameCtrl] uploadRealNameDataOnSuccess:^(id data) {
         DLog(@"上传成功回调");
@@ -58,7 +59,8 @@
     } orFail:^(NSString *msg) {
         
         [MBProgressHUD hideHUDForView:wself.view animated:YES];
-        [MBProgressHUD mb_showOnlyText:@"认证失败!" detail:msg delay:1.5 inView:wself.view];
+        [MBProgressHUD mb_showOnlyText:[NSString stringWithFormat:@"%@!",NSLocalizedString(@"authentication failure", nil)
+] detail:msg delay:1.5 inView:wself.view];
     }];
 }
 
@@ -198,7 +200,7 @@
 {
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     topToolView.backgroundColor = kWhiteColor;
-    [topToolView setTopTitleWithNSString:KLocalizableStr(@"实名认证")];
+    [topToolView setTopTitleWithNSString:NSLocalizedString(@"certification", nil)];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
@@ -229,7 +231,10 @@
 
 - (TDSegmentView *)segmentView {
     if (!_segmentView) {
-        _segmentView = [[TDSegmentView alloc] initWithItems:@[KLocalizableStr(@"基础信息"), KLocalizableStr(@"上传证件"), KLocalizableStr(@"完善信息")]];
+        _segmentView = [[TDSegmentView alloc] initWithItems:@[NSLocalizedString(@"basic information", nil)
+                                                              , NSLocalizedString(@"uploading documents", nil)
+                                                              , NSLocalizedString(@"perfect information", nil)
+]];
         _segmentView.backgroundColor = KColorSubBackground;
         _segmentView.normalColor = UIColorFromRGB(0x8e99a8);
         _segmentView.curSelectedIndex = 0;

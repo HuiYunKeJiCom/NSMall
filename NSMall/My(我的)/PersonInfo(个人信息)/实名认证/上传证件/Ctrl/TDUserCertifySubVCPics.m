@@ -54,7 +54,7 @@
 // 显示图片点击的操作事件
 - (void) showImgAlertWithTag:(NSInteger)tag {
     UIAlertController* alertCtrl = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction* cancel = [UIAlertAction actionWithTitle:KLocalizableStr(@"取消") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"cancel", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         [alertCtrl dismissViewControllerAnimated:YES completion:nil];
     }];
     [alertCtrl addAction:cancel];
@@ -72,16 +72,16 @@
     
     __weak typeof(self) wself = self;
     if (!isOrigin) {
-        UIAlertAction* large = [UIAlertAction actionWithTitle:KLocalizableStr(@"查看大图") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction* large = [UIAlertAction actionWithTitle:NSLocalizedString(@"view big picture", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [wself takeLook];
         }];
         [alertCtrl addAction:large];
     }
-    UIAlertAction* takePhoto = [UIAlertAction actionWithTitle:KLocalizableStr(@"拍照") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction* takePhoto = [UIAlertAction actionWithTitle:NSLocalizedString(@"take photo", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [wself takePhoto];
     }];
     [alertCtrl addAction:takePhoto];
-    UIAlertAction* album = [UIAlertAction actionWithTitle:KLocalizableStr(@"查看相册") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction* album = [UIAlertAction actionWithTitle:NSLocalizedString(@"view album", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [wself takeAlbum];
     }];
     [alertCtrl addAction:album];
@@ -94,7 +94,7 @@
 - (void) takePhoto {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] ||
         ![UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear]) {
-        [MBProgressHUD mb_showOnlyText:KLocalizableStr(@"相机不可用") detail:nil delay:1.5 inView:self.parentViewController.view];
+        [MBProgressHUD mb_showOnlyText:NSLocalizedString(@"camera is not available", nil) detail:nil delay:1.5 inView:self.parentViewController.view];
         return;
     }
     
@@ -335,7 +335,7 @@
         _commitBtn = [UIButton new];
         _commitBtn.backgroundColor = KMainColor;
         _commitBtn.layer.cornerRadius = 5;
-        [_commitBtn setTitle:KLocalizableStr(@"确认上传") forState:UIControlStateNormal];
+        [_commitBtn setTitle:NSLocalizedString(@"confirm upload", nil) forState:UIControlStateNormal];
         [_commitBtn setTitleColor:KBGCOLOR forState:UIControlStateNormal];
         [_commitBtn setTitleColor:kWhiteColor forState:UIControlStateHighlighted];
         [_commitBtn setTitleColor:kWhiteColor forState:UIControlStateDisabled];
@@ -346,10 +346,10 @@
 
 - (NSArray *)headerTitles {
     if (!_headerTitles) {
-        _headerTitles = @[@[KLocalizableStr(@"请上传清晰的身份证正面照片，拍照时请确保无反光、无遮挡.")],
-                          @[KLocalizableStr(@"请上传清晰的身份证正面照片，拍照时请确保无反光、无遮挡.")],
-                          @[KLocalizableStr(@"请上传清晰的双手持身份证照片，需免冠，五官清晰可见，建议未化妆，完整露出双手手臂."),
-                            KLocalizableStr(@"请确保照片中身份证信息清晰可见，否则无法通过审核.")]];
+        _headerTitles = @[@[NSLocalizedString(@"upload front picture", nil)],
+                          @[NSLocalizedString(@"upload back picture", nil)],
+                          @[NSLocalizedString(@"upload hands picture", nil),
+                            NSLocalizedString(@"make sure information clearly visible", nil)]];
     
     }
     return _headerTitles;

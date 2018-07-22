@@ -48,7 +48,7 @@
     
     //这里已修改
     UserModel *userModel = [UserModel modelFromUnarchive];
-    self.gender = [NSString limitStringNotEmpty:userModel.sex == 0 ? KLocalizableStr(@"保密") : userModel.sex == 1 ? KLocalizableStr(@"男") : KLocalizableStr(@"女")];
+    self.gender = [NSString limitStringNotEmpty:userModel.sex == 0 ? NSLocalizedString(@"secrecy", nil) : userModel.sex == 1 ? NSLocalizedString(@"male", nil) : NSLocalizedString(@"female", nil)];
 
     if (self.type == EditUserTypeGender) {
         self.selectView.hidden = NO;
@@ -86,9 +86,9 @@
 - (void)setEditTitle:(NSString *)editTitle {
     _editTitle = editTitle;
     
-    self.title = [NSString stringWithFormat:@"%@ %@",KLocalizableStr(@"修改"),_editTitle];
+    self.title = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"modify", nil),_editTitle];
     
-    self.contentField.placeholder = [NSString stringWithFormat:@"%@ %@",KLocalizableStr(@"请输入"),_editTitle];
+    self.contentField.placeholder = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"enter", nil),_editTitle];
 }
 
 
@@ -120,7 +120,7 @@
 - (UIButton *)commitButton {
     if (!_commitButton) {
         _commitButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_commitButton setTitle:KLocalizableStr(@"保存") forState:UIControlStateNormal];
+        [_commitButton setTitle:NSLocalizedString(@"save", nil) forState:UIControlStateNormal];
         [_commitButton setTitleColor:KColorTextFFFFFF forState:UIControlStateNormal];
         _commitButton.titleLabel.font = UISystemFontSize(15);
         _commitButton.backgroundColor = KMainColor;
@@ -219,13 +219,13 @@
         nickName = [[_contentField.text trim] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         gender = [NSString limitStringNotEmpty:[NSString stringWithFormat:@"%lu",userModel.sex]];
     }else{
-        if([self.gender isEqualToString:@"2"] || [self.gender isEqualToString:@"女"]){
+        if([self.gender isEqualToString:@"2"] || [self.gender isEqualToString:NSLocalizedString(@"female", nil)]){
             self.gender = @"2";
         }
-        if([self.gender isEqualToString:@"1"] || [self.gender isEqualToString:@"男"]){
+        if([self.gender isEqualToString:@"1"] || [self.gender isEqualToString:NSLocalizedString(@"male", nil)]){
             self.gender = @"1";
         }
-        if([self.gender isEqualToString:@"0"] || [self.gender isEqualToString:@"保密"]){
+        if([self.gender isEqualToString:@"0"] || [self.gender isEqualToString:NSLocalizedString(@"secrecy", nil)]){
             self.gender = @"0";
         }
         
@@ -298,7 +298,7 @@
     if ([changeString isEmptyOrNull]) {
         _contentField.text = @"";
         [_contentField animateShake];
-        errorMsg = KLocalizableStr(@"请输入昵称");
+        errorMsg = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"enter", nil),NSLocalizedString(@"nickname", nil)];
         return errorMsg;
     }
     
@@ -325,7 +325,7 @@
 
 - (void)initViews {
     
-    NSArray *titles = @[KLocalizableStr(@"男"),KLocalizableStr(@"女")];
+    NSArray *titles = @[NSLocalizedString(@"male", nil),NSLocalizedString(@"female", nil)];
     
     float w = GetScaleWidth(80);
     float space = GetScaleWidth(30);

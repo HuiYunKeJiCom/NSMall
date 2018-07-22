@@ -171,14 +171,14 @@
 
 - (NSArray *)dataSource {
     if (!_dataSource) {
-        _dataSource = @[[TDUserCertifyDataBasicNode nodeWithTitle:KLocalizableStr(TDUserCertifyTitleName) identifier:TDUserCertifyCellTypeTxtInputed placeHolder:KLocalizableStr(@"请输入姓名") value:nil],
-                        [TDUserCertifyDataBasicNode nodeWithTitle:KLocalizableStr(TDUserCertifyTitleCountry) identifier:TDUserCertifyCellTypePicker placeHolder:nil value:KLocalizableStr(@"中国")],
+        _dataSource = @[[TDUserCertifyDataBasicNode nodeWithTitle:KLocalizableStr(TDUserCertifyTitleName) identifier:TDUserCertifyCellTypeTxtInputed placeHolder:[NSString stringWithFormat:@"%@%@",NSLocalizedString(@"enter", nil),NSLocalizedString(@"name", nil)] value:nil],
+                        [TDUserCertifyDataBasicNode nodeWithTitle:KLocalizableStr(TDUserCertifyTitleCountry) identifier:TDUserCertifyCellTypePicker placeHolder:nil value:NSLocalizedString(@"China", nil)],
                         [TDUserCertifyDataBasicNode nodeWithTitle:KLocalizableStr(TDUserCertifyTitleIdType) identifier:TDUserCertifyCellTypePicker placeHolder:nil value:@(1)], // 1:身份证
-                        [TDUserCertifyDataBasicNode nodeWithTitle:KLocalizableStr(TDUserCertifyTitleIdNumber) identifier:TDUserCertifyCellTypeTxtInputed placeHolder:KLocalizableStr(@"请输入您的身份证号码") value:nil],
+                        [TDUserCertifyDataBasicNode nodeWithTitle:KLocalizableStr(TDUserCertifyTitleIdNumber) identifier:TDUserCertifyCellTypeTxtInputed placeHolder:[NSString stringWithFormat:@"%@%@",NSLocalizedString(@"enter", nil),NSLocalizedString(@"your ID card number", nil)] value:nil],
                         [TDUserCertifyDataBasicNode nodeWithTitle:KLocalizableStr(TDUserCertifyTitleSex) identifier:TDUserCertifyCellTypePicker placeHolder:nil value:@(1)], // 1:男,0:女
-                        [TDUserCertifyDataBasicNode nodeWithTitle:KLocalizableStr(TDUserCertifyTitleBirth) identifier:TDUserCertifyCellTypePicker placeHolder:KLocalizableStr(@"请选择") value:nil],
-                        [TDUserCertifyDataBasicNode nodeWithTitle:KLocalizableStr(TDUserCertifyTitleDuty) identifier:TDUserCertifyCellTypeTxtInputed placeHolder:KLocalizableStr(@"请输入您的职业") value:nil],
-                        [TDUserCertifyDataBasicNode nodeWithTitle:KLocalizableStr(TDUserCertifyTitleAddr) identifier:TDUserCertifyCellTypeTxtInputed placeHolder:KLocalizableStr(@"请输入您的常用地址") value:nil]];
+                        [TDUserCertifyDataBasicNode nodeWithTitle:KLocalizableStr(TDUserCertifyTitleBirth) identifier:TDUserCertifyCellTypePicker placeHolder:NSLocalizedString(@"select", nil) value:nil],
+                        [TDUserCertifyDataBasicNode nodeWithTitle:KLocalizableStr(TDUserCertifyTitleDuty) identifier:TDUserCertifyCellTypeTxtInputed placeHolder:[NSString stringWithFormat:@"%@%@",NSLocalizedString(@"enter", nil),NSLocalizedString(@"your occupation", nil)] value:nil],
+                        [TDUserCertifyDataBasicNode nodeWithTitle:KLocalizableStr(TDUserCertifyTitleAddr) identifier:TDUserCertifyCellTypeTxtInputed placeHolder:[NSString stringWithFormat:@"%@%@",NSLocalizedString(@"enter", nil),NSLocalizedString(@"your address", nil)] value:nil]];
     }
     return _dataSource;
 }
