@@ -41,7 +41,8 @@
 {
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     topToolView.backgroundColor = kWhiteColor;
-    [topToolView setTopTitleWithNSString:KLocalizableStr(@"我的店铺")];
+    [topToolView setTopTitleWithNSString:NSLocalizedString(@"my shop", nil)
+];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
@@ -173,7 +174,8 @@
 -(void)deleteShopWith:(NSShopListItemModel *)model{
     
     [MyShopAPI delShopWithParam:model.store_id success:^{
-        [Common AppShowToast:@"店铺删除成功"];
+        [Common AppShowToast:NSLocalizedString(@"shop delete success", nil)
+];
 //        sleep(1);
         [self requestAllOrder:NO];
         [self.goodsTable reloadData];

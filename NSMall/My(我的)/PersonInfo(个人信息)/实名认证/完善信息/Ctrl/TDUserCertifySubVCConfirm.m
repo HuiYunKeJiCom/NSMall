@@ -145,7 +145,8 @@
         _commitBtn = [UIButton new];
         _commitBtn.backgroundColor = KMainColor;
         _commitBtn.layer.cornerRadius = 5;
-        [_commitBtn setTitle:KLocalizableStr(@"提交") forState:UIControlStateNormal];
+        [_commitBtn setTitle:NSLocalizedString(@"submit", nil)
+ forState:UIControlStateNormal];
         [_commitBtn setTitleColor:KBGCOLOR forState:UIControlStateNormal];
         [_commitBtn setTitleColor:kWhiteColor forState:UIControlStateHighlighted];
         [_commitBtn setTitleColor:kWhiteColor forState:UIControlStateDisabled];

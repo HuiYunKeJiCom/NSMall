@@ -46,7 +46,7 @@
 {
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     topToolView.backgroundColor = kWhiteColor;
-    [topToolView setTopTitleWithNSString:KLocalizableStr(@"订单详情")];
+    [topToolView setTopTitleWithNSString:NSLocalizedString(@"order details", nil)];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
@@ -109,43 +109,43 @@
         case 1:
         {
             //待支付
-            [self.stateBtn setTitle:@"待支付" forState:UIControlStateNormal];
+            [self.stateBtn setTitle:NSLocalizedString(@"wait pay", nil) forState:UIControlStateNormal];
         }
             break;
         case 2:
         {
             //待发货
-            [self.stateBtn setTitle:@"待发货" forState:UIControlStateNormal];
+            [self.stateBtn setTitle:NSLocalizedString(@"wait deliver", nil) forState:UIControlStateNormal];
         }
             break;
         case 3:
         {
             //待收货
-            [self.stateBtn setTitle:@"待收货" forState:UIControlStateNormal];
+            [self.stateBtn setTitle:NSLocalizedString(@"wait receive", nil) forState:UIControlStateNormal];
         }
             break;
         case 4:
         {
             //已完成（待评价）
-            [self.stateBtn setTitle:@"已完成" forState:UIControlStateNormal];
+            [self.stateBtn setTitle:NSLocalizedString(@"completed", nil) forState:UIControlStateNormal];
         }
             break;
         case 10:
         {
             //交易完成（交易结束，不可评价和退换货）
-            [self.stateBtn setTitle:@"交易完成" forState:UIControlStateNormal];
+            [self.stateBtn setTitle:NSLocalizedString(@"trade completed", nil) forState:UIControlStateNormal];
         }
             break;
         case 11:
         {
             //已取消（手动）
-            [self.stateBtn setTitle:@"已取消" forState:UIControlStateNormal];
+            [self.stateBtn setTitle:NSLocalizedString(@"cancelled", nil) forState:UIControlStateNormal];
         }
             break;
         case 12:
         {
             //已取消（超时自动取消）
-            [self.stateBtn setTitle:@"已取消" forState:UIControlStateNormal];
+            [self.stateBtn setTitle:NSLocalizedString(@"cancelled", nil) forState:UIControlStateNormal];
         }
             break;
             

@@ -100,7 +100,7 @@
             UILabel *specLab = [[UILabel alloc]init];
             specLab.x = CGRectGetMaxX(goodsIV.frame)+14;
             specLab.y = CGRectGetMaxY(goodsName.frame)+9;
-            specLab.text = [NSString stringWithFormat:@"尺寸规格: %@",goodsModel.product_spec_name];
+            specLab.text = [NSString stringWithFormat:@"%@: %@",NSLocalizedString(@"size specification", nil),goodsModel.product_spec_name];
             specLab.font = UISystemFontSize(14);
             specLab.textColor = kBlackColor;
             [specLab sizeToFit];

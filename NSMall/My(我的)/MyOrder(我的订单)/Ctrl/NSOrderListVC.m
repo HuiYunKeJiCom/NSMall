@@ -79,7 +79,12 @@
     [self.SV addSubview:self.buyView];
     
     _headView1 = [[NSOrderHeader alloc]initWithFrame:CGRectMake(0, 1, self.buyView.bounds.size.width, 40)];
-    _headView1.items = @[@"全部",@"待支付",@"待收货",@"已完成",@"已取消"];
+    _headView1.items = @[NSLocalizedString(@"all", nil)
+                         ,NSLocalizedString(@"wait pay", nil)
+                         ,NSLocalizedString(@"wait receive", nil)
+                         ,NSLocalizedString(@"completed", nil)
+                         ,NSLocalizedString(@"cancelled", nil)
+];
     _headView1.itemClickAtIndex = ^(NSInteger index){
         [weakSelf adjustScrollView:weakSelf.scrollView1 andIndex:index];
     };
@@ -103,7 +108,12 @@
     [self.SV addSubview:self.saleView];
     
     _headView2 = [[NSOrderHeader alloc]initWithFrame:CGRectMake(0, 1, self.saleView.bounds.size.width, 40)];
-    _headView2.items = @[@"全部",@"待支付",@"待发货",@"待收货",@"已取消"];//@"退货中",
+    _headView2.items = @[NSLocalizedString(@"all", nil)
+                         ,NSLocalizedString(@"wait pay", nil)
+                         ,NSLocalizedString(@"wait deliver", nil)
+                         ,NSLocalizedString(@"wait receive", nil)
+                         ,NSLocalizedString(@"cancelled", nil)
+];//@"退货中",
     _headView2.itemClickAtIndex = ^(NSInteger index){
         [weakSelf adjustScrollView:weakSelf.scrollView2 andIndex:index];
     };
@@ -141,7 +151,9 @@
     [self.view addSubview:_topToolView];
     
     //先生成存放标题的数据
-    NSArray *array = [NSArray arrayWithObjects:@"我买到的",@"我卖出的", nil];
+    NSArray *array = [NSArray arrayWithObjects:NSLocalizedString(@"buy", nil)
+,NSLocalizedString(@"sold", nil)
+, nil];
     //初始化UISegmentedControl
     self.segment = [[UISegmentedControl alloc]initWithItems:array];
     //设置frame

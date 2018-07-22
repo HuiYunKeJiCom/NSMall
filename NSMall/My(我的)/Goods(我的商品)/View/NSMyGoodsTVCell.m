@@ -68,7 +68,8 @@
     _editBtn.layer.borderWidth = 1;
     _editBtn.layer.borderColor = [KMainColor CGColor];
     [_editBtn setTitleColor:KMainColor forState:UIControlStateNormal];
-    [_editBtn setTitle:@"编辑" forState:UIControlStateNormal];
+    [_editBtn setTitle:NSLocalizedString(@"edit", nil)
+ forState:UIControlStateNormal];
 //    [_editBtn addTarget:self action:@selector(evaluateBtnButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.bgView addSubview:self.editBtn];
     
@@ -80,7 +81,8 @@
     _delBtn.layer.borderWidth = 1;
     _delBtn.layer.borderColor = [kRedColor CGColor];
     [_delBtn setTitleColor:kRedColor forState:UIControlStateNormal];
-    [_delBtn setTitle:@"删除" forState:UIControlStateNormal];
+    [_delBtn setTitle:NSLocalizedString(@"delete", nil)
+ forState:UIControlStateNormal];
     //    [_delBtn addTarget:self action:@selector(evaluateBtnButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.bgView addSubview:self.delBtn];
     
@@ -103,7 +105,8 @@
     
     self.publishLab.x = CGRectGetMaxX(self.goodsName.frame)+GetScaleWidth(7);
     self.publishLab.y = CGRectGetMinY(self.goodsIV.frame)+GetScaleWidth(2);
-    self.publishLab.text = @"售卖中";
+    self.publishLab.text = NSLocalizedString(@"on sale", nil)
+;
     [self.publishLab sizeToFit];
     
     self.detailLab.x = CGRectGetMaxX(self.goodsIV.frame)+GetScaleWidth(14);

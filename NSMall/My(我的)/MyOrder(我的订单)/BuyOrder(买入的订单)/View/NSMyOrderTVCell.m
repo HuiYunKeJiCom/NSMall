@@ -103,38 +103,42 @@
     self.arrowIV.image = IMAGE(@"my_ico_right_arrow");
     switch (model.order_status) {
         case 1:{
-            self.stateLab.text = @"待支付";
-            [self.nextOperation setTitle:@"去支付" forState:UIControlStateNormal];
+            self.stateLab.text = NSLocalizedString(@"wait pay", nil);
+            [self.nextOperation setTitle:NSLocalizedString(@"to pay", nil) forState:UIControlStateNormal];
             self.nextOperation.backgroundColor = kRedColor;
         }
             break;
         case 2:{
-            self.stateLab.text = @"待发货";
+            self.stateLab.text = NSLocalizedString(@"wait deliver", nil);
 //            [self.nextOperation setTitle:@"去发货" forState:UIControlStateNormal];
 //            self.nextOperation.backgroundColor = kRedColor;
         }
             break;
         case 3:{
-            self.stateLab.text = @"待收货";
+            self.stateLab.text = NSLocalizedString(@"wait receive", nil);
             self.nextOperation.backgroundColor = KMainColor;
             if([model.type isEqualToString:@"1"]){
-                [self.nextOperation setTitle:@"去评价" forState:UIControlStateNormal];
+                [self.nextOperation setTitle:NSLocalizedString(@"to evaluate", nil) forState:UIControlStateNormal];
             }else{
-                [self.nextOperation setTitle:@"确认收货" forState:UIControlStateNormal];
+                [self.nextOperation setTitle:NSLocalizedString(@"confirm receipt", nil) forState:UIControlStateNormal];
             }
         }
             break;
         case 4:
-            self.stateLab.text = @"已完成";//待评价
+            self.stateLab.text = NSLocalizedString(@"completed", nil)
+;//待评价
             break;
         case 10:
-            self.stateLab.text = @"已完成";//已结束,不可评价和退换货
+            self.stateLab.text = NSLocalizedString(@"completed", nil)
+;//已结束,不可评价和退换货
             break;
         case 11:
-            self.stateLab.text = @"已取消";//手动取消
+            self.stateLab.text = NSLocalizedString(@"cancelled", nil)
+;//手动取消
             break;
         case 12:
-            self.stateLab.text = @"已取消";//超时自动取消
+            self.stateLab.text = NSLocalizedString(@"cancelled", nil)
+;//超时自动取消
             break;
         default:
             break;
@@ -159,7 +163,9 @@
         
         height+=65;
     }
-    self.totalLab.text = [NSString stringWithFormat:@"共%lu件商品,小计N%.2f",model.buy_number,model.pay_amount];
+    self.totalLab.text = [NSString stringWithFormat:@"%@%lu%@N%.2f",NSLocalizedString(@"in total", nil)
+                          ,model.buy_number,model.pay_amount,NSLocalizedString(@"piece goods,subtotal", nil)
+];
 }
 
 -(void)nextOperationClick{
