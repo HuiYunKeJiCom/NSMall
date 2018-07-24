@@ -51,6 +51,10 @@ AFHTTPSessionManager *httpManager = nil;
         NetBaseModel *result = [NetBaseModel yy_modelWithDictionary:responseObject];
         
         if((result.code == -1) || (result.code == -2)){
+            EMError *error = [[EMClient sharedClient] logout:YES];
+            if (!error) {
+                NSLog(@"退出成功");
+            }
             [kAppDelegate goToLoginPage];
         }
         
@@ -81,6 +85,15 @@ AFHTTPSessionManager *httpManager = nil;
     [httpManager POST:[NSString stringWithFormat:@"%@%@",NetDomainADDR,function] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [Common AppHideHUD];
         NetBaseModel *result = [NetBaseModel yy_modelWithDictionary:responseObject];
+        
+        if((result.code == -1) || (result.code == -2)){
+            EMError *error = [[EMClient sharedClient] logout:YES];
+            if (!error) {
+                NSLog(@"退出成功");
+            }
+            [kAppDelegate goToLoginPage];
+        }
+        
         if (!result.success) {
             [Common AppShowToast:result.message];
             failure?failure(nil):nil;
@@ -104,7 +117,7 @@ AFHTTPSessionManager *httpManager = nil;
         requestParams = [params yy_modelToJSONObject];
     
     [self requestWithGet:requestParams function:function showHUD:showHUD success:^(NSDictionary * _Nullable responseObj) {
-        NSLog(@"responseObj = %@",responseObj);
+//        NSLog(@"responseObj = %@",responseObj);
         id resultObj = nil;
         if (resultClass == Nil || [resultClass isKindOfClass:[NSDictionary class]] || [resultClass isKindOfClass:[NSArray class]])
             resultObj = responseObj;

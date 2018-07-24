@@ -319,7 +319,7 @@
             cell = [[NSGoodsShowCellTest alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSGoodsShowCellTest"];
         }
         WEAKSELF
-//        if (self.tableView.data.count > indexPath.section) {
+        if (self.tableView.data.count > indexPath.section) {
             ProductListItemModel *model = self.tableView.data[indexPath.section];
             cell.productModel = model;
 //            [self configureCell:cell atIndexPath:indexPath];
@@ -329,7 +329,7 @@
     cell.shareBtnClickBlock = ^{
         [weakSelf showGoodsQRCode:indexPath];
     };
-//        }
+        }
         return cell;
 //    }
     

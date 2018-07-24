@@ -23,6 +23,8 @@
     self.view.backgroundColor = KBGCOLOR;
     [self setUpNavTopView];
     
+    [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
+    
     self.scanView = [[UIImageView alloc] init];
     self.scanView.layer.cornerRadius = 4;
     self.scanView.layer.masksToBounds = YES;
@@ -109,6 +111,17 @@
     CGImageRelease(bitmapImage);
     UIImage *qrCodeImage = [UIImage imageWithCGImage:scaledImage];
     return qrCodeImage;
+}
+
+/*!
+ *  用户A发送加用户B为好友的申请，用户B会收到这个回调
+ *
+ *  @param aUsername   用户名
+ *  @param aMessage    附属信息
+ */
+- (void)friendRequestDidReceiveFromUser:(NSString *)aUsername
+                                message:(NSString *)aMessage{
+    DLog(@"收到%@的好友请求",aUsername);
 }
 
 

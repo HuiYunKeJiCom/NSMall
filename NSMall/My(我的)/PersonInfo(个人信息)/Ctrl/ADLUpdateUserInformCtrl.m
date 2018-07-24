@@ -436,8 +436,13 @@
             if (!error) {
                 NSLog(@"退出成功");
             }
-            [kAppDelegate goToLoginPage];
-            [kAppDelegate comeBackToRootVC];
+            
+            for (UIViewController *vc in self.navigationController.viewControllers) {
+                if([vc isKindOfClass:[DCTabBarController class]]){
+                    [self.navigationController popToViewController:vc animated:YES];
+                    [kAppDelegate goToLoginPage];
+                }
+            }
         });
         
     } failure:^(NSError *error) {

@@ -11,6 +11,10 @@
 		1819B65620A71DC8009EAF87 /* NSSecondaryCategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819B65520A71DC8009EAF87 /* NSSecondaryCategoryVC.m */; };
 		18230F66208D793F00D3E55F /* BaseViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 18230F65208D793F00D3E55F /* BaseViewCtrl.m */; };
 		18230F6A208D795E00D3E55F /* FFLoadFailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18230F68208D795D00D3E55F /* FFLoadFailView.m */; };
+		182926CC2105784000061634 /* NSClipVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 182926CB2105784000061634 /* NSClipVC.m */; };
+		182926D02105F8AA00061634 /* NSFriendItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182926CF2105F8AA00061634 /* NSFriendItemModel.m */; };
+		182926D32105F8BF00061634 /* NSFriendListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182926D22105F8BF00061634 /* NSFriendListModel.m */; };
+		182926D621060EF400061634 /* NSHuanXinUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182926D521060EF400061634 /* NSHuanXinUserModel.m */; };
 		182DC49120905E3C0066E667 /* ADOrderTopToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DC49020905E3C0066E667 /* ADOrderTopToolView.m */; };
 		182E8E6A20EF0E3A00ECFCA4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182E8E6C20EF0E3A00ECFCA4 /* Localizable.strings */; };
 		1831CA6420C788CC00F00BAF /* NSBuyNowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831CA6320C788CC00F00BAF /* NSBuyNowModel.m */; };
@@ -434,6 +438,14 @@
 		18230F69208D795D00D3E55F /* FFLoadFailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFLoadFailView.h; sourceTree = "<group>"; };
 		18230F70208D7B4200D3E55F /* Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
 		18230F80208D835300D3E55F /* GlobalColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalColor.h; sourceTree = "<group>"; };
+		182926CA2105784000061634 /* NSClipVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSClipVC.h; sourceTree = "<group>"; };
+		182926CB2105784000061634 /* NSClipVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSClipVC.m; sourceTree = "<group>"; };
+		182926CE2105F8AA00061634 /* NSFriendItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSFriendItemModel.h; sourceTree = "<group>"; };
+		182926CF2105F8AA00061634 /* NSFriendItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSFriendItemModel.m; sourceTree = "<group>"; };
+		182926D12105F8BF00061634 /* NSFriendListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSFriendListModel.h; sourceTree = "<group>"; };
+		182926D22105F8BF00061634 /* NSFriendListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSFriendListModel.m; sourceTree = "<group>"; };
+		182926D421060EF400061634 /* NSHuanXinUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSHuanXinUserModel.h; sourceTree = "<group>"; };
+		182926D521060EF400061634 /* NSHuanXinUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSHuanXinUserModel.m; sourceTree = "<group>"; };
 		182DC48F20905E3C0066E667 /* ADOrderTopToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADOrderTopToolView.h; sourceTree = "<group>"; };
 		182DC49020905E3C0066E667 /* ADOrderTopToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADOrderTopToolView.m; sourceTree = "<group>"; };
 		182E8E6620EF0DB800ECFCA4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -1340,6 +1352,19 @@
 			path = FFNoDataView;
 			sourceTree = "<group>";
 		};
+		182926CD2105F86200061634 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				182926CE2105F8AA00061634 /* NSFriendItemModel.h */,
+				182926CF2105F8AA00061634 /* NSFriendItemModel.m */,
+				182926D12105F8BF00061634 /* NSFriendListModel.h */,
+				182926D22105F8BF00061634 /* NSFriendListModel.m */,
+				182926D421060EF400061634 /* NSHuanXinUserModel.h */,
+				182926D521060EF400061634 /* NSHuanXinUserModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		182DC49220905E690066E667 /* PersonInfo(个人信息) */ = {
 			isa = PBXGroup;
 			children = (
@@ -1893,6 +1918,8 @@
 			children = (
 				1868F6B020FEEFA1000BB6EB /* NSShopEditVC.h */,
 				1868F6B120FEEFA1000BB6EB /* NSShopEditVC.m */,
+				182926CA2105784000061634 /* NSClipVC.h */,
+				182926CB2105784000061634 /* NSClipVC.m */,
 			);
 			name = "编辑店铺";
 			path = "../../../../Desktop/NSMall/NSMall/My(我的)/Shop(我的店铺)/编辑店铺";
@@ -1910,9 +1937,9 @@
 		1868F6B620FEEFC8000BB6EB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1868F6B920FEEFC8000BB6EB /* NSShopListItemModel.h */,
 				1868F6B720FEEFC8000BB6EB /* NSShopListItemModel.m */,
 				1868F6B820FEEFC8000BB6EB /* NSShopListModel.h */,
-				1868F6B920FEEFC8000BB6EB /* NSShopListItemModel.h */,
 				1868F6BA20FEEFC8000BB6EB /* NSShopListModel.m */,
 			);
 			path = Model;
@@ -3532,6 +3559,7 @@
 		18DD1572208DD35A0006475D /* Message(消息) */ = {
 			isa = PBXGroup;
 			children = (
+				182926CD2105F86200061634 /* Model */,
 				185599522101857F00D95602 /* API */,
 				1868F6E120FEF391000BB6EB /* Demo */,
 			);
@@ -4452,6 +4480,7 @@
 				18BAC16F20F9DAAD003599D6 /* NSPublishCommentParam.m in Sources */,
 				18C3CFF120A2EF3B000FCE7F /* YWTool.m in Sources */,
 				184F05F0209AE39700768418 /* ProductListModel.m in Sources */,
+				182926CC2105784000061634 /* NSClipVC.m in Sources */,
 				18F5D50820CE63380037F825 /* ShopInfoView.m in Sources */,
 				18B017A220A67B9600826EA4 /* SetDefaultAddressParam.m in Sources */,
 				184F0619209FE81A00768418 /* NSInfoCustomCell.m in Sources */,
@@ -4461,6 +4490,7 @@
 				1874D5C120AAD50A0004B1AF /* NSFunctionCell.m in Sources */,
 				182DC49120905E3C0066E667 /* ADOrderTopToolView.m in Sources */,
 				18DB5D3A20E21876000E99E6 /* FivePageSelectBar.m in Sources */,
+				182926D621060EF400061634 /* NSHuanXinUserModel.m in Sources */,
 				18C3D08020A2F0FA000FCE7F /* SaveLabelParam.m in Sources */,
 				1868F76A20FEF391000BB6EB /* RobotListViewController.m in Sources */,
 				18E3A42C20B2641800F847ED /* NSWaitReceiveSaleVC.m in Sources */,
@@ -4493,6 +4523,7 @@
 				18A7AB8620ADB5AD009FC725 /* NSMyProductListItemModel.m in Sources */,
 				1868F77520FEF391000BB6EB /* ContactSelectionViewController.m in Sources */,
 				18FBBF4D20F6E6D7008D87FD /* ReceivableRecordAPI.m in Sources */,
+				182926D32105F8BF00061634 /* NSFriendListModel.m in Sources */,
 				184F065320A2DC2D00768418 /* SearchParam.m in Sources */,
 				18E3A43520B2731700F847ED /* NSOrderListModel.m in Sources */,
 				18E3A41A20B2628D00F847ED /* NSWaitReceiveBuyVC.m in Sources */,
@@ -4607,6 +4638,7 @@
 				1868F76520FEF391000BB6EB /* ContactListSelectViewController.m in Sources */,
 				187DE34F20FF22D70098BC95 /* NSStoreItemModel.m in Sources */,
 				18E3A44620B2A3B200F847ED /* NSMyOrderTVCell.m in Sources */,
+				182926D02105F8AA00061634 /* NSFriendItemModel.m in Sources */,
 				1868F78D20FEF391000BB6EB /* ApplyViewController.m in Sources */,
 				18DD1588208DEA960006475D /* ADLMyInfoModel.m in Sources */,
 				18D0C0A920AC0D01007F0784 /* TDUserCertifySubVCBasic.m in Sources */,

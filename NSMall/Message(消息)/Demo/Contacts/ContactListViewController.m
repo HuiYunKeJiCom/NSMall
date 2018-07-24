@@ -24,7 +24,8 @@
 #import "RealtimeSearchUtil.h"
 #import "UserProfileManager.h"
 #import "NSNavView.h"
-
+#import "NSMessageAPI.h"
+#import "NSFriendListModel.h"
 
 #import "BaseTableViewCell.h"
 #import "UIViewController+SearchController.h"
@@ -43,7 +44,7 @@
 
 @end
 
-@interface ContactListViewController ()<UISearchBarDelegate, UIActionSheetDelegate, EaseUserCellDelegate, EMSearchControllerDelegate>
+@interface ContactListViewController ()<UISearchBarDelegate, UIActionSheetDelegate, EaseUserCellDelegate, EMSearchControllerDelegate,EMClientDelegate>
 {
     NSIndexPath *_currentLongPressIndex;
 }
@@ -57,6 +58,8 @@
 
 @property (nonatomic, strong) NSArray *otherPlatformIds;
 
+@property(nonatomic,strong)NSMutableArray *friendListArr;/* 好友列表数组 */
+
 @end
 
 @implementation ContactListViewController
@@ -68,9 +71,13 @@
 //    [self.navigationController setNavigationBarHidden:YES];
     _contactsSource = [NSMutableArray array];
     _sectionTitles = [NSMutableArray array];
+    self.friendListArr = [NSMutableArray array];
     
     // 环信UIdemo中有用到Parse, 加载用户好友个人信息
 //    [[UserProfileManager sharedInstance] loadUserProfileInBackgroundWithBuddy:self.contactsSource saveToLoacal:YES completion:NULL];
+    [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
+    //移除好友回调
+    [[EMClient sharedClient].contactManager removeDelegate:self];
     
     [self setupSearchController];
     [self setUpNavTopView];
@@ -132,19 +139,20 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return [self.dataArray count] + 2;
+    return [self.dataArray count] + 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
     if (section == 0) {
-        return 2;
-    } else if (section == 1) {
-        return [self.otherPlatformIds count];
+        return 1;
     }
+//    else if (section == 1) {
+//        return [self.otherPlatformIds count];
+//    }
     
-    return [[self.dataArray objectAtIndex:(section - 2)] count];
+    return [[self.dataArray objectAtIndex:(section - 1)] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -168,10 +176,10 @@
             cell = [[EaseUserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         
-        if (indexPath.row == 1) {
-            cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/group"];
-            cell.titleLabel.text = NSLocalizedString(@"title.group", @"Group");
-        }
+//        if (indexPath.row == 1) {
+//            cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/group"];
+//            cell.titleLabel.text = NSLocalizedString(@"title.group", @"Group");
+//        }
 //        else if (indexPath.row == 2) {
 //            cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/group"];
 //            cell.titleLabel.text = NSLocalizedString(@"title.chatroom",@"chatroom");
@@ -186,22 +194,24 @@
 //        }
         
         return cell;
-    } else if (indexPath.section == 1) {
-        NSString *CellIdentifier = @"OtherPlatformIdCell";
-        EaseUserCell *cell = (EaseUserCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        // Configure the cell...
-        if (cell == nil) {
-            cell = [[EaseUserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        cell.titleLabel.text = [self.otherPlatformIds objectAtIndex:indexPath.row];
-        
-//        NSString *showName = [[UserProfileManager sharedInstance] getNickNameWithUsername:[self.otherPlatformIds objectAtIndex:indexPath.row]];
-//        DLog(@"showName = %@",showName);
-        
-        return cell;
-        
-    } else {
+    }
+//    else if (indexPath.section == 1) {
+//        NSString *CellIdentifier = @"OtherPlatformIdCell";
+//        EaseUserCell *cell = (EaseUserCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//
+//        // Configure the cell...
+//        if (cell == nil) {
+//            cell = [[EaseUserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//        }
+//        cell.titleLabel.text = [self.otherPlatformIds objectAtIndex:indexPath.row];
+//
+////        NSString *showName = [[UserProfileManager sharedInstance] getNickNameWithUsername:[self.otherPlatformIds objectAtIndex:indexPath.row]];
+////        DLog(@"showName = %@",showName);
+//
+//        return cell;
+//
+//    }
+    else {
         NSString *CellIdentifier = [EaseUserCell cellIdentifierWithModel:nil];
         EaseUserCell *cell = (EaseUserCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
@@ -210,7 +220,7 @@
             cell = [[EaseUserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         
-        NSArray *userSection = [self.dataArray objectAtIndex:(indexPath.section - 2)];
+        NSArray *userSection = [self.dataArray objectAtIndex:(indexPath.section - 1)];
         EaseUserModel *model = [userSection objectAtIndex:indexPath.row];
         
 //        DLog(@"model = %@",model.nickname);
@@ -218,8 +228,10 @@
         UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.buddy];
         
         if (profileEntity) {
-            model.avatarURLPath = profileEntity.imageUrl;
-            model.nickname = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
+//            model.avatarURLPath = profileEntity.imageUrl;
+//            model.nickname = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
+            model.avatarURLPath = model.user_avatar;
+            model.nickname = model.nick_name;
         }
         cell.indexPath = indexPath;
         cell.delegate = self;
@@ -238,7 +250,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 0 || section == 1)
+//    if (section == 0 || section == 1)
+//    {
+//        return 0;
+//    }
+    if (section == 0)
     {
         return 0;
     }
@@ -249,7 +265,11 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 0 || section == 1)
+//    if (section == 0 || section == 1)
+//    {
+//        return nil;
+//    }
+    if (section == 0)
     {
         return nil;
     }
@@ -258,7 +278,7 @@
     [contentView setBackgroundColor:[UIColor colorWithRed:0.88 green:0.88 blue:0.88 alpha:1.0]];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 22)];
     label.backgroundColor = [UIColor clearColor];
-    [label setText:[self.sectionTitles objectAtIndex:(section - 2)]];
+    [label setText:[self.sectionTitles objectAtIndex:(section - 1)]];
     [contentView addSubview:label];
     return contentView;
 }
@@ -298,12 +318,13 @@
 //            [[DemoConfManager sharedManager] pushCustomVideoConferenceController];
 //        }
 //#endif
-    } else if (section == 1) {
-       ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:[self.otherPlatformIds objectAtIndex:indexPath.row] conversationType:EMConversationTypeChat];
-        [self.navigationController pushViewController:chatController animated:YES];
     }
+//    else if (section == 1) {
+//       ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:[self.otherPlatformIds objectAtIndex:indexPath.row] conversationType:EMConversationTypeChat];
+//        [self.navigationController pushViewController:chatController animated:YES];
+//    }
     else{
-        EaseUserModel *model = [[self.dataArray objectAtIndex:(section - 2)] objectAtIndex:row];
+        EaseUserModel *model = [[self.dataArray objectAtIndex:(section - 1)] objectAtIndex:row];
         UIViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:model.buddy conversationType:EMConversationTypeChat];
         chatController.title = model.nickname.length > 0 ? model.nickname : model.buddy;
         [self.navigationController pushViewController:chatController animated:YES];
@@ -313,7 +334,10 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    if (indexPath.section == 0 || indexPath.section == 1) {
+//    if (indexPath.section == 0 || indexPath.section == 1) {
+//        return NO;
+//    }
+    if (indexPath.section == 0) {
         return NO;
     }
     return YES;
@@ -338,40 +362,47 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (self.indexPath == nil)
-    {
-        return;
-    }
+//    if (self.indexPath == nil)
+//    {
+//        return;
+//    }
+//    
+//    NSIndexPath *indexPath = self.indexPath;
+//    EaseUserModel *model = [[self.dataArray objectAtIndex:(indexPath.section - 2)] objectAtIndex:indexPath.row];
+//    self.indexPath = nil;
     
-    NSIndexPath *indexPath = self.indexPath;
-    EaseUserModel *model = [[self.dataArray objectAtIndex:(indexPath.section - 2)] objectAtIndex:indexPath.row];
-    self.indexPath = nil;
-    
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        EMError *error = nil;
-        if (buttonIndex == alertView.cancelButtonIndex) {
-            error = [[EMClient sharedClient].contactManager deleteContact:model.buddy isDeleteConversation:NO];
-        } else {
-            error = [[EMClient sharedClient].contactManager deleteContact:model.buddy isDeleteConversation:YES];
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (!error) {
-                if ([weakSelf.dataArray count] >= indexPath.section) {
-                    NSMutableArray *tmp = [weakSelf.dataArray objectAtIndex:(indexPath.section - 2)];
-                    [tmp removeObject:model.buddy];
-                    [weakSelf.contactsSource removeObject:model.buddy];
-    
-                    [weakSelf.tableView reloadData];
-                }
-            }
-            else{
-                [weakSelf showHint:[NSString stringWithFormat:NSLocalizedString(@"deleteFailed", @"Delete failed:%@"), error.errorDescription]];
-                [weakSelf.tableView reloadData];
-            }
-        });
-    });
+//    __weak typeof(self) weakSelf = self;
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        EMError *error = nil;
+//        if (buttonIndex == alertView.cancelButtonIndex) {
+//            error = [[EMClient sharedClient].contactManager deleteContact:model.buddy isDeleteConversation:NO];
+//        } else {
+//            error = [[EMClient sharedClient].contactManager deleteContact:model.buddy isDeleteConversation:YES];
+//        }
+//
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            if (!error) {
+//                DLog(@"删除成功 = %@",error);
+//                if ([weakSelf.dataArray count] >= indexPath.section) {
+//                    NSMutableArray *tmp = [weakSelf.dataArray objectAtIndex:(indexPath.section - 2)];
+//                    [NSMessageAPI deleteFriendWithParam:model.buddy success:^{
+//                        DLog(@"删除好友成功");
+//                    } faulre:^(NSError *error) {
+//                    }];
+//                    [tmp removeObject:model.buddy];
+//                    [weakSelf.contactsSource removeObject:model.buddy];
+//
+//
+//                    [weakSelf.tableView reloadData];
+//                }
+//            }
+//            else{
+//                DLog(@"删除error = %@",error);
+//                [weakSelf showHint:[NSString stringWithFormat:NSLocalizedString(@"deleteFailed", @"Delete failed:%@"), error.errorDescription]];
+//                [weakSelf.tableView reloadData];
+//            }
+//        });
+//    });
 }
 
 #pragma mark - UIActionSheetDelegate
@@ -383,7 +414,7 @@
     }
     
     NSIndexPath *indexPath = _currentLongPressIndex;
-    EaseUserModel *model = [[self.dataArray objectAtIndex:(indexPath.section - 2)] objectAtIndex:indexPath.row];
+    EaseUserModel *model = [[self.dataArray objectAtIndex:(indexPath.section - 1)] objectAtIndex:indexPath.row];
     _currentLongPressIndex = nil;
     
     [self hideHud];
@@ -410,13 +441,13 @@
                                                        
 - (void)cellLongPressAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0 || indexPath.section == 1) {
-        return;
-    }
-    
-    _currentLongPressIndex = indexPath;
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel") destructiveButtonTitle:NSLocalizedString(@"friend.block", @"join the blacklist") otherButtonTitles:nil, nil];
-    [actionSheet showInView:[[UIApplication sharedApplication] keyWindow]];
+//    if (indexPath.section == 0 || indexPath.section == 1) {
+//        return;
+//    }
+//
+//    _currentLongPressIndex = indexPath;
+//    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel") destructiveButtonTitle:NSLocalizedString(@"friend.block", @"join the blacklist") otherButtonTitles:nil, nil];
+//    [actionSheet showInView:[[UIApplication sharedApplication] keyWindow]];
 }
                                                
 #pragma mark - EMSearchControllerDelegate     
@@ -445,7 +476,8 @@
 - (void)deleteCellAction:(NSIndexPath *)aIndexPath
 {
     self.indexPath = aIndexPath;
-    UIAlertView *alertView = [[ UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:NSLocalizedString(@"message.deleteConversation", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel") otherButtonTitles:NSLocalizedString(@"ok", @"OK"), nil];
+//    NSLocalizedString(@"message.deleteConversation", nil)
+    UIAlertView *alertView = [[ UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:NSLocalizedString(@"delete not developed", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel") otherButtonTitles:NSLocalizedString(@"ok", @"OK"), nil];
     [alertView show];
 }
 
@@ -548,6 +580,7 @@
     for (NSString *buddy in buddyList) {
         if (![blockList containsObject:buddy]) {
             [contactsSource addObject:buddy];
+//            DLog(@"buddy = %@",buddy);
         }
     }
     
@@ -561,15 +594,24 @@
         NSMutableArray *sectionArray = [NSMutableArray arrayWithCapacity:1];
         [sortedArray addObject:sectionArray];
     }
-    
+
     //按首字母分组
     for (NSString *buddy in contactsSource) {
         EaseUserModel *model = [[EaseUserModel alloc] initWithBuddy:buddy];
+//        for (NSFriendItemModel *item in self.friendListArr) {
+//            if([item.hx_user_name isEqualToString:buddy]){
+//                EaseUserModel *model = [[EaseUserModel alloc] initWithBuddy:buddy];
+//                model.user_id = item.user_id;
+//                model.nick_name = item.nick_name;
+//                model.hx_user_name = item.hx_user_name;
+//                model.user_avatar = item.user_avatar;
+//                model.is_blocked = item.is_blocked;
         if (model) {
-            model.avatarImage = [UIImage imageNamed:@"EaseUIResource.bundle/user"];
-            model.nickname = [[UserProfileManager sharedInstance] getNickNameWithUsername:buddy];
-            
-            NSString *firstLetter = [EaseChineseToPinyin pinyinFromChineseString:[[UserProfileManager sharedInstance] getNickNameWithUsername:buddy]];
+            model.nickname = model.nick_name;
+            NSString *imageUrl = model.user_avatar;
+            NSData *data = [NSData  dataWithContentsOfURL:[NSURL URLWithString:imageUrl]];
+            model.avatarImage =  [UIImage imageWithData:data];
+            NSString *firstLetter = [EaseChineseToPinyin pinyinFromChineseString:model.nickname];
             NSInteger section;
             if (firstLetter.length > 0) {
                 section = [indexCollation sectionForObject:[firstLetter substringToIndex:1] collationStringSelector:@selector(uppercaseString)];
@@ -609,6 +651,8 @@
     
     [self.dataArray addObjectsFromArray:sortedArray];
     [self.tableView reloadData];
+//        }
+//    }
 }
 
 #pragma mark - data
@@ -636,7 +680,18 @@
                         NSString *username = [buddyList objectAtIndex:i];
                         [weakself.contactsSource addObject:username];
                     }
-                    [weakself _sortDataArray:self.contactsSource];
+                    [self.friendListArr removeAllObjects];
+                    [NSMessageAPI getFriendList:nil success:^(NSFriendListModel * _Nullable result) {
+                        DLog(@"获取好友列表成功");
+                        self.friendListArr = [NSMutableArray arrayWithArray:result.list];
+                        [weakself _sortDataArray:self.contactsSource];
+                        //        for (NSFriendItemModel *item in result.list) {
+                        //            DLog(@"item = %@",item.mj_keyValues);
+                        //        }
+                    } failure:^(NSError *error) {
+                        DLog(@"获取好友列表失败");
+                    }];
+                    
                 });
             }
         }
@@ -662,7 +717,18 @@
     for (NSString *buddy in buddyList) {
         [self.contactsSource addObject:buddy];
     }
-    [self _sortDataArray:self.contactsSource];
+    [self.friendListArr removeAllObjects];
+    [NSMessageAPI getFriendList:nil success:^(NSFriendListModel * _Nullable result) {
+        DLog(@"获取好友列表成功");
+        self.friendListArr = [NSMutableArray arrayWithArray:result.list];
+        [self _sortDataArray:self.contactsSource];
+        //        for (NSFriendItemModel *item in result.list) {
+        //            DLog(@"item = %@",item.mj_keyValues);
+        //        }
+    } failure:^(NSError *error) {
+        DLog(@"获取好友列表失败");
+    }];
+//    [self _sortDataArray:self.contactsSource];
     
     [self.tableView reloadData];
 }
@@ -688,5 +754,16 @@
 //    AddFriendViewController *addController = [[AddFriendViewController alloc] init];
 //    [self.navigationController pushViewController:addController animated:YES];
 //}
+
+/*!
+ *  用户A发送加用户B为好友的申请，用户B会收到这个回调
+ *
+ *  @param aUsername   用户名
+ *  @param aMessage    附属信息
+ */
+- (void)friendRequestDidReceiveFromUser:(NSString *)aUsername
+                                message:(NSString *)aMessage{
+    DLog(@"收到%@的好友请求",aUsername);
+}
 
 @end

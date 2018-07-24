@@ -22,6 +22,9 @@
 
 const static NSString * const NetDomainADDR = @"https://stagewww.neublockchain.com/nsshop/app/";//国外测试环境
 
+//const static NSString * const NetDomainADDR = @"https://192.168.0.59:7108/nsshop/app/";//国外测试环境
+
+
 
 //const static NSString * const NetDomainADDR = @"https://ns.neublockchain.com/nsshop/app/";// 生产环境
 
@@ -120,6 +123,9 @@ const static NSString * const kAppVersionAPI = @"getAppVersion";//检测APP版�
 
 //环信相关
 const static NSString * const kAcceptFriendAPI = @"auth/acceptFriend";//同意添加好友
+const static NSString * const kDeleteFriendAPI = @"auth/removeFriend";//删除好友（双方删除）
+const static NSString * const kFriendListAPI = @"auth/friendList";//获取好友列表
+
 
 
 

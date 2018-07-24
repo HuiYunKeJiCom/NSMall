@@ -7,7 +7,7 @@
 //
 
 #import "NSPaySuccessVC.h"
-
+#import "DCTabBarController.h"
 
 @interface NSPaySuccessVC ()
 @property(nonatomic,strong)UIImageView *paySuccessIV;/* 成功图标 */
@@ -113,7 +113,7 @@
 - (UILabel *)amountLab {
     if (!_amountLab) {
         _amountLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum17 TextColor:kBlackColor];
-        _amountLab.font = [UIFont boldSystemFontOfSize:15];
+        _amountLab.font = [UIFont boldSystemFontOfSize:17];
     }
     return _amountLab;
 }
@@ -156,7 +156,15 @@
 }
 
 -(void)complete{
-    [kAppDelegate comeBackToRootVC];
+    
+    for (UIViewController *vc in self.navigationController.viewControllers) {
+        if([vc isKindOfClass:[DCTabBarController class]]){
+            [self.navigationController popToViewController:vc animated:YES];
+        }
+    }
+    
+    
+//    [kAppDelegate comeBackToRootVC];
 }
 
 - (void)didReceiveMemoryWarning {

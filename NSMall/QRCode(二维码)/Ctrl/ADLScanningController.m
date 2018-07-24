@@ -342,31 +342,31 @@
     });
 }
 
-//#pragma mark - 好友申请处理结果回调
-///*!
-// @method
-// @brief 用户A发送加用户B为好友的申请，用户B同意后，用户A会收到这个回调
-// */
-//- (void)didReceiveAgreedFromUsername:(NSString *)aUsername
-//{
-//    DLog(@"添加好友同意");
-//    [NSMessageAPI acceptFriendWithParam:self.friendName success:^{
-//        DLog(@"添加好友成功");
-//    } faulre:^(NSError *error) {
-//    }];
-//}
-//
-///*!
-// @method
-// @brief 用户A发送加用户B为好友的申请，用户B拒绝后，用户A会收到这个回调
-// */
-//- (void)didReceiveDeclinedFromUsername:(NSString *)aUsername
-//{
-//    NSLog(@"%@",aUsername);
-//    NSString *message = [NSString stringWithFormat:@"%@ 拒绝了你的好友请求",aUsername];
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"好友添加消息" message:message delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
-//    [alert show];
-//}
+#pragma mark - 好友申请处理结果回调
+/*!
+ @method
+ @brief 用户A发送加用户B为好友的申请，用户B同意后，用户A会收到这个回调
+ */
+- (void)didReceiveAgreedFromUsername:(NSString *)aUsername
+{
+    DLog(@"添加好友同意");
+    [NSMessageAPI acceptFriendWithParam:self.friendName success:^{
+        DLog(@"添加好友成功");
+    } faulre:^(NSError *error) {
+    }];
+}
+
+/*!
+ @method
+ @brief 用户A发送加用户B为好友的申请，用户B拒绝后，用户A会收到这个回调
+ */
+- (void)didReceiveDeclinedFromUsername:(NSString *)aUsername
+{
+    NSLog(@"%@",aUsername);
+    NSString *message = [NSString stringWithFormat:@"%@ 拒绝了你的好友请求",aUsername];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"好友添加消息" message:message delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+    [alert show];
+}
 
 @end
 
