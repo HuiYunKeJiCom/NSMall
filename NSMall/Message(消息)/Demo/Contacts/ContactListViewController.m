@@ -26,6 +26,7 @@
 #import "NSNavView.h"
 #import "NSMessageAPI.h"
 #import "NSFriendListModel.h"
+#import "NSHuanXinUserModel.h"
 
 #import "BaseTableViewCell.h"
 #import "UIViewController+SearchController.h"
@@ -221,17 +222,17 @@
         }
         
         NSArray *userSection = [self.dataArray objectAtIndex:(indexPath.section - 1)];
-        EaseUserModel *model = [userSection objectAtIndex:indexPath.row];
+        NSHuanXinUserModel *model = [userSection objectAtIndex:indexPath.row];
         
 //        DLog(@"model = %@",model.nickname);
         
         UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.buddy];
         
         if (profileEntity) {
-//            model.avatarURLPath = profileEntity.imageUrl;
-//            model.nickname = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
-            model.avatarURLPath = model.user_avatar;
-            model.nickname = model.nick_name;
+            model.avatarURLPath = profileEntity.imageUrl;
+            model.nickname = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
+//            model.avatarURLPath = model.user_avatar;
+//            model.nickname = model.nick_name;
         }
         cell.indexPath = indexPath;
         cell.delegate = self;
@@ -324,7 +325,7 @@
 //        [self.navigationController pushViewController:chatController animated:YES];
 //    }
     else{
-        EaseUserModel *model = [[self.dataArray objectAtIndex:(section - 1)] objectAtIndex:row];
+        NSHuanXinUserModel *model = [[self.dataArray objectAtIndex:(section - 1)] objectAtIndex:row];
         UIViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:model.buddy conversationType:EMConversationTypeChat];
         chatController.title = model.nickname.length > 0 ? model.nickname : model.buddy;
         [self.navigationController pushViewController:chatController animated:YES];
@@ -366,11 +367,11 @@
 //    {
 //        return;
 //    }
-//    
+//
 //    NSIndexPath *indexPath = self.indexPath;
-//    EaseUserModel *model = [[self.dataArray objectAtIndex:(indexPath.section - 2)] objectAtIndex:indexPath.row];
+//    EaseUserModel *model = [[self.dataArray objectAtIndex:(indexPath.section - 1)] objectAtIndex:indexPath.row];
 //    self.indexPath = nil;
-    
+//
 //    __weak typeof(self) weakSelf = self;
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 //        EMError *error = nil;
@@ -384,7 +385,7 @@
 //            if (!error) {
 //                DLog(@"删除成功 = %@",error);
 //                if ([weakSelf.dataArray count] >= indexPath.section) {
-//                    NSMutableArray *tmp = [weakSelf.dataArray objectAtIndex:(indexPath.section - 2)];
+//                    NSMutableArray *tmp = [weakSelf.dataArray objectAtIndex:(indexPath.section - 1)];
 //                    [NSMessageAPI deleteFriendWithParam:model.buddy success:^{
 //                        DLog(@"删除好友成功");
 //                    } faulre:^(NSError *error) {
@@ -414,7 +415,7 @@
     }
     
     NSIndexPath *indexPath = _currentLongPressIndex;
-    EaseUserModel *model = [[self.dataArray objectAtIndex:(indexPath.section - 1)] objectAtIndex:indexPath.row];
+    NSHuanXinUserModel *model = [[self.dataArray objectAtIndex:(indexPath.section - 1)] objectAtIndex:indexPath.row];
     _currentLongPressIndex = nil;
     
     [self hideHud];
@@ -574,7 +575,7 @@
     [self.dataArray removeAllObjects];
     [self.sectionTitles removeAllObjects];
     NSMutableArray *contactsSource = [NSMutableArray array];
-    
+//    DLog(@"buddyList = %@",buddyList);
     //从获取的数据中剔除黑名单中的好友
     NSArray *blockList = [[EMClient sharedClient].contactManager getBlackList];
     for (NSString *buddy in buddyList) {
@@ -597,15 +598,10 @@
 
     //按首字母分组
     for (NSString *buddy in contactsSource) {
-        EaseUserModel *model = [[EaseUserModel alloc] initWithBuddy:buddy];
-//        for (NSFriendItemModel *item in self.friendListArr) {
-//            if([item.hx_user_name isEqualToString:buddy]){
-//                EaseUserModel *model = [[EaseUserModel alloc] initWithBuddy:buddy];
-//                model.user_id = item.user_id;
-//                model.nick_name = item.nick_name;
-//                model.hx_user_name = item.hx_user_name;
-//                model.user_avatar = item.user_avatar;
-//                model.is_blocked = item.is_blocked;
+        NSHuanXinUserModel *model = [[NSHuanXinUserModel alloc] initWithBuddy:buddy];
+        
+        [model getInformationWith:self.friendListArr];
+        
         if (model) {
             model.nickname = model.nick_name;
             NSString *imageUrl = model.user_avatar;
@@ -618,15 +614,15 @@
             } else {
                 section = [sortedArray count] - 1;
             }
-            
             NSMutableArray *array = [sortedArray objectAtIndex:section];
             [array addObject:model];
         }
+//            }
     }
     
     //每个section内的数组排序
     for (int i = 0; i < [sortedArray count]; i++) {
-        NSArray *array = [[sortedArray objectAtIndex:i] sortedArrayUsingComparator:^NSComparisonResult(EaseUserModel *obj1, EaseUserModel *obj2) {
+        NSArray *array = [[sortedArray objectAtIndex:i] sortedArrayUsingComparator:^NSComparisonResult(NSHuanXinUserModel *obj1, NSHuanXinUserModel *obj2) {
             NSString *firstLetter1 = [EaseChineseToPinyin pinyinFromChineseString:obj1.buddy];
             firstLetter1 = [[firstLetter1 substringToIndex:1] uppercaseString];
             
@@ -685,9 +681,6 @@
                         DLog(@"获取好友列表成功");
                         self.friendListArr = [NSMutableArray arrayWithArray:result.list];
                         [weakself _sortDataArray:self.contactsSource];
-                        //        for (NSFriendItemModel *item in result.list) {
-                        //            DLog(@"item = %@",item.mj_keyValues);
-                        //        }
                     } failure:^(NSError *error) {
                         DLog(@"获取好友列表失败");
                     }];

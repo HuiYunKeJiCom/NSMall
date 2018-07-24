@@ -54,6 +54,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
+    
     // Do any additional setup after loading the view.
     self.showRefreshHeader = YES;
     self.delegate = self;
@@ -345,7 +347,12 @@
         }
 
         id<IConversationModel> model = [weakSelf.resultController.displaySource objectAtIndex:indexPath.row];
+//        EMConversation *conversation = model.conversation;
+//        EMMessage *latestMessage = conversation.latestMessage;
+//        if(latestMessage.direction == EMMessageDirectionSend){
+//        }
         cell.model = model;
+        
 
         cell.detailLabel.attributedText = [weakSelf conversationListViewController:weakSelf latestMessageTitleForConversationModel:model];
         cell.timeLabel.text = [weakSelf conversationListViewController:weakSelf latestMessageTimeForConversationModel:model];
@@ -368,6 +375,8 @@
             chatController.title = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.conversationId];
         }else {
             chatController = [[ChatViewController alloc] initWithConversationChatter:conversation.conversationId conversationType:conversation.type];
+//            NSDictionary *dict = conversation.ext;
+//            chatController.title = [dict objectForKey:@"nick"];
             chatController.title = [conversation showName];
         }
         [weakSelf.navigationController pushViewController:chatController animated:YES];
@@ -413,43 +422,6 @@
     }
     else{
         self.tableView.tableHeaderView = nil;
-    }
-}
-
-#pragma mark - 好友请求回调
-/*!
- *  用户A发送加用户B为好友的申请，用户B会收到这个回调
- *
- *  @param aUsername   用户名
- *  @param aMessage    附属信息
- */
-- (void)didReceiveFriendInvitationFromUsername:(NSString *)aUsername
-                                       message:(NSString *)aMessage
-{
-    NSLog(@"%@,%@",aUsername,aMessage);
-    self.buddyUsername = aUsername;
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"好友添加请求" message:aMessage delegate:self cancelButtonTitle:@"拒绝" otherButtonTitles:@"同意", nil];
-    [alert show];
-}
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    if (buttonIndex == 1) {
-        //同意好友请求
-        EMError *error = [[EMClient sharedClient].contactManager acceptInvitationForUsername:self.buddyUsername];
-        if (!error) {
-            NSLog(@"同意加好友成功");
-        }else{
-            NSLog(@"同意加好友失败");
-        }
-    }else{
-        //拒绝好友请求
-        EMError *error = [[EMClient sharedClient].contactManager declineInvitationForUsername:self.buddyUsername];
-        if (!error) {
-            NSLog(@"拒绝加好友成功");
-        }else{
-            NSLog(@"拒绝加好友失败");
-        }
     }
 }
 

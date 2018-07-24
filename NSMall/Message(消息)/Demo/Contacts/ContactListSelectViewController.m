@@ -14,6 +14,7 @@
 
 #import "ChatViewController.h"
 #import "UserProfileManager.h"
+#import "NSHuanXinUserModel.h"
 
 @interface ContactListSelectViewController () <EMUserListViewControllerDelegate,EMUserListViewControllerDataSource>
 
@@ -193,7 +194,7 @@
                            modelForBuddy:(NSString *)buddy
 {
     id<IUserModel> model = nil;
-    model = [[EaseUserModel alloc] initWithBuddy:buddy];
+    model = [[NSHuanXinUserModel alloc] initWithBuddy:buddy];
     UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.buddy];
     if (profileEntity) {
         model.nickname= profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;

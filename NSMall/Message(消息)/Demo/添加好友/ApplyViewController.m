@@ -17,7 +17,7 @@
 
 static ApplyViewController *controller = nil;
 
-@interface ApplyViewController ()<ApplyFriendCellDelegate>
+@interface ApplyViewController ()<ApplyFriendCellDelegate,EMContactManagerDelegate>
 
 @end
 
@@ -46,6 +46,9 @@ static ApplyViewController *controller = nil;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[EMClient sharedClient].contactManager addDelegate:self delegateQueue:nil];
+    [[EMClient sharedClient].contactManager removeDelegate:self];
     
     // Uncomment the following line to preserve selection between presentations.
     self.title = NSLocalizedString(@"title.apply", @"Application and notification");

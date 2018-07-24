@@ -99,6 +99,7 @@
             }
         }
         [kAppDelegate setUpRootVC];
+        [kAppDelegate comeBackToRootVC];
         
     } faulre:^(NSError *error) {
         DLog(@"登录失败");

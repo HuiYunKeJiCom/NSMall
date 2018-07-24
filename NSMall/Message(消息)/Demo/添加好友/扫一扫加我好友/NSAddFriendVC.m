@@ -9,9 +9,10 @@
 #import "NSAddFriendVC.h"
 #import "ADOrderTopToolView.h"
 
-@interface NSAddFriendVC ()
+@interface NSAddFriendVC ()<EMClientDelegate>
 @property(nonatomic,strong)UIImageView * scanView;
-
+/** 好友的名称 */
+@property (nonatomic, copy) NSString *buddyUsername;
 @end
 
 @implementation NSAddFriendVC
@@ -113,15 +114,41 @@
     return qrCodeImage;
 }
 
+#pragma mark - 好友请求回调
 /*!
  *  用户A发送加用户B为好友的申请，用户B会收到这个回调
  *
  *  @param aUsername   用户名
  *  @param aMessage    附属信息
  */
-- (void)friendRequestDidReceiveFromUser:(NSString *)aUsername
-                                message:(NSString *)aMessage{
-    DLog(@"收到%@的好友请求",aUsername);
+- (void)didReceiveFriendInvitationFromUsername:(NSString *)aUsername
+                                       message:(NSString *)aMessage
+{
+    NSLog(@"aUsername = %@,%@",aUsername,aMessage);
+    self.buddyUsername = aUsername;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"好友添加请求" message:aMessage delegate:self cancelButtonTitle:@"拒绝" otherButtonTitles:@"同意", nil];
+    [alert show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1) {
+        //同意好友请求
+        EMError *error = [[EMClient sharedClient].contactManager acceptInvitationForUsername:self.buddyUsername];
+        if (!error) {
+            NSLog(@"同意加好友成功");
+        }else{
+            NSLog(@"同意加好友失败");
+        }
+    }else{
+        //拒绝好友请求
+        EMError *error = [[EMClient sharedClient].contactManager declineInvitationForUsername:self.buddyUsername];
+        if (!error) {
+            NSLog(@"拒绝加好友成功");
+        }else{
+            NSLog(@"拒绝加好友失败");
+        }
+    }
 }
 
 

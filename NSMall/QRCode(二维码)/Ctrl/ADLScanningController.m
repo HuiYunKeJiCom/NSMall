@@ -49,6 +49,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[EMClient sharedClient].contactManager addDelegate:self delegateQueue:nil];
     [self.view addSubview:self.loadingView];
 
     imageView = [[UIImageView alloc]initWithFrame:CGRectMake((kScreenWidth-SWidth)/2,GetScaleWidth(160)+TopBarHeight/2.0,SWidth,SWidth)];
@@ -223,15 +224,28 @@
         NSString *string = [array lastObject];
         
         NSString *msg = [userModel.hx_user_name stringByAppendingString:NSLocalizedString(@"add friend with you", nil)];
+        
+//        [[EMClient sharedClient].contactManager addContact:string message:msg completion:^(NSString *aUsername, EMError *aError) {
+//            [Common AppShowToast:NSLocalizedString(@"add friends success", nil)];
+//            self.friendName = string;
+//            [NSMessageAPI acceptFriendWithParam:self.friendName success:^{
+//                DLog(@"添加好友成功");
+//            } faulre:^(NSError *error) {
+//            }];
+//            [self delayPop];
+//        }];
         EMError *error = [[EMClient sharedClient].contactManager addContact:string message:msg];
         if (!error) {
             [Common AppShowToast:NSLocalizedString(@"add friends success", nil)];
             self.friendName = string;
+            [NSMessageAPI acceptFriendWithParam:self.friendName success:^{
+                DLog(@"添加好友成功");
+            } faulre:^(NSError *error) {
+            }];
         }else{
             DLog(@"添加好友error = %@",error.mj_keyValues);
             [Common AppShowToast:NSLocalizedString(@"add friends fail", nil)];
         }
-        [[EMClient sharedClient].contactManager addDelegate:self delegateQueue:nil];
         [self delayPop];
     }else if ([qrcode hasPrefix:@"gid:"]){
         NSArray *array = [qrcode componentsSeparatedByString:@"gid:"];
@@ -350,10 +364,10 @@
 - (void)didReceiveAgreedFromUsername:(NSString *)aUsername
 {
     DLog(@"添加好友同意");
-    [NSMessageAPI acceptFriendWithParam:self.friendName success:^{
-        DLog(@"添加好友成功");
-    } faulre:^(NSError *error) {
-    }];
+//    [NSMessageAPI acceptFriendWithParam:self.friendName success:^{
+//        DLog(@"添加好友成功");
+//    } faulre:^(NSError *error) {
+//    }];
 }
 
 /*!

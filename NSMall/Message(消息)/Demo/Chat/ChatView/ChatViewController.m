@@ -154,8 +154,6 @@
     [topToolView setTopTitleWithNSString:KLocalizableStr(self.title)];
 //[ext objectForKey:@"nick"]
     
-    
-    
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
@@ -393,7 +391,6 @@
 //    DLog(@"message.ext = %@",message.ext);
     
     if([[message.ext allKeys] containsObject:@"hx_username"]){
-        
     }else{
         UserModel *userModel = [UserModel modelFromUnarchive];
         message.ext = @{@"nick":userModel.user_name,@"user_id":userModel.user_id,@"avatar_url":userModel.pic_img,@"hx_username":userModel.hx_user_name};
