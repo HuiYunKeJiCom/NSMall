@@ -20,6 +20,8 @@
 #import "EMChooseViewController.h"
 #import "ContactSelectionViewController.h"
 #import "EMGroupInfoViewController.h"
+#import "NSHuanXinUserModel.h"
+#import "NSMessageAPI.h"
 
 #import "EMDingMessageHelper.h"
 #import "DingViewController.h"
@@ -44,6 +46,7 @@
 @property (nonatomic) NSMutableDictionary *emotionDic;
 @property (nonatomic, copy) EaseSelectAtTargetCallback selectedCallback;
 @property(nonatomic,strong)UIButton *virtualBtn;/* 挂名Btn,无实际用处 */
+@property(nonatomic,strong)NSMutableArray *friendListArr;/* 好友列表数组 */
 @end
 
 @implementation ChatViewController
@@ -53,6 +56,7 @@
     // Do any additional setup after loading the view.
     [ChatDemoHelper shareHelper].chatVC = self;
 
+    
     
     self.showRefreshHeader = YES;
     self.delegate = self;
@@ -103,6 +107,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     if (self.conversation.type == EMConversationTypeGroupChat) {
         NSDictionary *ext = self.conversation.ext;
         if ([[ext objectForKey:@"subject"] length])
@@ -391,9 +396,21 @@
 //    DLog(@"message.ext = %@",message.ext);
     
     if([[message.ext allKeys] containsObject:@"hx_username"]){
-    }else{
+    }else if([message.from isEqualToString:[[UserModel modelFromUnarchive] hx_user_name]]){
         UserModel *userModel = [UserModel modelFromUnarchive];
         message.ext = @{@"nick":userModel.user_name,@"user_id":userModel.user_id,@"avatar_url":userModel.pic_img,@"hx_username":userModel.hx_user_name};
+    }else{
+        NSHuanXinUserModel *model = [[NSHuanXinUserModel alloc] initWithBuddy:message.from];
+        [self.friendListArr removeAllObjects];
+        [NSMessageAPI getFriendList:nil success:^(NSFriendListModel * _Nullable result) {
+            DLog(@"获取好友列表成功");
+            self.friendListArr = [NSMutableArray arrayWithArray:result.list];
+            [model getInformationWith:self.friendListArr];
+            message.ext = @{@"nick":model.nick_name,@"user_id":model.user_id,@"avatar_url":model.user_avatar,@"hx_username":model.hx_user_name};
+        } failure:^(NSError *error) {
+            DLog(@"获取好友列表失败");
+        }];
+        
     }
 
     id<IMessageModel> model = nil;
@@ -402,7 +419,6 @@
 //    model.avatarImage = [UIImage imageNamed:@"EaseUIResource.bundle/user"];
     NSData *data = [NSData  dataWithContentsOfURL:[NSURL URLWithString:[message.ext objectForKey:@"avatar_url"]]];
     model.avatarImage =  [UIImage imageWithData:data];
-
     
     UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.nickname];
     if (profileEntity) {

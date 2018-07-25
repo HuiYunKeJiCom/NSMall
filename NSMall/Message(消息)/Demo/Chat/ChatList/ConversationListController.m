@@ -22,6 +22,7 @@
 #import "NSNavView.h"
 #import "UIViewController+SearchController.h"
 #import "ContactListViewController.h"
+#import "NSEaseConversationModel.h"
 
 @implementation EMConversation (search)
 
@@ -154,7 +155,7 @@
 
 - (void)deleteCellAction:(NSIndexPath *)aIndexPath
 {
-    EaseConversationModel *model = [self.dataArray objectAtIndex:aIndexPath.row];
+    NSEaseConversationModel *model = [self.dataArray objectAtIndex:aIndexPath.row];
     [[EMClient sharedClient].chatManager deleteConversation:model.conversation.conversationId isDeleteMessages:YES completion:nil];
     [self.dataArray removeObjectAtIndex:aIndexPath.row];
     [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:aIndexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -191,7 +192,7 @@
 - (id<IConversationModel>)conversationListViewController:(EaseConversationListViewController *)conversationListViewController
                                     modelForConversation:(EMConversation *)conversation
 {
-    EaseConversationModel *model = [[EaseConversationModel alloc] initWithConversation:conversation];
+    NSEaseConversationModel *model = [[NSEaseConversationModel alloc] initWithConversation:conversation];
     if (model.conversation.type == EMConversationTypeChat) {
         if ([[RobotManager sharedInstance] isRobotWithUsername:conversation.conversationId]) {
             model.title = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.conversationId];
@@ -347,13 +348,8 @@
         }
 
         id<IConversationModel> model = [weakSelf.resultController.displaySource objectAtIndex:indexPath.row];
-//        EMConversation *conversation = model.conversation;
-//        EMMessage *latestMessage = conversation.latestMessage;
-//        if(latestMessage.direction == EMMessageDirectionSend){
-//        }
+  
         cell.model = model;
-        
-
         cell.detailLabel.attributedText = [weakSelf conversationListViewController:weakSelf latestMessageTitleForConversationModel:model];
         cell.timeLabel.text = [weakSelf conversationListViewController:weakSelf latestMessageTimeForConversationModel:model];
         return cell;
@@ -375,9 +371,9 @@
             chatController.title = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.conversationId];
         }else {
             chatController = [[ChatViewController alloc] initWithConversationChatter:conversation.conversationId conversationType:conversation.type];
-//            NSDictionary *dict = conversation.ext;
-//            chatController.title = [dict objectForKey:@"nick"];
-            chatController.title = [conversation showName];
+            NSDictionary *dict = conversation.ext;
+            chatController.title = [dict objectForKey:@"nick"];
+//            chatController.title = [conversation showName];
         }
         [weakSelf.navigationController pushViewController:chatController animated:YES];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"setupUnreadMessageCount" object:nil];
