@@ -545,9 +545,7 @@
  
     _isSelectOriginalPhoto = isSelectOriginalPhoto;
 
-
     [_collectionView reloadData];
-
     if(photos.count >0){
         if(_selectedPhotos.count>7){
             self.SV.scrollEnabled = YES;
@@ -569,14 +567,15 @@
         self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
     }
 
-    // 1.打印图片名字
-    [self printAssetsName:assets];
-    // 2.图片位置信息
-    if (iOS8Later) {
-        for (PHAsset *phAsset in assets) {
-            NSLog(@"location:%@",phAsset.location);
-        }
-    }
+    
+//    // 1.打印图片名字
+//    [self printAssetsName:assets];
+//    // 2.图片位置信息
+//    if (iOS8Later) {
+//        for (PHAsset *phAsset in assets) {
+//            NSLog(@"location:%@",phAsset.location);
+//        }
+//    }
 }
 
 // 决定相册显示与否

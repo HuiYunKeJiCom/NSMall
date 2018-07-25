@@ -19,61 +19,157 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NSMall/Message(&#x6d88;&#x606f;)/Demo/Chat/ChatList/ConversationListController.m"
-            timestampString = "554131270.531206"
+            filePath = "NSMall/Publish(&#x53d1;&#x5e03;)/&#x53d1;&#x5e03;&#x5e97;&#x94fa;/Ctrl/NSShopPublishVC.m"
+            timestampString = "554220674.972175"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "361"
-            endingLineNumber = "361"
-            landmarkName = "-setupSearchController"
+            startingLineNumber = "438"
+            endingLineNumber = "438"
+            landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ConversationListController setupSearchController]"
-                  moduleName = "NSMall"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/NSMall/NSMall/Message(%E6%B6%88%E6%81%AF)/Demo/Chat/ChatList/ConversationListController.m"
-                  timestampString = "554130214.72054"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "368"
-                  endingLineNumber = "368"
-                  offsetFromSymbolStart = "344">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__51-[ConversationListController setupSearchController]_block_invoke_2"
-                  moduleName = "NSMall"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/NSMall/NSMall/Message(%E6%B6%88%E6%81%AF)/Demo/Chat/ChatList/ConversationListController.m"
-                  timestampString = "554130214.72303"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "369"
-                  endingLineNumber = "369"
-                  offsetFromSymbolStart = "96">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NSMall/Message(&#x6d88;&#x606f;)/Demo/Model/NSEaseConversationModel.m"
-            timestampString = "554133507.732321"
+            filePath = "Pods/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImageManager.m"
+            timestampString = "554201358.83209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "-initWithConversation:"
+            startingLineNumber = "698"
+            endingLineNumber = "698"
+            landmarkName = "-savePhotoWithImage:location:completion:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImageManager.m"
+            timestampString = "554201358.832556"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "710"
+            endingLineNumber = "710"
+            landmarkName = "-savePhotoWithImage:location:completion:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Desktop/NSMall/NSMall/My(&#x6211;&#x7684;)/Shop(&#x6211;&#x7684;&#x5e97;&#x94fa;)/&#x7f16;&#x8f91;&#x5e97;&#x94fa;/NSShopEditVC.m"
+            timestampString = "554220674.972898"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "695"
+            endingLineNumber = "695"
+            landmarkName = "-getDataWithShopModel:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Desktop/NSMall/NSMall/My(&#x6211;&#x7684;)/Shop(&#x6211;&#x7684;&#x5e97;&#x94fa;)/&#x7f16;&#x8f91;&#x5e97;&#x94fa;/NSShopEditVC.m"
+            timestampString = "554220674.974391"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
+            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NSMall/Publish(&#x53d1;&#x5e03;)/&#x53d1;&#x5e03;&#x5e97;&#x94fa;/View/NSShopTableView.m"
+            timestampString = "554220674.975122"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NSMall/Publish(&#x53d1;&#x5e03;)/&#x53d1;&#x5e03;&#x5e97;&#x94fa;/View/NSShopTableView.m"
+            timestampString = "554220674.975566"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "-tableView:numberOfRowsInSection:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NSMall/Publish(&#x53d1;&#x5e03;)/&#x53d1;&#x5e03;&#x5e97;&#x94fa;/View/NSShopTableView.m"
+            timestampString = "554220674.975702"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "-numberOfSectionsInTableView:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Desktop/NSMall/NSMall/My(&#x6211;&#x7684;)/Shop(&#x6211;&#x7684;&#x5e97;&#x94fa;)/&#x7f16;&#x8f91;&#x5e97;&#x94fa;/NSShopEditVC.m"
+            timestampString = "554220674.97583"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
+            landmarkName = "-collectionView:cellForItemAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Desktop/NSMall/NSMall/My(&#x6211;&#x7684;)/Shop(&#x6211;&#x7684;&#x5e97;&#x94fa;)/&#x7f16;&#x8f91;&#x5e97;&#x94fa;/NSShopEditVC.m"
+            timestampString = "554220674.976377"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
+            landmarkName = "-collectionView:numberOfItemsInSection:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

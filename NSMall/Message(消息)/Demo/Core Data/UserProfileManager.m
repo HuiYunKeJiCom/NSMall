@@ -329,6 +329,14 @@ static UserProfileManager *sharedInstance = nil;
     }
 }
 
+- (void)saveDictUserInMemory:(NSDictionary*)object
+{
+    if (object) {
+        UserProfileEntity *entity = [UserProfileEntity initWithNSDictation:object];
+        [_users setObject:entity forKey:entity.username];
+    }
+}
+
 - (void)queryPFObjectWithCompletion:(void (^)(PFObject *object, NSError *error))completion
 {
     PFQuery *query = [PFQuery queryWithClassName:kPARSE_HXUSER];
@@ -368,10 +376,23 @@ static UserProfileManager *sharedInstance = nil;
     UserProfileEntity *entity = [[UserProfileEntity alloc] init];
     entity.username = object[kPARSE_HXUSER_USERNAME];
     entity.nickname = object[kPARSE_HXUSER_NICKNAME];
+//    entity.imageUrl = object[kPARSE_HXUSER_NICKNAME];
     PFFile *userImageFile = object[kPARSE_HXUSER_AVATAR];
     if (userImageFile) {
         entity.imageUrl = userImageFile.url;
     }
+    return entity;
+}
+
++ (instancetype)initWithNSDictation:(NSDictionary*)object{
+    UserProfileEntity *entity = [[UserProfileEntity alloc] init];
+    entity.username = object[kPARSE_HXUSER_USERNAME];
+    entity.nickname = object[kPARSE_HXUSER_NICKNAME];
+    entity.imageUrl = object[kPARSE_HXUSER_AVATAR];
+//    PFFile *userImageFile = object[kPARSE_HXUSER_AVATAR];
+//    if (userImageFile) {
+//        entity.imageUrl = userImageFile.url;
+//    }
     return entity;
 }
 

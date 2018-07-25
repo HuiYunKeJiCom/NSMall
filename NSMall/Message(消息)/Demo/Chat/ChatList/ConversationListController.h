@@ -17,6 +17,8 @@
 @property (strong, nonatomic) NSMutableArray *conversationsArray;
 /** 好友的名称 */
 @property (nonatomic, copy) NSString *buddyUsername;
+@property(nonatomic,strong)NSMutableArray *friendListArr;/* 好友列表数组 */
+
 - (void)refresh;
 - (void)refreshDataSource;
 

@@ -23,6 +23,7 @@
 #import "UIViewController+SearchController.h"
 #import "ContactListViewController.h"
 #import "NSEaseConversationModel.h"
+#import "NSMessageAPI.h"
 
 @implementation EMConversation (search)
 
@@ -57,6 +58,7 @@
     
 //    [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
     
+    self.friendListArr = [NSMutableArray array];
     // Do any additional setup after loading the view.
     self.showRefreshHeader = YES;
     self.delegate = self;
@@ -192,18 +194,21 @@
 - (id<IConversationModel>)conversationListViewController:(EaseConversationListViewController *)conversationListViewController
                                     modelForConversation:(EMConversation *)conversation
 {
+    
+    
     NSEaseConversationModel *model = [[NSEaseConversationModel alloc] initWithConversation:conversation];
     if (model.conversation.type == EMConversationTypeChat) {
         if ([[RobotManager sharedInstance] isRobotWithUsername:conversation.conversationId]) {
             model.title = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.conversationId];
         } else {
+            
             UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:conversation.conversationId];
             if (profileEntity) {
-                model.title = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
+                model.title = profileEntity.nickname;
                 model.avatarURLPath = profileEntity.imageUrl;
             }
+//            model.title = @"我是笨蛋";
         }
-        
 //        model.title = @"我是笨蛋";
         
     } else if (model.conversation.type == EMConversationTypeGroupChat) {
@@ -349,6 +354,11 @@
 
         id<IConversationModel> model = [weakSelf.resultController.displaySource objectAtIndex:indexPath.row];
   
+        EMConversation *conversation = model.conversation;
+        EMMessage *latestMessage = conversation.lastReceivedMessage;
+        NSDictionary *ext = latestMessage.ext;
+        
+        model.title = [ext objectForKey:@"nick"];
         cell.model = model;
         cell.detailLabel.attributedText = [weakSelf conversationListViewController:weakSelf latestMessageTitleForConversationModel:model];
         cell.timeLabel.text = [weakSelf conversationListViewController:weakSelf latestMessageTimeForConversationModel:model];

@@ -8,6 +8,8 @@
 
 #import "NSEaseConversationModel.h"
 #import <Hyphenate/EMMessage.h>
+#import "UserProfileManager.h"
+
 
 #if ENABLE_LITE == 1
 #import <HyphenateLite/EMConversation.h>
@@ -21,25 +23,17 @@
     self = [super init];
     if (self) {
         _conversation = conversation;
-        
-        EMMessage *latestMessage = _conversation.latestMessage;
-        NSDictionary *ext = latestMessage.ext;
         UserModel *userModel = [UserModel modelFromUnarchive];
+        EMMessage *latestMessage = _conversation.lastReceivedMessage;
+        NSDictionary *ext = latestMessage.ext;
         
         //        _title = _conversation.conversationId;
         if (conversation.type == EMConversationTypeChat) {
             //            _avatarImage = [UIImage imageNamed:@"EaseUIResource.bundle/user"];
-            if([latestMessage.from isEqualToString:userModel.hx_user_name]){
-                _title = userModel.user_name;
-                NSData *data = [NSData  dataWithContentsOfURL:[NSURL URLWithString:userModel.pic_img]];
-                _avatarImage =  [UIImage imageWithData:data];
-            }else{
-                _title = [ext objectForKey:@"nick"];
-                NSData *data = [NSData  dataWithContentsOfURL:[NSURL URLWithString:[ext objectForKey:@"avatar_url"]]];
-                _avatarImage =  [UIImage imageWithData:data];
-            }
-            
-            
+
+                    _title = [ext objectForKey:@"nick"];
+                    NSData *data = [NSData  dataWithContentsOfURL:[NSURL URLWithString:[ext objectForKey:@"avatar_url"]]];
+                    _avatarImage =  [UIImage imageWithData:data];
         }
         else{
             _title = [ext objectForKey:@"nick"];
@@ -48,5 +42,21 @@
     }
     
     return self;
+}
+
+-(void)getInformationWith:(NSMutableArray <NSFriendItemModel *>*)array{
+    EMMessage *latestMessage = _conversation.latestMessage;
+   
+    UserModel *userModel = [UserModel modelFromUnarchive];
+    if([userModel.hx_user_name isEqualToString:latestMessage.from]){
+        for (NSFriendItemModel *item in array) {
+            if([item.hx_user_name isEqualToString:latestMessage.to]){
+                _title = item.nick_name;
+                NSData *data = [NSData  dataWithContentsOfURL:[NSURL URLWithString:item.user_avatar]];
+                _avatarImage =  [UIImage imageWithData:data];
+            }
+        }
+    }
+
 }
 @end

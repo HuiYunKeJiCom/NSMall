@@ -1955,8 +1955,8 @@
 		1868F6BE20FEEFC9000BB6EB /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
-				1868F6BF20FEEFC9000BB6EB /* NSMyShopVC.m */,
 				1868F6C020FEEFC9000BB6EB /* NSMyShopVC.h */,
+				1868F6BF20FEEFC9000BB6EB /* NSMyShopVC.m */,
 			);
 			path = Ctrl;
 			sourceTree = "<group>";

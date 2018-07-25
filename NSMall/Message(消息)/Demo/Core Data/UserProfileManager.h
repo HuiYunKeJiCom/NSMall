@@ -72,6 +72,8 @@
  */
 - (NSString*)getNickNameWithUsername:(NSString*)username;
 
+- (void)saveDictUserInMemory:(NSDictionary*)object;
+
 @end
 
 
@@ -83,5 +85,5 @@
 @property (nonatomic,strong) NSString *username;
 @property (nonatomic,strong) NSString *nickname;
 @property (nonatomic,strong) NSString *imageUrl;
-
++ (instancetype)initWithNSDictation:(NSDictionary*)object;
 @end

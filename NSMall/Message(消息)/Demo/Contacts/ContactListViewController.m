@@ -601,6 +601,8 @@
         NSHuanXinUserModel *model = [[NSHuanXinUserModel alloc] initWithBuddy:buddy];
         
         [model getInformationWith:self.friendListArr];
+
+//        [[UserProfileManager sharedInstance] saveDictUserInMemory:@{@"nickname":model.nick_name,@"avatar":model.user_avatar,@"username":model.hx_user_name}];
         
         if (model) {
             model.nickname = model.nick_name;

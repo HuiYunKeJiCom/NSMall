@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "IConversationModel.h"
+#import "NSFriendItemModel.h"
 
 
 @interface NSEaseConversationModel : NSObject<IConversationModel>
@@ -30,4 +31,6 @@
  */
 - (instancetype)initWithConversation:(EMConversation *)conversation;
 
+
+-(void)getInformationWith:(NSMutableArray <NSFriendItemModel *>*)array;
 @end

@@ -56,7 +56,7 @@
     // Do any additional setup after loading the view.
     [ChatDemoHelper shareHelper].chatVC = self;
 
-    
+    self.friendListArr = [NSMutableArray array];
     
     self.showRefreshHeader = YES;
     self.delegate = self;
