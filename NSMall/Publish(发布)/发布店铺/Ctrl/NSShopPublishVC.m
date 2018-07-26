@@ -27,8 +27,9 @@
 #import "NSChangeParamVC.h"
 #import "BRPickerView.h"
 #import "ShopAddressParam.h"
+#import "ClipViewController.h"
 
-@interface NSShopPublishVC ()<NSShopTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,NSAddLabelVCDelegate> {
+@interface NSShopPublishVC ()<NSShopTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,NSAddLabelVCDelegate,ClipPhotoDelegate> {
     NSMutableArray *_selectedPhotos;
     NSMutableArray *_selectedAssets;
     BOOL _isSelectOriginalPhoto;
@@ -55,6 +56,7 @@
 
 @property(nonatomic,strong)ShopPublishParam *param;/* 店铺发布参数 */
 @property(nonatomic,strong)NSString *tagString;/* 店铺标签 */
+//@property (nonatomic, strong) UIImagePickerController *imgPicker;
 @end
 
 @implementation NSShopPublishVC
@@ -543,29 +545,41 @@
     _selectedPhotos = [NSMutableArray arrayWithArray:photos];
     _selectedAssets = [NSMutableArray arrayWithArray:assets];
  
-    _isSelectOriginalPhoto = isSelectOriginalPhoto;
-
-    [_collectionView reloadData];
-    if(photos.count >0){
-        if(_selectedPhotos.count>7){
-            self.SV.scrollEnabled = YES;
-        }else{
-            self.SV.scrollEnabled = NO;
-        }
-        self.addView.alpha = 0.0;
-        self.collectionView.alpha = 1.0;
-        self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
-        self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
-
-    }else{
-        self.SV.scrollEnabled = NO;
-        self.addView.alpha = 1.0;
-        self.collectionView.alpha = 0.0;
-        self.collectionView.height = GetScaleWidth(100);
-        self.middleView.dc_y = GetScaleWidth(109);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
-    }
+    
+    
+    ClipViewController *viewController = [[ClipViewController alloc] init];
+    //    viewController.image = image;
+    viewController.picker = (UIImagePickerController *)picker;
+    viewController.controller = self;
+    viewController.delegate = self;
+    viewController.imageArr = _selectedPhotos;
+    viewController.image = _selectedPhotos[0];
+    viewController.isTakePhoto = NO;
+    [picker presentViewController:viewController animated:NO completion:nil];
+    
+    
+    
+//    _isSelectOriginalPhoto = isSelectOriginalPhoto;
+//    [_collectionView reloadData];
+//    if(photos.count >0){
+//        if(_selectedPhotos.count>7){
+//            self.SV.scrollEnabled = YES;
+//        }else{
+//            self.SV.scrollEnabled = NO;
+//        }
+//        self.addView.alpha = 0.0;
+//        self.collectionView.alpha = 1.0;
+//        self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
+//        self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
+//        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+//    }else{
+//        self.SV.scrollEnabled = NO;
+//        self.addView.alpha = 1.0;
+//        self.collectionView.alpha = 0.0;
+//        self.collectionView.height = GetScaleWidth(100);
+//        self.middleView.dc_y = GetScaleWidth(109);
+//        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+//    }
 
     
 //    // 1.打印图片名字
@@ -961,5 +975,7 @@
     [theTextField resignFirstResponder];// 使当前文本框失去第一响应者的特权，就会回收键盘了
     return YES;
 }
+
+
 
 @end

@@ -255,6 +255,8 @@
 		18B839542100337E0019F9D5 /* NSPayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B839532100337E0019F9D5 /* NSPayVC.m */; };
 		18B839582100812A0019F9D5 /* NSPayParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B839572100812A0019F9D5 /* NSPayParam.m */; };
 		18B8395C2100D0B00019F9D5 /* NSPaySuccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8395B2100D0B00019F9D5 /* NSPaySuccessVC.m */; };
+		18B8AFEF2109D43200A25F3C /* ClipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8AFEE2109D43100A25F3C /* ClipViewController.m */; };
+		18B8AFF22109D4B400A25F3C /* TKImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8AFF02109D4B400A25F3C /* TKImageView.m */; };
 		18BAC16F20F9DAAD003599D6 /* NSPublishCommentParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BAC16E20F9DAAD003599D6 /* NSPublishCommentParam.m */; };
 		18BD2DB320D0AFB9003C57B3 /* ShopAddressParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BD2DB220D0AFB9003C57B3 /* ShopAddressParam.m */; };
 		18C2DDEA20B7A8FB00A3B851 /* NSMessageTV.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2DDE920B7A8FB00A3B851 /* NSMessageTV.m */; };
@@ -925,6 +927,10 @@
 		18B839572100812A0019F9D5 /* NSPayParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSPayParam.m; sourceTree = "<group>"; };
 		18B8395A2100D0B00019F9D5 /* NSPaySuccessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSPaySuccessVC.h; sourceTree = "<group>"; };
 		18B8395B2100D0B00019F9D5 /* NSPaySuccessVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSPaySuccessVC.m; sourceTree = "<group>"; };
+		18B8AFED2109D43100A25F3C /* ClipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClipViewController.h; sourceTree = "<group>"; };
+		18B8AFEE2109D43100A25F3C /* ClipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClipViewController.m; sourceTree = "<group>"; };
+		18B8AFF02109D4B400A25F3C /* TKImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKImageView.m; sourceTree = "<group>"; };
+		18B8AFF12109D4B400A25F3C /* TKImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKImageView.h; sourceTree = "<group>"; };
 		18BAC16D20F9DAAD003599D6 /* NSPublishCommentParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSPublishCommentParam.h; sourceTree = "<group>"; };
 		18BAC16E20F9DAAD003599D6 /* NSPublishCommentParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSPublishCommentParam.m; sourceTree = "<group>"; };
 		18BD2DB120D0AFB9003C57B3 /* ShopAddressParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopAddressParam.h; sourceTree = "<group>"; };
@@ -2962,6 +2968,17 @@
 			path = "PaySuccess(支付成功)";
 			sourceTree = "<group>";
 		};
+		18B8AFEC2109D41500A25F3C /* 图片裁剪 */ = {
+			isa = PBXGroup;
+			children = (
+				18B8AFF12109D4B400A25F3C /* TKImageView.h */,
+				18B8AFF02109D4B400A25F3C /* TKImageView.m */,
+				18B8AFED2109D43100A25F3C /* ClipViewController.h */,
+				18B8AFEE2109D43100A25F3C /* ClipViewController.m */,
+			);
+			path = "图片裁剪";
+			sourceTree = "<group>";
+		};
 		18C2DE1020B7F55E00A3B851 /* Sort(分类) */ = {
 			isa = PBXGroup;
 			children = (
@@ -3595,6 +3612,7 @@
 		18DD1574208DD3810006475D /* Publish(发布) */ = {
 			isa = PBXGroup;
 			children = (
+				18B8AFEC2109D41500A25F3C /* 图片裁剪 */,
 				184F05FF209FE81900768418 /* 发布店铺 */,
 				184F060C209FE81A00768418 /* 发布商品 */,
 				184F0610209FE81A00768418 /* XWPopMenu */,
@@ -4448,6 +4466,7 @@
 				18D71045208DC84C002BA6CD /* DCTabBadgeView.m in Sources */,
 				187A402B210765BB00AE46A9 /* NSEaseConversationModel.m in Sources */,
 				184F061D209FE81A00768418 /* PublishMenuButton.m in Sources */,
+				18B8AFEF2109D43200A25F3C /* ClipViewController.m in Sources */,
 				1868F6DC20FEF0D4000BB6EB /* UserPageModel.m in Sources */,
 				18D574CB209AA380001C7875 /* GetVcodeAPI.m in Sources */,
 				18C60DDF20C0E039002920D2 /* NSPayViewTVCell.m in Sources */,
@@ -4485,6 +4504,7 @@
 				18B0179720A67B9600826EA4 /* YWAddressViewController.m in Sources */,
 				1868F78F20FEF391000BB6EB /* AddFriendCell.m in Sources */,
 				18C3D0AA20A2F77E000FCE7F /* CategoryListModel.m in Sources */,
+				18B8AFF22109D4B400A25F3C /* TKImageView.m in Sources */,
 				18C3CFF220A2EF3B000FCE7F /* PPUntil.m in Sources */,
 				18BAC16F20F9DAAD003599D6 /* NSPublishCommentParam.m in Sources */,
 				18C3CFF120A2EF3B000FCE7F /* YWTool.m in Sources */,

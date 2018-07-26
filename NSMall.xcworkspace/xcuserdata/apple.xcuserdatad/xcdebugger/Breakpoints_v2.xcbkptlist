@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NSMall/Publish(&#x53d1;&#x5e03;)/&#x53d1;&#x5e03;&#x5e97;&#x94fa;/Ctrl/NSShopPublishVC.m"
-            timestampString = "554220674.972175"
+            timestampString = "554299189.227502"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "438"
-            endingLineNumber = "438"
+            startingLineNumber = "440"
+            endingLineNumber = "440"
             landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
             landmarkType = "7">
          </BreakpointContent>
@@ -68,23 +68,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Desktop/NSMall/NSMall/My(&#x6211;&#x7684;)/Shop(&#x6211;&#x7684;&#x5e97;&#x94fa;)/&#x7f16;&#x8f91;&#x5e97;&#x94fa;/NSShopEditVC.m"
-            timestampString = "554220674.972898"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "695"
-            endingLineNumber = "695"
-            landmarkName = "-getDataWithShopModel:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Desktop/NSMall/NSMall/My(&#x6211;&#x7684;)/Shop(&#x6211;&#x7684;&#x5e97;&#x94fa;)/&#x7f16;&#x8f91;&#x5e97;&#x94fa;/NSShopEditVC.m"
-            timestampString = "554220674.974391"
+            timestampString = "554299189.243816"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "237"
@@ -148,7 +132,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Desktop/NSMall/NSMall/My(&#x6211;&#x7684;)/Shop(&#x6211;&#x7684;&#x5e97;&#x94fa;)/&#x7f16;&#x8f91;&#x5e97;&#x94fa;/NSShopEditVC.m"
-            timestampString = "554220674.97583"
+            timestampString = "554299189.244743"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "219"
@@ -164,12 +148,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Desktop/NSMall/NSMall/My(&#x6211;&#x7684;)/Shop(&#x6211;&#x7684;&#x5e97;&#x94fa;)/&#x7f16;&#x8f91;&#x5e97;&#x94fa;/NSShopEditVC.m"
-            timestampString = "554220674.976377"
+            timestampString = "554299189.2449549"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "214"
             endingLineNumber = "214"
             landmarkName = "-collectionView:numberOfItemsInSection:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NSMall/Publish(&#x53d1;&#x5e03;)/&#x53d1;&#x5e03;&#x5e97;&#x94fa;/Ctrl/NSShopPublishVC.m"
+            timestampString = "554299189.245178"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "550"
+            endingLineNumber = "550"
+            landmarkName = "-imagePickerController:didFinishPickingPhotos:sourceAssets:isSelectOriginalPhoto:infos:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
