@@ -593,6 +593,8 @@ typedef NS_ENUM(NSInteger, TKMidLineType) {
             CGFloat centerMaxY = HEIGHT(_imageView) - HEIGHT(_cropAreaView) / 2.0f - self.cornerMargin * _cornerBorderInImage;
             _cropAreaView.center = CGPointMake(MIN(MAX(centerMinX, willCenter.x), centerMaxX), MIN(MAX(centerMinY, willCenter.y), centerMaxY));
             [self resetCornersOnCropAreaFrameChanged];
+            [self resetCropTransparentArea];
+            [self resetMinSpaceIfNeeded];
             break;
         }
         default:
@@ -869,6 +871,7 @@ typedef NS_ENUM(NSInteger, TKMidLineType) {
             height = width / _cropAspectRatio;
         }
     }
+//    _cropAreaView.backgroundColor = [UIColor redColor];
     _cropAreaView.frame = CGRectMake((WIDTH(_imageView) - width) / 2.0, (HEIGHT(_imageView) - width) / 2.0, width, width);
     [self resetCornersOnCropAreaFrameChanged];
     [self resetCropTransparentArea];
@@ -1134,8 +1137,9 @@ typedef NS_ENUM(NSInteger, TKMidLineType) {
 #pragma Instance Methods
 - (UIImage *)currentCroppedImage {
     
-    CGFloat scaleFactor = WIDTH(_imageView) / _toCropImage.size.width;
-    return [_toCropImage imageAtRect: CGRectMake((MINX(_cropAreaView) + _cropAreaBorderLineWidth) / scaleFactor, (MINY(_cropAreaView) + _cropAreaBorderLineWidth) / scaleFactor, (WIDTH(_cropAreaView) - 2 * _cropAreaBorderLineWidth) / scaleFactor, (HEIGHT(_cropAreaView) - 2 * _cropAreaBorderLineWidth) / scaleFactor)];
+//    CGFloat scaleFactor = WIDTH(_imageView) / _toCropImage.size.width;
+//    return [_toCropImage imageAtRect: CGRectMake((MINX(_cropAreaView) + _cropAreaBorderLineWidth) / scaleFactor, (MINY(_cropAreaView) + _cropAreaBorderLineWidth) / scaleFactor, (WIDTH(_cropAreaView) - 2 * _cropAreaBorderLineWidth) / scaleFactor, (HEIGHT(_cropAreaView) - 2 * _cropAreaBorderLineWidth) / scaleFactor)];
+    return [_toCropImage imageAtRect:self.cropAreaView.frame];
     
 }
 @end

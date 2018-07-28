@@ -10,7 +10,7 @@
 
 @protocol ClipPhotoDelegate <NSObject>
 
-//- (void)clipPhoto:(UIImage *)image;
+- (void)clipPhoto:(NSMutableArray *)array andAssetArray:(NSMutableArray *)assetArray;
 
 @end
 
@@ -25,4 +25,8 @@
 
 @property (nonatomic, assign) BOOL isTakePhoto;
 @property(nonatomic,strong)NSMutableArray *imageArr;/* 图片数组 */
+
+//typedef void(^arrayBlock)(NSMutableArray *array);
+//@property (nonatomic, copy) arrayBlock                   arrayBlock;/* 保存修改的信息回调 */
+
 @end

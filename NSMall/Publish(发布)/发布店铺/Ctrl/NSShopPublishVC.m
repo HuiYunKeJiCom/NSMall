@@ -334,6 +334,7 @@
      imagePickerVc.oKButtonTitleColorNormal = KMainColor;
      imagePickerVc.navigationBar.translucent = NO;
     
+    imagePickerVc.autoDismiss = NO;
     
     // 3. 设置是否可以选择视频/图片/原图
     imagePickerVc.allowPickingVideo = NO;
@@ -514,6 +515,7 @@
 /// User click cancel button
 /// 用户点击了取消
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
     if(_selectedPhotos.count >0){
         if(_selectedPhotos.count>7){
             self.SV.scrollEnabled = YES;
@@ -540,7 +542,7 @@
     
 //    cell.imageView.image = _selectedPhotos[indexPath.row];
 //    cell.asset = _selectedAssets[indexPath.row];
-    
+//    [picker dismissViewControllerAnimated:YES completion:nil];
     
     _selectedPhotos = [NSMutableArray arrayWithArray:photos];
     _selectedAssets = [NSMutableArray arrayWithArray:assets];
@@ -557,29 +559,33 @@
     viewController.isTakePhoto = NO;
     [picker presentViewController:viewController animated:NO completion:nil];
     
-    
-    
-//    _isSelectOriginalPhoto = isSelectOriginalPhoto;
-//    [_collectionView reloadData];
-//    if(photos.count >0){
-//        if(_selectedPhotos.count>7){
-//            self.SV.scrollEnabled = YES;
+//    viewController.arrayBlock = ^(NSMutableArray *array) {
+//        _selectedPhotos = array;
+//        _isSelectOriginalPhoto = isSelectOriginalPhoto;
+//        [_collectionView reloadData];
+//        if(photos.count >0){
+//            if(_selectedPhotos.count>7){
+//                self.SV.scrollEnabled = YES;
+//            }else{
+//                self.SV.scrollEnabled = NO;
+//            }
+//            self.addView.alpha = 0.0;
+//            self.collectionView.alpha = 1.0;
+//            self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
+//            self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
+//            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
 //        }else{
 //            self.SV.scrollEnabled = NO;
+//            self.addView.alpha = 1.0;
+//            self.collectionView.alpha = 0.0;
+//            self.collectionView.height = GetScaleWidth(100);
+//            self.middleView.dc_y = GetScaleWidth(109);
+//            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
 //        }
-//        self.addView.alpha = 0.0;
-//        self.collectionView.alpha = 1.0;
-//        self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
-//        self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
-//        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
-//    }else{
-//        self.SV.scrollEnabled = NO;
-//        self.addView.alpha = 1.0;
-//        self.collectionView.alpha = 0.0;
-//        self.collectionView.height = GetScaleWidth(100);
-//        self.middleView.dc_y = GetScaleWidth(109);
-//        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
-//    }
+//
+//    };
+    
+    
 
     
 //    // 1.打印图片名字
@@ -976,6 +982,32 @@
     return YES;
 }
 
-
+- (void)clipPhoto:(NSMutableArray *)array  andAssetArray:(NSMutableArray *)assetArray{
+    [_selectedPhotos removeAllObjects];
+    [_selectedAssets removeAllObjects];
+    _selectedAssets = assetArray;
+    _selectedPhotos = array;
+//    _isSelectOriginalPhoto = isSelectOriginalPhoto;
+    [_collectionView reloadData];
+    if(_selectedPhotos.count >0){
+        if(_selectedPhotos.count>7){
+            self.SV.scrollEnabled = YES;
+        }else{
+            self.SV.scrollEnabled = NO;
+        }
+        self.addView.alpha = 0.0;
+        self.collectionView.alpha = 1.0;
+        self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
+        self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+    }else{
+        self.SV.scrollEnabled = NO;
+        self.addView.alpha = 1.0;
+        self.collectionView.alpha = 0.0;
+        self.collectionView.height = GetScaleWidth(100);
+        self.middleView.dc_y = GetScaleWidth(109);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+    }
+}
 
 @end
