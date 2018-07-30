@@ -21,10 +21,10 @@
 #import "GoodsPublishParam.h"
 #import "NSSpecView.h"
 #import "NSInfoCustomCell.h"
+#import "ClipViewController.h"
 
 
-
-@interface NSGoodsPublishVC ()<NSGoodsTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate> {
+@interface NSGoodsPublishVC ()<NSGoodsTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,ClipPhotoDelegate> {
     NSMutableArray *_selectedPhotos;
     NSMutableArray *_selectedAssets;
     BOOL _isSelectOriginalPhoto;
@@ -300,6 +300,16 @@
     imagePickerVc.allowTakeVideo = NO;   // 在内部显示拍视频按
     imagePickerVc.videoMaximumDuration = 10; // 视频最大拍摄时间
     
+    // 2. 在这里设置imagePickerVc的外观
+    if (iOS7Later) {
+        imagePickerVc.navigationBar.barTintColor = KMainColor;
+    }
+    imagePickerVc.oKButtonTitleColorDisabled = [UIColor lightGrayColor];
+    imagePickerVc.oKButtonTitleColorNormal = KMainColor;
+    imagePickerVc.navigationBar.translucent = NO;
+    
+    imagePickerVc.autoDismiss = NO;
+    
     // 3. 设置是否可以选择视频/图片/原图
     imagePickerVc.allowPickingVideo = NO;
     imagePickerVc.allowPickingImage = YES;
@@ -508,6 +518,7 @@
 /// User click cancel button
 /// 用户点击了取消
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
     if(_selectedPhotos.count >0){
         self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20-TopBarHeight+_selectedPhotos.count/4*(_itemWH + _margin*2));
         
@@ -530,36 +541,47 @@
     
     _selectedPhotos = [NSMutableArray arrayWithArray:photos];
     _selectedAssets = [NSMutableArray arrayWithArray:assets];
-    _isSelectOriginalPhoto = isSelectOriginalPhoto;
-    [_collectionView reloadData];
-    // _collectionView.contentSize = CGSizeMake(0, ((_selectedPhotos.count + 2) / 3 ) * (_margin + _itemWH));
+
+    ClipViewController *viewController = [[ClipViewController alloc] init];
+    //    viewController.image = image;
+    viewController.picker = (UIImagePickerController *)picker;
+    viewController.controller = self;
+    viewController.delegate = self;
+    viewController.imageArr = _selectedPhotos;
+    viewController.image = _selectedPhotos[0];
+    viewController.isTakePhoto = NO;
+    [picker presentViewController:viewController animated:NO completion:nil];
     
-    if(photos.count >0){
-        self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20-TopBarHeight+_selectedPhotos.count/4*(_itemWH + _margin*2));
-        
-        self.addView.alpha = 0.0;
-        self.collectionView.alpha = 1.0;
-        self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
-        self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
-        
-    }else{
-//        self.SV.scrollEnabled = NO;
-        self.addView.alpha = 1.0;
-        self.collectionView.alpha = 0.0;
-        self.collectionView.height = GetScaleWidth(120);
-        self.middleView.dc_y = GetScaleWidth(109);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
-    }
-    
-    // 1.打印图片名字
-    [self printAssetsName:assets];
-    // 2.图片位置信息
-    if (iOS8Later) {
-        for (PHAsset *phAsset in assets) {
-            NSLog(@"location:%@",phAsset.location);
-        }
-    }
+//    _isSelectOriginalPhoto = isSelectOriginalPhoto;
+//    [_collectionView reloadData];
+//    // _collectionView.contentSize = CGSizeMake(0, ((_selectedPhotos.count + 2) / 3 ) * (_margin + _itemWH));
+//
+//    if(photos.count >0){
+//        self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20-TopBarHeight+_selectedPhotos.count/4*(_itemWH + _margin*2));
+//
+//        self.addView.alpha = 0.0;
+//        self.collectionView.alpha = 1.0;
+//        self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
+//        self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
+//        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+//
+//    }else{
+////        self.SV.scrollEnabled = NO;
+//        self.addView.alpha = 1.0;
+//        self.collectionView.alpha = 0.0;
+//        self.collectionView.height = GetScaleWidth(120);
+//        self.middleView.dc_y = GetScaleWidth(109);
+//        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+//    }
+//
+//    // 1.打印图片名字
+//    [self printAssetsName:assets];
+//    // 2.图片位置信息
+//    if (iOS8Later) {
+//        for (PHAsset *phAsset in assets) {
+//            NSLog(@"location:%@",phAsset.location);
+//        }
+//    }
 }
 
 // 决定相册显示与否
@@ -988,5 +1010,34 @@
     [theTextField resignFirstResponder];// 使当前文本框失去第一响应者的特权，就会回收键盘了
     return YES;
 }
+
+- (void)clipPhoto:(NSMutableArray *)array  andAssetArray:(NSMutableArray *)assetArray{
+    [_selectedPhotos removeAllObjects];
+    [_selectedAssets removeAllObjects];
+    _selectedAssets = assetArray;
+    _selectedPhotos = array;
+    //    _isSelectOriginalPhoto = isSelectOriginalPhoto;
+    [_collectionView reloadData];
+    if(_selectedPhotos.count >0){
+        if(_selectedPhotos.count>7){
+            self.SV.scrollEnabled = YES;
+        }else{
+            self.SV.scrollEnabled = NO;
+        }
+        self.addView.alpha = 0.0;
+        self.collectionView.alpha = 1.0;
+        self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
+        self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+    }else{
+        self.SV.scrollEnabled = NO;
+        self.addView.alpha = 1.0;
+        self.collectionView.alpha = 0.0;
+        self.collectionView.height = GetScaleWidth(100);
+        self.middleView.dc_y = GetScaleWidth(109);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+    }
+}
+
 
 @end

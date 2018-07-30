@@ -53,11 +53,11 @@
     // Do any additional setup after loading the view.
     
     _shellViews = [NSMutableArray array];
-    _goodsVM = [[NSGoodsVM alloc]init];
-    _shopVM = [[NSShopVM alloc]init];
+    
     
     self.view.backgroundColor = KBGCOLOR;
     [self createUI];
+    [self buildUI];
 //    [self setUpDataWithUserId:nil];
     [self setUpNavTopView];
     [self makeConstraints];
@@ -232,10 +232,13 @@
         [_shellViews addObject:shellView];
     }
     
+    _goodsVM = [[NSGoodsVM alloc]init];
+//    _goodsVM.goodsTV.backgroundColor = [UIColor greenColor];
     _goodsVM.goodsTV.frame = ((UIView *)_shellViews[0]).bounds;
     [(UIView *)_shellViews[0] addSubview:_goodsVM.goodsTV];
 
     _shopVM = [[NSShopVM alloc]init];
+//    _shopVM.shopTV.backgroundColor = kRedColor;
     _shopVM.shopTV.frame = ((UIView *)_shellViews[1]).bounds;
     [(UIView *)_shellViews[1] addSubview:_shopVM.shopTV];
 
@@ -283,13 +286,13 @@
         if([searchType isEqualToString:@"0"]){
             weakSelf.goodsVM.goodsTV.data = [NSMutableArray arrayWithArray:result.productList];
             weakSelf.listV.size = CGSizeMake(kScreenWidth, GetScaleWidth(40)+result.productList.count*GetScaleWidth(265));
-            [self buildUI];
+//            [self buildUI];
             [weakSelf.goodsVM reloadData];
             
         }else if([searchType isEqualToString:@"1"]){
             weakSelf.shopVM.shopTV.data = [NSMutableArray arrayWithArray:result.storeList];
             self.listV.size = CGSizeMake(kScreenWidth, GetScaleWidth(40)+result.storeList.count*GetScaleWidth(126));
-            [self buildUI];
+//            [self buildUI];
             [self.shopVM.shopTV reloadData];
         }
         

@@ -558,44 +558,7 @@
     viewController.image = _selectedPhotos[0];
     viewController.isTakePhoto = NO;
     [picker presentViewController:viewController animated:NO completion:nil];
-    
-//    viewController.arrayBlock = ^(NSMutableArray *array) {
-//        _selectedPhotos = array;
-//        _isSelectOriginalPhoto = isSelectOriginalPhoto;
-//        [_collectionView reloadData];
-//        if(photos.count >0){
-//            if(_selectedPhotos.count>7){
-//                self.SV.scrollEnabled = YES;
-//            }else{
-//                self.SV.scrollEnabled = NO;
-//            }
-//            self.addView.alpha = 0.0;
-//            self.collectionView.alpha = 1.0;
-//            self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
-//            self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
-//            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
-//        }else{
-//            self.SV.scrollEnabled = NO;
-//            self.addView.alpha = 1.0;
-//            self.collectionView.alpha = 0.0;
-//            self.collectionView.height = GetScaleWidth(100);
-//            self.middleView.dc_y = GetScaleWidth(109);
-//            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
-//        }
-//
-//    };
-    
-    
 
-    
-//    // 1.打印图片名字
-//    [self printAssetsName:assets];
-//    // 2.图片位置信息
-//    if (iOS8Later) {
-//        for (PHAsset *phAsset in assets) {
-//            NSLog(@"location:%@",phAsset.location);
-//        }
-//    }
 }
 
 // 决定相册显示与否
