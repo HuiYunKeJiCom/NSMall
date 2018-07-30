@@ -28,7 +28,7 @@
  */
 + (void)createShopWithParam:(ShopPublishParam *)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure{
     [Net requestWithPost:param function:kCreateStoreAPI showHUD:NetNullStr resultClass:[NSDictionary class] success:^(id  _Nullable resultObj) {
-        DLog(@"店铺发布result = %@",resultObj);
+//        DLog(@"店铺发布result = %@",resultObj);
         //        NSString *isShelve = resultObj[@"is_shelve"];
         success?success():nil;
     } failure:^(NSError * _Nullable error) {
@@ -36,5 +36,17 @@
     }];
 }
 
+/*
+ *编辑店铺
+ */
++ (void)updateShopWithParam:(ShopPublishParam *)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure{
+    [Net requestWithPost:param function:kUpdateStoreAPI showHUD:NetNullStr resultClass:[NSDictionary class] success:^(id  _Nullable resultObj) {
+//        DLog(@"店铺发布result = %@",resultObj);
+        //        NSString *isShelve = resultObj[@"is_shelve"];
+        success?success():nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+}
 
 @end

@@ -1147,9 +1147,8 @@ typedef NS_ENUM(NSInteger, TKMidLineType) {
     CGFloat scaleFactor = WIDTH(_imageView) / _toCropImage.size.width;
 //    CGRect frame = _cropAreaView.frame;
     return [_toCropImage imageAtRect: CGRectMake((self.cropFrame.origin.x + _cropAreaBorderLineWidth) / scaleFactor, (self.cropFrame.origin.y + _cropAreaBorderLineWidth) / scaleFactor, (self.cropFrame.size.width - 2 * _cropAreaBorderLineWidth) / scaleFactor, (self.cropFrame.size.height - 2 * _cropAreaBorderLineWidth) / scaleFactor)];
-    
-    
-//    return [_toCropImage imageAtRect:CGRectMake(MINX(_topLeftCorner)*scaleFactor,MINY(_topLeftCorner)*scaleFactor,MAXX(_topRightCorner)-MINX(_topLeftCorner),MAXY(_bottomLeftCorner)-MINY(_topLeftCorner))];
+//    return [_toCropImage imageAtRect: CGRectMake((MINX(_cropAreaView) + _cropAreaBorderLineWidth) / scaleFactor, (MINY(_cropAreaView) + _cropAreaBorderLineWidth) / scaleFactor, (WIDTH(_cropAreaView) - 2 * _cropAreaBorderLineWidth) / scaleFactor, (HEIGHT(_cropAreaView) - 2 * _cropAreaBorderLineWidth) / scaleFactor)];
+
     
 }
 @end

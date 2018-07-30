@@ -52,6 +52,11 @@
     if (!_userIV) {
         _userIV = [[UIImageView alloc] initWithImage:IMAGE(@"draw_right_icon")];
 //        _userIV.backgroundColor =kRedColor;
+        _userIV.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer *myTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(headerViewClickBlock)];
+        [_userIV addGestureRecognizer:myTap];
+        
     }
     
     return _userIV;
@@ -194,6 +199,10 @@
 
 - (void)delButtonClick {
     !_delBtnClickBlock ? : _delBtnClickBlock();
+}
+
+- (void)headerViewClickBlock {
+    !_headerClickBlock ? : _headerClickBlock();
 }
 
 @end

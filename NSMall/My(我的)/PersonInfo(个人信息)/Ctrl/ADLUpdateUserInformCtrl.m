@@ -256,7 +256,7 @@
                         //                    ctrl.editTitle = title;
                         [self.navigationController pushViewController:ctrl animated:YES];
                     }else{
-                        [Common AppShowToast:NSLocalizedString(@"have been authenticated", nil)];
+                        [Common AppShowToast:[NSString stringWithFormat:@"%@!",NSLocalizedString(@"have been authenticated", nil)]];
                     }
 //                    [self.navigationController setNavigationBarHidden:NO];
                     

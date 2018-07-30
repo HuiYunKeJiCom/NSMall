@@ -228,21 +228,35 @@
 //点击按钮进行放大动画效果直到消失
 - (void)touchDownBtn:(PublishMenuButton *)btn{
     
-    if(btn.tag == 1000){
-        //线上商品
-        NSGoodsPublishVC *ctrl = [[NSGoodsPublishVC alloc] init];
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:ctrl];
-        [nav setNavigationBarHidden:YES];
-        [self presentViewController:nav animated:YES completion:nil];
-//        
-//        [self presentViewController:ctrl animated:YES completion:nil];
+    UserModel *userModel = [UserModel modelFromUnarchive];
+    if(userModel.is_certification == 0){
+        //未认证
+        [Common AppShowToast:@"请先进行实名认证"];
+    }else if(userModel.is_certification == 2){
+        //待审核
+        [Common AppShowToast:@"请等待认证通过后再进行发布操作"];
+    }else if(userModel.has_wallet == 0){
+        //未绑定钱包
+        [Common AppShowToast:@"请绑定收款钱包"];
     }else{
-        //线下店铺
-        NSShopPublishVC *ctrl = [[NSShopPublishVC alloc] init];
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:ctrl];
-        [nav setNavigationBarHidden:YES];
-        [self presentViewController:nav animated:YES completion:nil];
+        if(btn.tag == 1000){
+            //线上商品
+            NSGoodsPublishVC *ctrl = [[NSGoodsPublishVC alloc] init];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:ctrl];
+            [nav setNavigationBarHidden:YES];
+            [self presentViewController:nav animated:YES completion:nil];
+            //
+            //        [self presentViewController:ctrl animated:YES completion:nil];
+        }else{
+            //线下店铺
+            NSShopPublishVC *ctrl = [[NSShopPublishVC alloc] init];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:ctrl];
+            [nav setNavigationBarHidden:YES];
+            [self presentViewController:nav animated:YES completion:nil];
+        }
     }
+    
+    
     
 //    NSLog(@"%ld为btn.tag的值，根据不同的按钮需要做什么操作可以写这里",btn.tag);
 }

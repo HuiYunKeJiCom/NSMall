@@ -64,6 +64,7 @@
     [self setUpNavTopView];
     
     self.shareView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    self.shareView.tag = 100;
     [[[UIApplication  sharedApplication ]keyWindow ] addSubview : self.shareView];
     self.shareView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.9];
     self.shareView.alpha = 0;
@@ -71,6 +72,7 @@
     self.bgView = [[UIView alloc]init];
     self.bgView.backgroundColor = kWhiteColor;
     [[[UIApplication  sharedApplication ]keyWindow ] addSubview:self.bgView];
+    self.bgView.tag = 200;
     self.bgView.x = 30;
     self.bgView.y = kScreenHeight*0.25;
     self.bgView.size = CGSizeMake(kScreenWidth-60, kScreenHeight*0.5);
@@ -80,9 +82,10 @@
     self.scanView.layer.cornerRadius = 4;
     self.scanView.layer.masksToBounds = YES;
 //    self.scanView.backgroundColor = [UIColor greenColor];
-    self.scanView.x = kScreenWidth*0.5-95;
+    self.scanView.x = kScreenWidth*0.5-105;
     self.scanView.y = kScreenHeight*0.5*0.55-105;
     self.scanView.size = CGSizeMake(150, 150);
+    self.scanView.tag = 20;
     //    self.scanView.center = self.bgView.center;
     [self.bgView addSubview:self.scanView];
 
@@ -92,6 +95,7 @@
     closeBtn.y = -15;
     closeBtn.size = CGSizeMake(30, 30);
     [closeBtn setImage:[UIImage imageNamed:@"ic_close"] forState:UIControlStateNormal];
+    closeBtn.tag = 30;
     [self.bgView addSubview:closeBtn];
     [closeBtn addTarget:self action:@selector(hideGoodsQRCode) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -363,6 +367,8 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
+//    [self.shareView removeFromSuperview];
 }
 
 -(NSMutableDictionary *)imageDict{

@@ -58,18 +58,18 @@
     _tkImageView.needScaleCrop = YES;
     //是否显示九宫格交叉线
     _tkImageView.showCrossLines = NO;
-    _tkImageView.cornerBorderInImage = YES;
+    _tkImageView.cornerBorderInImage = NO;
     _tkImageView.cropAreaCornerWidth = 44;
     _tkImageView.cropAreaCornerHeight = 44;
     _tkImageView.minSpace = 30;
     _tkImageView.cropAreaCornerLineColor = KMainColor;
     _tkImageView.cropAreaBorderLineColor = KMainColor;
-    _tkImageView.cropAreaCornerLineWidth = 2;
+    _tkImageView.cropAreaCornerLineWidth = 0;
     _tkImageView.cropAreaBorderLineWidth = 2;
     _tkImageView.cropAreaMidLineWidth = 20;
     _tkImageView.cropAreaMidLineHeight = 2;
     _tkImageView.cropAreaMidLineColor = KMainColor;
-    _tkImageView.cropAreaCrossLineColor = KMainColor;
+    _tkImageView.cropAreaCrossLineColor = [UIColor clearColor];
     _tkImageView.cropAreaCrossLineWidth = 0.5;
     _tkImageView.initialScaleFactor = .9f;
     _tkImageView.cropAspectRatio = 1;
@@ -164,7 +164,7 @@
 - (void)sure{
     
     if(self.index == self.imageArr.count-1){
-        _tkImageView.toCropImage = self.imageArr[self.index];
+//        _tkImageView.toCropImage = self.imageArr[self.index];
         UIImage *image = [_tkImageView currentCroppedImage];
         if (self.isTakePhoto) {
             //将图片存储到相册
@@ -176,7 +176,6 @@
             //写入图片到相册
             PHAssetChangeRequest *req = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
         } completionHandler:^(BOOL success, NSError * _Nullable error) {
-            NSLog(@"success = %d, error = %@", success, error);
             PHFetchOptions*options = [[PHFetchOptions alloc]init];
             options.sortDescriptors=@[[NSSortDescriptor sortDescriptorWithKey:@"creationDate"ascending:NO]];
             PHFetchResult*assetsFetchResults = [PHAsset fetchAssetsWithOptions:options];
@@ -190,8 +189,10 @@
 //        [self.controller dismissViewControllerAnimated:YES completion:nil];
     }else if(self.index < self.imageArr.count-1){
 //        self.image = self.imageArr[self.index];
-        _tkImageView.toCropImage = self.imageArr[self.index];
+        
+//        _tkImageView.toCropImage = self.imageArr[self.index];
         self.index += 1;
+        
         CGRect dotFrame = self.dot.frame;
         self.dot.frame = CGRectMake(dotFrame.origin.x+90, dotFrame.origin.y, dotFrame.size.width, dotFrame.size.height);
         
@@ -207,6 +208,8 @@
                 UIImageWriteToSavedPhotosAlbum(image, self, nil, nil);
             }
             [self.clipImageArr addObject:image];
+        
+        _tkImageView.toCropImage = self.imageArr[self.index];
         
         [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
             //写入图片到相册

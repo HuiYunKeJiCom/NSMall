@@ -848,7 +848,7 @@
             if(i==_selectedPhotos.count-1){
                 self.param.imagePath = [pathArr componentsJoinedByString:@","];
                 DLog(@"商品图片上传 = %lu",pathArr.count);
-                DLog(@"self.param.imagePath = %@",self.param.imagePath);
+//                DLog(@"self.param.imagePath = %@",self.param.imagePath);
             self.param.productName = self.goodsNameTF.text;
             self.param.introduce = self.detailTV.text;
             

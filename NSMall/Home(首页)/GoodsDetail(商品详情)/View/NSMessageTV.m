@@ -36,6 +36,9 @@
             cell.delBtnClickBlock = ^{
                 [self deleteCommentWithIndexPath:indexPath];
             };
+            cell.headerClickBlock = ^{
+                [self goToUserPageWithIndexPath:indexPath];
+            };
         }
         return cell;
 }
@@ -69,6 +72,12 @@
 {
     if (_tbDelegate && [_tbDelegate respondsToSelector:@selector(didSelectRowAtIndexPath:)]) {
         [_tbDelegate didSelectRowAtIndexPath:indexPath];
+    }
+}
+
+-(void)goToUserPageWithIndexPath:(NSIndexPath *)indexPath{
+    if (_tbDelegate && [_tbDelegate respondsToSelector:@selector(goToUserPageWithIndexPath:)]) {
+        [_tbDelegate goToUserPageWithIndexPath:indexPath];
     }
 }
 

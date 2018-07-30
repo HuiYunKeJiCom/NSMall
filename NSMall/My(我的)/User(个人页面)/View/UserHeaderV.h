@@ -10,6 +10,7 @@
 #import "UserPageModel.h"
 
 @interface UserHeaderV : UIView
+@property(nonatomic,strong)UIButton *editBtn;/* 编辑按钮 */
 @property (nonatomic, copy) dispatch_block_t editBtnClickBlock;/* 评论按钮回调 */
 @property (nonatomic, copy) dispatch_block_t shareBtnClickBlock;/* 分享按钮回调 */
 @property(nonatomic,strong)UserPageModel *userPageM;/* 数据模型 */

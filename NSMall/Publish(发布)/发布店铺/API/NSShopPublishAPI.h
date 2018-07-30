@@ -19,4 +19,9 @@
  *店铺发布
  */
 + (void)createShopWithParam:(ShopPublishParam *)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure;
+
+/*
+ *编辑店铺
+ */
++ (void)updateShopWithParam:(ShopPublishParam *)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure;
 @end

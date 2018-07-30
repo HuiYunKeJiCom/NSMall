@@ -16,6 +16,7 @@
 @property (strong, nonatomic) UILabel        *timeLb;
 
 @property (nonatomic, copy) dispatch_block_t delBtnClickBlock;/* 删除按钮回调 */
+@property (nonatomic, copy) dispatch_block_t headerClickBlock;/* 头像点击回调 */
 
 @property (strong, nonatomic) NSMessageModel *messageModel;
 @end

@@ -13,5 +13,117 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Desktop/NSMall/NSMall/My(&#x6211;&#x7684;)/Shop(&#x6211;&#x7684;&#x5e97;&#x94fa;)/&#x7f16;&#x8f91;&#x5e97;&#x94fa;/NSShopEditVC.m"
+            timestampString = "554648585.714752"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "887"
+            endingLineNumber = "887"
+            landmarkName = "-editSuccess:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Desktop/NSMall/NSMall/My(&#x6211;&#x7684;)/Shop(&#x6211;&#x7684;&#x5e97;&#x94fa;)/&#x7f16;&#x8f91;&#x5e97;&#x94fa;/NSShopEditVC.m"
+            timestampString = "554648585.715755"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "915"
+            endingLineNumber = "915"
+            landmarkName = "-editSuccess:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__28-[NSShopEditVC editSuccess:]_block_invoke_2"
+                  moduleName = "NSMall"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/NSMall/NSMall/My(%E6%88%91%E7%9A%84)/Shop(%E6%88%91%E7%9A%84%E5%BA%97%E9%93%BA)/%E7%BC%96%E8%BE%91%E5%BA%97%E9%93%BA/NSShopEditVC.m"
+                  timestampString = "554626537.073431"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "915"
+                  endingLineNumber = "915"
+                  offsetFromSymbolStart = "384">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__28-[NSShopEditVC editSuccess:]_block_invoke_3"
+                  moduleName = "NSMall"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/NSMall/NSMall/My(%E6%88%91%E7%9A%84)/Shop(%E6%88%91%E7%9A%84%E5%BA%97%E9%93%BA)/%E7%BC%96%E8%BE%91%E5%BA%97%E9%93%BA/NSShopEditVC.m"
+                  timestampString = "554626537.076701"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "915"
+                  endingLineNumber = "915"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Desktop/NSMall/NSMall/My(&#x6211;&#x7684;)/Shop(&#x6211;&#x7684;&#x5e97;&#x94fa;)/&#x7f16;&#x8f91;&#x5e97;&#x94fa;/NSShopEditVC.m"
+            timestampString = "554648585.715945"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "898"
+            endingLineNumber = "898"
+            landmarkName = "-editSuccess:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[NSShopEditVC editSuccess:]"
+                  moduleName = "NSMall"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/NSMall/NSMall/My(%E6%88%91%E7%9A%84)/Shop(%E6%88%91%E7%9A%84%E5%BA%97%E9%93%BA)/%E7%BC%96%E8%BE%91%E5%BA%97%E9%93%BA/NSShopEditVC.m"
+                  timestampString = "554626537.083963"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "898"
+                  endingLineNumber = "898"
+                  offsetFromSymbolStart = "768">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__28-[NSShopEditVC editSuccess:]_block_invoke"
+                  moduleName = "NSMall"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/NSMall/NSMall/My(%E6%88%91%E7%9A%84)/Shop(%E6%88%91%E7%9A%84%E5%BA%97%E9%93%BA)/%E7%BC%96%E8%BE%91%E5%BA%97%E9%93%BA/NSShopEditVC.m"
+                  timestampString = "554626537.086162"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "898"
+                  endingLineNumber = "898"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

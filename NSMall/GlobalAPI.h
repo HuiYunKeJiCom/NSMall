@@ -78,6 +78,7 @@ const static NSString * const kShelveProductAPI = @"auth/shelveProduct";//上/�
 //店铺发布
 const static NSString * const kCreateStoreAPI = @"auth/createStore";//店铺发布
 const static NSString * const kUploadStoreImageAPI = @"auth/uploadStoreImage";//店铺图片上传
+const static NSString * const kUpdateStoreAPI = @"auth/updateStore";//编辑店铺信息
 
 
 //商品详情

@@ -1952,8 +1952,8 @@
 		1868F6BB20FEEFC8000BB6EB /* API */ = {
 			isa = PBXGroup;
 			children = (
-				1868F6BC20FEEFC8000BB6EB /* MyShopAPI.m */,
 				1868F6BD20FEEFC8000BB6EB /* MyShopAPI.h */,
+				1868F6BC20FEEFC8000BB6EB /* MyShopAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";

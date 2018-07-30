@@ -23,8 +23,9 @@
 #import "NSCommentItemModel.h"
 #import "NSPublishCommentParam.h"
 #import "UserPageVC.h"
+#import "UITextView+ZWPlaceHolder.h"
 
-@interface NSGoodsDetailVC ()<UIScrollViewDelegate,NSMessageTVDelegate,UIAlertViewDelegate,UITextFieldDelegate>
+@interface NSGoodsDetailVC ()<UIScrollViewDelegate,NSMessageTVDelegate,UIAlertViewDelegate,UITextViewDelegate>
 @property(nonatomic,strong)UIScrollView *SV;/* 滚动 */
 @property(nonatomic,strong)NSGoodsDetailModel *model;/* 商品详情模型 */
 @property(nonatomic,copy)NSString *productID;/* 商品ID */
@@ -39,8 +40,9 @@
 
 @property(nonatomic,strong)UIView *messageView;/* 留言View */
 @property (nonatomic, copy) NSIndexPath *deleteIndexPath;/* 待删除的评论IndexPath */
+@property(nonatomic,strong)UIView *commentView;/* 评论View */
 @property(nonatomic,strong)UIView *bottomV;/* 底部留言View */
-@property(nonatomic,strong)UITextField *messageTF;/* 评论框 */
+@property(nonatomic,strong)UITextView *messageTF;/* 评论框 */
 @end
 
 @implementation NSGoodsDetailVC
@@ -358,37 +360,51 @@
 }
 
 -(void)createBottomView{
-    self.bottomV = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-GetScaleWidth(50), kScreenWidth, GetScaleWidth(50))];
+    
+    self.commentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    
+    
+    self.bottomV = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-GetScaleWidth(150), kScreenWidth, GetScaleWidth(150))];
     self.bottomV.backgroundColor = kWhiteColor;
     self.bottomV.layer.borderWidth = 1;
     self.bottomV.alpha = 0.0;
     self.bottomV.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     [self.view addSubview:self.bottomV];
     
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.backgroundColor = kRedColor;
-    backBtn.x = 19;
-    backBtn.y = 15;
-    backBtn.size = CGSizeMake(20, 20);
-    [backBtn addTarget:self action:@selector(hideBottomV) forControlEvents:UIControlEventTouchUpInside];
-    [self.bottomV addSubview:backBtn];
+//    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    backBtn.backgroundColor = kRedColor;
+//    backBtn.x = 19;
+//    backBtn.y = 15;
+//    backBtn.size = CGSizeMake(20, 20);
+//    [backBtn addTarget:self action:@selector(hideBottomV) forControlEvents:UIControlEventTouchUpInside];
+//    [self.bottomV addSubview:backBtn];
     
-    self.messageTF = [[UITextField alloc]init];
+    self.messageTF = [[UITextView alloc] initWithFrame:CGRectMake(GetScaleWidth(10), GetScaleWidth(15), kScreenWidth-GetScaleWidth(20), GetScaleWidth(90))];
+    self.messageTF.textColor = [UIColor lightGrayColor];
+    self.messageTF.backgroundColor = KBGCOLOR;
+    self.messageTF.font = [UIFont systemFontOfSize:14];
     self.messageTF.delegate = self;
-    self.messageTF.textColor = kBlackColor;
-    self.messageTF.backgroundColor = kWhiteColor;
-    self.messageTF.font = UISystemFontSize(14);
-    self.messageTF.x = 58;
-    self.messageTF.y = 10;
-    UIView *paddingView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 5, GetScaleWidth(25))];
-    self.messageTF.leftView = paddingView;
-    self.messageTF.leftViewMode = UITextFieldViewModeAlways;
-    self.messageTF.size = CGSizeMake(kScreenWidth-136, 25);
-    self.messageTF.clearsOnBeginEditing = YES;
+    self.messageTF.zw_placeHolder = @"请输入评论内容";
+    self.messageTF.zw_placeHolderColor = [UIColor lightGrayColor];
+    
+    self.messageTF.textContainerInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    
+//    self.messageTF = [[UITextField alloc]init];
+//    self.messageTF.delegate = self;
+//    self.messageTF.textColor = kBlackColor;
+//    self.messageTF.backgroundColor = kWhiteColor;
+//    self.messageTF.font = UISystemFontSize(14);
+//    self.messageTF.x = 58;
+//    self.messageTF.y = 10;
+//    UIView *paddingView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 5, GetScaleWidth(25))];
+//    self.messageTF.leftView = paddingView;
+//    self.messageTF.leftViewMode = UITextFieldViewModeAlways;
+//    self.messageTF.size = CGSizeMake(kScreenWidth-136, 25);
+//    self.messageTF.clearsOnBeginEditing = YES;
     [self.bottomV addSubview:self.messageTF];
     self.messageTF.layer.cornerRadius = 5.0;//2.0是圆角的弧度，根据需求自己更改
-    self.messageTF.layer.borderColor = kBlackColor.CGColor;//设置边框颜色
-    self.messageTF.layer.borderWidth = 1.0f;//设置边框宽度
+//    self.messageTF.layer.borderColor = kBlackColor.CGColor;//设置边框颜色
+//    self.messageTF.layer.borderWidth = 1.0f;//设置边框宽度
     
     UIButton *sendBtn = [[UIButton alloc]init];
     [sendBtn setTitleColor:kWhiteColor forState:0];
@@ -401,9 +417,9 @@
     sendBtn.backgroundColor = KMainColor;
     [sendBtn addTarget:self action:@selector(sendComment) forControlEvents:UIControlEventTouchUpInside];
     [self.bottomV addSubview:sendBtn];
-    sendBtn.x = kScreenWidth-GetScaleWidth(59);
-    sendBtn.y = 15;
-    sendBtn.size = CGSizeMake(GetScaleWidth(40), GetScaleWidth(20));
+    sendBtn.x = kScreenWidth-GetScaleWidth(75);
+    sendBtn.y = CGRectGetMaxY(self.messageTF.frame)+GetScaleWidth(10);
+    sendBtn.size = CGSizeMake(GetScaleWidth(60), GetScaleWidth(25));
 }
 
 -(void)showBottomV{
@@ -426,7 +442,7 @@
     [GoodsDetailAPI publishComment:param success:^(NSCommentItemModel * _Nullable result) {
         DLog(@"发布商品评论成功");
         
-        [self.messageTV.data insertObject:[[NSMessageModel alloc] initWithUserName:result.user_name imagePath:result.user_avatar content:result.content time:result.create_time commentId:result.comment_id] atIndex:0];
+        [self.messageTV.data insertObject:[[NSMessageModel alloc] initWithUserName:result.user_name imagePath:result.user_avatar content:result.content time:result.create_time commentId:result.comment_id userId:result.user_id] atIndex:0];
         
         self.messageView.size = CGSizeMake(kScreenWidth, self.messageTV.data.count*GetScaleWidth(95)+GetScaleWidth(172));
         self.messageTV.size = CGSizeMake(kScreenWidth, self.messageTV.data.count*GetScaleWidth(95));
@@ -605,7 +621,7 @@
 //        weakSelf.messageTV.data = [NSMutableArray arrayWithArray:result.commentList];
         
         for (NSCommentItemModel *itemModel in result.commentList) {
-            [weakSelf.messageTV.data addObject:[[NSMessageModel alloc] initWithUserName:itemModel.user_name imagePath:itemModel.user_avatar content:itemModel.content time:itemModel.create_time commentId:itemModel.comment_id]];
+            [weakSelf.messageTV.data addObject:[[NSMessageModel alloc] initWithUserName:itemModel.user_name imagePath:itemModel.user_avatar content:itemModel.content time:itemModel.create_time commentId:itemModel.comment_id userId:itemModel.user_id]];
         }
         self.messageView.size = CGSizeMake(kScreenWidth, result.commentList.count*GetScaleWidth(95)+GetScaleWidth(172));
         self.messageTV.size = CGSizeMake(kScreenWidth, result.commentList.count*GetScaleWidth(95));
@@ -629,6 +645,15 @@
     
 }
 
+-(void)goToUserPageWithIndexPath:(NSIndexPath *)indexPath{
+    DLog(@"跳转至个人页面");
+    NSMessageModel *model = self.messageTV.data[indexPath.section];
+    //跳转至个人页面
+    UserPageVC *userPageVC = [UserPageVC new];
+    [userPageVC setUpDataWithUserId:model.userId];
+    [self.navigationController pushViewController:userPageVC animated:YES];
+}
+
 -(void)removeComment{
     DLog(@"removeComment");
     NSMessageModel *model = self.messageTV.data[self.deleteIndexPath.section];
@@ -645,6 +670,7 @@
         [self.messageTV reloadData];
     } faulre:^(NSError *error) {
         DLog(@"删除评论失败");
+        DLog(@"error = %@",error);
     }];
 
 }

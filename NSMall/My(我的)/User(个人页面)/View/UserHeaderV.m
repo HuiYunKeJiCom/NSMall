@@ -19,7 +19,6 @@
 @property(nonatomic,strong)UILabel *goodsL;/* 商品数 */
 @property(nonatomic,strong)UILabel *shopL;/* 店铺数 */
 @property(nonatomic,strong)UILabel *commentL;/* 评价数 */
-@property(nonatomic,strong)UIButton *editBtn;/* 编辑按钮 */
 @property(nonatomic,strong)UIButton *shareBtn;/* 分享按钮 */
 @end
 

@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSString *content;
 @property (nonatomic, strong) NSString *time;
 @property(nonatomic,strong)NSString *commentId;/* 评论id */
+@property(nonatomic,strong)NSString *userId;/* 用户Id */
 
-- (instancetype)initWithUserName:(NSString *)userName imagePath:(NSString *)imagePath content:(NSString *)content time:(NSString *)time commentId:(NSString *)commentId;
+- (instancetype)initWithUserName:(NSString *)userName imagePath:(NSString *)imagePath content:(NSString *)content time:(NSString *)time commentId:(NSString *)commentId userId:(NSString *)userId;
 @end

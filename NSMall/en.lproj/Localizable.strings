@@ -670,7 +670,7 @@
 "sex" = "性别";
 "personal information" = "个人信息";
 "exit logon" = "退出登录";
-"have been authenticated" = "你已进行过实名认证";
+"have been authenticated" = "您已实名认证";
 "secrecy" = "保密";
 "uncertified" = "未认证";
 "certified" = "已认证";

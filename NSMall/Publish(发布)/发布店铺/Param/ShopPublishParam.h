@@ -14,6 +14,8 @@
  http://doc.huist.cn/index.php?s=/10&page_id=203
  */
 
+
+@property (nonatomic,copy,nonnull)NSString *storeId;//店铺ID(编辑店铺的时候需要)
 @property (nonatomic,copy,nonnull)NSString *storeName;//店铺名称
 @property (nonatomic,copy,nonnull)NSString *introduce;//店铺简介描述
 @property (nonatomic,copy,nonnull)NSString *mobile;//联系人电话

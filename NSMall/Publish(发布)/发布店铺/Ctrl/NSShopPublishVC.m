@@ -787,11 +787,12 @@
 }
 
 -(void)publish:(UIButton *)btn{
-    NSMutableArray *pathArr = [NSMutableArray array];
+    
     
     dispatch_group_t group = dispatch_group_create();
     dispatch_group_enter(group);
     
+    NSMutableArray *pathArr = [NSMutableArray array];
     for(int i=0;i<_selectedPhotos.count;i++){
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
         [param setObject:_selectedPhotos[i] forKey:@"pic"];
@@ -951,6 +952,9 @@
     _selectedAssets = assetArray;
     _selectedPhotos = array;
 //    _isSelectOriginalPhoto = isSelectOriginalPhoto;
+    
+    
+    
     [_collectionView reloadData];
     if(_selectedPhotos.count >0){
         if(_selectedPhotos.count>7){
