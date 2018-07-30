@@ -189,10 +189,9 @@
         [self.picker dismissViewControllerAnimated:YES completion:nil];
 //        [self.controller dismissViewControllerAnimated:YES completion:nil];
     }else if(self.index < self.imageArr.count-1){
-        self.index += 1;
 //        self.image = self.imageArr[self.index];
         _tkImageView.toCropImage = self.imageArr[self.index];
-        
+        self.index += 1;
         CGRect dotFrame = self.dot.frame;
         self.dot.frame = CGRectMake(dotFrame.origin.x+90, dotFrame.origin.y, dotFrame.size.width, dotFrame.size.height);
         
