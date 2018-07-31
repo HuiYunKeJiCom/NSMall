@@ -87,7 +87,6 @@
 		18559955210187F300D95602 /* NSMessageAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18559954210187F300D95602 /* NSMessageAPI.m */; };
 		185DFDFE20B3C7E800437168 /* NSCategoryTV.m in Sources */ = {isa = PBXBuildFile; fileRef = 185DFDFD20B3C7E800437168 /* NSCategoryTV.m */; };
 		185DFE0120B3FA8A00437168 /* NSCategoryTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185DFE0020B3FA8A00437168 /* NSCategoryTVCell.m */; };
-		1863D26720A96C8800047A7D /* NSGoodsShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863D26620A96C8800047A7D /* NSGoodsShowCell.m */; };
 		1863D26B20A9873C00047A7D /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863D26A20A9873C00047A7D /* UIButton+Bootstrap.m */; };
 		1868F6A720FEEC90000BB6EB /* XTGuidePagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868F6A320FEEC8F000BB6EB /* XTGuidePagesViewController.m */; };
 		1868F6A820FEEC90000BB6EB /* CALayer+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868F6A420FEEC8F000BB6EB /* CALayer+Transition.m */; };
@@ -598,8 +597,6 @@
 		185DFDFD20B3C7E800437168 /* NSCategoryTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCategoryTV.m; sourceTree = "<group>"; };
 		185DFDFF20B3FA8A00437168 /* NSCategoryTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCategoryTVCell.h; sourceTree = "<group>"; };
 		185DFE0020B3FA8A00437168 /* NSCategoryTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCategoryTVCell.m; sourceTree = "<group>"; };
-		1863D26520A96C8800047A7D /* NSGoodsShowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSGoodsShowCell.h; sourceTree = "<group>"; };
-		1863D26620A96C8800047A7D /* NSGoodsShowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSGoodsShowCell.m; sourceTree = "<group>"; };
 		1863D26920A9873B00047A7D /* UIButton+Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Bootstrap.h"; sourceTree = "<group>"; };
 		1863D26A20A9873C00047A7D /* UIButton+Bootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Bootstrap.m"; sourceTree = "<group>"; };
 		1868F6A320FEEC8F000BB6EB /* XTGuidePagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTGuidePagesViewController.m; sourceTree = "<group>"; };
@@ -1884,8 +1881,6 @@
 			children = (
 				1874D5BA20AA8F8A0004B1AF /* DCHomeTopToolView.h */,
 				1874D5B920AA8F8A0004B1AF /* DCHomeTopToolView.m */,
-				1863D26520A96C8800047A7D /* NSGoodsShowCell.h */,
-				1863D26620A96C8800047A7D /* NSGoodsShowCell.m */,
 				18D62C5620C2737300F66C4C /* NSGoodsShowCellTest.h */,
 				18D62C5720C2737300F66C4C /* NSGoodsShowCellTest.m */,
 				1874D5BC20AABFDA0004B1AF /* NSCarouselView.h */,
@@ -1932,8 +1927,8 @@
 		1868F6B320FEEFC8000BB6EB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1868F6B420FEEFC8000BB6EB /* NSMyShopTVCell.m */,
 				1868F6B520FEEFC8000BB6EB /* NSMyShopTVCell.h */,
+				1868F6B420FEEFC8000BB6EB /* NSMyShopTVCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4389,7 +4384,6 @@
 				18333C4620F83FE2004571FE /* NSCommentListModel.m in Sources */,
 				1868F77320FEF391000BB6EB /* EMChatroomMutesViewController.m in Sources */,
 				18E3A45420B2E63D00F847ED /* GoodsPublishParam.m in Sources */,
-				1863D26720A96C8800047A7D /* NSGoodsShowCell.m in Sources */,
 				1842A6E620B59D360090861D /* LZCartTableViewCell.m in Sources */,
 				18C3D0A420A2F190000FCE7F /* UIView+YWFrame.m in Sources */,
 				18C3D0D720A3FAC3000FCE7F /* UIBarButtonItem+gyh.m in Sources */,

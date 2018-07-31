@@ -22,7 +22,7 @@
 
 const static NSString * const NetDomainADDR = @"https://stagewww.neublockchain.com/nsshop/app/";//国外测试环境
 
-//const static NSString * const NetDomainADDR = @"https://192.168.0.59:7108/nsshop/app/";//国外测试环境
+//const static NSString * const NetDomainADDR = @"http://192.168.0.59:7108/nsshop/app/";//锡恩电脑环境
 
 
 

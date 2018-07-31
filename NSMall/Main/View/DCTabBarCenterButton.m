@@ -36,7 +36,14 @@
     
     XWPopMenuController *vc = [[XWPopMenuController alloc]init];
     //虚化背景
-    UIImage *image = [UIImage imageWithCaputureView:[DCTabBarController sharedTabBarVC].view];
+//    UIImage *image = [UIImage imageWithCaputureView:[DCTabBarController sharedTabBarVC].view];
+    
+   UIWindow *window = [[UIApplication  sharedApplication ]keyWindow ]; UIGraphicsBeginImageContextWithOptions(window.bounds.size, NO, [UIScreen mainScreen].scale);
+    [window.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+//    UIImage *image = [UIImage imageWithCaputureView:[DCNavigationController sharedRootNavigationController].view];
     
     vc.backImg = image;
     [[DCTabBarController sharedTabBarVC] presentViewController:vc animated:YES completion:nil];

@@ -88,7 +88,7 @@
  发布商品评论
  */
 + (void)publishComment:(nullable NSPublishCommentParam *)param success:(void (^)(NSCommentItemModel * _Nullable result))success failure:(void (^)(NSError *error))failure{
-    [Net requestWithGet:param function:kPublishCommentAPI showHUD:NetNullStr resultClass:[NSCommentItemModel class] success:^(NSCommentItemModel  * _Nullable  resultObj){
+    [Net requestWithPost:param function:kPublishCommentAPI showHUD:NetNullStr resultClass:[NSCommentItemModel class] success:^(NSCommentItemModel  * _Nullable  resultObj){
         success?success(resultObj):nil;
     } failure:^(NSError * _Nullable error) {
         failure?failure(error):nil;

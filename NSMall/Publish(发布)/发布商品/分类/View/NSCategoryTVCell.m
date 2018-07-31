@@ -19,7 +19,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.contentView.backgroundColor = [UIColor grayColor];
+        self.contentView.backgroundColor = KBGCOLOR;
         [self initViews];
         [self makeConstraints];
         

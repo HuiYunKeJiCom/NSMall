@@ -10,7 +10,7 @@
 #import "ProductListItemModel.h"
 #import "ADOrderTopToolView.h"
 #import "HomePageAPI.h"
-#import "NSGoodsShowCell.h"
+#import "NSGoodsShowCellTest.h"
 #import "SearchModel.h"
 #import "UIButton+Bootstrap.h"
 
@@ -101,7 +101,7 @@
         _dataTV.isLoadMore = YES;
         _dataTV.isRefresh = YES;
         _dataTV.delegateBase = self;
-        [_dataTV registerClass:[NSGoodsShowCell class] forCellReuseIdentifier:@"NSGoodsShowCell"];
+        [_dataTV registerClass:[NSGoodsShowCellTest class] forCellReuseIdentifier:@"NSGoodsShowCellTest"];
         
     }
     return _dataTV;
@@ -139,9 +139,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    NSGoodsShowCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSGoodsShowCell"];
+    NSGoodsShowCellTest *cell = [tableView dequeueReusableCellWithIdentifier:@"NSGoodsShowCellTest"];
     if (!cell) {
-        cell = [[NSGoodsShowCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSGoodsShowCell"];
+        cell = [[NSGoodsShowCellTest alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSGoodsShowCellTest"];
     }
     WEAKSELF
     if (self.dataTV.data.count > indexPath.section) {
@@ -179,7 +179,7 @@
 }
 
 -(void)likeClickAtIndexPath:(NSIndexPath *)indexPath{
-    NSGoodsShowCell *cell = [self.dataTV cellForRowAtIndexPath:indexPath];
+    NSGoodsShowCellTest *cell = [self.dataTV cellForRowAtIndexPath:indexPath];
     [HomePageAPI changeProductLikeState:cell.productModel.product_id success:^(NSLikeModel *model) {
         DLog(@"点赞成功");
         DLog(@"model = %@",model.mj_keyValues);

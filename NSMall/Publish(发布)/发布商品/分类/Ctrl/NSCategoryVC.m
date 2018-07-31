@@ -81,6 +81,7 @@
         _goodsTable.isLoadMore = YES;
         _goodsTable.isRefresh = YES;
         _goodsTable.delegateBase = self;
+        _goodsTable.backgroundColor = KBGCOLOR;
         [_goodsTable registerClass:[NSCategoryTableViewCell class] forCellReuseIdentifier:@"NSCategoryTableViewCell"];
         
     }

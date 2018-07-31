@@ -55,7 +55,7 @@
     self.specTF.tag = 10;
     self.specTF.font = [UIFont systemFontOfSize:14];
     self.specTF.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.specTF.placeholder = NSLocalizedString(@"size, size, color, etc", nil);
+//    self.specTF.placeholder = NSLocalizedString(@"size, size, color, etc", nil);
     self.specTF.textColor = [UIColor lightGrayColor];
     self.specTF.backgroundColor = kWhiteColor;
     UIView *paddingView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, GetScaleWidth(30))];
@@ -84,7 +84,7 @@
     self.priceTF.tag = 100;
     self.priceTF.font = [UIFont systemFontOfSize:14];
     self.priceTF.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.priceTF.placeholder = NSLocalizedString(@"make a good price for the goods", nil);
+//    self.priceTF.placeholder = NSLocalizedString(@"make a good price for the goods", nil);
     self.priceTF.textColor = [UIColor lightGrayColor];
     self.priceTF.backgroundColor = kWhiteColor;
     UIView *paddingView2 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, GetScaleWidth(30))];

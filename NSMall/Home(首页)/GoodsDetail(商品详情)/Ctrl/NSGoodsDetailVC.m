@@ -362,14 +362,18 @@
 -(void)createBottomView{
     
     self.commentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    [self.view addSubview:self.commentView];
+    self.commentView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.5];
+    self.commentView.alpha = 0.0;
+    UITapGestureRecognizer *tapBackGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideBottomV)];
+    [self.commentView addGestureRecognizer:tapBackGesture];
     
-    
-    self.bottomV = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-GetScaleWidth(150), kScreenWidth, GetScaleWidth(150))];
+    self.bottomV = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, GetScaleWidth(150))];
     self.bottomV.backgroundColor = kWhiteColor;
     self.bottomV.layer.borderWidth = 1;
     self.bottomV.alpha = 0.0;
     self.bottomV.layer.borderColor = [[UIColor lightGrayColor] CGColor];
-    [self.view addSubview:self.bottomV];
+    [self.commentView addSubview:self.bottomV];
     
 //    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    backBtn.backgroundColor = kRedColor;
@@ -406,6 +410,21 @@
 //    self.messageTF.layer.borderColor = kBlackColor.CGColor;//设置边框颜色
 //    self.messageTF.layer.borderWidth = 1.0f;//设置边框宽度
     
+    UIToolbar * topView = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
+    [topView setBarStyle:UIBarStyleDefault];
+//    topView.backgroundColor = kWhiteColor;
+//    topView.barTintColor = kWhiteColor;
+    
+    UIBarButtonItem * helloButton = [[UIBarButtonItem alloc]initWithTitle:@"确认" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyBoard)];
+
+    UIBarButtonItem * btnSpace = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    
+    UIBarButtonItem * doneButton = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyBoard)];
+    NSArray * buttonsArray = [NSArray arrayWithObjects:helloButton,btnSpace, doneButton,nil];
+    
+    [topView setItems:buttonsArray];
+    [self.messageTF setInputAccessoryView:topView];
+    
     UIButton *sendBtn = [[UIButton alloc]init];
     [sendBtn setTitleColor:kWhiteColor forState:0];
     sendBtn.titleLabel.font = UISystemFontSize(13);
@@ -424,12 +443,18 @@
 
 -(void)showBottomV{
     [UIView animateWithDuration:0.3 animations:^{
+        self.commentView.alpha = 1.0;
         self.bottomV.alpha = 1.0;
+        self.bottomV.frame = CGRectMake(0, kScreenHeight-GetScaleWidth(150), kScreenWidth, GetScaleWidth(150));
+    } completion:^(BOOL finished) {
     }];
 }
 
 -(void)hideBottomV{
     [UIView animateWithDuration:0.3 animations:^{
+        self.bottomV.frame = CGRectMake(0, kScreenHeight, kScreenWidth, GetScaleWidth(150));
+    } completion:^(BOOL finished) {
+        self.commentView.alpha = 0.0;
         self.bottomV.alpha = 0.0;
     }];
 }
@@ -450,7 +475,7 @@
         self.noMoreV.y = CGRectGetMaxY(self.messageTV.frame);
         [self.messageTV reloadData];
         self.messageTF.text = @"";
-        
+        [self dismissKeyBoard];
     } failure:^(NSError *error) {
         DLog(@"发布商品评论失败");
     }];
@@ -684,10 +709,9 @@
     }
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];// 使当前文本框失去第一响应者的特权，就会回收键盘了
-    
-    return YES;
+-(void)dismissKeyBoard
+{
+    [self.messageTF resignFirstResponder];
 }
 
 #pragma mark -      键盘即将跳出

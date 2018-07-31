@@ -106,13 +106,13 @@
         return GetScaleWidth(0);
     }else{
         //设置间隔高度
-        return GetScaleWidth(6);
+        return GetScaleWidth(10);
     }
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
-    UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(6))];
+    UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(10))];
     sectionView.backgroundColor = KBGCOLOR;
     return sectionView;
 }
@@ -132,8 +132,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSMyShopTVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSMyShopTVCell"];
-    if (self.goodsTable.data.count > indexPath.row) {
-        NSShopListItemModel *model = self.goodsTable.data[indexPath.row];
+    if (self.goodsTable.data.count > indexPath.section) {
+        NSShopListItemModel *model = self.goodsTable.data[indexPath.section];
         //        NSLog(@"model = %@",model.mj_keyValues);
         cell.model = model;
         cell.deleteBtnClickBlock = ^{

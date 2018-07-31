@@ -65,7 +65,7 @@
 //重新初始化主视图样式 透明->
 -(void)loadView{
     UIView *view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    [view setBackgroundColor:[UIColor whiteColor]];
+    [view setBackgroundColor:[UIColor clearColor]];
     //获取截取的背景图片，便于达到模糊背景效果
     UIImageView *imgView = [[UIImageView alloc]initWithImage:_backImg];
     //模糊效果层
@@ -113,7 +113,7 @@
     
     UIImageView *imgView = [[UIImageView alloc]initWithImage:img];
     
-    imgView.frame = CGRectMake(self.view.center.x-GetScaleWidth(15), self.view.frame.size.height-GetScaleWidth(70), GetScaleWidth(30), GetScaleWidth(30));
+    imgView.frame = CGRectMake(self.view.center.x-GetScaleWidth(15), self.view.frame.size.height-GetScaleWidth(63), GetScaleWidth(30), GetScaleWidth(30));
     [self.view addSubview:imgView];
     
     _closeImgView = imgView;

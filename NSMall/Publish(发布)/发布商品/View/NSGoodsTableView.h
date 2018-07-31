@@ -7,12 +7,12 @@
 //
 
 #import "BaseTableView.h"
-
+@class NSGoodsTableView;
 @protocol NSGoodsTableViewDelegate <NSObject>
 
 @optional
 
-- (void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)goodsTableView:(NSGoodsTableView *)goodsTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 
 -(void)addSpecViewWithIndexPath:(NSIndexPath *)indexPath;
 
@@ -21,5 +21,5 @@
 @interface NSGoodsTableView : BaseTableView
 @property (weak,nonatomic) id<NSGoodsTableViewDelegate> tbDelegate;
 @property(nonatomic,strong)NSMutableDictionary *dict;/* 改变高度的字典 */
-@property(nonatomic)BOOL isShow;/* 是否显示数量 */
+//@property(nonatomic)BOOL isShow;/* 是否显示数量 */
 @end

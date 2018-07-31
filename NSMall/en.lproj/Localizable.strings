@@ -565,9 +565,10 @@
 "specifications" = "规格";
 "size, size, color, etc" = "尺寸、大小、颜色等";
 "price" = "价格";
+"price(N)" = "价格(诺一股)";
 "make a good price for the goods" = "给商品定个好价格";
 "stock" = "库存";
-"setting up reasonable stock" = "设置合理库存避免超卖";
+"setting up reasonable stock" = "无限库存请填-1";
 "enter" = "请输入";
 "online goods" = "线上商品";
 "offline shop" = "线下店铺";
@@ -603,8 +604,10 @@
 "on shelf" = "上架";
 "selection sort" = "选择分类";
 "number" = "数量";
+"stock(g)" = "库存(个)";
 "add goods specifications" = "添加商品规格";
 "fee" = "运费";
+"fee(N)" = "运费(诺一股)";
 "individual" = "个";
 "goods publish" = "发布商品";
 "goods publish success" = "商品发布成功";

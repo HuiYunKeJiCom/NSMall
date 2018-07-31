@@ -33,6 +33,8 @@
     CGFloat _margin;
 }
 @property (nonatomic, strong) UIImagePickerController *imagePickerVc;
+@property (strong, nonatomic) NSGoodsTableView   *upTableView;//分类
+@property (strong, nonatomic) NSGoodsTableView   *midTableView;//库存和价格
 @property (strong, nonatomic) NSGoodsTableView   *otherTableView;
 @property (strong, nonatomic) CLLocation *location;
 
@@ -59,13 +61,17 @@
         self.collectionView.alpha = 1.0;
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
         self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+        self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+        self.midTableView.dc_y = CGRectGetMaxY(self.upTableView.frame)+GetScaleWidth(15);
+//        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
     }else{
 //        self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
         self.middleView.dc_y = GetScaleWidth(109);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+        self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+        self.midTableView.dc_y = CGRectGetMaxY(self.upTableView.frame)+GetScaleWidth(15);
+//        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
     }
 }
 
@@ -83,19 +89,51 @@
     self.SV.backgroundColor = KBGCOLOR;
     [self.view addSubview:self.SV];
     
-    self.otherTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(319), kScreenWidth, GetScaleWidth(288)) style:UITableViewStyleGrouped];
-    self.otherTableView.backgroundColor = [UIColor clearColor];
-    self.otherTableView.bounces = NO;
-    self.otherTableView.tbDelegate = self;
-    self.otherTableView.isRefresh = NO;
-    self.otherTableView.isLoadMore = NO;
-    self.otherTableView.isShow = YES;
+    self.upTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(319), kScreenWidth, GetScaleWidth(43)) style:UITableViewStyleGrouped];
+    self.upTableView.tag = 10;
+    self.upTableView.backgroundColor = [UIColor clearColor];
+    self.upTableView.bounces = NO;
+    self.upTableView.tbDelegate = self;
+    self.upTableView.isRefresh = NO;
+    self.upTableView.isLoadMore = NO;
+//    self.upTableView.isShow = YES;
     if (@available(iOS 11.0, *)) {
-        self.otherTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        self.upTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-    [self.SV addSubview:self.otherTableView];
+    [self.SV addSubview:self.upTableView];
+    
+    self.midTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(319), kScreenWidth, GetScaleWidth(86)) style:UITableViewStyleGrouped];
+    self.midTableView.tag = 20;
+    self.midTableView.backgroundColor = [UIColor clearColor];
+    self.midTableView.bounces = NO;
+    self.midTableView.tbDelegate = self;
+    self.midTableView.isRefresh = NO;
+    self.midTableView.isLoadMore = NO;
+//    self.midTableView.isShow = YES;
+    if (@available(iOS 11.0, *)) {
+        self.midTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    [self.SV addSubview:self.midTableView];
+    
+//    self.otherTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(319), kScreenWidth, GetScaleWidth(288)) style:UITableViewStyleGrouped];
+//    self.otherTableView.backgroundColor = [UIColor clearColor];
+//    self.otherTableView.bounces = NO;
+//    self.otherTableView.tbDelegate = self;
+//    self.otherTableView.isRefresh = NO;
+//    self.otherTableView.isLoadMore = NO;
+//    self.otherTableView.isShow = YES;
+//    if (@available(iOS 11.0, *)) {
+//        self.otherTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+//    } else {
+//        self.automaticallyAdjustsScrollViewInsets = NO;
+//    }
+//    [self.SV addSubview:self.otherTableView];
+    
+    
     [self setUpBase];
     [self setUpData];
     [self configCollectionView];
@@ -154,13 +192,14 @@
 
 -(void)setModel:(CategoryModel *)model{
     _model = model;
-    for (ADLMyInfoModel *infoModel in self.otherTableView.data) {
+    for (ADLMyInfoModel *infoModel in self.upTableView.data) {
         if([infoModel.title isEqualToString:NSLocalizedString(@"sort", nil)]){
             infoModel.num = model.name;
             self.param.categoryId = model.ID;
         }
     }
-    [self.otherTableView reloadData];
+    [self.upTableView reloadData];
+    
 }
 
 
@@ -526,13 +565,17 @@
         self.collectionView.alpha = 1.0;
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
         self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+        self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+        self.midTableView.dc_y = CGRectGetMaxY(self.upTableView.frame)+GetScaleWidth(15);
+//        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
     }else{
 //        self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
         self.middleView.dc_y = GetScaleWidth(109);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+        self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+        self.midTableView.dc_y = CGRectGetMaxY(self.upTableView.frame)+GetScaleWidth(15);
+//        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
     }
     // NSLog(@"cancel");
 }
@@ -551,37 +594,7 @@
     viewController.image = _selectedPhotos[0];
     viewController.isTakePhoto = NO;
     [picker presentViewController:viewController animated:NO completion:nil];
-    
-//    _isSelectOriginalPhoto = isSelectOriginalPhoto;
-//    [_collectionView reloadData];
-//    // _collectionView.contentSize = CGSizeMake(0, ((_selectedPhotos.count + 2) / 3 ) * (_margin + _itemWH));
-//
-//    if(photos.count >0){
-//        self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20-TopBarHeight+_selectedPhotos.count/4*(_itemWH + _margin*2));
-//
-//        self.addView.alpha = 0.0;
-//        self.collectionView.alpha = 1.0;
-//        self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
-//        self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
-//        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
-//
-//    }else{
-////        self.SV.scrollEnabled = NO;
-//        self.addView.alpha = 1.0;
-//        self.collectionView.alpha = 0.0;
-//        self.collectionView.height = GetScaleWidth(120);
-//        self.middleView.dc_y = GetScaleWidth(109);
-//        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
-//    }
-//
-//    // 1.打印图片名字
-//    [self printAssetsName:assets];
-//    // 2.图片位置信息
-//    if (iOS8Later) {
-//        for (PHAsset *phAsset in assets) {
-//            NSLog(@"location:%@",phAsset.location);
-//        }
-//    }
+
 }
 
 // 决定相册显示与否
@@ -612,98 +625,109 @@
 #pragma mark - 获取数据
 - (void)setUpData
 {
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"sort", nil) imageName:nil num:NSLocalizedString(@"selection sort", nil)]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"price", nil) imageName:nil num:@"开个价"]];
-   
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"number", nil) imageName:nil num:NSLocalizedString(@"number", nil)]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"add goods specifications", nil) imageName:@"publish_ico_goods_add" num:nil]];
+    [self.upTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"sort", nil) imageName:nil num:NSLocalizedString(@"selection sort", nil)]];
     
+    [self.midTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"price(N)", nil) imageName:nil num:@"开个价"]];
+    [self.midTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"stock(g)", nil) imageName:nil num:NSLocalizedString(@"stock", nil)]];
+
     
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"fee", nil) imageName:nil num:NSLocalizedString(@"fee", nil)]];
-    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"on shelf", nil) imageName:nil num:NSLocalizedString(@"no", nil)]];
+    //    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"add goods specifications", nil) imageName:@"publish_ico_goods_add" num:nil]];
+//
+//
+//    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"fee(N)", nil) imageName:nil num:NSLocalizedString(@"fee", nil)]];
+//    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"on shelf", nil) imageName:nil num:NSLocalizedString(@"no", nil)]];
 }
 
 #pragma mark - initialize
 - (void)setUpBase {
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.upTableView.tableFooterView = [UIView new]; //去除多余分割线
+    self.midTableView.tableFooterView = [UIView new]; //去除多余分割线
     self.otherTableView.tableFooterView = [UIView new]; //去除多余分割线
 }
 
 #pragma mark - NSShopTableViewDelegate
 
-- (void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)goodsTableView:(NSGoodsTableView *)goodsTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger index = indexPath.section;
     
+    if(goodsTableView.tag == 10){
+        //upTableView
+        NSLog(@"点击了分类");
+        NSCategoryVC *ctrl = [[NSCategoryVC alloc] init];
+        ctrl.stringBlock = ^(CategoryModel *model) {
+            for (ADLMyInfoModel *infoModel in self.upTableView.data) {
+                if([infoModel.title isEqualToString:NSLocalizedString(@"sort", nil)]){
+                    infoModel.num = model.name;
+                    self.param.categoryId = model.ID;
+                }
+            }
+            [self.upTableView reloadData];
+        };
+        [self.navigationController pushViewController:ctrl animated:YES];
+    }else if (goodsTableView.tag == 20){
+        //midTableView
+        switch (index) {
+            case 0:{
+                NSLog(@"点击了价格");
+                EditUserType type = [self getEditType:NSLocalizedString(@"price(N)", nil)];
+                
+                NSChangeParamVC *ctrl = [[NSChangeParamVC alloc] initEditType:type];
+                ctrl.editTitle = NSLocalizedString(@"price", nil);
+                
+                ctrl.stringBlock = ^(NSString *string) {
+                    for (ADLMyInfoModel *model in self.otherTableView.data) {
+                        if([model.title isEqualToString:NSLocalizedString(@"price(N)", nil)]){
+                            self.param.price = string;
+                            model.num = [NSString stringWithFormat:@"%.2f",[string floatValue]];
+                        }
+                    }
+                    [self.otherTableView reloadData];
+                };
+                [self.navigationController pushViewController:ctrl animated:YES];
+            }
+                break;
+            case 1:{
+                NSLog(@"点击了数量");
+                EditUserType type = [self getEditType:NSLocalizedString(@"stock(g)", nil)];
+                
+                NSChangeParamVC *ctrl = [[NSChangeParamVC alloc] initEditType:type];
+                ctrl.editTitle = NSLocalizedString(@"stock", nil);
+                ctrl.stringBlock = ^(NSString *string) {
+                    for (ADLMyInfoModel *model in self.otherTableView.data) {
+                        if([model.title isEqualToString:NSLocalizedString(@"stock(g)", nil)]){
+                            self.param.stock = string;
+                            model.num = string;
+                        }
+                    }
+                    [self.otherTableView reloadData];
+                };
+                [self.navigationController pushViewController:ctrl animated:YES];
+            }
+                break;
+            default:
+                break;
+        }
+    }
+    
     switch (index) {
-        case 0:{
-            NSLog(@"点击了分类");
-            NSCategoryVC *ctrl = [[NSCategoryVC alloc] init];
-            ctrl.stringBlock = ^(CategoryModel *model) {
-                for (ADLMyInfoModel *infoModel in self.otherTableView.data) {
-                    if([infoModel.title isEqualToString:NSLocalizedString(@"sort", nil)]){
-                        infoModel.num = model.name;
-                        self.param.categoryId = model.ID;
-                    }
-                }
-                [self.otherTableView reloadData];
-            };
-            [self.navigationController pushViewController:ctrl animated:YES];
-        }
-            break;
-        case 1:{
-            NSLog(@"点击了价格");
-            EditUserType type = [self getEditType:NSLocalizedString(@"price", nil)];
-            
-            NSChangeParamVC *ctrl = [[NSChangeParamVC alloc] initEditType:type];
-            ctrl.editTitle = NSLocalizedString(@"price", nil);
-            
-            ctrl.stringBlock = ^(NSString *string) {
-                for (ADLMyInfoModel *model in self.otherTableView.data) {
-                    if([model.title isEqualToString:@"价格"]){
-                        self.param.price = string;
-                        model.num = [NSString stringWithFormat:@"N %@",string];
-                    }
-                }
-                [self.otherTableView reloadData];
-            };
-            [self.navigationController pushViewController:ctrl animated:YES];
-        }
-            break;
-        case 2:{
-            NSLog(@"点击了数量");
-            EditUserType type = [self getEditType:NSLocalizedString(@"number", nil)];
-            
-            NSChangeParamVC *ctrl = [[NSChangeParamVC alloc] initEditType:type];
-            ctrl.editTitle = NSLocalizedString(@"number", nil);
-            ctrl.stringBlock = ^(NSString *string) {
-                for (ADLMyInfoModel *model in self.otherTableView.data) {
-                    if([model.title isEqualToString:NSLocalizedString(@"number", nil)]){
-                        self.param.stock = string;
-                        model.num = [NSString stringWithFormat:@"%@ %@",string,NSLocalizedString(@"individual", nil)];
-                    }
-                }
-                [self.otherTableView reloadData];
-            };
-            [self.navigationController pushViewController:ctrl animated:YES];
-        }
-            break;
         case 3:{
             NSLog(@"点击了添加商品规格");
-            self.otherTableView.isShow = NO;
+//            self.otherTableView.isShow = NO;
             [self addSpecViewWithIndexPath:indexPath];
         }
             break;
         case 4:{
             NSLog(@"点击了运费");
-            EditUserType type = [self getEditType:NSLocalizedString(@"fee", nil)];
+            EditUserType type = [self getEditType:NSLocalizedString(@"fee(N)", nil)];
             
             NSChangeParamVC *ctrl = [[NSChangeParamVC alloc] initEditType:type];
             ctrl.editTitle = NSLocalizedString(@"fee", nil);
             ctrl.stringBlock = ^(NSString *string) {
                 for (ADLMyInfoModel *model in self.otherTableView.data) {
-                    if([model.title isEqualToString:NSLocalizedString(@"fee", nil)]){
+                    if([model.title isEqualToString:NSLocalizedString(@"fee(N)", nil)]){
                         self.param.shipPrice = string;
-                        model.num = [NSString stringWithFormat:@"N %@",string];
+                        model.num = [NSString stringWithFormat:@"%.2",[string floatValue]];
                     }
                 }
                 [self.otherTableView reloadData];
@@ -743,7 +767,7 @@
         [self.specViewArr removeObject:specview];
         
         if(self.specViewArr.count==0){
-            self.otherTableView.isShow = YES;
+//            self.otherTableView.isShow = YES;
         }
         self.otherTableView.dict = self.dict;
 //        [self.otherTableView reloadData];
@@ -942,13 +966,17 @@
             self.collectionView.alpha = 1.0;
             self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
             self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
-            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+            self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+            self.midTableView.dc_y = CGRectGetMaxY(self.upTableView.frame)+GetScaleWidth(15);
+//            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
         }else{
 //            self.SV.scrollEnabled = NO;
             self.addView.alpha = 1.0;
             self.collectionView.alpha = 0.0;
             self.middleView.dc_y = GetScaleWidth(109);
-            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+            self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+            self.midTableView.dc_y = CGRectGetMaxY(self.upTableView.frame)+GetScaleWidth(15);
+//            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
         }
     }];
     
@@ -969,13 +997,13 @@
 - (EditUserType)getEditType:(NSString *)title {
     EditUserType type = 0;
 
-    if ([title isEqualToString:NSLocalizedString(@"price", nil)]) {
+    if ([title isEqualToString:NSLocalizedString(@"price(N)", nil)]) {
         type = EditUserTypePrice;
         
-    } else if ([title isEqualToString:NSLocalizedString(@"number", nil)]) {
+    } else if ([title isEqualToString:NSLocalizedString(@"stock(g)", nil)]) {
         type = EditUserTypeNumber;
         
-    } else if ([title isEqualToString:NSLocalizedString(@"fee", nil)]) {
+    } else if ([title isEqualToString:NSLocalizedString(@"fee(N)", nil)]) {
         type = EditUserTypeFee;
         
     }
@@ -1028,14 +1056,18 @@
         self.collectionView.alpha = 1.0;
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
         self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+        self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+        self.midTableView.dc_y = CGRectGetMaxY(self.upTableView.frame)+GetScaleWidth(15);
+//        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
     }else{
         self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
         self.collectionView.height = GetScaleWidth(100);
         self.middleView.dc_y = GetScaleWidth(109);
-        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+        self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+        self.midTableView.dc_y = CGRectGetMaxY(self.upTableView.frame)+GetScaleWidth(15);
+//        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
     }
 }
 

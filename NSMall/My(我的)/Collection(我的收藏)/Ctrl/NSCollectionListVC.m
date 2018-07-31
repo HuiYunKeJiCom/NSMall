@@ -9,15 +9,21 @@
 #import "NSCollectionListVC.h"
 #import "ProductListModel.h"
 #import "ProductListItemModel.h"
-#import "NSGoodsShowCell.h"
+#import "NSGoodsShowCellTest.h"
 #import "UserInfoAPI.h"
 #import "ADOrderTopToolView.h"
 #import "NSCommonParam.h"
+#import "NSGoodsDetailVC.h"
+#import "HomePageAPI.h"
+#import "UserPageVC.h"
+#import "UIButton+Bootstrap.h"
 
 @interface NSCollectionListVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
 @property (nonatomic, strong) BaseTableView         *goodsTable;
 @property(nonatomic)NSInteger currentPage;/* 当前页数 */
-
+@property(nonatomic,strong)UIView *shareView;/* 分享View */
+@property(nonatomic,strong)UIImageView * scanView;
+@property(nonatomic,strong)UIView *bgView;/* 二维码背景图 */
 @end
 
 @implementation NSCollectionListVC
@@ -85,7 +91,8 @@
         _goodsTable.isLoadMore = YES;
         _goodsTable.isRefresh = YES;
         _goodsTable.delegateBase = self;
-        [_goodsTable registerClass:[NSGoodsShowCell class] forCellReuseIdentifier:@"NSGoodsShowCell"];
+        _goodsTable.backgroundColor = KBGCOLOR;
+        [_goodsTable registerClass:[NSGoodsShowCellTest class] forCellReuseIdentifier:@"NSGoodsShowCellTest"];
         
     }
     return _goodsTable;
@@ -113,23 +120,43 @@
     return self.goodsTable.data.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return GetScaleWidth(191);
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return GetScaleWidth(191);
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSGoodsShowCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSGoodsShowCell"];
+    NSGoodsShowCellTest *cell = [tableView dequeueReusableCellWithIdentifier:@"NSGoodsShowCellTest"];
     if (self.goodsTable.data.count > indexPath.row) {
         ProductListItemModel *model = self.goodsTable.data[indexPath.row];
         //        NSLog(@"model = %@",model.mj_keyValues);
         cell.productModel = model;
+        WEAKSELF
+        cell.likeBtnClickBlock = ^{
+            [weakSelf likeClickAtIndexPath:indexPath];
+        };
+        cell.commentBtnClickBlock = ^{
+            [weakSelf tableView:self.goodsTable didSelectRowAtIndexPath:indexPath];
+        };
+        cell.shareBtnClickBlock = ^{
+            [weakSelf showGoodsQRCode:indexPath];
+        };
+        cell.headerClickBlock = ^{
+            [weakSelf goToUserPageWithIndexPath:indexPath];
+        };
     }
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    //    if(indexPath.section != 0){
+    DLog(@"跳转到详情页");
+    NSGoodsShowCellTest *cell = [self.goodsTable cellForRowAtIndexPath:indexPath];
+    DLog(@"product_id = %@",cell.productModel.product_id);
+    NSGoodsDetailVC *detailVC = [NSGoodsDetailVC new];
+    [detailVC getDataWithProductID:cell.productModel.product_id andCollectNum:cell.productModel.favorite_number];
+    [self.navigationController pushViewController:detailVC animated:YES];
+    //    }
 }
 
 - (void)baseTableVIew:(BaseTableView *)tableView refresh:(BOOL)flag {
@@ -151,6 +178,122 @@
         self.currentPage -= 1;
     }
 }
+
+-(void)likeClickAtIndexPath:(NSIndexPath *)indexPath{
+    NSGoodsShowCellTest *cell = [self.goodsTable cellForRowAtIndexPath:indexPath];
+    [HomePageAPI changeProductLikeState:cell.productModel.product_id success:^(NSLikeModel *model) {
+        DLog(@"点赞成功");
+        DLog(@"model = %@",model.mj_keyValues);
+        if(cell.isLike){
+            [cell.likeBtn setImageWithTitle:IMAGE(@"ico_like") withTitle:@"喜欢" position:@"left" font:UISystemFontSize(14) forState:UIControlStateNormal];
+            cell.isLike = NO;
+        }else{
+            [cell.likeBtn setImageWithTitle:IMAGE(@"home_ico_like_press") withTitle:[NSString stringWithFormat:@"喜欢(%@)",[NSNumber numberWithInteger:model.like_number]] position:@"left" font:UISystemFontSize(14) forState:UIControlStateNormal];
+            cell.isLike = YES;
+        }
+        
+    } failure:^(NSError *error) {
+        DLog(@"点赞失败");
+    }];
+}
+
+-(void)showGoodsQRCode:(NSIndexPath *)indexPath{
+    
+    UIWindow *window = [[UIApplication  sharedApplication ]keyWindow ];
+    NSArray *viewArray = [window subviews];
+    for (UIView *view in viewArray) {
+        if(view.tag == 100){
+            self.shareView = view;
+        }else if(view.tag == 200){
+            self.bgView = view;
+        }
+    }
+    
+    for (UIView *view in [self.bgView subviews]) {
+        if(view.tag == 20){
+            self.scanView = (UIImageView *)view;
+        }else if(view.tag == 30){
+            UIButton *btn = (UIButton *)view;
+            [btn addTarget:self action:@selector(hideGoodsQRCode) forControlEvents:UIControlEventTouchUpInside];
+        }
+    }
+    
+    self.shareView.alpha = 0.9;
+    self.bgView.alpha = 1;
+    NSGoodsShowCellTest *cell = [self.goodsTable cellForRowAtIndexPath:indexPath];
+    //    NSString *goodsID = cell.productModel.product_id;
+    [self setUpFilter:[NSString stringWithFormat:@"gid:%@",cell.productModel.product_id]];
+}
+
+-(void)hideGoodsQRCode{
+    DLog(@"隐藏二维码");
+    self.shareView.alpha = 0;
+    self.bgView.alpha = 0;
+}
+
+-(void)setUpFilter:(NSString*)string {
+    /*
+     注意:
+     1.生成二维码时, 不建议让二维码保存过多数据, 因为数据越多, 那么二维码就越密集,那么扫描起来就越困难
+     2.二维码有三个定位点, 着三个定位点不能被遮挡, 否则扫描不出来
+     3.二维码即便缺失一部分也能正常扫描出结果, 但是需要注意, 这个缺失的范围是由限制的, 如果太多那么也扫面不出来
+     */
+    // 1.创建滤镜
+    CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+    // 2.还原滤镜默认属性
+    [filter setDefaults];
+    // 3.将需要生成二维码的数据转换为二进制
+    NSData* data = [string dataUsingEncoding:NSUTF8StringEncoding];
+    // 4.给滤镜设置数据
+    [filter setValue:data forKeyPath:@"inputMessage"];
+    // 5.生成图片
+    CIImage *qrcodeImage =  [filter outputImage];
+    
+    // 6.显示图片
+    
+    self.scanView.image = [self createNonInterpolatedUIImageFormCIImage:qrcodeImage withSize:120];
+    
+}
+
+/**
+ *  根据CIImage生成指定大小的UIImage
+ *
+ *  @param image CIImage
+ *  @param size  图片宽度
+ */
+- (UIImage *)createNonInterpolatedUIImageFormCIImage:(CIImage *)image withSize:(CGFloat) size
+{
+    CGRect extent = CGRectIntegral(image.extent);
+    CGFloat scale = MIN(size/CGRectGetWidth(extent), size/CGRectGetHeight(extent));
+    // 1.创建bitmap;
+    size_t width = CGRectGetWidth(extent) * scale;
+    size_t height = CGRectGetHeight(extent) * scale;
+    CGColorSpaceRef cs = CGColorSpaceCreateDeviceGray();
+    CGContextRef bitmapRef = CGBitmapContextCreate(nil, width, height, 8, 0, cs, (CGBitmapInfo)kCGImageAlphaNone);
+    CIContext *context = [CIContext contextWithOptions:nil];
+    
+    CGImageRef bitmapImage = [context createCGImage:image fromRect:extent];
+    
+    CGContextSetInterpolationQuality(bitmapRef, kCGInterpolationNone);
+    CGContextScaleCTM(bitmapRef, scale, scale);
+    CGContextDrawImage(bitmapRef, extent, bitmapImage);
+    // 2.保存bitmap到图片
+    CGImageRef scaledImage = CGBitmapContextCreateImage(bitmapRef);
+    CGContextRelease(bitmapRef);
+    CGImageRelease(bitmapImage);
+    UIImage *qrCodeImage = [UIImage imageWithCGImage:scaledImage];
+    return qrCodeImage;
+}
+
+-(void)goToUserPageWithIndexPath:(NSIndexPath *)indexPath{
+    DLog(@"跳转至个人页面");
+    NSGoodsShowCellTest *cell = [self.goodsTable cellForRowAtIndexPath:indexPath];
+    //跳转至个人页面
+    UserPageVC *userPageVC = [UserPageVC new];
+    [userPageVC setUpDataWithUserId:cell.productModel.user_id];
+    [self.navigationController pushViewController:userPageVC animated:YES];
+}
+
 
 
 @end

@@ -8,7 +8,7 @@
 
 #import "DCTabBarController.h"
 #import "DCNavigationController.h"
-#import "XWPopMenuController.h"//发布
+//#import "XWPopMenuController.h"//发布
 #import "DCTabBadgeView.h"
 #import "ChatViewController.h"
 #import "UserProfileManager.h"

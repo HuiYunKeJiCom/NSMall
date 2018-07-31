@@ -14,6 +14,7 @@
 @property (nonatomic, copy) dispatch_block_t likeBtnClickBlock;/* 喜欢按钮回调 */
 @property (nonatomic, copy) dispatch_block_t commentBtnClickBlock;/* 评论按钮回调 */
 @property (nonatomic, copy) dispatch_block_t shareBtnClickBlock;/* 分享按钮回调 */
+@property (nonatomic, copy) dispatch_block_t headerClickBlock;/* 头像点击回调 */
 @property (nonatomic, assign) BOOL isLike;
 @property(nonatomic,strong)UIButton *likeBtn;/* 喜欢按钮 */
 @end

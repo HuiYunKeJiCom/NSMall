@@ -44,24 +44,24 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(self.dict[@"indexPath"]){
-        NSInteger section = [self.dict[@"indexPath"] integerValue];
-        float height = [self.dict[@"height"] floatValue];
-        if(indexPath.section == section){
-            return height;
-        }else{
-            return GetScaleWidth(43);
-        }
-    }else if(indexPath.section == 2 && !self.isShow){
-        NSLog(@"这里有调用吗");
-        NSInfoCustomCell *cell = [self cellForRowAtIndexPath:indexPath];
-        cell.alpha = 0.0;
-        return 0.01f;
-    }else{
+//    if(self.dict[@"indexPath"]){
+//        NSInteger section = [self.dict[@"indexPath"] integerValue];
+//        float height = [self.dict[@"height"] floatValue];
+//        if(indexPath.section == section){
+//            return height;
+//        }else{
+//            return GetScaleWidth(43);
+//        }
+//    }else if(indexPath.section == 2 && !self.isShow){
+//        NSLog(@"这里有调用吗");
+//        NSInfoCustomCell *cell = [self cellForRowAtIndexPath:indexPath];
+//        cell.alpha = 0.0;
+//        return 0.01f;
+//    }else{
         NSInfoCustomCell *cell = [self cellForRowAtIndexPath:indexPath];
         cell.alpha = 1.0;
         return GetScaleWidth(43);
-    }
+//    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -94,8 +94,8 @@
 //    if(indexPath.section == 3){
 //        [self addSpecViewWithIndexPath:indexPath];
 //    }else{
-        if (_tbDelegate && [_tbDelegate respondsToSelector:@selector(didSelectRowAtIndexPath:)]) {
-            [_tbDelegate didSelectRowAtIndexPath:indexPath];
+    if (_tbDelegate && [_tbDelegate respondsToSelector:@selector(goodsTableView: didSelectRowAtIndexPath:)]) {
+        [_tbDelegate goodsTableView:self didSelectRowAtIndexPath:indexPath];
         }
 //    }
 }
@@ -114,10 +114,10 @@
     [self reloadData];
 }
 
--(void)setIsShow:(BOOL)isShow{
-    _isShow = isShow;
-    [self reloadData];
-}
+//-(void)setIsShow:(BOOL)isShow{
+//    _isShow = isShow;
+//    [self reloadData];
+//}
 
 
 @end

@@ -45,6 +45,10 @@
     //    [self.headerIV.layer setCornerRadius:33];
     //    [self.headerIV.layer setMasksToBounds:YES];
     [self.bgView addSubview:self.headerIV];
+    self.headerIV.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *myTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(headerViewClickBlock)];
+    [self.headerIV addGestureRecognizer:myTap];
     
     self.userName = [[UILabel alloc] init];
 //    self.userName.x = CGRectGetMaxX(self.headerIV.frame)+GetScaleWidth(6);
@@ -221,6 +225,10 @@
     totalHeight += [self.commentBtn sizeThatFits:size].height;
     totalHeight += 19+15+13+14+10; // margins
     return CGSizeMake(size.width, totalHeight);
+}
+
+- (void)headerViewClickBlock {
+    !_headerClickBlock ? : _headerClickBlock();
 }
 
 @end

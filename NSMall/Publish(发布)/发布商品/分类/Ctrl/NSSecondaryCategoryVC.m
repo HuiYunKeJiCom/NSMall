@@ -72,6 +72,7 @@
         _goodsTable.isLoadMore = YES;
         _goodsTable.isRefresh = YES;
         _goodsTable.delegateBase = self;
+        _goodsTable.backgroundColor = KBGCOLOR;
         [_goodsTable registerClass:[NSCategoryTableViewCell class] forCellReuseIdentifier:@"NSCategoryTableViewCell"];
         
     }
@@ -139,7 +140,8 @@
             [self.dict setValue:[NSNumber numberWithFloat:height] forKey:@"height"];
             //        展示所有分类
             NSCategoryTV *otherTableView = [[NSCategoryTV alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-            otherTableView.backgroundColor = kClearColor;
+            otherTableView.backgroundColor = [UIColor clearColor];
+//            otherTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
             otherTableView.x = 0;
             otherTableView.y = GetScaleWidth(43);
             otherTableView.size = CGSizeMake(kScreenWidth, GetScaleWidth(43)*model.children.count);

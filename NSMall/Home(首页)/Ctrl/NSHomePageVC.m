@@ -7,9 +7,9 @@
 //
 
 #import "NSHomePageVC.h"
-#import "LoginAPI.h"
+//#import "LoginAPI.h"
 #import "HomePageAPI.h"
-#import "NSGoodsShowCell.h"
+//#import "NSGoodsShowCell.h"
 #import "ProductListItemModel.h"
 #import "DCHomeTopToolView.h"  //头部
 #import "NSCarouselView.h"//轮播图
@@ -25,6 +25,7 @@
 #import "NSGoodsShowCellTest.h"
 #import "NSCreateQRCodeVC.h"
 #import "ADLScanningController.h"
+#import "UserPageVC.h"
 
 @interface NSHomePageVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
 
@@ -138,7 +139,7 @@
     _tableView.tableFooterView = [UIView new];
     [self.view addSubview:_tableView];
     _tableView.estimatedRowHeight = GetScaleWidth(259);
-    [_tableView registerClass:[NSGoodsShowCell class] forCellReuseIdentifier:@"NSGoodsShowCell"];
+//    [_tableView registerClass:[NSGoodsShowCell class] forCellReuseIdentifier:@"NSGoodsShowCell"];
     [_tableView registerClass:[NSGoodsShowCellTest class] forCellReuseIdentifier:@"NSGoodsShowCellTest"];
 }
 
@@ -330,9 +331,15 @@
             cell.likeBtnClickBlock = ^{
                 [weakSelf likeClickAtIndexPath:indexPath];
             };
-    cell.shareBtnClickBlock = ^{
-        [weakSelf showGoodsQRCode:indexPath];
-    };
+            cell.commentBtnClickBlock = ^{
+                [weakSelf tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+            };
+            cell.shareBtnClickBlock = ^{
+                [weakSelf showGoodsQRCode:indexPath];
+            };
+            cell.headerClickBlock = ^{
+                [weakSelf goToUserPageWithIndexPath:indexPath];
+            };
         }
         return cell;
 //    }
@@ -348,7 +355,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    if(indexPath.section != 0){
         DLog(@"跳转到详情页");
-        NSGoodsShowCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        NSGoodsShowCellTest *cell = [self.tableView cellForRowAtIndexPath:indexPath];
                 DLog(@"product_id = %@",cell.productModel.product_id);
         NSGoodsDetailVC *detailVC = [NSGoodsDetailVC new];
         [detailVC getDataWithProductID:cell.productModel.product_id andCollectNum:cell.productModel.favorite_number];
@@ -386,7 +393,7 @@
 }
 
 -(void)likeClickAtIndexPath:(NSIndexPath *)indexPath{
-    NSGoodsShowCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    NSGoodsShowCellTest *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     [HomePageAPI changeProductLikeState:cell.productModel.product_id success:^(NSLikeModel *model) {
         DLog(@"点赞成功");
         DLog(@"model = %@",model.mj_keyValues);
@@ -407,7 +414,7 @@
     
     self.shareView.alpha = 0.9;
     self.bgView.alpha = 1;
-    NSGoodsShowCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    NSGoodsShowCellTest *cell = [self.tableView cellForRowAtIndexPath:indexPath];
 //    NSString *goodsID = cell.productModel.product_id;
     [self setUpFilter:[NSString stringWithFormat:@"gid:%@",cell.productModel.product_id]];
 }
@@ -481,5 +488,16 @@
 
 //添加回调监听代理: [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
 }
+
+-(void)goToUserPageWithIndexPath:(NSIndexPath *)indexPath{
+    DLog(@"跳转至个人页面");
+    NSGoodsShowCellTest *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    //跳转至个人页面
+    UserPageVC *userPageVC = [UserPageVC new];
+    [userPageVC setUpDataWithUserId:cell.productModel.user_id];
+    [self.navigationController pushViewController:userPageVC animated:YES];
+}
+
+
 
 @end
