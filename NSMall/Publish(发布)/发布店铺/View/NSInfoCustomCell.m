@@ -132,6 +132,12 @@
         }
     }
     
+    if([myInfoModel.title isEqualToString:NSLocalizedString(@"add goods specifications", nil)]){
+        self.arrowImgView.alpha = 0.0;
+    }else{
+        self.arrowImgView.alpha = 1.0;
+    }
+    
     //    self.numLb.text = [NSString stringWithFormat:@"(%@)",IsEmpty(myInfoModel.num)?@"0":myInfoModel.num];
     
 }

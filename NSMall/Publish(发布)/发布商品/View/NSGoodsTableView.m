@@ -44,28 +44,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if(self.dict[@"indexPath"]){
-//        NSInteger section = [self.dict[@"indexPath"] integerValue];
-//        float height = [self.dict[@"height"] floatValue];
-//        if(indexPath.section == section){
-//            return height;
-//        }else{
-//            return GetScaleWidth(43);
-//        }
-//    }else if(indexPath.section == 2 && !self.isShow){
-//        NSLog(@"这里有调用吗");
-//        NSInfoCustomCell *cell = [self cellForRowAtIndexPath:indexPath];
-//        cell.alpha = 0.0;
-//        return 0.01f;
-//    }else{
-        NSInfoCustomCell *cell = [self cellForRowAtIndexPath:indexPath];
-        cell.alpha = 1.0;
         return GetScaleWidth(43);
-//    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if(section == 1 || section == 4|| section == 5){
+    if(tableView.tag == 40){
         return GetScaleWidth(10);
     }else{
         return 0;
@@ -102,11 +85,9 @@
 
 -(void)addSpecViewWithIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"增加规格");
-    
     if (_tbDelegate && [_tbDelegate respondsToSelector:@selector(addSpecViewWithIndexPath:)]) {
         [_tbDelegate addSpecViewWithIndexPath:indexPath];
     }
-    
 }
 
 -(void)setDict:(NSMutableDictionary *)dict{

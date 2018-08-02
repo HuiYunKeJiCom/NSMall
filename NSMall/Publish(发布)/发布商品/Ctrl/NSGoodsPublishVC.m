@@ -24,7 +24,7 @@
 #import "ClipViewController.h"
 
 
-@interface NSGoodsPublishVC ()<NSGoodsTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,ClipPhotoDelegate> {
+@interface NSGoodsPublishVC ()<NSGoodsTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,ClipPhotoDelegate,UITextFieldDelegate> {
     NSMutableArray *_selectedPhotos;
     NSMutableArray *_selectedAssets;
     BOOL _isSelectOriginalPhoto;
@@ -35,6 +35,9 @@
 @property (nonatomic, strong) UIImagePickerController *imagePickerVc;
 @property (strong, nonatomic) NSGoodsTableView   *upTableView;//分类
 @property (strong, nonatomic) NSGoodsTableView   *midTableView;//库存和价格
+@property (strong, nonatomic) NSGoodsTableView   *addSpecTableView;//添加商品规格
+@property(nonatomic)BOOL hasSpec;//是否含规格
+@property(nonatomic,strong)UIView *specTotalView;/* 规格页面 */
 @property (strong, nonatomic) NSGoodsTableView   *otherTableView;
 @property (strong, nonatomic) CLLocation *location;
 
@@ -49,29 +52,27 @@
 @property(nonatomic,strong)GoodsPublishParam *param;/* 商品发布参数 */
 @property(nonatomic,strong)NSMutableDictionary *dict;/* 改变高度的字典 */
 @property(nonatomic,strong)NSMutableArray *specViewArr;/* 存放规格View */
+@property(nonatomic)CGFloat specHeight;/* 规格View的高度 */
 @end
 
 @implementation NSGoodsPublishVC
 
 -(void)viewWillAppear:(BOOL)animated{
     if(_selectedPhotos.count >0){
-        self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20-TopBarHeight+_selectedPhotos.count/4*(_itemWH + _margin*2));
-        
         self.addView.alpha = 0.0;
         self.collectionView.alpha = 1.0;
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
         self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
         self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
-        self.midTableView.dc_y = CGRectGetMaxY(self.upTableView.frame)+GetScaleWidth(15);
-//        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+        [self tableViewFrameChange];
+
     }else{
 //        self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
         self.middleView.dc_y = GetScaleWidth(109);
         self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
-        self.midTableView.dc_y = CGRectGetMaxY(self.upTableView.frame)+GetScaleWidth(15);
-//        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+        [self tableViewFrameChange];
     }
 }
 
@@ -82,11 +83,14 @@
     _selectedPhotos = [NSMutableArray array];
     _selectedAssets = [NSMutableArray array];
     self.param = [GoodsPublishParam new];
+    self.hasSpec = NO;
+    self.specHeight = 0;
     
     self.SV = [[UIScrollView alloc]initWithFrame:CGRectMake(0, TopBarHeight, kScreenWidth, kScreenHeight-TopBarHeight-TabBarHeight)];
 //    self.SV.scrollEnabled = NO;
     self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20-TopBarHeight);
     self.SV.backgroundColor = KBGCOLOR;
+    self.SV.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.SV];
     
     self.upTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(319), kScreenWidth, GetScaleWidth(43)) style:UITableViewStyleGrouped];
@@ -119,19 +123,41 @@
     }
     [self.SV addSubview:self.midTableView];
     
-//    self.otherTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(319), kScreenWidth, GetScaleWidth(288)) style:UITableViewStyleGrouped];
-//    self.otherTableView.backgroundColor = [UIColor clearColor];
-//    self.otherTableView.bounces = NO;
-//    self.otherTableView.tbDelegate = self;
-//    self.otherTableView.isRefresh = NO;
-//    self.otherTableView.isLoadMore = NO;
-//    self.otherTableView.isShow = YES;
-//    if (@available(iOS 11.0, *)) {
-//        self.otherTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-//    } else {
-//        self.automaticallyAdjustsScrollViewInsets = NO;
-//    }
-//    [self.SV addSubview:self.otherTableView];
+    self.addSpecTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(319+GetScaleWidth(86)), kScreenWidth, GetScaleWidth(43)) style:UITableViewStyleGrouped];
+    self.addSpecTableView.tag = 30;
+    self.addSpecTableView.backgroundColor = [UIColor clearColor];
+    self.addSpecTableView.bounces = NO;
+    self.addSpecTableView.tbDelegate = self;
+    self.addSpecTableView.isRefresh = NO;
+    self.addSpecTableView.isLoadMore = NO;
+    //    self.midTableView.isShow = YES;
+    if (@available(iOS 11.0, *)) {
+        self.addSpecTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    [self.SV addSubview:self.addSpecTableView];
+    
+    self.specTotalView = [[UIView alloc]initWithFrame:CGRectZero];
+    [self.SV addSubview:self.specTotalView];
+    self.specTotalView.x = 0;
+    self.specTotalView.y = CGRectGetMaxY(self.addSpecTableView.frame);
+    self.specTotalView.size = CGSizeMake(kScreenWidth, 0);
+    
+    self.otherTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(319), kScreenWidth, GetScaleWidth(96)) style:UITableViewStyleGrouped];
+    self.otherTableView.tag = 40;
+    self.otherTableView.y = CGRectGetMaxY(self.specTotalView.frame)+GetScaleWidth(10);
+    self.otherTableView.backgroundColor = [UIColor clearColor];
+    self.otherTableView.bounces = NO;
+    self.otherTableView.tbDelegate = self;
+    self.otherTableView.isRefresh = NO;
+    self.otherTableView.isLoadMore = NO;
+    if (@available(iOS 11.0, *)) {
+        self.otherTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    [self.SV addSubview:self.otherTableView];
     
     
     [self setUpBase];
@@ -146,6 +172,7 @@
     self.goodsNameTF.frame = CGRectMake(0, 0, kScreenWidth, GetScaleWidth(30));
     self.goodsNameTF.font = [UIFont systemFontOfSize:14];
     self.goodsNameTF.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.goodsNameTF.delegate = self;
     self.goodsNameTF.placeholder = NSLocalizedString(@"goods relevant", nil);
     self.goodsNameTF.textColor = [UIColor lightGrayColor];
     self.goodsNameTF.backgroundColor = kWhiteColor;
@@ -173,6 +200,9 @@
     [self setUpNavTopView];
     [self setUpBottomBtn];
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didClickKeyboard:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didKboardDisappear:) name:UIKeyboardWillHideNotification object:nil];
     
 }
 
@@ -559,23 +589,20 @@
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
     if(_selectedPhotos.count >0){
-        self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20-TopBarHeight+_selectedPhotos.count/4*(_itemWH + _margin*2));
+//        self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20-TopBarHeight+_selectedPhotos.count/4*(_itemWH + _margin*2));
         
         self.addView.alpha = 0.0;
         self.collectionView.alpha = 1.0;
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
         self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
         self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
-        self.midTableView.dc_y = CGRectGetMaxY(self.upTableView.frame)+GetScaleWidth(15);
-//        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+        [self tableViewFrameChange];
     }else{
-//        self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
         self.middleView.dc_y = GetScaleWidth(109);
         self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
-        self.midTableView.dc_y = CGRectGetMaxY(self.upTableView.frame)+GetScaleWidth(15);
-//        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+        [self tableViewFrameChange];
     }
     // NSLog(@"cancel");
 }
@@ -631,11 +658,10 @@
     [self.midTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"stock(g)", nil) imageName:nil num:NSLocalizedString(@"stock", nil)]];
 
     
-    //    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"add goods specifications", nil) imageName:@"publish_ico_goods_add" num:nil]];
-//
-//
-//    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"fee(N)", nil) imageName:nil num:NSLocalizedString(@"fee", nil)]];
-//    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"on shelf", nil) imageName:nil num:NSLocalizedString(@"no", nil)]];
+    [self.addSpecTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"add goods specifications", nil) imageName:@"publish_ico_goods_add" num:nil]];
+
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"fee(N)", nil) imageName:nil num:NSLocalizedString(@"fee", nil)]];
+    [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"on shelf", nil) imageName:nil num:NSLocalizedString(@"no", nil)]];
 }
 
 #pragma mark - initialize
@@ -643,6 +669,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.upTableView.tableFooterView = [UIView new]; //去除多余分割线
     self.midTableView.tableFooterView = [UIView new]; //去除多余分割线
+    self.addSpecTableView.tableFooterView = [UIView new]; //去除多余分割线
     self.otherTableView.tableFooterView = [UIView new]; //去除多余分割线
 }
 
@@ -676,13 +703,13 @@
                 ctrl.editTitle = NSLocalizedString(@"price", nil);
                 
                 ctrl.stringBlock = ^(NSString *string) {
-                    for (ADLMyInfoModel *model in self.otherTableView.data) {
+                    for (ADLMyInfoModel *model in self.midTableView.data) {
                         if([model.title isEqualToString:NSLocalizedString(@"price(N)", nil)]){
                             self.param.price = string;
                             model.num = [NSString stringWithFormat:@"%.2f",[string floatValue]];
                         }
                     }
-                    [self.otherTableView reloadData];
+                    [self.midTableView reloadData];
                 };
                 [self.navigationController pushViewController:ctrl animated:YES];
             }
@@ -694,13 +721,13 @@
                 NSChangeParamVC *ctrl = [[NSChangeParamVC alloc] initEditType:type];
                 ctrl.editTitle = NSLocalizedString(@"stock", nil);
                 ctrl.stringBlock = ^(NSString *string) {
-                    for (ADLMyInfoModel *model in self.otherTableView.data) {
+                    for (ADLMyInfoModel *model in self.midTableView.data) {
                         if([model.title isEqualToString:NSLocalizedString(@"stock(g)", nil)]){
                             self.param.stock = string;
                             model.num = string;
                         }
                     }
-                    [self.otherTableView reloadData];
+                    [self.midTableView reloadData];
                 };
                 [self.navigationController pushViewController:ctrl animated:YES];
             }
@@ -708,80 +735,76 @@
             default:
                 break;
         }
-    }
-    
-    switch (index) {
-        case 3:{
-            NSLog(@"点击了添加商品规格");
-//            self.otherTableView.isShow = NO;
-            [self addSpecViewWithIndexPath:indexPath];
-        }
-            break;
-        case 4:{
-            NSLog(@"点击了运费");
-            EditUserType type = [self getEditType:NSLocalizedString(@"fee(N)", nil)];
-            
-            NSChangeParamVC *ctrl = [[NSChangeParamVC alloc] initEditType:type];
-            ctrl.editTitle = NSLocalizedString(@"fee", nil);
-            ctrl.stringBlock = ^(NSString *string) {
-                for (ADLMyInfoModel *model in self.otherTableView.data) {
-                    if([model.title isEqualToString:NSLocalizedString(@"fee(N)", nil)]){
-                        self.param.shipPrice = string;
-                        model.num = [NSString stringWithFormat:@"%.2",[string floatValue]];
+    }else if (goodsTableView.tag == 30){
+        NSLog(@"点击了添加商品规格");
+        [self addSpecViewWithIndexPath:indexPath];
+    }else if (goodsTableView.tag == 40){
+        switch (index) {
+            case 0:{
+                NSLog(@"点击了运费");
+                EditUserType type = [self getEditType:NSLocalizedString(@"fee(N)", nil)];
+                
+                NSChangeParamVC *ctrl = [[NSChangeParamVC alloc] initEditType:type];
+                ctrl.editTitle = NSLocalizedString(@"fee", nil);
+                ctrl.stringBlock = ^(NSString *string) {
+                    for (ADLMyInfoModel *model in self.otherTableView.data) {
+                        if([model.title isEqualToString:NSLocalizedString(@"fee(N)", nil)]){
+                            self.param.shipPrice = string;
+                            model.num = [NSString stringWithFormat:@"%.2f",[string floatValue]];
+                        }
                     }
-                }
-                [self.otherTableView reloadData];
-            };
-            [self.navigationController pushViewController:ctrl animated:YES];
+                    [self.otherTableView reloadData];
+                };
+                [self.navigationController pushViewController:ctrl animated:YES];
+            }
+                break;
+            case 1:{
+                NSLog(@"点击了上架");
+                [self updateGoods];
+                
+            }
+                break;
+            default:
+                break;
         }
-            break;
-        case 5:{
-            NSLog(@"点击了上架");
-            [self updateGoods];
-            
-        }
-            break;
-        default:
-            break;
     }
-    
 }
 
 -(void)addSpecViewWithIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"VC里面");
-    
-    NSInfoCustomCell *cell = [self.otherTableView cellForRowAtIndexPath:indexPath];
-    CGRect frame2 = cell.frame;
-    __block float height = GetScaleWidth(43)*3+10+frame2.size.height;
-    [self.dict setValue:[NSNumber numberWithInteger:indexPath.section] forKey:@"indexPath"];
-    [self.dict setValue:[NSNumber numberWithFloat:height] forKey:@"height"];
+    self.hasSpec = YES;
 
     NSSpecView *specView = [NSSpecView new];
     specView.backgroundColor = KBGCOLOR;
     __weak typeof(specView) specview = specView;
     specView.deleteClickBlock = ^{
-        [self.dict setValue:[NSNumber numberWithInteger:indexPath.section] forKey:@"indexPath"];
-        height -= (GetScaleWidth(43)*3+10);
-        [self.dict setValue:[NSNumber numberWithFloat:height] forKey:@"height"];
+        self.specHeight -= (GetScaleWidth(43)*3+10);
+        for (NSSpecView *view in self.specViewArr) {
+            if(view.y > specView.y){
+                view.y -= (GetScaleWidth(43)*3+10);
+            }
+        }
         [self.specViewArr removeObject:specview];
         
         if(self.specViewArr.count==0){
-//            self.otherTableView.isShow = YES;
+            self.hasSpec = NO;
         }
-        self.otherTableView.dict = self.dict;
-//        [self.otherTableView reloadData];
+        [self specTotalViewReloadData];
+        [self tableViewFrameChange];
     };
-    
-    
+
     specView.x = 0;
-    specView.y = frame2.size.height;
+    specView.y = self.specHeight;
     specView.size = CGSizeMake(kScreenWidth, GetScaleWidth(43)*3+10);
-    [cell addSubview:specView];
+//    [cell addSubview:specView];
+    [self.specTotalView addSubview:specView];
     [self.specViewArr addObject:specView];
-    
-    self.otherTableView.dict = self.dict;
-//    [self.otherTableView reloadData];
+    self.specHeight += (GetScaleWidth(43)*3+10);
+//    self.addSpecTableView.dict = self.dict;
+//    self.addSpecTableView.height = height;
+    [self tableViewFrameChange];
+//    [self.addSpecTableView reloadData];
 }
 
 -(void)updateGoods{
@@ -960,23 +983,20 @@
     } completion:^(BOOL finished) {
         [self->_collectionView reloadData];
         if(_selectedPhotos.count >0){
-            self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20-TopBarHeight+_selectedPhotos.count/4*(_itemWH + _margin*2));
+//            self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20-TopBarHeight+_selectedPhotos.count/4*(_itemWH + _margin*2));
             
             self.addView.alpha = 0.0;
             self.collectionView.alpha = 1.0;
             self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
             self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
             self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
-            self.midTableView.dc_y = CGRectGetMaxY(self.upTableView.frame)+GetScaleWidth(15);
-//            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+            [self tableViewFrameChange];
         }else{
-//            self.SV.scrollEnabled = NO;
             self.addView.alpha = 1.0;
             self.collectionView.alpha = 0.0;
             self.middleView.dc_y = GetScaleWidth(109);
             self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
-            self.midTableView.dc_y = CGRectGetMaxY(self.upTableView.frame)+GetScaleWidth(15);
-//            self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+            [self tableViewFrameChange];
         }
     }];
     
@@ -1057,8 +1077,7 @@
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
         self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
         self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
-        self.midTableView.dc_y = CGRectGetMaxY(self.upTableView.frame)+GetScaleWidth(15);
-//        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+        [self tableViewFrameChange];
     }else{
         self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
@@ -1066,9 +1085,66 @@
         self.collectionView.height = GetScaleWidth(100);
         self.middleView.dc_y = GetScaleWidth(109);
         self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
-        self.midTableView.dc_y = CGRectGetMaxY(self.upTableView.frame)+GetScaleWidth(15);
-//        self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+        [self tableViewFrameChange];
     }
+}
+
+-(void)tableViewFrameChange{
+    if(self.hasSpec){
+        self.midTableView.alpha = 0.0;
+        self.addSpecTableView.dc_y = CGRectGetMaxY(self.upTableView.frame)+GetScaleWidth(10);
+        self.specTotalView.dc_y = CGRectGetMaxY(self.addSpecTableView.frame);
+        self.specTotalView.height = self.specViewArr.count*(GetScaleWidth(43)*3+10);
+        self.otherTableView.dc_y = CGRectGetMaxY(self.specTotalView.frame)+GetScaleWidth(10);
+        self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20-TopBarHeight+_selectedPhotos.count/4*(_itemWH + _margin*2)+self.specViewArr.count*(GetScaleWidth(43)*3+10)-GetScaleWidth(86));
+    }else{
+        self.midTableView.alpha = 1.0;
+        self.midTableView.dc_y = CGRectGetMaxY(self.upTableView.frame)+GetScaleWidth(10);
+        self.addSpecTableView.dc_y = CGRectGetMaxY(self.midTableView.frame);
+        self.specTotalView.dc_y = CGRectGetMaxY(self.addSpecTableView.frame);
+        self.specTotalView.height = 0;
+        self.otherTableView.dc_y = CGRectGetMaxY(self.specTotalView.frame)+GetScaleWidth(10);
+        self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20-TopBarHeight+_selectedPhotos.count/4*(_itemWH + _margin*2));
+    }
+}
+
+-(void)specTotalViewReloadData{
+    [self.specTotalView removeAllSubviews];
+    for (NSSpecView *view in self.specViewArr) {
+        [self.specTotalView addSubview:view];
+    }
+}
+
+#pragma mark -      键盘即将跳出
+
+-(void)didClickKeyboard:(NSNotification *)sender{
+    
+    CGFloat durition = [sender.userInfo[@"UIKeyboardAnimationDurationUserInfoKey"] doubleValue];
+    
+    CGRect keyboardRect = [sender.userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
+    
+    CGFloat keyboardHeight = keyboardRect.size.height;
+    
+    [UIView animateWithDuration:durition animations:^{
+        
+        self.SV.transform = CGAffineTransformMakeTranslation(0, -keyboardHeight);
+//        self.otherTableView.dc_y = CGRectGetMaxY(self.specTotalView.frame)+GetScaleWidth(10);
+    }];
+    
+}
+
+#pragma mark -      当键盘即将消失
+
+-(void)didKboardDisappear:(NSNotification *)sender{
+    
+    CGFloat duration = [sender.userInfo[@"UIKeyboardAnimationDurationUserInfoKey"] doubleValue];
+    
+    [UIView animateWithDuration:duration animations:^{
+        
+        self.SV.transform = CGAffineTransformIdentity;
+//        self.otherTableView.dc_y = CGRectGetMaxY(self.specTotalView.frame)+GetScaleWidth(10);
+    }];
+    
 }
 
 

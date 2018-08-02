@@ -50,7 +50,8 @@
     self.goodsName = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum14 TextColor:[UIColor blackColor]];
     [self.bgView addSubview:self.goodsName];
     
-    self.publishLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum12 TextColor:[UIColor blackColor]];
+    self.publishLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum12 TextColor:[UIColor whiteColor]];
+    self.publishLab.backgroundColor = KMainColor;
     [self.bgView addSubview:self.publishLab];
     
     self.detailLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum13 TextColor:[UIColor blackColor]];
@@ -108,6 +109,8 @@
     self.publishLab.text = NSLocalizedString(@"on sale", nil)
 ;
     [self.publishLab sizeToFit];
+    self.publishLab.layer.cornerRadius = 5;//设置那个圆角的有多圆
+    self.publishLab.layer.masksToBounds = YES;//设为NO去试试
     
     self.detailLab.x = CGRectGetMaxX(self.goodsIV.frame)+GetScaleWidth(14);
     self.detailLab.y = CGRectGetMaxY(self.goodsName.frame)+GetScaleWidth(10);
