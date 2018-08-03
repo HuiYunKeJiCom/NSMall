@@ -20,7 +20,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Desktop/NSMall/NSMall/My(&#x6211;&#x7684;)/Shop(&#x6211;&#x7684;&#x5e97;&#x94fa;)/&#x7f16;&#x8f91;&#x5e97;&#x94fa;/NSShopEditVC.m"
-            timestampString = "554717946.922322"
+            timestampString = "554873704.464655"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "887"
@@ -36,7 +36,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Desktop/NSMall/NSMall/My(&#x6211;&#x7684;)/Shop(&#x6211;&#x7684;&#x5e97;&#x94fa;)/&#x7f16;&#x8f91;&#x5e97;&#x94fa;/NSShopEditVC.m"
-            timestampString = "554717946.923502"
+            timestampString = "554873704.464747"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "898"
@@ -116,7 +116,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Desktop/NSMall/NSMall/My(&#x6211;&#x7684;)/Shop(&#x6211;&#x7684;&#x5e97;&#x94fa;)/&#x7f16;&#x8f91;&#x5e97;&#x94fa;/NSShopEditVC.m"
-            timestampString = "554717946.923846"
+            timestampString = "554873704.464851"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "214"
@@ -128,15 +128,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NSMall/Publish(&#x53d1;&#x5e03;)/&#x53d1;&#x5e03;&#x5546;&#x54c1;/Ctrl/NSGoodsPublishVC.m"
-            timestampString = "554823966.365875"
+            timestampString = "554887835.273248"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "923"
-            endingLineNumber = "923"
+            startingLineNumber = "921"
+            endingLineNumber = "921"
             landmarkName = "-publish:"
             landmarkType = "7">
          </BreakpointContent>

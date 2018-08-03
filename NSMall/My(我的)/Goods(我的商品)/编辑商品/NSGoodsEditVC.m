@@ -1,12 +1,12 @@
 //
-//  NSGoodsPublishVC.m
+//  NSGoodsEditVC.m
 //  NSMall
 //
-//  Created by 张锐凌 on 2018/5/3.
+//  Created by 张锐凌 on 2018/8/2.
 //  Copyright © 2018年 www. All rights reserved.
 //
 
-#import "NSGoodsPublishVC.h"
+#import "NSGoodsEditVC.h"
 #import "ADOrderTopToolView.h"
 //#import "NSShopTableView.h"
 #import "NSGoodsTableView.h"
@@ -23,8 +23,7 @@
 #import "NSInfoCustomCell.h"
 #import "ClipViewController.h"
 
-
-@interface NSGoodsPublishVC ()<NSGoodsTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,ClipPhotoDelegate,UITextFieldDelegate> {
+@interface NSGoodsEditVC ()<NSGoodsTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,ClipPhotoDelegate,UITextFieldDelegate> {
     NSMutableArray *_selectedPhotos;
     NSMutableArray *_selectedAssets;
     BOOL _isSelectOriginalPhoto;
@@ -53,9 +52,10 @@
 @property(nonatomic,strong)NSMutableDictionary *dict;/* 改变高度的字典 */
 @property(nonatomic,strong)NSMutableArray *specViewArr;/* 存放规格View */
 @property(nonatomic)CGFloat specHeight;/* 规格View的高度 */
+
 @end
 
-@implementation NSGoodsPublishVC
+@implementation NSGoodsEditVC
 
 -(void)viewWillAppear:(BOOL)animated{
     if(_selectedPhotos.count >0){
@@ -65,7 +65,7 @@
         self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
         self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
         [self tableViewFrameChange];
-
+        
     }else{
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
@@ -98,7 +98,7 @@
     self.upTableView.tbDelegate = self;
     self.upTableView.isRefresh = NO;
     self.upTableView.isLoadMore = NO;
-//    self.upTableView.isShow = YES;
+    //    self.upTableView.isShow = YES;
     if (@available(iOS 11.0, *)) {
         self.upTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
@@ -113,7 +113,7 @@
     self.midTableView.tbDelegate = self;
     self.midTableView.isRefresh = NO;
     self.midTableView.isLoadMore = NO;
-//    self.midTableView.isShow = YES;
+    //    self.midTableView.isShow = YES;
     if (@available(iOS 11.0, *)) {
         self.midTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
@@ -589,7 +589,7 @@
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
     if(_selectedPhotos.count >0){
-//        self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20-TopBarHeight+_selectedPhotos.count/4*(_itemWH + _margin*2));
+        //        self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20-TopBarHeight+_selectedPhotos.count/4*(_itemWH + _margin*2));
         
         self.addView.alpha = 0.0;
         self.collectionView.alpha = 1.0;
@@ -611,7 +611,7 @@
     
     _selectedPhotos = [NSMutableArray arrayWithArray:photos];
     _selectedAssets = [NSMutableArray arrayWithArray:assets];
-
+    
     ClipViewController *viewController = [[ClipViewController alloc] init];
     //    viewController.image = image;
     viewController.picker = (UIImagePickerController *)picker;
@@ -621,7 +621,7 @@
     viewController.image = _selectedPhotos[0];
     viewController.isTakePhoto = NO;
     [picker presentViewController:viewController animated:NO completion:nil];
-
+    
 }
 
 // 决定相册显示与否
@@ -656,13 +656,20 @@
     
     [self.midTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"price(N)", nil) imageName:nil num:@"开个价"]];
     [self.midTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"stock(g)", nil) imageName:nil num:NSLocalizedString(@"stock", nil)]];
-
+    
     
     [self.addSpecTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"add goods specifications", nil) imageName:@"publish_ico_goods_add" num:nil]];
-
+    
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"fee(N)", nil) imageName:nil num:NSLocalizedString(@"fee", nil)]];
     [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:NSLocalizedString(@"on shelf", nil) imageName:nil num:NSLocalizedString(@"no", nil)]];
 }
+
+#pragma mark - 获取数据
+//- (void)getDataWithShopModel:(NSShopListItemModel *)shopModel
+//{
+//    
+//}
+
 
 #pragma mark - initialize
 - (void)setUpBase {
@@ -774,7 +781,7 @@
 {
     NSLog(@"VC里面");
     self.hasSpec = YES;
-
+    
     NSSpecView *specView = [NSSpecView new];
     specView.backgroundColor = KBGCOLOR;
     __weak typeof(specView) specview = specView;
@@ -793,7 +800,7 @@
         [self specTotalViewReloadData];
         [self tableViewFrameChange];
     };
-
+    
     specView.x = 0;
     specView.y = self.specHeight;
     specView.size = CGSizeMake(kScreenWidth, GetScaleWidth(43)*3+10);
@@ -847,8 +854,8 @@
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
-//        [weakSelf dismissViewControllerAnimated:YES completion:nil];
-    [weakSelf dismissModalStack];
+        //        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        [weakSelf dismissModalStack];
     };
     
     [self.view addSubview:topToolView];
@@ -897,40 +904,40 @@
             if(i==_selectedPhotos.count-1){
                 self.param.imagePath = [pathArr componentsJoinedByString:@","];
                 DLog(@"商品图片上传 = %lu",pathArr.count);
-//                DLog(@"self.param.imagePath = %@",self.param.imagePath);
-            self.param.productName = self.goodsNameTF.text;
-            self.param.introduce = self.detailTV.text;
-            
-            if(self.specViewArr.count>0){
-                self.param.hasSpec = @"1";
-//                NSString *specStr = @"";
-                for(int i=0;i<self.specViewArr.count;i++){
-                    NSSpecView *specV = self.specViewArr[i];
-                    [jsonArr addObject:specV.dataDict];
+                //                DLog(@"self.param.imagePath = %@",self.param.imagePath);
+                self.param.productName = self.goodsNameTF.text;
+                self.param.introduce = self.detailTV.text;
+                
+                if(self.specViewArr.count>0){
+                    self.param.hasSpec = @"1";
+                    //                NSString *specStr = @"";
+                    for(int i=0;i<self.specViewArr.count;i++){
+                        NSSpecView *specV = self.specViewArr[i];
+                        [jsonArr addObject:specV.dataDict];
+                    }
+                    self.param.productSpec = [self arrayToJSONString:jsonArr];
+                }else{
+                    self.param.hasSpec = @"0";
                 }
-                self.param.productSpec = [self arrayToJSONString:jsonArr];
-            }else{
-                self.param.hasSpec = @"0";
-            }
                 dispatch_group_leave(group);
-//                DLog(@"categoryId = %@",self.param.categoryId);
+                //                DLog(@"categoryId = %@",self.param.categoryId);
             }
         } faulre:^(NSError *error) {
         }];
     }
     DLog(@"self.param = %@",self.param.mj_keyValues);
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-    //调用发布接口API
-    [GoodsPublishAPI createProductWithParam:self.param success:^{
-        DLog(@"商品发布成功");
-        //                [self dismissViewControllerAnimated:YES completion:nil];
-        [Common AppShowToast:NSLocalizedString(@"goods publish success", nil)];
-        [self dismissModalStack];
-        //                [kAppDelegate setUpRootVC];
-    } faulre:^(NSError *error) {
-        DLog(@"商品发布失败");
-    }];
-        });
+        //调用发布接口API
+        [GoodsPublishAPI createProductWithParam:self.param success:^{
+            DLog(@"商品发布成功");
+            //                [self dismissViewControllerAnimated:YES completion:nil];
+            [Common AppShowToast:NSLocalizedString(@"goods publish success", nil)];
+            [self dismissModalStack];
+            //                [kAppDelegate setUpRootVC];
+        } faulre:^(NSError *error) {
+            DLog(@"商品发布失败");
+        }];
+    });
 }
 
 -(NSString *)convertToJsonData:(NSDictionary *)dict
@@ -976,7 +983,7 @@
 {
     
     NSError *error = nil;
-
+    
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:&error];
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     
@@ -995,7 +1002,7 @@
     } completion:^(BOOL finished) {
         [self->_collectionView reloadData];
         if(_selectedPhotos.count >0){
-//            self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20-TopBarHeight+_selectedPhotos.count/4*(_itemWH + _margin*2));
+            //            self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20-TopBarHeight+_selectedPhotos.count/4*(_itemWH + _margin*2));
             
             self.addView.alpha = 0.0;
             self.collectionView.alpha = 1.0;
@@ -1028,7 +1035,7 @@
 
 - (EditUserType)getEditType:(NSString *)title {
     EditUserType type = 0;
-
+    
     if ([title isEqualToString:NSLocalizedString(@"price(N)", nil)]) {
         type = EditUserTypePrice;
         
@@ -1077,7 +1084,7 @@
     _selectedAssets = assetArray;
     _selectedPhotos = array;
     //    _isSelectOriginalPhoto = isSelectOriginalPhoto;
-
+    
     [_collectionView reloadData];
     if(_selectedPhotos.count >0){
         self.addView.alpha = 0.0;
@@ -1135,7 +1142,7 @@
     [UIView animateWithDuration:durition animations:^{
         
         self.SV.transform = CGAffineTransformMakeTranslation(0, -keyboardHeight);
-//        self.otherTableView.dc_y = CGRectGetMaxY(self.specTotalView.frame)+GetScaleWidth(10);
+        //        self.otherTableView.dc_y = CGRectGetMaxY(self.specTotalView.frame)+GetScaleWidth(10);
     }];
     
 }
@@ -1149,7 +1156,7 @@
     [UIView animateWithDuration:duration animations:^{
         
         self.SV.transform = CGAffineTransformIdentity;
-//        self.otherTableView.dc_y = CGRectGetMaxY(self.specTotalView.frame)+GetScaleWidth(10);
+        //        self.otherTableView.dc_y = CGRectGetMaxY(self.specTotalView.frame)+GetScaleWidth(10);
     }];
     
 }

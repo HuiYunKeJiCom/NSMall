@@ -11,4 +11,8 @@
 
 @interface NSMyGoodsTVCell : BaseTableCell
 @property (nonatomic, strong) NSMyProductListItemModel  *model;
+/* 编辑 点击回调 */
+@property (nonatomic, copy) dispatch_block_t editBtnClickBlock;
+/* 删除 点击回调 */
+@property (nonatomic, copy) dispatch_block_t deleteBtnClickBlock;
 @end

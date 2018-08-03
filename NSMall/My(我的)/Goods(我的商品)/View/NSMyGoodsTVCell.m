@@ -71,7 +71,7 @@
     [_editBtn setTitleColor:KMainColor forState:UIControlStateNormal];
     [_editBtn setTitle:NSLocalizedString(@"edit", nil)
  forState:UIControlStateNormal];
-//    [_editBtn addTarget:self action:@selector(evaluateBtnButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [_editBtn addTarget:self action:@selector(editButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.bgView addSubview:self.editBtn];
     
     _delBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -84,7 +84,7 @@
     [_delBtn setTitleColor:kRedColor forState:UIControlStateNormal];
     [_delBtn setTitle:NSLocalizedString(@"delete", nil)
  forState:UIControlStateNormal];
-    //    [_delBtn addTarget:self action:@selector(evaluateBtnButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [_delBtn addTarget:self action:@selector(deleteButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.bgView addSubview:self.delBtn];
     
 }
@@ -130,6 +130,16 @@
     self.delBtn.size = CGSizeMake(GetScaleWidth(53), GetScaleWidth(23));
 }
 
+#pragma mark - 编辑 点击
+- (void)editButtonClick {
+    NSLog(@"编辑 点击");
+    !_editBtnClickBlock ? : _editBtnClickBlock();
+}
 
+#pragma mark - 删除 点击
+- (void)deleteButtonClick {
+    NSLog(@"删除 点击");
+    !_deleteBtnClickBlock ? : _deleteBtnClickBlock();
+}
 
 @end

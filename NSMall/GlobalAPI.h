@@ -57,6 +57,8 @@ const static NSString * const kOrderListAPI = @"auth/orderList";//我的订单�
 
 //我的店铺
 const static NSString * const kRemoveStoreAPI = @"auth/removeStore";//删除店铺
+const static NSString * const kRemoveProductAPI = @"auth/removeProduct";//删除商品
+const static NSString * const kProductForUpdateAPI = @"auth/productForUpdate";//获取要编辑的商品信息
 
 const static NSString * const kGetVcodeAPI = @"getSmsVerifyCode";//获取短信验证码
 const static NSString * const kGetLabelsAPI = @"getLabels";//获取标签列表

@@ -13,6 +13,8 @@
 #import "UserInfoAPI.h"
 #import "ADOrderTopToolView.h"
 #import "NSCommonParam.h"
+#import "MyGoodsAPI.h"
+#import "NSMyProductListItemModel.h"
 
 @interface NSMyGoodsListVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
 @property (nonatomic, strong) BaseTableView         *goodsTable;
@@ -124,10 +126,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSMyGoodsTVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSMyGoodsTVCell"];
-    if (self.goodsTable.data.count > indexPath.row) {
-        NSMyProductListItemModel *model = self.goodsTable.data[indexPath.row];
+    if (self.goodsTable.data.count > indexPath.section) {
+        NSMyProductListItemModel *model = self.goodsTable.data[indexPath.section];
 //        NSLog(@"model = %@",model.mj_keyValues);
         cell.model = model;
+        cell.deleteBtnClickBlock = ^{
+            [self deleteShopWith:model];
+        };
+        cell.editBtnClickBlock = ^{
+            [self editShopWith:model];
+        };
     }
     
     return cell;
@@ -155,6 +163,24 @@
     if(self.currentPage != 1){
         self.currentPage -= 1;
     }
+}
+
+-(void)deleteShopWith:(NSMyProductListItemModel *)model{
+    
+    [MyGoodsAPI delGoodsWithParam:model.product_id success:^{
+        [Common AppShowToast:@"商品删除成功"];
+        //        sleep(1);
+        [self requestAllOrder:NO];
+        [self.goodsTable reloadData];
+    } faulre:^(NSError *error) {
+        DLog(@"商品删除失败");
+    }];
+}
+
+-(void)editShopWith:(NSMyProductListItemModel *)model{
+    NSShopEditVC *shopEditVC = [NSShopEditVC new];
+    [self.navigationController pushViewController:shopEditVC animated:YES];
+    [shopEditVC getDataWithShopModel:model];
 }
 
 @end

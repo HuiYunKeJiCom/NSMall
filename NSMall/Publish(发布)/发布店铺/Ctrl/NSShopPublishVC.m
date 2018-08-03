@@ -63,18 +63,18 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     if(_selectedPhotos.count >0){
-        if(_selectedPhotos.count>7){
-            self.SV.scrollEnabled = YES;
-        }else{
-            self.SV.scrollEnabled = NO;
-        }
+//        if(_selectedPhotos.count>7){
+//            self.SV.scrollEnabled = YES;
+//        }else{
+//            self.SV.scrollEnabled = NO;
+//        }
         self.addView.alpha = 0.0;
         self.collectionView.alpha = 1.0;
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
         self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
         self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
     }else{
-        self.SV.scrollEnabled = NO;
+//        self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
         self.middleView.dc_y = GetScaleWidth(109);
@@ -99,7 +99,7 @@
     self.param = [ShopPublishParam new];
     
     self.SV = [[UIScrollView alloc]initWithFrame:CGRectMake(0, TopBarHeight, kScreenWidth, kScreenHeight-TopBarHeight-TabBarHeight)];
-    self.SV.scrollEnabled = NO;
+//    self.SV.scrollEnabled = NO;
     self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight);
     self.SV.backgroundColor = KBGCOLOR;
     [self.view addSubview:self.SV];
@@ -517,11 +517,11 @@
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
     if(_selectedPhotos.count >0){
-        if(_selectedPhotos.count>7){
-            self.SV.scrollEnabled = YES;
-        }else{
-            self.SV.scrollEnabled = NO;
-        }
+//        if(_selectedPhotos.count>7){
+//            self.SV.scrollEnabled = YES;
+//        }else{
+//            self.SV.scrollEnabled = NO;
+//        }
         self.addView.alpha = 0.0;
         self.collectionView.alpha = 1.0;
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
@@ -529,7 +529,7 @@
         (9);
         self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
     }else{
-        self.SV.scrollEnabled = NO;
+//        self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
         self.middleView.dc_y = GetScaleWidth(109);
@@ -837,18 +837,17 @@
     } completion:^(BOOL finished) {
         [self->_collectionView reloadData];
         if(_selectedPhotos.count >0){
-            if(_selectedPhotos.count>7){
-                self.SV.scrollEnabled = YES;
-            }else{
-                self.SV.scrollEnabled = NO;
-            }
+//            if(_selectedPhotos.count>7){
+//                self.SV.scrollEnabled = YES;
+//            }else{
+//                self.SV.scrollEnabled = NO;
+//            }
             self.addView.alpha = 0.0;
             self.collectionView.alpha = 1.0;
             self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
             self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
             self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
         }else{
-            self.SV.scrollEnabled = NO;
             self.addView.alpha = 1.0;
             self.collectionView.alpha = 0.0;
             self.middleView.dc_y = GetScaleWidth(109);
@@ -957,18 +956,18 @@
     
     [_collectionView reloadData];
     if(_selectedPhotos.count >0){
-        if(_selectedPhotos.count>7){
-            self.SV.scrollEnabled = YES;
-        }else{
-            self.SV.scrollEnabled = NO;
-        }
+//        if(_selectedPhotos.count>7){
+//            self.SV.scrollEnabled = YES;
+//        }else{
+//            self.SV.scrollEnabled = NO;
+//        }
         self.addView.alpha = 0.0;
         self.collectionView.alpha = 1.0;
         self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
         self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
         self.otherTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
     }else{
-        self.SV.scrollEnabled = NO;
+//        self.SV.scrollEnabled = NO;
         self.addView.alpha = 1.0;
         self.collectionView.alpha = 0.0;
         self.collectionView.height = GetScaleWidth(100);

@@ -71,7 +71,7 @@
     _tkImageView.cropAreaMidLineColor = KMainColor;
     _tkImageView.cropAreaCrossLineColor = [UIColor clearColor];
     _tkImageView.cropAreaCrossLineWidth = 0.5;
-    _tkImageView.initialScaleFactor = .9f;
+    _tkImageView.initialScaleFactor = .946f;//.944f
     _tkImageView.cropAspectRatio = 1;
     _tkImageView.maskColor = [UIColor clearColor];
     
@@ -170,6 +170,7 @@
             //将图片存储到相册
             UIImageWriteToSavedPhotosAlbum(image, self, nil, nil);
         }
+//        DLog(@"image = %@",image);
         [self.clipImageArr addObject:image];
         
         [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{

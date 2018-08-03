@@ -126,8 +126,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSGoodsShowCellTest *cell = [tableView dequeueReusableCellWithIdentifier:@"NSGoodsShowCellTest"];
-    if (self.goodsTable.data.count > indexPath.row) {
-        ProductListItemModel *model = self.goodsTable.data[indexPath.row];
+    if (self.goodsTable.data.count > indexPath.section) {
+        ProductListItemModel *model = self.goodsTable.data[indexPath.section];
         //        NSLog(@"model = %@",model.mj_keyValues);
         cell.productModel = model;
         WEAKSELF
