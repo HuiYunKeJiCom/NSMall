@@ -53,6 +53,7 @@
 		184779F820CF9F36000DB448 /* BRDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184779EB20CF9F36000DB448 /* BRDatePickerView.m */; };
 		184779F920CF9F36000DB448 /* BRBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184779EE20CF9F36000DB448 /* BRBaseView.m */; };
 		184779FF20CFB55F000DB448 /* NSSearchAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184779FE20CFB55F000DB448 /* NSSearchAddressVC.m */; };
+		1848A6DA2113EADF0027AC4D /* NSProductSpecModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1848A6D92113EADF0027AC4D /* NSProductSpecModel.m */; };
 		184DE7A6208F081400E776F3 /* ADLMyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7A5208F081400E776F3 /* ADLMyInfoTableViewCell.m */; };
 		184DE7A9208F088E00E776F3 /* BaseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7A7208F088E00E776F3 /* BaseTableCell.m */; };
 		184DE7AC208F08B400E776F3 /* BaseRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 184DE7AB208F08B300E776F3 /* BaseRefreshGifHeader.m */; };
@@ -532,6 +533,8 @@
 		184779EF20CF9F36000DB448 /* BRBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRBaseView.h; sourceTree = "<group>"; };
 		184779FD20CFB55F000DB448 /* NSSearchAddressVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSearchAddressVC.h; sourceTree = "<group>"; };
 		184779FE20CFB55F000DB448 /* NSSearchAddressVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSearchAddressVC.m; sourceTree = "<group>"; };
+		1848A6D82113EADF0027AC4D /* NSProductSpecModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSProductSpecModel.h; sourceTree = "<group>"; };
+		1848A6D92113EADF0027AC4D /* NSProductSpecModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSProductSpecModel.m; sourceTree = "<group>"; };
 		184DE7A4208F081400E776F3 /* ADLMyInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADLMyInfoTableViewCell.h; sourceTree = "<group>"; };
 		184DE7A5208F081400E776F3 /* ADLMyInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADLMyInfoTableViewCell.m; sourceTree = "<group>"; };
 		184DE7A7208F088E00E776F3 /* BaseTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableCell.m; sourceTree = "<group>"; };
@@ -2619,6 +2622,8 @@
 				18A7AB8520ADB5AD009FC725 /* NSMyProductListItemModel.m */,
 				182B5C142113078800B72CC7 /* NSGoodsItemModel.h */,
 				182B5C152113078800B72CC7 /* NSGoodsItemModel.m */,
+				1848A6D82113EADF0027AC4D /* NSProductSpecModel.h */,
+				1848A6D92113EADF0027AC4D /* NSProductSpecModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4617,6 +4622,7 @@
 				18D0C0D420AC1A52007F0784 /* UIButton+BtnExt.m in Sources */,
 				1868F6C520FEEFC9000BB6EB /* NSMyShopVC.m in Sources */,
 				18D0824B20956D2F0031034A /* NSLoginView.m in Sources */,
+				1848A6DA2113EADF0027AC4D /* NSProductSpecModel.m in Sources */,
 				18B017AC20A67B9600826EA4 /* GetAreaAPI.m in Sources */,
 				18D0C0A820AC0D01007F0784 /* TDUserCertifyCellConfirm.m in Sources */,
 				18F5D4F320CE1A8A0037F825 /* NSStoreModel.m in Sources */,

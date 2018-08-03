@@ -14,6 +14,7 @@
  http://doc.huist.cn/index.php?s=/10&page_id=203
  */
 
+@property (nonatomic,copy,nonnull)NSString *productId;//商品ID
 @property (nonatomic,copy,nonnull)NSString *productName;//商品名称
 @property (nonatomic,copy,nonnull)NSString *introduce;//商品简介描述
 @property (nonatomic,copy,nonnull)NSString *imagePath;//商品路径【多个路径用逗号分隔】

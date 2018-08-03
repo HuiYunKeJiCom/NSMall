@@ -15,6 +15,7 @@
 #import "NSCommonParam.h"
 #import "MyGoodsAPI.h"
 #import "NSMyProductListItemModel.h"
+#import "NSGoodsEditVC.h"
 
 @interface NSMyGoodsListVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
 @property (nonatomic, strong) BaseTableView         *goodsTable;
@@ -130,11 +131,12 @@
         NSMyProductListItemModel *model = self.goodsTable.data[indexPath.section];
 //        NSLog(@"model = %@",model.mj_keyValues);
         cell.model = model;
+        WEAKSELF
         cell.deleteBtnClickBlock = ^{
-            [self deleteShopWith:model];
+            [weakSelf deleteShopWith:model];
         };
         cell.editBtnClickBlock = ^{
-            [self editShopWith:model];
+            [weakSelf editShopWith:model];
         };
     }
     
@@ -166,7 +168,7 @@
 }
 
 -(void)deleteShopWith:(NSMyProductListItemModel *)model{
-    
+//    NSMyProductListItemModel *model = self.goodsTable.data[indexPath.section];
     [MyGoodsAPI delGoodsWithParam:model.product_id success:^{
         [Common AppShowToast:@"商品删除成功"];
         //        sleep(1);
@@ -178,9 +180,11 @@
 }
 
 -(void)editShopWith:(NSMyProductListItemModel *)model{
-    NSShopEditVC *shopEditVC = [NSShopEditVC new];
-    [self.navigationController pushViewController:shopEditVC animated:YES];
-    [shopEditVC getDataWithShopModel:model];
+//    NSMyProductListItemModel *model = self.goodsTable.data[indexPath.section];
+//    DLog(@"model = %@",model.mj_keyValues);
+    NSGoodsEditVC *goodsEditVC = [NSGoodsEditVC new];
+    [self.navigationController pushViewController:goodsEditVC animated:YES];
+    [goodsEditVC getDataWithProductId:model];
 }
 
 @end

@@ -76,6 +76,7 @@ const static NSString * const kCategoryAPI = @"category";//获取商品分类
 const static NSString * const kCreateProductAPI = @"auth/createProduct";//商品发布
 const static NSString * const kUploadProductImageAPI = @"auth/uploadProductImage";//商品图片上传
 const static NSString * const kShelveProductAPI = @"auth/shelveProduct";//上/下架商品
+const static NSString * const kUpdateProductAPI = @"auth/updateProduct";//编辑商品信息
 
 //店铺发布
 const static NSString * const kCreateStoreAPI = @"auth/createStore";//店铺发布

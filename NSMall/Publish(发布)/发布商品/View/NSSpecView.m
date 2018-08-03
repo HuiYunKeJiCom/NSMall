@@ -11,13 +11,10 @@
 @interface NSSpecView()<UITextFieldDelegate>
 @property(nonatomic,strong)UIView *bgView;/* 背景 */
 @property(nonatomic,strong)UILabel *specLabel;/* 规格标题 */
-@property(nonatomic,strong)UITextField *specTF;/* 规格 */
 @property(nonatomic,strong)UIView *specLineV;/* 分割线 */
 @property(nonatomic,strong)UILabel *priceLabel;/* 价格标题 */
-@property(nonatomic,strong)UITextField *priceTF;/* 价格 */
 @property(nonatomic,strong)UIView *priceLineV;/* 分割线 */
 @property(nonatomic,strong)UILabel *inventoryLabel;/*  库存标题 */
-@property(nonatomic,strong)UITextField *inventoryTF;/*  库存 */
 @property(nonatomic,strong)UIButton *delButton;/*  删除按钮 */
 @end
 

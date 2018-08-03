@@ -8,9 +8,10 @@
 
 #import "DCBaseSetViewController.h"
 #import "CategoryModel.h"
+#import "NSMyProductListItemModel.h"
 
 @interface NSGoodsEditVC : DCBaseSetViewController
 @property(nonatomic,copy)CategoryModel *model;/* 选择分类 */
-
+- (void)getDataWithProductId:(NSMyProductListItemModel *)productModel;
 
 @end

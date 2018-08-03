@@ -9,5 +9,7 @@
 #import "NSMyProductListItemModel.h"
 
 @implementation NSMyProductListItemModel
-
++ (NSDictionary *)modelContainerPropertyGenericClass{
+    return @{@"productSpecList":[NSProductSpecModel class]};
+}
 @end
