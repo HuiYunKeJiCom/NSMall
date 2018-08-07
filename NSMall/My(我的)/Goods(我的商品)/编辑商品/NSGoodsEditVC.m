@@ -21,10 +21,10 @@
 #import "GoodsPublishParam.h"
 #import "NSSpecView.h"
 #import "NSInfoCustomCell.h"
-#import "ClipViewController.h"
+//#import "ClipViewController.h"
 #import "MyGoodsAPI.h"
 
-@interface NSGoodsEditVC ()<NSGoodsTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,ClipPhotoDelegate,UITextFieldDelegate> {
+@interface NSGoodsEditVC ()<NSGoodsTableViewDelegate,TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,UITextFieldDelegate> {
     NSMutableArray *_selectedPhotos;
     NSMutableArray *_selectedAssets;
     BOOL _isSelectOriginalPhoto;
@@ -617,18 +617,26 @@
 
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos {
     
-    _selectedPhotos = [NSMutableArray arrayWithArray:photos];
-    _selectedAssets = [NSMutableArray arrayWithArray:assets];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    [_selectedPhotos addObject:photos[0]];
+    [_selectedAssets addObject:assets[0]];
+    [_collectionView reloadData];
     
-    ClipViewController *viewController = [[ClipViewController alloc] init];
-    //    viewController.image = image;
-    viewController.picker = (UIImagePickerController *)picker;
-    viewController.controller = self;
-    viewController.delegate = self;
-    viewController.imageArr = _selectedPhotos;
-    viewController.image = _selectedPhotos[0];
-    viewController.isTakePhoto = NO;
-    [picker presentViewController:viewController animated:NO completion:nil];
+//    [_selectedAssets removeAllObjects];
+//    [_selectedPhotos removeAllObjects];
+//
+//    _selectedPhotos = [NSMutableArray arrayWithArray:photos];
+//    _selectedAssets = [NSMutableArray arrayWithArray:assets];
+//
+//    ClipViewController *viewController = [[ClipViewController alloc] init];
+//    //    viewController.image = image;
+//    viewController.picker = (UIImagePickerController *)picker;
+//    viewController.controller = self;
+//    viewController.delegate = self;
+//    viewController.imageArr = _selectedPhotos;
+//    viewController.image = _selectedPhotos[0];
+//    viewController.isTakePhoto = NO;
+//    [picker presentViewController:viewController animated:NO completion:nil];
     
 }
 
@@ -686,15 +694,15 @@
                 self.param.categoryId = productModel.category_id;
             }
         }
-        
-        if(productModel.stock){
+    NSProductSpecModel *specModel = productModel.productSpecList[0];
+        if(!specModel.spec_name){
             //没规格
             for (ADLMyInfoModel *model in self.midTableView.data) {
                 if([model.title isEqualToString:NSLocalizedString(@"price(N)", nil)]){
-                    self.param.price = [NSString stringWithFormat:@"%.2f",productModel.show_price];
+                    self.param.price = [NSString stringWithFormat:@"%.2f",specModel.price];
                     model.num = self.param.price;
                 }else if([model.title isEqualToString:NSLocalizedString(@"stock(g)", nil)]){
-                    self.param.stock = [NSString stringWithFormat:@"%ld",productModel.stock];
+                    self.param.stock = [NSString stringWithFormat:@"%ld",specModel.stock];
                     model.num = self.param.stock;
                 }
             }
@@ -1036,6 +1044,7 @@
     DLog(@"图片数量 = %lu",_selectedPhotos.count);
     NSMutableArray *pathArr = [NSMutableArray array];
     NSMutableArray *jsonArr = [NSMutableArray array];
+    [pathArr removeAllObjects];
     
     dispatch_group_t group = dispatch_group_create();
     dispatch_group_enter(group);
@@ -1073,7 +1082,7 @@
     }
     DLog(@"self.param = %@",self.param.mj_keyValues);
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        //调用发布接口API
+        //调用编辑接口API
         [MyGoodsAPI updateGoodsWithParam:self.param success:^{
             DLog(@"商品编辑成功");
             //                [self dismissViewControllerAnimated:YES completion:nil];

@@ -976,6 +976,7 @@ typedef NS_ENUM(NSInteger, TKMidLineType) {
     _toCropImage = toCropImage;
     _imageAspectRatio = toCropImage.size.width / toCropImage.size.height;
     _imageView.image = toCropImage;
+//    _imageView.contentMode = UIViewContentModeScaleAspectFill;
 //    [self resetImageView];
 //    [self resetCropAreaByAspectRatio];
     

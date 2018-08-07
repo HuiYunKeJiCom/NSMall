@@ -71,7 +71,7 @@
     _tkImageView.cropAreaMidLineColor = KMainColor;
     _tkImageView.cropAreaCrossLineColor = [UIColor clearColor];
     _tkImageView.cropAreaCrossLineWidth = 0.5;
-    _tkImageView.initialScaleFactor = .91f;//.944f
+    _tkImageView.initialScaleFactor = .944f;//.944f
     _tkImageView.cropAspectRatio = 1;
     _tkImageView.maskColor = [UIColor clearColor];
     

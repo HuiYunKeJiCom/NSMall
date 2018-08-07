@@ -289,7 +289,7 @@
         // preview photos / 预览照片
         TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithSelectedAssets:_selectedAssets selectedPhotos:_selectedPhotos index:indexPath.row];
         //    imagePickerVc.naviBgColor = [UIColor redColor];
-        imagePickerVc.maxImagesCount = 9;
+        imagePickerVc.maxImagesCount = 1;
         imagePickerVc.allowPickingGif = NO;
         imagePickerVc.allowPickingOriginalPhoto = YES;
         imagePickerVc.allowPickingMultipleVideo = NO;
@@ -358,7 +358,7 @@
 
 - (void)pushTZImagePickerController {
     
-    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 columnNumber:4 delegate:self pushPhotoPickerVc:YES];
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 columnNumber:4 delegate:self pushPhotoPickerVc:YES];
     
 #pragma mark - 五类个性化设置，这些参数都可以不传，此时会走默认设置
     imagePickerVc.isSelectOriginalPhoto = _isSelectOriginalPhoto;
@@ -608,19 +608,23 @@
 }
 
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    [_selectedPhotos addObject:photos[0]];
+    [_selectedAssets addObject:assets[0]];
+    [_collectionView reloadData];
+//    _selectedPhotos = [NSMutableArray arrayWithArray:photos];
+//    _selectedAssets = [NSMutableArray arrayWithArray:assets];
     
-    _selectedPhotos = [NSMutableArray arrayWithArray:photos];
-    _selectedAssets = [NSMutableArray arrayWithArray:assets];
-
-    ClipViewController *viewController = [[ClipViewController alloc] init];
-    //    viewController.image = image;
-    viewController.picker = (UIImagePickerController *)picker;
-    viewController.controller = self;
-    viewController.delegate = self;
-    viewController.imageArr = _selectedPhotos;
-    viewController.image = _selectedPhotos[0];
-    viewController.isTakePhoto = NO;
-    [picker presentViewController:viewController animated:NO completion:nil];
+//
+//    ClipViewController *viewController = [[ClipViewController alloc] init];
+//    //    viewController.image = image;
+//    viewController.picker = (UIImagePickerController *)picker;
+//    viewController.controller = self;
+//    viewController.delegate = self;
+//    viewController.imageArr = _selectedPhotos;
+//    viewController.image = _selectedPhotos[0];
+//    viewController.isTakePhoto = NO;
+//    [picker presentViewController:viewController animated:NO completion:nil];
 
 }
 
@@ -885,8 +889,8 @@
     NSMutableArray *jsonArr = [NSMutableArray array];
     
     dispatch_group_t group = dispatch_group_create();
-    dispatch_group_enter(group);
     
+    dispatch_group_enter(group);
     for(int i=0;i<_selectedPhotos.count;i++){
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
         [param setObject:_selectedPhotos[i] forKey:@"pic"];
@@ -918,7 +922,7 @@
         } faulre:^(NSError *error) {
         }];
     }
-    DLog(@"self.param = %@",self.param.mj_keyValues);
+//    DLog(@"self.param = %@",self.param.mj_keyValues);
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
     //调用发布接口API
     [GoodsPublishAPI createProductWithParam:self.param success:^{

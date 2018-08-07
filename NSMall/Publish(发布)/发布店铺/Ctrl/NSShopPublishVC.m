@@ -544,20 +544,23 @@
 //    cell.asset = _selectedAssets[indexPath.row];
 //    [picker dismissViewControllerAnimated:YES completion:nil];
     
-    _selectedPhotos = [NSMutableArray arrayWithArray:photos];
-    _selectedAssets = [NSMutableArray arrayWithArray:assets];
- 
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    [_selectedPhotos addObject:photos[0]];
+    [_selectedAssets addObject:assets[0]];
+    [_collectionView reloadData];
     
-    
-    ClipViewController *viewController = [[ClipViewController alloc] init];
-    //    viewController.image = image;
-    viewController.picker = (UIImagePickerController *)picker;
-    viewController.controller = self;
-    viewController.delegate = self;
-    viewController.imageArr = _selectedPhotos;
-    viewController.image = _selectedPhotos[0];
-    viewController.isTakePhoto = NO;
-    [picker presentViewController:viewController animated:NO completion:nil];
+//    _selectedPhotos = [NSMutableArray arrayWithArray:photos];
+//    _selectedAssets = [NSMutableArray arrayWithArray:assets];
+//
+//    ClipViewController *viewController = [[ClipViewController alloc] init];
+//    //    viewController.image = image;
+//    viewController.picker = (UIImagePickerController *)picker;
+//    viewController.controller = self;
+//    viewController.delegate = self;
+//    viewController.imageArr = _selectedPhotos;
+//    viewController.image = _selectedPhotos[0];
+//    viewController.isTakePhoto = NO;
+//    [picker presentViewController:viewController animated:NO completion:nil];
 
 }
 

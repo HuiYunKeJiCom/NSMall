@@ -59,7 +59,7 @@
         }
     }
 
-    [self requestAllOrder:NO];
+    
     [self buildUI];
     
     [self setUpNavTopView];
@@ -104,7 +104,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    
+    [self requestAllOrder:NO];
 }
 
 #pragma mark - 导航栏处理
@@ -151,6 +151,7 @@
     
     [self.imageGroupArray removeAllObjects];
     [self.imageDict removeAllObjects];
+    [self.tableView.data removeAllObjects];
     
     //    dispatch_queue_t queue = dispatch_queue_create("HomePageDataRequest", DISPATCH_QUEUE_CONCURRENT);
     
@@ -239,7 +240,7 @@
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         //请求完成后的处理、
         NSLog(@"完成");
-        [weakSelf.tableView reloadData];
+        [self.tableView reloadData];
     });
   
 }
@@ -326,6 +327,9 @@
         WEAKSELF
         if (self.tableView.data.count > indexPath.section) {
             ProductListItemModel *model = self.tableView.data[indexPath.section];
+            if(indexPath.section == 0){
+                DLog(@"model = %@",model.mj_keyValues);
+            }
             cell.productModel = model;
 //            [self configureCell:cell atIndexPath:indexPath];
             cell.likeBtnClickBlock = ^{
