@@ -52,6 +52,7 @@
     
     self.publishLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum12 TextColor:[UIColor whiteColor]];
     self.publishLab.backgroundColor = KMainColor;
+    self.publishLab.textAlignment = NSTextAlignmentCenter;
     [self.bgView addSubview:self.publishLab];
     
     self.detailLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum13 TextColor:[UIColor blackColor]];
@@ -104,11 +105,16 @@
     self.goodsName.text = self.model.name;
     [self.goodsName sizeToFit];
     
+    if(model.is_shelve == 1){
+        self.publishLab.text = NSLocalizedString(@"on sale", nil)
+        ;
+    }else if(model.is_shelve == -1){
+        self.publishLab.text = @"未发布";
+    }
+    CGSize publishSize = [self contentSizeWithTitle:self.publishLab.text andFont:kFontNum12];
     self.publishLab.x = CGRectGetMaxX(self.goodsName.frame)+GetScaleWidth(7);
     self.publishLab.y = CGRectGetMinY(self.goodsIV.frame)+GetScaleWidth(2);
-    self.publishLab.text = NSLocalizedString(@"on sale", nil)
-;
-    [self.publishLab sizeToFit];
+    self.publishLab.size = CGSizeMake(publishSize.width+10, publishSize.height);
     self.publishLab.layer.cornerRadius = 5;//设置那个圆角的有多圆
     self.publishLab.layer.masksToBounds = YES;//设为NO去试试
     
@@ -140,6 +146,12 @@
 - (void)deleteButtonClick {
     NSLog(@"删除 点击");
     !_deleteBtnClickBlock ? : _deleteBtnClickBlock();
+}
+
+- (CGSize)contentSizeWithTitle:(NSString *)title andFont:(float)font{
+    CGSize maxSize = CGSizeMake(kScreenWidth *0.5, MAXFLOAT);
+    // 计算文字的高度
+    return  [title boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:font]} context:nil].size;
 }
 
 @end

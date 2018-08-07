@@ -71,7 +71,7 @@
     _tkImageView.cropAreaMidLineColor = KMainColor;
     _tkImageView.cropAreaCrossLineColor = [UIColor clearColor];
     _tkImageView.cropAreaCrossLineWidth = 0.5;
-    _tkImageView.initialScaleFactor = .946f;//.944f
+    _tkImageView.initialScaleFactor = .91f;//.944f
     _tkImageView.cropAspectRatio = 1;
     _tkImageView.maskColor = [UIColor clearColor];
     
@@ -163,6 +163,8 @@
 
 - (void)sure{
     
+    dispatch_group_t group = dispatch_group_create();
+    
     if(self.index == self.imageArr.count-1){
 //        _tkImageView.toCropImage = self.imageArr[self.index];
         UIImage *image = [_tkImageView currentCroppedImage];
@@ -173,6 +175,8 @@
 //        DLog(@"image = %@",image);
         [self.clipImageArr addObject:image];
         
+        dispatch_group_enter(group);
+        
         [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
             //写入图片到相册
             PHAssetChangeRequest *req = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
@@ -182,7 +186,14 @@
             PHFetchResult*assetsFetchResults = [PHAsset fetchAssetsWithOptions:options];
             PHAsset *asset = [assetsFetchResults firstObject];
             [self.clipAssetArr addObject:asset];
-            [self clipImageArray:self.clipImageArr andAssetArray:self.clipAssetArr] ;
+            dispatch_group_leave(group);
+            
+            dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+                
+                [self clipImageArray:self.clipImageArr andAssetArray:self.clipAssetArr] ;
+                
+            });
+            
         }];
         
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -191,7 +202,6 @@
     }else if(self.index < self.imageArr.count-1){
 //        self.image = self.imageArr[self.index];
         
-//        _tkImageView.toCropImage = self.imageArr[self.index];
         self.index += 1;
         
         CGRect dotFrame = self.dot.frame;
@@ -212,6 +222,7 @@
         
         _tkImageView.toCropImage = self.imageArr[self.index];
         
+        dispatch_group_enter(group);
         [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
             //写入图片到相册
             PHAssetChangeRequest *req = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
@@ -222,6 +233,8 @@
             PHFetchResult*assetsFetchResults = [PHAsset fetchAssetsWithOptions:options];
             PHAsset *asset = [assetsFetchResults firstObject];
             [self.clipAssetArr addObject:asset];
+            
+            dispatch_group_leave(group);
         }];
     }
 }

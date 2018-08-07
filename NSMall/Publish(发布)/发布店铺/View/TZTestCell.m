@@ -24,11 +24,11 @@
         [self addSubview:_imageView];
         self.clipsToBounds = YES;
         
-        _videoImageView = [[UIImageView alloc] init];
-        _videoImageView.image = [UIImage imageNamedFromMyBundle:@"MMVideoPreviewPlay"];
-        _videoImageView.contentMode = UIViewContentModeScaleAspectFill;
-        _videoImageView.hidden = YES;
-        [self addSubview:_videoImageView];
+//        _videoImageView = [[UIImageView alloc] init];
+//        _videoImageView.image = [UIImage imageNamedFromMyBundle:@"MMVideoPreviewPlay"];
+//        _videoImageView.contentMode = UIViewContentModeScaleAspectFill;
+//        _videoImageView.hidden = YES;
+//        [self addSubview:_videoImageView];
         
         _deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_deleteBtn setImage:[UIImage imageNamed:@"photo_delete"] forState:UIControlStateNormal];
@@ -36,13 +36,13 @@
         _deleteBtn.alpha = 0.6;
         [self addSubview:_deleteBtn];
         
-        _gifLable = [[UILabel alloc] init];
-        _gifLable.text = @"GIF";
-        _gifLable.textColor = [UIColor whiteColor];
-        _gifLable.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
-        _gifLable.textAlignment = NSTextAlignmentCenter;
-        _gifLable.font = [UIFont systemFontOfSize:10];
-        [self addSubview:_gifLable];
+//        _gifLable = [[UILabel alloc] init];
+//        _gifLable.text = @"GIF";
+//        _gifLable.textColor = [UIColor whiteColor];
+//        _gifLable.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
+//        _gifLable.textAlignment = NSTextAlignmentCenter;
+//        _gifLable.font = [UIFont systemFontOfSize:10];
+//        [self addSubview:_gifLable];
     }
     return self;
 }

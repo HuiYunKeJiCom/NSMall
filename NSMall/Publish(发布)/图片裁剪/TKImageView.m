@@ -976,8 +976,8 @@ typedef NS_ENUM(NSInteger, TKMidLineType) {
     _toCropImage = toCropImage;
     _imageAspectRatio = toCropImage.size.width / toCropImage.size.height;
     _imageView.image = toCropImage;
-    [self resetImageView];
-    [self resetCropAreaByAspectRatio];
+//    [self resetImageView];
+//    [self resetCropAreaByAspectRatio];
     
 }
 - (void)setNeedScaleCrop:(BOOL)needScaleCrop {
@@ -1117,13 +1117,13 @@ typedef NS_ENUM(NSInteger, TKMidLineType) {
 - (void)setFrame:(CGRect)frame {
     
     [super setFrame: frame];
-    [self resetImageView];
+//    [self resetImageView];
     
 }
 - (void)setCenter:(CGPoint)center {
     
     [super setCenter: center];
-    [self resetImageView];
+//    [self resetImageView];
     
 }
 #pragma mark - KVO CallBack

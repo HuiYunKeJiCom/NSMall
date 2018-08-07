@@ -74,6 +74,7 @@
         self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
         [self tableViewFrameChange];
     }
+//    [self.collectionView reloadData];
 }
 
 - (void)viewDidLoad {
@@ -676,27 +677,7 @@
     [self createUI];
     
     self.param.productId = productModel.product_id;
-        for (NSString *imageUrl in productModel.productImageList) {
-            NSData *data = [NSData  dataWithContentsOfURL:[NSURL URLWithString:imageUrl]];
-            UIImage *image =  [UIImage imageWithData:data];
-            [_selectedPhotos addObject:image];
-            
-            [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-                //写入图片到相册
-                PHAssetChangeRequest *req = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
-            } completionHandler:^(BOOL success, NSError * _Nullable error) {
-                
-                PHFetchOptions*options = [[PHFetchOptions alloc]init];
-                options.sortDescriptors=@[[NSSortDescriptor sortDescriptorWithKey:@"creationDate"ascending:NO]];
-                PHFetchResult*assetsFetchResults = [PHAsset fetchAssetsWithOptions:options];
-                PHAsset *asset = [assetsFetchResults firstObject];
-                [_selectedAssets addObject:asset];
 
-                [self.collectionView reloadData];
-                
-            }];
-        }
-        
         self.goodsNameTF.text = productModel.name;
         self.detailTV.text = productModel.introduce;
         for (ADLMyInfoModel *infoModel in self.upTableView.data) {
@@ -776,16 +757,53 @@
              model.num = self.param.shipPrice;
          }
      }
-     
-     [self.upTableView reloadData];
-     [self.otherTableView reloadData];
-        _margin = 4;
+    
+//    DLog(@"productImageList = %lu",(unsigned long)productModel.productImageList.count);
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    for (int i=0;i<productModel.productImageList.count;i++) {
+        NSString *imageUrl = productModel.productImageList[i];
+        DLog(@"imageUrl = %@",imageUrl);
+        NSData *data = [NSData  dataWithContentsOfURL:[NSURL URLWithString:imageUrl]];
+        UIImage *image =  [UIImage imageWithData:data];
+        [_selectedPhotos addObject:image];
+
+        dispatch_group_enter(group);
+        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+            //写入图片到相册
+            PHAssetChangeRequest *req = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
+        } completionHandler:^(BOOL success, NSError * _Nullable error) {
+            
+            PHFetchOptions*options = [[PHFetchOptions alloc]init];
+            options.sortDescriptors=@[[NSSortDescriptor sortDescriptorWithKey:@"creationDate"ascending:NO]];
+            PHFetchResult*assetsFetchResults = [PHAsset fetchAssetsWithOptions:options];
+            PHAsset *asset = [assetsFetchResults firstObject];
+            [_selectedAssets addObject:asset];
+            dispatch_group_leave(group);
+            if(i == productModel.productImageList.count -1){
+                
+                dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+                    
+                    [self.upTableView reloadData];
+                    [self.otherTableView reloadData];
+                    [self.collectionView reloadData];
+                    
+                });
+                
+            }
+        }];
+    }
+
+    
+    _margin = 4;
         _itemWH = (self.view.tz_width - 2 * _margin - 4) / 4 - _margin;
+
         if(_selectedPhotos.count >0){
             self.addView.alpha = 0.0;
             self.collectionView.alpha = 1.0;
             self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
-            self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
+            self.middleView.y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
             self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
             [self tableViewFrameChange];
         }else{
@@ -796,6 +814,7 @@
             self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
             [self tableViewFrameChange];
         }
+    
 }
 
 
@@ -1211,6 +1230,9 @@
     _selectedAssets = assetArray;
     _selectedPhotos = array;
     //    _isSelectOriginalPhoto = isSelectOriginalPhoto;
+    
+//    _margin = 4;
+//    _itemWH = (self.view.tz_width - 2 * _margin - 4) / 4 - _margin;
     
     [_collectionView reloadData];
     if(_selectedPhotos.count >0){
