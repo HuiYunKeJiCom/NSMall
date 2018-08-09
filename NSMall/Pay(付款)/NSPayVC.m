@@ -248,8 +248,8 @@
         _payBtn.backgroundColor = KMainColor;
         [_payBtn setTitleColor:kWhiteColor forState:UIControlStateNormal];
         _payBtn.titleLabel.font = UISystemFontSize(14);
-        _amountV.layer.masksToBounds = YES;
-        _amountV.layer.cornerRadius = 10;
+        _payBtn.layer.masksToBounds = YES;
+        _payBtn.layer.cornerRadius = 10;
 
         [_payBtn addTarget:self action:@selector(payView) forControlEvents:UIControlEventTouchUpInside];
     }

@@ -383,6 +383,8 @@
 		18DD2F2020B90B1E00521B61 /* ZYHTFileNameConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD2F0A20B90B1D00521B61 /* ZYHTFileNameConst.m */; };
 		18DD2F2320B9336500521B61 /* NSSortListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD2F2220B9336500521B61 /* NSSortListVC.m */; };
 		18DD2F2620B95B0D00521B61 /* NSCollectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD2F2520B95B0D00521B61 /* NSCollectModel.m */; };
+		18DEF544211BEC2B00978A33 /* NSSendRedPacketVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DEF543211BEC2B00978A33 /* NSSendRedPacketVC.m */; };
+		18DEF547211C811A00978A33 /* NSRedPacketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DEF546211C811A00978A33 /* NSRedPacketModel.m */; };
 		18E1E33C20B6546700B0FD0C /* NSGoodsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E1E33B20B6546700B0FD0C /* NSGoodsDetailVC.m */; };
 		18E1E34020B654E200B0FD0C /* NSGoodsDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E1E33F20B654E200B0FD0C /* NSGoodsDetailModel.m */; };
 		18E1E34320B6599D00B0FD0C /* NSDetailItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E1E34220B6599D00B0FD0C /* NSDetailItemModel.m */; };
@@ -1187,6 +1189,10 @@
 		18DD2F2220B9336500521B61 /* NSSortListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSortListVC.m; sourceTree = "<group>"; };
 		18DD2F2420B95B0D00521B61 /* NSCollectModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCollectModel.h; sourceTree = "<group>"; };
 		18DD2F2520B95B0D00521B61 /* NSCollectModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCollectModel.m; sourceTree = "<group>"; };
+		18DEF542211BEC2B00978A33 /* NSSendRedPacketVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSendRedPacketVC.h; sourceTree = "<group>"; };
+		18DEF543211BEC2B00978A33 /* NSSendRedPacketVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSendRedPacketVC.m; sourceTree = "<group>"; };
+		18DEF545211C811A00978A33 /* NSRedPacketModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSRedPacketModel.h; sourceTree = "<group>"; };
+		18DEF546211C811A00978A33 /* NSRedPacketModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSRedPacketModel.m; sourceTree = "<group>"; };
 		18E1E33A20B6546700B0FD0C /* NSGoodsDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSGoodsDetailVC.h; sourceTree = "<group>"; };
 		18E1E33B20B6546700B0FD0C /* NSGoodsDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSGoodsDetailVC.m; sourceTree = "<group>"; };
 		18E1E33E20B654E200B0FD0C /* NSGoodsDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSGoodsDetailModel.h; sourceTree = "<group>"; };
@@ -2132,6 +2138,8 @@
 			children = (
 				187A4029210765BB00AE46A9 /* NSEaseConversationModel.h */,
 				187A402A210765BB00AE46A9 /* NSEaseConversationModel.m */,
+				18DEF545211C811A00978A33 /* NSRedPacketModel.h */,
+				18DEF546211C811A00978A33 /* NSRedPacketModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2154,15 +2162,15 @@
 			isa = PBXGroup;
 			children = (
 				1868F70120FEF391000BB6EB /* RobotListViewController.h */,
-				1868F70220FEF391000BB6EB /* EMRobotChatTextBubbleView.m */,
-				1868F70320FEF391000BB6EB /* RobotChatViewController.h */,
-				1868F70420FEF391000BB6EB /* RobotManager.h */,
-				1868F70520FEF391000BB6EB /* EMRotbotChatViewCell.m */,
 				1868F70620FEF391000BB6EB /* RobotListViewController.m */,
 				1868F70720FEF391000BB6EB /* EMRobotChatTextBubbleView.h */,
+				1868F70220FEF391000BB6EB /* EMRobotChatTextBubbleView.m */,
+				1868F70320FEF391000BB6EB /* RobotChatViewController.h */,
 				1868F70820FEF391000BB6EB /* RobotChatViewController.m */,
+				1868F70420FEF391000BB6EB /* RobotManager.h */,
 				1868F70920FEF391000BB6EB /* RobotManager.m */,
 				1868F70A20FEF391000BB6EB /* EMRotbotChatViewCell.h */,
+				1868F70520FEF391000BB6EB /* EMRotbotChatViewCell.m */,
 			);
 			path = Robot;
 			sourceTree = "<group>";
@@ -2395,6 +2403,7 @@
 		187A401F2107483600AE46A9 /* CustomVC */ = {
 			isa = PBXGroup;
 			children = (
+				18DEF541211BEBA300978A33 /* 发红包 */,
 			);
 			path = CustomVC;
 			sourceTree = "<group>";
@@ -3914,6 +3923,15 @@
 			path = Const;
 			sourceTree = "<group>";
 		};
+		18DEF541211BEBA300978A33 /* 发红包 */ = {
+			isa = PBXGroup;
+			children = (
+				18DEF542211BEC2B00978A33 /* NSSendRedPacketVC.h */,
+				18DEF543211BEC2B00978A33 /* NSSendRedPacketVC.m */,
+			);
+			path = "发红包";
+			sourceTree = "<group>";
+		};
 		18E1E33620B652F400B0FD0C /* GoodsDetail(商品详情) */ = {
 			isa = PBXGroup;
 			children = (
@@ -4467,6 +4485,7 @@
 				18A7AB7C20ADAC95009FC725 /* NSCommonParam.m in Sources */,
 				184EC18320BD8DE9009BBFE6 /* NSFirmOrderModel.m in Sources */,
 				18F5D51520CE6A740037F825 /* BMKClusterAlgorithm.m in Sources */,
+				18DEF544211BEC2B00978A33 /* NSSendRedPacketVC.m in Sources */,
 				18A7AB8320ADB57E009FC725 /* NSMyProductListModel.m in Sources */,
 				18D0824A20956D2F0031034A /* NSLoginController.m in Sources */,
 				1868F78E20FEF391000BB6EB /* AddFriendViewController.m in Sources */,
@@ -4679,6 +4698,7 @@
 				18DD2F1120B90B1D00521B61 /* NBSSearchShopHistoryView.m in Sources */,
 				187DE35120FF22D70098BC95 /* NSStoreListModel.m in Sources */,
 				18D0824C20956D2F0031034A /* NSLImageField.m in Sources */,
+				18DEF547211C811A00978A33 /* NSRedPacketModel.m in Sources */,
 				18DD2F1E20B90B1E00521B61 /* LLSearchNaviBarView.m in Sources */,
 				18ECABD320F60E4E00679857 /* NSRecordLogModel.m in Sources */,
 				1868F77D20FEF391000BB6EB /* EMGroupMembersViewController.m in Sources */,

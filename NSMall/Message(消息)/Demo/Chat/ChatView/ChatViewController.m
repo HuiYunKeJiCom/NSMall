@@ -27,6 +27,7 @@
 #import "DingViewController.h"
 #import "DingAcksViewController.h"
 #import "NSNavView.h"
+#import "NSSendRedPacketVC.h"
 
 
 #if DEMO_CALL == 1
@@ -245,6 +246,21 @@
 }
 
 #pragma mark - EaseMessageViewControllerDelegate
+
+- (void)sendTextMessage:(NSString *)text withExt:(NSDictionary*)ext{
+    NSLog(@"发送了文本");
+}
+
+- (void)messageViewController:(EaseMessageViewController *)viewController
+            didSelectMoreView:(EaseChatBarMoreView *)moreView
+                      AtIndex:(NSInteger)index{
+    DLog(@"点击了红包index = %lu",index);
+    if(index == 2){
+        //点击了红包
+        NSSendRedPacketVC *sendRedPacketVC = [NSSendRedPacketVC new];
+        [self.navigationController pushViewController:sendRedPacketVC animated:YES];
+    }
+}
 
 - (UITableViewCell *)messageViewController:(UITableView *)tableView
                        cellForMessageModel:(id<IMessageModel>)messageModel
@@ -852,5 +868,7 @@
         [self.tableView endUpdates];
     }
 }
+
+
 
 @end
