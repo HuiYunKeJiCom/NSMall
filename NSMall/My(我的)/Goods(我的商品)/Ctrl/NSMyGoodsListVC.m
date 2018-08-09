@@ -31,6 +31,11 @@
     [self setUpNavTopView];
     [self makeConstraints];
     self.currentPage = 1;
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self requestAllOrder:NO];
 }
 

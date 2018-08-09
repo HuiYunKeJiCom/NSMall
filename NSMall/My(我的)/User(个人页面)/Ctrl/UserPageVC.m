@@ -305,7 +305,7 @@
             weakSelf.goodsVM.goodsTV.data = [NSMutableArray arrayWithArray:result.productList];
             weakSelf.listV.size = CGSizeMake(kScreenWidth, GetScaleWidth(40)+result.productList.count*GetScaleWidth(265));
 //            [self buildUI];
-            [weakSelf.goodsVM reloadData];
+            [weakSelf.goodsVM.goodsTV reloadData];
             
         }else if([searchType isEqualToString:@"1"]){
             weakSelf.shopVM.shopTV.data = [NSMutableArray arrayWithArray:result.storeList];

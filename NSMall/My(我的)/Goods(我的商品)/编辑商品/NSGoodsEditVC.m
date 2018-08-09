@@ -297,7 +297,7 @@
         // preview photos / 预览照片
         TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithSelectedAssets:_selectedAssets selectedPhotos:_selectedPhotos index:indexPath.row];
         //    imagePickerVc.naviBgColor = [UIColor redColor];
-        imagePickerVc.maxImagesCount = 9;
+        imagePickerVc.maxImagesCount = 1;
         imagePickerVc.allowPickingGif = NO;
         imagePickerVc.allowPickingOriginalPhoto = YES;
         imagePickerVc.allowPickingMultipleVideo = NO;
@@ -366,7 +366,7 @@
 
 - (void)pushTZImagePickerController {
     
-    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 columnNumber:4 delegate:self pushPhotoPickerVc:YES];
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 columnNumber:4 delegate:self pushPhotoPickerVc:YES];
     
 #pragma mark - 五类个性化设置，这些参数都可以不传，此时会走默认设置
     imagePickerVc.isSelectOriginalPhoto = _isSelectOriginalPhoto;
@@ -385,7 +385,7 @@
     imagePickerVc.oKButtonTitleColorNormal = KMainColor;
     imagePickerVc.navigationBar.translucent = NO;
     
-    imagePickerVc.autoDismiss = NO;
+    imagePickerVc.autoDismiss = YES;
     
     // 3. 设置是否可以选择视频/图片/原图
     imagePickerVc.allowPickingVideo = NO;
@@ -490,7 +490,7 @@
 
 - (void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
-    [picker dismissViewControllerAnimated:YES completion:nil];
+//    [picker dismissViewControllerAnimated:YES completion:nil];
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     if ([type isEqualToString:@"public.image"]) {
         TZImagePickerController *tzImagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 delegate:self];
@@ -595,7 +595,7 @@
 /// User click cancel button
 /// 用户点击了取消
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker {
-    [picker dismissViewControllerAnimated:YES completion:nil];
+//    [picker dismissViewControllerAnimated:YES completion:nil];
     if(_selectedPhotos.count >0){
         //        self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20-TopBarHeight+_selectedPhotos.count/4*(_itemWH + _margin*2));
         
@@ -617,10 +617,26 @@
 
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos {
     
-    [picker dismissViewControllerAnimated:YES completion:nil];
+//    [picker dismissViewControllerAnimated:YES completion:nil];
     [_selectedPhotos addObject:photos[0]];
     [_selectedAssets addObject:assets[0]];
     [_collectionView reloadData];
+    
+    if(_selectedPhotos.count >0){
+        self.addView.alpha = 0.0;
+        self.collectionView.alpha = 1.0;
+        self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
+        self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
+        self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+        [self tableViewFrameChange];
+    }else{
+        self.addView.alpha = 1.0;
+        self.collectionView.alpha = 0.0;
+        self.collectionView.height = GetScaleWidth(100);
+        self.middleView.dc_y = GetScaleWidth(109);
+        self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+        [self tableViewFrameChange];
+    }
     
 //    [_selectedAssets removeAllObjects];
 //    [_selectedPhotos removeAllObjects];
@@ -1047,13 +1063,14 @@
     [pathArr removeAllObjects];
     
     dispatch_group_t group = dispatch_group_create();
-    dispatch_group_enter(group);
+    
     
     for(int i=0;i<_selectedPhotos.count;i++){
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
         [param setObject:_selectedPhotos[i] forKey:@"pic"];
         [param setObject:[NSString stringWithFormat:@"pic%d",i] forKey:@"imageName"];
         
+        dispatch_group_enter(group);
         [GoodsPublishAPI uploadGoodsPicWithParam:param success:^(NSString *path) {
             [pathArr addObject:path];
             if(i==_selectedPhotos.count-1){
@@ -1074,9 +1091,10 @@
                 }else{
                     self.param.hasSpec = @"0";
                 }
-                dispatch_group_leave(group);
+                
                 //                DLog(@"categoryId = %@",self.param.categoryId);
             }
+            dispatch_group_leave(group);
         } faulre:^(NSError *error) {
         }];
     }
@@ -1233,33 +1251,33 @@
     return YES;
 }
 
-- (void)clipPhoto:(NSMutableArray *)array  andAssetArray:(NSMutableArray *)assetArray{
-    [_selectedPhotos removeAllObjects];
-    [_selectedAssets removeAllObjects];
-    _selectedAssets = assetArray;
-    _selectedPhotos = array;
-    //    _isSelectOriginalPhoto = isSelectOriginalPhoto;
-    
-//    _margin = 4;
-//    _itemWH = (self.view.tz_width - 2 * _margin - 4) / 4 - _margin;
-    
-    [_collectionView reloadData];
-    if(_selectedPhotos.count >0){
-        self.addView.alpha = 0.0;
-        self.collectionView.alpha = 1.0;
-        self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
-        self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
-        self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
-        [self tableViewFrameChange];
-    }else{
-        self.addView.alpha = 1.0;
-        self.collectionView.alpha = 0.0;
-        self.collectionView.height = GetScaleWidth(100);
-        self.middleView.dc_y = GetScaleWidth(109);
-        self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
-        [self tableViewFrameChange];
-    }
-}
+//- (void)clipPhoto:(NSMutableArray *)array  andAssetArray:(NSMutableArray *)assetArray{
+//    [_selectedPhotos removeAllObjects];
+//    [_selectedAssets removeAllObjects];
+//    _selectedAssets = assetArray;
+//    _selectedPhotos = array;
+//    //    _isSelectOriginalPhoto = isSelectOriginalPhoto;
+//
+////    _margin = 4;
+////    _itemWH = (self.view.tz_width - 2 * _margin - 4) / 4 - _margin;
+//
+//    [_collectionView reloadData];
+//    if(_selectedPhotos.count >0){
+//        self.addView.alpha = 0.0;
+//        self.collectionView.alpha = 1.0;
+//        self.collectionView.height = (_selectedPhotos.count + 4)/4 *(_itemWH + _margin*2);
+//        self.middleView.dc_y = CGRectGetMaxY(self.collectionView.frame)+GetScaleWidth(9);
+//        self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+//        [self tableViewFrameChange];
+//    }else{
+//        self.addView.alpha = 1.0;
+//        self.collectionView.alpha = 0.0;
+//        self.collectionView.height = GetScaleWidth(100);
+//        self.middleView.dc_y = GetScaleWidth(109);
+//        self.upTableView.dc_y = CGRectGetMaxY(self.middleView.frame)+GetScaleWidth(15);
+//        [self tableViewFrameChange];
+//    }
+//}
 
 -(void)tableViewFrameChange{
     if(self.hasSpec){

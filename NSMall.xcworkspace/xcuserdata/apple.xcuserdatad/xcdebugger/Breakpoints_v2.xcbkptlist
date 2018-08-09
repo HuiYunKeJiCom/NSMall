@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NSMall/My(&#x6211;&#x7684;)/Goods(&#x6211;&#x7684;&#x5546;&#x54c1;)/&#x7f16;&#x8f91;&#x5546;&#x54c1;/NSGoodsEditVC.m"
-            timestampString = "555341616.709994"
+            timestampString = "555424505.931145"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1086"
-            endingLineNumber = "1086"
+            startingLineNumber = "1104"
+            endingLineNumber = "1104"
             landmarkName = "-publish:"
             landmarkType = "7">
             <Locations>
@@ -100,12 +100,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NSMall/My(&#x6211;&#x7684;)/Goods(&#x6211;&#x7684;&#x5546;&#x54c1;)/&#x7f16;&#x8f91;&#x5546;&#x54c1;/NSGoodsEditVC.m"
-            timestampString = "555341616.728597"
+            timestampString = "555424505.946466"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "773"
-            endingLineNumber = "773"
+            startingLineNumber = "789"
+            endingLineNumber = "789"
             landmarkName = "-getDataWithProductId:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NSMall/My(&#x6211;&#x7684;)/User(&#x4e2a;&#x4eba;&#x9875;&#x9762;)/Ctrl/UserPageVC.m"
+            timestampString = "555424505.946836"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "303"
+            endingLineNumber = "303"
+            landmarkName = "-searchWithType:andUserId:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NSMall/Net/Net.m"
+            timestampString = "555422787.506403"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "+requestWithGet:function:showHUD:success:failure:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NSMall/Net/Net.m"
+            timestampString = "555422787.507647"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "+requestWithPost:function:showHUD:success:failure:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
