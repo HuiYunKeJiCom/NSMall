@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "NSFriendListModel.h"
+#import "NSSendRPParam.h"
+#import "NSRedPacketModel.h"
 
 @interface NSMessageAPI : NSObject
 
@@ -25,5 +27,10 @@
  获取好友列表
  */
 + (void)getFriendList:(nullable NSString *)param success:(void (^)(NSFriendListModel * _Nullable result))success failure:(void (^)(NSError *error))failure;
+
+/*
+ 发红包
+ */
++ (void)sendRedpacketWithParam:(NSSendRPParam *)param success:(void (^)(NSRedPacketModel *redPacketModel))success faulre:(void (^)(NSError *))failure;
 
 @end

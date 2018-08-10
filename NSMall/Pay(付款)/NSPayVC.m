@@ -27,7 +27,7 @@
 @property(nonatomic,strong)UIView *lineView;/* 变颜色的线 */
 @property(nonatomic,strong)UIButton *payBtn;/* 付款按钮 */
 @property(nonatomic,strong)UserPageModel *userPageM;/* 个人页面模型 */
-@property(nonatomic,copy)NSString *walletID;/* 购物车Id */
+@property(nonatomic,copy)NSString *walletID;/* 钱包Id */
 @property(nonatomic,strong)NSString *userId;/* 查询的userId */
 @end
 

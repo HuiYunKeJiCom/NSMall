@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NSRedPacketModel.h"
 
 @interface NSSendRedPacketVC : UIViewController
-
+typedef void(^paramBlock)(NSRedPacketModel *param);
+@property (nonatomic, copy) paramBlock                   paramBlock;/* 红包参数回调 */
 @end

@@ -43,4 +43,15 @@
     }];
 }
 
+/*
+ 发红包
+ */
++ (void)sendRedpacketWithParam:(NSSendRPParam *)param success:(void (^)(NSRedPacketModel *redPacketModel))success faulre:(void (^)(NSError *))failure{
+    [Net requestWithPost:param function:kSendRedpacketAPI showHUD:NetNullStr resultClass:[NSRedPacketModel class] success:^(NSRedPacketModel  *_Nullable resultObj) {
+        success?success(resultObj):nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+}
+
 @end

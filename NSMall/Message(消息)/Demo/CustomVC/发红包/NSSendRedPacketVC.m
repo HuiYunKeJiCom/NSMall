@@ -11,12 +11,16 @@
 #import "WalletAPI.h"
 #import "NSPayView.h"
 #import "NSInputPwView.h"
+#import "NSSendRPParam.h"
+#import "NSMessageAPI.h"
 
 @interface NSSendRedPacketVC ()<UITextFieldDelegate,NSInputPwViewDelegate>
 @property(nonatomic,strong)UITextField *amountTF;/* 金额 */
 @property(nonatomic,strong)UITextField *messageTF;/* 留言 */
 @property(nonatomic,strong)UILabel *amountLab;/* 金额label */
 @property(nonatomic,strong)UIButton *sendBtn;/* 发送按钮 */
+@property(nonatomic,copy)NSString *walletID;/* 钱包Id */
+@property(nonatomic,strong)NSRedPacketModel *rpModel;/* 红包模型 */
 @end
 
 @implementation NSSendRedPacketVC
@@ -217,8 +221,7 @@
 }
 
 -(void)payView{
-    
-    
+    [self.view endEditing:YES];
     
     [WalletAPI getWalletListWithParam:nil success:^(NSWalletModel *walletModel) {
         NSLog(@"获取钱包列表成功");
@@ -240,7 +243,7 @@
 }
 
 -(void)showInputPwView:(NSString *)walletID{
-//    self.walletID = walletID;
+    self.walletID = walletID;
     NSInputPwView *inputView = [[NSInputPwView alloc] initWithFrame:(CGRect){0, 0, kScreenWidth, kScreenHeight}];
     inputView.tbDelegate = self;
     __weak typeof(inputView) InputView = inputView;
@@ -253,19 +256,38 @@
 
 -(void)payOrder:(NSString *)tradePw{
     
-//    NSPayParam *param = [NSPayParam new];
-//    param.userId = self.userId;
-//    param.walletId = self.walletID;
-//    param.amount = self.amountTF.text;
-//    param.tradePassword = tradePw;
-//
-//    [ReceivableRecordAPI tradeWithParam:param success:^{
-//        [Common AppShowToast:NSLocalizedString(@"pay success", nil)];
-//        [self delayPop];
-//        //跳转到成功页面
-//    } faulre:^(NSError *error) {
-//        DLog(@"支付失败");
-//    }];
+    if([self.messageTF.text isEqualToString:@""]){
+        self.messageTF.text = @"恭喜发财,大吉大利";
+    }
+    
+    NSSendRPParam *param = [NSSendRPParam new];
+    param.walletId = self.walletID;
+    param.tradePassword = tradePw;
+    param.redpacketAmount = self.amountTF.text;
+    param.redpacketType = @"0";
+    param.redpacketCount = @"1";
+    param.remarks = self.messageTF.text;
+    
+    UserModel *userModel = [UserModel modelFromUnarchive];
+    
+    [NSMessageAPI sendRedpacketWithParam:param success:^(NSRedPacketModel *redPacketModel) {
+        self.rpModel = redPacketModel;
+        self.rpModel.is_money_msg = 1;
+        self.rpModel.rp_id = redPacketModel.redpacket_id;
+        self.rpModel.rp_amount = self.amountTF.text;
+        self.rpModel.rp_type = @"0";
+        self.rpModel.rp_count = @"1";
+        self.rpModel.rp_leave_msg = self.messageTF.text;
+        self.rpModel.money_sponsor_name = @"诺商钱包";
+        self.rpModel.send_username = userModel.hx_user_name;
+        if (self.paramBlock) {
+            self.paramBlock(self.rpModel);
+        }
+        DLog(@"发送红包成功");
+        [self delayPop];
+    } faulre:^(NSError *error) {
+        DLog(@"发送红包失败");
+    }];
     
 }
 

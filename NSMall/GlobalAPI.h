@@ -129,7 +129,7 @@ const static NSString * const kAppVersionAPI = @"getAppVersion";//检测APP版�
 const static NSString * const kAcceptFriendAPI = @"auth/acceptFriend";//同意添加好友
 const static NSString * const kDeleteFriendAPI = @"auth/removeFriend";//删除好友（双方删除）
 const static NSString * const kFriendListAPI = @"auth/friendList";//获取好友列表
-
+const static NSString * const kSendRedpacketAPI = @"auth/sendRedpacket";//发红包
 
 
 

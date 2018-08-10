@@ -28,11 +28,16 @@
 #import "DingAcksViewController.h"
 #import "NSNavView.h"
 #import "NSSendRedPacketVC.h"
+#import "NSRedPacketCell.h"
+#import "NSRPTestCell.h"
 
 
 #if DEMO_CALL == 1
 #import "DemoConfManager.h"
 #endif
+
+
+//static NSString *identifier = @"NSRPTestCell";
 
 @interface ChatViewController ()<UIAlertViewDelegate,EMClientDelegate, EMChooseViewDelegate>
 {
@@ -187,6 +192,7 @@
     [self.view addSubview:topToolView];
     
     self.tableView.frame = CGRectMake(0, TopBarHeight, self.view.frame.size.width,self.view.frame.size.height -TopBarHeight);
+//    [self.tableView registerClass:[NSRPTestCell class] forCellReuseIdentifier:identifier];
 }
 
 
@@ -247,17 +253,18 @@
 
 #pragma mark - EaseMessageViewControllerDelegate
 
-- (void)sendTextMessage:(NSString *)text withExt:(NSDictionary*)ext{
-    NSLog(@"发送了文本");
-}
-
 - (void)messageViewController:(EaseMessageViewController *)viewController
             didSelectMoreView:(EaseChatBarMoreView *)moreView
                       AtIndex:(NSInteger)index{
     DLog(@"点击了红包index = %lu",index);
     if(index == 2){
         //点击了红包
+//        WEAKSELF
+        UserModel *userModel = [UserModel modelFromUnarchive];
         NSSendRedPacketVC *sendRedPacketVC = [NSSendRedPacketVC new];
+        sendRedPacketVC.paramBlock = ^(NSRedPacketModel *param) {
+            [viewController sendTextMessage:param.money_sponsor_name withExt:@{@"nick":userModel.user_name,@"user_id":userModel.user_id,@"avatar_url":userModel.pic_img,@"hx_username":userModel.hx_user_name,@"is_money_msg":@"1",@"rp_id":param.rp_id,@"rp_amount":param.rp_amount,@"rp_type":param.rp_type,@"rp_count":param.rp_count,@"rp_leave_msg":param.rp_leave_msg,@"money_sponsor_name":param.money_sponsor_name,@"send_username":param.send_username}];
+        };
         [self.navigationController pushViewController:sendRedPacketVC animated:YES];
     }
 }
@@ -266,8 +273,30 @@
                        cellForMessageModel:(id<IMessageModel>)messageModel
 {
     NSDictionary *ext = messageModel.message.ext;
-//    DLog(@"ext = %@",ext);
-    if ([ext objectForKey:@"em_recall"]) {
+    DLog(@"ext = %@",ext);
+    DLog(@"ext = %@",[ext objectForKey:@"is_money_msg"]);
+    if([ext objectForKey:@"is_money_msg"]){
+        
+        id medicine = messageModel.message.ext[@"rp_leave_msg"];
+        if(medicine){
+            NSString *cellid = [NSRPTestCell cellIdentifierWithModel:messageModel];
+            NSRPTestCell *medicineCell = (NSRPTestCell *)[tableView dequeueReusableCellWithIdentifier:cellid];
+            if(!medicineCell){
+                medicineCell = [[NSRPTestCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid model:messageModel];
+            }
+            medicineCell.model = messageModel;
+            return medicineCell;
+        }
+        
+//        NSRPTestCell *redPacketCell = [tableView dequeueReusableCellWithIdentifier:identifier];
+//        if(!redPacketCell){
+//            redPacketCell = [[NSRPTestCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+//            redPacketCell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        }
+////        redPacketCell.dict = ext;
+////        EMTextMessageBody *body = (EMTextMessageBody*)messageModel.message.body;
+//        return redPacketCell;
+    }else if ([ext objectForKey:@"em_recall"]) {
         NSString *TimeCellIdentifier = [EaseMessageTimeCell cellIdentifier];
         EaseMessageTimeCell *recallCell = (EaseMessageTimeCell *)[tableView dequeueReusableCellWithIdentifier:TimeCellIdentifier];
         
@@ -288,7 +317,12 @@
                    withCellWidth:(CGFloat)cellWidth
 {
     NSDictionary *ext = messageModel.message.ext;
-    if ([ext objectForKey:@"em_recall"]) {
+    if([ext objectForKey:@"is_money_msg"]){
+        id medicine = messageModel.message.ext[@"rp_leave_msg"];
+        if(medicine){
+            return [NSRPTestCell cellHeightWithModel:messageModel]+30;
+        }
+    }else if ([ext objectForKey:@"em_recall"]) {
         return self.timeCellHeight;
     }
     return 0;
