@@ -13,5 +13,53 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NSMall/Publish(&#x53d1;&#x5e03;)/&#x53d1;&#x5e03;&#x5546;&#x54c1;/Ctrl/NSGoodsPublishVC.m"
+            timestampString = "555735692.41548"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "945"
+            endingLineNumber = "945"
+            landmarkName = "-publish:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__28-[NSGoodsPublishVC publish:]_block_invoke_2"
+                  moduleName = "NSMall"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/NSMall/NSMall/Publish(%E5%8F%91%E5%B8%83)/%E5%8F%91%E5%B8%83%E5%95%86%E5%93%81/Ctrl/NSGoodsPublishVC.m"
+                  timestampString = "555772070.8573281"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "945"
+                  endingLineNumber = "945"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__28-[NSGoodsPublishVC publish:]_block_invoke_3"
+                  moduleName = "NSMall"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/NSMall/NSMall/Publish(%E5%8F%91%E5%B8%83)/%E5%8F%91%E5%B8%83%E5%95%86%E5%93%81/Ctrl/NSGoodsPublishVC.m"
+                  timestampString = "555772070.862687"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "945"
+                  endingLineNumber = "945"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

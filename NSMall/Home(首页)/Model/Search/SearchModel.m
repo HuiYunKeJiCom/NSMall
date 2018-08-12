@@ -11,7 +11,7 @@
 @implementation SearchModel
 
 + (NSDictionary *)modelContainerPropertyGenericClass{
-    return @{@"productList":[ProductListItemModel class],@"storeList":[StoreItemModel class],@"labelList":[LabelItemModel class]};
+    return @{@"productList":[ProductListItemModel class],@"storeList":[NSShopListItemModel class],@"labelList":[LabelItemModel class]};
 }
 
 @end

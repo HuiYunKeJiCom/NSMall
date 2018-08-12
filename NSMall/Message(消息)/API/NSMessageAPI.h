@@ -10,6 +10,7 @@
 #import "NSFriendListModel.h"
 #import "NSSendRPParam.h"
 #import "NSRedPacketModel.h"
+#import "NSRPListModel.h"
 
 @interface NSMessageAPI : NSObject
 
@@ -32,5 +33,10 @@
  发红包
  */
 + (void)sendRedpacketWithParam:(NSSendRPParam *)param success:(void (^)(NSRedPacketModel *redPacketModel))success faulre:(void (^)(NSError *))failure;
+
+/*
+ 抢红包/红包详情
+ */
++ (void)receiveRedpacketWithParam:(NSString *)param success:(void (^)(NSRPListModel *redPacketModel))success faulre:(void (^)(NSError *))failure;
 
 @end

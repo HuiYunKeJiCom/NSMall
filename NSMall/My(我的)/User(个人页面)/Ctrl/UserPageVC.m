@@ -221,7 +221,7 @@
     [self.listV addSubview:_pageSelectBar];
     
     _mainScrollView = [UIScrollView new];
-    _mainScrollView.size = CGSizeMake(kScreenWidth, self.listV.height);
+    _mainScrollView.size = CGSizeMake(kScreenWidth, kScreenHeight);
     //    AppHeight - _pageSelectBar.bottom
     _mainScrollView.left = 0;
     _mainScrollView.top = _pageSelectBar.bottom;
@@ -305,11 +305,16 @@
             weakSelf.goodsVM.goodsTV.data = [NSMutableArray arrayWithArray:result.productList];
             weakSelf.listV.size = CGSizeMake(kScreenWidth, GetScaleWidth(40)+result.productList.count*GetScaleWidth(265));
 //            [self buildUI];
+            weakSelf.goodsVM.goodsTV.height = weakSelf.listV.height;
+            weakSelf.mainScrollView.height = weakSelf.listV.height;
             [weakSelf.goodsVM.goodsTV reloadData];
             
         }else if([searchType isEqualToString:@"1"]){
             weakSelf.shopVM.shopTV.data = [NSMutableArray arrayWithArray:result.storeList];
             self.listV.size = CGSizeMake(kScreenWidth, GetScaleWidth(40)+result.storeList.count*GetScaleWidth(126));
+            weakSelf.shopVM.shopTV.height = weakSelf.listV.height;
+            weakSelf.mainScrollView.height = weakSelf.listV.height;
+    
 //            [self buildUI];
             [self.shopVM.shopTV reloadData];
         }

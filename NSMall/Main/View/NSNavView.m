@@ -25,6 +25,7 @@
     if (self) {
         
         [self setUpUI];
+        [self makeConstraints];
     }
     return self;
 }
@@ -68,6 +69,8 @@
 {
     [super layoutSubviews];
     
+}
+-(void)makeConstraints{
     [_leftItemButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top).offset(20);
         make.left.equalTo(self.mas_left).offset(5);
@@ -85,8 +88,9 @@
     
     [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         //        make.centerX.equalTo(self.mas_centerX);
-        make.left.equalTo(self.leftItemButton.mas_right);
-        make.right.equalTo(self.rightItemButton.mas_left);
+//        make.left.equalTo(self.leftItemButton.mas_right);
+//        make.right.equalTo(self.rightItemButton.mas_left);
+        make.centerX.equalTo(self.mas_centerX);
         make.centerY.equalTo(_leftItemButton.mas_centerY);
     }];
     
@@ -113,6 +117,15 @@
 #pragma 自定义左边导航Item点击
 - (void)leftButtonItemClick {
     !_leftItemClickBlock ? : _leftItemClickBlock();
+}
+
+-(void)updateRightButtonConstraints{
+    [self.rightItemButton mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top).offset(20);
+        make.right.equalTo(self.mas_right).offset(-5);
+        make.height.equalTo(@44);
+        make.width.equalTo(@90);
+    }];
 }
 
 @end

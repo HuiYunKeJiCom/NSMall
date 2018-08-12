@@ -85,7 +85,6 @@
 		184F064D209FFC4D00768418 /* UpdateUserParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F064C209FFC4D00768418 /* UpdateUserParam.m */; };
 		184F065320A2DC2D00768418 /* SearchParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F065220A2DC2C00768418 /* SearchParam.m */; };
 		184F065620A2DD5500768418 /* SearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F065520A2DD5500768418 /* SearchModel.m */; };
-		184F065D20A2E37300768418 /* StoreItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184F065C20A2E37300768418 /* StoreItemModel.m */; };
 		1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD6F208F0DD00094A594 /* NetBaseModel.m */; };
 		1851CD77208F23530094A594 /* NSCustomHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD76208F23530094A594 /* NSCustomHeadCell.m */; };
 		18559955210187F300D95602 /* NSMessageAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18559954210187F300D95602 /* NSMessageAPI.m */; };
@@ -258,6 +257,10 @@
 		18B6491C211D27DD00F8CDAA /* NSSendRPParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6491B211D27DD00F8CDAA /* NSSendRPParam.m */; };
 		18B64920211D78DE00F8CDAA /* NSRedPacketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6491F211D78DE00F8CDAA /* NSRedPacketCell.m */; };
 		18B64923211D9F0900F8CDAA /* NSRPTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B64922211D9F0900F8CDAA /* NSRPTestCell.m */; };
+		18B6D98521200B9500D0F999 /* NSRPListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6D98421200B9500D0F999 /* NSRPListModel.m */; };
+		18B6D98821200BAE00D0F999 /* NSRPItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6D98721200BAE00D0F999 /* NSRPItemModel.m */; };
+		18B6D98B2120174500D0F999 /* NSRPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6D98A2120174500D0F999 /* NSRPView.m */; };
+		18B6D98F2120643C00D0F999 /* NSRedpacketTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B6D98E2120643C00D0F999 /* NSRedpacketTVCell.m */; };
 		18B839542100337E0019F9D5 /* NSPayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B839532100337E0019F9D5 /* NSPayVC.m */; };
 		18B839582100812A0019F9D5 /* NSPayParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B839572100812A0019F9D5 /* NSPayParam.m */; };
 		18B8395C2100D0B00019F9D5 /* NSPaySuccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8395B2100D0B00019F9D5 /* NSPaySuccessVC.m */; };
@@ -414,6 +417,7 @@
 		18E3A45420B2E63D00F847ED /* GoodsPublishParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E3A45320B2E63D00F847ED /* GoodsPublishParam.m */; };
 		18E3A45720B2EF5000F847ED /* ShelveProductParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E3A45620B2EF5000F847ED /* ShelveProductParam.m */; };
 		18E854BC20CA5A03007C23F5 /* NSAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E854BB20CA5A03007C23F5 /* NSAddressVC.m */; };
+		18EA040F211FC775003A6673 /* NSRPDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA040E211FC775003A6673 /* NSRPDetailVC.m */; };
 		18EB286220A548EE00B45958 /* NSSpecView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB286120A548EE00B45958 /* NSSpecView.m */; };
 		18ECABCD20F5FAC300679857 /* ReceivableRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ECABCC20F5FAC300679857 /* ReceivableRecordVC.m */; };
 		18ECABD320F60E4E00679857 /* NSRecordLogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ECABD220F60E4E00679857 /* NSRecordLogModel.m */; };
@@ -602,8 +606,6 @@
 		184F065220A2DC2C00768418 /* SearchParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchParam.m; sourceTree = "<group>"; };
 		184F065420A2DD5500768418 /* SearchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchModel.h; sourceTree = "<group>"; };
 		184F065520A2DD5500768418 /* SearchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchModel.m; sourceTree = "<group>"; };
-		184F065B20A2E37300768418 /* StoreItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreItemModel.h; sourceTree = "<group>"; };
-		184F065C20A2E37300768418 /* StoreItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreItemModel.m; sourceTree = "<group>"; };
 		1851CD6E208F0DD00094A594 /* NetBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetBaseModel.h; sourceTree = "<group>"; };
 		1851CD6F208F0DD00094A594 /* NetBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetBaseModel.m; sourceTree = "<group>"; };
 		1851CD75208F23530094A594 /* NSCustomHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCustomHeadCell.h; sourceTree = "<group>"; };
@@ -941,6 +943,14 @@
 		18B6491F211D78DE00F8CDAA /* NSRedPacketCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSRedPacketCell.m; sourceTree = "<group>"; };
 		18B64921211D9F0900F8CDAA /* NSRPTestCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSRPTestCell.h; sourceTree = "<group>"; };
 		18B64922211D9F0900F8CDAA /* NSRPTestCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSRPTestCell.m; sourceTree = "<group>"; };
+		18B6D98321200B9400D0F999 /* NSRPListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSRPListModel.h; sourceTree = "<group>"; };
+		18B6D98421200B9500D0F999 /* NSRPListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSRPListModel.m; sourceTree = "<group>"; };
+		18B6D98621200BAE00D0F999 /* NSRPItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSRPItemModel.h; sourceTree = "<group>"; };
+		18B6D98721200BAE00D0F999 /* NSRPItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSRPItemModel.m; sourceTree = "<group>"; };
+		18B6D9892120174500D0F999 /* NSRPView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSRPView.h; sourceTree = "<group>"; };
+		18B6D98A2120174500D0F999 /* NSRPView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSRPView.m; sourceTree = "<group>"; };
+		18B6D98D2120643C00D0F999 /* NSRedpacketTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSRedpacketTVCell.h; sourceTree = "<group>"; };
+		18B6D98E2120643C00D0F999 /* NSRedpacketTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSRedpacketTVCell.m; sourceTree = "<group>"; };
 		18B839522100337E0019F9D5 /* NSPayVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSPayVC.h; sourceTree = "<group>"; };
 		18B839532100337E0019F9D5 /* NSPayVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSPayVC.m; sourceTree = "<group>"; };
 		18B839562100812A0019F9D5 /* NSPayParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSPayParam.h; sourceTree = "<group>"; };
@@ -1254,6 +1264,8 @@
 		18E3A45620B2EF5000F847ED /* ShelveProductParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShelveProductParam.m; sourceTree = "<group>"; };
 		18E854BA20CA5A03007C23F5 /* NSAddressVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAddressVC.h; sourceTree = "<group>"; };
 		18E854BB20CA5A03007C23F5 /* NSAddressVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAddressVC.m; sourceTree = "<group>"; };
+		18EA040D211FC775003A6673 /* NSRPDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSRPDetailVC.h; sourceTree = "<group>"; };
+		18EA040E211FC775003A6673 /* NSRPDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSRPDetailVC.m; sourceTree = "<group>"; };
 		18EB286020A548EE00B45958 /* NSSpecView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSpecView.h; sourceTree = "<group>"; };
 		18EB286120A548EE00B45958 /* NSSpecView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSpecView.m; sourceTree = "<group>"; };
 		18ECABCB20F5FAC300679857 /* ReceivableRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceivableRecordVC.h; sourceTree = "<group>"; };
@@ -1391,6 +1403,10 @@
 				182926D22105F8BF00061634 /* NSFriendListModel.m */,
 				181A9F302106FB9400334F7C /* NSHuanXinUserModel.h */,
 				181A9F312106FB9400334F7C /* NSHuanXinUserModel.m */,
+				18B6D98321200B9400D0F999 /* NSRPListModel.h */,
+				18B6D98421200B9500D0F999 /* NSRPListModel.m */,
+				18B6D98621200BAE00D0F999 /* NSRPItemModel.h */,
+				18B6D98721200BAE00D0F999 /* NSRPItemModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1623,7 +1639,6 @@
 			isa = PBXGroup;
 			children = (
 				1899B7B320B575E4002FF2A8 /* Like */,
-				184F065720A2E32500768418 /* Store */,
 				184F064E20A2DBB800768418 /* Search */,
 				184F05FB209C590A00768418 /* Category */,
 				184F05F3209C408500768418 /* Product */,
@@ -1885,15 +1900,6 @@
 			path = Param;
 			sourceTree = "<group>";
 		};
-		184F065720A2E32500768418 /* Store */ = {
-			isa = PBXGroup;
-			children = (
-				184F065B20A2E37300768418 /* StoreItemModel.h */,
-				184F065C20A2E37300768418 /* StoreItemModel.m */,
-			);
-			path = Store;
-			sourceTree = "<group>";
-		};
 		1851CD74208F10000094A594 /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
@@ -2053,12 +2059,12 @@
 		1868F6D320FEF0D4000BB6EB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				1868F6D720FEF0D4000BB6EB /* NSShopVM.h */,
 				1868F6D420FEF0D4000BB6EB /* NSShopVM.m */,
+				1868F6D920FEF0D4000BB6EB /* NSCommentVM.h */,
 				1868F6D520FEF0D4000BB6EB /* NSCommentVM.m */,
 				1868F6D620FEF0D4000BB6EB /* NSGoodsVM.h */,
-				1868F6D720FEF0D4000BB6EB /* NSShopVM.h */,
 				1868F6D820FEF0D4000BB6EB /* NSGoodsVM.m */,
-				1868F6D920FEF0D4000BB6EB /* NSCommentVM.h */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2413,6 +2419,7 @@
 		187A401F2107483600AE46A9 /* CustomVC */ = {
 			isa = PBXGroup;
 			children = (
+				18EA040C211FC72C003A6673 /* 红包详情 */,
 				18DEF541211BEBA300978A33 /* 发红包 */,
 			);
 			path = CustomVC;
@@ -3007,8 +3014,19 @@
 				18B6491F211D78DE00F8CDAA /* NSRedPacketCell.m */,
 				18B64921211D9F0900F8CDAA /* NSRPTestCell.h */,
 				18B64922211D9F0900F8CDAA /* NSRPTestCell.m */,
+				18B6D9892120174500D0F999 /* NSRPView.h */,
+				18B6D98A2120174500D0F999 /* NSRPView.m */,
 			);
 			path = CustomView;
+			sourceTree = "<group>";
+		};
+		18B6D98C212063FC00D0F999 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18B6D98D2120643C00D0F999 /* NSRedpacketTVCell.h */,
+				18B6D98E2120643C00D0F999 /* NSRedpacketTVCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		18B83951210030C30019F9D5 /* Pay(付款) */ = {
@@ -4218,6 +4236,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		18EA040C211FC72C003A6673 /* 红包详情 */ = {
+			isa = PBXGroup;
+			children = (
+				18B6D98C212063FC00D0F999 /* View */,
+				18EA040D211FC775003A6673 /* NSRPDetailVC.h */,
+				18EA040E211FC775003A6673 /* NSRPDetailVC.m */,
+			);
+			path = "红包详情";
+			sourceTree = "<group>";
+		};
 		18ECABCA20F5F88400679857 /* ReceivableRecord(收款记录) */ = {
 			isa = PBXGroup;
 			children = (
@@ -4583,6 +4611,7 @@
 				18B0179D20A67B9600826EA4 /* ADAddressLabelTableViewCell.m in Sources */,
 				18DB5D5820E23515000E99E6 /* OrderDetailParam.m in Sources */,
 				18B0179720A67B9600826EA4 /* YWAddressViewController.m in Sources */,
+				18EA040F211FC775003A6673 /* NSRPDetailVC.m in Sources */,
 				1868F78F20FEF391000BB6EB /* AddFriendCell.m in Sources */,
 				18C3D0AA20A2F77E000FCE7F /* CategoryListModel.m in Sources */,
 				18B8AFF22109D4B400A25F3C /* TKImageView.m in Sources */,
@@ -4598,6 +4627,7 @@
 				18230F66208D793F00D3E55F /* BaseViewCtrl.m in Sources */,
 				1874D5C120AAD50A0004B1AF /* NSFunctionCell.m in Sources */,
 				182DC49120905E3C0066E667 /* ADOrderTopToolView.m in Sources */,
+				18B6D98521200B9500D0F999 /* NSRPListModel.m in Sources */,
 				18DB5D3A20E21876000E99E6 /* FivePageSelectBar.m in Sources */,
 				181A9F322106FB9400334F7C /* NSHuanXinUserModel.m in Sources */,
 				18C3D08020A2F0FA000FCE7F /* SaveLabelParam.m in Sources */,
@@ -4618,7 +4648,6 @@
 				1868F77720FEF391000BB6EB /* EMMemberCell.m in Sources */,
 				18DB5D5520E23497000E99E6 /* OrderDetailAPI.m in Sources */,
 				18E3A42020B2633200F847ED /* NSAbolishBuyVC.m in Sources */,
-				184F065D20A2E37300768418 /* StoreItemModel.m in Sources */,
 				1868F77120FEF391000BB6EB /* EMChatroomBansViewController.m in Sources */,
 				1868F6E020FEF0D4000BB6EB /* NSGoodsVM.m in Sources */,
 				184F064A209FFB7F00768418 /* UIView+Layout.m in Sources */,
@@ -4694,6 +4723,7 @@
 				18350895208086DE00BCF7CE /* UIViewExt.m in Sources */,
 				1868F77220FEF391000BB6EB /* ChatroomDetailViewController.m in Sources */,
 				1868F76C20FEF391000BB6EB /* RobotManager.m in Sources */,
+				18B6D98F2120643C00D0F999 /* NSRedpacketTVCell.m in Sources */,
 				1840432F2099FA5D00685F80 /* ADLUpdateUserInformCtrl.m in Sources */,
 				1874524320EDF0E500A67D70 /* UIViewController+SearchController.m in Sources */,
 				18D0C0B220AC0D01007F0784 /* TDUserCertifyDataPics.m in Sources */,
@@ -4799,6 +4829,7 @@
 				1889AF9320D398F000FBA33E /* NSShopViewTVCell.m in Sources */,
 				1868F77A20FEF391000BB6EB /* PublicGroupListViewController.m in Sources */,
 				18DD2F1220B90B1D00521B61 /* HistoryAndCategorySearchCategoryViewP.m in Sources */,
+				18B6D98B2120174500D0F999 /* NSRPView.m in Sources */,
 				184043352099FAA200685F80 /* ADLUpdateUserPhotoCell.m in Sources */,
 				18350890207F653600BCF7CE /* Net.m in Sources */,
 				18B017AB20A67B9600826EA4 /* ADAddressTopView.m in Sources */,
@@ -4829,6 +4860,7 @@
 				18C3D09E20A2F151000FCE7F /* NSCategoryVC.m in Sources */,
 				18E3A44020B29BD300F847ED /* MyOrderAPI.m in Sources */,
 				18B017A520A67B9600826EA4 /* GetAddressParam.m in Sources */,
+				18B6D98821200BAE00D0F999 /* NSRPItemModel.m in Sources */,
 				18DD1569208DCB7E0006475D /* DCSpeedy.m in Sources */,
 				18B1CB0E20BF994900235CFA /* WalletAPI.m in Sources */,
 				18DD2F1C20B90B1E00521B61 /* LLTagViewUtils.m in Sources */,

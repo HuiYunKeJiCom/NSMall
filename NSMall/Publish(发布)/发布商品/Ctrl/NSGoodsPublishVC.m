@@ -906,12 +906,11 @@
     NSMutableArray *jsonArr = [NSMutableArray array];
     
     dispatch_group_t group = dispatch_group_create();
-    
     for(int i=0;i<_selectedPhotos.count;i++){
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
         [param setObject:_selectedPhotos[i] forKey:@"pic"];
         [param setObject:[NSString stringWithFormat:@"pic%d",i] forKey:@"imageName"];
-        
+
         dispatch_group_enter(group);
         [GoodsPublishAPI uploadGoodsPicWithParam:param success:^(NSString *path) {
             [pathArr addObject:path];

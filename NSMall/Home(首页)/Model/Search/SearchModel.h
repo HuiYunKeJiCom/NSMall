@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ProductListItemModel.h"
-#import "StoreItemModel.h"
+#import "NSShopListItemModel.h"
 #import "LabelItemModel.h"
 
 @interface SearchModel : NSObject
@@ -23,7 +23,7 @@
 @property (nonatomic,assign)NSInteger rows;//总条数
 @property (nonatomic,assign)NSInteger currentPage;//当前页数
 @property (nonatomic,strong)NSArray<ProductListItemModel *> *productList;//商品集合参数
-@property (nonatomic,strong)NSArray<StoreItemModel *> *storeList;//店铺集合参数
+@property (nonatomic,strong)NSArray<NSShopListItemModel *> *storeList;//店铺集合参数
 @property (nonatomic,strong)NSArray<LabelItemModel*> *labelList;//店铺标签集合参数
 
 @end

@@ -23,6 +23,7 @@
 #import "NSHuanXinUserModel.h"
 #import "NSMessageAPI.h"
 
+
 #import "EMDingMessageHelper.h"
 #import "DingViewController.h"
 #import "DingAcksViewController.h"
@@ -30,6 +31,8 @@
 #import "NSSendRedPacketVC.h"
 #import "NSRedPacketCell.h"
 #import "NSRPTestCell.h"
+#import "NSRPDetailVC.h"
+#import "NSRPView.h"
 
 
 #if DEMO_CALL == 1
@@ -242,6 +245,39 @@
 
 - (void)messageCellSelected:(id<IMessageModel>)model
 {
+    NSDictionary *ext = model.message.ext;
+    if(model.isSender && [ext objectForKey:@"money_sponsor_name"]){
+        //自己发的红包
+//        DLog(@"自己发的红包");
+        NSRPDetailVC *rpDetailVC = [NSRPDetailVC new];
+        [rpDetailVC setUpDataWithRadpacketID:[ext objectForKey:@"rp_id"]];
+        [self.navigationController pushViewController:rpDetailVC animated:YES];
+    }
+    if(!model.isSender && [ext objectForKey:@"money_sponsor_name"]){
+        //别人发给自己的红包
+        //        DLog(@"别人发给自己的红包");
+        
+//        [NSMessageAPI receiveRedpacketWithParam:[ext objectForKey:@"rp_id"] success:^(NSRPListModel *redPacketModel) {
+//            if(redPacketModel.RPStatus isEqualToString:@"1005"){
+//
+//            }else if(!redPacketModel.RPStatus){
+                [self.view endEditing:YES];
+                NSRPView *RPView = [[NSRPView alloc] initWithFrame:(CGRect){0, 0, kScreenWidth, kScreenHeight}];
+                [RPView setUpDataWith:ext];
+                RPView.openBtnClickBlock = ^{
+                    NSRPDetailVC *rpDetailVC = [NSRPDetailVC new];
+                    [rpDetailVC setUpDataWithRadpacketID:[ext objectForKey:@"rp_id"]];
+                    [self.navigationController pushViewController:rpDetailVC animated:YES];
+                };
+                [RPView showInView:self.navigationController.view];
+//            }
+//        } faulre:^(NSError *error) {
+//
+//        }];
+    
+        
+    }
+    
     EMMessage *message = model.message;
     if (model.isDing) {
         DingAcksViewController *controller = [[DingAcksViewController alloc] initWithMessage:message];
@@ -273,9 +309,9 @@
                        cellForMessageModel:(id<IMessageModel>)messageModel
 {
     NSDictionary *ext = messageModel.message.ext;
-    DLog(@"ext = %@",ext);
-    DLog(@"ext = %@",[ext objectForKey:@"is_money_msg"]);
-    if([ext objectForKey:@"is_money_msg"]){
+//    DLog(@"ext = %@",ext);
+//    DLog(@"ext = %@",[ext objectForKey:@"is_money_msg"]);
+    if([ext objectForKey:@"money_sponsor_name"]){
         
         id medicine = messageModel.message.ext[@"rp_leave_msg"];
         if(medicine){
@@ -305,7 +341,7 @@
             recallCell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        EMTextMessageBody *body = (EMTextMessageBody*)messageModel.message.body;
+//        EMTextMessageBody *body = (EMTextMessageBody*)messageModel.message.body;
 //        recallCell.title = body.text;
         return recallCell;
     }
@@ -447,6 +483,7 @@
     
     if([[message.ext allKeys] containsObject:@"hx_username"]){
     }else if([message.from isEqualToString:[[UserModel modelFromUnarchive] hx_user_name]]){
+        
         UserModel *userModel = [UserModel modelFromUnarchive];
         message.ext = @{@"nick":userModel.user_name,@"user_id":userModel.user_id,@"avatar_url":userModel.pic_img,@"hx_username":userModel.hx_user_name};
     }else{
@@ -466,6 +503,12 @@
     id<IMessageModel> model = nil;
     model = [[EaseMessageModel alloc] initWithMessage:message];
 
+//    if([message.from isEqualToString:[[UserModel modelFromUnarchive] hx_user_name]]){
+//        model.isSender = YES;
+//    }else{
+//        model.isSender = NO;
+//    }
+    
 //    model.avatarImage = [UIImage imageNamed:@"EaseUIResource.bundle/user"];
     NSData *data = [NSData  dataWithContentsOfURL:[NSURL URLWithString:[message.ext objectForKey:@"avatar_url"]]];
     model.avatarImage =  [UIImage imageWithData:data];

@@ -94,8 +94,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    DLog(@"跳转到详情页");
-//    NSGoodsShowCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+//    DLog(@"跳转到详情页");
+//    NSGoodsShowCellTest *cell = [self.goodsTV cellForRowAtIndexPath:indexPath];
 //    DLog(@"product_id = %@",cell.productModel.product_id);
 //    NSGoodsDetailVC *detailVC = [NSGoodsDetailVC new];
 //    [detailVC getDataWithProductID:cell.productModel.product_id andCollectNum:cell.productModel.favorite_number];

@@ -54,4 +54,15 @@
     }];
 }
 
+/*
+ 抢红包/红包详情
+ */
++ (void)receiveRedpacketWithParam:(NSString *)param success:(void (^)(NSRPListModel *redPacketModel))success faulre:(void (^)(NSError *))failure{
+    [Net requestWithPost:@{@"redpacketId":param} function:kReceiveRedpacketAPI showHUD:NetNullStr resultClass:[NSRPListModel class] success:^(NSRPListModel  *_Nullable resultObj) {
+        success?success(resultObj):nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+}
+
 @end

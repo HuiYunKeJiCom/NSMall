@@ -97,6 +97,8 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
     
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setValue:@"519b07b11fbf2a5ed41e9e85e527f7ea" forKey:@"appToken"];
+//    [userDefaults synchronize];
     
     if (![userDefaults objectForKey:@"first"]) {
         NSLog(@"是第一次");
@@ -113,7 +115,8 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
         
         if([userDefaults valueForKey:@"appToken"]){
             NSString *appToken = [userDefaults valueForKey:@"appToken"];
-            //                DLog(@"appToken = %@",appToken);
+//            appToken = @"3c6ed065b551c68da78c993437a12df6";
+//            DLog(@"appToken = %@",appToken);
             NSString *uuid = [userDefaults valueForKey:@"uuid"];
 //            DLog(@"uuid = %@",uuid);
             [httpManager.requestSerializer setValue:appToken forHTTPHeaderField:@"app_token"];

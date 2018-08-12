@@ -82,7 +82,7 @@
     confirmBtn.x = 18;
     confirmBtn.y = kATTR_VIEW_HEIGHT-44-15;
     confirmBtn.size = CGSizeMake(kScreenWidth-36, 44);
-    [confirmBtn setTitle:@"确认添加" forState:UIControlStateNormal];
+    [confirmBtn setTitle:@"确认付款" forState:UIControlStateNormal];
     [confirmBtn addTarget:self action:@selector(confirmPay) forControlEvents:UIControlEventTouchUpInside];
     confirmBtn.layer.cornerRadius = 5;//设置那个圆角的有多圆
     confirmBtn.layer.masksToBounds = YES;//设为NO去试试

@@ -50,6 +50,7 @@ AFHTTPSessionManager *httpManager = nil;
         [Common AppHideHUD];
         NetBaseModel *result = [NetBaseModel yy_modelWithDictionary:responseObject];
         
+        
         if((result.code == -1) || (result.code == -2)){
             EMError *error = [[EMClient sharedClient] logout:YES];
             if (!error) {
@@ -59,9 +60,21 @@ AFHTTPSessionManager *httpManager = nil;
         }
         
         if (!result.success) {
-            [Common AppShowToast:result.message];
-            failure?failure(nil):nil;
-            return;
+            if(result.code == 0){
+                [Common AppShowToast:result.message];
+                failure?failure(nil):nil;
+                return;
+            }
+//            else if(result.code == 1001 || result.code == 1002 || result.code == 1003 || result.code == 1004 || result.code == 1005){
+//                [result.data setValue:[NSNumber numberWithInteger:result.code] forKey:@"RPStatus"];
+//                success?success(result.data):nil;
+//            }
+            else{
+                [Common AppShowToast:result.message];
+                failure?failure(nil):nil;
+                return;
+            }
+            
         }
         success?success(result.data):nil;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -95,9 +108,21 @@ AFHTTPSessionManager *httpManager = nil;
         }
         
         if (!result.success) {
-            [Common AppShowToast:result.message];
-            failure?failure(nil):nil;
-            return;
+            if(result.code == 0){
+                [Common AppShowToast:result.message];
+                failure?failure(nil):nil;
+                return;
+            }
+//            else if(result.code == 1001 || result.code == 1002 || result.code == 1003 || result.code == 1004 || result.code == 1005){
+//                [result.data setValue:[NSNumber numberWithInteger:result.code] forKey:@"RPStatus"];
+//                success?success(result.data):nil;
+//            }
+            else{
+                [Common AppShowToast:result.message];
+                failure?failure(nil):nil;
+                return;
+            }
+            
         }
         success?success(result.data):nil;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

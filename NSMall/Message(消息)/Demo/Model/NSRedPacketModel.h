@@ -28,4 +28,5 @@
 @property (nonatomic,copy)NSString *money_sponsor_name;//红包左下角信息
 @property (nonatomic,copy)NSString *send_username;//发送红包环信用户名
 
+
 @end

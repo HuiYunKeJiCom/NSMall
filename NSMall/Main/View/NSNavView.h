@@ -20,4 +20,5 @@
 @property (nonatomic, copy) dispatch_block_t rightItemClickBlock;
 -(void)setRightItemTitle:(NSString *)string;
 -(void)setRightItemImage:(NSString *)string;
+-(void)updateRightButtonConstraints;
 @end
