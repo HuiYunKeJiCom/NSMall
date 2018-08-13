@@ -11,6 +11,8 @@
 #import "NSSendRPParam.h"
 #import "NSRedPacketModel.h"
 #import "NSRPListModel.h"
+#import "NSCommonParam.h"
+#import "NSRPRecordModel.h"
 
 @interface NSMessageAPI : NSObject
 
@@ -37,6 +39,11 @@
 /*
  抢红包/红包详情
  */
-+ (void)receiveRedpacketWithParam:(NSString *)param success:(void (^)(NSRPListModel *redPacketModel))success faulre:(void (^)(NSError *))failure;
++ (void)receiveRedpacketWithParam:(NSString *)param success:(void (^)(NSRPListModel *redPacketModel))success faulre:(void (^)(NSError *error))failure;
+
+/*
+ 红包记录
+ */
++ (void)getRedpacketLogs:(nullable NSCommonParam *)param success:(void (^)(NSRPRecordModel * _Nullable result))success failure:(void (^)(NSError *error))failure;
 
 @end

@@ -10,7 +10,10 @@
 
 @interface NSRPView : UIView
 - (void)showInView:(UIView *)view;
+- (void)removeView;
 -(void)setUpDataWith:(NSDictionary *)dict;
 /* 红包 点击回调 */
 @property (nonatomic, copy) dispatch_block_t openBtnClickBlock;
+@property(nonatomic,strong)UIImageView *bgIV;/* 背景图 */
+@property(nonatomic,strong)UIButton *openBtn;/* 开红包按钮 */
 @end

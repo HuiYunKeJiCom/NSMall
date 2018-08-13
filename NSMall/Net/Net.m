@@ -65,10 +65,10 @@ AFHTTPSessionManager *httpManager = nil;
                 failure?failure(nil):nil;
                 return;
             }
-//            else if(result.code == 1001 || result.code == 1002 || result.code == 1003 || result.code == 1004 || result.code == 1005){
-//                [result.data setValue:[NSNumber numberWithInteger:result.code] forKey:@"RPStatus"];
-//                success?success(result.data):nil;
-//            }
+            else if(result.code == 1001 || result.code == 1002 || result.code == 1003 || result.code == 1004 || result.code == 1005){
+                [result.data setValue:[NSString stringWithFormat:@"%lu",result.code] forKey:@"RPStatus"];
+                success?success(result.data):nil;
+            }
             else{
                 [Common AppShowToast:result.message];
                 failure?failure(nil):nil;
@@ -113,10 +113,10 @@ AFHTTPSessionManager *httpManager = nil;
                 failure?failure(nil):nil;
                 return;
             }
-//            else if(result.code == 1001 || result.code == 1002 || result.code == 1003 || result.code == 1004 || result.code == 1005){
-//                [result.data setValue:[NSNumber numberWithInteger:result.code] forKey:@"RPStatus"];
-//                success?success(result.data):nil;
-//            }
+            else if(result.code == 1001 || result.code == 1002 || result.code == 1003 || result.code == 1004 || result.code == 1005){
+                [result.data setValue:[NSString stringWithFormat:@"%lu",result.code] forKey:@"RPStatus"];
+                success?success(result.data):nil;
+            }
             else{
                 [Common AppShowToast:result.message];
                 failure?failure(nil):nil;

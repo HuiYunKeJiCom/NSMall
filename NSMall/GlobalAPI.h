@@ -131,5 +131,7 @@ const static NSString * const kDeleteFriendAPI = @"auth/removeFriend";//删除�
 const static NSString * const kFriendListAPI = @"auth/friendList";//获取好友列表
 const static NSString * const kSendRedpacketAPI = @"auth/sendRedpacket";//发红包
 const static NSString * const kReceiveRedpacketAPI = @"auth/receiveRedpacket";//抢红包/红包详情
+const static NSString * const kRedpacketLogsAPI = @"auth/redpacketLogs";//红包记录
+const static NSString * const kQueryRedpacketAPI = @"auth/queryRedpacket";//查看红包状态
 
 

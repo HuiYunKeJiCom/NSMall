@@ -9,12 +9,12 @@
 #import "NSRPView.h"
 
 @interface NSRPView()
-@property(nonatomic,strong)UIImageView *bgIV;/* 背景图 */
+
 @property(nonatomic,strong)UIImageView *avatarView;/* 头像 */
 @property(nonatomic,strong)UILabel *userLab;/* 昵称 */
 @property(nonatomic,strong)UILabel *tipLab;/* 提示文字 */
 @property(nonatomic,strong)UILabel *messageLab;/* 留言 */
-@property(nonatomic,strong)UIButton *openBtn;/* 开红包按钮 */
+
 @end
 
 @implementation NSRPView
@@ -140,11 +140,18 @@
     return _openBtn;
 }
 
+#pragma mark - 红包 点击
+- (void)openButtonClick {
+    [self removeView];
+    !_openBtnClickBlock ? : _openBtnClickBlock();
+}
+
 - (void)removeView {
     __weak typeof(self) _weakSelf = self;
     [UIView animateWithDuration:0.3 animations:^{
         _weakSelf.backgroundColor = [UIColor clearColor];
     } completion:^(BOOL finished) {
+//        _weakSelf.alpha = 0.0;
         [_weakSelf removeFromSuperview];
     }];
 }
@@ -153,10 +160,6 @@
     [view addSubview:self];
 }
 
-#pragma mark - 红包 点击
-- (void)openButtonClick {
-    [self removeView];
-    !_openBtnClickBlock ? : _openBtnClickBlock();
-}
+
 
 @end

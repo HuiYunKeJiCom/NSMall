@@ -21,7 +21,8 @@
 #import "ADLChangePhoneViewController.h"
 #import "UserInfoAPI.h"
 
-#import "TDUserCertifyViewCtrl.h"
+//#import "TDUserCertifyViewCtrl.h"
+#import "NSUserCertifyVC.h"
 #import "ADReceivingAddressViewController.h"
 
 
@@ -251,14 +252,12 @@
                     [self.navigationController pushViewController:addressCtrl animated:YES];
                 }else if (type == EditUserTypeCertification) {
                     UserModel *userModel = [UserModel modelFromUnarchive];
-                    if(userModel.is_certification == 0){
-                        TDUserCertifyViewCtrl *ctrl = [[TDUserCertifyViewCtrl alloc] init];
-                        //                    ctrl.editTitle = title;
+//                    if(userModel.is_certification == 0){
+                        NSUserCertifyVC *ctrl = [[NSUserCertifyVC alloc] init];
                         [self.navigationController pushViewController:ctrl animated:YES];
-                    }else{
-                        [Common AppShowToast:[NSString stringWithFormat:@"%@!",NSLocalizedString(@"have been authenticated", nil)]];
-                    }
-//                    [self.navigationController setNavigationBarHidden:NO];
+//                    }else{
+//                        [Common AppShowToast:[NSString stringWithFormat:@"%@!",NSLocalizedString(@"have been authenticated", nil)]];
+//                    }
                     
                 } else {
                     

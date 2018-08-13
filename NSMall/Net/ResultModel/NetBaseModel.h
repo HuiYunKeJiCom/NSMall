@@ -12,7 +12,7 @@
 
 @property (nonatomic,assign)NSInteger code;//
 @property (nonatomic,copy)NSString *message;//
-@property (nonatomic,strong)NSDictionary *data;//
+@property (nonatomic,strong)NSMutableDictionary *data;//
 
 @property (nonatomic,readonly)BOOL success;//
 

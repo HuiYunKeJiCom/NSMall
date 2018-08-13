@@ -8,9 +8,9 @@
 
 #import "NSRPDetailVC.h"
 #import "NSNavView.h"
-#import "NSRPListModel.h"
 #import "NSMessageAPI.h"
 #import "NSRedpacketTVCell.h"
+#import "NSRedpacketRecordVC.h"
 
 @interface NSRPDetailVC ()<BaseTableViewDelegate,UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UIView *RPSenderV;/* 发红包人的信息View */
@@ -53,28 +53,33 @@
     navView.backgroundColor = kWhiteColor;
     [navView setTopTitleWithNSString:@"红包详情"];
     WEAKSELF
+    [navView setRightItemTitle:@"红包记录"];
+    [navView updateRightButtonConstraints];
     navView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
         [weakSelf.navigationController popViewControllerAnimated:YES];
         //        [self delayPop];
     };
-    [navView setRightItemTitle:@"红包记录"];
-    [navView updateRightButtonConstraints];
+    navView.rightItemClickBlock = ^{
+        NSRedpacketRecordVC *recordVC = [NSRedpacketRecordVC new];
+        [weakSelf.navigationController pushViewController:recordVC animated:YES];
+    };
     [self.view addSubview:navView];
 }
 
--(void)setUpDataWithRadpacketID:(NSString *)redpacketID{
-    [NSMessageAPI receiveRedpacketWithParam:redpacketID success:^(NSRPListModel *redPacketModel) {
-        //抢红包/红包详情
-        DLog(@"抢红包成功");
-        self.rpListModel = redPacketModel;
-        [self setUpDataWith:self.rpListModel];
-    } faulre:^(NSError *error) {
-        
-    }];
-}
+//-(void)setUpDataWithRadpacketID:(NSString *)redpacketID{
+//    [NSMessageAPI receiveRedpacketWithParam:redpacketID success:^(NSRPListModel *redPacketModel) {
+//        //抢红包/红包详情
+//        DLog(@"抢红包成功");
+//        self.rpListModel = redPacketModel;
+//        [self setUpDataWith:self.rpListModel];
+//    } faulre:^(NSError *error) {
+//
+//    }];
+//}
 
 -(void)setUpDataWith:(NSRPListModel *)rpListModel{
+    self.rpListModel = rpListModel;
     UserModel *userModel = [UserModel modelFromUnarchive];
     [self.avatarView sd_setImageWithURL:[NSURL URLWithString:rpListModel.send_user_image]];
     self.userLab.text = [NSString stringWithFormat:@"%@的红包",rpListModel.send_user_name];
@@ -90,9 +95,11 @@
     self.RPTV.data = [NSMutableArray arrayWithArray:rpListModel.receiveRedpacketList];
     
     if([rpListModel.send_hxuser_name isEqualToString:userModel.hx_user_name]){
-        self.receiveLab.text = [NSString stringWithFormat:@"领取0/%lu个",rpListModel.redpacket_count];
+        self.receiveLab.text = [NSString stringWithFormat:@"领取%lu/%lu个",rpListModel.receiveRedpacketList.count,rpListModel.redpacket_count];
+    }else{
+        [self updateConstraint];
     }
-    
+    [self.RPTV reloadData];
 }
 
 -(void)makeConstraints {
@@ -136,9 +143,23 @@
         make.left.equalTo(weakSelf.view.mas_left);
         make.right.equalTo(weakSelf.view.mas_right);
         make.bottom.equalTo(weakSelf.view.mas_bottom);
-    make.top.equalTo(self.RPSenderV.mas_bottom);
+    make.top.equalTo(self.RPSenderV.mas_bottom).with.offset(30);
     }];
 }
+
+-(void)updateConstraint{
+    WEAKSELF
+    
+    [self.RPTV mas_updateConstraints:^(MASConstraintMaker *make) {
+        //        make.left.right.bottom.equalTo(self.view);
+        make.left.equalTo(weakSelf.view.mas_left);
+        make.right.equalTo(weakSelf.view.mas_right);
+        make.bottom.equalTo(weakSelf.view.mas_bottom);
+        make.top.equalTo(self.RPSenderV.mas_bottom);
+    }];
+}
+
+
 
 - (UIView *)RPSenderV{
     if(!_RPSenderV){
@@ -232,7 +253,7 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return GetScaleWidth(80);
+    return GetScaleWidth(50);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

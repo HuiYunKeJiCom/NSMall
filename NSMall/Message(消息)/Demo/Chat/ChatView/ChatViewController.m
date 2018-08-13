@@ -56,6 +56,7 @@
 @property (nonatomic, copy) EaseSelectAtTargetCallback selectedCallback;
 @property(nonatomic,strong)UIButton *virtualBtn;/* 挂名Btn,无实际用处 */
 @property(nonatomic,strong)NSMutableArray *friendListArr;/* 好友列表数组 */
+//@property (nonatomic) BOOL isSelected;
 @end
 
 @implementation ChatViewController
@@ -249,33 +250,50 @@
     if(model.isSender && [ext objectForKey:@"money_sponsor_name"]){
         //自己发的红包
 //        DLog(@"自己发的红包");
-        NSRPDetailVC *rpDetailVC = [NSRPDetailVC new];
-        [rpDetailVC setUpDataWithRadpacketID:[ext objectForKey:@"rp_id"]];
-        [self.navigationController pushViewController:rpDetailVC animated:YES];
+            [NSMessageAPI receiveRedpacketWithParam:[ext objectForKey:@"rp_id"] success:^(NSRPListModel *redPacketModel) {
+                //抢红包/红包详情
+                DLog(@"抢红包成功");
+                NSRPDetailVC *rpDetailVC = [NSRPDetailVC new];
+                [rpDetailVC setUpDataWith:redPacketModel];
+                [self.navigationController pushViewController:rpDetailVC animated:YES];
+            } faulre:^(NSError *error) {
+                
+            }];
+        
     }
     if(!model.isSender && [ext objectForKey:@"money_sponsor_name"]){
         //别人发给自己的红包
         //        DLog(@"别人发给自己的红包");
-        
-//        [NSMessageAPI receiveRedpacketWithParam:[ext objectForKey:@"rp_id"] success:^(NSRPListModel *redPacketModel) {
-//            if(redPacketModel.RPStatus isEqualToString:@"1005"){
-//
-//            }else if(!redPacketModel.RPStatus){
+            [NSMessageAPI receiveRedpacketWithParam:[ext objectForKey:@"rp_id"] success:^(NSRPListModel *redPacketModel) {
+                //抢红包/红包详情
+                DLog(@"抢红包成功");
                 [self.view endEditing:YES];
-                NSRPView *RPView = [[NSRPView alloc] initWithFrame:(CGRect){0, 0, kScreenWidth, kScreenHeight}];
-                [RPView setUpDataWith:ext];
-                RPView.openBtnClickBlock = ^{
+                if([redPacketModel.RPStatus isEqualToString:@"1002"]){
                     NSRPDetailVC *rpDetailVC = [NSRPDetailVC new];
-                    [rpDetailVC setUpDataWithRadpacketID:[ext objectForKey:@"rp_id"]];
+                    [rpDetailVC setUpDataWith:redPacketModel];
                     [self.navigationController pushViewController:rpDetailVC animated:YES];
-                };
-                [RPView showInView:self.navigationController.view];
-//            }
-//        } faulre:^(NSError *error) {
-//
-//        }];
-    
-        
+                }else{
+                    NSRPView *RPView = [[NSRPView alloc] initWithFrame:(CGRect){0, 0, kScreenWidth, kScreenHeight}];
+                    if([redPacketModel.RPStatus isEqualToString:@"1005"]){
+                        RPView.bgIV.image = IMAGE(@"red_packet_bg");
+                        RPView.openBtn.alpha = 0.0;
+                        [ext setValue:@"该红包已超过24小时." forKey:@"rp_leave_msg"];
+                    }
+                    [RPView setUpDataWith:ext];
+                    //            __weak typeof(RPView) rpview = RPView;
+                    //                WEAKSELF
+                    RPView.openBtnClickBlock = ^{
+                        //                [rpview removeFromSuperview];
+                        NSRPDetailVC *rpDetailVC = [NSRPDetailVC new];
+                        [rpDetailVC setUpDataWith:redPacketModel];
+                        [self.navigationController pushViewController:rpDetailVC animated:YES];
+                    };
+                    [RPView showInView:self.navigationController.view];
+                }
+                
+            } faulre:^(NSError *error) {
+                
+            }];
     }
     
     EMMessage *message = model.message;
@@ -286,6 +304,7 @@
         [super messageCellSelected:model];
     }
 }
+
 
 #pragma mark - EaseMessageViewControllerDelegate
 

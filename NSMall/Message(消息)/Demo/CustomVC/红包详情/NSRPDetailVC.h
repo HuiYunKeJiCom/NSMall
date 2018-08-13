@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NSRPListModel.h"
 
 @interface NSRPDetailVC : UIViewController
--(void)setUpDataWithRadpacketID:(NSString *)redpacketID;
+//-(void)setUpDataWithRadpacketID:(NSString *)redpacketID;
+-(void)setUpDataWith:(NSRPListModel *)rpListModel;
 @end

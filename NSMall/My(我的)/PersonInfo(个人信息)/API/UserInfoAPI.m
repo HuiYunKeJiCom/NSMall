@@ -41,7 +41,7 @@
  */
 + (void)uploadIDCardWithParam:(NSDictionary *)params success:(void (^)(NSString *path))success faulre:(void (^)(NSError *))failure{
     [Net uploadDataWithPost:params function:kUploadIDCardAPI success:^(NSDictionary *result) {
-        DLog(@"上传身份证result = %@",result);
+//        DLog(@"上传身份证result = %@",result);
         NSString* imageUrl = result[@"data"][@"imagePaths"];
         success?success(imageUrl):nil;
     } failure:^(NSError *error) {

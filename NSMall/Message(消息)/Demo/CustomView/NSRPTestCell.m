@@ -6,6 +6,8 @@
 //  Copyright © 2018年 www. All rights reserved.
 //
 
+#define RedpacketImageInset         UIEdgeInsetsMake(0, 9, 20, 20)
+
 #import "NSRPTestCell.h"
 
 @implementation NSRPTestCell
@@ -14,8 +16,15 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier model:model];
     if(self){
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.sendBubbleBackgroundImage = IMAGE(@"redpacket_chatto_normal");
-        self.recvBubbleBackgroundImage = IMAGE(@"redpacket_chatfrom_normal");
+        
+        UIImage *sendImage = IMAGE(@"redpacket_chatto_normal");
+        sendImage = [sendImage resizableImageWithCapInsets:RedpacketImageInset];
+        self.sendBubbleBackgroundImage = sendImage;
+//        self.sendBubbleBackgroundImage = IMAGE(@"redpacket_chatto_normal");
+        UIImage *recvImage = IMAGE(@"redpacket_chatfrom_normal");
+        recvImage = [recvImage resizableImageWithCapInsets:RedpacketImageInset];
+        self.recvBubbleBackgroundImage = recvImage;
+//        self.recvBubbleBackgroundImage = IMAGE(@"redpacket_chatfrom_normal");
         self.avatarSize = 38;
         self.avatarCornerRadius = 5;
         [self configureSendLayoutConstraints];
@@ -83,17 +92,26 @@
     UIImageView *redPacketIV = [[UIImageView alloc]initWithFrame:CGRectMake(12, 13, 30, 36)];
     redPacketIV.image = IMAGE(@"message_ico_redpakect");
     [self.bubbleView insertSubview:redPacketIV aboveSubview:self.bubbleView.backgroundImageView];
+//    self.sendBubbleBackgroundImag
+//    recvBubbleBackgroundImage
+    
+//    UIView *rightV = [[UIView alloc]initWithFrame:CGRectMake(12+30, 13, 3, 36)];
+//    rightV.backgroundColor = KBGCOLOR;
+//    [self.bubbleView insertSubview:rightV aboveSubview:self.bubbleView.backgroundImageView];
+    
     
     if(model.isSender){
         label.frame = CGRectMake(20+30, 0, labelW, labelH);
         checkLab.frame = CGRectMake(20+30, CGRectGetMaxY(label.frame)-5, checkLabW, checkLabH);
         sponsorLab.frame = CGRectMake(10, CGRectGetMaxY(checkLab.frame)+10, 100, 20);
         redPacketIV.frame = CGRectMake(12, 13, 30, 36);
+        
+        
     }else{
-        label.frame = CGRectMake(20+30+15, 0, labelW, labelH);
-        checkLab.frame = CGRectMake(20+15+30, CGRectGetMaxY(label.frame)-5, checkLabW, checkLabH);
-        sponsorLab.frame = CGRectMake(10+15, CGRectGetMaxY(checkLab.frame)+10, 100, 20);
-        redPacketIV.frame = CGRectMake(12+15, 13, 30, 36);
+        label.frame = CGRectMake(20+30+5, 0, labelW, labelH);
+        checkLab.frame = CGRectMake(20+5+30, CGRectGetMaxY(label.frame)-5, checkLabW, checkLabH);
+        sponsorLab.frame = CGRectMake(10+5, CGRectGetMaxY(checkLab.frame)+10, 100, 20);
+        redPacketIV.frame = CGRectMake(12+5, 13, 30, 36);
     }
 }
 
@@ -121,14 +139,14 @@
         CGSize textSize = [text boundingRectWithSize:CGSizeMake(200, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName :[UIFont systemFontOfSize:14.0]} context:nil].size;
         CGFloat bubbleViewW = textSize.width + 23+40+40;
         CGFloat bubbleViewH = textSize.height + 30+30;
-        _bubbleView.frame = CGRectMake(kScreenWidth-50-bubbleViewW, 18, bubbleViewW, bubbleViewH);
+        _bubbleView.frame = CGRectMake(kScreenWidth-60-bubbleViewW, 18, bubbleViewW, bubbleViewH);
         
     }else{
  _bubbleView.translatesAutoresizingMaskIntoConstraints = YES;
         CGSize textSize = [text boundingRectWithSize:CGSizeMake(200, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName :[UIFont systemFontOfSize:14.0]} context:nil].size;
         CGFloat bubbleViewW = textSize.width + 23+40+40;
         CGFloat bubbleViewH = textSize.height + 30+30;
-        _bubbleView.frame = CGRectMake(50-5, 18, bubbleViewW, bubbleViewH);
+        _bubbleView.frame = CGRectMake(55, 18, bubbleViewW, bubbleViewH);
     }
 }
 
