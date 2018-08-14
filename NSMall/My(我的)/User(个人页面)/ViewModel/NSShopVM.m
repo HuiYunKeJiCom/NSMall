@@ -7,7 +7,8 @@
 //
 
 #import "NSShopVM.h"
-#import "NSMyShopTVCell.h"
+//#import "NSMyShopTVCell.h"
+#import "NSShopTVCell.h"
 
 @interface NSShopVM()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
 @property (nonatomic,strong)NSMutableArray *properties;
@@ -20,7 +21,7 @@
 -(BaseTableView *)shopTV{
     if (!_shopTV) {
         _shopTV = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, AppHeight - TopBarHeight) style:UITableViewStyleGrouped];
-        _shopTV.backgroundColor = [UIColor lightGrayColor];
+        _shopTV.backgroundColor = KBGCOLOR;
         _shopTV.separatorColor = [UIColor clearColor];
         _shopTV.delegate = self;
         _shopTV.dataSource = self;
@@ -31,7 +32,7 @@
         //        [self addSubview:_goodsTV];
         _shopTV.scrollEnabled = NO;
         _shopTV.estimatedRowHeight = GetScaleWidth(259);
-        [_shopTV registerClass:[NSMyShopTVCell class] forCellReuseIdentifier:@"NSMyShopTVCell"];
+        [_shopTV registerClass:[NSShopTVCell class] forCellReuseIdentifier:@"NSShopTVCell"];
     }
     return _shopTV;
 }
@@ -49,18 +50,22 @@
     return self.shopTV.data.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return GetScaleWidth(200);
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if(section == 0){
         return 0;
     }else{
         //设置间隔高度
-        return GetScaleWidth(6);
+        return GetScaleWidth(10);
     }
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
-    UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(6))];
+    UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(10))];
     sectionView.backgroundColor = KBGCOLOR;
     return sectionView;
 }
@@ -79,23 +84,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSMyShopTVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSMyShopTVCell"];
+    NSShopTVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSShopTVCell"];
     if (!cell) {
-        cell = [[NSMyShopTVCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSMyShopTVCell"];
+        cell = [[NSShopTVCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSShopTVCell"];
     }
 //    WEAKSELF
     NSShopListItemModel *model = self.shopTV.data[indexPath.section];
     cell.model = model;
-    cell.deleteBtnClickBlock = ^{
-        [self deleteShopWith:model];
-    };
     
     return cell;
     
 }
 
--(void)deleteShopWith:(NSShopListItemModel *)model{
-    
+//-(void)deleteShopWith:(NSShopListItemModel *)model{
+
 //    [MyShopAPI delShopWithParam:model.store_id success:^{
 //        [Common AppShowToast:@"店铺删除成功"];
 //        //        sleep(1);
@@ -104,7 +106,7 @@
 //    } faulre:^(NSError *error) {
 //        DLog(@"店铺删除失败");
 //    }];
-}
+//}
 
 
 @end

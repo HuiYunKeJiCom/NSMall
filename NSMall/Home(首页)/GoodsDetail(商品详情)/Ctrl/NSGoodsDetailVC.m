@@ -43,6 +43,7 @@
 @property(nonatomic,strong)UIView *commentView;/* 评论View */
 @property(nonatomic,strong)UIView *bottomV;/* 底部留言View */
 @property(nonatomic,strong)UITextView *messageTF;/* 评论框 */
+@property(nonatomic,strong)NSString *firstImage;/* 第一张图片 */
 @end
 
 @implementation NSGoodsDetailVC
@@ -78,7 +79,7 @@
     [self.SV addSubview:goodsView];
     
     CGSize nameSize = [self contentSizeWithTitle:self.model.name andFont:15];
-    UILabel *goodsName = [[UILabel alloc] initWithFrame:CGRectMake(GetScaleWidth(18), GetScaleWidth(18),nameSize.width,nameSize.height) FontSize:15];
+    UILabel *goodsName = [[UILabel alloc] initWithFrame:CGRectMake(GetScaleWidth(18), GetScaleWidth(10),nameSize.width,nameSize.height) FontSize:15];
     goodsName.textColor = kBlackColor;
     goodsName.text = self.model.name;
     [goodsView addSubview:goodsName];
@@ -131,6 +132,7 @@
     
     imageSV.contentSize = CGSizeMake((itemWidth+GetScaleWidth(8))*self.model.productImageList.count, 0);
     self.height = itemWidth+GetScaleWidth(10)+self.height;
+    
     for(int i=0;i<self.model.productImageList.count;i++){
         UIImageView *goodsIV = [[UIImageView alloc]initWithFrame:CGRectMake((itemWidth+GetScaleWidth(8))*i, 0, itemWidth, itemWidth)];
         [goodsIV sd_setImageWithURL:[NSURL URLWithString:self.model.productImageList[i]]];
@@ -249,6 +251,8 @@
     [GoodsDetailAPI getDetailWithGoodsID:productId success:^(NSGoodsDetailModel *model) {
         DLog(@"获取商品详情成功");
         self.model = model;
+        self.firstImage = model.productImageList[0];
+//        DLog(@"productImageList = %@",model.mj_keyValues);
         if(model.is_collect == 1){
             self.isCollect = YES;
         }else{
@@ -548,12 +552,31 @@
     GoodAttrModel *model1 = [GoodAttrModel new];
     model1.attr_id = @"11";
     model1.attr_name = nil;
-    model1.attr_value = [NSMutableArray array];
+    model1.attr_value = [NSArray array];
+    model1.attr_stock = [NSArray array];
+    model1.attr_price = [NSArray array];
+    NSMutableArray *tempArr = [NSMutableArray array];
+    NSMutableArray *tempPriceArr = [NSMutableArray array];
+    NSMutableArray *tempStockArr = [NSMutableArray array];
     for(int i=0;i<self.model.productSpecList.count;i++){
         NSDetailItemModel *itemModel = self.model.productSpecList[i];
         GoodAttrValueModel *value = [GoodAttrValueModel new];
         value.attr_value = itemModel.spec_name;
-        [model1.attr_value addObject:value];
+        if(self.model.stock == -1){
+            value.attr_stock = @"无限供应";
+        }else{
+            value.attr_stock = [NSString stringWithFormat:@"库存 %lu 件",itemModel.stock];
+        }
+        value.attr_price = [NSString stringWithFormat:@"N%.2f",itemModel.price];
+        value.attr_value = itemModel.spec_name;
+        [tempArr addObject:value];
+        [tempPriceArr addObject:value.attr_price];
+        [tempStockArr addObject:value.attr_stock];
+        if(i == self.model.productSpecList.count - 1){
+            model1.attr_value = [tempArr copy];
+            model1.attr_stock = [tempStockArr copy];
+            model1.attr_price = [tempPriceArr copy];
+        }
         [self.goodSpecDict setValue:itemModel.product_spec_id forKey:itemModel.spec_name];
     }
     
@@ -571,15 +594,10 @@
             DLog(@"加入购物车失败");
         }];
     };
-    
-    attributesView.good_img = self.model.productImageList[0];
-    if(self.model.stock == -1){
-        attributesView.good_price = @"无限供应";
-    }else{
-        attributesView.good_price = [NSString stringWithFormat:@"库存 %lu 件",self.model.stock];
-    }
-    
-    attributesView.goodsNameLbl.text = [NSString stringWithFormat:@"N%.2f",self.model.show_price];
+//    DLog(@"self.model = %lu",self.model.stock);
+//    DLog(@"productImageList = %@",self.model.productImageList);
+    attributesView.good_img = self.firstImage;
+
     
     [attributesView showInView:self.navigationController.view];
 }
@@ -589,12 +607,31 @@
     GoodAttrModel *model1 = [GoodAttrModel new];
     model1.attr_id = @"12";
     model1.attr_name = nil;
-    model1.attr_value = [NSMutableArray array];
+    model1.attr_value = [NSArray array];
+    model1.attr_stock = [NSArray array];
+    model1.attr_price = [NSArray array];
+    NSMutableArray *tempArr = [NSMutableArray array];
+    NSMutableArray *tempPriceArr = [NSMutableArray array];
+    NSMutableArray *tempStockArr = [NSMutableArray array];
     for(int i=0;i<self.model.productSpecList.count;i++){
         NSDetailItemModel *itemModel = self.model.productSpecList[i];
+        
         GoodAttrValueModel *value = [GoodAttrValueModel new];
+        if(self.model.stock == -1){
+            value.attr_stock = @"无限供应";
+        }else{
+            value.attr_stock = [NSString stringWithFormat:@"库存 %lu 件",itemModel.stock];
+        }
+        value.attr_price = [NSString stringWithFormat:@"N%.2f",itemModel.price];
         value.attr_value = itemModel.spec_name;
-        [model1.attr_value addObject:value];
+        [tempArr addObject:value];
+        [tempPriceArr addObject:value.attr_price];
+        [tempStockArr addObject:value.attr_stock];
+        if(i == self.model.productSpecList.count - 1){
+            model1.attr_value = [tempArr copy];
+            model1.attr_stock = [tempStockArr copy];
+            model1.attr_price = [tempPriceArr copy];
+        }
         [self.goodSpecDict setValue:itemModel.product_spec_id forKey:itemModel.spec_name];
     }
     
@@ -611,13 +648,7 @@
         [self.navigationController pushViewController:firmOrderVC animated:YES];
     };
     
-    attributesView.good_img = self.model.productImageList[0];
-    if(self.model.stock == -1){
-        attributesView.good_price = @"无限供应";
-    }else{
-        attributesView.good_price = [NSString stringWithFormat:@"库存 %lu 件",self.model.stock];
-    }
-    attributesView.goodsNameLbl.text = [NSString stringWithFormat:@"N%.2f",self.model.show_price];
+    attributesView.good_img = self.firstImage;
     
     [attributesView showInView:self.navigationController.view];
 }

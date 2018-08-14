@@ -13,6 +13,7 @@
 #import "NSGoodsShowCellTest.h"
 #import "SearchModel.h"
 #import "UIButton+Bootstrap.h"
+#import "NSGoodsDetailVC.h"
 
 @interface NSSortListVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
 @property (nonatomic, strong) BaseTableView         *dataTV;
@@ -155,7 +156,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    NSGoodsShowCellTest *cell = [tableView cellForRowAtIndexPath:indexPath];
+//    DLog(@"product_id = %@",cell.productModel.product_id);
+    NSGoodsDetailVC *detailVC = [NSGoodsDetailVC new];
+    [detailVC getDataWithProductID:cell.productModel.product_id andCollectNum:cell.productModel.favorite_number];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 - (void)baseTableVIew:(BaseTableView *)tableView refresh:(BOOL)flag {

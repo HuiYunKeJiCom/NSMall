@@ -12,5 +12,5 @@
 
 @property (nonatomic,readonly)BaseTableView *goodsTV;//懒加载使用，外部需要设定frame
 - (void)layoutWithProperty:(NSArray *)propertyies;
--(void)reloadData;
+//-(void)reloadData;
 @end

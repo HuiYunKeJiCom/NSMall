@@ -15,14 +15,17 @@
 #import "ThreePageSelectBar.h"
 #import "NSGoodsVM.h"
 #import "NSShopVM.h"
+#import "NSCommentVM.h"
 #import "SearchParam.h"
 #import "HomePageAPI.h"
 #import "SearchModel.h"
 #import "NSMessageAPI.h"
 #import "ChatViewController.h"
 #import "ADLUpdateUserInformCtrl.h"
+#import "NSUserCommentParam.h"
+#import "GoodsDetailAPI.h"
 
-@interface UserPageVC ()<EMContactManagerDelegate>
+@interface UserPageVC ()<EMContactManagerDelegate,UIScrollViewDelegate,NSCommentVMDelegate>
 @property(nonatomic,strong)UserPageModel *userPageM;/* 个人页面模型 */
 @property(nonatomic,strong)UIScrollView *totalSV;/* 总的滚动SV */
 @property(nonatomic,strong)UserHeaderV *headerV;/* 头部View */
@@ -39,9 +42,7 @@
 
 @property (nonatomic,strong)NSGoodsVM *goodsVM;//商品
 @property (nonatomic,strong)NSShopVM *shopVM;//店铺
-//@property (nonatomic,strong)ADGoodsParameterViewModel *parameterViewModel;//
-//@property (nonatomic,strong)ADUserEvaluationViewModel *userEvaluationiViewModel;//
-//@property (nonatomic,strong)ADRelatedGoodsViewModel *relatedGoodsViewModel;//
+@property(nonatomic,strong)NSCommentVM *commentVM;/* 评论 */
 
 @property(nonatomic)NSInteger currentPage;/* 当前页数 */
 @property(nonatomic,strong)SearchModel *searchModel;/* 搜索结果模型 */
@@ -213,6 +214,8 @@
             [self searchWithType:@"0" andUserId:self.userId];
         }else if(index == 1){
             [self searchWithType:@"1" andUserId:self.userId];
+        }else if(index == 2){
+            [self getCommentByUserId:self.userId];
         }
     }];
     //    _pageSelectBar.backgroundColor = [UIColor redColor];
@@ -224,6 +227,7 @@
     _mainScrollView.size = CGSizeMake(kScreenWidth, kScreenHeight);
     //    AppHeight - _pageSelectBar.bottom
     _mainScrollView.left = 0;
+    _mainScrollView.delegate = self;
     _mainScrollView.top = _pageSelectBar.bottom;
     _mainScrollView.contentSize = CGSizeMake(_mainScrollView.width * 3, 0);
     _mainScrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
@@ -254,9 +258,11 @@
     _shopVM.shopTV.frame = ((UIView *)_shellViews[1]).bounds;
     [(UIView *)_shellViews[1] addSubview:_shopVM.shopTV];
 
-// _userEvaluationiViewModel.userEvaluationListView.frame = ((UIView *)_shellViews[2]).bounds;
-//    [(UIView *)_shellViews[2] addSubview:_userEvaluationiViewModel.userEvaluationListView];
-
+    _commentVM = [[NSCommentVM alloc]init];
+    _commentVM.delegate = self;
+    //    _shopVM.shopTV.backgroundColor = kRedColor;
+    _commentVM.commentTV.frame = ((UIView *)_shellViews[2]).bounds;
+    [(UIView *)_shellViews[2] addSubview:_commentVM.commentTV];
 }
 
 -(void)setUpDataWithUserId:(NSString *)userId{
@@ -302,35 +308,49 @@
     [HomePageAPI searchProductOrShop:param success:^(SearchModel *result) {
         NSLog(@"获取列表成功");
         if([searchType isEqualToString:@"0"]){
+            [weakSelf.goodsVM.goodsTV.data removeAllObjects];
             weakSelf.goodsVM.goodsTV.data = [NSMutableArray arrayWithArray:result.productList];
             weakSelf.listV.size = CGSizeMake(kScreenWidth, GetScaleWidth(40)+result.productList.count*GetScaleWidth(265));
 //            [self buildUI];
             weakSelf.goodsVM.goodsTV.height = weakSelf.listV.height;
             weakSelf.mainScrollView.height = weakSelf.listV.height;
             [weakSelf.goodsVM.goodsTV reloadData];
-            
+            self.totalSV.contentSize = CGSizeMake(0, self.listV.size.height+GetScaleWidth(300));
         }else if([searchType isEqualToString:@"1"]){
+            [weakSelf.shopVM.shopTV.data removeAllObjects];
             weakSelf.shopVM.shopTV.data = [NSMutableArray arrayWithArray:result.storeList];
-            self.listV.size = CGSizeMake(kScreenWidth, GetScaleWidth(40)+result.storeList.count*GetScaleWidth(126));
+            self.listV.size = CGSizeMake(kScreenWidth, GetScaleWidth(80)+result.storeList.count*GetScaleWidth(200));
             weakSelf.shopVM.shopTV.height = weakSelf.listV.height;
             weakSelf.mainScrollView.height = weakSelf.listV.height;
     
 //            [self buildUI];
             [self.shopVM.shopTV reloadData];
+            self.totalSV.contentSize = CGSizeMake(0, self.listV.size.height+GetScaleWidth(290));
         }
-        
-        
-        self.totalSV.contentSize = CGSizeMake(0, self.listV.size.height+GetScaleWidth(352));
-        
-        
-        
+  
     } failure:^(NSError *error) {
         NSLog(@"获取列表失败");
         [self cutCurrentPage];
     }];
 }
 
-
+-(void)getCommentByUserId:(NSString *)userId{
+    [self.commentVM.commentTV.data removeAllObjects];
+    NSUserCommentParam *param = [NSUserCommentParam new];
+    param.currentPage = [NSString stringWithFormat:@"%@",[NSNumber numberWithInteger:self.currentPage]];
+    param.userId = userId;
+    WEAKSELF
+    [UserPageAPI getCommentByUser:param success:^(NSCommentListModel * _Nullable result) {
+        weakSelf.commentVM.commentTV.data = [NSMutableArray arrayWithArray:result.commentList];
+        self.listV.size = CGSizeMake(kScreenWidth, GetScaleWidth(80)+result.commentList.count*GetScaleWidth(120));
+        weakSelf.commentVM.commentTV.height = weakSelf.listV.height;
+        weakSelf.mainScrollView.height = weakSelf.listV.height;
+        [self.commentVM.commentTV reloadData];
+        self.totalSV.contentSize = CGSizeMake(0, self.listV.size.height+GetScaleWidth(290));
+    } faulre:^(NSError *error) {
+        
+    }];
+}
 
 - (void)makeConstraints {
     
@@ -504,6 +524,31 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"好友添加消息" message:message delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
     [alert show];
 }
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    NSInteger index = scrollView.contentOffset.x/scrollView.bounds.size.width;
+//    DLog(@"index = %lu",index);
+//    _mainScrollView.contentOffset = CGPointMake((_mainScrollView.contentSize.width/3) * index, 0);
+//    if(index == 0){
+//        [self searchWithType:@"0" andUserId:self.userId];
+//    }else if(index == 1){
+//        [self searchWithType:@"1" andUserId:self.userId];
+//    }else if(index == 2){
+//        //            [self searchWithType:@"1" andUserId:self.userId];
+//    }
+}
+
+-(void)delCommentWith:(NSIndexPath *)indexPath{
+    NSCommentItemModel *model = self.commentVM.commentTV.data[indexPath.section];
+    [GoodsDetailAPI delCommentWithParam:model.comment_id success:^{
+        DLog(@"删除评论成功");
+        [self getCommentByUserId:self.userId];
+    } faulre:^(NSError *error) {
+        
+    }];
+}
+
 
 
 @end

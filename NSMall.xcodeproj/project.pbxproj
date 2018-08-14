@@ -397,6 +397,9 @@
 		18DD2F2620B95B0D00521B61 /* NSCollectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD2F2520B95B0D00521B61 /* NSCollectModel.m */; };
 		18DEF544211BEC2B00978A33 /* NSSendRedPacketVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DEF543211BEC2B00978A33 /* NSSendRedPacketVC.m */; };
 		18DEF547211C811A00978A33 /* NSRedPacketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DEF546211C811A00978A33 /* NSRedPacketModel.m */; };
+		18E194AA2122778C004C7D79 /* NSShopTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E194A92122778C004C7D79 /* NSShopTVCell.m */; };
+		18E194AD21228A81004C7D79 /* NSUserCommentParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E194AC21228A81004C7D79 /* NSUserCommentParam.m */; };
+		18E194B02122ACB5004C7D79 /* NSCommentTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E194AF2122ACB5004C7D79 /* NSCommentTVCell.m */; };
 		18E1E33C20B6546700B0FD0C /* NSGoodsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E1E33B20B6546700B0FD0C /* NSGoodsDetailVC.m */; };
 		18E1E34020B654E200B0FD0C /* NSGoodsDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E1E33F20B654E200B0FD0C /* NSGoodsDetailModel.m */; };
 		18E1E34320B6599D00B0FD0C /* NSDetailItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E1E34220B6599D00B0FD0C /* NSDetailItemModel.m */; };
@@ -1230,6 +1233,12 @@
 		18DEF543211BEC2B00978A33 /* NSSendRedPacketVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSendRedPacketVC.m; sourceTree = "<group>"; };
 		18DEF545211C811A00978A33 /* NSRedPacketModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSRedPacketModel.h; sourceTree = "<group>"; };
 		18DEF546211C811A00978A33 /* NSRedPacketModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSRedPacketModel.m; sourceTree = "<group>"; };
+		18E194A82122778C004C7D79 /* NSShopTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSShopTVCell.h; sourceTree = "<group>"; };
+		18E194A92122778C004C7D79 /* NSShopTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSShopTVCell.m; sourceTree = "<group>"; };
+		18E194AB21228A81004C7D79 /* NSUserCommentParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSUserCommentParam.h; sourceTree = "<group>"; };
+		18E194AC21228A81004C7D79 /* NSUserCommentParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSUserCommentParam.m; sourceTree = "<group>"; };
+		18E194AE2122ACB5004C7D79 /* NSCommentTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCommentTVCell.h; sourceTree = "<group>"; };
+		18E194AF2122ACB5004C7D79 /* NSCommentTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCommentTVCell.m; sourceTree = "<group>"; };
 		18E1E33A20B6546700B0FD0C /* NSGoodsDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSGoodsDetailVC.h; sourceTree = "<group>"; };
 		18E1E33B20B6546700B0FD0C /* NSGoodsDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSGoodsDetailVC.m; sourceTree = "<group>"; };
 		18E1E33E20B654E200B0FD0C /* NSGoodsDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSGoodsDetailModel.h; sourceTree = "<group>"; };
@@ -2044,6 +2053,8 @@
 		1868F6C920FEF0D3000BB6EB /* Param */ = {
 			isa = PBXGroup;
 			children = (
+				18E194AB21228A81004C7D79 /* NSUserCommentParam.h */,
+				18E194AC21228A81004C7D79 /* NSUserCommentParam.m */,
 			);
 			path = Param;
 			sourceTree = "<group>";
@@ -2071,6 +2082,10 @@
 			children = (
 				1868F6D120FEF0D3000BB6EB /* UserHeaderV.h */,
 				1868F6D220FEF0D3000BB6EB /* UserHeaderV.m */,
+				18E194A82122778C004C7D79 /* NSShopTVCell.h */,
+				18E194A92122778C004C7D79 /* NSShopTVCell.m */,
+				18E194AE2122ACB5004C7D79 /* NSCommentTVCell.h */,
+				18E194AF2122ACB5004C7D79 /* NSCommentTVCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4638,6 +4653,7 @@
 				1868F76820FEF391000BB6EB /* EMRobotChatTextBubbleView.m in Sources */,
 				184DE7A9208F088E00E776F3 /* BaseTableCell.m in Sources */,
 				18D71045208DC84C002BA6CD /* DCTabBadgeView.m in Sources */,
+				18E194AA2122778C004C7D79 /* NSShopTVCell.m in Sources */,
 				187A402B210765BB00AE46A9 /* NSEaseConversationModel.m in Sources */,
 				184F061D209FE81A00768418 /* PublishMenuButton.m in Sources */,
 				18B8AFEF2109D43200A25F3C /* ClipViewController.m in Sources */,
@@ -4781,6 +4797,7 @@
 				184043382099FABE00685F80 /* ADLEditUserInformCtrl.m in Sources */,
 				1874523C20EDAFA200A67D70 /* TTGlobalUICommon.m in Sources */,
 				183ED91720BE845100DB0487 /* NSAddressTVCell.m in Sources */,
+				18E194B02122ACB5004C7D79 /* NSCommentTVCell.m in Sources */,
 				18999B2120DA4C58003BCF23 /* NSOrderDetailVC.m in Sources */,
 				184F05FA209C40DE00768418 /* AdvertItemModel.m in Sources */,
 				1840434E2099FB8400685F80 /* ADLTitleField.m in Sources */,
@@ -4843,6 +4860,7 @@
 				18B0179520A67B9600826EA4 /* YWAddressTableViewCell.m in Sources */,
 				18DB5D6120E23C31000E99E6 /* NSODItemModel.m in Sources */,
 				1868F6A820FEEC90000BB6EB /* CALayer+Transition.m in Sources */,
+				18E194AD21228A81004C7D79 /* NSUserCommentParam.m in Sources */,
 				188CC64A207F5430007D749E /* AppDelegate.mm in Sources */,
 				18DD2F1920B90B1E00521B61 /* UIView+LLRect.m in Sources */,
 				18E1E34020B654E200B0FD0C /* NSGoodsDetailModel.m in Sources */,

@@ -252,12 +252,12 @@
                     [self.navigationController pushViewController:addressCtrl animated:YES];
                 }else if (type == EditUserTypeCertification) {
                     UserModel *userModel = [UserModel modelFromUnarchive];
-//                    if(userModel.is_certification == 0){
+                    if(userModel.is_certification == 0){
                         NSUserCertifyVC *ctrl = [[NSUserCertifyVC alloc] init];
                         [self.navigationController pushViewController:ctrl animated:YES];
-//                    }else{
-//                        [Common AppShowToast:[NSString stringWithFormat:@"%@!",NSLocalizedString(@"have been authenticated", nil)]];
-//                    }
+                    }else{
+                        [Common AppShowToast:[NSString stringWithFormat:@"%@!",NSLocalizedString(@"have been authenticated", nil)]];
+                    }
                     
                 } else {
                     

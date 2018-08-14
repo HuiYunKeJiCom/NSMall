@@ -127,9 +127,9 @@
     
     UserModel *userModel = [UserModel modelFromUnarchive];
     if([userModel.user_name isEqualToString:messageModel.userName]){
-        _delBtn.alpha = 0.0;
-    }else{
         _delBtn.alpha = 1.0;
+    }else{
+        _delBtn.alpha = 0.0;
     }
     
 }

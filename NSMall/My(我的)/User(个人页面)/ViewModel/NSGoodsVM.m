@@ -19,7 +19,7 @@
 -(BaseTableView *)goodsTV{
     if (!_goodsTV) {
         _goodsTV = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, AppHeight - TopBarHeight) style:UITableViewStyleGrouped];
-        _goodsTV.backgroundColor = [UIColor lightGrayColor];
+        _goodsTV.backgroundColor = KBGCOLOR;
         _goodsTV.separatorColor = [UIColor clearColor];
         _goodsTV.delegate = self;
         _goodsTV.dataSource = self;
@@ -53,13 +53,13 @@
         return 0;
     }else{
         //设置间隔高度
-        return GetScaleWidth(6);
+        return GetScaleWidth(10);
     }
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
  
-        UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(6))];
+        UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, GetScaleWidth(10))];
         sectionView.backgroundColor = KBGCOLOR;
         return sectionView;
 }
@@ -106,8 +106,8 @@
     DLog(@"点击喜欢");
 }
 
--(void)reloadData{
-    [self.goodsTV reloadData];
-}
+//-(void)reloadData{
+//    [self.goodsTV reloadData];
+//}
 
 @end

@@ -198,7 +198,7 @@
     if (!_homeLab) {
         _homeLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum12 TextColor:[UIColor whiteColor]];
         _homeLab.textAlignment = NSTextAlignmentCenter;
-        _homeLab.backgroundColor = [UIColor blueColor];
+        _homeLab.backgroundColor = KMainColor;
         _homeLab.layer.cornerRadius = 5.0;
         _homeLab.layer.masksToBounds = YES;
     }

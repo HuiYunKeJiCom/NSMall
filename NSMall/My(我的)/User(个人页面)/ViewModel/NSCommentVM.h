@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSCommentVM : NSObject
+@protocol NSCommentVMDelegate <NSObject>
 
+-(void)delCommentWith:(NSIndexPath *)indexPath;
+
+@end
+
+@interface NSCommentVM : NSObject
+@property (nonatomic,readonly)BaseTableView *commentTV;//懒加载使用，外部需要设定frame
+- (void)layoutWithProperty:(NSArray *)propertyies;
+@property (nonatomic, weak) id<NSCommentVMDelegate> delegate;
 @end

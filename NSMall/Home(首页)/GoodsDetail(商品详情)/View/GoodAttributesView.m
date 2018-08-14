@@ -21,6 +21,8 @@
     NSString *_goods_attr_value_1;
 //    NSString *_goods_attr_value_2;
 }
+//@property(nonatomic,strong)NSMutableArray *priceArr;/* 价格数组 */
+//@property(nonatomic,strong)NSMutableArray *stockArr;/* 库存数组 */
 @property (nonatomic, weak) UIView *contentView;
 @property (nonatomic, weak) UIImageView *iconImgView;
 
@@ -38,7 +40,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.5];
-        
+//        self.priceArr = [NSMutableArray array];
+//        self.stockArr = [NSMutableArray array];
         [self setupBasicView];
     }
     return self;
@@ -125,7 +128,7 @@
 }
 - (void)setGood_price:(NSString *)good_price {
     _good_price = good_price;
-    self.goodsPriceLbl.text = [NSString stringWithFormat:@"%@元", good_price];
+    self.goodsPriceLbl.text = [NSString stringWithFormat:@"%@", good_price];
 }
 /**
  *  设置属性控件 - setter方法
@@ -134,8 +137,14 @@
 - (void)setGoodAttrsArr:(NSArray *)goodAttrsArr {
     _goodAttrsArr = goodAttrsArr;
     
+
+//    self.priceArr = ((GoodAttrModel *)goodAttrsArr[0]).attr_price;
+//    self.stockArr = ((GoodAttrModel *)goodAttrsArr[0]).attr_stock;
+    
     // 第一组属性
     self.goods_attr_1 = ((GoodAttrModel *)goodAttrsArr[0]).attr_id;
+    self.good_price = ((GoodAttrModel *)goodAttrsArr[0]).attr_stock[0];
+    self.goodsNameLbl.text = ((GoodAttrModel *)goodAttrsArr[0]).attr_price[0];
     
     UIView *line1=[[UIView alloc] initWithFrame:CGRectMake(11, 17, kScreenWidth-13-11, 1)];
     line1.backgroundColor=HX_RGB(226, 228, 229);
@@ -168,6 +177,9 @@
         [btn defaultStyleWithNormalTitleColor:HX_RGB(136, 137, 138) andHighTitleColor:kWhiteColor andBorderColor:LXBorderColor andBackgroundColor:kWhiteColor andHighBgColor:KMainColor andSelectedBgColor:KMainColor withcornerRadius:8];
         [self.scrollView addSubview:btn];
         [self.firstBtnsArr addObject:btn];
+        if(i ==0){
+            [self attrs1BtnClick:btn];
+        }
     }
     // 获取 第一个属性中最后一个按钮
     UIButton *btn = (UIButton *)[self.firstBtnsArr lastObject];
@@ -260,6 +272,11 @@
  *     第一组按钮的点击事件
  */
 -(void)attrs1BtnClick:(UIButton *)button {
+    
+    GoodAttrModel *model = self.goodAttrsArr[0];
+    self.good_price = model.attr_stock[button.tag];
+    self.goodsNameLbl.text = model.attr_price[button.tag];
+    
     button.selected = !button.selected;
     if (button.selected) {
         for (UIButton *btn in self.firstBtnsArr) {

@@ -22,4 +22,15 @@
     }];
 }
 
+/*
+ 获取指定用户评论列表
+ */
++ (void)getCommentByUser:(NSUserCommentParam *)param success:(void (^)(NSCommentListModel * _Nullable result))success faulre:(void (^)(NSError *error))failure{
+    [Net requestWithPost:param function:kGetCommentByUserAPI showHUD:NetNullStr resultClass:[NSCommentListModel class] success:^(NSCommentListModel * _Nullable resultObj) {
+        success?success(resultObj):nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+}
+
 @end

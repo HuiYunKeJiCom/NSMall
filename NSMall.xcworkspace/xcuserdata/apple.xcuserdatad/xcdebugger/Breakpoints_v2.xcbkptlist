@@ -67,13 +67,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NSMall/Message(&#x6d88;&#x606f;)/Demo/Chat/ChatView/ChatViewController.m"
-            timestampString = "555855948.438886"
+            filePath = "NSMall/Home(&#x9996;&#x9875;)/GoodsDetail(&#x5546;&#x54c1;&#x8be6;&#x60c5;)/View/GoodAttributesView.m"
+            timestampString = "555932885.6361901"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
-            landmarkName = "-messageCellSelected:"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "-setGood_img:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

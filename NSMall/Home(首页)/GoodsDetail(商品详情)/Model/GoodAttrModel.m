@@ -9,6 +9,8 @@
 #import "GoodAttrModel.h"
 
 @implementation GoodAttrModel
+
+
 + (NSDictionary *)mj_objectClassInArray
 {
     return @{

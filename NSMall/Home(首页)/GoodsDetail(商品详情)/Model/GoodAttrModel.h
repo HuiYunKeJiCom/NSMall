@@ -15,7 +15,9 @@
 /** 属性ID */
 @property (nonatomic, copy) NSString *attr_id;
 /** 属性 */
-@property (nonatomic, copy) NSMutableArray *attr_value;
+@property (nonatomic, copy) NSArray *attr_value;
+@property(nonatomic,strong)NSArray *attr_price;/* 价格 */
+@property(nonatomic,strong)NSArray *attr_stock;/* 库存 */
 @end
 
 
@@ -23,4 +25,6 @@
 
 /** 属性值 */
 @property (nonatomic, copy) NSString *attr_value;
+@property (nonatomic, copy) NSString *attr_price;
+@property (nonatomic, copy) NSString *attr_stock;
 @end

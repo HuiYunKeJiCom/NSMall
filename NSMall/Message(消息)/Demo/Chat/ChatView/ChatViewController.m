@@ -57,6 +57,7 @@
 @property(nonatomic,strong)UIButton *virtualBtn;/* 挂名Btn,无实际用处 */
 @property(nonatomic,strong)NSMutableArray *friendListArr;/* 好友列表数组 */
 //@property (nonatomic) BOOL isSelected;
+@property(nonatomic,strong)NSRPListModel *redPacketModel;/* 红包模型 */
 @end
 
 @implementation ChatViewController
@@ -247,34 +248,38 @@
 - (void)messageCellSelected:(id<IMessageModel>)model
 {
     NSDictionary *ext = model.message.ext;
-    if(model.isSender && [ext objectForKey:@"money_sponsor_name"]){
+    
+
+    if([ext objectForKey:@"money_sponsor_name"]){
         //自己发的红包
 //        DLog(@"自己发的红包");
+        WEAKSELF
+//        dispatch_group_t group = dispatch_group_create();
+//        dispatch_group_enter(group);
             [NSMessageAPI receiveRedpacketWithParam:[ext objectForKey:@"rp_id"] success:^(NSRPListModel *redPacketModel) {
                 //抢红包/红包详情
                 DLog(@"抢红包成功");
-                NSRPDetailVC *rpDetailVC = [NSRPDetailVC new];
-                [rpDetailVC setUpDataWith:redPacketModel];
-                [self.navigationController pushViewController:rpDetailVC animated:YES];
+                weakSelf.redPacketModel = redPacketModel;
+//                dispatch_group_leave(group);
             } faulre:^(NSError *error) {
                 
             }];
         
-    }
-    if(!model.isSender && [ext objectForKey:@"money_sponsor_name"]){
-        //别人发给自己的红包
-        //        DLog(@"别人发给自己的红包");
-            [NSMessageAPI receiveRedpacketWithParam:[ext objectForKey:@"rp_id"] success:^(NSRPListModel *redPacketModel) {
-                //抢红包/红包详情
-                DLog(@"抢红包成功");
+//        dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+//        DLog(@"这里掉了几次");
+            if(model.isSender){
+                NSRPDetailVC *rpDetailVC = [NSRPDetailVC new];
+                [rpDetailVC setUpDataWith:self.redPacketModel];
+                [self.navigationController pushViewController:rpDetailVC animated:YES];
+            }else{
                 [self.view endEditing:YES];
-                if([redPacketModel.RPStatus isEqualToString:@"1002"]){
+                if([self.redPacketModel.RPStatus isEqualToString:@"1002"]){
                     NSRPDetailVC *rpDetailVC = [NSRPDetailVC new];
-                    [rpDetailVC setUpDataWith:redPacketModel];
+                    [rpDetailVC setUpDataWith:self.redPacketModel];
                     [self.navigationController pushViewController:rpDetailVC animated:YES];
                 }else{
                     NSRPView *RPView = [[NSRPView alloc] initWithFrame:(CGRect){0, 0, kScreenWidth, kScreenHeight}];
-                    if([redPacketModel.RPStatus isEqualToString:@"1005"]){
+                    if([self.redPacketModel.RPStatus isEqualToString:@"1005"]){
                         RPView.bgIV.image = IMAGE(@"red_packet_bg");
                         RPView.openBtn.alpha = 0.0;
                         [ext setValue:@"该红包已超过24小时." forKey:@"rp_leave_msg"];
@@ -285,16 +290,18 @@
                     RPView.openBtnClickBlock = ^{
                         //                [rpview removeFromSuperview];
                         NSRPDetailVC *rpDetailVC = [NSRPDetailVC new];
-                        [rpDetailVC setUpDataWith:redPacketModel];
+                        [rpDetailVC setUpDataWith:self.redPacketModel];
                         [self.navigationController pushViewController:rpDetailVC animated:YES];
                     };
                     [RPView showInView:self.navigationController.view];
                 }
-                
-            } faulre:^(NSError *error) {
-                
-            }];
+
+            }
+//        });
     }
+    
+    
+    
     
     EMMessage *message = model.message;
     if (model.isDing) {
