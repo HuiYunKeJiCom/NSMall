@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "NSWalletModel.h"
 #import "NSBindWalletParam.h"
+#import "NSUnbindWalletParam.h"
 
 @interface WalletAPI : NSObject
 /*
@@ -25,4 +26,9 @@
  设置默认收款钱包
  */
 + (void)setDefaultWalletWithParam:(NSString *)param success:(void (^)(void))success faulre:(void (^)(NSError *))failure;
+
+/*
+ 解绑钱包
+ */
++ (void)unbindWalletWithParam:(NSUnbindWalletParam *)param success:(void (^)(void))success faulre:(void (^)(NSError *error))failure;
 @end

@@ -76,4 +76,15 @@
     }];
 }
 
+/*
+ 添加好友(调用环信接口)
+ */
++ (void)addFriendWithParam:(NSString *)param success:(void (^)(void))success faulre:(void (^)(NSError *error))failure{
+    [Net requestWithPost:@{@"friendName":param} function:kAddFriendAPI showHUD:NetNullStr resultClass:[NSDictionary class] success:^(id  _Nullable resultObj) {
+        success?success():nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+}
+
 @end

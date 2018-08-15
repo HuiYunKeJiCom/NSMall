@@ -382,8 +382,16 @@
     if([userModel.user_id isEqualToString:self.userPageM.user_id]){
         [Common AppShowToast:@"不能加自己为好友"];
     }else{
+        
         NSString *msg = [userModel.hx_user_name stringByAppendingString:NSLocalizedString(@"add friend with you", nil)];
         EMError *error = [[EMClient sharedClient].contactManager addContact:self.userPageM.hx_user_name message:msg];
+        
+//        [NSMessageAPI addFriendWithParam:self.userPageM.hx_user_name success:^{
+//
+//        } faulre:^(NSError *error) {
+////            [Common AppShowToast:NSLocalizedString(@"add friends fail", nil)];
+//        }];
+        
         if (!error) {
             [Common AppShowToast:NSLocalizedString(@"add friends success", nil)];
             [NSMessageAPI acceptFriendWithParam:self.userPageM.hx_user_name success:^{

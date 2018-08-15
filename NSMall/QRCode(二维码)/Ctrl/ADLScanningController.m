@@ -224,17 +224,22 @@
         NSString *string = [array lastObject];
         
         NSString *msg = [userModel.hx_user_name stringByAppendingString:NSLocalizedString(@"add friend with you", nil)];
+
+        EMError *error = [[EMClient sharedClient].contactManager addContact:string message:msg];
         
-//        [[EMClient sharedClient].contactManager addContact:string message:msg completion:^(NSString *aUsername, EMError *aError) {
+//        [NSMessageAPI addFriendWithParam:string success:^{
 //            [Common AppShowToast:NSLocalizedString(@"add friends success", nil)];
 //            self.friendName = string;
 //            [NSMessageAPI acceptFriendWithParam:self.friendName success:^{
 //                DLog(@"添加好友成功");
+//                
 //            } faulre:^(NSError *error) {
 //            }];
-//            [self delayPop];
+//        } faulre:^(NSError *error) {
+//            
 //        }];
-        EMError *error = [[EMClient sharedClient].contactManager addContact:string message:msg];
+        
+        
         if (!error) {
             [Common AppShowToast:NSLocalizedString(@"add friends success", nil)];
             self.friendName = string;

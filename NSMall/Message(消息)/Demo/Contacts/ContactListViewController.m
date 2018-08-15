@@ -45,7 +45,7 @@
 
 @end
 
-@interface ContactListViewController ()<UISearchBarDelegate, UIActionSheetDelegate, EaseUserCellDelegate, EMSearchControllerDelegate,EMClientDelegate>
+@interface ContactListViewController ()<UISearchBarDelegate, UIActionSheetDelegate, EaseUserCellDelegate, EMSearchControllerDelegate,EMClientDelegate,EMChatManagerDelegate,EMContactManagerDelegate>
 {
     NSIndexPath *_currentLongPressIndex;
 }
@@ -68,6 +68,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+     [[EMClient sharedClient].contactManager addDelegate:self delegateQueue:nil];
     self.showRefreshHeader = YES;
 //    [self.navigationController setNavigationBarHidden:YES];
     _contactsSource = [NSMutableArray array];
@@ -759,6 +760,10 @@
 - (void)friendRequestDidReceiveFromUser:(NSString *)aUsername
                                 message:(NSString *)aMessage{
     DLog(@"收到%@的好友请求",aUsername);
+    EMError *error = [[EMClient sharedClient].contactManager acceptInvitationForUsername:aUsername];
+    if (!error) {
+        NSLog(@"发送同意成功");
+    }
 }
 
 @end

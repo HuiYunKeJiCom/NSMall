@@ -15,6 +15,7 @@
 #import "ApplyViewController.h"
 #import "AddFriendCell.h"
 #import "InvitationManager.h"
+#import "NSMessageAPI.h"
 
 @interface AddFriendViewController ()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIAlertViewDelegate>
 
@@ -34,6 +35,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [[EMClient sharedClient].contactManager addDelegate:self delegateQueue:nil];
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
@@ -279,6 +282,14 @@
     if (buddyName && buddyName.length > 0) {
         [self showHudInView:self.view hint:NSLocalizedString(@"friend.sendApply", @"sending application...")];
         EMError *error = [[EMClient sharedClient].contactManager addContact:buddyName message:message];
+        
+//        [NSMessageAPI addFriendWithParam:buddyName success:^{
+//            [self showHint:NSLocalizedString(@"friend.sendApplySuccess", @"send successfully")];
+//            [self.navigationController popViewControllerAnimated:YES];
+//        } faulre:^(NSError *error) {
+//
+//        }];
+        
         [self hideHud];
         if (error) {
             [self showHint:NSLocalizedString(@"friend.sendApplyFail", @"send application fails, please operate again")];

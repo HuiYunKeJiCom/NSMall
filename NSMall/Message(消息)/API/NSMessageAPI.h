@@ -46,4 +46,9 @@
  */
 + (void)getRedpacketLogs:(nullable NSCommonParam *)param success:(void (^)(NSRPRecordModel * _Nullable result))success failure:(void (^)(NSError *error))failure;
 
+/*
+ 添加好友(调用环信接口)
+ */
++ (void)addFriendWithParam:(NSString *)param success:(void (^)(void))success faulre:(void (^)(NSError *error))failure;
+
 @end

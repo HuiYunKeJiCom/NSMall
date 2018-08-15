@@ -30,7 +30,7 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
 
 
 
-@interface AppDelegate ()<CYLPlusButtonSubclassing,EMChatManagerDelegate,selectDelegate>
+@interface AppDelegate ()<CYLPlusButtonSubclassing,EMChatManagerDelegate,selectDelegate,EMContactManagerDelegate>
 /** tabbar */
 @property(nonatomic,strong)CYLTabBarController *tabBarController;
 /** 好友的名称 */
@@ -58,6 +58,8 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
     if(!error){
         NSLog(@"初始化成功");
     }
+    
+    [[EMClient sharedClient].contactManager addDelegate:self delegateQueue:nil];
     
     //百度地图
     _mapManager = [[BMKMapManager alloc] init];
@@ -227,43 +229,58 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
     [self.window setRootViewController:login];
 }
 
-#pragma mark - 好友请求回调
+//#pragma mark - 好友请求回调
+///*!
+// *  用户A发送加用户B为好友的申请，用户B会收到这个回调
+// *
+// *  @param aUsername   用户名
+// *  @param aMessage    附属信息
+// */
+//
+//- (void)didReceiveFriendInvitationFromUsername:(NSString *)aUsername
+//                                       message:(NSString *)aMessage
+//{
+//    NSLog(@"aUsername = %@,%@",aUsername,aMessage);
+//    self.buddyUsername = aUsername;
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"好友添加请求" message:aMessage delegate:self cancelButtonTitle:@"拒绝" otherButtonTitles:@"同意", nil];
+//    [alert show];
+//}
+//
+//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//
+//    if (buttonIndex == 1) {
+//        //同意好友请求
+//        EMError *error = [[EMClient sharedClient].contactManager acceptInvitationForUsername:self.buddyUsername];
+//        if (!error) {
+//            NSLog(@"同意加好友成功");
+//        }else{
+//            NSLog(@"同意加好友失败");
+//        }
+//    }else{
+//        //拒绝好友请求
+//        EMError *error = [[EMClient sharedClient].contactManager declineInvitationForUsername:self.buddyUsername];
+//        if (!error) {
+//            NSLog(@"拒绝加好友成功");
+//        }else{
+//            NSLog(@"拒绝加好友失败");
+//        }
+//    }
+//}
+
 /*!
  *  用户A发送加用户B为好友的申请，用户B会收到这个回调
  *
  *  @param aUsername   用户名
  *  @param aMessage    附属信息
  */
-- (void)didReceiveFriendInvitationFromUsername:(NSString *)aUsername
-                                       message:(NSString *)aMessage
-{
-    NSLog(@"aUsername = %@,%@",aUsername,aMessage);
-    self.buddyUsername = aUsername;
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"好友添加请求" message:aMessage delegate:self cancelButtonTitle:@"拒绝" otherButtonTitles:@"同意", nil];
-    [alert show];
-}
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    if (buttonIndex == 1) {
-        //同意好友请求
-        EMError *error = [[EMClient sharedClient].contactManager acceptInvitationForUsername:self.buddyUsername];
-        if (!error) {
-            NSLog(@"同意加好友成功");
-        }else{
-            NSLog(@"同意加好友失败");
-        }
-    }else{
-        //拒绝好友请求
-        EMError *error = [[EMClient sharedClient].contactManager declineInvitationForUsername:self.buddyUsername];
-        if (!error) {
-            NSLog(@"拒绝加好友成功");
-        }else{
-            NSLog(@"拒绝加好友失败");
-        }
+- (void)friendRequestDidReceiveFromUser:(NSString *)aUsername
+                                message:(NSString *)aMessage{
+    DLog(@"收到%@的好友请求",aUsername);
+    EMError *error = [[EMClient sharedClient].contactManager acceptInvitationForUsername:aUsername];
+    if (!error) {
+        NSLog(@"发送同意成功");
     }
 }
-
 
 
 @end

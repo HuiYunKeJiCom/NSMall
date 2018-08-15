@@ -364,6 +364,7 @@
 		18DB5D5E20E239FC000E99E6 /* NSOrderDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB5D5C20E239FB000E99E6 /* NSOrderDetailModel.m */; };
 		18DB5D6120E23C31000E99E6 /* NSODItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB5D6020E23C31000E99E6 /* NSODItemModel.m */; };
 		18DB5D6420E24613000E99E6 /* NSODAddressTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB5D6320E24613000E99E6 /* NSODAddressTVCell.m */; };
+		18DCDEF92124096000CC9CD7 /* NSUnbindWalletParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DCDEF82124096000CC9CD7 /* NSUnbindWalletParam.m */; };
 		18DD1562208DC9AB0006475D /* GQGesVCTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD155E208DC9AB0006475D /* GQGesVCTransition.m */; };
 		18DD1569208DCB7E0006475D /* DCSpeedy.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1567208DCB7E0006475D /* DCSpeedy.m */; };
 		18DD1577208DD4140006475D /* NSMyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1576208DD4140006475D /* NSMyCenterViewController.m */; };
@@ -621,6 +622,7 @@
 		1851CD76208F23530094A594 /* NSCustomHeadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCustomHeadCell.m; sourceTree = "<group>"; };
 		18559953210187F300D95602 /* NSMessageAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSMessageAPI.h; sourceTree = "<group>"; };
 		18559954210187F300D95602 /* NSMessageAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSMessageAPI.m; sourceTree = "<group>"; };
+		185DF8842123C9D2007A7446 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		185DFDFC20B3C7E800437168 /* NSCategoryTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCategoryTV.h; sourceTree = "<group>"; };
 		185DFDFD20B3C7E800437168 /* NSCategoryTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCategoryTV.m; sourceTree = "<group>"; };
 		185DFDFF20B3FA8A00437168 /* NSCategoryTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCategoryTVCell.h; sourceTree = "<group>"; };
@@ -1167,6 +1169,8 @@
 		18DB5D6020E23C31000E99E6 /* NSODItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSODItemModel.m; sourceTree = "<group>"; };
 		18DB5D6220E24613000E99E6 /* NSODAddressTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSODAddressTVCell.h; sourceTree = "<group>"; };
 		18DB5D6320E24613000E99E6 /* NSODAddressTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSODAddressTVCell.m; sourceTree = "<group>"; };
+		18DCDEF72124096000CC9CD7 /* NSUnbindWalletParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSUnbindWalletParam.h; sourceTree = "<group>"; };
+		18DCDEF82124096000CC9CD7 /* NSUnbindWalletParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSUnbindWalletParam.m; sourceTree = "<group>"; };
 		18DD155E208DC9AB0006475D /* GQGesVCTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQGesVCTransition.m; sourceTree = "<group>"; };
 		18DD155F208DC9AB0006475D /* GQGesVCTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQGesVCTransition.h; sourceTree = "<group>"; };
 		18DD1567208DCB7E0006475D /* DCSpeedy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSpeedy.m; sourceTree = "<group>"; };
@@ -3071,6 +3075,8 @@
 			children = (
 				18B1CB1B20BFE6D700235CFA /* NSBindWalletParam.h */,
 				18B1CB1C20BFE6D700235CFA /* NSBindWalletParam.m */,
+				18DCDEF72124096000CC9CD7 /* NSUnbindWalletParam.h */,
+				18DCDEF82124096000CC9CD7 /* NSUnbindWalletParam.m */,
 			);
 			path = Param;
 			sourceTree = "<group>";
@@ -4420,6 +4426,7 @@
 		BD7C576969B1000AE774A23A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				185DF8842123C9D2007A7446 /* UIKit.framework */,
 				CEC0BFBB703FAFE6E76D201D /* libPods-NSMall.a */,
 			);
 			name = Frameworks;
@@ -4977,6 +4984,7 @@
 				18D0C0ED20AC20A4007F0784 /* UIImage+SizeAndTintColor.m in Sources */,
 				18F5D4F020CE17B20037F825 /* NearbyStoreModel.m in Sources */,
 				1868F6DF20FEF0D4000BB6EB /* NSCommentVM.m in Sources */,
+				18DCDEF92124096000CC9CD7 /* NSUnbindWalletParam.m in Sources */,
 				18B017A320A67B9600826EA4 /* DelAddressParam.m in Sources */,
 				18F5D50220CE54A00037F825 /* NSClusterAnnotationView.m in Sources */,
 				18B0179E20A67B9600826EA4 /* YWAddressTableViewCell1.m in Sources */,
@@ -5145,6 +5153,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 688YLU4D2F;
@@ -5224,6 +5233,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 688YLU4D2F;

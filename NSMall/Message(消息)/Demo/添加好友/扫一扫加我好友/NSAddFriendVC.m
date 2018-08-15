@@ -9,7 +9,7 @@
 #import "NSAddFriendVC.h"
 #import "ADOrderTopToolView.h"
 
-@interface NSAddFriendVC ()<EMClientDelegate>
+@interface NSAddFriendVC ()<EMClientDelegate,EMChatManagerDelegate,EMContactManagerDelegate>
 @property(nonatomic,strong)UIImageView * scanView;
 /** 好友的名称 */
 @property (nonatomic, copy) NSString *buddyUsername;
@@ -151,5 +151,19 @@
     }
 }
 
+/*!
+ *  用户A发送加用户B为好友的申请，用户B会收到这个回调
+ *
+ *  @param aUsername   用户名
+ *  @param aMessage    附属信息
+ */
+- (void)friendRequestDidReceiveFromUser:(NSString *)aUsername
+                                message:(NSString *)aMessage{
+    DLog(@"收到%@的好友请求",aUsername);
+    EMError *error = [[EMClient sharedClient].contactManager acceptInvitationForUsername:aUsername];
+    if (!error) {
+        NSLog(@"发送同意成功");
+    }
+}
 
 @end

@@ -20,9 +20,9 @@
 //#define NetDomainADDR @"://2008503qw3.51mypc.cn"
 //const static NSString * const NetDomainADDR = @"http://adelshop.iok.la:41831/nsshop/app/";//锡恩电脑环境
 
-//const static NSString * const NetDomainADDR = @"https://stagewww.neublockchain.com/nsshop/app/";//国外测试环境
+const static NSString * const NetDomainADDR = @"https://stagewww.neublockchain.com/nsshop/app/";//国外测试环境
 
-const static NSString * const NetDomainADDR = @"https://ns.neublockchain.com/nsshop/app/";//生产环境
+//const static NSString * const NetDomainADDR = @"https://ns.neublockchain.com/nsshop/app/";//生产环境
 
 
 //const static NSString * const NetDomainADDR = @"http://192.168.0.59:7108/nsshop/app/";//锡恩电脑环境
@@ -109,6 +109,7 @@ const static NSString * const kPayOrderAPI = @"auth/payOrder";//订单支付
 const static NSString * const kWalletListAPI = @"auth/walletList";//获取已绑定的钱包列表
 const static NSString * const kBindWalletAPI = @"auth/bindWallet";//绑定钱包
 const static NSString * const kSetWalletAPI = @"auth/setSellWallet";//设置默认收款钱包
+const static NSString * const kUnbindWalletAPI = @"auth/unbindWallet";//解绑钱包
 
 //附近
 const static NSString * const kNearbyStoreAPI = @"nearbyStore";//获取附近店铺列表
@@ -132,6 +133,8 @@ const static NSString * const kAppVersionAPI = @"getAppVersion";//检测APP版�
 const static NSString * const kAcceptFriendAPI = @"auth/acceptFriend";//同意添加好友
 const static NSString * const kDeleteFriendAPI = @"auth/removeFriend";//删除好友（双方删除）
 const static NSString * const kFriendListAPI = @"auth/friendList";//获取好友列表
+const static NSString * const kAddFriendAPI = @"auth/addFriend";//添加好友(调用环信接口)
+
 const static NSString * const kSendRedpacketAPI = @"auth/sendRedpacket";//发红包
 const static NSString * const kReceiveRedpacketAPI = @"auth/receiveRedpacket";//抢红包/红包详情
 const static NSString * const kRedpacketLogsAPI = @"auth/redpacketLogs";//红包记录

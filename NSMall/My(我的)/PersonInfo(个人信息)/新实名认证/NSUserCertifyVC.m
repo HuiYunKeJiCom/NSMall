@@ -157,7 +157,7 @@
         _SV.showsVerticalScrollIndicator = NO;
         _SV.showsHorizontalScrollIndicator = NO;
         _SV.delegate = self;
-        _SV.contentSize = CGSizeMake(0, kScreenHeight+70);
+        _SV.contentSize = CGSizeMake(0, 160+640);
         //        _SV.directionalLockEnabled = YES;
         //        _SV.pagingEnabled = YES;
     }

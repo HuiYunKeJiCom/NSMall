@@ -42,4 +42,15 @@
         failure?failure(error):nil;
     }];
 }
+
+/*
+ 解绑钱包
+ */
++ (void)unbindWalletWithParam:(NSUnbindWalletParam *)param success:(void (^)(void))success faulre:(void (^)(NSError *error))failure{
+    [Net requestWithPost:param function:kUnbindWalletAPI showHUD:NetNullStr resultClass:[NSDictionary class] success:^(id  _Nullable resultObj) {
+        success?success():nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+}
 @end

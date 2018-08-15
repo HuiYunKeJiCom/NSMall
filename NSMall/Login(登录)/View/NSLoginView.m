@@ -311,4 +311,10 @@
     return  _sendBtn;
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];// 使当前文本框失去第一响应者的特权，就会回收键盘了
+    
+    return YES;
+}
+
 @end

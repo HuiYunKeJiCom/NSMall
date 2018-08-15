@@ -13,10 +13,13 @@
 #import "WalletItemModel.h"
 #import "NSWalletTVCell.h"
 #import "NSAddWalletVC.h"
+#import "NSUnbindWalletParam.h"
+#import "NSInputPwView.h"
 
-@interface NSMyWalletListVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
+@interface NSMyWalletListVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate,NSInputPwViewDelegate>
 @property (nonatomic, strong) BaseTableView         *walletTable;
 @property(nonatomic,strong)UIButton *bindWallet;/* 绑定钱包 */
+@property(nonatomic,strong)NSUnbindWalletParam *param;/* 解绑参数 */
 @end
 
 @implementation NSMyWalletListVC
@@ -24,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.param = [NSUnbindWalletParam new];
     self.view.backgroundColor = KBGCOLOR;
     [self.view addSubview:self.walletTable];
     [self setUpNavTopView];
@@ -191,4 +195,57 @@
         DLog(@"设置默认钱包失败");
     }];
 }
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+//    //第二组可以左滑删除
+//    if (indexPath.section == 2) {
+//        return YES;
+//    }
+    
+    return YES;
+}
+
+// 定义编辑样式
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+// 进入编辑模式，按下出现的编辑按钮后,进行删除操作
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        WalletItemModel *model = self.walletTable.data[indexPath.section];
+        self.param.walletId = model.wallet_id;
+        [self showInputPwView:model.wallet_id];
+//        param.tradePassword =
+    }
+}
+
+// 修改编辑按钮文字
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"删除";
+}
+
+-(void)showInputPwView:(NSString *)walletID{
+    NSInputPwView *inputView = [[NSInputPwView alloc] initWithFrame:(CGRect){0, 0, kScreenWidth, kScreenHeight}];
+    inputView.tbDelegate = self;
+    __weak typeof(inputView) InputView = inputView;
+    inputView.backClickBlock = ^{
+        [InputView removeView];
+    };
+    [inputView showInView:self.navigationController.view];
+}
+
+-(void)payOrder:(NSString *)tradePw{
+    
+    self.param.tradePassword = tradePw;
+    [WalletAPI unbindWalletWithParam:self.param success:^{
+        DLog(@"删除成功");
+        [Common AppShowToast:@"删除成功"];
+        [self requestAllOrder:NO];
+    } faulre:^(NSError *error) {
+        
+    }];
+}
+
+
 @end
