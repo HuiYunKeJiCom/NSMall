@@ -114,7 +114,7 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
         [userDefaults synchronize];
         //        DLog(@"identifierForVendor = %@",identifierForVendor);
         [httpManager.requestSerializer setValue:identifierForVendor forHTTPHeaderField:@"device_id"];
-        
+        [self updateVersion:currentVersion];
         [self goToLoginPage];
     }else{
         NSLog(@"不是第一次");
@@ -145,7 +145,7 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
     param.appType = @"1";
     
     [LoginAPI getAppVersion:param success:^(AppVersionModel * _Nullable result) {
-        //        NSLog(@"检测版本result = %@",result.mj_keyValues);
+//                NSLog(@"检测版本result = %@",result.mj_keyValues);
         UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectZero];
         //    1.1、加载一个网页url：
         NSURL *url = [NSURL URLWithString:result.downloadUrl];//创建URL
