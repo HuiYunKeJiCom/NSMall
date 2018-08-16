@@ -61,7 +61,10 @@ AFHTTPSessionManager *httpManager = nil;
         
         if (!result.success) {
             if(result.code == 0){
-                [Common AppShowToast:result.message];
+//                if(![result.message isEqualToString:@"已经是最新版本了"]){
+                    [Common AppShowToast:result.message];
+//                }
+                
                 failure?failure(nil):nil;
                 return;
             }
@@ -70,7 +73,9 @@ AFHTTPSessionManager *httpManager = nil;
                 success?success(result.data):nil;
             }
             else{
-                [Common AppShowToast:result.message];
+                if(![result.message isEqualToString:@"已经是最新版本了"]){
+                    [Common AppShowToast:result.message];
+                }
                 failure?failure(nil):nil;
                 return;
             }

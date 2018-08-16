@@ -588,6 +588,7 @@
         NSAddCartParam *param = [NSAddCartParam new];
         param.productId = self.productID;
         param.buyNumber = num;
+        param.specId = [self.goodSpecDict objectForKey:goods_attr_value_1];
         [GoodsDetailAPI addProductToCartWithParam:param success:^{
             DLog(@"加入购物车成功");
         } faulre:^(NSError *error) {
@@ -643,6 +644,7 @@
         NSAddCartParam *param = [NSAddCartParam new];
         param.productId = self.productID;
         param.buyNumber = num;
+        param.specId = [self.goodSpecDict objectForKey:goods_attr_value_1];
         NSNewFirmOrderVC *firmOrderVC = [NSNewFirmOrderVC new];
         [firmOrderVC loadDataWithParam:param];
         [self.navigationController pushViewController:firmOrderVC animated:YES];

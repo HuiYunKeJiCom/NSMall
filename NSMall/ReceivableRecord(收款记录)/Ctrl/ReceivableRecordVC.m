@@ -124,14 +124,14 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLogListModel *logListModel = self.goodsTable.data[indexPath.section-1];
+    NSLogListModel *logListModel = self.goodsTable.data[indexPath.section];
     return logListModel.cellHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSRecordTVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSRecordTVCell"];
-    if (self.goodsTable.data.count > indexPath.row) {
-        NSLogListModel *model = self.goodsTable.data[indexPath.row];
+    if (self.goodsTable.data.count > indexPath.section) {
+        NSLogListModel *model = self.goodsTable.data[indexPath.section];
         //        NSLog(@"model = %@",model.mj_keyValues);
         cell.model = model;
     }

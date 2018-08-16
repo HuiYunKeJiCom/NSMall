@@ -72,7 +72,7 @@
     if([_position isEqualToString:@"left"]){
         [self setImageEdgeInsets:UIEdgeInsetsMake((self.frame.size.height - 50)/2, 10.0, -25, 0)];
     }else if([_position isEqualToString:@"top"]){
-        [self setImageEdgeInsets:UIEdgeInsetsMake(-5.0, 0.0, 25.0, -titleSize.width)];
+        [self setImageEdgeInsets:UIEdgeInsetsMake(-5.0, 0.0, 25.0, -20)];
     }else if([_position isEqualToString:@"right"]){
         [self setImageEdgeInsets:UIEdgeInsetsMake((self.frame.size.height - 50)/2, titleSize.width + 25, 0.0, 0.0)];
     }
@@ -80,6 +80,7 @@
     [self setImage:image forState:stateType];
     
     [self.titleLabel setContentMode:UIViewContentModeCenter];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.titleLabel setBackgroundColor:[UIColor clearColor]];
     [self.titleLabel setFont:_font];
     

@@ -83,6 +83,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCallNotification:) name:@"callOutWithChatter" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dingAction) name:kNotification_DingAction object:nil];
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"setupUnreadMessageCountAtDelegate" object:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {

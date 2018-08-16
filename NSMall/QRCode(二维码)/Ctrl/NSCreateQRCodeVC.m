@@ -16,6 +16,7 @@
 @property(nonatomic,strong)UIImageView * scanView;
 @property(nonatomic,strong)UIView *lineView;/* 线 */
 @property(nonatomic,strong)UIView *receivableRecordV;/* 收款记录View */
+@property(nonatomic,strong)UIImageView *headerIV;/* 头像 */
 
 //@property(nonatomic,strong)UIButton *personBtn;/* 个人 */
 //@property(nonatomic,strong)UIButton *goodsBtn;/* 商品 */
@@ -33,59 +34,20 @@
     [self setUpNavTopView];
     
 
-    
-    self.bgView = [[UIView alloc]init];
-    self.bgView.backgroundColor = kWhiteColor;
     [self.view addSubview:self.bgView];
-    self.bgView.x = 20;
-    self.bgView.y = 30+TopBarHeight;
-    self.bgView.size = CGSizeMake(kScreenWidth-40, kScreenHeight*0.55);
-    
-    self.tipLab = [[UILabel alloc]init];
-    self.tipLab.font = UISystemFontSize(14);
-    self.tipLab.textColor = kBlackColor;
-    self.tipLab.textAlignment = NSTextAlignmentCenter;
     [self.bgView addSubview:self.tipLab];
-    self.tipLab.x = 20;
-    self.tipLab.y = 30;
-    self.tipLab.size = CGSizeMake(kScreenWidth-80, 20);
-    self.tipLab.text = NSLocalizedString(@"pay with QR code", nil);
-
-    self.scanView = [[UIImageView alloc] init];
-    self.scanView.layer.cornerRadius = 4;
-    self.scanView.layer.masksToBounds = YES;
-    self.scanView.x = kScreenWidth*0.5-120;
-    self.scanView.y = kScreenHeight*0.5*0.55-130;
-    self.scanView.size = CGSizeMake(200, 200);
 //    self.scanView.center = self.bgView.center;
     [self.bgView addSubview:self.scanView];
-    
-    UIImageView *headerIV = [[UIImageView alloc] init];
-    headerIV.x = kScreenWidth*0.5-40;
-    headerIV.y = kScreenHeight*0.5*0.55-50;
-    headerIV.size = CGSizeMake(40, 40);
     //    self.scanView.center = self.bgView.center;
-    [self.bgView addSubview:headerIV];
+    [self.bgView addSubview:self.headerIV];
     
     UserModel *userModel = [UserModel modelFromUnarchive];
-    [headerIV sd_setImageWithURL:[NSURL URLWithString:userModel.pic_img]];
+    [self.headerIV sd_setImageWithURL:[NSURL URLWithString:userModel.pic_img]];
     
-    self.lineView = [[UIView alloc]init];
-    self.lineView.backgroundColor = kGreyColor;
     [self.bgView addSubview:self.lineView];
-    self.lineView.x = 20;
-    self.lineView.y = CGRectGetMaxY(self.scanView.frame)+50;
-    self.lineView.size = CGSizeMake(kScreenWidth-80, 1);
-    
-    self.receivableRecordV = [[UIView alloc]init];
     [self.bgView addSubview:self.receivableRecordV];
-    self.receivableRecordV.x = 20;
-    self.receivableRecordV.y = CGRectGetMaxY(self.lineView.frame)+15;
-    self.receivableRecordV.size = CGSizeMake(kScreenWidth-80, 50);
-    
-    UITapGestureRecognizer *myTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(checkReceivableRecord)];
-    [self.receivableRecordV addGestureRecognizer:myTap];
-    
+    [self makeConstraints];
+
 //    self.receivableRecordV.backgroundColor = [UIColor greenColor];
     
     UIImageView *recordIV = [[UIImageView alloc]init];
@@ -201,5 +163,102 @@
     ReceivableRecordVC *recordVC = [[ReceivableRecordVC alloc]init];
     [self.navigationController pushViewController:recordVC animated:YES];
 }
+
+-(void)makeConstraints {
+    WEAKSELF
+    
+    [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.view.mas_left).with.offset(GetScaleWidth(20));
+        make.top.equalTo(weakSelf.view.mas_top).with.offset(GetScaleWidth(30)+TopBarHeight);
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth-40, 568*0.7));
+    }];
+    
+    [self.tipLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(weakSelf.bgView.mas_centerX);
+        make.top.equalTo(weakSelf.bgView.mas_top).with.offset(GetScaleWidth(30));
+    }];
+    
+    [self.scanView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(weakSelf.bgView.mas_centerX);
+        make.centerY.equalTo(weakSelf.bgView.mas_centerY);
+        make.size.mas_equalTo(CGSizeMake(200, 200));
+    }];
+    
+    [self.headerIV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(weakSelf.bgView.mas_centerX);
+        make.centerY.equalTo(weakSelf.bgView.mas_centerY);
+        make.size.mas_equalTo(CGSizeMake(40, 40));
+    }];
+    
+    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.bgView.mas_left).with.offset(GetScaleWidth(20));
+        make.top.equalTo(weakSelf.scanView.mas_bottom).with.offset(GetScaleWidth(20));
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth-80, 1));
+    }];
+    
+    [self.receivableRecordV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.bgView.mas_left).with.offset(GetScaleWidth(20));
+        make.top.equalTo(weakSelf.lineView.mas_bottom).with.offset(GetScaleWidth(5));
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth-80, 50));
+    }];
+}
+
+-(UIView *)bgView{
+    if (!_bgView) {
+        _bgView = [[UIView alloc]initWithFrame:CGRectZero];
+        _bgView.backgroundColor = kWhiteColor;
+    }
+    return _bgView;
+}
+
+- (UILabel *)tipLab {
+    if (!_tipLab) {
+        _tipLab = [[UILabel alloc]init];
+        _tipLab.font = UISystemFontSize(14);
+        _tipLab.textColor = kBlackColor;
+        _tipLab.textAlignment = NSTextAlignmentCenter;
+        _tipLab.text = NSLocalizedString(@"pay with QR code", nil);
+    }
+    return _tipLab;
+}
+
+-(UIImageView *)scanView{
+    if (!_scanView) {
+        _scanView = [[UIImageView alloc] init];
+        _scanView.layer.cornerRadius = 4;
+        _scanView.layer.masksToBounds = YES;
+    }
+    return _scanView;
+}
+
+-(UIImageView *)headerIV{
+    if (!_headerIV) {
+        _headerIV = [[UIImageView alloc] init];
+    }
+    return _headerIV;
+}
+
+-(UIView *)lineView{
+    if (!_lineView) {
+        _lineView = [[UIView alloc]initWithFrame:CGRectZero];
+        _lineView.backgroundColor = kGreyColor;
+    }
+    return _lineView;
+}
+
+-(UIView *)receivableRecordV{
+    if (!_receivableRecordV) {
+        _receivableRecordV = [[UIView alloc]initWithFrame:CGRectZero];
+        _receivableRecordV.backgroundColor = kWhiteColor;
+        UITapGestureRecognizer *myTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(checkReceivableRecord)];
+        [_receivableRecordV addGestureRecognizer:myTap];
+    }
+    return _receivableRecordV;
+}
+
+
+
+
+
 
 @end

@@ -8,8 +8,9 @@
 
 /* 环信 */
 static NSString * const kHuanXinAppKey       = @"1125180610177403#nsapp";
-//1153180424099290#huist-oomall(正式)
-//
+//1153180424099290#huist-oomall
+//1125180610177403#nsapp(正式)
+
 /* 百度 */
 static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
 
@@ -30,7 +31,7 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
 
 
 
-@interface AppDelegate ()<CYLPlusButtonSubclassing,EMChatManagerDelegate,selectDelegate,EMContactManagerDelegate>
+@interface AppDelegate ()<CYLPlusButtonSubclassing,EMChatManagerDelegate,selectDelegate,EMContactManagerDelegate,EMClientDelegate>
 /** tabbar */
 @property(nonatomic,strong)CYLTabBarController *tabBarController;
 /** 好友的名称 */
@@ -43,6 +44,8 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupUnreadMessageCount) name:@"setupUnreadMessageCountAtDelegate" object:nil];
     
     //打印日志
     //    [Bugly startWithAppId:@"f01e247410"];
@@ -77,6 +80,8 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
     // 监听自动登录的状态
     // 设置chatManager代理
     [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+    
+    [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
     
     // 测试的时候改变info 里的版本号就可以了
     NSArray *images = @[@"pic_start1", @"pic_start2", @"pic_start3", @"pic_start4"];
@@ -118,6 +123,17 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
         [self goToLoginPage];
     }else{
         NSLog(@"不是第一次");
+        
+        UserModel *userModel = [UserModel modelFromUnarchive];
+        
+        BOOL isAutoLogin = [EMClient sharedClient].options.isAutoLogin;
+        if (!isAutoLogin) {
+            EMError *error = [[EMClient sharedClient] loginWithUsername:userModel.hx_user_name password:userModel.hx_password];
+            if (!error) {
+                NSLog(@"环信登录成功");
+                [[EMClient sharedClient].options setIsAutoLogin:YES];
+            }
+        }
         
         if([userDefaults valueForKey:@"appToken"]){
             NSString *appToken = [userDefaults valueForKey:@"appToken"];
@@ -229,43 +245,6 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
     [self.window setRootViewController:login];
 }
 
-//#pragma mark - 好友请求回调
-///*!
-// *  用户A发送加用户B为好友的申请，用户B会收到这个回调
-// *
-// *  @param aUsername   用户名
-// *  @param aMessage    附属信息
-// */
-//
-//- (void)didReceiveFriendInvitationFromUsername:(NSString *)aUsername
-//                                       message:(NSString *)aMessage
-//{
-//    NSLog(@"aUsername = %@,%@",aUsername,aMessage);
-//    self.buddyUsername = aUsername;
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"好友添加请求" message:aMessage delegate:self cancelButtonTitle:@"拒绝" otherButtonTitles:@"同意", nil];
-//    [alert show];
-//}
-//
-//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-//
-//    if (buttonIndex == 1) {
-//        //同意好友请求
-//        EMError *error = [[EMClient sharedClient].contactManager acceptInvitationForUsername:self.buddyUsername];
-//        if (!error) {
-//            NSLog(@"同意加好友成功");
-//        }else{
-//            NSLog(@"同意加好友失败");
-//        }
-//    }else{
-//        //拒绝好友请求
-//        EMError *error = [[EMClient sharedClient].contactManager declineInvitationForUsername:self.buddyUsername];
-//        if (!error) {
-//            NSLog(@"拒绝加好友成功");
-//        }else{
-//            NSLog(@"拒绝加好友失败");
-//        }
-//    }
-//}
 
 /*!
  *  用户A发送加用户B为好友的申请，用户B会收到这个回调
@@ -282,6 +261,61 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
     }
 }
 
+/*!
+ *  自动登录返回结果
+ *
+ *  @param error 错误信息
+ */
+- (void)autoLoginDidCompleteWithError:(EMError *)error{
+    
+}
+
+//添加回调监听代理: [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
+
+/*!
+ *  当前登录账号在其它设备登录时会接收到该回调
+ */
+- (void)userAccountDidLoginFromOtherDevice{
+    
+}
+
+/*!
+ *  当前登录账号已经被从服务器端删除时会收到该回调
+ */
+- (void)userAccountDidRemoveFromServer{
+    
+}
+
+//收到消息
+
+-(void)didReceiveMessages:(NSArray *)aMessages{
+    
+    //判断是不是后台，如果是后台就发推送
+    
+    if (aMessages.count==0) {
+        return ;
+    }
+    
+    [[DCTabBarController sharedTabBarVC] playSoundAndVibration];
+
+    for(UIViewController *vc in [DCTabBarController sharedTabBarVC].viewControllers){
+        if([vc isKindOfClass:[ConversationListController class]]){
+            vc.tabBarItem.badgeValue = [NSString stringWithFormat:@"%lu",aMessages.count];
+        }
+    }
+    
+
+    //设置声音
+//    AudioServicesPlaySystemSound(1312);
+}
+
+-(void)setupUnreadMessageCount{
+    for(UIViewController *vc in [DCTabBarController sharedTabBarVC].viewControllers){
+        if([vc isKindOfClass:[ConversationListController class]]){
+            vc.tabBarItem.badgeValue = nil;
+        }
+    }
+}
 
 @end
 

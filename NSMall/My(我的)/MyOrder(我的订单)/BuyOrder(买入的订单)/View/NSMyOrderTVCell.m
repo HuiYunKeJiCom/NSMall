@@ -18,7 +18,7 @@
 @property(nonatomic,strong)UILabel *stateLab;/* 状态 */
 @property(nonatomic,strong)UIView *lineView1;/* 分割线1 */
 @property(nonatomic,strong)UILabel *totalLab;/* 总计 */
-@property(nonatomic,strong)UIButton *nextOperation;/* 下一步 */
+//@property(nonatomic,strong)UIButton *nextOperation;/* 下一步 */
 @end
 
 @implementation NSMyOrderTVCell
@@ -62,17 +62,18 @@
     self.totalLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum14 TextColor:kGreyColor];
     [self.bgView addSubview:self.totalLab];
     
-    self.nextOperation = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.nextOperation.titleLabel.font = UISystemFontSize(14);
-    
-    // 设置圆角的大小
-    self.nextOperation.layer.cornerRadius = 5.0;
-    [self.nextOperation.layer setMasksToBounds:YES];
-//    self.nextOperation.layer.borderWidth = 1;
-//    self.nextOperation.layer.borderColor = [KMainColor CGColor];
-    [self.nextOperation setTitleColor:kWhiteColor forState:UIControlStateNormal];
-    [self.nextOperation addTarget:self action:@selector(nextOperationClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.bgView addSubview:self.nextOperation];
+//    self.nextOperation = [UIButton buttonWithType:UIButtonTypeCustom];
+//    self.nextOperation.titleLabel.font = UISystemFontSize(14);
+//
+//    // 设置圆角的大小
+//    self.nextOperation.layer.cornerRadius = 5.0;
+//    [self.nextOperation.layer setMasksToBounds:YES];
+////    self.nextOperation.layer.borderWidth = 1;
+////    self.nextOperation.layer.borderColor = [KMainColor CGColor];
+//    [self.nextOperation setTitleColor:kWhiteColor forState:UIControlStateNormal];
+////    self.nextOperation.backgroundColor = kRedColor;
+//    [self.nextOperation addTarget:self action:@selector(nextOperationClick) forControlEvents:UIControlEventTouchUpInside];
+//    [self.bgView addSubview:self.nextOperation];
 }
 
 -(void)layoutSubviews{
@@ -104,8 +105,8 @@
     switch (model.order_status) {
         case 1:{
             self.stateLab.text = NSLocalizedString(@"wait pay", nil);
-            [self.nextOperation setTitle:NSLocalizedString(@"to pay", nil) forState:UIControlStateNormal];
-            self.nextOperation.backgroundColor = kRedColor;
+//            [self.nextOperation setTitle:NSLocalizedString(@"to pay", nil) forState:UIControlStateNormal];
+//            self.nextOperation.backgroundColor = kRedColor;
         }
             break;
         case 2:{
@@ -116,11 +117,11 @@
             break;
         case 3:{
             self.stateLab.text = NSLocalizedString(@"wait receive", nil);
-            self.nextOperation.backgroundColor = KMainColor;
+//            self.nextOperation.backgroundColor = KMainColor;
             if([model.type isEqualToString:@"1"]){
-                [self.nextOperation setTitle:NSLocalizedString(@"to evaluate", nil) forState:UIControlStateNormal];
+//                [self.nextOperation setTitle:NSLocalizedString(@"to evaluate", nil) forState:UIControlStateNormal];
             }else{
-                [self.nextOperation setTitle:NSLocalizedString(@"confirm receipt", nil) forState:UIControlStateNormal];
+//                [self.nextOperation setTitle:NSLocalizedString(@"confirm receipt", nil) forState:UIControlStateNormal];
             }
         }
             break;
@@ -163,9 +164,19 @@
         
         height+=65;
     }
-    self.totalLab.text = [NSString stringWithFormat:@"%@%lu%@N%.2f",NSLocalizedString(@"in total", nil)
-                          ,model.buy_number,model.pay_amount,NSLocalizedString(@"piece goods,subtotal", nil)
-];
+    
+    NSString *text = [NSString stringWithFormat:@"%@%lu%@N%.2f",NSLocalizedString(@"in total", nil)
+                          ,model.buy_number,NSLocalizedString(@"piece goods,subtotal", nil),model.pay_amount];
+    NSArray *stringArr = [text componentsSeparatedByString:@"小计"];
+    NSMutableAttributedString *LZString = [[NSMutableAttributedString alloc]initWithString:text];
+    NSRange rang = [text rangeOfString:stringArr[1]];
+    [LZString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:rang];
+//    [LZString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:13] range:rang];
+//    [LZString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:18] range:rang];
+    self.totalLab.attributedText = LZString;
+    
+    
+    
 }
 
 -(void)nextOperationClick{
@@ -217,15 +228,16 @@
         make.size.mas_equalTo(CGSizeMake(kScreenWidth, GetScaleWidth(1)));
     }];
     
-    [self.nextOperation mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(weakSelf.bgView.mas_right).with.offset(-19);
-        make.bottom.equalTo(weakSelf.bgView.mas_bottom).with.offset(GetScaleWidth(-10));
-        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(67), GetScaleWidth(28)));
-    }];
+//    [self.nextOperation mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.equalTo(weakSelf.bgView.mas_right).with.offset(-19);
+//        make.bottom.equalTo(weakSelf.bgView.mas_bottom).with.offset(GetScaleWidth(-10));
+//        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(67), GetScaleWidth(28)));
+//    }];
     
     [self.totalLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(weakSelf.bgView.mas_right).with.offset(-19);
-        make.bottom.equalTo(weakSelf.nextOperation.mas_top).with.offset(-10);
+        make.bottom.equalTo(weakSelf.bgView.mas_bottom).with.offset(GetScaleWidth(-10));
+//        make.bottom.equalTo(weakSelf.nextOperation.mas_top).with.offset(-10);
     }];
 
 }

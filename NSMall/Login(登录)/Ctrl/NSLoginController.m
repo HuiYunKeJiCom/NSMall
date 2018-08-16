@@ -89,7 +89,6 @@
         DLog(@"登录成功");
         
         UserModel *userModel = [UserModel modelFromUnarchive];
-
         BOOL isAutoLogin = [EMClient sharedClient].options.isAutoLogin;
         if (!isAutoLogin) {
             EMError *error = [[EMClient sharedClient] loginWithUsername:userModel.hx_user_name password:userModel.hx_password];

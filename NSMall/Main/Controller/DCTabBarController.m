@@ -18,7 +18,7 @@ static NSString *kConversationChatter = @"ConversationChatter";
 //两次提示的默认间隔
 static const CGFloat kDefaultPlaySoundInterval = 3.0;
 
-@interface DCTabBarController ()<UITabBarControllerDelegate,EMClientDelegate>
+@interface DCTabBarController ()<UITabBarControllerDelegate,EMClientDelegate,EMChatManagerDelegate,EMContactManagerDelegate>
 {
     UIBarButtonItem *_addFriendItem;
     EMConnectionState _connectionState;
@@ -103,7 +103,7 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupUnreadMessageCount) name:@"setupUnreadMessageCount" object:nil];
     
-    [self setupUnreadMessageCount];
+//    [self setupUnreadMessageCount];
 //    [self loadConversations];
 }
 
@@ -199,10 +199,13 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     if (_chatListVC) {
         if (unreadCount > 0) {
             _chatListVC.tabBarItem.badgeValue = [NSString stringWithFormat:@"%i",(int)unreadCount];
+            [self playSoundAndVibration];
         }else{
             _chatListVC.tabBarItem.badgeValue = nil;
         }
     }
+    
+    
     
     UIApplication *application = [UIApplication sharedApplication];
     [application setApplicationIconBadgeNumber:unreadCount];

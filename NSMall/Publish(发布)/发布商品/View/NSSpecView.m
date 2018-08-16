@@ -15,6 +15,7 @@
 @property(nonatomic,strong)UILabel *priceLabel;/* 价格标题 */
 @property(nonatomic,strong)UIView *priceLineV;/* 分割线 */
 @property(nonatomic,strong)UILabel *inventoryLabel;/*  库存标题 */
+//@property(nonatomic,strong)UIView *inventoryLineV;/* 分割线 */
 @property(nonatomic,strong)UIButton *delButton;/*  删除按钮 */
 @end
 
@@ -34,20 +35,20 @@
     self.bgView = [[UIView alloc] init];
     self.bgView.x = 0;
     self.bgView.y = 10;
-    self.bgView.size = CGSizeMake(kScreenWidth-30, GetScaleWidth(43)*3);
+    self.bgView.size = CGSizeMake(kScreenWidth-30, GetScaleWidth(49)*3);
     self.bgView.backgroundColor = kWhiteColor;
     [self addSubview:self.bgView];
     
     self.specLabel = [[UILabel alloc] init];
     self.specLabel.text = NSLocalizedString(@"specifications", nil);
     self.specLabel.font = UISystemFontSize(14);
-    self.specLabel.x = 29;
-    self.specLabel.y = 14;
+    self.specLabel.x = GetScaleWidth(29);
+    self.specLabel.y = GetScaleWidth(14);
     [self.specLabel sizeToFit];
     [self.bgView addSubview:self.specLabel];
     
     self.specTF = [[UITextField alloc] initWithFrame:CGRectZero];
-    self.specTF.frame = CGRectMake(CGRectGetMaxX(self.specLabel.frame), 5, kScreenWidth-30-CGRectGetMaxX(self.specLabel.frame), GetScaleWidth(30));
+    self.specTF.frame = CGRectMake(CGRectGetMaxX(self.specLabel.frame), GetScaleWidth(10), kScreenWidth-30-CGRectGetMaxX(self.specLabel.frame), GetScaleWidth(30));
     self.specTF.delegate = self;
     self.specTF.tag = 10;
     self.specTF.font = [UIFont systemFontOfSize:14];
@@ -62,7 +63,7 @@
     
     self.specLineV = [[UIView alloc] init];
     self.specLineV.x = 0;
-    self.specLineV.y = CGRectGetMaxY(self.specLabel.frame)+14;
+    self.specLineV.y = CGRectGetMaxY(self.specLabel.frame)+GetScaleWidth(14);
     self.specLineV.size = CGSizeMake(kScreenWidth-30, 1);
     self.specLineV.backgroundColor = [UIColor lightGrayColor];
     [self.bgView addSubview:self.specLineV];
@@ -70,13 +71,13 @@
     self.priceLabel = [[UILabel alloc] init];
     self.priceLabel.text = NSLocalizedString(@"price", nil);
     self.priceLabel.font = UISystemFontSize(14);
-    self.priceLabel.x = 29;
-    self.priceLabel.y = CGRectGetMaxY(self.specLineV.frame)+14;
+    self.priceLabel.x = GetScaleWidth(29);
+    self.priceLabel.y = CGRectGetMaxY(self.specLineV.frame)+GetScaleWidth(14);
     [self.priceLabel sizeToFit];
     [self.bgView addSubview:self.priceLabel];
     
     self.priceTF = [[UITextField alloc] initWithFrame:CGRectZero];
-    self.priceTF.frame = CGRectMake(CGRectGetMaxX(self.priceLabel.frame), CGRectGetMaxY(self.specLineV.frame)+5, kScreenWidth-30-CGRectGetMaxX(self.priceLabel.frame), GetScaleWidth(30));
+    self.priceTF.frame = CGRectMake(CGRectGetMaxX(self.priceLabel.frame), CGRectGetMaxY(self.specLineV.frame)+GetScaleWidth(10), kScreenWidth-30-CGRectGetMaxX(self.priceLabel.frame), GetScaleWidth(30));
     self.priceTF.delegate = self;
     self.priceTF.tag = 100;
     self.priceTF.font = [UIFont systemFontOfSize:14];
@@ -91,7 +92,7 @@
     
     self.priceLineV = [[UIView alloc] init];
     self.priceLineV.x = 0;
-    self.priceLineV.y = CGRectGetMaxY(self.priceLabel.frame)+14;
+    self.priceLineV.y = CGRectGetMaxY(self.priceLabel.frame)+GetScaleWidth(14);
     self.priceLineV.size = CGSizeMake(kScreenWidth-30, 1);
     self.priceLineV.backgroundColor = [UIColor lightGrayColor];
     [self.bgView addSubview:self.priceLineV];
@@ -99,13 +100,13 @@
     self.inventoryLabel = [[UILabel alloc] init];
     self.inventoryLabel.text = NSLocalizedString(@"stock", nil);
     self.inventoryLabel.font = UISystemFontSize(14);
-    self.inventoryLabel.x = 29;
-    self.inventoryLabel.y = CGRectGetMaxY(self.priceLineV.frame)+14;
+    self.inventoryLabel.x = GetScaleWidth(29);
+    self.inventoryLabel.y = CGRectGetMaxY(self.priceLineV.frame)+GetScaleWidth(14);
     [self.inventoryLabel sizeToFit];
     [self.bgView addSubview:self.inventoryLabel];
     
     self.inventoryTF = [[UITextField alloc] initWithFrame:CGRectZero];
-    self.inventoryTF.frame = CGRectMake(CGRectGetMaxX(self.inventoryLabel.frame), CGRectGetMaxY(self.priceLineV.frame)+5, kScreenWidth-30-CGRectGetMaxX(self.priceLabel.frame), GetScaleWidth(30));
+    self.inventoryTF.frame = CGRectMake(CGRectGetMaxX(self.inventoryLabel.frame), CGRectGetMaxY(self.priceLineV.frame)+GetScaleWidth(10), kScreenWidth-30-CGRectGetMaxX(self.priceLabel.frame), GetScaleWidth(30));
     self.inventoryTF.delegate = self;
     self.inventoryTF.tag = 1000;
     self.inventoryTF.font = [UIFont systemFontOfSize:14];
@@ -117,6 +118,13 @@
     self.inventoryTF.leftView = paddingView3;
     self.inventoryTF.leftViewMode = UITextFieldViewModeAlways;
     [self.bgView addSubview:self.inventoryTF];
+    
+//    self.inventoryLineV = [[UIView alloc] init];
+//    self.inventoryLineV.x = 0;
+//    self.inventoryLineV.y = CGRectGetMaxY(self.inventoryLabel.frame)+GetScaleWidth(14);
+//    self.inventoryLineV.size = CGSizeMake(kScreenWidth-30, 1);
+//    self.inventoryLineV.backgroundColor = [UIColor clearColor];
+//    [self.bgView addSubview:self.inventoryLineV];
     
     self.delButton = [UIButton new];
     self.delButton.x = kScreenWidth-40;

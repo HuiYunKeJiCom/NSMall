@@ -63,7 +63,7 @@
     self.QRBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.QRBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.QRBtn setImageWithTitle:IMAGE(@"home_ico_qrcode")
-                              withTitle:@"二维码" position:@"top" font:[UIFont systemFontOfSize:kFontNum14] forState:UIControlStateNormal];
+                              withTitle:@"收付款" position:@"top" font:[UIFont systemFontOfSize:kFontNum14] forState:UIControlStateNormal];
     [self.bgView addSubview:self.QRBtn];
     self.QRBtn.x = itemWidth*2+3*spaceWidth;
     self.QRBtn.y = -GetScaleWidth(10);

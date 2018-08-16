@@ -68,10 +68,12 @@
         UILabel *nickName = [[UILabel alloc]init];
         nickName.textColor = kBlackColor;
         nickName.font = UISystemFontSize(14);
+//        nickName.backgroundColor = kRedColor;
         [recordV addSubview:nickName];
         nickName.x = 19;
         nickName.y = 14;
         nickName.text = item.user_name;
+        [nickName sizeToFit];
         
         UILabel *tradeTime = [[UILabel alloc]init];
         tradeTime.textColor = kBlackColor;
@@ -79,12 +81,13 @@
         [recordV addSubview:tradeTime];
         tradeTime.x = 19;
         tradeTime.y = 41;
-        
-        NSArray *dateArr = [item.trade_time componentsSeparatedByString:@" "];
-        NSArray *timeArr = [[dateArr lastObject] componentsSeparatedByString:@":"];
-        NSString *tradeStr = [NSString stringWithFormat:@"%@:%@",timeArr[0],timeArr[1]];
 
-        tradeTime.text = tradeStr;
+//        NSArray *dateArr = [item.trade_time componentsSeparatedByString:@" "];
+//        NSArray *timeArr = [[dateArr lastObject] componentsSeparatedByString:@":"];
+//        NSString *tradeStr = [NSString stringWithFormat:@"%@:%@",timeArr[0],timeArr[1]];
+
+        tradeTime.text = item.trade_time;
+        [tradeTime sizeToFit];
         
         UILabel *tradeAmount = [[UILabel alloc]init];
         tradeAmount.textColor = kBlackColor;
@@ -94,6 +97,7 @@
         CGSize tradeSize = [self contentSizeWithTitle:tradeAmount.text andFont:14];
         tradeAmount.x = kScreenWidth-tradeSize.width-19;
         tradeAmount.y = 27;
+        [tradeAmount sizeToFit];
         
         UIView *lineView = [[UIView alloc]init];
         lineView.backgroundColor = KBGCOLOR;

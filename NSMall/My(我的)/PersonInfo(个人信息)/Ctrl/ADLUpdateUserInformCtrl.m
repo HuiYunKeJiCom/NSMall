@@ -255,8 +255,10 @@
                     if(userModel.is_certification == 0){
                         NSUserCertifyVC *ctrl = [[NSUserCertifyVC alloc] init];
                         [self.navigationController pushViewController:ctrl animated:YES];
-                    }else{
-                        [Common AppShowToast:[NSString stringWithFormat:@"%@!",NSLocalizedString(@"have been authenticated", nil)]];
+                    }else if(userModel.is_certification == 1){
+                        [Common AppShowToast:[NSString stringWithFormat:@"%@",NSLocalizedString(@"have been authenticated", nil)]];
+                    }else if(userModel.is_certification == 2){
+                        [Common AppShowToast:[NSString stringWithFormat:@"审核中"]];
                     }
                     
                 } else {
@@ -313,8 +315,10 @@
         UserModel *userModel = [UserModel modelFromUnarchive];
         if(userModel.is_certification == 0){
             cell.descLabel.text = [NSString limitStringNotEmpty:NSLocalizedString(@"uncertified", nil)];
-        }else{
+        }else if(userModel.is_certification == 1){
             cell.descLabel.text = [NSString limitStringNotEmpty:NSLocalizedString(@"certified", nil)];
+        }else if(userModel.is_certification == 2){
+            cell.descLabel.text = [NSString limitStringNotEmpty:@"待审核"];
         }
         
         

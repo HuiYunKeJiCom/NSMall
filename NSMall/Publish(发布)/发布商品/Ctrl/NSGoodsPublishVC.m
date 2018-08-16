@@ -91,13 +91,47 @@
     self.SV.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.SV];
     
-    self.upTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(319), kScreenWidth, GetScaleWidth(43)) style:UITableViewStyleGrouped];
+    self.middleView = [[UIView alloc]initWithFrame:CGRectMake(0, GetScaleWidth(109), kScreenWidth, GetScaleWidth(30+10+110))];
+    self.middleView.backgroundColor = [UIColor whiteColor];
+    [self.SV addSubview:self.middleView];
+    
+    self.goodsNameTF = [[UITextField alloc] initWithFrame:CGRectZero];
+    self.goodsNameTF.frame = CGRectMake(0, 0, kScreenWidth, GetScaleWidth(30));
+    self.goodsNameTF.font = [UIFont systemFontOfSize:14];
+    self.goodsNameTF.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.goodsNameTF.delegate = self;
+    self.goodsNameTF.placeholder = NSLocalizedString(@"goods relevant", nil);
+    self.goodsNameTF.textColor = [UIColor lightGrayColor];
+    self.goodsNameTF.backgroundColor = kWhiteColor;
+    UIView *paddingView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, GetScaleWidth(30))];
+    self.goodsNameTF.leftView = paddingView;
+    self.goodsNameTF.leftViewMode = UITextFieldViewModeAlways;
+    [self.middleView addSubview:self.goodsNameTF];
+    
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, GetScaleWidth(30), kScreenWidth, GetScaleWidth(10))];
+    view.backgroundColor = kWhiteColor;
+    [self.middleView addSubview:view];
+    
+    self.detailTV = [[UITextView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(40), kScreenWidth, GetScaleWidth(110))];
+    self.detailTV.textColor = [UIColor lightGrayColor];
+    self.detailTV.backgroundColor = kWhiteColor;
+    self.detailTV.font = [UIFont systemFontOfSize:14];
+    self.detailTV.delegate = self;
+    self.detailTV.zw_placeHolder = NSLocalizedString(@"goods description", nil);
+    self.detailTV.zw_placeHolderColor = [UIColor lightGrayColor];
+    
+    self.detailTV.textContainerInset = UIEdgeInsetsMake(0, 15, 0, 0);
+    [self.middleView addSubview:self.detailTV];
+    
+//    self.upTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(319), kScreenWidth, GetScaleWidth(43)) style:UITableViewStyleGrouped];
+    self.upTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(10)+CGRectGetMaxY(self.middleView.frame), kScreenWidth, GetScaleWidth(43)) style:UITableViewStylePlain];
     self.upTableView.tag = 10;
     self.upTableView.backgroundColor = [UIColor clearColor];
     self.upTableView.bounces = NO;
     self.upTableView.tbDelegate = self;
     self.upTableView.isRefresh = NO;
     self.upTableView.isLoadMore = NO;
+//    self.upTableView.scrollEnabled = NO;
 //    self.upTableView.isShow = YES;
     if (@available(iOS 11.0, *)) {
         self.upTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -106,7 +140,7 @@
     }
     [self.SV addSubview:self.upTableView];
     
-    self.midTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(319), kScreenWidth, GetScaleWidth(86)) style:UITableViewStyleGrouped];
+    self.midTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(319), kScreenWidth, GetScaleWidth(86)) style:UITableViewStylePlain];
     self.midTableView.tag = 20;
     self.midTableView.backgroundColor = [UIColor clearColor];
     self.midTableView.bounces = NO;
@@ -121,7 +155,7 @@
     }
     [self.SV addSubview:self.midTableView];
     
-    self.addSpecTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(319+GetScaleWidth(86)), kScreenWidth, GetScaleWidth(43)) style:UITableViewStyleGrouped];
+    self.addSpecTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(319+GetScaleWidth(86)), kScreenWidth, GetScaleWidth(43)) style:UITableViewStylePlain];
     self.addSpecTableView.tag = 30;
     self.addSpecTableView.backgroundColor = [UIColor clearColor];
     self.addSpecTableView.bounces = NO;
@@ -164,37 +198,7 @@
     [self setUpData];
     [self configCollectionView];
     
-    self.middleView = [[UIView alloc]initWithFrame:CGRectMake(0, GetScaleWidth(109), kScreenWidth, GetScaleWidth(30+10+110))];
-    self.middleView.backgroundColor = [UIColor whiteColor];
-    [self.SV addSubview:self.middleView];
     
-    self.goodsNameTF = [[UITextField alloc] initWithFrame:CGRectZero];
-    self.goodsNameTF.frame = CGRectMake(0, 0, kScreenWidth, GetScaleWidth(30));
-    self.goodsNameTF.font = [UIFont systemFontOfSize:14];
-    self.goodsNameTF.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.goodsNameTF.delegate = self;
-    self.goodsNameTF.placeholder = NSLocalizedString(@"goods relevant", nil);
-    self.goodsNameTF.textColor = [UIColor lightGrayColor];
-    self.goodsNameTF.backgroundColor = kWhiteColor;
-    UIView *paddingView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, GetScaleWidth(30))];
-    self.goodsNameTF.leftView = paddingView;
-    self.goodsNameTF.leftViewMode = UITextFieldViewModeAlways;
-    [self.middleView addSubview:self.goodsNameTF];
-    
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, GetScaleWidth(30), kScreenWidth, GetScaleWidth(10))];
-    view.backgroundColor = kWhiteColor;
-    [self.middleView addSubview:view];
-    
-    self.detailTV = [[UITextView alloc] initWithFrame:CGRectMake(0, GetScaleWidth(40), kScreenWidth, GetScaleWidth(110))];
-    self.detailTV.textColor = [UIColor lightGrayColor];
-    self.detailTV.backgroundColor = kWhiteColor;
-    self.detailTV.font = [UIFont systemFontOfSize:14];
-    self.detailTV.delegate = self;
-    self.detailTV.zw_placeHolder = NSLocalizedString(@"goods description", nil);
-    self.detailTV.zw_placeHolderColor = [UIColor lightGrayColor];
-    
-    self.detailTV.textContainerInset = UIEdgeInsetsMake(0, 15, 0, 0);
-    [self.middleView addSubview:self.detailTV];
     
     [self setUpAddView];
     [self setUpNavTopView];
@@ -800,10 +804,10 @@
     specView.backgroundColor = KBGCOLOR;
     __weak typeof(specView) specview = specView;
     specView.deleteClickBlock = ^{
-        self.specHeight -= (GetScaleWidth(43)*3+10);
+        self.specHeight -= (GetScaleWidth(49)*3+10);
         for (NSSpecView *view in self.specViewArr) {
             if(view.y > specView.y){
-                view.y -= (GetScaleWidth(43)*3+10);
+                view.y -= (GetScaleWidth(49)*3+10);
             }
         }
         [self.specViewArr removeObject:specview];
@@ -817,10 +821,10 @@
 
     specView.x = 0;
     specView.y = self.specHeight;
-    specView.size = CGSizeMake(kScreenWidth, GetScaleWidth(43)*3+10);
+    specView.size = CGSizeMake(kScreenWidth, GetScaleWidth(49)*3+10);
     [self.specTotalView addSubview:specView];
     [self.specViewArr addObject:specView];
-    self.specHeight += (GetScaleWidth(43)*3+10);
+    self.specHeight += (GetScaleWidth(49)*3+10);
     [self specTotalViewReloadData];
     [self tableViewFrameChange];
 }
@@ -1122,9 +1126,9 @@
         self.midTableView.alpha = 0.0;
         self.addSpecTableView.dc_y = CGRectGetMaxY(self.upTableView.frame)+GetScaleWidth(10);
         self.specTotalView.dc_y = CGRectGetMaxY(self.addSpecTableView.frame);
-        self.specTotalView.height = self.specViewArr.count*(GetScaleWidth(43)*3+10);
+        self.specTotalView.height = self.specViewArr.count*(GetScaleWidth(49)*3+10);
         self.otherTableView.dc_y = CGRectGetMaxY(self.specTotalView.frame);
-        self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20-TopBarHeight+_selectedPhotos.count/4*(_itemWH + _margin*2)+self.specViewArr.count*(GetScaleWidth(43)*3+10)-GetScaleWidth(86));
+        self.SV.contentSize = CGSizeMake(kScreenWidth, kScreenHeight-20-TopBarHeight+_selectedPhotos.count/4*(_itemWH + _margin*2)+self.specViewArr.count*(GetScaleWidth(49)*3+10)-GetScaleWidth(86));
     }else{
         self.midTableView.alpha = 1.0;
         self.midTableView.dc_y = CGRectGetMaxY(self.upTableView.frame)+GetScaleWidth(10);
