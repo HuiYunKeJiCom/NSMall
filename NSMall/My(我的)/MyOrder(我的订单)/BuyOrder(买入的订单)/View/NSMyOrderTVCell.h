@@ -12,4 +12,5 @@
 @interface NSMyOrderTVCell : BaseTableCell
 @property (nonatomic, strong) NSOrderListItemModel  *model;
 @property (nonatomic, copy) dispatch_block_t nextOperationClickBlock;/* 按钮点击回调 */
+//@property(nonatomic)CGFloat cellHeight;/* cell高度 */
 @end

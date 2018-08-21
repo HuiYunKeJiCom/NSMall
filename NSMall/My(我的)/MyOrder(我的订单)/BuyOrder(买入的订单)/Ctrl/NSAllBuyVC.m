@@ -12,6 +12,7 @@
 #import "MyOrderAPI.h"
 #import "MyOrderParam.h"
 #import "NSOrderDetailVC.h"
+#import "NSGetExpressAPI.h"
 
 @interface NSAllBuyVC ()<UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
 @property (nonatomic, strong) BaseTableView         *allOrderTable;
@@ -122,7 +123,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return GetScaleWidth(173);
+    NSOrderListItemModel *orderItemModel = self.allOrderTable.data[indexPath.section];
+    return orderItemModel.cellHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -130,7 +132,9 @@
     if (self.allOrderTable.data.count > indexPath.section) {
         NSOrderListItemModel *model = self.allOrderTable.data[indexPath.section];
         cell.model = model;
+        WEAKSELF
         cell.nextOperationClickBlock = ^{
+            [weakSelf confirmOrderWithIndexPath:indexPath];
         };
     };
     return cell;
@@ -167,5 +171,17 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)confirmOrderWithIndexPath:(NSIndexPath *)indexPath{
+    NSMyOrderTVCell *cell = [self.allOrderTable cellForRowAtIndexPath:indexPath];
+    [NSGetExpressAPI confirmOrderWithParam:cell.model.order_id success:^{
+        DLog(@"操作成功");
+        [Common AppShowToast:@"操作成功"];
+        [self requestAllOrder:NO];
+    } faulre:^(NSError *error) {
+        
+    }];
+}
+
 
 @end

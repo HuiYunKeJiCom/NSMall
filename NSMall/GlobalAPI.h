@@ -20,9 +20,9 @@
 //#define NetDomainADDR @"://2008503qw3.51mypc.cn"
 //const static NSString * const NetDomainADDR = @"http://adelshop.iok.la:41831/nsshop/app/";//锡恩电脑环境
 
-const static NSString * const NetDomainADDR = @"https://stagewww.neublockchain.com/nsshop/app/";//国外测试环境
+//const static NSString * const NetDomainADDR = @"https://stagewww.neublockchain.com/nsshop/app/";//国外测试 环境
 
-//const static NSString * const NetDomainADDR = @"https://ns.neublockchain.com/nsshop/app/";//生产环境
+const static NSString * const NetDomainADDR = @"https://ns.neublockchain.com/nsshop/app/";//生产环境
 
 
 //const static NSString * const NetDomainADDR = @"http://192.168.0.59:7108/nsshop/app/";//锡恩电脑环境
@@ -73,7 +73,7 @@ const static NSString * const kSaveAddressAPI = @"auth/saveAddress";//新增/编
 const static NSString * const kSetDefaultAddressAPI = @"auth/setDefaultAddress";//设置默认收货地址
 const static NSString * const kDelAddressAPI = @"auth/delAddress";//删除收货地址
 
-const static NSString * const kCategoryAPI = @"category";//获取商品分类
+//const static NSString * const kCategoryAPI = @"category";//获取商品分类
 
 //商品发布
 const static NSString * const kCreateProductAPI = @"auth/createProduct";//商品发布
@@ -141,5 +141,10 @@ const static NSString * const kRedpacketLogsAPI = @"auth/redpacketLogs";//红包
 const static NSString * const kQueryRedpacketAPI = @"auth/queryRedpacket";//查看红包状态
 
 //个人页面
-const static NSString * const kGetCommentByUserAPI = @"getCommentByUser";//查看红包状态G
+const static NSString * const kGetCommentByUserAPI = @"getCommentByUser";//查看红包状态
+
+
+const static NSString * const kGetShipCompanyAPI = @"getShipCompany";//获取快递公司数据
+const static NSString * const kDeliveryOrderAPI = @"auth/deliveryOrder";//卖家发货
+const static NSString * const kConfirmOrderAPI = @"auth/confirmOrder";//买家确认收货
 

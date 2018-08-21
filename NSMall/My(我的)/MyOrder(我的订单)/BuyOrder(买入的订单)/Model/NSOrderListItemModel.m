@@ -12,4 +12,12 @@
 + (NSDictionary *)modelContainerPropertyGenericClass{
     return @{@"productList":[NSOrderProductItemModel class]};
 }
+
+-(float)cellHeight{
+    if([self.type isEqualToString:@"0"] && (self.order_status == 3)){
+        return GetScaleWidth(173)+50;
+    }else{
+        return GetScaleWidth(173);
+    }
+}
 @end

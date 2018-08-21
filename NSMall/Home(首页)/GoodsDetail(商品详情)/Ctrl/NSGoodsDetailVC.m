@@ -24,6 +24,7 @@
 #import "NSPublishCommentParam.h"
 #import "UserPageVC.h"
 #import "UITextView+ZWPlaceHolder.h"
+#import "NSViewPictureVC.h"
 
 @interface NSGoodsDetailVC ()<UIScrollViewDelegate,NSMessageTVDelegate,UIAlertViewDelegate,UITextViewDelegate>
 @property(nonatomic,strong)UIScrollView *SV;/* 滚动 */
@@ -44,6 +45,7 @@
 @property(nonatomic,strong)UIView *bottomV;/* 底部留言View */
 @property(nonatomic,strong)UITextView *messageTF;/* 评论框 */
 @property(nonatomic,strong)NSString *firstImage;/* 第一张图片 */
+@property(nonatomic,strong)NSMutableArray *imageArr;/* 图片数组 */
 @end
 
 @implementation NSGoodsDetailVC
@@ -52,6 +54,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
    
+    self.imageArr = [NSMutableArray array];
     self.param = [NSProductCommentParam new];
     [self setUpNavTopView];
 //    self.currentPage = 1;
@@ -136,9 +139,18 @@
     for(int i=0;i<self.model.productImageList.count;i++){
         UIImageView *goodsIV = [[UIImageView alloc]initWithFrame:CGRectMake((itemWidth+GetScaleWidth(8))*i, 0, itemWidth, itemWidth)];
         [goodsIV sd_setImageWithURL:[NSURL URLWithString:self.model.productImageList[i]]];
+        goodsIV.tag = i + 1000;
         [imageSV addSubview:goodsIV];
-    }
+        goodsIV.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(TapAction:)];
+        [goodsIV addGestureRecognizer:tap];
 
+    }
+    [self.imageArr removeAllObjects];
+    self.imageArr = [NSMutableArray arrayWithArray:self.model.productImageList];
+//    DLog(@"点击前self.model.productImageList = %@",self.model.productImageList);
+//    DLog(@"点击前self.imageArr = %@",self.imageArr)
     goodsIntroductionV.size = CGSizeMake(kScreenWidth, self.height+GetScaleWidth(4));
     
     //卖家信息
@@ -800,6 +812,19 @@
     UserPageVC *userPageVC = [UserPageVC new];
     [userPageVC setUpDataWithUserId:self.model.user_id];
     [self.navigationController pushViewController:userPageVC animated:YES];
+}
+
+- (void)TapAction:(UITapGestureRecognizer *)tap{
+    
+    NSViewPictureVC *photoVC = [[NSViewPictureVC alloc] init];
+    photoVC.imageTag = tap.view.tag - 1000 ;//获取当前被点击图片的 tag
+//    DLog(@"点击后self.model.productImageList = %@",self.model.productImageList);
+//    DLog(@"点击前self.imageArr = %@",self.imageArr)
+    photoVC.photoArr = self.imageArr;
+    
+    [photoVC setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];// 效果
+    [self presentModalViewController:photoVC animated:YES];
+    
 }
 
 

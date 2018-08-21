@@ -282,9 +282,9 @@
     [allTotalTitle sizeToFit];
     allTotalTitle.textColor = kBlackColor;
     [footView addSubview:allTotalTitle];
-
-    height += CGRectGetMaxY(footView.frame);
     
+    height += CGRectGetMaxY(footView.frame);
+
     self.bgView.size = CGSizeMake(kScreenWidth, height);
 }
 

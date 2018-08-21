@@ -26,4 +26,6 @@
 @property (nonatomic,copy)NSString *user_name;//卖家昵称【订单类型为1时，该参数为买家昵称】
 @property (nonatomic,copy)NSString *user_avatar;//卖家头像【订单类型为1时，该参数为买家头像】
 @property (nonatomic,strong)NSArray<NSOrderProductItemModel *> *productList;
+
+@property(nonatomic)float cellHeight;/* cell高度 */
 @end

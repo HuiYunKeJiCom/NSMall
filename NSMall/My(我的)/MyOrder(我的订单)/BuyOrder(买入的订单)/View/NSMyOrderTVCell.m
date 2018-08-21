@@ -18,7 +18,8 @@
 @property(nonatomic,strong)UILabel *stateLab;/* 状态 */
 @property(nonatomic,strong)UIView *lineView1;/* 分割线1 */
 @property(nonatomic,strong)UILabel *totalLab;/* 总计 */
-//@property(nonatomic,strong)UIButton *nextOperation;/* 下一步 */
+@property (nonatomic, strong) UIView           *operationView;
+@property(nonatomic,strong)UIButton *nextOperation;/* 下一步 */
 @end
 
 @implementation NSMyOrderTVCell
@@ -62,18 +63,23 @@
     self.totalLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum14 TextColor:kGreyColor];
     [self.bgView addSubview:self.totalLab];
     
-//    self.nextOperation = [UIButton buttonWithType:UIButtonTypeCustom];
-//    self.nextOperation.titleLabel.font = UISystemFontSize(14);
-//
-//    // 设置圆角的大小
-//    self.nextOperation.layer.cornerRadius = 5.0;
-//    [self.nextOperation.layer setMasksToBounds:YES];
-////    self.nextOperation.layer.borderWidth = 1;
-////    self.nextOperation.layer.borderColor = [KMainColor CGColor];
-//    [self.nextOperation setTitleColor:kWhiteColor forState:UIControlStateNormal];
-////    self.nextOperation.backgroundColor = kRedColor;
-//    [self.nextOperation addTarget:self action:@selector(nextOperationClick) forControlEvents:UIControlEventTouchUpInside];
-//    [self.bgView addSubview:self.nextOperation];
+    self.operationView = [[UIView alloc]init];
+    self.operationView.alpha = 0.0;
+    self.operationView.backgroundColor = kWhiteColor;
+    [self addSubview:self.operationView];
+    
+    self.nextOperation = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.nextOperation.titleLabel.font = UISystemFontSize(14);
+
+    // 设置圆角的大小
+    self.nextOperation.layer.cornerRadius = 5.0;
+    [self.nextOperation.layer setMasksToBounds:YES];
+//    self.nextOperation.layer.borderWidth = 1;
+//    self.nextOperation.layer.borderColor = [KMainColor CGColor];
+    [self.nextOperation setTitleColor:kWhiteColor forState:UIControlStateNormal];
+    self.nextOperation.backgroundColor = KMainColor;
+    [self.nextOperation addTarget:self action:@selector(nextOperationClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.operationView addSubview:self.nextOperation];
 }
 
 -(void)layoutSubviews{
@@ -104,12 +110,14 @@
     self.arrowIV.image = IMAGE(@"my_ico_right_arrow");
     switch (model.order_status) {
         case 1:{
+            self.operationView.alpha = 0.0;
             self.stateLab.text = NSLocalizedString(@"wait pay", nil);
 //            [self.nextOperation setTitle:NSLocalizedString(@"to pay", nil) forState:UIControlStateNormal];
 //            self.nextOperation.backgroundColor = kRedColor;
         }
             break;
         case 2:{
+            self.operationView.alpha = 0.0;
             self.stateLab.text = NSLocalizedString(@"wait deliver", nil);
 //            [self.nextOperation setTitle:@"去发货" forState:UIControlStateNormal];
 //            self.nextOperation.backgroundColor = kRedColor;
@@ -119,25 +127,31 @@
             self.stateLab.text = NSLocalizedString(@"wait receive", nil);
 //            self.nextOperation.backgroundColor = KMainColor;
             if([model.type isEqualToString:@"1"]){
+                self.operationView.alpha = 0.0;
 //                [self.nextOperation setTitle:NSLocalizedString(@"to evaluate", nil) forState:UIControlStateNormal];
             }else{
-//                [self.nextOperation setTitle:NSLocalizedString(@"confirm receipt", nil) forState:UIControlStateNormal];
+                self.operationView.alpha = 1.0;
+                [self.nextOperation setTitle:@"确认收货" forState:UIControlStateNormal];
             }
         }
             break;
         case 4:
+            self.operationView.alpha = 0.0;
             self.stateLab.text = NSLocalizedString(@"completed", nil)
 ;//待评价
             break;
         case 10:
+            self.operationView.alpha = 0.0;
             self.stateLab.text = NSLocalizedString(@"completed", nil)
 ;//已结束,不可评价和退换货
             break;
         case 11:
+            self.operationView.alpha = 0.0;
             self.stateLab.text = NSLocalizedString(@"cancelled", nil)
 ;//手动取消
             break;
         case 12:
+            self.operationView.alpha = 0.0;
             self.stateLab.text = NSLocalizedString(@"cancelled", nil)
 ;//超时自动取消
             break;
@@ -180,6 +194,7 @@
 }
 
 -(void)nextOperationClick{
+    DLog(@"点击确认收货");
     !_nextOperationClickBlock ? : _nextOperationClickBlock();
 }
 
@@ -228,11 +243,17 @@
         make.size.mas_equalTo(CGSizeMake(kScreenWidth, GetScaleWidth(1)));
     }];
     
-//    [self.nextOperation mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.equalTo(weakSelf.bgView.mas_right).with.offset(-19);
-//        make.bottom.equalTo(weakSelf.bgView.mas_bottom).with.offset(GetScaleWidth(-10));
-//        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(67), GetScaleWidth(28)));
-//    }];
+    [self.operationView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.contentView.mas_left);
+        make.top.equalTo(weakSelf.bgView.mas_bottom);
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth, 50));
+    }];
+    
+    [self.nextOperation mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(weakSelf.operationView.mas_right).with.offset(-19);
+        make.bottom.equalTo(weakSelf.operationView.mas_bottom).with.offset(GetScaleWidth(-10));
+        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(100), 30));
+    }];
     
     [self.totalLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(weakSelf.bgView.mas_right).with.offset(-19);
@@ -241,4 +262,12 @@
     }];
 
 }
+
+//-(CGFloat)cellHeight{
+//    if([self.model.type isEqualToString:@"0"] && (self.model.order_status == 3)){
+//        return GetScaleWidth(173)+50;
+//    }else{
+//        return GetScaleWidth(173);
+//    }
+//}
 @end

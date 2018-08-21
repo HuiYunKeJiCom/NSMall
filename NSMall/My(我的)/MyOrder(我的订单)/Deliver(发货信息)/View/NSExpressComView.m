@@ -1,24 +1,24 @@
 //
-//  NSPayView.m
+//  NSExpressComView.m
 //  NSMall
 //
-//  Created by 张锐凌 on 2018/6/1.
+//  Created by 张锐凌 on 2018/8/21.
 //  Copyright © 2018年 www. All rights reserved.
 //
 
-#import "NSPayView.h"
-#import "NSPayViewTVCell.h"
+#import "NSExpressComView.h"
+#import "NSExpressTVCell.h"
 
-@interface NSPayView()<UIGestureRecognizerDelegate,UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
+@interface NSExpressComView()<UIGestureRecognizerDelegate,UITableViewDelegate,UITableViewDataSource,BaseTableViewDelegate>
 @property (nonatomic, weak) UIView *contentView;
-@property(nonatomic,strong)UILabel *payTitle;/* 付款标题 */
-@property(nonatomic,strong)UILabel *payLab;/* 付款金额 */
+//@property(nonatomic,strong)UILabel *payTitle;/* 付款标题 */
+//@property(nonatomic,strong)UILabel *payLab;/* 付款金额 */
 @property(nonatomic,strong)NSMutableArray *cellArray;/* 保存地址列表Cell */
-@property(nonatomic,strong)BaseTableView *walletListTV;/* 钱包列表 */
+@property(nonatomic,strong)BaseTableView *expressListTV;/* 快递公司列表 */
 @property (nonatomic) NSInteger row;
 @end
 
-@implementation NSPayView
+@implementation NSExpressComView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -48,9 +48,9 @@
     
     UIView *contentView = [[UIView alloc] initWithFrame:(CGRect){0, kScreenHeight - kATTR_VIEW_HEIGHT, kScreenWidth, kATTR_VIEW_HEIGHT}];
     contentView.backgroundColor = [UIColor whiteColor];
-//    // 添加手势，遮盖整个视图的手势，
-//    UITapGestureRecognizer *contentViewTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:nil];
-//    [contentView addGestureRecognizer:contentViewTapGesture];
+    //    // 添加手势，遮盖整个视图的手势，
+    //    UITapGestureRecognizer *contentViewTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:nil];
+    //    [contentView addGestureRecognizer:contentViewTapGesture];
     [self addSubview:contentView];
     self.contentView = contentView;
     
@@ -63,39 +63,30 @@
     titleLab.textColor = kBlackColor;
     [self.contentView addSubview:titleLab];
     
-    self.walletListTV = [[BaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    self.walletListTV.x = 0;
-    self.walletListTV.y = CGRectGetMaxY(titleLab.frame)+12;
-    self.walletListTV.size = CGSizeMake(kScreenWidth, GetScaleWidth(40)*4);
-//    self.walletListTV.backgroundColor = kRedColor;
-    self.walletListTV.delegate = self;
-    self.walletListTV.dataSource = self;
-    self.walletListTV.isLoadMore = YES;
-    self.walletListTV.isRefresh = NO;
-    self.walletListTV.delegateBase = self;
-    [self.walletListTV registerClass:[NSPayViewTVCell class] forCellReuseIdentifier:@"NSPayViewTVCell"];
-    [self.contentView addSubview:self.walletListTV];
+    self.expressListTV = [[BaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.expressListTV.x = 0;
+    self.expressListTV.y = CGRectGetMaxY(titleLab.frame)+12;
+    self.expressListTV.size = CGSizeMake(kScreenWidth, GetScaleWidth(40)*4);
+    //    self.walletListTV.backgroundColor = kRedColor;
+    self.expressListTV.delegate = self;
+    self.expressListTV.dataSource = self;
+    self.expressListTV.isLoadMore = YES;
+    self.expressListTV.isRefresh = NO;
+    self.expressListTV.delegateBase = self;
+    [self.expressListTV registerClass:[NSExpressTVCell class] forCellReuseIdentifier:@"NSExpressTVCell"];
+    [self.contentView addSubview:self.expressListTV];
     
     UIButton *confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     confirmBtn.backgroundColor = KMainColor;
     confirmBtn.x = 18;
     confirmBtn.y = kATTR_VIEW_HEIGHT-44-15;
     confirmBtn.size = CGSizeMake(kScreenWidth-36, 44);
-    [confirmBtn setTitle:@"确认付款" forState:UIControlStateNormal];
+    [confirmBtn setTitle:@"确认" forState:UIControlStateNormal];
     [confirmBtn addTarget:self action:@selector(confirmPay) forControlEvents:UIControlEventTouchUpInside];
     confirmBtn.layer.cornerRadius = 5;//设置那个圆角的有多圆
     confirmBtn.layer.masksToBounds = YES;//设为NO去试试
     [self.contentView addSubview:confirmBtn];
     
-    self.payLab = [[UILabel alloc]init];
-    self.payLab.font = UISystemFontSize(14);
-    self.payLab.textColor = kRedColor;
-    [self.contentView addSubview:self.payLab];
-    
-    self.payTitle = [[UILabel alloc]init];
-    self.payTitle.font = UISystemFontSize(14);
-    self.payTitle.textColor = kBlackColor;
-    [self.contentView addSubview:self.payTitle];
 }
 
 - (void)showInView:(UIView *)view {
@@ -121,33 +112,16 @@
 
 -(void)confirmPay{
     DLog(@"确认添加");
-    for(NSPayViewTVCell *cell in self.cellArray){
+    for(NSExpressTVCell *cell in self.cellArray){
         if(cell.isSelected){
-            self.walletId = cell.walletModel.wallet_id;
+            self.selectModel = cell.expressModel;
         }
     }
     !_confirmClickBlock ? : _confirmClickBlock();
 }
 
--(void)setWalletId:(NSString *)walletId{
-    _walletId = walletId;
-}
-
--(void)setPayString:(NSString *)payString{
-    _payString = payString;
-    
-    self.payLab.text = payString;
-    CGSize sum = [self contentSizeWithTitle:payString andFont:14];
-    self.payLab.y = kATTR_VIEW_HEIGHT-44-15-sum.height-20;
-    self.payLab.x = kScreenWidth-19-sum.width;
-    [self.payLab sizeToFit];
-    
-    self.payTitle.text = @"需付款";
-    CGSize titleSize = [self contentSizeWithTitle:self.payTitle.text andFont:14];
-    self.payTitle.x = CGRectGetMinX(self.payLab.frame)-10-titleSize.width;
-    self.payTitle.y = CGRectGetMinY(self.payLab.frame);
-    [self.payTitle sizeToFit];
-    
+-(void)setSelectModel:(NSExpressModel *)selectModel{
+    _selectModel = selectModel;
 }
 
 - (CGSize)contentSizeWithTitle:(NSString *)title andFont:(float)font{
@@ -163,23 +137,23 @@
     return _cellArray;
 }
 
--(void)setWalletNameArr:(NSMutableArray<WalletItemModel *> *)walletNameArr{
-    _walletNameArr = walletNameArr;
+-(void)setExpressNameArr:(NSMutableArray<NSExpressModel *> *)expressNameArr{
+    _expressNameArr = expressNameArr;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.walletNameArr.count;
+    return self.expressNameArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-        return GetScaleWidth(40);
+    return GetScaleWidth(40);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSPayViewTVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSPayViewTVCell"];
-    WalletItemModel *model = self.walletNameArr[indexPath.row];
-    cell.walletModel = model;
+    NSExpressTVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSExpressTVCell"];
+    NSExpressModel *model = self.expressNameArr[indexPath.row];
+    cell.expressModel = model;
     if(indexPath.row ==self.row && cell.isSelected){
         cell.seclectIV.alpha = 1.0;
     }else{
@@ -190,16 +164,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    for(NSPayViewTVCell *cell in self.cellArray){
+    for(NSExpressTVCell *cell in self.cellArray){
         cell.isSelected = NO;
     }
     self.row = indexPath.row;
-    NSPayViewTVCell *cell = [self.walletListTV cellForRowAtIndexPath:indexPath];
+    NSExpressTVCell *cell = [self.expressListTV cellForRowAtIndexPath:indexPath];
     cell.isSelected = YES;
     [self.cellArray removeAllObjects];
-    [self.walletListTV reloadData];
+    [self.expressListTV reloadData];
 }
-
 
 
 @end

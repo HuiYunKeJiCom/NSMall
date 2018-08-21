@@ -45,11 +45,12 @@
     
     [super viewWillAppear:animated];
     if (self.index) {
-        
+
         [self changeScrollview:self.index];
-        
+
         //UIScrollViewDecelerationRateFast;
     }
+    self.segment.selectedSegmentIndex = 0;
     
 }
 

@@ -317,5 +317,14 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
     }
 }
 
+/*!
+ @method
+ @brief 用户B删除与用户A的好友关系后，用户A，B会收到这个回调
+ */
+- (void)friendshipDidRemoveByUser:(NSString *)aUsername{
+//    DLog(@"你已经被%@删除了",aUsername);
+    
+}
+
 @end
 

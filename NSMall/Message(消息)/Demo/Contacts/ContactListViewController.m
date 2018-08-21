@@ -364,16 +364,16 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-//    if (self.indexPath == nil)
-//    {
-//        return;
-//    }
-//
-//    NSIndexPath *indexPath = self.indexPath;
-//    EaseUserModel *model = [[self.dataArray objectAtIndex:(indexPath.section - 1)] objectAtIndex:indexPath.row];
-//    self.indexPath = nil;
-//
-//    __weak typeof(self) weakSelf = self;
+    if (self.indexPath == nil)
+    {
+        return;
+    }
+
+    NSIndexPath *indexPath = self.indexPath;
+    EaseUserModel *model = [[self.dataArray objectAtIndex:(indexPath.section - 1)] objectAtIndex:indexPath.row];
+    self.indexPath = nil;
+
+    __weak typeof(self) weakSelf = self;
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 //        EMError *error = nil;
 //        if (buttonIndex == alertView.cancelButtonIndex) {
@@ -381,22 +381,29 @@
 //        } else {
 //            error = [[EMClient sharedClient].contactManager deleteContact:model.buddy isDeleteConversation:YES];
 //        }
-//
+
 //        dispatch_async(dispatch_get_main_queue(), ^{
 //            if (!error) {
 //                DLog(@"删除成功 = %@",error);
-//                if ([weakSelf.dataArray count] >= indexPath.section) {
-//                    NSMutableArray *tmp = [weakSelf.dataArray objectAtIndex:(indexPath.section - 1)];
-//                    [NSMessageAPI deleteFriendWithParam:model.buddy success:^{
-//                        DLog(@"删除好友成功");
-//                    } faulre:^(NSError *error) {
-//                    }];
-//                    [tmp removeObject:model.buddy];
-//                    [weakSelf.contactsSource removeObject:model.buddy];
-//
-//
-//                    [weakSelf.tableView reloadData];
-//                }
+            
+            if (buttonIndex == alertView.cancelButtonIndex) {
+                return ;
+            }else{
+                if ([weakSelf.dataArray count] >= indexPath.section) {
+                    NSMutableArray *tmp = [weakSelf.dataArray objectAtIndex:(indexPath.section - 1)];
+                    [NSMessageAPI deleteFriendWithParam:model.buddy success:^{
+                        DLog(@"删除好友成功");
+                        [Common AppShowToast:@"删除好友成功"];
+                        [tmp removeObject:model.buddy];
+                        [weakSelf.contactsSource removeObject:model.buddy];
+                        [self reloadDataSource];
+                        [weakSelf.tableView reloadData];
+                    } faulre:^(NSError *error) {
+                    }];
+                }
+            }
+            
+            
 //            }
 //            else{
 //                DLog(@"删除error = %@",error);
@@ -479,7 +486,7 @@
 {
     self.indexPath = aIndexPath;
 //    NSLocalizedString(@"message.deleteConversation", nil)
-    UIAlertView *alertView = [[ UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:NSLocalizedString(@"delete not developed", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel") otherButtonTitles:NSLocalizedString(@"ok", @"OK"), nil];
+    UIAlertView *alertView = [[ UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:@"确定要删除好友吗?" delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel") otherButtonTitles:NSLocalizedString(@"ok", @"OK"), nil];
     [alertView show];
 }
 
@@ -765,5 +772,7 @@
 //        NSLog(@"发送同意成功");
 //    }
 //}
+
+
 
 @end
