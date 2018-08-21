@@ -152,25 +152,26 @@
     }];
     
     [self.likeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.bgView.mas_left).with.offset((kScreenWidth-GetScaleWidth(80*3))/4.0);
+        make.left.equalTo(weakSelf.bgView.mas_left).with.offset((kScreenWidth-90*3)/4.0);
         make.top.equalTo(weakSelf.detailLab.mas_bottom).with.offset(GetScaleWidth(15));
-        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(80), GetScaleWidth(20)));
+        make.size.mas_equalTo(CGSizeMake(90, GetScaleWidth(20)));
         make.bottom.equalTo(weakSelf.bgView.mas_bottom).with.offset(-GetScaleWidth(19));
     }];
     
     [self.commentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.bgView.mas_left).with.offset((kScreenWidth-GetScaleWidth(80*3))/2.0+GetScaleWidth(80));
+        make.left.equalTo(weakSelf.bgView.mas_left).with.offset((kScreenWidth-90*3)/2.0+90);
         make.top.equalTo(weakSelf.detailLab.mas_bottom).with.offset(GetScaleWidth(15));
-        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(80), GetScaleWidth(20)));
+        make.size.mas_equalTo(CGSizeMake(90, GetScaleWidth(20)));
         make.bottom.equalTo(weakSelf.bgView.mas_bottom).with.offset(-GetScaleWidth(14));
     }];
     
     [self.shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.bgView.mas_left).with.offset((kScreenWidth-GetScaleWidth(80*3))/4.0*3+GetScaleWidth(80*2));
+        make.left.equalTo(weakSelf.bgView.mas_left).with.offset((kScreenWidth-90*3)/4.0*3+90*2);
         make.top.equalTo(weakSelf.detailLab.mas_bottom).with.offset(GetScaleWidth(15));
-        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(80), GetScaleWidth(20)));
+        make.size.mas_equalTo(CGSizeMake(90, GetScaleWidth(20)));
         make.bottom.equalTo(weakSelf.bgView.mas_bottom).with.offset(-GetScaleWidth(14));
     }];
+    
 }
 
 -(void)setProductModel:(ProductListItemModel *)productModel{

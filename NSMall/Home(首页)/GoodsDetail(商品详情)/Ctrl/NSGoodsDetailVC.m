@@ -194,7 +194,8 @@
     NSString *shopContentStr = [NSString stringWithFormat:@"%lu商品  %lu店铺  %lu评价",self.model.product_number,self.model.store_number,self.model.comment_number];
     
     CGSize shopContentSize = [self contentSizeWithTitle:shopContentStr andFont:13];
-    UILabel *shopContent = [[UILabel alloc] initWithFrame:CGRectMake(GetScaleWidth(18), GetScaleWidth(10)+GetScaleWidth(34)-shopContentSize.height,shopContentSize.width,shopContentSize.height) FontSize:13];
+    UILabel *shopContent = [[UILabel alloc] initWithFrame:CGRectMake(GetScaleWidth(18),CGRectGetMaxY(userName.frame)+5,shopContentSize.width,shopContentSize.height) FontSize:13];
+//    GetScaleWidth(10)+GetScaleWidth(34)-shopContentSize.height
     shopContent.textColor = kGreyColor;
     shopContent.text = shopContentStr;
     [sellerView addSubview:shopContent];
@@ -294,46 +295,53 @@
 #pragma mark - 收藏 购物车
 - (void)setUpLeftTwoButton
 {
-    CGFloat buttonW = kScreenWidth * 0.5*0.35;
+//    DLog(@"kScreenWidth = %.2f",kScreenWidth);
+    CGFloat buttonW = 70;
     CGFloat buttonH = GetScaleWidth(50);
     CGFloat buttonY = kScreenHeight - buttonH;
-    
+//    DLog(@"buttonW = %.2f",buttonW);
     UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, buttonY, kScreenWidth, buttonH)];
     bottomView.backgroundColor = kWhiteColor;
     bottomView.layer.borderWidth = 1;
     bottomView.layer.borderColor = [KBGCOLOR CGColor];
     [self.view addSubview:bottomView];
     
-    UIButton *collectionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    if(self.isCollect){
-        [collectionBtn setImageWithTitle:IMAGE(@"goods_detail_ico_fav_on") withTitle:@"收藏" position:@"left" font:UISystemFontSize(13) forState:UIControlStateNormal];
-    }else{
-        [collectionBtn setImageWithTitle:IMAGE(@"goods_detail_ico_fav") withTitle:@"收藏" position:@"left" font:UISystemFontSize(13) forState:UIControlStateNormal];
-    }
-
-    collectionBtn.frame = CGRectMake(0, 2, buttonW+20, buttonH);
-    [bottomView addSubview:collectionBtn];
-        collectionBtn.tag = 2;
-//    collectionBtn.backgroundColor = kRedColor;
-    [collectionBtn setTitleColor:kBlackColor forState:UIControlStateNormal];
-        [collectionBtn addTarget:self action:@selector(collectionGoods:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    UIButton *messageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [messageBtn setTitleColor:kBlackColor forState:UIControlStateNormal];
-    [messageBtn setImageWithTitle:IMAGE(@"goods_detail_ico_message") withTitle:@"留言" position:@"left" font:UISystemFontSize(13) forState:UIControlStateNormal];
-    messageBtn.tag = 3;
-    [messageBtn addTarget:self action:@selector(showBottomV) forControlEvents:UIControlEventTouchUpInside];
-    messageBtn.frame = CGRectMake(buttonW+10, 2, buttonW, buttonH);
-    [bottomView addSubview:messageBtn];
-    
     UIButton *buycarBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [buycarBtn setImageWithTitle:IMAGE(@"goods_detail_ico_buycar") withTitle:@"购物车" position:@"left" font:UISystemFontSize(13) forState:UIControlStateNormal];
+    [buycarBtn setImageWithTitle:IMAGE(@"goods_detail_ico_buycar") withTitle:@"购物车" position:@"left" font:UISystemFontSize(11) forState:UIControlStateNormal];
     [buycarBtn setTitleColor:kBlackColor forState:UIControlStateNormal];
     buycarBtn.tag = 4;
     [buycarBtn addTarget:self action:@selector(goToCart) forControlEvents:UIControlEventTouchUpInside];
-    buycarBtn.frame = CGRectMake(buttonW*2, 2, buttonW+20, buttonH);
     [bottomView addSubview:buycarBtn];
+//    buycarBtn.backgroundColor = kRedColor;
+    
+    UIButton *messageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [messageBtn setTitleColor:kBlackColor forState:UIControlStateNormal];
+    [messageBtn setImageWithTitle:IMAGE(@"goods_detail_ico_message") withTitle:@"留言" position:@"left" font:UISystemFontSize(11) forState:UIControlStateNormal];
+    messageBtn.tag = 3;
+    [messageBtn addTarget:self action:@selector(showBottomV) forControlEvents:UIControlEventTouchUpInside];
+    [bottomView addSubview:messageBtn];
+//    messageBtn.backgroundColor = [UIColor greenColor];
+    
+    UIButton *collectionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    if(self.isCollect){
+        [collectionBtn setImageWithTitle:IMAGE(@"goods_detail_ico_fav_on") withTitle:@"收藏" position:@"left" font:UISystemFontSize(11) forState:UIControlStateNormal];
+    }else{
+        [collectionBtn setImageWithTitle:IMAGE(@"goods_detail_ico_fav") withTitle:@"收藏" position:@"left" font:UISystemFontSize(11) forState:UIControlStateNormal];
+    }
+    [bottomView addSubview:collectionBtn];
+    collectionBtn.tag = 2;
+    [collectionBtn setTitleColor:kBlackColor forState:UIControlStateNormal];
+    [collectionBtn addTarget:self action:@selector(collectionGoods:) forControlEvents:UIControlEventTouchUpInside];
+//        collectionBtn.backgroundColor = kRedColor;
+    if(kScreenWidth == 320.00){
+        buycarBtn.frame = CGRectMake(buttonW*2-45, 2, buttonW+20, buttonH);//+20
+        messageBtn.frame = CGRectMake(buttonW-25, 2, buttonW, buttonH);
+        collectionBtn.frame = CGRectMake(-10, 2, buttonW, buttonH);//+20
+    }else{
+        buycarBtn.frame = CGRectMake(buttonW*2, 2, buttonW+20, buttonH);//+20
+        messageBtn.frame = CGRectMake(buttonW, 2, buttonW, buttonH);
+        collectionBtn.frame = CGRectMake(0, 2, buttonW, buttonH);//+20
+    }
     
 }
 
@@ -341,12 +349,18 @@
 - (void)setUpRightTwoButton
 {
     NSArray *titles = @[@"加入购物车",@"立即购买"];
-    CGFloat buttonW = 75;
+    CGFloat buttonW = 60;//75
     CGFloat buttonH = 28;
-    CGFloat buttonY = kScreenHeight - buttonH-11;
+    CGFloat buttonY = 0.0;
+    if(kScreenWidth == 320.00){
+        buttonY = kScreenHeight - buttonH-6;
+    }else{
+        buttonY = kScreenHeight - buttonH-11;
+    }
+    
     for (NSInteger i = 0; i < titles.count; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.titleLabel.font = UISystemFontSize(14);
+        button.titleLabel.font = UISystemFontSize(11);
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         button.tag = i + 20;
         [button setTitle:titles[i] forState:UIControlStateNormal];
@@ -357,6 +371,7 @@
         }
         [button addTarget:self action:@selector(bottomButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         CGFloat buttonX = kScreenWidth-4-buttonW-(buttonW+11)*(1-i);
+//        DLog(@"buttonX = %.2f",buttonX);
         button.frame = CGRectMake(buttonX, buttonY, buttonW, buttonH);
 
         [self.view addSubview:button];

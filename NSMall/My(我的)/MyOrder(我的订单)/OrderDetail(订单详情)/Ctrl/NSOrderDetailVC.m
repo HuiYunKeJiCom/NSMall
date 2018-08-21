@@ -77,7 +77,7 @@
 
 - (void)requestAllOrder:(BOOL)more {
     [self.goodsTable.data removeAllObjects];
-//    DLog(@"param = %@",self.param.mj_keyValues);
+    DLog(@"param = %@",self.param.mj_keyValues);
     [OrderDetailAPI getOrderDetailWithParam:self.param success:^(NSOrderDetailModel *orderDetailModel) {
         DLog(@"获取订单详情成功");
         self.orderDetailModel = orderDetailModel;

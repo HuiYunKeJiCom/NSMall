@@ -145,7 +145,7 @@
     
     //跳转到订单详情
     NSOrderDetailVC *orderDetailVC = [NSOrderDetailVC new];
-    [orderDetailVC loadDataWithType:@"0" andOrderID:model.order_id];
+    [orderDetailVC loadDataWithType:@"1" andOrderID:model.order_id];
     [self.navigationController pushViewController:orderDetailVC animated:YES];
     
 }

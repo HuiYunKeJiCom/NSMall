@@ -90,6 +90,7 @@
 		18559955210187F300D95602 /* NSMessageAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18559954210187F300D95602 /* NSMessageAPI.m */; };
 		185DFDFE20B3C7E800437168 /* NSCategoryTV.m in Sources */ = {isa = PBXBuildFile; fileRef = 185DFDFD20B3C7E800437168 /* NSCategoryTV.m */; };
 		185DFE0120B3FA8A00437168 /* NSCategoryTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185DFE0020B3FA8A00437168 /* NSCategoryTVCell.m */; };
+		1861C540212A5EF400B9F4E5 /* UIButton+BootstrapCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1861C53F212A5EF400B9F4E5 /* UIButton+BootstrapCopy.m */; };
 		1863D26B20A9873C00047A7D /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863D26A20A9873C00047A7D /* UIButton+Bootstrap.m */; };
 		1868F6A720FEEC90000BB6EB /* XTGuidePagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868F6A320FEEC8F000BB6EB /* XTGuidePagesViewController.m */; };
 		1868F6A820FEEC90000BB6EB /* CALayer+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868F6A420FEEC8F000BB6EB /* CALayer+Transition.m */; };
@@ -627,6 +628,8 @@
 		185DFDFD20B3C7E800437168 /* NSCategoryTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCategoryTV.m; sourceTree = "<group>"; };
 		185DFDFF20B3FA8A00437168 /* NSCategoryTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCategoryTVCell.h; sourceTree = "<group>"; };
 		185DFE0020B3FA8A00437168 /* NSCategoryTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCategoryTVCell.m; sourceTree = "<group>"; };
+		1861C53E212A5EF400B9F4E5 /* UIButton+BootstrapCopy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+BootstrapCopy.h"; sourceTree = "<group>"; };
+		1861C53F212A5EF400B9F4E5 /* UIButton+BootstrapCopy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BootstrapCopy.m"; sourceTree = "<group>"; };
 		1863D26920A9873B00047A7D /* UIButton+Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Bootstrap.h"; sourceTree = "<group>"; };
 		1863D26A20A9873C00047A7D /* UIButton+Bootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Bootstrap.m"; sourceTree = "<group>"; };
 		1868F6A320FEEC8F000BB6EB /* XTGuidePagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTGuidePagesViewController.m; sourceTree = "<group>"; };
@@ -1981,6 +1984,8 @@
 				18D0C0D220AC1A51007F0784 /* UIButton+BtnExt.m */,
 				1863D26920A9873B00047A7D /* UIButton+Bootstrap.h */,
 				1863D26A20A9873C00047A7D /* UIButton+Bootstrap.m */,
+				1861C53E212A5EF400B9F4E5 /* UIButton+BootstrapCopy.h */,
+				1861C53F212A5EF400B9F4E5 /* UIButton+BootstrapCopy.m */,
 			);
 			path = UIButton;
 			sourceTree = "<group>";
@@ -4589,6 +4594,7 @@
 				18B8395C2100D0B00019F9D5 /* NSPaySuccessVC.m in Sources */,
 				1889AF9620D3B43E00FBA33E /* NSTotalStoreV.m in Sources */,
 				1868F6C320FEEFC9000BB6EB /* NSShopListModel.m in Sources */,
+				1861C540212A5EF400B9F4E5 /* UIButton+BootstrapCopy.m in Sources */,
 				1868F76E20FEF391000BB6EB /* EMChatroomMembersViewController.m in Sources */,
 				18DA7CF420C8D8AA009277AA /* ShopPublishParam.m in Sources */,
 				1868F78320FEF391000BB6EB /* EMGroupMutesViewController.m in Sources */,

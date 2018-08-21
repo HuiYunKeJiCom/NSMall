@@ -24,8 +24,10 @@
 #import "ADLUpdateUserInformCtrl.h"
 #import "NSUserCommentParam.h"
 #import "GoodsDetailAPI.h"
+#import "NSGoodsShowCellTest.h"
+#import "NSGoodsDetailVC.h"
 
-@interface UserPageVC ()<EMContactManagerDelegate,UIScrollViewDelegate,NSCommentVMDelegate>
+@interface UserPageVC ()<EMContactManagerDelegate,UIScrollViewDelegate,NSCommentVMDelegate,NSGoodsVMDelegate>
 @property(nonatomic,strong)UserPageModel *userPageM;/* 个人页面模型 */
 @property(nonatomic,strong)UIScrollView *totalSV;/* 总的滚动SV */
 @property(nonatomic,strong)UserHeaderV *headerV;/* 头部View */
@@ -250,6 +252,7 @@
     
     _goodsVM = [[NSGoodsVM alloc]init];
 //    _goodsVM.goodsTV.backgroundColor = [UIColor greenColor];
+    _goodsVM.delegate = self;
     _goodsVM.goodsTV.frame = ((UIView *)_shellViews[0]).bounds;
     [(UIView *)_shellViews[0] addSubview:_goodsVM.goodsTV];
 
@@ -557,6 +560,41 @@
     }];
 }
 
+-(void)didSelectWith:(NSIndexPath *)indexPath{
+    NSGoodsShowCellTest *cell = [self.goodsVM.goodsTV cellForRowAtIndexPath:indexPath];
+//    DLog(@"product_id = %@",cell.productModel.product_id);
+    NSGoodsDetailVC *detailVC = [NSGoodsDetailVC new];
+    [detailVC getDataWithProductID:cell.productModel.product_id andCollectNum:cell.productModel.favorite_number];
+    [self.navigationController pushViewController:detailVC animated:YES];
 
+}
+
+-(void)likeClickAtIndexPath:(NSIndexPath *)indexPath{
+    NSGoodsShowCellTest *cell = [self.goodsVM.goodsTV cellForRowAtIndexPath:indexPath];
+    [HomePageAPI changeProductLikeState:cell.productModel.product_id success:^(NSLikeModel *model) {
+        DLog(@"点赞成功");
+//        DLog(@"model = %@",model.mj_keyValues);
+        if(cell.isLike){
+            [cell.likeBtn setImageWithTitle:IMAGE(@"ico_like") withTitle:@"喜欢" position:@"left" font:UISystemFontSize(14) forState:UIControlStateNormal];
+            cell.isLike = NO;
+        }else{
+            [cell.likeBtn setImageWithTitle:IMAGE(@"home_ico_like_press") withTitle:[NSString stringWithFormat:@"喜欢(%@)",[NSNumber numberWithInteger:model.like_number]] position:@"left" font:UISystemFontSize(14) forState:UIControlStateNormal];
+            cell.isLike = YES;
+        }
+        
+    } failure:^(NSError *error) {
+        DLog(@"点赞失败");
+    }];
+}
+
+-(void)showGoodsQRCode:(NSIndexPath *)indexPath{
+//    DLog(@"分享");
+    [self QRButtonClick];
+    self.shareView.alpha = 0.9;
+    self.bgView.alpha = 1;
+    NSGoodsShowCellTest *cell = [self.goodsVM.goodsTV cellForRowAtIndexPath:indexPath];
+    //    NSString *goodsID = cell.productModel.product_id;
+    [self setUpFilter:[NSString stringWithFormat:@"gid:%@",cell.productModel.product_id]];
+}
 
 @end

@@ -8,9 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol NSGoodsVMDelegate <NSObject>
+
+-(void)didSelectWith:(NSIndexPath *)indexPath;
+-(void)likeClickAtIndexPath:(NSIndexPath *)indexPath;
+-(void)showGoodsQRCode:(NSIndexPath *)indexPath;
+
+@end
+
 @interface NSGoodsVM : NSObject
 
 @property (nonatomic,readonly)BaseTableView *goodsTV;//懒加载使用，外部需要设定frame
 - (void)layoutWithProperty:(NSArray *)propertyies;
 //-(void)reloadData;
+@property (nonatomic, weak) id<NSGoodsVMDelegate> delegate;
 @end

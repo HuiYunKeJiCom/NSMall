@@ -88,6 +88,12 @@
     cell.likeBtnClickBlock = ^{
         [weakSelf likeClickAtIndexPath:indexPath];
     };
+    cell.commentBtnClickBlock = ^{
+        [weakSelf tableView:weakSelf.goodsTV didSelectRowAtIndexPath:indexPath];
+    };
+    cell.shareBtnClickBlock = ^{
+        [weakSelf showGoodsQRCode:indexPath];
+    };
 
     return cell;
     
@@ -95,15 +101,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    DLog(@"跳转到详情页");
-//    NSGoodsShowCellTest *cell = [self.goodsTV cellForRowAtIndexPath:indexPath];
-//    DLog(@"product_id = %@",cell.productModel.product_id);
-//    NSGoodsDetailVC *detailVC = [NSGoodsDetailVC new];
-//    [detailVC getDataWithProductID:cell.productModel.product_id andCollectNum:cell.productModel.favorite_number];
-//    [self.navigationController pushViewController:detailVC animated:YES];
+    if (_delegate && [_delegate respondsToSelector:@selector(didSelectWith:)]) {
+        [_delegate didSelectWith:indexPath];
+    }
 }
 
 -(void)likeClickAtIndexPath:(NSIndexPath *)indexPath{
-    DLog(@"点击喜欢");
+//    DLog(@"点击喜欢");
+    if (_delegate && [_delegate respondsToSelector:@selector(likeClickAtIndexPath:)]) {
+        [_delegate likeClickAtIndexPath:indexPath];
+    }
+}
+
+-(void)showGoodsQRCode:(NSIndexPath *)indexPath{
+//    DLog(@"点击分享");
+    if (_delegate && [_delegate respondsToSelector:@selector(showGoodsQRCode:)]) {
+        [_delegate showGoodsQRCode:indexPath];
+    }
 }
 
 //-(void)reloadData{
