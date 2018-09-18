@@ -204,8 +204,13 @@
 //        [topToolView setRightItemImage:@"delete"];
 //        deleteAllMessages:
     }
-    else{//群聊
-        [topToolView setTopTitleWithNSString:@"群聊"];
+    else if (self.conversation.type == EMConversationTypeGroupChat){//群聊
+        if([self.title isEqualToString:@"未命名"]){
+            [topToolView setTopTitleWithNSString:@"群聊"];
+        }else{
+            [topToolView setTopTitleWithNSString:self.title];
+        }
+        
 
     }
     topToolView.rightItemClickBlock = ^{
@@ -596,6 +601,7 @@
 //    DLog(@"message.ext = %@",message.ext);
     
     if([[message.ext allKeys] containsObject:@"hx_username"]){
+        
     }else if([message.from isEqualToString:[[UserModel modelFromUnarchive] hx_user_name]]){
         
         UserModel *userModel = [UserModel modelFromUnarchive];

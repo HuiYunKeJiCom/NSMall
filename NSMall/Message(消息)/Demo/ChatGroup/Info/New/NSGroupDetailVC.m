@@ -40,6 +40,7 @@
 @property (strong, nonatomic) EMConversation *conversation;
 @property(nonatomic)BOOL isGroupOwn;/* 是否群主 */
 @property(nonatomic)BOOL isShowDel;/* 是否显示删除按钮 */
+@property(nonatomic)NSInteger row;/* 删除成员的下标 */
 
 @end
 
@@ -54,11 +55,13 @@
 //    [self setUpData];
     [self configCollectionView];
     [self setUpNavTopView];
+    [self makeConstraints];
 }
 
 -(void)buildUI{
     
-    
+    [[EMClient sharedClient].groupManager removeDelegate:self];
+    [[EMClient sharedClient].groupManager addDelegate:self delegateQueue:nil];
     
     [self.view addSubview:self.SV];
     [self.SV addSubview:self.collectionView];
@@ -128,9 +131,11 @@
                 model.nick_name = [dict objectForKey:@"nick"];
                 [self.membersArr addObject:model];
             }
-            self.groupName = [tempDict objectForKey:@"groupName"];
+            self.groupName = groupModel.group_name;
             [self.otherTableView.data addObject:[[ADLMyInfoModel alloc] initWithTitle:@"群名称" imageName:nil num:self.groupName]];
             [self.otherTableView reloadData];
+            
+            [self updateConstraints];
             [self.collectionView reloadData];
         } faulre:^(NSError *error) {
             
@@ -171,18 +176,21 @@
     _layout.minimumLineSpacing = _margin;
     [self.collectionView setCollectionViewLayout:_layout];
 
-    [self makeConstraints];
+    
 }
 
 #pragma mark UICollectionView
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-//    if(self.isGroupOwn){
-        return self.membersArr.count + 2;
-//    }else{
-//        return self.membersArr.count;
-//    }
-    
+    if(self.isShowDel){
+        return self.membersArr.count;
+    }else{
+        if(self.isGroupOwn && self.conversation.type == EMConversationTypeGroupChat){
+            return self.membersArr.count + 2;
+        }else{
+            return self.membersArr.count+1;
+        }
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -192,16 +200,20 @@
         cell.avatarIV.image = [UIImage imageNamed:@"AlbumAddBtn"];
         cell.nickLab.hidden = YES;
     } else if (indexPath.row == self.membersArr.count+1) {
-        cell.avatarIV.image = [UIImage imageNamed:@"AlbumAddBtn"];
+        cell.avatarIV.image = [UIImage imageNamed:@"smiley_minus_btn_nor"];
         cell.nickLab.hidden = YES;
     }else{
         cell.model = self.membersArr[indexPath.row];
         cell.nickLab.hidden = NO;
     }
     
-    if(self.isGroupOwn){
+    WEAKSELF
+    cell.delBtnClickBlock = ^{
+        [weakSelf alertTipsDeleteWithIndexPath:indexPath];
+    };
+    
         if(self.isShowDel){
-            if(indexPath.row == 0 || indexPath.row == self.membersArr.count || indexPath.row == self.membersArr.count+1){
+            if(indexPath.row == 0){
                 cell.delBtn.alpha = 0.0;
             }else{
                 cell.delBtn.alpha = 1.0;
@@ -209,9 +221,6 @@
         }else{
             cell.delBtn.alpha = 0.0;
         }
-    }else{
-        cell.delBtn.alpha = 0.0;
-    }
     
     
     
@@ -229,6 +238,7 @@
 
 -(void)showDelBtn{
     self.isShowDel = YES;
+    [self updateConstraintsForDel];
     [self.collectionView reloadData];
 }
 
@@ -279,7 +289,7 @@
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.SV.mas_left);
         make.top.equalTo(weakSelf.SV.mas_top);
-        make.size.mas_equalTo(CGSizeMake(self.view.tz_width, (_membersArr.count + 4)/4 *(_itemWH + _margin*2)));
+        make.size.mas_equalTo(CGSizeMake(self.view.tz_width, (self.membersArr.count + 5)/4 *(_itemWH + _margin*2)));
     }];
 
     [self.middleView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -301,6 +311,43 @@
     }];
     
     
+}
+
+-(void)updateConstraints{
+    WEAKSELF
+   
+    if(self.isShowDel){
+        [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(weakSelf.SV.mas_left);
+            make.top.equalTo(weakSelf.SV.mas_top);
+            make.size.mas_equalTo(CGSizeMake(self.view.tz_width, (self.membersArr.count + 3)/4 *(_itemWH + _margin*2)));
+        }];
+    }else{
+        if(self.isGroupOwn && self.conversation.type == EMConversationTypeGroupChat){
+            [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(weakSelf.SV.mas_left);
+                make.top.equalTo(weakSelf.SV.mas_top);
+                make.size.mas_equalTo(CGSizeMake(self.view.tz_width, (self.membersArr.count + 5)/4 *(_itemWH + _margin*2)));
+            }];
+        }else{
+            [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(weakSelf.SV.mas_left);
+                make.top.equalTo(weakSelf.SV.mas_top);
+                make.size.mas_equalTo(CGSizeMake(self.view.tz_width, (self.membersArr.count + 4)/4 *(_itemWH + _margin*2)));
+            }];
+        }
+    }
+    
+    
+}
+
+-(void)updateConstraintsForDel{
+    WEAKSELF
+    [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.SV.mas_left);
+        make.top.equalTo(weakSelf.SV.mas_top);
+        make.size.mas_equalTo(CGSizeMake(self.view.tz_width, (self.membersArr.count+3)/4 *(_itemWH + _margin*2)));
+    }];
 }
 
 -(UIScrollView *)SV{
@@ -435,6 +482,10 @@
     }else if(alertView.tag == 20){
         if (alertView.cancelButtonIndex != buttonIndex) {
             [self delAndExitGroup];
+        }
+    }else if(alertView.tag == 30){
+        if (alertView.cancelButtonIndex != buttonIndex) {
+            [self deleteWithRow];
         }
     }
     
@@ -653,15 +704,6 @@
 #pragma mark - EMChooseViewDelegate
 - (BOOL)viewController:(EMChooseViewController *)viewController didFinishSelectedSources:(NSArray *)selectedSources
 {
-//    DLog(@"新增群组成员");
-    NSInteger maxUsersCount = 200;
-    if ([selectedSources count] > (maxUsersCount - 1)) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"group.maxUserCount", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
-        [alertView show];
-        
-        return NO;
-    }
-    
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     
@@ -675,9 +717,13 @@
             NSHuanXinUserModel *hxModel = selectedSources[i];
             NSDictionary *dict = @{@"avatar":hxModel.user_avatar,@"hxUsername":hxModel.hx_user_name,@"nick":hxModel.nickname};
             [groupMembers addObject:dict];
+            
+            EMError *error = nil;
+            [[EMClient sharedClient].groupManager addOccupants:@[hxModel.hx_user_name] toGroup:self.groupModel.group_id welcomeMessage:@"欢迎加入" error:&error];
+            
         }
         [jsonDict setValue:groupMembers forKey:@"jsonArray"];
-        [jsonDict setValue:groupName forKey:@"jsonArray"];
+        [jsonDict setValue:groupName forKey:@"groupName"];
         [param setValue:[self convertToJsonData:jsonDict] forKey:@"groupNameJson"];
         [param setValue:self.groupModel.group_id forKey:@"groupId"];
 //    });
@@ -685,6 +731,7 @@
     [NSGroupAPI updateGroupWithParam:param success:^(NSDictionary *groupId) {
         DLog(@"群组信息更新成功");
         [Common AppShowToast:@"群组信息更新成功"];
+        [self setUpDataWithConversation:self.conversation];
     } faulre:^(NSError *error) {
         DLog(@"群组信息更新失败");
     }];
@@ -729,6 +776,47 @@
     
     return mutStr;
     
+}
+
+-(void)alertTipsDeleteWithIndexPath:(NSIndexPath *)indexPath{
+    self.row = indexPath.row;
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:@"确定踢出该成员?" delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel") otherButtonTitles:@"确定", nil];
+    alertView.tag = 30;
+    [alertView show];
+}
+
+-(void)deleteWithRow{
+    
+    NSHuanXinUserModel *delModel = self.membersArr[self.row];
+    
+    EMError *error = nil;
+    [[EMClient sharedClient].groupManager removeOccupants:@[delModel.hx_user_name] fromGroup:self.groupModel.group_id error:&error];
+    
+    [self.membersArr removeObjectAtIndex:self.row];
+    
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    NSMutableDictionary *jsonDict = [NSMutableDictionary dictionary];
+    NSDictionary *tempDict = [self dictionaryWithJsonString:self.groupModel.group_name_json];
+    NSMutableArray *groupMembers = [NSMutableArray array];
+    NSString *groupName = [tempDict objectForKey:@"groupName"];
+    groupMembers =  [tempDict objectForKey:@"jsonArray"];
+    [groupMembers removeObjectAtIndex:self.row];
+    [jsonDict setValue:groupMembers forKey:@"jsonArray"];
+    [jsonDict setValue:groupName forKey:@"groupName"];
+    [param setValue:[self convertToJsonData:jsonDict] forKey:@"groupNameJson"];
+    [param setValue:self.groupModel.group_id forKey:@"groupId"];
+    //    });
+    
+    [NSGroupAPI updateGroupWithParam:param success:^(NSDictionary *groupId) {
+        DLog(@"群组信息更新成功");
+        [Common AppShowToast:@"群组信息更新成功"];
+        [self setUpDataWithConversation:self.conversation];
+    } faulre:^(NSError *error) {
+        DLog(@"群组信息更新失败");
+    }];
+    
+
 }
 
 @end

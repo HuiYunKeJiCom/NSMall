@@ -187,7 +187,7 @@
                 if(conversation.type == EMConversationTypeChat){
                     chatController.title = conversationModel.title;
                 }else{
-                    chatController.title = conversationModel.title;
+                    chatController.title = [conversation.ext objectForKey:@"groupName"];
                     chatController.groupOwn = [conversation.ext objectForKey:@"groupOwn"];
                     NSArray *array = [chatController.title componentsSeparatedByString:@"、"];
                     chatController.groupCount = array.count;
@@ -232,7 +232,7 @@
         WEAKSELF
         [NSGroupAPI getGroupWithParam:conversation.conversationId success:^(NSGroupModel *groupModel) {
             DLog(@"获取群组信息成功");
-            conversation.ext = @{@"groupOwn":groupModel.owner};
+            conversation.ext = @{@"groupOwn":groupModel.owner,@"groupName":groupModel.group_name};
             [self.images removeAllObjects];
             NSDictionary *tempDict = [self dictionaryWithJsonString:groupModel.group_name_json];
             NSMutableArray *groupMembers = [NSMutableArray array];

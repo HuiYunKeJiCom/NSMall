@@ -61,9 +61,11 @@
     }];
     
     [self.delBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.bgView.mas_left).with.offset(-10);
-        make.top.equalTo(weakSelf.bgView.mas_top).with.offset(-10);
-        make.size.mas_equalTo(CGSizeMake(20, 20));
+//        make.left.equalTo(weakSelf.bgView.mas_left);
+//        make.top.equalTo(weakSelf.bgView.mas_top).with.offset(-2);
+        make.centerX.equalTo(weakSelf.avatarIV.mas_left);
+        make.centerY.equalTo(weakSelf.avatarIV.mas_top);
+        make.size.mas_equalTo(CGSizeMake(40, 40));
         
     }];
 }
@@ -97,6 +99,9 @@
         _delBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_delBtn setImage:[UIImage imageNamed:@"photo_delete"] forState:UIControlStateNormal];
 //        _delBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 10, -15);
+        [_delBtn setImage:kGetImage(@"appitem_del_btn_normal") forState:UIControlStateNormal];
+        [_delBtn setImage:kGetImage(@"appitem_del_btn_pressed") forState:UIControlStateHighlighted];
+        [_delBtn addTarget:self action:@selector(delButtonClick) forControlEvents:UIControlEventTouchUpInside];
         _delBtn.alpha = 0.6;
     }
     return _delBtn;
@@ -107,6 +112,12 @@
     
     [self.avatarIV sd_setImageWithURL:[NSURL URLWithString:model.user_avatar]];
     self.nickLab.text = model.nick_name;
+}
+
+#pragma mark - 删除 点击
+- (void)delButtonClick {
+    //    NSLog(@"删除 点击");
+    !_delBtnClickBlock ? : _delBtnClickBlock();
 }
 
 @end

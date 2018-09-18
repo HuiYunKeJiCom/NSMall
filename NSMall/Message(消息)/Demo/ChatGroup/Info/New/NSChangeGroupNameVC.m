@@ -186,12 +186,7 @@
     [param setValue:self.groupModel.group_id forKey:@"groupId"];
     [param setValue:self.contentField.text forKey:@"groupName"];
 //    [param setValue:self.groupModel.group_name_json forKey:@"groupNameJson"];
-//    [param setValue:self.groupModel.groupDescription forKey:@"description"];
-//    [param setValue:@"200" forKey:@"maxusers"];
-//    [param setValue:@(bool_false) forKey:@"isPublic"];
-//    [param setValue:@(bool_true) forKey:@"membersOnly"];
-//    [param setValue:@(bool_true) forKey:@"allowinvites"];
-//    [param setValue:@(bool_false) forKey:@"isNeedConfirm"];
+
     
     [NSGroupAPI updateGroupWithParam:param success:^(NSDictionary *groupId) {
         DLog(@"群组信息更新成功");

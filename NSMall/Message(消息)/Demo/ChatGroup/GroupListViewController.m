@@ -251,7 +251,7 @@
         chatController.groupOwn = groupModel.owner;
 //        chatController.groupCount = groupModel.maxusers;
         chatController.groupCount = groupModel.affiliations_count;
-        NSString *titleStr = @"群聊";
+//        NSString *titleStr = @"群聊";
 //        if (group.subject && group.subject.length > 0) {
 //            if([group.subject rangeOfString:@"groupName"].location !=NSNotFound){
 //                NSDictionary *dict = [self dictionaryWithJsonString:group.subject];
@@ -284,7 +284,7 @@
 //                }
 //            }
 //        }
-        chatController.title = titleStr;
+        chatController.title = groupModel.group_name;
         
         [self.navigationController pushViewController:chatController animated:YES];
     }

@@ -17,9 +17,6 @@
 //Host
 #define Host  [NSString stringWithFormat:@"http%@/adel-shop/app/",CurrentHost]
 
-//#define NetDomainADDR @"://2008503qw3.51mypc.cn"
-//const static NSString * const NetDomainADDR = @"http://adelshop.iok.la:41831/nsshop/app/";//锡恩电脑环境
-
 const static NSString * const NetDomainADDR = @"https://stagewww.neublockchain.com/nsshop/app/";//国外测试 环境
 
 //const static NSString * const NetDomainADDR = @"https://ns.neublockchain.com/nsshop/app/";//生产环境
