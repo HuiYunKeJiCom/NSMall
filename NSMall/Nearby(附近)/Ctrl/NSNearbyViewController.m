@@ -59,6 +59,9 @@
     self.mapView.userTrackingMode = BMKUserTrackingModeHeading;//设置定位的状态为定位罗盘模式，我的位置始终在地图中心，我的位置图标和地图都会跟着旋转
     //以下_mapView为BMKMapView对象
     self.mapView.showsUserLocation = NO;//显示定位图层
+//    self.mapView.zoomLevel = 21.0;
+//    DLog(@"zoomLevel = %.2f",self.mapView.maxZoomLevel);
+//    DLog(@"zoomLevel = %.2f",self.mapView.minZoomLevel);
     [self.view addSubview:_mapView];
     self.mapView.userInteractionEnabled = YES;
     
@@ -235,7 +238,7 @@
     NSClusterAnnotationView *clusterAnnotation = (NSClusterAnnotationView *)view.annotation;
 //    [self positionButtonClick];
     
-    NSLog(@"点击了%@", clusterAnnotation.storeModel.name);
+//    NSLog(@"点击了%@", clusterAnnotation.storeModel.name);
     //    NSLog(@"name = %@",clusterAnnotation.storeModel.name);
     
 }
@@ -345,9 +348,11 @@
 
     BMKCoordinateRegion region ;//表示范围的结构体
     region.center = self.centerCoordinate;//中心点
-    region.span.latitudeDelta = 0.001;//经度范围（设置为0.1表示显示范围为0.2的纬度范围）
-    region.span.longitudeDelta = 0.001;//纬度范围
+    region.span.latitudeDelta = 0.09;//经度范围（设置为0.1表示显示范围为0.2的纬度范围）
+    region.span.longitudeDelta = 0.09;//纬度范围
     [_mapView setRegion:region animated:YES];
+    
+//    self.mapView.zoomLevel = 21.0;
     
 //    [self searchNearbyStore:self.centerCoordinate];
     

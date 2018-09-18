@@ -11,6 +11,8 @@
   */
 
 #import "EMChooseViewController.h"
+#import "NSHuanXinUserModel.h"
+
 
 @interface EMChooseViewController ()
 
@@ -133,6 +135,7 @@
 {
     // Return the number of rows in the section.
     return [[self.dataSource objectAtIndex:section] count];
+//    return [self.dataSource count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -277,7 +280,15 @@
     if (_objectComparisonStringBlock) {
         for (id object in recordArray) {
             //getUserName是实现中文拼音检索的核心，见NameIndex类
-            NSString *objStr = _objectComparisonStringBlock(object);
+            NSString *objStr = @"";
+            if([object isKindOfClass:[NSHuanXinUserModel class]]){
+                NSHuanXinUserModel *model = object;
+                objStr = _objectComparisonStringBlock(model.nickname);
+            }else{
+                objStr = _objectComparisonStringBlock(object);
+            }
+            
+            
             NSInteger section = [_indexCollation sectionForObject:objStr collationStringSelector:@selector(uppercaseString)];
             
             NSMutableArray *array = [sortedArray objectAtIndex:section];
@@ -289,8 +300,15 @@
     if (_comparisonObjectSelector) {
         __weak typeof(self) weakSelf = self;
         for (int i = 0; i < [sortedArray count]; i++) {
-            NSArray *tmpArray = [[sortedArray objectAtIndex:i] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-                return weakSelf.comparisonObjectSelector(obj1, obj2);
+            NSArray *tmpArray = [[sortedArray objectAtIndex:i] sortedArrayUsingComparator:^NSComparisonResult(NSHuanXinUserModel* obj1, NSHuanXinUserModel* obj2) {
+                NSString *firstLetter1 = [EaseChineseToPinyin pinyinFromChineseString:obj1.nickname];
+                firstLetter1 = [[firstLetter1 substringToIndex:1] uppercaseString];
+                
+                NSString *firstLetter2 = [EaseChineseToPinyin pinyinFromChineseString:obj2.nickname];
+                firstLetter2 = [[firstLetter2 substringToIndex:1] uppercaseString];
+                
+                return [firstLetter1 caseInsensitiveCompare:firstLetter2];
+//                return weakSelf.comparisonObjectSelector(obj1, obj2);
             }];
             
             [sortedArray replaceObjectAtIndex:i withObject:tmpArray];

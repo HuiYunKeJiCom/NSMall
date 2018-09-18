@@ -15,8 +15,11 @@
 #import "ChatViewController.h"
 #import "UserProfileManager.h"
 #import "NSHuanXinUserModel.h"
+#import "ADOrderTopToolView.h"
+#import "NSMessageAPI.h"
 
 @interface ContactListSelectViewController () <EMUserListViewControllerDelegate,EMUserListViewControllerDataSource>
+@property(nonatomic,strong)NSMutableArray *friendListArr;/* 好友列表数组 */
 
 @end
 
@@ -27,15 +30,35 @@
     [super viewDidLoad];
     self.delegate = self;
     self.dataSource = self;
+    self.friendListArr = [NSMutableArray array];
+    [self setUpNavTopView];
+    [self loadDataSource];
+    self.tableView.frame = CGRectMake(0, TopBarHeight, self.view.frame.size.width,self.view.frame.size.height -TopBarHeight);
     
-    self.title = NSLocalizedString(@"title.chooseContact", @"select the contact");
+//    self.title = NSLocalizedString(@"title.chooseContact", @"select the contact");
     
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    backButton.accessibilityIdentifier = @"back";
-    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    [self.navigationItem setLeftBarButtonItem:backItem];
+//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+//    backButton.accessibilityIdentifier = @"back";
+//    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+//    [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+//    [self.navigationItem setLeftBarButtonItem:backItem];
+}
+
+#pragma mark - 导航栏处理
+- (void)setUpNavTopView
+{
+    ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
+    topToolView.backgroundColor = kWhiteColor;
+    [topToolView setTopTitleWithNSString:NSLocalizedString(@"title.chooseContact", @"select the contact")];
+    WEAKSELF
+    topToolView.leftItemClickBlock = ^{
+        NSLog(@"点击了返回");
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    };
+    
+    [self.view addSubview:topToolView];
+    
 }
 
 #pragma mark - EMUserListViewControllerDelegate
@@ -189,31 +212,69 @@
     
 }
 
+- (void)loadDataSource
+{
+    
+    [self.friendListArr removeAllObjects];
+    [NSMessageAPI getFriendList:nil success:^(NSFriendListModel * _Nullable result) {
+        DLog(@"获取好友列表成功");
+        self.friendListArr = [NSMutableArray arrayWithArray:result.list];
+        
+        NSArray *buddyList = [[EMClient sharedClient].contactManager getContacts];
+        for (NSString *username in buddyList) {
+            
+            NSHuanXinUserModel *model = [[NSHuanXinUserModel alloc] initWithBuddy:username];
+            [model getInformationWith:self.friendListArr];
+            
+            if (model) {
+                model.nickname = model.nick_name;
+                NSString *imageUrl = model.user_avatar;
+                NSData *data = [NSData  dataWithContentsOfURL:[NSURL URLWithString:imageUrl]];
+                model.avatarImage =  [UIImage imageWithData:data];
+            }
+            if(![model.hx_user_name isEqualToString:@"hx_admin"]){
+                [self.dataArray addObject:model];
+            }
+        }
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        DLog(@"获取好友列表失败");
+    }];
+}
+
 #pragma mark - EMUserListViewControllerDataSource
 - (id<IUserModel>)userListViewController:(EaseUsersListViewController *)userListViewController
                            modelForBuddy:(NSString *)buddy
 {
     id<IUserModel> model = nil;
-    model = [[NSHuanXinUserModel alloc] initWithBuddy:buddy];
+//    NSHuanXinUserModel *model = nil;
+    
     UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.buddy];
-    if (profileEntity) {
-        model.nickname= profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
-        model.avatarURLPath = profileEntity.imageUrl;
+    for (NSHuanXinUserModel *hxModel in self.dataArray) {
+        if([hxModel.hx_user_name isEqualToString:model.buddy]){
+            if (profileEntity) {
+                model.nickname= hxModel.nick_name;
+                model.avatarURLPath = hxModel.user_avatar;
+            }
+        }
     }
+    
     return model;
+
 }
 
 - (id<IUserModel>)userListViewController:(EaseUsersListViewController *)userListViewController
                    userModelForIndexPath:(NSIndexPath *)indexPath
 {
-    id<IUserModel> model = nil;
-    model = [self.dataArray objectAtIndex:indexPath.row];
-    UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.buddy];
+//    id<IUserModel> hxModel = nil;
+    
+    NSHuanXinUserModel *hxModel = [self.dataArray objectAtIndex:indexPath.row];
+    UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:hxModel.hx_user_name];
     if (profileEntity) {
-        model.nickname= profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
-        model.avatarURLPath = profileEntity.imageUrl;
+        hxModel.nickname= hxModel.nick_name;
+        hxModel.avatarURLPath = hxModel.user_avatar;
     }
-    return model;
+    return hxModel;
 }
 
 #pragma mark - action

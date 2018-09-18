@@ -10,6 +10,8 @@
  * from Hyphenate Inc.
  */
 
+#import "NSHuanXinUserModel.h"
+
 @interface ChatViewController : EaseMessageViewController <EaseMessageViewControllerDelegate, EaseMessageViewControllerDataSource>
 
 
@@ -19,4 +21,7 @@
 
 - (void)reloadDingCellWithAckMessageId:(NSString *)aMessageId;
 
+@property(nonatomic,strong)NSHuanXinUserModel *hxModel;/* 自定义model */
+@property(nonatomic)NSInteger groupCount;/* 群总人数 */
+@property(nonatomic,strong)NSString *groupOwn;/* 群主环信用户名 */
 @end

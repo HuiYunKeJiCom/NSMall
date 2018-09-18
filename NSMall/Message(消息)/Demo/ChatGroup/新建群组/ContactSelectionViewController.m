@@ -16,6 +16,9 @@
 #import "EMRemarkImageView.h"
 #import "BaseTableViewCell.h"
 #import "RealtimeSearchUtil.h"
+#import "NSMessageAPI.h"
+#import "NSHuanXinUserModel.h"
+
 
 @interface ContactSelectionViewController ()
 
@@ -28,6 +31,7 @@
 @property (strong, nonatomic) UIButton *doneButton;
 
 @property (nonatomic) BOOL presetDataSource;
+@property(nonatomic,strong)NSMutableArray *friendListArr;/* 好友列表数组 */
 
 @end
 
@@ -40,6 +44,7 @@
         // Custom initialization
         _contactsSource = [NSMutableArray array];
         _selectedContacts = [NSMutableArray array];
+        self.friendListArr = [NSMutableArray array];
         
         [self setObjectComparisonStringBlock:^NSString *(id object) {
             return object;
@@ -107,6 +112,7 @@
 //    [self.navigationItem setLeftBarButtonItem:backItem];
     
     [self setUpNavTopView];
+    [self loadDataSource];
     
     self.tableView.frame = CGRectMake(0, TopBarHeight, self.view.frame.size.width,self.view.frame.size.height -TopBarHeight);
     
@@ -116,16 +122,23 @@
     self.tableView.editing = YES;
     
     if ([_blockSelectedUsernames count] > 0) {
-        for (NSString *username in _blockSelectedUsernames) {
+
+        for (int i=0;i<self.blockSelectedUsernames.count;i++) {
+                    NSHuanXinUserModel *model = _blockSelectedUsernames[i];
+            NSString *username = model.nick_name;
             NSInteger section = [self sectionForString:username];
-            NSMutableArray *tmpArray = [_dataSource objectAtIndex:section];
+            NSMutableArray *tmpArray = [NSMutableArray array];
+            if(_dataSource.count > 0){
+                tmpArray = [_dataSource objectAtIndex:section];
+            }
+            
             if (tmpArray && [tmpArray count] > 0) {
-                for (int i = 0; i < [tmpArray count]; i++) {
-                    NSString *buddy = [tmpArray objectAtIndex:i];
+                for (int j = 0; j < [tmpArray count]; j++) {
+                    NSString *buddy = [tmpArray objectAtIndex:j];
                     if ([buddy isEqualToString:username]) {
                         [self.selectedContacts addObject:buddy];
-                        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:section] animated:NO scrollPosition:UITableViewScrollPositionNone];
-                        
+                        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:j inSection:section] animated:NO scrollPosition:UITableViewScrollPositionNone];
+
                         break;
                     }
                 }
@@ -183,10 +196,14 @@
         cell = [[BaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSString *username = [[_dataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    cell.imageView.image = [UIImage imageNamed:@"chatListCellHead.png"];
-    cell.textLabel.text = username;
-    cell.username = username;
+//    NSString *username = [[_dataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    
+    NSHuanXinUserModel *model = [[_dataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+
+    cell.imageView.image = model.avatarImage;
+//    cell.imageView.image = [UIImage imageNamed:@"chatListCellHead.png"];
+    cell.textLabel.text = model.nickname;
+    cell.username = model.nickname;
     
     return cell;
 }
@@ -195,8 +212,9 @@
 {
     // Return NO if you do not want the specified item to be editable.
     if ([_blockSelectedUsernames count] > 0) {
-        NSString *username = [[_dataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-        return ![self isBlockUsername:username];
+//        NSString *username = [[_dataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        NSHuanXinUserModel *model = [[_dataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        return ![self isBlockUsername:model.nickname];
     }
     
     return YES;
@@ -206,28 +224,45 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    id object = [[_dataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+//    id object = [[_dataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    NSHuanXinUserModel *model = [[_dataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     if (self.mulChoice) {
-        if (![self.selectedContacts containsObject:object])
+        
+        if (![self.selectedContacts containsObject:model])
         {
-            [self.selectedContacts addObject:object];
+            [self.selectedContacts addObject:model];
             [self reloadFooterView];
         }
+        
+//        if (![self.selectedContacts containsObject:model.nickname])
+//        {
+//            [self.selectedContacts addObject:model.nickname];
+//            [self reloadFooterView];
+//        }
     }
     else {
-        [self.selectedContacts addObject:object];
+        [self.selectedContacts addObject:model];
         [self doneAction:nil];
     }
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *username = [[_dataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    if ([self.selectedContacts containsObject:username]) {
-        [self.selectedContacts removeObject:username];
+//    NSString *username = [[_dataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    NSHuanXinUserModel *model = [[_dataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    
+    
+    if ([self.selectedContacts containsObject:model]) {
+        [self.selectedContacts removeObject:model];
         
         [self reloadFooterView];
     }
+    
+//    if ([self.selectedContacts containsObject:model.nickname]) {
+//        [self.selectedContacts removeObject:model.nickname];
+//
+//        [self reloadFooterView];
+//    }
 }
 
 #pragma mark - private
@@ -236,7 +271,11 @@
 {
     if (username && [username length] > 0) {
         if ([_blockSelectedUsernames count] > 0) {
-            for (NSString *tmpName in _blockSelectedUsernames) {
+//            for (NSString *tmpName in _blockSelectedUsernames) {
+                for (int i=0;i<self.blockSelectedUsernames.count;i++) {
+                    NSHuanXinUserModel *model = _blockSelectedUsernames[i];
+                    NSString *tmpName = model.nick_name;
+                    
                 if ([username isEqualToString:tmpName]) {
                     return YES;
                 }
@@ -256,10 +295,15 @@
         NSInteger count = [self.selectedContacts count];
         self.footerScrollView.contentSize = CGSizeMake(imageSize * count, imageSize);
         for (int i = 0; i < count; i++) {
-            NSString *username = [self.selectedContacts objectAtIndex:i];
+//            NSString *username = [self.selectedContacts objectAtIndex:i];
+            
+            NSHuanXinUserModel *model = [self.selectedContacts objectAtIndex:i];
+            
             EMRemarkImageView *remarkView = [[EMRemarkImageView alloc] initWithFrame:CGRectMake(i * imageSize, 0, imageSize, imageSize)];
-            remarkView.image = [UIImage imageNamed:@"chatListCellHead.png"];
-            remarkView.remark = username;
+            NSString *imageUrl = model.user_avatar;
+            NSData *data = [NSData  dataWithContentsOfURL:[NSURL URLWithString:imageUrl]];
+            remarkView.image = [UIImage imageWithData:data];
+            remarkView.remark = model.nickname;
             [self.footerScrollView addSubview:remarkView];
         }
         
@@ -276,24 +320,67 @@
 
 - (void)loadDataSource
 {
-    if (!_presetDataSource) {
-        [self showHudInView:self.view hint:NSLocalizedString(@"loadData", @"Load data...")];
-        [_dataSource removeAllObjects];
-        [_contactsSource removeAllObjects];
+    
+    [self.friendListArr removeAllObjects];
+    [NSMessageAPI getFriendList:nil success:^(NSFriendListModel * _Nullable result) {
+        DLog(@"获取好友列表成功");
+        self.friendListArr = [NSMutableArray arrayWithArray:result.list];
+//        [weakself _sortDataArray:self.contactsSource];
         
-        NSArray *buddyList = [[EMClient sharedClient].contactManager getContacts];
-        for (NSString *username in buddyList) {
-            [self.contactsSource addObject:username];
+        if (!_presetDataSource) {
+            [self showHudInView:self.view hint:NSLocalizedString(@"loadData", @"Load data...")];
+            [_dataSource removeAllObjects];
+            [_contactsSource removeAllObjects];
+            
+            NSArray *buddyList = [[EMClient sharedClient].contactManager getContacts];
+            NSMutableArray *dataArr = [NSMutableArray array];
+            for (NSString *username in buddyList) {
+                [self.contactsSource addObject:username];
+                
+                NSHuanXinUserModel *model = [[NSHuanXinUserModel alloc] initWithBuddy:username];
+                [model getInformationWith:self.friendListArr];
+                
+                if (model) {
+                    model.nickname = model.nick_name;
+                    NSString *imageUrl = model.user_avatar;
+                    NSData *data = [NSData  dataWithContentsOfURL:[NSURL URLWithString:imageUrl]];
+                    model.avatarImage =  [UIImage imageWithData:data];
+                }
+                if(![model.hx_user_name isEqualToString:@"hx_admin"]){
+                    [dataArr addObject:model];
+                }
+            }
+            
+            [_dataSource addObjectsFromArray:[self sortRecords:dataArr]];
+            //        [_dataSource addObjectsFromArray:[self sortRecords:self.contactsSource]];
+            
+            [self hideHud];
         }
+        else {
+            for (NSString *username in [self sortRecords:self.contactsSource]) {
+                
+                NSHuanXinUserModel *model = [[NSHuanXinUserModel alloc] initWithBuddy:username];
+                [model getInformationWith:self.friendListArr];
+                
+                if (model) {
+                    model.nickname = model.nick_name;
+                    NSString *imageUrl = model.user_avatar;
+                    NSData *data = [NSData  dataWithContentsOfURL:[NSURL URLWithString:imageUrl]];
+                    model.avatarImage =  [UIImage imageWithData:data];
+                }
+                if(![model.hx_user_name isEqualToString:@"hx_admin"]){
+                    [_dataSource addObject:model];
+                }
+            }
+            //        _dataSource = [[self sortRecords:self.contactsSource] mutableCopy];
+        }
+        [self.tableView reloadData];
         
-        [_dataSource addObjectsFromArray:[self sortRecords:self.contactsSource]];
-        
-        [self hideHud];
-    }
-    else {
-        _dataSource = [[self sortRecords:self.contactsSource] mutableCopy];
-    }
-    [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        DLog(@"获取好友列表失败");
+    }];
+    
+    
 }
 
 - (void)doneAction:(id)sender
@@ -305,10 +392,11 @@
         }
         else{
             NSMutableArray *resultArray = [NSMutableArray array];
-            for (NSString *username in self.selectedContacts) {
+            for (NSHuanXinUserModel *model in self.selectedContacts) {
+                NSString *username = model.nickname;
                 if(![self isBlockUsername:username])
                 {
-                    [resultArray addObject:username];
+                    [resultArray addObject:model];
                 }
             }
             isPop = [_delegate viewController:self didFinishSelectedSources:resultArray];

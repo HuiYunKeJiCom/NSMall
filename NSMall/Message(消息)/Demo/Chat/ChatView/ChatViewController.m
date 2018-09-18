@@ -20,9 +20,7 @@
 #import "EMChooseViewController.h"
 #import "ContactSelectionViewController.h"
 #import "EMGroupInfoViewController.h"
-#import "NSHuanXinUserModel.h"
 #import "NSMessageAPI.h"
-
 
 #import "EMDingMessageHelper.h"
 #import "DingViewController.h"
@@ -33,6 +31,10 @@
 #import "NSRPTestCell.h"
 #import "NSRPDetailVC.h"
 #import "NSRPView.h"
+#import "NSGroupDetailVC.h"
+#import "NSReceiveRPCell.h"
+#import "NSNullCell.h"
+#import "XCPFileViewController.h"
 
 
 #if DEMO_CALL == 1
@@ -42,7 +44,7 @@
 
 //static NSString *identifier = @"NSRPTestCell";
 
-@interface ChatViewController ()<UIAlertViewDelegate,EMClientDelegate, EMChooseViewDelegate>
+@interface ChatViewController ()<UIAlertViewDelegate,EMClientDelegate, EMChooseViewDelegate,NSGroupDetailVCDelegate,EaseMessageViewControllerDataSource>
 {
     UIMenuItem *_copyMenuItem;
     UIMenuItem *_deleteMenuItem;
@@ -66,6 +68,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [ChatDemoHelper shareHelper].chatVC = self;
+//    self.dataSource = self;
+    
+//    UserModel *userModel = [UserModel modelFromUnarchive];
+//    if(self.conversation.type == EMConversationTypeGroupChat && !([self.groupOwn isEqualToString:userModel.hx_user_name])){
+//        self.chatBarMoreView.redPacketButton.alpha = 0.0;
+//        [self.chatBarMoreView updateItemWithImage:IMAGE(@"message_ico_send_file") highlightedImage:IMAGE(@"message_ico_send_file") title:@"文件" atIndex:2];
+//        [self.chatBarMoreView.redPacketButton setTitle:@"文件" forState:UIControlStateNormal];
+//        [self.chatBarMoreView removeItematIndex:2];
+//    }else{
+//        [self.chatBarMoreView insertItemWithImage:IMAGE(@"message_ico_send_file") highlightedImage:IMAGE(@"message_ico_send_file") title:@"文件"];
+//    }
+    
+    
 
     self.friendListArr = [NSMutableArray array];
     
@@ -169,7 +184,7 @@
 //    EMMessage *latestMessage = self.conversation.latestMessage;
 //    NSDictionary *ext = latestMessage.ext;
 
-    [topToolView setTopTitleWithNSString:KLocalizableStr(self.title)];
+    
 //[ext objectForKey:@"nick"]
     
     WEAKSELF
@@ -184,17 +199,21 @@
             //添加好友
 //                    [weakSelf deleteAllMessages:weakSelf.virtualBtn];
 //        };
-        [topToolView.rightItemButton addTarget:self action:@selector(deleteAllMessages:) forControlEvents:UIControlEventTouchUpInside];
-        [topToolView setRightItemImage:@"delete"];
-        
+        [topToolView setTopTitleWithNSString:KLocalizableStr(self.title)];
+//        [topToolView.rightItemButton addTarget:self action:@selector(showGroupDetailAction) forControlEvents:UIControlEventTouchUpInside];
+//        [topToolView setRightItemImage:@"delete"];
+//        deleteAllMessages:
     }
     else{//群聊
-        topToolView.rightItemClickBlock = ^{
-            //添加好友
-            [weakSelf showGroupDetailAction];
-        };
-        [topToolView setRightItemImage:@"group_detail"];
+        [topToolView setTopTitleWithNSString:@"群聊"];
+
     }
+    topToolView.rightItemClickBlock = ^{
+        //添加好友
+        [weakSelf showGroupDetailAction];
+    };
+    [topToolView setRightItemImage:@"message_ico_chating_head"];
+//    [detailButton setImage:[UIImage imageNamed:@"group_detail"] forState:UIControlStateNormal];
 
     [self.view addSubview:topToolView];
     
@@ -205,43 +224,47 @@
 
 #pragma mark - setup subviews
 
-- (void)_setupBarButtonItem
-{
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    backButton.accessibilityIdentifier = @"back";
-    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    [self.navigationItem setLeftBarButtonItem:backItem];
-    
-    //单聊
-    if (self.conversation.type == EMConversationTypeChat) {
-        UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-        clearButton.accessibilityIdentifier = @"clear_message";
-        [clearButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
-        [clearButton addTarget:self action:@selector(deleteAllMessages:) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:clearButton];
-    }
-    else{//群聊
-        UIButton *detailButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-        detailButton.accessibilityIdentifier = @"detail";
-        [detailButton setImage:[UIImage imageNamed:@"group_detail"] forState:UIControlStateNormal];
-        [detailButton addTarget:self action:@selector(showGroupDetailAction) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:detailButton];
-    }
-}
+//- (void)_setupBarButtonItem
+//{
+//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+//    backButton.accessibilityIdentifier = @"back";
+//    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+//    [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+//    [self.navigationItem setLeftBarButtonItem:backItem];
+//
+//    //单聊
+//    if (self.conversation.type == EMConversationTypeChat) {
+//        UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+//        clearButton.accessibilityIdentifier = @"clear_message";
+//        [clearButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+//        [clearButton addTarget:self action:@selector(deleteAllMessages:) forControlEvents:UIControlEventTouchUpInside];
+//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:clearButton];
+//    }
+//    else{//群聊
+//        UIButton *detailButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+//        detailButton.accessibilityIdentifier = @"detail";
+//        [detailButton setImage:[UIImage imageNamed:@"group_detail"] forState:UIControlStateNormal];
+//        [detailButton addTarget:self action:@selector(showGroupDetailAction) forControlEvents:UIControlEventTouchUpInside];
+//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:detailButton];
+//    }
+//}
 
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (alertView.cancelButtonIndex != buttonIndex) {
-        self.messageTimeIntervalTag = -1;
-        [self.conversation deleteAllMessages:nil];
-        [self.dataArray removeAllObjects];
-        [self.messsagesSource removeAllObjects];
-        
-        [self.tableView reloadData];
+//        if(alertView.tag == 20){
+            self.messageTimeIntervalTag = -1;
+            [self.conversation deleteAllMessages:nil];
+            [self.dataArray removeAllObjects];
+            [self.messsagesSource removeAllObjects];
+            
+            [self.tableView reloadData];
+//        }else if(alertView.tag == 30){
+//
+//        }
     }
 }
 
@@ -249,69 +272,77 @@
 
 - (void)messageCellSelected:(id<IMessageModel>)model
 {
-    NSDictionary *ext = model.message.ext;
-    
-
-    if([ext objectForKey:@"money_sponsor_name"]){
-        //自己发的红包
-//        DLog(@"自己发的红包");
-        WEAKSELF
-//        dispatch_group_t group = dispatch_group_create();
-//        dispatch_group_enter(group);
-            [NSMessageAPI receiveRedpacketWithParam:[ext objectForKey:@"rp_id"] success:^(NSRPListModel *redPacketModel) {
-                //抢红包/红包详情
-                DLog(@"抢红包成功");
-                weakSelf.redPacketModel = redPacketModel;
-//                dispatch_group_leave(group);
-            } faulre:^(NSError *error) {
-                
-            }];
-        
-//        dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-//        DLog(@"这里掉了几次");
-            if(model.isSender){
-                NSRPDetailVC *rpDetailVC = [NSRPDetailVC new];
-                [rpDetailVC setUpDataWith:self.redPacketModel];
-                [self.navigationController pushViewController:rpDetailVC animated:YES];
-            }else{
-                [self.view endEditing:YES];
-                if([self.redPacketModel.RPStatus isEqualToString:@"1002"]){
-                    NSRPDetailVC *rpDetailVC = [NSRPDetailVC new];
-                    [rpDetailVC setUpDataWith:self.redPacketModel];
-                    [self.navigationController pushViewController:rpDetailVC animated:YES];
-                }else{
-                    NSRPView *RPView = [[NSRPView alloc] initWithFrame:(CGRect){0, 0, kScreenWidth, kScreenHeight}];
-                    if([self.redPacketModel.RPStatus isEqualToString:@"1005"]){
-                        RPView.bgIV.image = IMAGE(@"red_packet_bg");
-                        RPView.openBtn.alpha = 0.0;
-                        [ext setValue:@"该红包已超过24小时." forKey:@"rp_leave_msg"];
-                    }
-                    [RPView setUpDataWith:ext];
-                    //            __weak typeof(RPView) rpview = RPView;
-                    //                WEAKSELF
-                    RPView.openBtnClickBlock = ^{
-                        //                [rpview removeFromSuperview];
-                        NSRPDetailVC *rpDetailVC = [NSRPDetailVC new];
-                        [rpDetailVC setUpDataWith:self.redPacketModel];
-                        [self.navigationController pushViewController:rpDetailVC animated:YES];
-                    };
-                    [RPView showInView:self.navigationController.view];
-                }
-
-            }
-//        });
-    }
-    
-    
-    
-    
     EMMessage *message = model.message;
     if (model.isDing) {
         DingAcksViewController *controller = [[DingAcksViewController alloc] initWithMessage:message];
         [self.navigationController pushViewController:controller animated:YES];
     } else {
-        [super messageCellSelected:model];
+        
+        NSDictionary *ext = model.message.ext;
+        
+        if([ext objectForKey:@"money_sponsor_name"]){
+            //自己发的红包
+            //        DLog(@"自己发的红包");
+            WEAKSELF
+            //        dispatch_group_enter(group);
+            [NSMessageAPI receiveRedpacketWithParam:[ext objectForKey:@"rp_id"] success:^(NSRPListModel *redPacketModel) {
+                //抢红包/红包详情
+                DLog(@"抢红包成功");
+                
+                weakSelf.redPacketModel = redPacketModel;
+                //                if(model.isSender){
+                [self.view endEditing:YES];
+                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                
+                if([self.redPacketModel.RPStatus isEqualToString:@"1002"] && [[userDefaults objectForKey:self.redPacketModel.redpacket_id]  isEqualToString:@"20"]){
+                    NSRPDetailVC *rpDetailVC = [NSRPDetailVC new];
+                    [rpDetailVC setUpDataWith:self.redPacketModel];
+                    [self.navigationController pushViewController:rpDetailVC animated:YES];
+                }else if([self.redPacketModel.RPStatus isEqualToString:@"1005"] || [self.redPacketModel.RPStatus isEqualToString:@"1003"] || [self.redPacketModel.RPStatus isEqualToString:@"1"] || [self.redPacketModel.RPStatus isEqualToString:@"1002"]){
+                    NSRPView *RPView = [[NSRPView alloc] initWithFrame:(CGRect){0, 0, kScreenWidth, kScreenHeight}];
+                    if([self.redPacketModel.RPStatus isEqualToString:@"1005"]){
+                        RPView.bgIV.image = IMAGE(@"red_packet_bg");
+                        RPView.openBtn.alpha = 0.0;
+                        [ext setValue:@"该红包已超过24小时." forKey:@"rp_leave_msg"];
+                    }else if([self.redPacketModel.RPStatus isEqualToString:@"1003"]){
+                        RPView.bgIV.image = IMAGE(@"red_packet_bg");
+                        RPView.openBtn.alpha = 0.0;
+                        [ext setValue:@"手慢了,红包派完了" forKey:@"rp_leave_msg"];
+                    }else if([self.redPacketModel.RPStatus isEqualToString:@"1"] || [self.redPacketModel.RPStatus isEqualToString:@"1002"]){
+                        RPView.bgIV.image = IMAGE(@"red_packet_open");
+                        //                            [RPView.bgIV setBackgroundColor:[UIColor greenColor]];
+                        RPView.openBtn.alpha = 1.0;
+                    }
+                    [RPView setUpDataWith:ext];
+                    //            __weak typeof(RPView) rpview = RPView;
+                    
+                    //                WEAKSELF
+                    RPView.openBtnClickBlock = ^{
+                        //                [rpview removeFromSuperview];
+                        //发送一条消息 首次成功领取时发送以下参数
+                        
+                        [userDefaults setValue:@"20" forKey:weakSelf.redPacketModel.redpacket_id];
+                        [userDefaults synchronize];
+                        UserModel *userModel = [UserModel modelFromUnarchive];
+                        [(EaseMessageViewController *)weakSelf sendTextMessage:@"红包领取消息" withExt:@{@"nick":userModel.user_name,@"user_id":userModel.user_id,@"avatar_url":userModel.pic_img,@"hx_username":userModel.hx_user_name,@"is_receive_rp_msg":@"1",@"send_username":weakSelf.redPacketModel.send_hxuser_name,@"receive_username":userModel.hx_user_name,@"receive_nick":userModel.user_name,@"rp_count":[NSString stringWithFormat:@"%lu",weakSelf.redPacketModel.redpacket_count],@"rp_received_count":[NSString stringWithFormat:@"%lu",weakSelf.redPacketModel.receiveRedpacketList.count],@"rp_type":[NSString stringWithFormat:@"%lu",weakSelf.redPacketModel.redpacket_type]}];
+                        
+                        NSRPDetailVC *rpDetailVC = [NSRPDetailVC new];
+                        [rpDetailVC setUpDataWith:weakSelf.redPacketModel];
+                        [self.navigationController pushViewController:rpDetailVC animated:YES];
+                    };
+                    [RPView showInView:self.navigationController.view];
+                }
+            } faulre:^(NSError *error) {
+                
+            }];
+            
+        }else{
+            [super messageCellSelected:model];
+        }
+        
+        
     }
+    
 }
 
 
@@ -320,17 +351,41 @@
 - (void)messageViewController:(EaseMessageViewController *)viewController
             didSelectMoreView:(EaseChatBarMoreView *)moreView
                       AtIndex:(NSInteger)index{
+    
+//    moreView.redPacketButton.alpha = 0.0;
+    
     DLog(@"点击了红包index = %lu",index);
-    if(index == 2){
+    
         //点击了红包
 //        WEAKSELF
         UserModel *userModel = [UserModel modelFromUnarchive];
-        NSSendRedPacketVC *sendRedPacketVC = [NSSendRedPacketVC new];
-        sendRedPacketVC.paramBlock = ^(NSRedPacketModel *param) {
-            [viewController sendTextMessage:param.money_sponsor_name withExt:@{@"nick":userModel.user_name,@"user_id":userModel.user_id,@"avatar_url":userModel.pic_img,@"hx_username":userModel.hx_user_name,@"is_money_msg":@"1",@"rp_id":param.rp_id,@"rp_amount":param.rp_amount,@"rp_type":param.rp_type,@"rp_count":param.rp_count,@"rp_leave_msg":param.rp_leave_msg,@"money_sponsor_name":param.money_sponsor_name,@"send_username":param.send_username}];
-        };
-        [self.navigationController pushViewController:sendRedPacketVC animated:YES];
-    }
+//        if(self.conversation.type == EMConversationTypeGroupChat && !([self.groupOwn isEqualToString:userModel.hx_user_name])){
+//            if (index == 2){
+//                DLog(@"发送文件");
+//
+//                XCPFileViewController *fileVC = [XCPFileViewController new];
+//                [self.navigationController pushViewController:fileVC animated:YES];
+//            }
+//        }else{
+            if(index == 2){
+                NSSendRedPacketVC *sendRedPacketVC = [NSSendRedPacketVC new];
+                sendRedPacketVC.EMConversationType = self.conversation.type;
+                if(self.conversation.type == EMConversationTypeGroupChat){
+                    sendRedPacketVC.groupCount = self.groupCount;
+                }
+                //        sendRedPacketVC.
+                sendRedPacketVC.paramBlock = ^(NSRedPacketModel *param) {
+                    [viewController sendTextMessage:param.money_sponsor_name withExt:@{@"nick":userModel.user_name,@"user_id":userModel.user_id,@"avatar_url":userModel.pic_img,@"hx_username":userModel.hx_user_name,@"is_money_msg":@"1",@"rp_id":param.rp_id,@"rp_amount":param.rp_amount,@"rp_type":param.rp_type,@"rp_count":param.rp_count,@"rp_leave_msg":param.rp_leave_msg,@"money_sponsor_name":param.money_sponsor_name,@"send_username":param.send_username}];
+                };
+                [self.navigationController pushViewController:sendRedPacketVC animated:YES];
+            }else if (index == 3){
+                DLog(@"发送文件");
+                XCPFileViewController *fileVC = [XCPFileViewController new];
+                [self.navigationController pushViewController:fileVC animated:YES];
+//                [viewController sendVideoMessageWithURL:];
+            }
+//        }
+//    }
 }
 
 - (UITableViewCell *)messageViewController:(UITableView *)tableView
@@ -339,7 +394,34 @@
     NSDictionary *ext = messageModel.message.ext;
 //    DLog(@"ext = %@",ext);
 //    DLog(@"ext = %@",[ext objectForKey:@"is_money_msg"]);
-    if([ext objectForKey:@"money_sponsor_name"]){
+    UserModel *userModel = [UserModel modelFromUnarchive];
+    if([[ext objectForKey:@"send_username"] isEqualToString:userModel.hx_user_name]){
+//         && ![[ext objectForKey:@"receive_nick"] isEqualToString:userModel.user_name]
+        id medicine = messageModel.message.ext[@"is_receive_rp_msg"];
+        if(medicine){
+            NSString *cellid = [NSReceiveRPCell cellIdentifierWithModel:messageModel];
+            NSReceiveRPCell *medicineCell = (NSReceiveRPCell *)[tableView dequeueReusableCellWithIdentifier:cellid];
+            if(!medicineCell){
+                medicineCell = [[NSReceiveRPCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid model:messageModel];
+            }
+            medicineCell.model = messageModel;
+            return medicineCell;
+        }
+    }
+    if(![[ext objectForKey:@"send_username"] isEqualToString:userModel.hx_user_name]){
+        //不是自己发的红包
+        id medicine = messageModel.message.ext[@"is_receive_rp_msg"];
+        if(medicine){
+            NSString *cellid = [NSNullCell cellIdentifierWithModel:messageModel];
+            NSNullCell *medicineCell = (NSNullCell *)[tableView dequeueReusableCellWithIdentifier:cellid];
+            if(!medicineCell){
+                medicineCell = [[NSNullCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid model:messageModel];
+            }
+            medicineCell.model = messageModel;
+            return medicineCell;
+        }
+    }
+    if([ext objectForKey:@"is_money_msg"]){
         
         id medicine = messageModel.message.ext[@"rp_leave_msg"];
         if(medicine){
@@ -381,6 +463,7 @@
                    withCellWidth:(CGFloat)cellWidth
 {
     NSDictionary *ext = messageModel.message.ext;
+    UserModel *userModel = [UserModel modelFromUnarchive];
     if([ext objectForKey:@"is_money_msg"]){
         id medicine = messageModel.message.ext[@"rp_leave_msg"];
         if(medicine){
@@ -388,6 +471,8 @@
         }
     }else if ([ext objectForKey:@"em_recall"]) {
         return self.timeCellHeight;
+    }else if([ext objectForKey:@"is_receive_rp_msg"] && [[ext objectForKey:@"receive_nick"] isEqualToString:userModel.user_name]){
+            return 0.01;
     }
     return 0;
 }
@@ -416,8 +501,8 @@
 - (void)messageViewController:(EaseMessageViewController *)viewController
   didSelectAvatarMessageModel:(id<IMessageModel>)messageModel
 {
-    UserProfileViewController *userprofile = [[UserProfileViewController alloc] initWithUsername:messageModel.message.from];
-    [self.navigationController pushViewController:userprofile animated:YES];
+//    UserProfileViewController *userprofile = [[UserProfileViewController alloc] initWithUsername:messageModel.message.from];
+//    [self.navigationController pushViewController:userprofile animated:YES];
 }
 
 - (void)messageViewController:(EaseMessageViewController *)viewController
@@ -458,6 +543,7 @@
                         [strongSelf hideHud];
                         if (error) {
                             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Fetching group members failed [%@]", error.errorDescription] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                            alertView.tag = 20;
                             [alertView show];
                         }
                         else {
@@ -707,13 +793,33 @@
     [self.view endEditing:YES];
     
     if (self.conversation.type == EMConversationTypeGroupChat) {
-        EMGroupInfoViewController *infoController = [[EMGroupInfoViewController alloc] initWithGroupId:self.conversation.conversationId];
-        [self.navigationController pushViewController:infoController animated:YES];
+        
+        NSGroupDetailVC *groupDetailVC = [NSGroupDetailVC new];
+//        [groupDetailVC setUpDataWithGroupId:self.conversation.conversationId];
+        groupDetailVC.exitBtn.alpha = 1.0;
+        groupDetailVC.otherTableView.alpha = 1.0;
+        groupDetailVC.groupOwn = self.groupOwn;
+        [groupDetailVC setUpDataWithConversation:self.conversation];
+        [self.navigationController pushViewController:groupDetailVC animated:YES];
+        
+//        EMGroupInfoViewController *infoController = [[EMGroupInfoViewController alloc] initWithGroupId:self.conversation.conversationId];
+//        [self.navigationController pushViewController:infoController animated:YES];
     }
     else if (self.conversation.type == EMConversationTypeChatRoom)
     {
         ChatroomDetailViewController *detailController = [[ChatroomDetailViewController alloc] initWithChatroomId:self.conversation.conversationId];
         [self.navigationController pushViewController:detailController animated:YES];
+    }else if (self.conversation.type == EMConversationTypeChat){
+        //私聊
+//        DLog(@"conversationId = %@",self.conversation.conversationId);
+//        NSDictionary *dict = self.conversation.latestMessage.ext;
+//        DLog(@"dict = %@",dict);
+        NSGroupDetailVC *groupDetailVC = [NSGroupDetailVC new];
+        [groupDetailVC setUpDataWithConversation:self.conversation];
+        groupDetailVC.delegate = self;
+        groupDetailVC.exitBtn.alpha = 0.0;
+        groupDetailVC.otherTableView.alpha = 0.0;
+        [self.navigationController pushViewController:groupDetailVC animated:YES];
     }
 }
 
@@ -749,8 +855,14 @@
         }
     }
     else if ([sender isKindOfClass:[UIButton class]]){
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:NSLocalizedString(@"sureToDelete", @"please make sure to delete") delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel") otherButtonTitles:NSLocalizedString(@"ok", @"OK"), nil];
-        [alertView show];
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:NSLocalizedString(@"sureToDelete", @"please make sure to delete") delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel") otherButtonTitles:NSLocalizedString(@"ok", @"OK"), nil];
+//        [alertView show];
+        self.messageTimeIntervalTag = -1;
+        [self.conversation deleteAllMessages:nil];
+        [self.dataArray removeAllObjects];
+        [self.messsagesSource removeAllObjects];
+        
+        [self.tableView reloadData];
     }
 }
 
@@ -974,6 +1086,21 @@
     }
 }
 
+-(void)setRedPacketModel:(NSRPListModel *)redPacketModel{
+    _redPacketModel = redPacketModel;
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    // 保存数据
+if(![userDefaults objectForKey:redPacketModel.redpacket_id]){
+        [userDefaults setValue:@"10" forKey:redPacketModel.redpacket_id];
+        [userDefaults synchronize];
+    }
+    
+}
 
+//- (id)messageViewController:(EaseMessageViewController *)viewController
+//progressDelegateForMessageBodyType:(EMMessageBodyType)messageBodyType{
+//    DLog(@"messageBodyType = %u",messageBodyType);
+//    return viewController;
+//}
 
 @end

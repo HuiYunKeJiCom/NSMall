@@ -251,7 +251,7 @@
     [self endEditing:YES];
     _errorLabel.text = @"";
     if (self.delegate && [self.delegate respondsToSelector:@selector(loginView:userName:pwd:)]) {
-        [self.delegate loginView:self userName:[self.nameTextField.text trim] pwd:[self.passTextField.text trim]];
+        [self.delegate loginView:self userName:self.nameTextField.text pwd:[self.passTextField.text trim]];
     }
 }
 

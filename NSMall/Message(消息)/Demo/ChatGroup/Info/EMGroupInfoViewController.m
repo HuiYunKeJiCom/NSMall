@@ -56,7 +56,12 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUI:) name:@"UpdateGroupDetail" object:nil];
     
-    [self _setupNavigationBar];
+//    [self.navigationController setNavigationBarHidden:NO];
+//    [self _setupNavigationBar];
+    
+    
+    self.tableView.frame =CGRectMake(0, TopBarHeight, self.tableView.frame.size.width, self.tableView.frame.size.height);
+    
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 30)];
     self.tableView.rowHeight = 60;
     self.tableView.sectionHeaderHeight = 30;
@@ -66,6 +71,7 @@
     [self fetchGroupInfo];
     
     [self reloadUI];
+    [self setUpNavTopView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,19 +83,19 @@
 
 - (void)_setupNavigationBar
 {
-//    self.title = NSLocalizedString(@"title.groupInfo", @"Group Info");
+    self.title = NSLocalizedString(@"title.groupInfo", @"Group Info");
     
-//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-//    [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-//    [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-//    self.navigationItem.leftBarButtonItem = backItem;
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    self.navigationItem.leftBarButtonItem = backItem;
     
-//    UIButton *addButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-//    [addButton setTitle:@"+" forState:UIControlStateNormal];
-//    addButton.titleLabel.font = [UIFont boldSystemFontOfSize:30];
-//    [addButton addTarget:self action:@selector(addMemberAction) forControlEvents:UIControlEventTouchUpInside];
-//    self.addItem = [[UIBarButtonItem alloc] initWithCustomView:addButton];
+    UIButton *addButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    [addButton setTitle:@"+" forState:UIControlStateNormal];
+    addButton.titleLabel.font = [UIFont boldSystemFontOfSize:30];
+    [addButton addTarget:self action:@selector(addMemberAction) forControlEvents:UIControlEventTouchUpInside];
+    self.addItem = [[UIBarButtonItem alloc] initWithCustomView:addButton];
 }
 
 #pragma mark - 导航栏处理
@@ -591,7 +597,7 @@
     } else {
         [self.leaveButton setTitle:NSLocalizedString(@"group.leave", @"quit the group") forState:UIControlStateNormal];
     }
-    
+        self.tableView.frame = CGRectMake(0, TopBarHeight, self.view.frame.size.width,self.view.frame.size.height-TopBarHeight);
     [self.tableView reloadData];
 }
 

@@ -23,19 +23,25 @@
     self = [super init];
     if (self) {
         _conversation = conversation;
-        UserModel *userModel = [UserModel modelFromUnarchive];
+//        UserModel *userModel = [UserModel modelFromUnarchive];
         EMMessage *latestMessage = _conversation.lastReceivedMessage;
         NSDictionary *ext = latestMessage.ext;
         
         //        _title = _conversation.conversationId;
         if (conversation.type == EMConversationTypeChat) {
             //            _avatarImage = [UIImage imageNamed:@"EaseUIResource.bundle/user"];
-
+            
+            
+            
+                    _hxModel.nick_name = [ext objectForKey:@"nick"];
+                    _hxModel.user_avatar = [ext objectForKey:@"avatar_url"];
+                    _hxModel.hx_user_name = [ext objectForKey:@"hx_username"];
+                    _hxModel.user_id = [ext objectForKey:@"user_id"];
+            
                     _title = [ext objectForKey:@"nick"];
                     NSData *data = [NSData  dataWithContentsOfURL:[NSURL URLWithString:[ext objectForKey:@"avatar_url"]]];
                     _avatarImage =  [UIImage imageWithData:data];
-        }
-        else{
+        }else{
             _title = [ext objectForKey:@"nick"];
             _avatarImage = [UIImage imageNamed:@"EaseUIResource.bundle/group"];
         }

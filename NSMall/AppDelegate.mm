@@ -7,7 +7,7 @@
 //
 
 /* 环信 */
-static NSString * const kHuanXinAppKey       = @"1125180610177403#nsapp";
+static NSString * const kHuanXinAppKey       = @"1153180424099290#huist-oomall";
 //1153180424099290#huist-oomall
 //1125180610177403#nsapp(正式)
 
@@ -25,13 +25,15 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
 #import "UserInfoAPI.h"
 #import "LoginAPI.h"
 #import "AppVersionParam.h"
+#import "EMCDDeviceManager+ProximitySensor.h"
+
 
 //#import <Bugly/Bugly.h>
 //#import <BuglyExtension/CrashReporterLite.h>
 
 
 
-@interface AppDelegate ()<CYLPlusButtonSubclassing,EMChatManagerDelegate,selectDelegate,EMContactManagerDelegate,EMClientDelegate>
+@interface AppDelegate ()<CYLPlusButtonSubclassing,EMChatManagerDelegate,selectDelegate,EMContactManagerDelegate,EMClientDelegate,EMCDDeviceManagerDelegate,EMChatroomManagerDelegate>
 /** tabbar */
 @property(nonatomic,strong)CYLTabBarController *tabBarController;
 /** 好友的名称 */
@@ -80,8 +82,12 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
     // 监听自动登录的状态
     // 设置chatManager代理
     [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+    [EMCDDeviceManager sharedInstance].delegate = self;
+    [[EMClient sharedClient].roomManager addDelegate:self delegateQueue:nil];
     
     [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
+    
+    [[EMCDDeviceManager sharedInstance] enableProximitySensor];//个人建议在 viewwillAppear 中添加
     
     // 测试的时候改变info 里的版本号就可以了
     NSArray *images = @[@"pic_start1", @"pic_start2", @"pic_start3", @"pic_start4"];
@@ -324,6 +330,40 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
 - (void)friendshipDidRemoveByUser:(NSString *)aUsername{
 //    DLog(@"你已经被%@删除了",aUsername);
     
+}
+
+
+- (void)didReceiveCmdMessages:(NSArray *)aCmdMessages
+{
+    EMMessage *message = aCmdMessages[0];
+    DLog(@"message.body = %@",message.body);
+    NSLog(@"接收到环信透传消息");
+}
+
+/*!
+ @method
+ @brief 用户B设置了自动同意，用户A邀请用户B入群，SDK 内部进行同意操作之后，用户B接收到该回调
+ */
+- (void)didJoinedGroup:(EMGroup *)aGroup
+               inviter:(NSString *)aInviter
+               message:(NSString *)aMessage{
+    DLog(@"邀请你加入群聊");
+}
+
+/*!
+ @method
+ @brief 用户A向群组G发送入群申请，群组G的群主O会接收到该回调
+ */
+- (void)didReceiveJoinGroupApplication:(EMGroup *)aGroup
+                             applicant:(NSString *)aApplicant
+                                reason:(NSString *)aReason{
+    DLog(@"群主收到入群申请");
+    DLog(@"aApplicant = %@",aApplicant);
+    DLog(@"groupId = %@",aGroup.groupId);
+    DLog(@"subject = %@",aGroup.subject);
+    
+//    同意进群申请
+//    EMError *error = [[EMClient sharedClient].groupManager acceptJoinApplication:@"groupId" groupname:@"subject" applicant:@"user1"];
 }
 
 @end

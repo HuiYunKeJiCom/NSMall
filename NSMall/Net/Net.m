@@ -102,7 +102,9 @@ AFHTTPSessionManager *httpManager = nil;
     
     [httpManager POST:[NSString stringWithFormat:@"%@%@",NetDomainADDR,function] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [Common AppHideHUD];
+        
         NetBaseModel *result = [NetBaseModel yy_modelWithDictionary:responseObject];
+        NetBaseModel *resultTest;
         
         if((result.code == -1) || (result.code == -2)){
             EMError *error = [[EMClient sharedClient] logout:YES];
@@ -119,8 +121,25 @@ AFHTTPSessionManager *httpManager = nil;
                 return;
             }
             else if(result.code == 1001 || result.code == 1002 || result.code == 1003 || result.code == 1004 || result.code == 1005){
-                [result.data setValue:[NSString stringWithFormat:@"%lu",result.code] forKey:@"RPStatus"];
-                success?success(result.data):nil;
+//                DLog(@"result = %@",result.mj_keyValues);
+//                result.data = [NSMutableDictionary dictionary];
+                
+                NSMutableDictionary *mDict = [NSMutableDictionary dictionaryWithDictionary:responseObject];
+                if([[mDict objectForKey:@"data"] isKindOfClass:[NSDictionary class]]){
+                    NSMutableDictionary *tempDict = [NSMutableDictionary dictionaryWithDictionary:[mDict objectForKey:@"data"]];
+                    [tempDict setValue:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"code"]] forKey:@"RPStatus"];
+                    [mDict setValue:tempDict forKey:@"data"];
+                }
+                
+                NSDictionary *dict = [NSDictionary dictionaryWithDictionary:mDict];
+
+                resultTest = [NetBaseModel yy_modelWithDictionary:dict];
+                
+                
+//                DLog(@"resultTest = %@",resultTest.mj_keyValues);
+                
+//                [resultTest.data setValue:[NSString stringWithFormat:@"%lu",result.code] forKey:@"RPStatus"];
+                success?success(resultTest.data):nil;
             }
             else{
                 [Common AppShowToast:result.message];
@@ -128,8 +147,24 @@ AFHTTPSessionManager *httpManager = nil;
                 return;
             }
             
+        }else{
+            NSMutableDictionary *mDict = [NSMutableDictionary dictionaryWithDictionary:responseObject];
+            if([[mDict objectForKey:@"data"] isKindOfClass:[NSDictionary class]]){
+                NSDictionary *dataDict = [mDict objectForKey:@"data"];
+                NSMutableDictionary *tempDict = [[NSMutableDictionary alloc]initWithDictionary:dataDict];
+                
+                [tempDict setValue:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"code"]] forKey:@"RPStatus"];
+                [mDict setValue:tempDict forKey:@"data"];
+                //            [NSMutableDictionary dictionaryWithDictionary:dataDict];
+            }
+            
+            
+            NSDictionary *dict = [NSDictionary dictionaryWithDictionary:mDict];
+            
+            resultTest = [NetBaseModel yy_modelWithDictionary:dict];
+            success?success(resultTest.data):nil;
         }
-        success?success(result.data):nil;
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [Common AppHideHUD];
         
@@ -180,8 +215,9 @@ AFHTTPSessionManager *httpManager = nil;
     
     [self requestWithPost:requestParams function:function showHUD:showHUD success:^(NSDictionary * _Nullable responseObj) {
 //        NSLog(@"responseObj = %@",responseObj);
+//        DLog(@"resultClass = %@",resultClass);
         id resultObj = nil;
-        if (resultClass == Nil || [resultClass isKindOfClass:[NSDictionary class]] || [resultClass isKindOfClass:[NSArray class]])
+        if (resultClass == Nil || [resultClass isKindOfClass:[NSDictionary class]] || [resultClass isKindOfClass:[NSArray class]] || [function containsString:@"auth/createGroup"])
             resultObj = responseObj;
         else
             resultObj = [resultClass yy_modelWithDictionary:responseObj];

@@ -7,13 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181157D6213FC31A0062B3D9 /* NSReceiveRPCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 181157D5213FC31A0062B3D9 /* NSReceiveRPCell.m */; };
+		181157D921420F0A0062B3D9 /* NSNullCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 181157D821420F0A0062B3D9 /* NSNullCell.m */; };
 		1818F2A120E4E31B004B59CE /* NSODTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818F2A020E4E31B004B59CE /* NSODTVCell.m */; };
 		1819B65620A71DC8009EAF87 /* NSSecondaryCategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819B65520A71DC8009EAF87 /* NSSecondaryCategoryVC.m */; };
 		181A9F322106FB9400334F7C /* NSHuanXinUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A9F312106FB9400334F7C /* NSHuanXinUserModel.m */; };
+		181CDF7A212D496000FEE41A /* NSGroupAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 181CDF79212D496000FEE41A /* NSGroupAPI.m */; };
+		181CDF7D212D49B100FEE41A /* NSCreateGroupParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 181CDF7C212D49B100FEE41A /* NSCreateGroupParam.m */; };
 		18230F66208D793F00D3E55F /* BaseViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 18230F65208D793F00D3E55F /* BaseViewCtrl.m */; };
 		18230F6A208D795E00D3E55F /* FFLoadFailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18230F68208D795D00D3E55F /* FFLoadFailView.m */; };
 		182926D02105F8AA00061634 /* NSFriendItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182926CF2105F8AA00061634 /* NSFriendItemModel.m */; };
 		182926D32105F8BF00061634 /* NSFriendListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182926D22105F8BF00061634 /* NSFriendListModel.m */; };
+		1829FD2321352E84002109E1 /* NSGroupDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829FD2221352E84002109E1 /* NSGroupDetailVC.m */; };
+		1829FD2721353ECD002109E1 /* NSMemberCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829FD2621353ECD002109E1 /* NSMemberCVCell.m */; };
+		1829FD2A213641C1002109E1 /* NSChatSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829FD29213641C1002109E1 /* NSChatSettingView.m */; };
 		182B5C0F2112F69D00B72CC7 /* MyGoodsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 182B5C0E2112F69D00B72CC7 /* MyGoodsAPI.m */; };
 		182B5C132112F89200B72CC7 /* NSGoodsEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 182B5C122112F89200B72CC7 /* NSGoodsEditVC.m */; };
 		182B5C162113078800B72CC7 /* NSGoodsItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182B5C152113078800B72CC7 /* NSGoodsItemModel.m */; };
@@ -88,6 +95,8 @@
 		1851CD70208F0DD00094A594 /* NetBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD6F208F0DD00094A594 /* NetBaseModel.m */; };
 		1851CD77208F23530094A594 /* NSCustomHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851CD76208F23530094A594 /* NSCustomHeadCell.m */; };
 		18559955210187F300D95602 /* NSMessageAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18559954210187F300D95602 /* NSMessageAPI.m */; };
+		185BA0C82134E7E90068D32E /* NSGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 185BA0C72134E7E80068D32E /* NSGroupModel.m */; };
+		185BA0CC2134F3100068D32E /* NSGroupTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185BA0CB2134F3100068D32E /* NSGroupTVCell.m */; };
 		185DFDFE20B3C7E800437168 /* NSCategoryTV.m in Sources */ = {isa = PBXBuildFile; fileRef = 185DFDFD20B3C7E800437168 /* NSCategoryTV.m */; };
 		185DFE0120B3FA8A00437168 /* NSCategoryTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185DFE0020B3FA8A00437168 /* NSCategoryTVCell.m */; };
 		1861C540212A5EF400B9F4E5 /* UIButton+BootstrapCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1861C53F212A5EF400B9F4E5 /* UIButton+BootstrapCopy.m */; };
@@ -160,6 +169,8 @@
 		1868F78D20FEF391000BB6EB /* ApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868F75620FEF391000BB6EB /* ApplyViewController.m */; };
 		1868F78E20FEF391000BB6EB /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868F75820FEF391000BB6EB /* AddFriendViewController.m */; };
 		1868F78F20FEF391000BB6EB /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868F75A20FEF391000BB6EB /* AddFriendCell.m */; };
+		187400DE2137E5500024683E /* NSGroupListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 187400DD2137E54F0024683E /* NSGroupListModel.m */; };
+		187400E12138E1680024683E /* AEIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187400E02138E1680024683E /* AEIconView.m */; };
 		1874523C20EDAFA200A67D70 /* TTGlobalUICommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874523A20EDAFA200A67D70 /* TTGlobalUICommon.m */; };
 		1874523F20EDCF3800A67D70 /* UIImageView+HeadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874523E20EDCF3800A67D70 /* UIImageView+HeadImage.m */; };
 		1874524320EDF0E500A67D70 /* UIViewController+SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874524120EDF0E400A67D70 /* UIViewController+SearchController.m */; };
@@ -192,6 +203,9 @@
 		188CC652207F5431007D749E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188CC651207F5431007D749E /* Assets.xcassets */; };
 		188CC655207F5431007D749E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188CC653207F5431007D749E /* LaunchScreen.storyboard */; };
 		188CC658207F5431007D749E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 188CC657207F5431007D749E /* main.m */; };
+		188DCA5D214A85D500194BF8 /* XCPFileObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DCA5C214A85D500194BF8 /* XCPFileObject.m */; };
+		188DCA63214A85E000194BF8 /* XCPFileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DCA60214A85E000194BF8 /* XCPFileTableViewCell.m */; };
+		188DCA64214A85E000194BF8 /* XCPFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DCA61214A85E000194BF8 /* XCPFileViewController.m */; };
 		18999B2120DA4C58003BCF23 /* NSOrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18999B2020DA4C58003BCF23 /* NSOrderDetailVC.m */; };
 		1899B7B620B57643002FF2A8 /* NSLikeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1899B7B520B57643002FF2A8 /* NSLikeModel.m */; };
 		18A7AB7920ADAAFC009FC725 /* NSMyGoodsListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A7AB7820ADAAFC009FC725 /* NSMyGoodsListVC.m */; };
@@ -359,6 +373,7 @@
 		18D71044208DC84C002BA6CD /* DCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7103E208DC84C002BA6CD /* DCNavigationController.m */; };
 		18D71045208DC84C002BA6CD /* DCTabBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D71041208DC84C002BA6CD /* DCTabBadgeView.m */; };
 		18DA7CF420C8D8AA009277AA /* ShopPublishParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DA7CF320C8D8AA009277AA /* ShopPublishParam.m */; };
+		18DAF7DF214F9C60008A24EB /* NSChangeGroupNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DAF7DE214F9C60008A24EB /* NSChangeGroupNameVC.m */; };
 		18DB5D3A20E21876000E99E6 /* FivePageSelectBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB5D3920E21876000E99E6 /* FivePageSelectBar.m */; };
 		18DB5D5520E23497000E99E6 /* OrderDetailAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB5D5320E23497000E99E6 /* OrderDetailAPI.m */; };
 		18DB5D5820E23515000E99E6 /* OrderDetailParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB5D5620E23514000E99E6 /* OrderDetailParam.m */; };
@@ -461,12 +476,20 @@
 
 /* Begin PBXFileReference section */
 		162AA1D6179FA2D4019BE742 /* Pods-NSMall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSMall.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NSMall/Pods-NSMall.debug.xcconfig"; sourceTree = "<group>"; };
+		181157D4213FC3190062B3D9 /* NSReceiveRPCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSReceiveRPCell.h; sourceTree = "<group>"; };
+		181157D5213FC31A0062B3D9 /* NSReceiveRPCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSReceiveRPCell.m; sourceTree = "<group>"; };
+		181157D721420F0A0062B3D9 /* NSNullCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSNullCell.h; sourceTree = "<group>"; };
+		181157D821420F0A0062B3D9 /* NSNullCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSNullCell.m; sourceTree = "<group>"; };
 		1818F29F20E4E31B004B59CE /* NSODTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSODTVCell.h; sourceTree = "<group>"; };
 		1818F2A020E4E31B004B59CE /* NSODTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSODTVCell.m; sourceTree = "<group>"; };
 		1819B65420A71DC8009EAF87 /* NSSecondaryCategoryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSecondaryCategoryVC.h; sourceTree = "<group>"; };
 		1819B65520A71DC8009EAF87 /* NSSecondaryCategoryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSecondaryCategoryVC.m; sourceTree = "<group>"; };
 		181A9F302106FB9400334F7C /* NSHuanXinUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSHuanXinUserModel.h; sourceTree = "<group>"; };
 		181A9F312106FB9400334F7C /* NSHuanXinUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSHuanXinUserModel.m; sourceTree = "<group>"; };
+		181CDF78212D496000FEE41A /* NSGroupAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSGroupAPI.h; sourceTree = "<group>"; };
+		181CDF79212D496000FEE41A /* NSGroupAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSGroupAPI.m; sourceTree = "<group>"; };
+		181CDF7B212D49B100FEE41A /* NSCreateGroupParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCreateGroupParam.h; sourceTree = "<group>"; };
+		181CDF7C212D49B100FEE41A /* NSCreateGroupParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCreateGroupParam.m; sourceTree = "<group>"; };
 		18230F64208D793F00D3E55F /* BaseViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewCtrl.h; sourceTree = "<group>"; };
 		18230F65208D793F00D3E55F /* BaseViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewCtrl.m; sourceTree = "<group>"; };
 		18230F68208D795D00D3E55F /* FFLoadFailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFLoadFailView.m; sourceTree = "<group>"; };
@@ -477,6 +500,12 @@
 		182926CF2105F8AA00061634 /* NSFriendItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSFriendItemModel.m; sourceTree = "<group>"; };
 		182926D12105F8BF00061634 /* NSFriendListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSFriendListModel.h; sourceTree = "<group>"; };
 		182926D22105F8BF00061634 /* NSFriendListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSFriendListModel.m; sourceTree = "<group>"; };
+		1829FD2121352E84002109E1 /* NSGroupDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSGroupDetailVC.h; sourceTree = "<group>"; };
+		1829FD2221352E84002109E1 /* NSGroupDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSGroupDetailVC.m; sourceTree = "<group>"; };
+		1829FD2521353ECD002109E1 /* NSMemberCVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSMemberCVCell.h; sourceTree = "<group>"; };
+		1829FD2621353ECD002109E1 /* NSMemberCVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSMemberCVCell.m; sourceTree = "<group>"; };
+		1829FD28213641C1002109E1 /* NSChatSettingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSChatSettingView.h; sourceTree = "<group>"; };
+		1829FD29213641C1002109E1 /* NSChatSettingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSChatSettingView.m; sourceTree = "<group>"; };
 		182B5C0D2112F69D00B72CC7 /* MyGoodsAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGoodsAPI.h; sourceTree = "<group>"; };
 		182B5C0E2112F69D00B72CC7 /* MyGoodsAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyGoodsAPI.m; sourceTree = "<group>"; };
 		182B5C112112F89200B72CC7 /* NSGoodsEditVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSGoodsEditVC.h; sourceTree = "<group>"; };
@@ -631,6 +660,10 @@
 		1851CD76208F23530094A594 /* NSCustomHeadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCustomHeadCell.m; sourceTree = "<group>"; };
 		18559953210187F300D95602 /* NSMessageAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSMessageAPI.h; sourceTree = "<group>"; };
 		18559954210187F300D95602 /* NSMessageAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSMessageAPI.m; sourceTree = "<group>"; };
+		185BA0C62134E7E80068D32E /* NSGroupModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSGroupModel.h; sourceTree = "<group>"; };
+		185BA0C72134E7E80068D32E /* NSGroupModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSGroupModel.m; sourceTree = "<group>"; };
+		185BA0CA2134F3100068D32E /* NSGroupTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSGroupTVCell.h; sourceTree = "<group>"; };
+		185BA0CB2134F3100068D32E /* NSGroupTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSGroupTVCell.m; sourceTree = "<group>"; };
 		185DF8842123C9D2007A7446 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		185DFDFC20B3C7E800437168 /* NSCategoryTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCategoryTV.h; sourceTree = "<group>"; };
 		185DFDFD20B3C7E800437168 /* NSCategoryTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCategoryTV.m; sourceTree = "<group>"; };
@@ -776,6 +809,10 @@
 		1868F75A20FEF391000BB6EB /* AddFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendCell.m; sourceTree = "<group>"; };
 		1868F75B20FEF391000BB6EB /* ApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyViewController.h; sourceTree = "<group>"; };
 		1868F75C20FEF391000BB6EB /* AddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendViewController.h; sourceTree = "<group>"; };
+		187400DC2137E54F0024683E /* NSGroupListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSGroupListModel.h; sourceTree = "<group>"; };
+		187400DD2137E54F0024683E /* NSGroupListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSGroupListModel.m; sourceTree = "<group>"; };
+		187400DF2138E1670024683E /* AEIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEIconView.h; sourceTree = "<group>"; };
+		187400E02138E1680024683E /* AEIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEIconView.m; sourceTree = "<group>"; };
 		1874523A20EDAFA200A67D70 /* TTGlobalUICommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalUICommon.m; sourceTree = "<group>"; };
 		1874523B20EDAFA200A67D70 /* TTGlobalUICommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGlobalUICommon.h; sourceTree = "<group>"; };
 		1874523D20EDCF3700A67D70 /* UIImageView+HeadImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+HeadImage.h"; sourceTree = "<group>"; };
@@ -837,6 +874,12 @@
 		188CC654207F5431007D749E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		188CC656207F5431007D749E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		188CC657207F5431007D749E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		188DCA5B214A85D500194BF8 /* XCPFileObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCPFileObject.h; sourceTree = "<group>"; };
+		188DCA5C214A85D500194BF8 /* XCPFileObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCPFileObject.m; sourceTree = "<group>"; };
+		188DCA5F214A85E000194BF8 /* XCPFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCPFileViewController.h; sourceTree = "<group>"; };
+		188DCA60214A85E000194BF8 /* XCPFileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCPFileTableViewCell.m; sourceTree = "<group>"; };
+		188DCA61214A85E000194BF8 /* XCPFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCPFileViewController.m; sourceTree = "<group>"; };
+		188DCA62214A85E000194BF8 /* XCPFileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCPFileTableViewCell.h; sourceTree = "<group>"; };
 		18999B1F20DA4C58003BCF23 /* NSOrderDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSOrderDetailVC.h; sourceTree = "<group>"; };
 		18999B2020DA4C58003BCF23 /* NSOrderDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSOrderDetailVC.m; sourceTree = "<group>"; };
 		1899B7B420B57643002FF2A8 /* NSLikeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSLikeModel.h; sourceTree = "<group>"; };
@@ -1168,6 +1211,8 @@
 		18D71041208DC84C002BA6CD /* DCTabBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTabBadgeView.m; sourceTree = "<group>"; };
 		18DA7CF220C8D8AA009277AA /* ShopPublishParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopPublishParam.h; sourceTree = "<group>"; };
 		18DA7CF320C8D8AA009277AA /* ShopPublishParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopPublishParam.m; sourceTree = "<group>"; };
+		18DAF7DD214F9C5F008A24EB /* NSChangeGroupNameVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSChangeGroupNameVC.h; sourceTree = "<group>"; };
+		18DAF7DE214F9C60008A24EB /* NSChangeGroupNameVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSChangeGroupNameVC.m; sourceTree = "<group>"; };
 		18DB5D3820E21876000E99E6 /* FivePageSelectBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FivePageSelectBar.h; sourceTree = "<group>"; };
 		18DB5D3920E21876000E99E6 /* FivePageSelectBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FivePageSelectBar.m; sourceTree = "<group>"; };
 		18DB5D5320E23497000E99E6 /* OrderDetailAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailAPI.m; sourceTree = "<group>"; };
@@ -1465,8 +1510,35 @@
 				18B6D98421200B9500D0F999 /* NSRPListModel.m */,
 				18B6D98621200BAE00D0F999 /* NSRPItemModel.h */,
 				18B6D98721200BAE00D0F999 /* NSRPItemModel.m */,
+				185BA0C62134E7E80068D32E /* NSGroupModel.h */,
+				185BA0C72134E7E80068D32E /* NSGroupModel.m */,
+				187400DC2137E54F0024683E /* NSGroupListModel.h */,
+				187400DD2137E54F0024683E /* NSGroupListModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1829FD2021352E51002109E1 /* New */ = {
+			isa = PBXGroup;
+			children = (
+				1829FD2421353E7B002109E1 /* View */,
+				1829FD2121352E84002109E1 /* NSGroupDetailVC.h */,
+				1829FD2221352E84002109E1 /* NSGroupDetailVC.m */,
+				18DAF7DD214F9C5F008A24EB /* NSChangeGroupNameVC.h */,
+				18DAF7DE214F9C60008A24EB /* NSChangeGroupNameVC.m */,
+			);
+			path = New;
+			sourceTree = "<group>";
+		};
+		1829FD2421353E7B002109E1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1829FD2521353ECD002109E1 /* NSMemberCVCell.h */,
+				1829FD2621353ECD002109E1 /* NSMemberCVCell.m */,
+				1829FD28213641C1002109E1 /* NSChatSettingView.h */,
+				1829FD29213641C1002109E1 /* NSChatSettingView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		182B5C0C2112F44F00B72CC7 /* API */ = {
@@ -1973,8 +2045,21 @@
 			children = (
 				18559953210187F300D95602 /* NSMessageAPI.h */,
 				18559954210187F300D95602 /* NSMessageAPI.m */,
+				181CDF78212D496000FEE41A /* NSGroupAPI.h */,
+				181CDF79212D496000FEE41A /* NSGroupAPI.m */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		185BA0C92134EE940068D32E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				187400DF2138E1670024683E /* AEIconView.h */,
+				187400E02138E1680024683E /* AEIconView.m */,
+				185BA0CA2134F3100068D32E /* NSGroupTVCell.h */,
+				185BA0CB2134F3100068D32E /* NSGroupTVCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		1863D26320A96A9000047A7D /* Ctrl */ = {
@@ -2299,6 +2384,7 @@
 		1868F71E20FEF391000BB6EB /* ChatGroup */ = {
 			isa = PBXGroup;
 			children = (
+				185BA0C92134EE940068D32E /* View */,
 				1868F71F20FEF391000BB6EB /* GroupSubjectChangingViewController.h */,
 				1868F72F20FEF391000BB6EB /* GroupSubjectChangingViewController.m */,
 				1868F72020FEF391000BB6EB /* GroupListViewController.h */,
@@ -2315,10 +2401,10 @@
 		1868F72120FEF391000BB6EB /* 新建群组 */ = {
 			isa = PBXGroup;
 			children = (
-				1868F72220FEF391000BB6EB /* ContactSelectionViewController.m */,
-				1868F72320FEF391000BB6EB /* CreateGroupViewController.m */,
 				1868F72420FEF391000BB6EB /* ContactSelectionViewController.h */,
+				1868F72220FEF391000BB6EB /* ContactSelectionViewController.m */,
 				1868F72520FEF391000BB6EB /* CreateGroupViewController.h */,
+				1868F72320FEF391000BB6EB /* CreateGroupViewController.m */,
 			);
 			path = "新建群组";
 			sourceTree = "<group>";
@@ -2340,6 +2426,7 @@
 		1868F73020FEF391000BB6EB /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				1829FD2021352E51002109E1 /* New */,
 				1868F73A20FEF391000BB6EB /* EMGroupMembersViewController.h */,
 				1868F73120FEF391000BB6EB /* EMGroupMembersViewController.m */,
 				1868F73920FEF391000BB6EB /* EMGroupAdminsViewController.h */,
@@ -2575,6 +2662,35 @@
 				182E8E6C20EF0E3A00ECFCA4 /* Localizable.strings */,
 			);
 			path = NSMall;
+			sourceTree = "<group>";
+		};
+		188DCA59214A85C100194BF8 /* File */ = {
+			isa = PBXGroup;
+			children = (
+				188DCA5E214A85E000194BF8 /* View */,
+				188DCA5A214A85D500194BF8 /* Model */,
+			);
+			path = File;
+			sourceTree = "<group>";
+		};
+		188DCA5A214A85D500194BF8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				188DCA5B214A85D500194BF8 /* XCPFileObject.h */,
+				188DCA5C214A85D500194BF8 /* XCPFileObject.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		188DCA5E214A85E000194BF8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				188DCA5F214A85E000194BF8 /* XCPFileViewController.h */,
+				188DCA61214A85E000194BF8 /* XCPFileViewController.m */,
+				188DCA62214A85E000194BF8 /* XCPFileTableViewCell.h */,
+				188DCA60214A85E000194BF8 /* XCPFileTableViewCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		18999B1B20DA46B2003BCF23 /* OrderDetail(订单详情) */ = {
@@ -3116,6 +3232,8 @@
 			children = (
 				18B6491A211D27DD00F8CDAA /* NSSendRPParam.h */,
 				18B6491B211D27DD00F8CDAA /* NSSendRPParam.m */,
+				181CDF7B212D49B100FEE41A /* NSCreateGroupParam.h */,
+				181CDF7C212D49B100FEE41A /* NSCreateGroupParam.m */,
 			);
 			path = Param;
 			sourceTree = "<group>";
@@ -3125,6 +3243,10 @@
 			children = (
 				18B6491E211D78DE00F8CDAA /* NSRedPacketCell.h */,
 				18B6491F211D78DE00F8CDAA /* NSRedPacketCell.m */,
+				181157D721420F0A0062B3D9 /* NSNullCell.h */,
+				181157D821420F0A0062B3D9 /* NSNullCell.m */,
+				181157D4213FC3190062B3D9 /* NSReceiveRPCell.h */,
+				181157D5213FC31A0062B3D9 /* NSReceiveRPCell.m */,
 				18B64921211D9F0900F8CDAA /* NSRPTestCell.h */,
 				18B64922211D9F0900F8CDAA /* NSRPTestCell.m */,
 				18B6D9892120174500D0F999 /* NSRPView.h */,
@@ -3785,6 +3907,7 @@
 		18DD1572208DD35A0006475D /* Message(消息) */ = {
 			isa = PBXGroup;
 			children = (
+				188DCA59214A85C100194BF8 /* File */,
 				18B64919211D27AF00F8CDAA /* Param */,
 				182926CD2105F86200061634 /* Model */,
 				185599522101857F00D95602 /* API */,
@@ -4692,6 +4815,7 @@
 				18D0C0B420AC0D01007F0784 /* TDUserCertifySectionHeader.m in Sources */,
 				18AD9FEA20C67F1000275CC5 /* GPLoadingView.m in Sources */,
 				18E3A42920B263F000F847ED /* NSWaitDeliverSaleVC.m in Sources */,
+				187400DE2137E5500024683E /* NSGroupListModel.m in Sources */,
 				18ADC51E20BADFCF00961CD8 /* NSAddCartParam.m in Sources */,
 				1868F76320FEF391000BB6EB /* ConversationListController.m in Sources */,
 				18D0C0B320AC0D01007F0784 /* TDUserCertifyCellPics.m in Sources */,
@@ -4704,6 +4828,7 @@
 				18B1CB1D20BFE6D700235CFA /* NSBindWalletParam.m in Sources */,
 				18D0824E20956D2F0031034A /* LoginAPI.m in Sources */,
 				1868F78C20FEF391000BB6EB /* ApplyFriendCell.m in Sources */,
+				188DCA5D214A85D500194BF8 /* XCPFileObject.m in Sources */,
 				1868F78A20FEF391000BB6EB /* EMRemarkImageView.m in Sources */,
 				18B017A120A67B9600826EA4 /* SaveAddressParam.m in Sources */,
 				18ECABD620F624D500679857 /* NSLogItemModel.m in Sources */,
@@ -4767,6 +4892,7 @@
 				18D0C0B120AC0D01007F0784 /* TDUserCertifySubVCPics.m in Sources */,
 				18B0179420A67B9600826EA4 /* YWChooseAddressView.m in Sources */,
 				18B017B020A67B9600826EA4 /* CLTagsModel.m in Sources */,
+				181CDF7A212D496000FEE41A /* NSGroupAPI.m in Sources */,
 				18D62C5820C2737300F66C4C /* NSGoodsShowCellTest.m in Sources */,
 				18559955210187F300D95602 /* NSMessageAPI.m in Sources */,
 				18D0C0EA20AC1E4A007F0784 /* JFDatePickerController.m in Sources */,
@@ -4831,6 +4957,7 @@
 				18D71042208DC84C002BA6CD /* DCTabBarController.m in Sources */,
 				18DD158B208DEAD80006475D /* BaseTableView.m in Sources */,
 				1868F76B20FEF391000BB6EB /* RobotChatViewController.m in Sources */,
+				181157D921420F0A0062B3D9 /* NSNullCell.m in Sources */,
 				18A7AB7F20ADB0BB009FC725 /* NSMyGoodsTVCell.m in Sources */,
 				1868F77720FEF391000BB6EB /* EMMemberCell.m in Sources */,
 				18DB5D5520E23497000E99E6 /* OrderDetailAPI.m in Sources */,
@@ -4850,6 +4977,7 @@
 				18A7AB8620ADB5AD009FC725 /* NSMyProductListItemModel.m in Sources */,
 				1868F77520FEF391000BB6EB /* ContactSelectionViewController.m in Sources */,
 				18FBBF4D20F6E6D7008D87FD /* ReceivableRecordAPI.m in Sources */,
+				181CDF7D212D49B100FEE41A /* NSCreateGroupParam.m in Sources */,
 				182926D32105F8BF00061634 /* NSFriendListModel.m in Sources */,
 				184F065320A2DC2D00768418 /* SearchParam.m in Sources */,
 				18E3A43520B2731700F847ED /* NSOrderListModel.m in Sources */,
@@ -4868,6 +4996,7 @@
 				18AA1CEC2121145500BA5C81 /* NSRecordItemModel.m in Sources */,
 				1868F77420FEF391000BB6EB /* EMChatroomAdminsViewController.m in Sources */,
 				18D574D2209AB1D6001C7875 /* HeaderModel.m in Sources */,
+				188DCA64214A85E000194BF8 /* XCPFileViewController.m in Sources */,
 				1868F76220FEF391000BB6EB /* DingAcksViewController.m in Sources */,
 				1899B7B620B57643002FF2A8 /* NSLikeModel.m in Sources */,
 				184779F820CF9F36000DB448 /* BRDatePickerView.m in Sources */,
@@ -4894,6 +5023,7 @@
 				1848A6DA2113EADF0027AC4D /* NSProductSpecModel.m in Sources */,
 				18B017AC20A67B9600826EA4 /* GetAreaAPI.m in Sources */,
 				18D0C0A820AC0D01007F0784 /* TDUserCertifyCellConfirm.m in Sources */,
+				188DCA63214A85E000194BF8 /* XCPFileTableViewCell.m in Sources */,
 				18F5D4F320CE1A8A0037F825 /* NSStoreModel.m in Sources */,
 				18B017A920A67B9600826EA4 /* NSAddressModel.m in Sources */,
 				18DD2F1420B90B1D00521B61 /* HistoryAndCategorySearchHistroyViewP.m in Sources */,
@@ -4907,6 +5037,7 @@
 				184F05FA209C40DE00768418 /* AdvertItemModel.m in Sources */,
 				1840434E2099FB8400685F80 /* ADLTitleField.m in Sources */,
 				18B64920211D78DE00F8CDAA /* NSRedPacketCell.m in Sources */,
+				181157D6213FC31A0062B3D9 /* NSReceiveRPCell.m in Sources */,
 				184779FF20CFB55F000DB448 /* NSSearchAddressVC.m in Sources */,
 				188CC658207F5431007D749E /* main.m in Sources */,
 				184F061C209FE81A00768418 /* NSGoodsPublishVC.m in Sources */,
@@ -4976,10 +5107,12 @@
 				187DE34F20FF22D70098BC95 /* NSStoreItemModel.m in Sources */,
 				18E3A44620B2A3B200F847ED /* NSMyOrderTVCell.m in Sources */,
 				182926D02105F8AA00061634 /* NSFriendItemModel.m in Sources */,
+				187400E12138E1680024683E /* AEIconView.m in Sources */,
 				1868F78D20FEF391000BB6EB /* ApplyViewController.m in Sources */,
 				18DD1588208DEA960006475D /* ADLMyInfoModel.m in Sources */,
 				18D0C0A920AC0D01007F0784 /* TDUserCertifySubVCBasic.m in Sources */,
 				1874D5BE20AABFDA0004B1AF /* NSCarouselView.m in Sources */,
+				1829FD2321352E84002109E1 /* NSGroupDetailVC.m in Sources */,
 				184779F920CF9F36000DB448 /* BRBaseView.m in Sources */,
 				1874D5BB20AA8F8A0004B1AF /* DCHomeTopToolView.m in Sources */,
 				18DD2F2020B90B1E00521B61 /* ZYHTFileNameConst.m in Sources */,
@@ -4996,6 +5129,7 @@
 				18C3D09D20A2F151000FCE7F /* NSGoodsTableView.m in Sources */,
 				1868F76020FEF391000BB6EB /* DingViewController.m in Sources */,
 				184F0646209FFB7F00768418 /* UITextView+ZWPlaceHolder.m in Sources */,
+				185BA0C82134E7E90068D32E /* NSGroupModel.m in Sources */,
 				18C3CFFA20A2EFE0000FCE7F /* NSTimer+wrapper.m in Sources */,
 				1851CD77208F23530094A594 /* NSCustomHeadCell.m in Sources */,
 				18B1CB1720BF9E9B00235CFA /* NSWalletTVCell.m in Sources */,
@@ -5029,11 +5163,13 @@
 				18350890207F653600BCF7CE /* Net.m in Sources */,
 				18B017AB20A67B9600826EA4 /* ADAddressTopView.m in Sources */,
 				187DE34320FF222D0098BC95 /* CertificationParam.m in Sources */,
+				18DAF7DF214F9C60008A24EB /* NSChangeGroupNameVC.m in Sources */,
 				18C3D0C820A3DD8F000FCE7F /* GYHTimeTool.m in Sources */,
 				1868F76920FEF391000BB6EB /* EMRotbotChatViewCell.m in Sources */,
 				18EB286220A548EE00B45958 /* NSSpecView.m in Sources */,
 				1868F6DE20FEF0D4000BB6EB /* NSShopVM.m in Sources */,
 				18E3A41D20B262D300F847ED /* NSCompletedBuyVC.m in Sources */,
+				1829FD2721353ECD002109E1 /* NSMemberCVCell.m in Sources */,
 				18DD2F1820B90B1E00521B61 /* LLNaviSearchBaseVC.m in Sources */,
 				184F0617209FE81A00768418 /* NSShopPublishVC.m in Sources */,
 				18ADC52120BAE9B500961CD8 /* NSCartModel.m in Sources */,
@@ -5069,6 +5205,7 @@
 				18C60DEB20C136B7002920D2 /* UIView+category.m in Sources */,
 				18FBBF5020F7423C008D87FD /* NSRecordTVCell.m in Sources */,
 				1874525220EDF52D00A67D70 /* SRRefreshView.m in Sources */,
+				1829FD2A213641C1002109E1 /* NSChatSettingView.m in Sources */,
 				18A7AB7920ADAAFC009FC725 /* NSMyGoodsListVC.m in Sources */,
 				18B1CAFE20BF902100235CFA /* NSWalletListModel.m in Sources */,
 				1842A6D520B59D350090861D /* LZGoodsModel.m in Sources */,
@@ -5090,6 +5227,7 @@
 				18B017A320A67B9600826EA4 /* DelAddressParam.m in Sources */,
 				18F5D50220CE54A00037F825 /* NSClusterAnnotationView.m in Sources */,
 				18B0179E20A67B9600826EA4 /* YWAddressTableViewCell1.m in Sources */,
+				185BA0CC2134F3100068D32E /* NSGroupTVCell.m in Sources */,
 				1868F6A720FEEC90000BB6EB /* XTGuidePagesViewController.m in Sources */,
 				18D093012091BE9000E091E0 /* NSHomePageVC.m in Sources */,
 				18B0179620A67B9600826EA4 /* YWAddressView.m in Sources */,

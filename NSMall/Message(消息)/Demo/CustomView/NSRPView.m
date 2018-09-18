@@ -23,7 +23,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.5];
-        
+//        self.hasReceive = NO;
         [self setupBasicView];
 //        [self setUpData];
         [self makeConstraints];
@@ -32,6 +32,7 @@
 }
 
 -(void)setupBasicView{
+    DLog(@"kScreenHeight = %.2f",kScreenHeight);
     [self addSubview:self.bgIV];
     [self addSubview:self.avatarView];
     [self addSubview:self.userLab];
@@ -60,42 +61,41 @@
     [self.bgIV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(weakSelf.mas_centerX);
         make.centerY.equalTo(weakSelf.mas_centerY);
-        make.size.mas_equalTo(CGSizeMake(kScreenWidth-80, 240));
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth-80, kScreenWidth*0.353));
     }];
     
     [self.avatarView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(weakSelf.mas_centerX);
-        make.top.equalTo(weakSelf.mas_top).with.offset(165);
-        make.size.mas_equalTo(CGSizeMake(80, 80));
+        make.top.equalTo(weakSelf.mas_top).with.offset(kScreenHeight*0.2+20);
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth*0.15, kScreenWidth*0.15));
     }];
     
     [self.userLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(weakSelf.bgIV.mas_centerX);
-        make.top.equalTo(weakSelf.avatarView.mas_bottom).with.offset(15);
+        make.top.equalTo(weakSelf.avatarView.mas_bottom).with.offset(kScreenHeight*0.02);
     }];
     
     [self.tipLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(weakSelf.bgIV.mas_centerX);
-        make.top.equalTo(weakSelf.userLab.mas_bottom).with.offset(5);
+        make.top.equalTo(weakSelf.userLab.mas_bottom).with.offset(kScreenHeight*0.01);
     }];
     
     [self.messageLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(weakSelf.bgIV.mas_centerX);
-        make.top.equalTo(weakSelf.tipLab.mas_bottom).with.offset(40);
+        make.top.equalTo(weakSelf.tipLab.mas_bottom).with.offset(kScreenHeight*0.02);
     }];
     
     [self.openBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(weakSelf.mas_centerX);
-        make.top.equalTo(weakSelf.messageLab.mas_bottom).with.offset(43);
-        make.size.mas_equalTo(CGSizeMake(100, 100));
+        make.top.equalTo(weakSelf.messageLab.mas_bottom).with.offset(kScreenHeight*0.05);
+        make.size.mas_equalTo(CGSizeMake(kScreenHeight*0.2, kScreenHeight*0.2));
     }];
 }
 
 -(UIImageView *)bgIV{
     if (!_bgIV) {
         _bgIV = [[UIImageView alloc] init];
-//        [_bgIV setBackgroundColor:[UIColor greenColor]];
-        _bgIV.image = IMAGE(@"red_packet_open");
+//        _bgIV.image = IMAGE(@"red_packet_open");
         [_bgIV setContentMode:UIViewContentModeScaleAspectFill];
     }
     return _bgIV;
@@ -142,6 +142,7 @@
 
 #pragma mark - 红包 点击
 - (void)openButtonClick {
+//    self.hasReceive = YES;
     [self removeView];
     !_openBtnClickBlock ? : _openBtnClickBlock();
 }

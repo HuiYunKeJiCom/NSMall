@@ -20,9 +20,9 @@
 //#define NetDomainADDR @"://2008503qw3.51mypc.cn"
 //const static NSString * const NetDomainADDR = @"http://adelshop.iok.la:41831/nsshop/app/";//锡恩电脑环境
 
-//const static NSString * const NetDomainADDR = @"https://stagewww.neublockchain.com/nsshop/app/";//国外测试 环境
+const static NSString * const NetDomainADDR = @"https://stagewww.neublockchain.com/nsshop/app/";//国外测试 环境
 
-const static NSString * const NetDomainADDR = @"https://ns.neublockchain.com/nsshop/app/";//生产环境
+//const static NSString * const NetDomainADDR = @"https://ns.neublockchain.com/nsshop/app/";//生产环境
 
 
 //const static NSString * const NetDomainADDR = @"http://192.168.0.59:7108/nsshop/app/";//锡恩电脑环境
@@ -147,4 +147,12 @@ const static NSString * const kGetCommentByUserAPI = @"getCommentByUser";//查�
 const static NSString * const kGetShipCompanyAPI = @"getShipCompany";//获取快递公司数据
 const static NSString * const kDeliveryOrderAPI = @"auth/deliveryOrder";//卖家发货
 const static NSString * const kConfirmOrderAPI = @"auth/confirmOrder";//买家确认收货
+
+//环信群组
+const static NSString * const kCreateGroupAPI = @"auth/createGroup";//创建群组
+const static NSString * const kUpdateGroupAPI = @"auth/updateGroup";//编辑群组信息
+const static NSString * const kGroupListAPI = @"auth/groupList";//获取当前用户群组列表
+const static NSString * const kGetGroupByIdAPI = @"auth/getGroupById";//获取群组信息
+const static NSString * const kDeleteGroupByIdAPI = @"auth/deleteGroupById";//删除群组信息
+
 

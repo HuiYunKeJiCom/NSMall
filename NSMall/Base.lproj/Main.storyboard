@@ -129,7 +129,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chat_bottom_up_nor" width="16" height="16"/>
-        <image name="chat_bottom_voice_nor" width="16" height="16"/>
+        <image name="chat_bottom_up_nor" width="34" height="34"/>
+        <image name="chat_bottom_voice_nor" width="34" height="34"/>
     </resources>
 </document>

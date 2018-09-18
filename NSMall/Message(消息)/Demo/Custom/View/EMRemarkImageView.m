@@ -48,7 +48,7 @@
 {
     _remark = remark;
     [_remarkLabel setTextWithUsername:_remark];
-    [_imageView imageWithUsername:remark placeholderImage:nil];
+//    [_imageView imageWithUsername:remark placeholderImage:nil];
 }
 
 - (void)setImage:(UIImage *)image

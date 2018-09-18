@@ -14,6 +14,7 @@
 -(void)setUpDataWith:(NSDictionary *)dict;
 /* 红包 点击回调 */
 @property (nonatomic, copy) dispatch_block_t openBtnClickBlock;
+//@property(nonatomic)BOOL hasReceive;/* 已领取 */
 @property(nonatomic,strong)UIImageView *bgIV;/* 背景图 */
 @property(nonatomic,strong)UIButton *openBtn;/* 开红包按钮 */
 @end

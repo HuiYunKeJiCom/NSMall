@@ -197,9 +197,14 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
         unreadCount += conversation.unreadMessagesCount;
     }
     if (_chatListVC) {
-        if (unreadCount > 0) {
-            _chatListVC.tabBarItem.badgeValue = [NSString stringWithFormat:@"%i",(int)unreadCount];
-            [self playSoundAndVibration];
+        EMPushOptions *options = [[EMClient sharedClient] pushOptions];
+        if (options.noDisturbStatus == EMPushNoDisturbStatusClose) {
+            if (unreadCount > 0) {
+                _chatListVC.tabBarItem.badgeValue = [NSString stringWithFormat:@"%i",(int)unreadCount];
+                [self playSoundAndVibration];
+            }else{
+                _chatListVC.tabBarItem.badgeValue = nil;
+            }
         }else{
             _chatListVC.tabBarItem.badgeValue = nil;
         }
@@ -316,143 +321,150 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 }
 
 - (void)playSoundAndVibration{
-    NSTimeInterval timeInterval = [[NSDate date]
-                                   timeIntervalSinceDate:self.lastPlaySoundDate];
-    if (timeInterval < kDefaultPlaySoundInterval) {
-        //如果距离上次响铃和震动时间太短, 则跳过响铃
-        NSLog(@"skip ringing & vibration %@, %@", [NSDate date], self.lastPlaySoundDate);
-        return;
+    EMPushOptions *options = [[EMClient sharedClient] pushOptions];
+
+    if (options.noDisturbStatus == EMPushNoDisturbStatusClose) {
+        NSTimeInterval timeInterval = [[NSDate date]
+                                       timeIntervalSinceDate:self.lastPlaySoundDate];
+        if (timeInterval < kDefaultPlaySoundInterval) {
+            //如果距离上次响铃和震动时间太短, 则跳过响铃
+            NSLog(@"skip ringing & vibration %@, %@", [NSDate date], self.lastPlaySoundDate);
+            return;
+        }
+        
+        //保存最后一次响铃时间
+        self.lastPlaySoundDate = [NSDate date];
+        
+        // 收到消息时，播放音频
+        [[EMCDDeviceManager sharedInstance] playNewMessageSound];
+        // 收到消息时，震动
+        [[EMCDDeviceManager sharedInstance] playVibration];
     }
-    
-    //保存最后一次响铃时间
-    self.lastPlaySoundDate = [NSDate date];
-    
-    // 收到消息时，播放音频
-    [[EMCDDeviceManager sharedInstance] playNewMessageSound];
-    // 收到消息时，震动
-    [[EMCDDeviceManager sharedInstance] playVibration];
 }
 
 - (void)showNotificationWithMessage:(EMMessage *)message
 {
     EMPushOptions *options = [[EMClient sharedClient] pushOptions];
-    NSString *alertBody = nil;
-    if (options.displayStyle == EMPushDisplayStyleMessageSummary) {
-        EMMessageBody *messageBody = message.body;
-        NSString *messageStr = nil;
-        switch (messageBody.type) {
-            case EMMessageBodyTypeText:
-            {
-                messageStr = ((EMTextMessageBody *)messageBody).text;
-            }
-                break;
-            case EMMessageBodyTypeImage:
-            {
-                messageStr = NSLocalizedString(@"message.image", @"Image");
-            }
-                break;
-            case EMMessageBodyTypeLocation:
-            {
-                messageStr = NSLocalizedString(@"message.location", @"Location");
-            }
-                break;
-            case EMMessageBodyTypeVoice:
-            {
-                messageStr = NSLocalizedString(@"message.voice", @"Voice");
-            }
-                break;
-            case EMMessageBodyTypeVideo:{
-                messageStr = NSLocalizedString(@"message.video", @"Video");
-            }
-                break;
-            default:
-                break;
-        }
-        
-        do {
-            NSString *title = [[UserProfileManager sharedInstance] getNickNameWithUsername:message.from];
-            if (message.chatType == EMChatTypeGroupChat) {
-                NSDictionary *ext = message.ext;
-                if (ext && ext[kGroupMessageAtList]) {
-                    id target = ext[kGroupMessageAtList];
-                    if ([target isKindOfClass:[NSString class]]) {
-                        if ([kGroupMessageAtAll compare:target options:NSCaseInsensitiveSearch] == NSOrderedSame) {
-                            alertBody = [NSString stringWithFormat:@"%@%@", title, NSLocalizedString(@"group.atPushTitle", @" @ me in the group")];
-                            break;
-                        }
-                    }
-                    else if ([target isKindOfClass:[NSArray class]]) {
-                        NSArray *atTargets = (NSArray*)target;
-                        if ([atTargets containsObject:[EMClient sharedClient].currentUsername]) {
-                            alertBody = [NSString stringWithFormat:@"%@%@", title, NSLocalizedString(@"group.atPushTitle", @" @ me in the group")];
-                            break;
-                        }
-                    }
-                }
-                NSArray *groupArray = [[EMClient sharedClient].groupManager getJoinedGroups];
-                for (EMGroup *group in groupArray) {
-                    if ([group.groupId isEqualToString:message.conversationId]) {
-                        title = [NSString stringWithFormat:@"%@(%@)", message.from, group.subject];
-                        break;
-                    }
-                }
-            }
-            else if (message.chatType == EMChatTypeChatRoom)
-            {
-                NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-                NSString *key = [NSString stringWithFormat:@"OnceJoinedChatrooms_%@", [[EMClient sharedClient] currentUsername]];
-                NSMutableDictionary *chatrooms = [NSMutableDictionary dictionaryWithDictionary:[ud objectForKey:key]];
-                NSString *chatroomName = [chatrooms objectForKey:message.conversationId];
-                if (chatroomName)
+    if (options.noDisturbStatus == EMPushNoDisturbStatusClose) {
+        NSString *alertBody = nil;
+        if (options.displayStyle == EMPushDisplayStyleMessageSummary) {
+            EMMessageBody *messageBody = message.body;
+            NSString *messageStr = nil;
+            switch (messageBody.type) {
+                case EMMessageBodyTypeText:
                 {
-                    title = [NSString stringWithFormat:@"%@(%@)", message.from, chatroomName];
+                    messageStr = ((EMTextMessageBody *)messageBody).text;
                 }
+                    break;
+                case EMMessageBodyTypeImage:
+                {
+                    messageStr = NSLocalizedString(@"message.image", @"Image");
+                }
+                    break;
+                case EMMessageBodyTypeLocation:
+                {
+                    messageStr = NSLocalizedString(@"message.location", @"Location");
+                }
+                    break;
+                case EMMessageBodyTypeVoice:
+                {
+                    messageStr = NSLocalizedString(@"message.voice", @"Voice");
+                }
+                    break;
+                case EMMessageBodyTypeVideo:{
+                    messageStr = NSLocalizedString(@"message.video", @"Video");
+                }
+                    break;
+                default:
+                    break;
             }
             
-            alertBody = [NSString stringWithFormat:@"%@:%@", title, messageStr];
-        } while (0);
-    }
-    else{
-        alertBody = NSLocalizedString(@"receiveMessage", @"you have a new message");
-    }
-    
-    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:self.lastPlaySoundDate];
-    BOOL playSound = NO;
-    if (!self.lastPlaySoundDate || timeInterval >= kDefaultPlaySoundInterval) {
-        self.lastPlaySoundDate = [NSDate date];
-        playSound = YES;
-    }
-    
-    NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
-    [userInfo setObject:[NSNumber numberWithInt:message.chatType] forKey:kMessageType];
-    [userInfo setObject:message.conversationId forKey:kConversationChatter];
-    
-    //发送本地推送
-    if (NSClassFromString(@"UNUserNotificationCenter")) {
-        UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:0.01 repeats:NO];
-        UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
-        if (playSound) {
-            content.sound = [UNNotificationSound defaultSound];
+            do {
+                NSString *title = [[UserProfileManager sharedInstance] getNickNameWithUsername:message.from];
+                if (message.chatType == EMChatTypeGroupChat) {
+                    NSDictionary *ext = message.ext;
+                    if (ext && ext[kGroupMessageAtList]) {
+                        id target = ext[kGroupMessageAtList];
+                        if ([target isKindOfClass:[NSString class]]) {
+                            if ([kGroupMessageAtAll compare:target options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+                                alertBody = [NSString stringWithFormat:@"%@%@", title, NSLocalizedString(@"group.atPushTitle", @" @ me in the group")];
+                                break;
+                            }
+                        }
+                        else if ([target isKindOfClass:[NSArray class]]) {
+                            NSArray *atTargets = (NSArray*)target;
+                            if ([atTargets containsObject:[EMClient sharedClient].currentUsername]) {
+                                alertBody = [NSString stringWithFormat:@"%@%@", title, NSLocalizedString(@"group.atPushTitle", @" @ me in the group")];
+                                break;
+                            }
+                        }
+                    }
+                    NSArray *groupArray = [[EMClient sharedClient].groupManager getJoinedGroups];
+                    for (EMGroup *group in groupArray) {
+                        if ([group.groupId isEqualToString:message.conversationId]) {
+                            title = [NSString stringWithFormat:@"%@(%@)", message.from, group.subject];
+                            break;
+                        }
+                    }
+                }
+                else if (message.chatType == EMChatTypeChatRoom)
+                {
+                    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+                    NSString *key = [NSString stringWithFormat:@"OnceJoinedChatrooms_%@", [[EMClient sharedClient] currentUsername]];
+                    NSMutableDictionary *chatrooms = [NSMutableDictionary dictionaryWithDictionary:[ud objectForKey:key]];
+                    NSString *chatroomName = [chatrooms objectForKey:message.conversationId];
+                    if (chatroomName)
+                    {
+                        title = [NSString stringWithFormat:@"%@(%@)", message.from, chatroomName];
+                    }
+                }
+                
+                alertBody = [NSString stringWithFormat:@"%@:%@", title, messageStr];
+            } while (0);
         }
-        content.body =alertBody;
-        content.userInfo = userInfo;
-        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:message.messageId content:content trigger:trigger];
-        [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:nil];
-    }
-    else {
-        UILocalNotification *notification = [[UILocalNotification alloc] init];
-        notification.fireDate = [NSDate date]; //触发通知的时间
-        notification.alertBody = alertBody;
-        notification.alertAction = NSLocalizedString(@"open", @"Open");
-        notification.timeZone = [NSTimeZone defaultTimeZone];
-        if (playSound) {
-            notification.soundName = UILocalNotificationDefaultSoundName;
+        else{
+            alertBody = NSLocalizedString(@"receiveMessage", @"you have a new message");
         }
-        notification.userInfo = userInfo;
         
-        //发送通知
-        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+        NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:self.lastPlaySoundDate];
+        BOOL playSound = NO;
+        if (!self.lastPlaySoundDate || timeInterval >= kDefaultPlaySoundInterval) {
+            self.lastPlaySoundDate = [NSDate date];
+            playSound = YES;
+        }
+        
+        NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+        [userInfo setObject:[NSNumber numberWithInt:message.chatType] forKey:kMessageType];
+        [userInfo setObject:message.conversationId forKey:kConversationChatter];
+        
+        //发送本地推送
+        if (NSClassFromString(@"UNUserNotificationCenter")) {
+            UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:0.01 repeats:NO];
+            UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+            if (playSound) {
+                content.sound = [UNNotificationSound defaultSound];
+            }
+            content.body =alertBody;
+            content.userInfo = userInfo;
+            UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:message.messageId content:content trigger:trigger];
+            [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:nil];
+        }
+        else {
+            UILocalNotification *notification = [[UILocalNotification alloc] init];
+            notification.fireDate = [NSDate date]; //触发通知的时间
+            notification.alertBody = alertBody;
+            notification.alertAction = NSLocalizedString(@"open", @"Open");
+            notification.timeZone = [NSTimeZone defaultTimeZone];
+            if (playSound) {
+                notification.soundName = UILocalNotificationDefaultSoundName;
+            }
+            notification.userInfo = userInfo;
+            
+            //发送通知
+            [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+        }
     }
+    
 }
 
 

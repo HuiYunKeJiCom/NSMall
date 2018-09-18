@@ -18,8 +18,12 @@
 #import "PublicGroupListViewController.h"
 #import "RealtimeSearchUtil.h"
 #import "ADOrderTopToolView.h"
+#import "NSGroupTVCell.h"
 
 #import "UIViewController+SearchController.h"
+#import "NSGroupModel.h"
+#import "NSGroupAPI.h"
+#import "NSGroupListModel.h"
 
 @interface GroupListViewController ()<EMSearchControllerDelegate, EMGroupManagerDelegate>
 
@@ -60,11 +64,13 @@
     [[EMClient sharedClient].groupManager removeDelegate:self];
     [[EMClient sharedClient].groupManager addDelegate:self delegateQueue:nil];
     
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadDataSource) name:@"reloadGroupList" object:nil];
     
     [self setUpNavTopView];
     
-    [self reloadDataSource];
+    
+    
     self.tableView.backgroundColor = KBGCOLOR;
 }
 
@@ -73,7 +79,7 @@
 {
     ADOrderTopToolView *topToolView = [[ADOrderTopToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, TopBarHeight)];
     topToolView.backgroundColor = kWhiteColor;
-    [topToolView setTopTitleWithNSString:NSLocalizedString(@"title.group", @"Group")];
+    [topToolView setTopTitleWithNSString:@"群聊"];
     WEAKSELF
     topToolView.leftItemClickBlock = ^{
         NSLog(@"点击了返回");
@@ -94,9 +100,16 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self reloadDataSource];
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    
     
     [self cancelSearch];
 }
@@ -113,22 +126,22 @@
 {
     // Return the number of rows in the section.
     if (section == 0) {
-        return 2;
+        return 1;
     }
     return [self.dataSource count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"GroupCell";
-    BaseTableViewCell *cell = (BaseTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    // Configure the cell...
-    if (cell == nil) {
-        cell = [[BaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
     if (indexPath.section == 0) {
+        static NSString *CellIdentifier = @"GroupCell";
+        BaseTableViewCell *cell = (BaseTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        // Configure the cell...
+        if (cell == nil) {
+            cell = [[BaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        
         switch (indexPath.row) {
             case 0:
                 cell.textLabel.text = NSLocalizedString(@"group.create.group",@"Create a group");
@@ -141,57 +154,71 @@
             default:
                 break;
         }
+        return cell;
     } else {
-        EMGroup *group = [self.dataSource objectAtIndex:indexPath.row];
-        NSString *imageName = @"group_header";
-//        NSString *imageName = group.isPublic ? @"groupPublicHeader" : @"groupPrivateHeader";
-        cell.imageView.image = [UIImage imageNamed:imageName];
         
-        if (group.subject && group.subject.length > 0) {
-//            cell.textLabel.text = group.subject;
-            
-            if([group.subject rangeOfString:@"groupName"].location !=NSNotFound){
-                NSDictionary *dict = [self dictionaryWithJsonString:group.subject];
-                if(dict[@"groupName"] && [[dict[@"groupName"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] isEqualToString:@"未命名"]){
-                    NSLog(@"群组未命名");
-                    
-                    NSArray *memberArr = dict[@"jsonArray"];
-                    NSString *titleStr = @"";
-                    if(memberArr.count >3){
-                        for(int i=0;i<3;i++){
-                            NSDictionary *dictionary = memberArr[i];
-                            if(i==0){
-                                titleStr = [titleStr stringByAppendingFormat:@"%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-                            }else{
-                                titleStr = [titleStr stringByAppendingFormat:@"、%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-                            }
-                        }
-                    }else{
-                        for(int i=0;i<memberArr.count;i++){
-                            NSDictionary *dictionary = memberArr[i];
-                            if(i==0){
-                                titleStr = [titleStr stringByAppendingFormat:@"%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-                            }else{
-                                titleStr = [titleStr stringByAppendingFormat:@"、%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-                            }
-                        }
-                    }
-                    cell.textLabel.text = titleStr;
-                    NSLog(@"titleStr = %@",titleStr);
-                    
-                }else if(dict[@"groupName"]){
-                    cell.textLabel.text = dict[@"groupName"];
-                }
+//        NSGroupTVCell
+        static NSString *CellIdentifier = @"NSGroupTVCell";
+        NSGroupTVCell *cell = (NSGroupTVCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        // Configure the cell...
+        if (cell == nil) {
+            cell = [[NSGroupTVCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-        }
-        else {
-            cell.textLabel.text = group.groupId;
-        }
-        DLog(@"subject = %@",group.subject);
-        DLog(@"groupId = %@",group.groupId);
+        
+        NSGroupModel *model = [self.dataSource objectAtIndex:indexPath.row];
+        cell.groupModel = model;
+        return cell;
     }
+        
+//        EMGroup *group = [self.dataSource objectAtIndex:indexPath.row];
+//        NSString *imageName = @"group_header";
+////        NSString *imageName = group.isPublic ? @"groupPublicHeader" : @"groupPrivateHeader";
+//        cell.imageView.image = [UIImage imageNamed:imageName];
+//
+//        if (group.subject && group.subject.length > 0) {
+////            cell.textLabel.text = group.subject;
+//
+//            if([group.subject rangeOfString:@"groupName"].location !=NSNotFound){
+//                NSDictionary *dict = [self dictionaryWithJsonString:group.subject];
+//                if(dict[@"groupName"] && [[dict[@"groupName"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] isEqualToString:@"未命名"]){
+//                    NSLog(@"群组未命名");
+//
+//                    NSArray *memberArr = dict[@"jsonArray"];
+//                    NSString *titleStr = @"";
+//                    if(memberArr.count >3){
+//                        for(int i=0;i<3;i++){
+//                            NSDictionary *dictionary = memberArr[i];
+//                            if(i==0){
+//                                titleStr = [titleStr stringByAppendingFormat:@"%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//                            }else{
+//                                titleStr = [titleStr stringByAppendingFormat:@"、%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//                            }
+//                        }
+//                    }else{
+//                        for(int i=0;i<memberArr.count;i++){
+//                            NSDictionary *dictionary = memberArr[i];
+//                            if(i==0){
+//                                titleStr = [titleStr stringByAppendingFormat:@"%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//                            }else{
+//                                titleStr = [titleStr stringByAppendingFormat:@"、%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//                            }
+//                        }
+//                    }
+//                    cell.textLabel.text = titleStr;
+//                    NSLog(@"titleStr = %@",titleStr);
+//
+//                }else if(dict[@"groupName"]){
+//                    cell.textLabel.text = dict[@"groupName"];
+//                }
+//        }
+//        }
+//        else {
+//            cell.textLabel.text = group.groupId;
+//        }
+//    }
     
-    return cell;
+//    return cell;
 }
 
 #pragma mark - Table view delegate
@@ -217,43 +244,46 @@
                 break;
         }
     } else {
-        EMGroup *group = [self.dataSource objectAtIndex:indexPath.row];
+//        EMGroup *group = [self.dataSource objectAtIndex:indexPath.row];
+        NSGroupModel *groupModel = [self.dataSource objectAtIndex:indexPath.row];
         
-        UIViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:group.groupId conversationType:EMConversationTypeGroupChat];
-        
-        NSString *titleStr = @"";
-        if (group.subject && group.subject.length > 0) {
-            if([group.subject rangeOfString:@"groupName"].location !=NSNotFound){
-                NSDictionary *dict = [self dictionaryWithJsonString:group.subject];
-                if(dict[@"groupName"] && [[dict[@"groupName"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] isEqualToString:@"未命名"]){
-                    NSLog(@"群组未命名");
-                    
-                    NSArray *memberArr = dict[@"jsonArray"];
-                    
-                    if(memberArr.count >3){
-                        for(int i=0;i<3;i++){
-                            NSDictionary *dictionary = memberArr[i];
-                            if(i==0){
-                                titleStr = [titleStr stringByAppendingFormat:@"%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-                            }else{
-                                titleStr = [titleStr stringByAppendingFormat:@"、%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-                            }
-                        }
-                    }else{
-                        for(int i=0;i<memberArr.count;i++){
-                            NSDictionary *dictionary = memberArr[i];
-                            if(i==0){
-                                titleStr = [titleStr stringByAppendingFormat:@"%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-                            }else{
-                                titleStr = [titleStr stringByAppendingFormat:@"、%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-                            }
-                        }
-                    }
-                }else if(dict[@"groupName"]){
-                    titleStr = dict[@"groupName"];
-                }
-            }
-        }
+        ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:groupModel.group_id conversationType:EMConversationTypeGroupChat];
+        chatController.groupOwn = groupModel.owner;
+//        chatController.groupCount = groupModel.maxusers;
+        chatController.groupCount = groupModel.affiliations_count;
+        NSString *titleStr = @"群聊";
+//        if (group.subject && group.subject.length > 0) {
+//            if([group.subject rangeOfString:@"groupName"].location !=NSNotFound){
+//                NSDictionary *dict = [self dictionaryWithJsonString:group.subject];
+//                if(dict[@"groupName"] && [[dict[@"groupName"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] isEqualToString:@"未命名"]){
+//                    NSLog(@"群组未命名");
+//
+//                    NSArray *memberArr = dict[@"jsonArray"];
+//
+//                    if(memberArr.count >3){
+//                        for(int i=0;i<3;i++){
+//                            NSDictionary *dictionary = memberArr[i];
+//                            if(i==0){
+//                                titleStr = [titleStr stringByAppendingFormat:@"%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//                            }else{
+//                                titleStr = [titleStr stringByAppendingFormat:@"、%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//                            }
+//                        }
+//                    }else{
+//                        for(int i=0;i<memberArr.count;i++){
+//                            NSDictionary *dictionary = memberArr[i];
+//                            if(i==0){
+//                                titleStr = [titleStr stringByAppendingFormat:@"%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//                            }else{
+//                                titleStr = [titleStr stringByAppendingFormat:@"、%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//                            }
+//                        }
+//                    }
+//                }else if(dict[@"groupName"]){
+//                    titleStr = dict[@"groupName"];
+//                }
+//            }
+//        }
         chatController.title = titleStr;
         
         [self.navigationController pushViewController:chatController animated:YES];
@@ -267,7 +297,7 @@
         return 0;
     }
     else{
-        return 22;
+        return 10;
     }
 }
 
@@ -285,13 +315,13 @@
 
 #pragma mark - EMGroupManagerDelegate
 
-- (void)didUpdateGroupList:(NSArray *)groupList
-{
-    [self.dataSource removeAllObjects];
-    [self.dataSource addObjectsFromArray:groupList];
-    [self.tableView reloadData];
-}
-                                                       
+//- (void)didUpdateGroupList:(NSArray *)groupList
+//{
+//    [self.dataSource removeAllObjects];
+//    [self.dataSource addObjectsFromArray:groupList];
+//    [self.tableView reloadData];
+//}
+
 #pragma mark - EMSearchControllerDelegate
                                                        
 - (void)willSearchBegin
@@ -387,52 +417,69 @@
 - (void)fetchGroupsWithPage:(NSInteger)aPage
                    isHeader:(BOOL)aIsHeader
 {
-    [self hideHud];
-    [self showHudInView:self.view hint:NSLocalizedString(@"loadData", @"Load data...")];
+//    [self hideHud];
+//    [self showHudInView:self.view hint:NSLocalizedString(@"loadData", @"Load data...")];
     
     __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         EMError *error = nil;
-        NSArray *groupList = [[EMClient sharedClient].groupManager getJoinedGroupsFromServerWithPage:aPage pageSize:50 error:&error];
-        [weakSelf tableViewDidFinishTriggerHeader:aIsHeader reload:NO];
         
-        if (weakSelf)
-        {
-            GroupListViewController *strongSelf = weakSelf;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [strongSelf hideHud];
-                
-                if (!error)
-                {
-                    if (aIsHeader) {
-                        NSMutableArray *oldChatrooms = [weakSelf.dataSource mutableCopy];
-                        [weakSelf.dataSource removeAllObjects];
-                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                            [oldChatrooms removeAllObjects];
-                        });
-                    }
+//        [[EMClient sharedClient].groupManager getJoinedGroupsFromServerWithPage:aPage pageSize:50 error:&error];
+        [NSGroupAPI getUserGroupListWithParam:nil success:^(NSGroupListModel *groupModel) {
+            DLog(@"获取群组列表成功");
+            NSArray *groupList = groupModel.group;
+            [weakSelf tableViewDidFinishTriggerHeader:aIsHeader reload:NO];
+            
+            if (weakSelf)
+            {
+                GroupListViewController *strongSelf = weakSelf;
+                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [strongSelf hideHud];
                     
-                    [strongSelf.dataSource addObjectsFromArray:groupList];
-                    [strongSelf.tableView reloadData];
-                    if (groupList.count == 50) {
-                        strongSelf.showRefreshFooter = YES;
-                    } else {
-                        strongSelf.showRefreshFooter = NO;
+                    if (!error)
+                    {
+                        if (aIsHeader) {
+                            NSMutableArray *oldChatrooms = [weakSelf.dataSource mutableCopy];
+                            [weakSelf.dataSource removeAllObjects];
+                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                [oldChatrooms removeAllObjects];
+                            });
+                        }
+                        
+                        [strongSelf.dataSource addObjectsFromArray:groupList];
+                        [strongSelf.tableView reloadData];
+                        if (groupList.count == 50) {
+                            strongSelf.showRefreshFooter = YES;
+                        } else {
+                            strongSelf.showRefreshFooter = NO;
+                        }
                     }
-                }
-            });
-        }
-    });
+                });
+            }
+        } faulre:^(NSError *error) {
+            DLog(@"获取群组列表失败");
+        }];
+        
+        
+//    });
 }
 
 - (void)reloadDataSource
 {
     [self.dataSource removeAllObjects];
     
-    NSArray *rooms = [[EMClient sharedClient].groupManager getJoinedGroups];
-    [self.dataSource addObjectsFromArray:rooms];
+//    NSArray *rooms = [[EMClient sharedClient].groupManager getJoinedGroups];
+//    [self.dataSource addObjectsFromArray:rooms];
+    WEAKSELF
+    [NSGroupAPI getUserGroupListWithParam:nil success:^(NSGroupListModel *groupModel) {
+        DLog(@"获取群组列表成功");
+        [weakSelf.dataSource addObjectsFromArray:groupModel.group];
+        [weakSelf.tableView reloadData];
+    } faulre:^(NSError *error) {
+        DLog(@"获取群组列表失败");
+    }];
     
-    [self.tableView reloadData];
+    
 }
 
 #pragma mark - action
@@ -467,5 +514,7 @@
     }
     return dic;
 }
+
+
 
 @end

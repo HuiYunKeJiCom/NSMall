@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "NSRPItemModel.h"
 
-@interface NSRPListModel : NSObject
+@interface NSRPListModel : NSObject<YYModel>
 
 /*
  映射模型，参考在线文档
@@ -30,7 +30,7 @@
 @property (nonatomic)double receive_amount;//当前用户抢到的红包金额
 @property (nonatomic,strong)NSArray<NSRPItemModel *> *receiveRedpacketList;
 @property(nonatomic,copy)NSString *RPStatus;/* 红包状态 */
-
+@property(nonatomic)NSInteger hasReceive;/* 已领取 */
 
 
 

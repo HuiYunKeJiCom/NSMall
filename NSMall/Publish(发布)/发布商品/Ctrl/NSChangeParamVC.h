@@ -20,6 +20,8 @@ typedef NS_ENUM(NSInteger, EditUserType) {
     
     /** 手机*/
     EditUserTypePhone,
+    /** 群名称*/
+    EditUserTypeGroupName,
 };
 
 typedef void(^stringBlock)(NSString *string);

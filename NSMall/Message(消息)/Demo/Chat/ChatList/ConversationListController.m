@@ -24,6 +24,9 @@
 #import "ContactListViewController.h"
 #import "NSEaseConversationModel.h"
 #import "NSMessageAPI.h"
+#import "AEIconView.h"
+#import "NSGroupAPI.h"
+
 
 @implementation EMConversation (search)
 
@@ -56,14 +59,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
+    //    [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
     
-    self.friendListArr = [NSMutableArray array];
+//    self.friendListArr = [NSMutableArray array];
     // Do any additional setup after loading the view.
     self.showRefreshHeader = YES;
     self.delegate = self;
     self.dataSource = self;
-
+    self.images = [NSMutableArray array];
+    
     [self networkStateView];
     
     [self setupSearchController];
@@ -170,6 +174,7 @@
 - (void)conversationListViewController:(EaseConversationListViewController *)conversationListViewController
             didSelectConversationModel:(id<IConversationModel>)conversationModel
 {
+    
     if (conversationModel) {
         EMConversation *conversation = conversationModel.conversation;
         if (conversation) {
@@ -178,9 +183,16 @@
                 chatController.title = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.conversationId];
                 [self.navigationController pushViewController:chatController animated:YES];
             } else {
-                UIViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:conversation.conversationId conversationType:conversation.type];
-                chatController.title = conversationModel.title;
-//                DLog(@"chatController.title = %@",chatController.title);
+                ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:conversation.conversationId conversationType:conversation.type];
+                if(conversation.type == EMConversationTypeChat){
+                    chatController.title = conversationModel.title;
+                }else{
+                    chatController.title = conversationModel.title;
+                    chatController.groupOwn = [conversation.ext objectForKey:@"groupOwn"];
+                    NSArray *array = [chatController.title componentsSeparatedByString:@"、"];
+                    chatController.groupCount = array.count;
+                }
+                //                DLog(@"chatController.title = %@",chatController.title);
                 [self.navigationController pushViewController:chatController animated:YES];
             }
         }
@@ -197,6 +209,8 @@
     
     
     NSEaseConversationModel *model = [[NSEaseConversationModel alloc] initWithConversation:conversation];
+//     conversation.ext;
+//    NSMutableDictionary *mDict = [NSMutableDictionary dictionary];
     if (model.conversation.type == EMConversationTypeChat) {
         if ([[RobotManager sharedInstance] isRobotWithUsername:conversation.conversationId]) {
             model.title = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.conversationId];
@@ -207,35 +221,63 @@
                 model.title = profileEntity.nickname;
                 model.avatarURLPath = profileEntity.imageUrl;
             }
-//            model.title = @"我是笨蛋";
+            NSHuanXinUserModel *hxModel = [[NSHuanXinUserModel alloc] initWithBuddy:model.title];
+            model.title = hxModel.nickname;
+            //            model.title = @"我是笨蛋";
         }
-//        model.title = @"我是笨蛋";
+        //        model.title = @"我是笨蛋";
         
     } else if (model.conversation.type == EMConversationTypeGroupChat) {
-        NSString *imageName = @"groupPublicHeader";
-        if (![conversation.ext objectForKey:@"subject"])
-        {
-            NSArray *groupArray = [[EMClient sharedClient].groupManager getJoinedGroups];
-            for (EMGroup *group in groupArray) {
-                if ([group.groupId isEqualToString:conversation.conversationId]) {
-                    NSMutableDictionary *ext = [NSMutableDictionary dictionaryWithDictionary:conversation.ext];
-                    [ext setObject:group.subject forKey:@"subject"];
-                    [ext setObject:[NSNumber numberWithBool:group.isPublic] forKey:@"isPublic"];
-                    conversation.ext = ext;
-                    break;
+//        DLog(@"conversationId = %@",conversation.conversationId);
+        WEAKSELF
+        [NSGroupAPI getGroupWithParam:conversation.conversationId success:^(NSGroupModel *groupModel) {
+            DLog(@"获取群组信息成功");
+            conversation.ext = @{@"groupOwn":groupModel.owner};
+            [self.images removeAllObjects];
+            NSDictionary *tempDict = [self dictionaryWithJsonString:groupModel.group_name_json];
+            NSMutableArray *groupMembers = [NSMutableArray array];
+            groupMembers =  [tempDict objectForKey:@"jsonArray"];
+            
+            NSString *groupName = @"";
+            for (int i=0;i<groupMembers.count;i++) {
+                NSDictionary *dict = groupMembers[i];
+                NSHuanXinUserModel *model = [NSHuanXinUserModel new];
+                model.user_avatar = [dict objectForKey:@"avatar"];
+                model.hx_user_name = [dict objectForKey:@"hxUsername"];
+                model.nick_name = [dict objectForKey:@"nick"];
+                //        [self.membersArr addObject:model];
+                if(i == 0){
+                    groupName = [NSString stringWithFormat:@"%@",model.nick_name];
+                }else{
+                    groupName = [groupName stringByAppendingFormat:@"、%@",model.nick_name];
                 }
+                if(i<6){
+                    [self.images addObject:model.user_avatar];
+                }
+                //
             }
-        }
-        NSDictionary *ext = conversation.ext;
-        model.title = [ext objectForKey:@"subject"];
-        imageName = [[ext objectForKey:@"isPublic"] boolValue] ? @"groupPublicHeader" : @"groupPrivateHeader";
-        model.avatarImage = [UIImage imageNamed:imageName];
+            
+            model.title = groupName;
+            
+            AEIconView *iconV = [[AEIconView alloc] initWithFrame:CGRectMake(10, 2, 45, 45)];
+            iconV.image = [UIImage imageNamed:@"group_header"];
+            //设置背景色
+            iconV.backgroundColor = [UIColor lightGrayColor];
+            iconV.images = self.images;
+            model.avatarImage = [self imageWithUIView:iconV];
+            [weakSelf.tableView reloadData];
+            
+        } faulre:^(NSError *error) {
+            DLog(@"获取群组信息失败");
+        }];
+        
+        
     }
     return model;
 }
 
 - (NSAttributedString *)conversationListViewController:(EaseConversationListViewController *)conversationListViewController
-      latestMessageTitleForConversationModel:(id<IConversationModel>)conversationModel
+                latestMessageTitleForConversationModel:(id<IConversationModel>)conversationModel
 {
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:@""];
     EMMessage *lastMessage = [conversationModel.conversation latestMessage];
@@ -308,7 +350,7 @@
     if (lastMessage) {
         latestMessageTime = [NSDate formattedTimeFromTimeInterval:lastMessage.timestamp];
     }
-
+    
     
     return latestMessageTime;
 }
@@ -334,26 +376,26 @@
     }];
 }
 
-#pragma mark - private 
+#pragma mark - private
 
 - (void)setupSearchController
 {
- //改动过
-//    [self enableSearchController];
+    //改动过
+    //    [self enableSearchController];
     [self disableSearchController];
     
     __weak ConversationListController *weakSelf = self;
     [self.resultController setCellForRowAtIndexPathCompletion:^UITableViewCell *(UITableView *tableView, NSIndexPath *indexPath) {
         NSString *CellIdentifier = [EaseConversationCell cellIdentifierWithModel:nil];
         EaseConversationCell *cell = (EaseConversationCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
+        
         // Configure the cell...
         if (cell == nil) {
             cell = [[EaseConversationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-
+        
         id<IConversationModel> model = [weakSelf.resultController.displaySource objectAtIndex:indexPath.row];
-  
+        
         EMConversation *conversation = model.conversation;
         EMMessage *latestMessage = conversation.lastReceivedMessage;
         NSDictionary *ext = latestMessage.ext;
@@ -364,11 +406,11 @@
         cell.timeLabel.text = [weakSelf conversationListViewController:weakSelf latestMessageTimeForConversationModel:model];
         return cell;
     }];
-
+    
     [self.resultController setHeightForRowAtIndexPathCompletion:^CGFloat(UITableView *tableView, NSIndexPath *indexPath) {
         return [EaseConversationCell cellHeightWithModel:nil];
     }];
-
+    
     [self.resultController setDidSelectRowAtIndexPathCompletion:^(UITableView *tableView, NSIndexPath *indexPath) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         [weakSelf.searchController.searchBar endEditing:YES];
@@ -383,20 +425,20 @@
             chatController = [[ChatViewController alloc] initWithConversationChatter:conversation.conversationId conversationType:conversation.type];
             NSDictionary *dict = conversation.ext;
             chatController.title = [dict objectForKey:@"nick"];
-//            chatController.title = [conversation showName];
+            //            chatController.title = [conversation showName];
         }
         [weakSelf.navigationController pushViewController:chatController animated:YES];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"setupUnreadMessageCount" object:nil];
         [weakSelf.tableView reloadData];
-                              
+        
         [weakSelf cancelSearch];
     }];
     
     UISearchBar *searchBar = self.searchController.searchBar;
     [self.view addSubview:searchBar];
     self.tableView.frame = CGRectMake(0, searchBar.frame.size.height+TopBarHeight, self.view.frame.size.width,self.view.frame.size.height - searchBar.frame.size.height-TopBarHeight);
-//    self.tableView.tableHeaderView = searchBar;
-//    [searchBar sizeToFit];
+    //    self.tableView.tableHeaderView = searchBar;
+    //    [searchBar sizeToFit];
 }
 
 #pragma mark - public
@@ -432,6 +474,99 @@
 }
 
 
+- (UIImage*) imageWithUIView:(UIView*) view
+{
+    UIGraphicsBeginImageContext(view.bounds.size);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    [view.layer renderInContext:ctx];
+    UIImage* tImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return tImage;
+}
 
+//json字符串转字典
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString
+{
+    if (jsonString == nil) {
+        return nil;
+    }
+    
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err)
+    {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
+}
+
+- (void)tableViewDidTriggerHeaderRefresh
+{
+    NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
+    
+//    for (EMConversation *conversation in conversations) {
+//        DLog(@"conversation.ext = %@",conversation.ext);
+//    }
+    
+    NSArray* sorted = [conversations sortedArrayUsingComparator:
+                       ^(EMConversation *obj1, EMConversation* obj2){
+                           EMMessage *message1 = [obj1 latestMessage];
+                           EMMessage *message2 = [obj2 latestMessage];
+                           
+                           NSString *obj1Bool = [obj1.ext objectForKey:@"topSwitch"];
+                           NSString *obj2Bool = [obj2.ext objectForKey:@"topSwitch"];
+                           NSString *date1Str = [obj1.ext objectForKey:@"setTime"];
+                           NSString *date2Str = [obj2.ext objectForKey:@"setTime"];
+                           
+                           if([obj1Bool isEqualToString:@"20"] && [obj2Bool isEqualToString:@"20"]){
+                               //均置顶
+                               if([date1Str integerValue] > [date2Str integerValue]){
+                                   return(NSComparisonResult)NSOrderedAscending;
+                               }else{
+                                   return(NSComparisonResult)NSOrderedDescending;
+                               }
+                               
+                           }else if([obj1Bool isEqualToString:@"20"]){
+                               //一个置顶,一个不置顶
+                               return(NSComparisonResult)NSOrderedAscending;
+                           }else if([obj2Bool isEqualToString:@"20"]){
+                               //一个置顶,一个不置顶
+                               return(NSComparisonResult)NSOrderedDescending;
+                           } else{
+                               //均不置顶
+                               if(message1.timestamp > message2.timestamp) {
+                                   return(NSComparisonResult)NSOrderedAscending;
+                               }else {
+                                   return(NSComparisonResult)NSOrderedDescending;
+                               }
+                           }
+                       }];
+    
+    
+    
+    [self.dataArray removeAllObjects];
+    for (EMConversation *converstion in sorted) {
+        EaseConversationModel *model = nil;
+        if (self.dataSource && [self.dataSource respondsToSelector:@selector(conversationListViewController:modelForConversation:)]) {
+            model = [self.dataSource conversationListViewController:self
+                                               modelForConversation:converstion];
+        }
+        else{
+            model = [[EaseConversationModel alloc] initWithConversation:converstion];
+        }
+        
+        if (model) {
+            [self.dataArray addObject:model];
+        }
+    }
+    
+    [self.tableView reloadData];
+    [self tableViewDidFinishTriggerHeader:YES reload:NO];
+}
 
 @end
+

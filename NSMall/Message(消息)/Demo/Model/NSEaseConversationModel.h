@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "IConversationModel.h"
 #import "NSFriendItemModel.h"
+#import "NSHuanXinUserModel.h"
 
 
 @interface NSEaseConversationModel : NSObject<IConversationModel>
@@ -21,7 +22,7 @@
 @property (strong, nonatomic) NSString *avatarURLPath;
 /** @brief conversationId的头像 */
 @property (strong, nonatomic) UIImage *avatarImage;
-
+@property(nonatomic,strong)NSHuanXinUserModel *hxModel;/* 自定义model */
 
 /*!
  @method

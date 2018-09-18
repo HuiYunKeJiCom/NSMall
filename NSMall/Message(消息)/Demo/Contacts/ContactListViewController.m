@@ -160,17 +160,17 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            NSString *CellIdentifier = @"addFriend";
-            EaseUserCell *cell = (EaseUserCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if (cell == nil) {
-                cell = [[EaseUserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            }
-            cell.avatarView.image = [UIImage imageNamed:@"newFriends"];
-            cell.titleLabel.text = NSLocalizedString(@"title.apply", @"Application and notification");
-            cell.avatarView.badge = self.unapplyCount;
-            return cell;
-        }
+//        if (indexPath.row == 0) {
+//            NSString *CellIdentifier = @"addFriend";
+//            EaseUserCell *cell = (EaseUserCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//            if (cell == nil) {
+//                cell = [[EaseUserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//            }
+//            cell.avatarView.image = [UIImage imageNamed:@"newFriends"];
+//            cell.titleLabel.text = NSLocalizedString(@"title.apply", @"Application and notification");
+//            cell.avatarView.badge = self.unapplyCount;
+//            return cell;
+//        }
         
         NSString *CellIdentifier = @"commonCell";
         EaseUserCell *cell = (EaseUserCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -178,10 +178,10 @@
             cell = [[EaseUserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         
-//        if (indexPath.row == 1) {
-//            cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/group"];
-//            cell.titleLabel.text = NSLocalizedString(@"title.group", @"Group");
-//        }
+        if (indexPath.row == 0) {
+            cell.avatarView.image = [UIImage imageNamed:@"message_ico_group_chat"];
+            cell.titleLabel.text = @"群聊";
+        }
 //        else if (indexPath.row == 2) {
 //            cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/group"];
 //            cell.titleLabel.text = NSLocalizedString(@"title.chatroom",@"chatroom");
@@ -292,10 +292,11 @@
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
     if (section == 0) {
-        if (row == 0) {
-            [self.navigationController pushViewController:[ApplyViewController shareController] animated:YES];
-        }
-        else if (row == 1)
+//        if (row == 0) {
+//            [self.navigationController pushViewController:[ApplyViewController shareController] animated:YES];
+//        }
+//        else
+            if (row == 0)
         {
             GroupListViewController *groupController = [[GroupListViewController alloc] initWithStyle:UITableViewStylePlain];
             [self.navigationController pushViewController:groupController animated:YES];
@@ -327,8 +328,9 @@
 //    }
     else{
         NSHuanXinUserModel *model = [[self.dataArray objectAtIndex:(section - 1)] objectAtIndex:row];
-        UIViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:model.buddy conversationType:EMConversationTypeChat];
+        ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:model.buddy conversationType:EMConversationTypeChat];
         chatController.title = model.nickname.length > 0 ? model.nickname : model.buddy;
+        chatController.hxModel = model;
         [self.navigationController pushViewController:chatController animated:YES];
     }
 }
@@ -617,6 +619,7 @@
             NSString *imageUrl = model.user_avatar;
             NSData *data = [NSData  dataWithContentsOfURL:[NSURL URLWithString:imageUrl]];
             model.avatarImage =  [UIImage imageWithData:data];
+            
             NSString *firstLetter = [EaseChineseToPinyin pinyinFromChineseString:model.nickname];
             NSInteger section;
             if (firstLetter.length > 0) {
