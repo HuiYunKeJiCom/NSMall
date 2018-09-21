@@ -20,8 +20,9 @@
 #import "NSChangeGroupNameVC.h"
 #import "ContactSelectionViewController.h"
 #import "GroupListViewController.h"
+#import "ChatViewController.h"
 
-@interface NSGroupDetailVC ()<NSGoodsTableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIAlertViewDelegate,NSChatSettingViewDelegate,EMChooseViewDelegate>{
+@interface NSGroupDetailVC ()<NSGoodsTableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIAlertViewDelegate,NSChatSettingViewDelegate,EMChooseViewDelegate,EMGroupManagerDelegate>{
     NSMutableArray *_groupMembers;
     CGFloat _itemWH;
     CGFloat _margin;
@@ -41,7 +42,7 @@
 @property(nonatomic)BOOL isGroupOwn;/* 是否群主 */
 @property(nonatomic)BOOL isShowDel;/* 是否显示删除按钮 */
 @property(nonatomic)NSInteger row;/* 删除成员的下标 */
-
+@property(nonatomic,strong)EaseMessageViewController *easeMessage;
 @end
 
 @implementation NSGroupDetailVC
@@ -49,13 +50,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    
+
     [self buildUI];
-//    [self setUpData];
+    //    [self setUpData];
     [self configCollectionView];
     [self setUpNavTopView];
     [self makeConstraints];
+
 }
 
 -(void)buildUI{
@@ -86,13 +87,13 @@
 
 -(void)setUpDataWithConversation:(EMConversation *)conversation{
     self.conversation = conversation;
-    self.isGroupOwn = YES;
+
     UserModel *userModel = [UserModel modelFromUnarchive];
     
-    if(self.groupOwn){
-        if(self.conversation.type == EMConversationTypeGroupChat && !([self.groupOwn isEqualToString:userModel.hx_user_name])){
-            self.isGroupOwn = NO;
-        }
+    if(self.conversation.type == EMConversationTypeGroupChat && ([self.groupOwn isEqualToString:userModel.hx_user_name])){
+        self.isGroupOwn = YES;
+    }else{
+        self.isGroupOwn = NO;
     }
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -100,14 +101,15 @@
         NSDictionary *dict = @{@"topSwitch":@"10",@"messageSwitch":@"10"};
         [userDefaults setObject:dict forKey:self.conversation.conversationId];
         [userDefaults synchronize];
-    }else{
+    }
+//    else{
 //        NSDictionary *dict = [userDefaults objectForKey:self.conversation.conversationId];
 //        if([dict isKindOfClass:[NSDictionary class]]){
 //            dict = @{@"topSwitch":@"10",@"messageSwitch":@"10"};
 //            [userDefaults setObject:dict forKey:self.conversation.conversationId];
 //            [userDefaults synchronize];
 //        }
-    }
+//    }
     
 //    NSDictionary *tempDict = [userDefaults objectForKey:self.conversation.conversationId];
 //    DLog(@"tempDict = %@",tempDict);
@@ -141,13 +143,20 @@
             
         }];
     }else if(conversation.type == EMConversationTypeChat){
-        NSDictionary *dict = conversation.latestMessage.ext;
+        NSDictionary *dict = conversation.lastReceivedMessage.ext;
         NSHuanXinUserModel *model = [NSHuanXinUserModel new];
         model.user_avatar = [dict objectForKey:@"avatar_url"];
         model.hx_user_name = [dict objectForKey:@"hx_username"];
         model.nick_name = [dict objectForKey:@"nick"];
         [self.membersArr addObject:model];
-        [self.collectionView reloadData];
+        
+        int64_t delayInSeconds = 0.3; // 延迟的时间
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self updateConstraints];
+            [self.collectionView reloadData];
+        });
+        
+        
     }
 
 }
@@ -191,6 +200,7 @@
             return self.membersArr.count+1;
         }
     }
+    
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -323,7 +333,13 @@
             make.size.mas_equalTo(CGSizeMake(self.view.tz_width, (self.membersArr.count + 3)/4 *(_itemWH + _margin*2)));
         }];
     }else{
-        if(self.isGroupOwn && self.conversation.type == EMConversationTypeGroupChat){
+        if(self.conversation.type == EMConversationTypeChat){
+            [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(weakSelf.SV.mas_left);
+                make.top.equalTo(weakSelf.SV.mas_top);
+                make.size.mas_equalTo(CGSizeMake(self.view.tz_width, (self.membersArr.count + 4)/4 *(_itemWH + _margin*2)));
+            }];
+        }else if(self.isGroupOwn && self.conversation.type == EMConversationTypeGroupChat){
             [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(weakSelf.SV.mas_left);
                 make.top.equalTo(weakSelf.SV.mas_top);
@@ -337,6 +353,8 @@
             }];
         }
     }
+    
+    
     
     
 }
@@ -388,7 +406,7 @@
 
 -(NSGoodsTableView *)otherTableView{
     if (!_otherTableView) {
-        _otherTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        _otherTableView = [[NSGoodsTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _otherTableView.showsVerticalScrollIndicator = NO;
         _otherTableView.backgroundColor = [UIColor clearColor];
         _otherTableView.bounces = NO;
@@ -614,18 +632,53 @@
 -(void)delAndExitGroup{
     DLog(@"删除并退出");
 //    DLog(@"self.groupId = %@",self.groupId);
-    [NSGroupAPI deleteGroupWithParam:self.groupId success:^{
-        DLog(@"退出群组成功");
+
+    UserModel *userModel = [UserModel modelFromUnarchive];
+    if([self.groupOwn isEqualToString:userModel.hx_user_name]){
+        [NSGroupAPI deleteGroupWithParam:self.groupId success:^{
+            DLog(@"退出群组成功");
+            GroupListViewController *vc = [GroupListViewController new];
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        } faulre:^(NSError *error) {
+            DLog(@"退出群组失败");
+        }];
+    }else{
         
-        for (UIViewController *vc in self.navigationController.viewControllers) {
-            if([vc isKindOfClass:[GroupListViewController class]]){
-                [self.navigationController popToViewController:vc animated:YES];
+        EMError *error = nil;
+        [[EMClient sharedClient].groupManager leaveGroup:self.groupId error:&error];
+        
+        for(int i=0;i<self.membersArr.count;i++){
+            NSHuanXinUserModel *hxModel = self.membersArr[i];
+            if([hxModel.hx_user_name isEqualToString:userModel.hx_user_name]){
+                self.row = i;
             }
         }
+        [self.membersArr removeObjectAtIndex:self.row];
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSMutableDictionary *jsonDict = [NSMutableDictionary dictionary];
+        NSDictionary *tempDict = [self dictionaryWithJsonString:self.groupModel.group_name_json];
+        NSMutableArray *groupMembers = [NSMutableArray array];
+        NSString *groupName = [tempDict objectForKey:@"groupName"];
+        groupMembers =  [tempDict objectForKey:@"jsonArray"];
+        [groupMembers removeObjectAtIndex:self.row];
+        [jsonDict setValue:groupMembers forKey:@"jsonArray"];
+        [jsonDict setValue:groupName forKey:@"groupName"];
+        [param setValue:[self convertToJsonData:jsonDict] forKey:@"groupNameJson"];
+        [param setValue:self.groupModel.group_id forKey:@"groupId"];
+        //    });
         
-    } faulre:^(NSError *error) {
-        DLog(@"退出群组失败");
-    }];
+        [NSGroupAPI updateGroupWithParam:param success:^(NSDictionary *groupId) {
+            DLog(@"群组信息更新成功");
+            GroupListViewController *vc = [GroupListViewController new];
+            [self.navigationController pushViewController:vc animated:YES];
+        } faulre:^(NSError *error) {
+            DLog(@"群组信息更新失败");
+        }];
+    }
+    
+    
 }
 
 //计算当前时间与订单生成时间的时间差，转化成分钟
@@ -704,37 +757,123 @@
 #pragma mark - EMChooseViewDelegate
 - (BOOL)viewController:(EMChooseViewController *)viewController didFinishSelectedSources:(NSArray *)selectedSources
 {
+    WEAKSELF
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     
-        NSMutableDictionary *jsonDict = [NSMutableDictionary dictionary];
-        NSDictionary *tempDict = [self dictionaryWithJsonString:self.groupModel.group_name_json];
-        NSMutableArray *groupMembers = [NSMutableArray array];
+    UserModel *userModel = [UserModel modelFromUnarchive];
+    NSMutableDictionary *jsonDict = [NSMutableDictionary dictionary];
+    NSDictionary *tempDict = [self dictionaryWithJsonString:self.groupModel.group_name_json];
+    NSMutableArray *groupMembers = [NSMutableArray array];
+    
+    if(self.conversation.type == EMConversationTypeChat){
+        //私聊建群
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            //创建群组
+            NSMutableArray *hxuserNames = [NSMutableArray array];
+            NSMutableArray *jsonArr = [NSMutableArray array];
+            NSDictionary *dict = @{@"avatar":userModel.pic_img,@"hxUsername":userModel.hx_user_name,@"nick":userModel.user_name};
+            [jsonArr addObject:dict];
+            
+            NSHuanXinUserModel *conversationModel = self.membersArr[0];
+            NSDictionary *dictionary = @{@"avatar":conversationModel.user_avatar,@"hxUsername":conversationModel.hx_user_name,@"nick":conversationModel.nick_name};
+            [jsonArr addObject:dictionary];
+            [hxuserNames addObject:conversationModel.hx_user_name];
+            
+            for(int i=0;i<selectedSources.count;i++){
+                NSHuanXinUserModel *hxModel = selectedSources[i];
+                NSDictionary *dict = @{@"avatar":hxModel.user_avatar,@"hxUsername":hxModel.hx_user_name,@"nick":hxModel.nick_name};
+                [jsonArr addObject:dict];
+                [hxuserNames addObject:hxModel.hx_user_name];
+            }
+            [jsonDict setValue:jsonArr forKey:@"jsonArray"];
+            [jsonDict setValue:@"未命名" forKey:@"groupName"];
+            [param setValue:@"未命名" forKey:@"groupName"];
+            [param setValue:[self convertToJsonData:jsonDict] forKey:@"groupNameJson"];
+            [param setValue:@"temp" forKey:@"description"];
+        
+            bool bool_true = true;
+            bool bool_false = false;
+            
+            [param setValue:[self arrayToJSONString:hxuserNames] forKey:@"hxuserNames"];
+            [param setValue:@(bool_false) forKey:@"isPublic"];
+            [param setValue:@(bool_true) forKey:@"membersOnly"];
+            [param setValue:@(bool_true) forKey:@"allowinvites"];
+            [param setValue:@(bool_false) forKey:@"isNeedConfirm"];
+            [param setValue:@"200" forKey:@"maxusers"];
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [NSGroupAPI createGroupWithParam:param success:^(NSDictionary *groupId) {
+                        //                    DLog(@"groupId = %@",groupId);
+                        DLog(@"群组创建成功");
+                        
+                        //发送透传消息
+                        EMCmdMessageBody *body = [[EMCmdMessageBody alloc] initWithAction:@"group"];
+                        NSString *from = [[EMClient sharedClient] currentUsername];
+                        
+                        //                    UserModel *userModel = [UserModel modelFromUnarchive];
+                        // 生成message
+                        EMMessage *message = [[EMMessage alloc] initWithConversationID:groupId from:from to:(NSString *)groupId body:body ext:@{@"group":@true,@"group_id":groupId}];
+                        //                    message.chatType = EMChatTypeChat;// 设置为单聊消息
+                        message.chatType = EMChatTypeGroupChat;// 设置为群聊消息
+                        //message.chatType = EMChatTypeChatRoom;// 设置为聊天室消息
+
+                        [weakSelf _sendMessage:message];
+                        
+                        ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:(NSString *)groupId conversationType:EMConversationTypeGroupChat];
+                        chatController.title = @"群聊";
+                        [weakSelf.navigationController pushViewController:chatController animated:YES];
+                        
+                    } faulre:^(NSError *error) {
+                        
+                    }];
+                  });
+                });
+        
+    }else if([self.groupOwn isEqualToString:userModel.hx_user_name]){
+        //群聊是群主
         NSString *groupName = [tempDict objectForKey:@"groupName"];
         groupMembers =  [tempDict objectForKey:@"jsonArray"];
 //        DLog(@"groupMembers = %@",groupMembers);
         for(int i=0;i<selectedSources.count;i++){
             NSHuanXinUserModel *hxModel = selectedSources[i];
+
             NSDictionary *dict = @{@"avatar":hxModel.user_avatar,@"hxUsername":hxModel.hx_user_name,@"nick":hxModel.nickname};
-            [groupMembers addObject:dict];
-            
+                [groupMembers addObject:dict];
+                
             EMError *error = nil;
             [[EMClient sharedClient].groupManager addOccupants:@[hxModel.hx_user_name] toGroup:self.groupModel.group_id welcomeMessage:@"欢迎加入" error:&error];
-            
         }
         [jsonDict setValue:groupMembers forKey:@"jsonArray"];
         [jsonDict setValue:groupName forKey:@"groupName"];
         [param setValue:[self convertToJsonData:jsonDict] forKey:@"groupNameJson"];
-        [param setValue:self.groupModel.group_id forKey:@"groupId"];
-//    });
+        [param setValue:self.groupId forKey:@"groupId"];
+        //    });
+        
+        [NSGroupAPI updateGroupWithParam:param success:^(NSDictionary *groupId) {
+            DLog(@"群组信息更新成功");
+            [Common AppShowToast:@"群组信息更新成功"];
+            [self setUpDataWithConversation:self.conversation];
+        } faulre:^(NSError *error) {
+            DLog(@"群组信息更新失败");
+        }];
+    }else{
+        //群聊不是群主
+        //邀请进群需要群主同意
+        [param setValue:self.groupId forKey:@"groupId"];
+        [param setValue:userModel.hx_user_name forKey:@"inviter"];
+        for(int i=0;i<selectedSources.count;i++){
+            NSHuanXinUserModel *hxModel = selectedSources[i];
+            [groupMembers addObject:hxModel.hx_user_name];
+        }
+        [param setValue:groupMembers forKey:@"invitee"];
+        [NSGroupAPI sendInviteConfirmWithParam:[self convertToJsonData:param] success:^{
+            DLog(@"发送群组邀请确认消息成功");
+        } faulre:^(NSError *error) {
+            DLog(@"发送群组邀请确认消息失败");
+        }];
+    }
     
-    [NSGroupAPI updateGroupWithParam:param success:^(NSDictionary *groupId) {
-        DLog(@"群组信息更新成功");
-        [Common AppShowToast:@"群组信息更新成功"];
-        [self setUpDataWithConversation:self.conversation];
-    } faulre:^(NSError *error) {
-        DLog(@"群组信息更新失败");
-    }];
     
     
     return YES;
@@ -817,6 +956,24 @@
     }];
     
 
+}
+
+- (NSString *)arrayToJSONString:(NSArray *)array
+                       
+{
+            
+    NSError *error = nil;
+            
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            
+    return jsonString;
+}
+
+- (void)_sendMessage:(EMMessage *)message{
+    [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *aMessage, EMError *aError) {
+            [self.easeMessage _refreshAfterSentMessage:aMessage];
+    }];
 }
 
 @end

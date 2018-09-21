@@ -221,8 +221,14 @@
                 model.title = profileEntity.nickname;
                 model.avatarURLPath = profileEntity.imageUrl;
             }
-            NSHuanXinUserModel *hxModel = [[NSHuanXinUserModel alloc] initWithBuddy:model.title];
-            model.title = hxModel.nickname;
+//            NSHuanXinUserModel *hxModel = [[NSHuanXinUserModel alloc] initWithBuddy:model.title];
+            
+            EMMessage *latestMessage = model.conversation.lastReceivedMessage;
+            NSDictionary *ext = latestMessage.ext;
+            
+            model.title = [ext objectForKey:@"nick"];
+            
+//            model.title = hxModel.nickname;
             //            model.title = @"我是笨蛋";
         }
         //        model.title = @"我是笨蛋";
@@ -312,14 +318,14 @@
             default: {
             } break;
         }
-        
+        NSDictionary *extTemp = lastMessage.ext;
         if (lastMessage.direction == EMMessageDirectionReceive) {
             NSString *from = lastMessage.from;
             UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:from];
             if (profileEntity) {
                 from = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
             }
-            latestMessageTitle = [NSString stringWithFormat:@"%@: %@", from, latestMessageTitle];
+            latestMessageTitle = [NSString stringWithFormat:@"%@: %@", [extTemp objectForKey:@"nick"], latestMessageTitle];
         }
         
         NSDictionary *ext = conversationModel.conversation.ext;

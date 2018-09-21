@@ -101,11 +101,6 @@
 		185DFE0120B3FA8A00437168 /* NSCategoryTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185DFE0020B3FA8A00437168 /* NSCategoryTVCell.m */; };
 		1861C540212A5EF400B9F4E5 /* UIButton+BootstrapCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1861C53F212A5EF400B9F4E5 /* UIButton+BootstrapCopy.m */; };
 		1863D26B20A9873C00047A7D /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863D26A20A9873C00047A7D /* UIButton+Bootstrap.m */; };
-		1868F6A720FEEC90000BB6EB /* XTGuidePagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868F6A320FEEC8F000BB6EB /* XTGuidePagesViewController.m */; };
-		1868F6A820FEEC90000BB6EB /* CALayer+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868F6A420FEEC8F000BB6EB /* CALayer+Transition.m */; };
-		1868F6AB20FEECBF000BB6EB /* AppVersionParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868F6AA20FEECBF000BB6EB /* AppVersionParam.m */; };
-		1868F6AE20FEECCE000BB6EB /* AppVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868F6AD20FEECCE000BB6EB /* AppVersionModel.m */; };
-		1868F6B220FEEFA1000BB6EB /* NSShopEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868F6B120FEEFA1000BB6EB /* NSShopEditVC.m */; };
 		1868F6C120FEEFC9000BB6EB /* NSMyShopTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868F6B420FEEFC8000BB6EB /* NSMyShopTVCell.m */; };
 		1868F6C220FEEFC9000BB6EB /* NSShopListItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868F6B720FEEFC8000BB6EB /* NSShopListItemModel.m */; };
 		1868F6C320FEEFC9000BB6EB /* NSShopListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868F6BA20FEEFC8000BB6EB /* NSShopListModel.m */; };
@@ -206,6 +201,12 @@
 		188DCA5D214A85D500194BF8 /* XCPFileObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DCA5C214A85D500194BF8 /* XCPFileObject.m */; };
 		188DCA63214A85E000194BF8 /* XCPFileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DCA60214A85E000194BF8 /* XCPFileTableViewCell.m */; };
 		188DCA64214A85E000194BF8 /* XCPFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DCA61214A85E000194BF8 /* XCPFileViewController.m */; };
+		18925D23215247B100DE88FA /* NSInvitationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18925D22215247B000DE88FA /* NSInvitationCell.m */; };
+		18925D26215399D400DE88FA /* AppVersionParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18925D24215399D400DE88FA /* AppVersionParam.m */; };
+		18925D2921539A8700DE88FA /* AppVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18925D2721539A8600DE88FA /* AppVersionModel.m */; };
+		18925D2C21539B0A00DE88FA /* NSShopEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18925D2B21539B0A00DE88FA /* NSShopEditVC.m */; };
+		18925D3121539BAF00DE88FA /* CALayer+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18925D2E21539BAE00DE88FA /* CALayer+Transition.m */; };
+		18925D3221539BAF00DE88FA /* XTGuidePagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18925D2F21539BAE00DE88FA /* XTGuidePagesViewController.m */; };
 		18999B2120DA4C58003BCF23 /* NSOrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18999B2020DA4C58003BCF23 /* NSOrderDetailVC.m */; };
 		1899B7B620B57643002FF2A8 /* NSLikeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1899B7B520B57643002FF2A8 /* NSLikeModel.m */; };
 		18A7AB7920ADAAFC009FC725 /* NSMyGoodsListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A7AB7820ADAAFC009FC725 /* NSMyGoodsListVC.m */; };
@@ -673,16 +674,6 @@
 		1861C53F212A5EF400B9F4E5 /* UIButton+BootstrapCopy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BootstrapCopy.m"; sourceTree = "<group>"; };
 		1863D26920A9873B00047A7D /* UIButton+Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Bootstrap.h"; sourceTree = "<group>"; };
 		1863D26A20A9873C00047A7D /* UIButton+Bootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Bootstrap.m"; sourceTree = "<group>"; };
-		1868F6A320FEEC8F000BB6EB /* XTGuidePagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTGuidePagesViewController.m; sourceTree = "<group>"; };
-		1868F6A420FEEC8F000BB6EB /* CALayer+Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Transition.m"; sourceTree = "<group>"; };
-		1868F6A520FEEC8F000BB6EB /* XTGuidePagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTGuidePagesViewController.h; sourceTree = "<group>"; };
-		1868F6A620FEEC8F000BB6EB /* CALayer+Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Transition.h"; sourceTree = "<group>"; };
-		1868F6A920FEECBF000BB6EB /* AppVersionParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppVersionParam.h; path = "../../../../Desktop/NSMall/NSMall/Login(登录)/Param/AppVersionParam.h"; sourceTree = "<group>"; };
-		1868F6AA20FEECBF000BB6EB /* AppVersionParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppVersionParam.m; path = "../../../../Desktop/NSMall/NSMall/Login(登录)/Param/AppVersionParam.m"; sourceTree = "<group>"; };
-		1868F6AC20FEECCD000BB6EB /* AppVersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppVersionModel.h; path = "../../../../Desktop/NSMall/NSMall/Login(登录)/Model/AppVersionModel.h"; sourceTree = "<group>"; };
-		1868F6AD20FEECCE000BB6EB /* AppVersionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppVersionModel.m; path = "../../../../Desktop/NSMall/NSMall/Login(登录)/Model/AppVersionModel.m"; sourceTree = "<group>"; };
-		1868F6B020FEEFA1000BB6EB /* NSShopEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSShopEditVC.h; sourceTree = "<group>"; };
-		1868F6B120FEEFA1000BB6EB /* NSShopEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSShopEditVC.m; sourceTree = "<group>"; };
 		1868F6B420FEEFC8000BB6EB /* NSMyShopTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMyShopTVCell.m; sourceTree = "<group>"; };
 		1868F6B520FEEFC8000BB6EB /* NSMyShopTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSMyShopTVCell.h; sourceTree = "<group>"; };
 		1868F6B720FEEFC8000BB6EB /* NSShopListItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSShopListItemModel.m; sourceTree = "<group>"; };
@@ -880,6 +871,18 @@
 		188DCA60214A85E000194BF8 /* XCPFileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCPFileTableViewCell.m; sourceTree = "<group>"; };
 		188DCA61214A85E000194BF8 /* XCPFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCPFileViewController.m; sourceTree = "<group>"; };
 		188DCA62214A85E000194BF8 /* XCPFileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCPFileTableViewCell.h; sourceTree = "<group>"; };
+		18925D21215247B000DE88FA /* NSInvitationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSInvitationCell.h; sourceTree = "<group>"; };
+		18925D22215247B000DE88FA /* NSInvitationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSInvitationCell.m; sourceTree = "<group>"; };
+		18925D24215399D400DE88FA /* AppVersionParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppVersionParam.m; sourceTree = "<group>"; };
+		18925D25215399D400DE88FA /* AppVersionParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppVersionParam.h; sourceTree = "<group>"; };
+		18925D2721539A8600DE88FA /* AppVersionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppVersionModel.m; sourceTree = "<group>"; };
+		18925D2821539A8600DE88FA /* AppVersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppVersionModel.h; sourceTree = "<group>"; };
+		18925D2A21539B0A00DE88FA /* NSShopEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSShopEditVC.h; sourceTree = "<group>"; };
+		18925D2B21539B0A00DE88FA /* NSShopEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSShopEditVC.m; sourceTree = "<group>"; };
+		18925D2D21539BAE00DE88FA /* XTGuidePagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTGuidePagesViewController.h; sourceTree = "<group>"; };
+		18925D2E21539BAE00DE88FA /* CALayer+Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Transition.m"; sourceTree = "<group>"; };
+		18925D2F21539BAE00DE88FA /* XTGuidePagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTGuidePagesViewController.m; sourceTree = "<group>"; };
+		18925D3021539BAE00DE88FA /* CALayer+Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Transition.h"; sourceTree = "<group>"; };
 		18999B1F20DA4C58003BCF23 /* NSOrderDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSOrderDetailVC.h; sourceTree = "<group>"; };
 		18999B2020DA4C58003BCF23 /* NSOrderDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSOrderDetailVC.m; sourceTree = "<group>"; };
 		1899B7B420B57643002FF2A8 /* NSLikeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSLikeModel.h; sourceTree = "<group>"; };
@@ -2102,10 +2105,10 @@
 		1868F6A220FEEC8F000BB6EB /* XTGuidePageViewController */ = {
 			isa = PBXGroup;
 			children = (
-				1868F6A520FEEC8F000BB6EB /* XTGuidePagesViewController.h */,
-				1868F6A320FEEC8F000BB6EB /* XTGuidePagesViewController.m */,
-				1868F6A620FEEC8F000BB6EB /* CALayer+Transition.h */,
-				1868F6A420FEEC8F000BB6EB /* CALayer+Transition.m */,
+				18925D3021539BAE00DE88FA /* CALayer+Transition.h */,
+				18925D2E21539BAE00DE88FA /* CALayer+Transition.m */,
+				18925D2D21539BAE00DE88FA /* XTGuidePagesViewController.h */,
+				18925D2F21539BAE00DE88FA /* XTGuidePagesViewController.m */,
 			);
 			name = XTGuidePageViewController;
 			path = ../../Desktop/NSMall/Classes/XTGuidePageViewController;
@@ -2114,8 +2117,8 @@
 		1868F6AF20FEEFA1000BB6EB /* 编辑店铺 */ = {
 			isa = PBXGroup;
 			children = (
-				1868F6B020FEEFA1000BB6EB /* NSShopEditVC.h */,
-				1868F6B120FEEFA1000BB6EB /* NSShopEditVC.m */,
+				18925D2A21539B0A00DE88FA /* NSShopEditVC.h */,
+				18925D2B21539B0A00DE88FA /* NSShopEditVC.m */,
 			);
 			name = "编辑店铺";
 			path = "../../../../Desktop/NSMall/NSMall/My(我的)/Shop(我的店铺)/编辑店铺";
@@ -3251,6 +3254,8 @@
 				18B64922211D9F0900F8CDAA /* NSRPTestCell.m */,
 				18B6D9892120174500D0F999 /* NSRPView.h */,
 				18B6D98A2120174500D0F999 /* NSRPView.m */,
+				18925D21215247B000DE88FA /* NSInvitationCell.h */,
+				18925D22215247B000DE88FA /* NSInvitationCell.m */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -3451,8 +3456,8 @@
 		18D0824120956D2E0031034A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1868F6AC20FEECCD000BB6EB /* AppVersionModel.h */,
-				1868F6AD20FEECCE000BB6EB /* AppVersionModel.m */,
+				18925D2821539A8600DE88FA /* AppVersionModel.h */,
+				18925D2721539A8600DE88FA /* AppVersionModel.m */,
 				18D0824320956D2E0031034A /* UserModel.h */,
 				18D0824220956D2E0031034A /* UserModel.m */,
 			);
@@ -3471,8 +3476,8 @@
 		18D0824720956D2F0031034A /* Param */ = {
 			isa = PBXGroup;
 			children = (
-				1868F6A920FEECBF000BB6EB /* AppVersionParam.h */,
-				1868F6AA20FEECBF000BB6EB /* AppVersionParam.m */,
+				18925D25215399D400DE88FA /* AppVersionParam.h */,
+				18925D24215399D400DE88FA /* AppVersionParam.m */,
 				18D0824820956D2F0031034A /* LoginParam.m */,
 				18D0824920956D2F0031034A /* LoginParam.h */,
 			);
@@ -4837,7 +4842,6 @@
 				18FBD105212BBBDE008D170F /* NSExpressComView.m in Sources */,
 				1878478920AEE93600AC0E0F /* NSOrderHeader.m in Sources */,
 				1842A6E520B59D350090861D /* LZTableHeaderView.m in Sources */,
-				1868F6AB20FEECBF000BB6EB /* AppVersionParam.m in Sources */,
 				18B1CB1A20BFCB1C00235CFA /* NSAddWalletVC.m in Sources */,
 				18AA1CF7212189F300BA5C81 /* NSUploadImageView.m in Sources */,
 				18333C4920F84026004571FE /* NSCommentItemModel.m in Sources */,
@@ -4940,6 +4944,7 @@
 				18AA1CF02121202B00BA5C81 /* NSRPRecordTVCell.m in Sources */,
 				182DC49120905E3C0066E667 /* ADOrderTopToolView.m in Sources */,
 				18B6D98521200B9500D0F999 /* NSRPListModel.m in Sources */,
+				18925D3221539BAF00DE88FA /* XTGuidePagesViewController.m in Sources */,
 				18DB5D3A20E21876000E99E6 /* FivePageSelectBar.m in Sources */,
 				181A9F322106FB9400334F7C /* NSHuanXinUserModel.m in Sources */,
 				18C3D08020A2F0FA000FCE7F /* SaveLabelParam.m in Sources */,
@@ -5019,6 +5024,7 @@
 				184F061A209FE81A00768418 /* NSShopTableView.m in Sources */,
 				18D0C0D420AC1A52007F0784 /* UIButton+BtnExt.m in Sources */,
 				1868F6C520FEEFC9000BB6EB /* NSMyShopVC.m in Sources */,
+				18925D26215399D400DE88FA /* AppVersionParam.m in Sources */,
 				18D0824B20956D2F0031034A /* NSLoginView.m in Sources */,
 				1848A6DA2113EADF0027AC4D /* NSProductSpecModel.m in Sources */,
 				18B017AC20A67B9600826EA4 /* GetAreaAPI.m in Sources */,
@@ -5097,7 +5103,6 @@
 				1874525320EDF52D00A67D70 /* SRSlimeView.m in Sources */,
 				18B0179520A67B9600826EA4 /* YWAddressTableViewCell.m in Sources */,
 				18DB5D6120E23C31000E99E6 /* NSODItemModel.m in Sources */,
-				1868F6A820FEEC90000BB6EB /* CALayer+Transition.m in Sources */,
 				18E194AD21228A81004C7D79 /* NSUserCommentParam.m in Sources */,
 				188CC64A207F5430007D749E /* AppDelegate.mm in Sources */,
 				18DD2F1920B90B1E00521B61 /* UIView+LLRect.m in Sources */,
@@ -5110,6 +5115,7 @@
 				187400E12138E1680024683E /* AEIconView.m in Sources */,
 				1868F78D20FEF391000BB6EB /* ApplyViewController.m in Sources */,
 				18DD1588208DEA960006475D /* ADLMyInfoModel.m in Sources */,
+				18925D2C21539B0A00DE88FA /* NSShopEditVC.m in Sources */,
 				18D0C0A920AC0D01007F0784 /* TDUserCertifySubVCBasic.m in Sources */,
 				1874D5BE20AABFDA0004B1AF /* NSCarouselView.m in Sources */,
 				1829FD2321352E84002109E1 /* NSGroupDetailVC.m in Sources */,
@@ -5171,6 +5177,7 @@
 				18E3A41D20B262D300F847ED /* NSCompletedBuyVC.m in Sources */,
 				1829FD2721353ECD002109E1 /* NSMemberCVCell.m in Sources */,
 				18DD2F1820B90B1E00521B61 /* LLNaviSearchBaseVC.m in Sources */,
+				18925D23215247B100DE88FA /* NSInvitationCell.m in Sources */,
 				184F0617209FE81A00768418 /* NSShopPublishVC.m in Sources */,
 				18ADC52120BAE9B500961CD8 /* NSCartModel.m in Sources */,
 				18DB5D5E20E239FC000E99E6 /* NSOrderDetailModel.m in Sources */,
@@ -5186,8 +5193,10 @@
 				18DD2F2320B9336500521B61 /* NSSortListVC.m in Sources */,
 				18E3A41720B2625200F847ED /* NSWaitPayBuyVC.m in Sources */,
 				18B6491C211D27DD00F8CDAA /* NSSendRPParam.m in Sources */,
+				18925D3121539BAF00DE88FA /* CALayer+Transition.m in Sources */,
 				18D0C0AE20AC0D01007F0784 /* TDUserCertifyViewCtrl.m in Sources */,
 				1878477020AEC46A00AC0E0F /* NSCollectionListVC.m in Sources */,
+				18925D2921539A8700DE88FA /* AppVersionModel.m in Sources */,
 				18C3D09E20A2F151000FCE7F /* NSCategoryVC.m in Sources */,
 				18E3A44020B29BD300F847ED /* MyOrderAPI.m in Sources */,
 				18B017A520A67B9600826EA4 /* GetAddressParam.m in Sources */,
@@ -5215,8 +5224,6 @@
 				18D0C0CD20AC167C007F0784 /* TDNameCertifyModel.m in Sources */,
 				18F5D51420CE6A740037F825 /* BMKClusterManager.m in Sources */,
 				183ED91420BE3FE200DB0487 /* NSFirmOrderCell.m in Sources */,
-				1868F6B220FEEFA1000BB6EB /* NSShopEditVC.m in Sources */,
-				1868F6AE20FEECCE000BB6EB /* AppVersionModel.m in Sources */,
 				184DE7AC208F08B400E776F3 /* BaseRefreshGifHeader.m in Sources */,
 				18ADC51A20BAD5AE00961CD8 /* GoodAttrModel.m in Sources */,
 				18D0C0AD20AC0D01007F0784 /* TDUserCertifyResultCtrl.m in Sources */,
@@ -5228,7 +5235,6 @@
 				18F5D50220CE54A00037F825 /* NSClusterAnnotationView.m in Sources */,
 				18B0179E20A67B9600826EA4 /* YWAddressTableViewCell1.m in Sources */,
 				185BA0CC2134F3100068D32E /* NSGroupTVCell.m in Sources */,
-				1868F6A720FEEC90000BB6EB /* XTGuidePagesViewController.m in Sources */,
 				18D093012091BE9000E091E0 /* NSHomePageVC.m in Sources */,
 				18B0179620A67B9600826EA4 /* YWAddressView.m in Sources */,
 				18B1CB1120BF9B3B00235CFA /* NSWalletModel.m in Sources */,

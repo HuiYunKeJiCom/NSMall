@@ -17,9 +17,9 @@
 //Host
 #define Host  [NSString stringWithFormat:@"http%@/adel-shop/app/",CurrentHost]
 
-const static NSString * const NetDomainADDR = @"https://stagewww.neublockchain.com/nsshop/app/";//国外测试 环境
+//const static NSString * const NetDomainADDR = @"https://stagewww.neublockchain.com/nsshop/app/";//国外测试 环境
 
-//const static NSString * const NetDomainADDR = @"https://ns.neublockchain.com/nsshop/app/";//生产环境
+const static NSString * const NetDomainADDR = @"https://ns.neublockchain.com/nsshop/app/";//生产环境
 
 
 //const static NSString * const NetDomainADDR = @"http://192.168.0.59:7108/nsshop/app/";//锡恩电脑环境
@@ -151,5 +151,6 @@ const static NSString * const kUpdateGroupAPI = @"auth/updateGroup";//编辑群�
 const static NSString * const kGroupListAPI = @"auth/groupList";//获取当前用户群组列表
 const static NSString * const kGetGroupByIdAPI = @"auth/getGroupById";//获取群组信息
 const static NSString * const kDeleteGroupByIdAPI = @"auth/deleteGroupById";//删除群组信息
+const static NSString * const kSendInviteConfirmAPI = @"auth/sendInviteConfirm";//发送群组邀请确认消息
 
 

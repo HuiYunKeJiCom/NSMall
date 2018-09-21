@@ -35,6 +35,8 @@
 #import "NSReceiveRPCell.h"
 #import "NSNullCell.h"
 #import "XCPFileViewController.h"
+#import "NSInvitationCell.h"
+#import "NSGroupAPI.h"
 
 
 #if DEMO_CALL == 1
@@ -396,9 +398,9 @@
 - (UITableViewCell *)messageViewController:(UITableView *)tableView
                        cellForMessageModel:(id<IMessageModel>)messageModel
 {
+//    messageId
+    
     NSDictionary *ext = messageModel.message.ext;
-//    DLog(@"ext = %@",ext);
-//    DLog(@"ext = %@",[ext objectForKey:@"is_money_msg"]);
     UserModel *userModel = [UserModel modelFromUnarchive];
     if([[ext objectForKey:@"send_username"] isEqualToString:userModel.hx_user_name]){
 //         && ![[ext objectForKey:@"receive_nick"] isEqualToString:userModel.user_name]
@@ -460,6 +462,69 @@
 //        recallCell.title = body.text;
         return recallCell;
     }
+    
+    if([ext objectForKey:@"accept_username_join"]){
+        //邀请进群信息
+        if([self.groupOwn isEqualToString:userModel.hx_user_name]){
+            //自己是群主,可见消息
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            NSString *messId = messageModel.messageId;
+            NSMutableDictionary *temp = [NSMutableDictionary dictionary];
+            temp = [NSMutableDictionary dictionaryWithDictionary:messageModel.message.ext];
+            id medicine = messageModel.message.ext[@"hx_username"];
+            if(medicine){
+                NSString *cellid = [NSInvitationCell cellIdentifierWithModel:messageModel];
+                NSInvitationCell *medicineCell = (NSInvitationCell *)[tableView dequeueReusableCellWithIdentifier:cellid];
+                if(!medicineCell){
+                    medicineCell = [[NSInvitationCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid model:messageModel];
+                }
+                medicineCell.model = messageModel;
+                
+                __weak NSInvitationCell *weakCell = medicineCell;
+                WEAKSELF
+                
+                medicineCell.agreeBtnClickBlock = ^{
+                    [temp setValue:@"已同意" forKey:@"operation"];
+                    [userDefaults setObject:temp forKey:messId];
+                    [userDefaults synchronize];
+                    [weakCell.agreeBtn removeFromSuperview];
+                    [weakCell.refuseBtn removeFromSuperview];
+                    weakCell.stateLab.alpha = 1.0;
+                    weakCell.stateLab.text = @"已同意";
+
+                    [weakSelf addMemberIngroup:temp];
+                    
+                };
+                medicineCell.refuseBtnClickBlock = ^{
+//                    [weakCell.agreeBtn removeFromSuperview];
+//                    [weakCell.refuseBtn removeFromSuperview];
+
+                    [temp setValue:@"已拒绝" forKey:@"operation"];
+                    [userDefaults setObject:temp forKey:messId];
+                    [userDefaults synchronize];
+                    [weakCell.agreeBtn removeFromSuperview];
+                    [weakCell.refuseBtn removeFromSuperview];
+                    weakCell.stateLab.alpha = 1.0;
+                    weakCell.stateLab.text = @"已拒绝";
+                    
+                };
+                return medicineCell;
+            }
+        }else{
+            //自己不是群主,不可见消息
+            id medicine = messageModel.message.ext[@"hx_username"];
+            if(medicine){
+                NSString *cellid = [NSNullCell cellIdentifierWithModel:messageModel];
+                NSNullCell *medicineCell = (NSNullCell *)[tableView dequeueReusableCellWithIdentifier:cellid];
+                if(!medicineCell){
+                    medicineCell = [[NSNullCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid model:messageModel];
+                }
+                medicineCell.model = messageModel;
+                return medicineCell;
+            }
+        }
+    }
+    
     return nil;
 }
 
@@ -798,6 +863,8 @@
 {
     [self.view endEditing:YES];
     
+    
+    
     if (self.conversation.type == EMConversationTypeGroupChat) {
         
         NSGroupDetailVC *groupDetailVC = [NSGroupDetailVC new];
@@ -807,6 +874,7 @@
         groupDetailVC.groupOwn = self.groupOwn;
         [groupDetailVC setUpDataWithConversation:self.conversation];
         [self.navigationController pushViewController:groupDetailVC animated:YES];
+        
         
 //        EMGroupInfoViewController *infoController = [[EMGroupInfoViewController alloc] initWithGroupId:self.conversation.conversationId];
 //        [self.navigationController pushViewController:infoController animated:YES];
@@ -821,11 +889,12 @@
 //        NSDictionary *dict = self.conversation.latestMessage.ext;
 //        DLog(@"dict = %@",dict);
         NSGroupDetailVC *groupDetailVC = [NSGroupDetailVC new];
-        [groupDetailVC setUpDataWithConversation:self.conversation];
         groupDetailVC.delegate = self;
         groupDetailVC.exitBtn.alpha = 0.0;
         groupDetailVC.otherTableView.alpha = 0.0;
+        [groupDetailVC setUpDataWithConversation:self.conversation];
         [self.navigationController pushViewController:groupDetailVC animated:YES];
+        
     }
 }
 
@@ -1108,5 +1177,101 @@ if(![userDefaults objectForKey:redPacketModel.redpacket_id]){
 //    DLog(@"messageBodyType = %u",messageBodyType);
 //    return viewController;
 //}
+
+-(void)addMemberIngroup:(NSMutableDictionary *)dictionary{
+    
+    WEAKSELF
+    [NSGroupAPI getGroupWithParam:[dictionary objectForKey:@"group_id"] success:^(NSGroupModel *groupModel) {
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        NSMutableDictionary *jsonDict = [NSMutableDictionary dictionary];
+        NSDictionary *tempDict = [weakSelf dictionaryWithJsonString:groupModel.group_name_json];
+        NSMutableArray *groupMembers = [NSMutableArray array];
+        
+        NSString *groupName = [tempDict objectForKey:@"groupName"];
+        groupMembers =  [tempDict objectForKey:@"jsonArray"];
+        
+        NSDictionary *dict = @{@"avatar":[dictionary objectForKey:@"avatar"],@"hxUsername":[dictionary objectForKey:@"hx_username"],@"nick":[dictionary objectForKey:@"nick"]};
+        [groupMembers addObject:dict];
+        
+        EMError *error = nil;
+        [[EMClient sharedClient].groupManager addOccupants:@[[dictionary objectForKey:@"hx_username"]] toGroup:[dictionary objectForKey:@"group_id"] welcomeMessage:@"欢迎加入" error:&error];
+        
+        [jsonDict setValue:groupMembers forKey:@"jsonArray"];
+        [jsonDict setValue:groupName forKey:@"groupName"];
+        [param setValue:[weakSelf convertToJsonData:jsonDict] forKey:@"groupNameJson"];
+        [param setValue:[dictionary objectForKey:@"group_id"] forKey:@"groupId"];
+        //    });
+        
+        [NSGroupAPI updateGroupWithParam:param success:^(NSDictionary *groupId) {
+            DLog(@"群组信息更新成功");
+            [Common AppShowToast:@"群组信息更新成功"];
+//            [weakSelf.tableView reloadData];
+        } faulre:^(NSError *error) {
+            DLog(@"群组信息更新失败");
+        }];
+    } faulre:^(NSError *error) {
+        
+    }];
+    
+    
+}
+
+//json字符串转字典
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString
+{
+    if (jsonString == nil) {
+        return nil;
+    }
+    
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err)
+    {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
+}
+
+-(NSString *)convertToJsonData:(NSDictionary *)dict
+
+{
+    
+    NSError *error;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
+    
+    NSString *jsonString;
+    
+    if (!jsonData) {
+        
+        NSLog(@"%@",error);
+        
+    }else{
+        
+        jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+    }
+    
+    NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
+    
+    NSRange range = {0,jsonString.length};
+    
+    //去掉字符串中的空格
+    
+    [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
+    
+    NSRange range2 = {0,mutStr.length};
+    
+    //去掉字符串中的换行符
+    
+    [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
+    
+    return mutStr;
+    
+}
 
 @end

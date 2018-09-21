@@ -80,4 +80,17 @@
     }];
 }
 
+/*
+ 发送群组邀请确认消息
+ */
++ (void)sendInviteConfirmWithParam:(NSString *)param success:(void (^)(void))success faulre:(void (^)(NSError *error))failure{
+    [Net requestWithPost:@{@"paramJson":param} function:kSendInviteConfirmAPI showHUD:nil resultClass:[NSDictionary class] success:^(id  _Nullable resultObj) {
+        success?success():nil;
+    } failure:^(NSError * _Nullable error) {
+        failure?failure(error):nil;
+    }];
+    
+}
+
+
 @end

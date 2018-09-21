@@ -43,4 +43,9 @@
  */
 + (void)deleteGroupWithParam:(NSString *)param success:(void (^)(void))success faulre:(void (^)(NSError *error))failure;
 
+/*
+ 发送群组邀请确认消息
+ */
++ (void)sendInviteConfirmWithParam:(NSString *)param success:(void (^)(void))success faulre:(void (^)(NSError *error))failure;
+
 @end
