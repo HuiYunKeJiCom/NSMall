@@ -68,6 +68,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.navigationController setNavigationBarHidden:YES];
     // Do any additional setup after loading the view.
     [ChatDemoHelper shareHelper].chatVC = self;
 //    self.dataSource = self;
@@ -440,15 +442,7 @@
             medicineCell.model = messageModel;
             return medicineCell;
         }
-        
-//        NSRPTestCell *redPacketCell = [tableView dequeueReusableCellWithIdentifier:identifier];
-//        if(!redPacketCell){
-//            redPacketCell = [[NSRPTestCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-//            redPacketCell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        }
-////        redPacketCell.dict = ext;
-////        EMTextMessageBody *body = (EMTextMessageBody*)messageModel.message.body;
-//        return redPacketCell;
+
     }else if ([ext objectForKey:@"em_recall"]) {
         NSString *TimeCellIdentifier = [EaseMessageTimeCell cellIdentifier];
         EaseMessageTimeCell *recallCell = (EaseMessageTimeCell *)[tableView dequeueReusableCellWithIdentifier:TimeCellIdentifier];
@@ -457,9 +451,7 @@
             recallCell = [[EaseMessageTimeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TimeCellIdentifier];
             recallCell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        
-//        EMTextMessageBody *body = (EMTextMessageBody*)messageModel.message.body;
-//        recallCell.title = body.text;
+
         return recallCell;
     }
     
@@ -859,6 +851,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+static NSGroupDetailVC * extracted() {
+    return [NSGroupDetailVC new];
+}
+
 - (void)showGroupDetailAction
 {
     [self.view endEditing:YES];
@@ -867,7 +863,7 @@
     
     if (self.conversation.type == EMConversationTypeGroupChat) {
         
-        NSGroupDetailVC *groupDetailVC = [NSGroupDetailVC new];
+        NSGroupDetailVC *groupDetailVC = extracted();
 //        [groupDetailVC setUpDataWithGroupId:self.conversation.conversationId];
         groupDetailVC.exitBtn.alpha = 1.0;
         groupDetailVC.otherTableView.alpha = 1.0;
@@ -1271,6 +1267,17 @@ if(![userDefaults objectForKey:redPacketModel.redpacket_id]){
     [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
     
     return mutStr;
+    
+}
+
+- (void)avatarViewSelcted:(id<IMessageModel>)model{
+    NSString *nickName =  [model.message.ext objectForKey:@"nick"];
+//    self.chatBarMoreView
+    UserModel *userModel = [UserModel modelFromUnarchive];
+    if(![userModel.user_name isEqualToString:nickName]){
+        EaseChatToolbar *toolbar = (EaseChatToolbar*)self.chatToolbar;
+        toolbar.inputTextView.text = [NSString stringWithFormat:@"@%@ ",nickName];
+    }
     
 }
 

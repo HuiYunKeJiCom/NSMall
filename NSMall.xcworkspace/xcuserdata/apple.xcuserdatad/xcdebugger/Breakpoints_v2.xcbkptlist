@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NSMall/Message(&#x6d88;&#x606f;)/Demo/ChatGroup/Info/New/NSGroupDetailVC.m"
-            timestampString = "559129069.695628"
+            timestampString = "564405230.896762"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "863"
-            endingLineNumber = "863"
+            startingLineNumber = "862"
+            endingLineNumber = "862"
             landmarkName = "-viewController:didFinishSelectedSources:"
             landmarkType = "7">
          </BreakpointContent>
@@ -83,13 +83,45 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NSMall/Message(&#x6d88;&#x606f;)/Demo/Chat/ChatView/ChatViewController.m"
-            timestampString = "559129069.698952"
+            filePath = "NSMall/Message(&#x6d88;&#x606f;)/Demo/Chat/ChatList/ConversationListController.m"
+            timestampString = "564405230.897539"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "507"
-            endingLineNumber = "507"
-            landmarkName = "-messageViewController:cellForMessageModel:"
+            startingLineNumber = "422"
+            endingLineNumber = "422"
+            landmarkName = "-setupSearchController"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NSMall/Message(&#x6d88;&#x606f;)/Demo/CustomVC/&#x53d1;&#x7ea2;&#x5305;/NSSendRedPacketVC.m"
+            timestampString = "564398555.455724"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NSMall/Message(&#x6d88;&#x606f;)/Demo/Chat/ChatView/ChatViewController.m"
+            timestampString = "564405230.8978339"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "383"
+            endingLineNumber = "383"
+            landmarkName = "-messageViewController:didSelectMoreView:AtIndex:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

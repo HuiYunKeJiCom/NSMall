@@ -37,7 +37,7 @@
  获取当前用户群组列表
  */
 + (void)getUserGroupListWithParam:(nullable id)param success:(void (^)(NSGroupListModel *groupModel))success faulre:(void (^)(NSError *error))failure{
-    [Net requestWithPost:param function:kGroupListAPI showHUD:NetNullStr resultClass:[NSGroupListModel class] success:^(NSGroupListModel  *_Nullable resultObj) {
+    [Net requestWithPost:param function:kGroupListAPI showHUD:nil resultClass:[NSGroupListModel class] success:^(NSGroupListModel  *_Nullable resultObj) {
         success?success(resultObj):nil;
     } failure:^(NSError * _Nullable error) {
         failure?failure(error):nil;

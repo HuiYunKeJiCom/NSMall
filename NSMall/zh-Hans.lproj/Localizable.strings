@@ -474,7 +474,7 @@
 "NSDateCategory.text7" = "昨天 %@";
 "NSDateCategory.text8" = "昨天HH:mm";
 "NSDateCategory.text9" = "凌晨hh:mm";
-"NSDateCategory.text10" = "上午hh:mm";
+" v" = "上午hh:mm";
 "NSDateCategory.text11" = "下午hh:mm";
 "NSDateCategory.text12" = "晚上hh:mm";
 "NSDateCategory.text13" = "昨天HH:mm";

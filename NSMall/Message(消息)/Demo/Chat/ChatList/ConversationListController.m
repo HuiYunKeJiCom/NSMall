@@ -186,14 +186,26 @@
                 ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:conversation.conversationId conversationType:conversation.type];
                 if(conversation.type == EMConversationTypeChat){
                     chatController.title = conversationModel.title;
+                    [self.navigationController pushViewController:chatController animated:YES];
                 }else{
                     chatController.title = [conversation.ext objectForKey:@"groupName"];
                     chatController.groupOwn = [conversation.ext objectForKey:@"groupOwn"];
-                    NSArray *array = [chatController.title componentsSeparatedByString:@"、"];
-                    chatController.groupCount = array.count;
+                    
+                    [NSGroupAPI getUserGroupListWithParam:nil success:^(NSGroupListModel *groupModel) {
+                        DLog(@"获取群组列表成功");
+                        for (NSGroupModel *model in groupModel.group) {
+                            if([model.group_id isEqualToString:conversation.conversationId]){
+                                chatController.groupCount = model.affiliations_count;
+                            }
+                        }
+                        [self.navigationController pushViewController:chatController animated:YES];
+                    } faulre:^(NSError *error) {
+                        DLog(@"获取群组列表失败");
+                    }];
+
                 }
                 //                DLog(@"chatController.title = %@",chatController.title);
-                [self.navigationController pushViewController:chatController animated:YES];
+                
             }
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:@"setupUnreadMessageCount" object:nil];
@@ -356,6 +368,7 @@
     if (lastMessage) {
         latestMessageTime = [NSDate formattedTimeFromTimeInterval:lastMessage.timestamp];
     }
+//    DLog(@"timestamp = %lld",lastMessage.timestamp);
     
     
     return latestMessageTime;

@@ -216,7 +216,8 @@
     NSString *gender = @"";
     NSString *nickName = @"";
     if (self.type != EditUserTypeGender) {
-        nickName = [[_contentField.text trim] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        nickName = [_contentField.text trim];
+//        nickName = [[_contentField.text trim] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         gender = [NSString limitStringNotEmpty:[NSString stringWithFormat:@"%lu",userModel.sex]];
     }else{
         if([self.gender isEqualToString:@"2"] || [self.gender isEqualToString:NSLocalizedString(@"female", nil)]){

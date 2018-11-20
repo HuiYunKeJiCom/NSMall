@@ -28,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:YES];
     // Do any additional setup after loading the view.
     [self setUpData];
     [self.view addSubview:self.otherTableView];

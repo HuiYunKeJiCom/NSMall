@@ -80,7 +80,7 @@
 
 -(void)setUserModel:(UserModel *)userModel{
     _userModel = userModel;
-    self.userName.text = KLocalizableStr([userModel.user_name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
+    self.userName.text = KLocalizableStr(userModel.user_name);
     [self.userName sizeToFit];
     NSString *daysRecordStr = [NSString stringWithFormat:@"%@%@%@",NSLocalizedString(@"come NS", nil),userModel.regeist_day,NSLocalizedString(@"!", nil)];
     self.daysRecord.x = CGRectGetMaxX(self.goodsIV.frame)+GetScaleWidth(12);

@@ -49,6 +49,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.navigationController setNavigationBarHidden:YES];
 //    self.title = KLocalizableStr(@"修改个人信息");
     self.view.backgroundColor = UIColorFromRGB(0xf4f5f9);
     self.dataSources = @[@[NSLocalizedString(@"head portrait", nil),NSLocalizedString(@"receiving address", nil),
@@ -252,6 +253,8 @@
                     [self.navigationController pushViewController:addressCtrl animated:YES];
                 }else if (type == EditUserTypeCertification) {
                     UserModel *userModel = [UserModel modelFromUnarchive];
+//                    NSUserCertifyVC *ctrl = [[NSUserCertifyVC alloc] init];
+//                    [self.navigationController pushViewController:ctrl animated:YES];
                     if(userModel.is_certification == 0){
                         NSUserCertifyVC *ctrl = [[NSUserCertifyVC alloc] init];
                         [self.navigationController pushViewController:ctrl animated:YES];
@@ -300,7 +303,7 @@
     cell.titleLb.text = title;
     //这里已修改
     if ([title isEqualToString:NSLocalizedString(@"nickname", nil)]) {
-        cell.descLabel.text = [NSString limitStringNotEmpty:[self.userModel.user_name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        cell.descLabel.text = [NSString limitStringNotEmpty:self.userModel.user_name];
 
     }  else if ([title isEqualToString:NSLocalizedString(@"sex", nil)]) {
         cell.descLabel.text = self.userModel.sex == 0 ? NSLocalizedString(@"secrecy", nil) : self.userModel.sex == 1 ? NSLocalizedString(@"male", nil) : NSLocalizedString(@"female", nil);

@@ -345,21 +345,13 @@
             NSMutableArray *hxuserNames = [NSMutableArray array];
             for(int i=0;i<selectedSources.count;i++){
                 NSHuanXinUserModel *hxModel = selectedSources[i];
-                for (NSFriendItemModel *model in result.list) {
-//                    DLog(@"model.hx_user_name = %@",model.hx_user_name);
-//                    DLog(@"hxModel.nickname = %@",hxModel.nickname);
-//                    DLog(@"model.nick_name = %@",model.nick_name);
-                    if([model.nick_name isEqualToString:hxModel.nickname]){
-                        NSDictionary *dict = @{@"avatar":model.user_avatar,@"hxUsername":model.hx_user_name,@"nick":model.nick_name};
+//                for (NSFriendItemModel *model in result.list) {
+//                    if([model.nick_name isEqualToString:hxModel.nickname]){
+                        NSDictionary *dict = @{@"avatar":hxModel.user_avatar,@"hxUsername":hxModel.hx_user_name,@"nick":hxModel.nick_name};
                         [jsonArr addObject:dict];
-                        [hxuserNames addObject:model.hx_user_name];
-//                        if(i == 0){
-//                           hxuserNames = selectedSources[i];
-//                        }else{
-//                            hxuserNames = [hxuserNames stringByAppendingFormat:@",%@",selectedSources[i]];
-//                        }
-                    }
-                }
+                        [hxuserNames addObject:hxModel.hx_user_name];
+//                    }
+//                }
             }
             
             

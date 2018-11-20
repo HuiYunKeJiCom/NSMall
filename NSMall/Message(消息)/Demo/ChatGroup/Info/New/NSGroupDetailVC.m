@@ -180,11 +180,11 @@
     
     _margin = 4;
     _itemWH = (self.view.tz_width - 2 * _margin - 4) / 4 - _margin;
-    _layout.itemSize = CGSizeMake(_itemWH, _itemWH);
+    _layout.itemSize = CGSizeMake(_itemWH, _itemWH+20);
     _layout.minimumInteritemSpacing = _margin;
     _layout.minimumLineSpacing = _margin;
     [self.collectionView setCollectionViewLayout:_layout];
-
+   
     
 }
 
@@ -299,7 +299,7 @@
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.SV.mas_left);
         make.top.equalTo(weakSelf.SV.mas_top);
-        make.size.mas_equalTo(CGSizeMake(self.view.tz_width, (self.membersArr.count + 5)/4 *(_itemWH + _margin*2)));
+        make.size.mas_equalTo(CGSizeMake(self.view.tz_width, (self.membersArr.count + 5)/4 *_itemWH+30));
     }];
 
     [self.middleView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -325,31 +325,30 @@
 
 -(void)updateConstraints{
     WEAKSELF
-   
     if(self.isShowDel){
         [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(weakSelf.SV.mas_left);
             make.top.equalTo(weakSelf.SV.mas_top);
-            make.size.mas_equalTo(CGSizeMake(self.view.tz_width, (self.membersArr.count + 3)/4 *(_itemWH + _margin*2)));
+            make.size.mas_equalTo(CGSizeMake(self.view.tz_width, (self.membersArr.count + 3)/4 *_itemWH + 30));
         }];
     }else{
         if(self.conversation.type == EMConversationTypeChat){
             [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(weakSelf.SV.mas_left);
                 make.top.equalTo(weakSelf.SV.mas_top);
-                make.size.mas_equalTo(CGSizeMake(self.view.tz_width, (self.membersArr.count + 4)/4 *(_itemWH + _margin*2)));
+                make.size.mas_equalTo(CGSizeMake(self.view.tz_width, (self.membersArr.count + 4)/4 *_itemWH +30));
             }];
         }else if(self.isGroupOwn && self.conversation.type == EMConversationTypeGroupChat){
             [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(weakSelf.SV.mas_left);
                 make.top.equalTo(weakSelf.SV.mas_top);
-                make.size.mas_equalTo(CGSizeMake(self.view.tz_width, (self.membersArr.count + 5)/4 *(_itemWH + _margin*2)));
+                make.size.mas_equalTo(CGSizeMake(self.view.tz_width, (self.membersArr.count + 5)/4 *_itemWH + 30));
             }];
         }else{
             [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(weakSelf.SV.mas_left);
                 make.top.equalTo(weakSelf.SV.mas_top);
-                make.size.mas_equalTo(CGSizeMake(self.view.tz_width, (self.membersArr.count + 4)/4 *(_itemWH + _margin*2)));
+                make.size.mas_equalTo(CGSizeMake(self.view.tz_width, (self.membersArr.count + 4)/4 *_itemWH + 30));
             }];
         }
     }

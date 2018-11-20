@@ -91,7 +91,7 @@
 -(void)setUserPageM:(UserPageModel *)userPageM{
     _userPageM = userPageM;
     
-    self.userNameL.text = [userPageM.nick_name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    self.userNameL.text = userPageM.nick_name;
     self.regeistDayL.text = [NSString stringWithFormat:@"%@%@%@",NSLocalizedString(@"come NS", nil),userPageM.regeist_day,NSLocalizedString(@"!", nil)];
     self.idenLab.text = NSLocalizedString(@"user certify", nil);
     [self.headerIV sd_setImageWithURL:[NSURL URLWithString:userPageM.pic_img]];

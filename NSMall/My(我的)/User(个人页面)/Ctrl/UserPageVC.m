@@ -373,7 +373,7 @@
         [Common AppShowToast:@"不能跟自己聊天"];
     }else{
         ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:self.userPageM.hx_user_name conversationType:EMConversationTypeChat];
-        chatController.title = [self.userPageM.nick_name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        chatController.title = self.userPageM.nick_name;
         [self.navigationController pushViewController:chatController animated:YES];
     }
 }

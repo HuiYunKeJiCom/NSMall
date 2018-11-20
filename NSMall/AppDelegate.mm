@@ -7,7 +7,7 @@
 //
 
 /* 环信 */
-static NSString * const kHuanXinAppKey       = @"1125180610177403#nsapp";
+static NSString * const kHuanXinAppKey       = @"1153180424099290#huist-oomall";
 //1153180424099290#huist-oomall
 //1125180610177403#nsapp(正式)
 
@@ -26,7 +26,7 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
 #import "LoginAPI.h"
 #import "AppVersionParam.h"
 #import "EMCDDeviceManager+ProximitySensor.h"
-
+#import <Bugly/Bugly.h>
 
 //#import <Bugly/Bugly.h>
 //#import <BuglyExtension/CrashReporterLite.h>
@@ -50,7 +50,7 @@ static NSString * const kBaiDuAK    = @"ZBdzZuTUE4aB3jpOko7Fa8tQ9g6OLzx2";
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupUnreadMessageCount) name:@"setupUnreadMessageCountAtDelegate" object:nil];
     
     //打印日志
-    //    [Bugly startWithAppId:@"f01e247410"];
+        [Bugly startWithAppId:@"f01e247410"];
     
     //    [[CrashReporter sharedInstance] installWithAppId:@"f01e247410"  applicationGroupIdentifier:@"41e18687-72ba-4fbe-969f-ab863821726c"];
     
