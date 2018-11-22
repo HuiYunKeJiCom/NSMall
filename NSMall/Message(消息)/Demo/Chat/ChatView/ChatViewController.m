@@ -404,6 +404,7 @@
     
     NSDictionary *ext = messageModel.message.ext;
     UserModel *userModel = [UserModel modelFromUnarchive];
+    messageModel.nickname = ext[@"nick"];
     if([[ext objectForKey:@"send_username"] isEqualToString:userModel.hx_user_name]){
 //         && ![[ext objectForKey:@"receive_nick"] isEqualToString:userModel.user_name]
         id medicine = messageModel.message.ext[@"is_receive_rp_msg"];
@@ -439,6 +440,10 @@
             if(!medicineCell){
                 medicineCell = [[NSRPTestCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid model:messageModel];
             }
+            if(![messageModel.message.ext[@"hx_username"] isEqualToString:userModel.hx_user_name]){
+                medicineCell.messageNameIsHidden = NO;
+            }
+            
             medicineCell.model = messageModel;
             return medicineCell;
         }
@@ -517,7 +522,23 @@
         }
     }
     
-    return nil;
+    NSString *CellIdentifier = [EaseMessageCell cellIdentifierWithModel:messageModel];
+    
+    EaseBaseMessageCell *sendCell = (EaseBaseMessageCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    // Configure the cell...
+    if (sendCell == nil) {
+        sendCell = [[EaseBaseMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier model:messageModel];
+        sendCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        sendCell.delegate = self;
+    }
+    if(![messageModel.message.ext[@"hx_username"] isEqualToString:userModel.hx_user_name]){
+        sendCell.messageNameIsHidden = NO;
+    }
+    sendCell.model = messageModel;
+    return sendCell;
+    
+//    return nil;
 }
 
 - (CGFloat)messageViewController:(EaseMessageViewController *)viewController
