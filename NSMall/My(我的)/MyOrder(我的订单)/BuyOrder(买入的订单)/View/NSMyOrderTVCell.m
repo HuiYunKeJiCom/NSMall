@@ -14,6 +14,8 @@
 @property (nonatomic, strong) UIView           *bgView;
 @property(nonatomic,strong)UIImageView *headerIV;/* 用户头像 */
 @property(nonatomic,strong)UILabel *userName;/* 用户昵称 */
+@property(nonatomic,strong)UIImageView *levelIV;/* VIP等级 */
+@property(nonatomic,strong)UILabel *levelLab;/* vip数字 */
 @property(nonatomic,strong)UIImageView *arrowIV;/* 箭头 */
 @property(nonatomic,strong)UILabel *stateLab;/* 状态 */
 @property(nonatomic,strong)UIView *lineView1;/* 分割线1 */
@@ -48,6 +50,16 @@
     
     self.userName = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum14 TextColor:[UIColor blackColor]];
     [self.bgView addSubview:self.userName];
+    
+    self.levelIV = [[UIImageView alloc]init];
+    [self.levelIV setContentMode:UIViewContentModeScaleAspectFit];
+    self.levelIV.image = IMAGE(@"ico_level");
+    [self.bgView addSubview:self.levelIV];
+    
+    self.levelLab = [[UILabel alloc] init];
+    self.levelLab.font = [UIFont boldSystemFontOfSize:14];
+    self.levelLab.textColor = [UIColor whiteColor];
+    [self.bgView addSubview:self.levelLab];
     
     self.arrowIV = [[UIImageView alloc] init];
     [self.arrowIV setContentMode:UIViewContentModeScaleAspectFill];
@@ -104,6 +116,16 @@
 //    self.arrowIV.x = CGRectGetMaxX(self.userName.frame)+11;
 //    self.arrowIV.y = 13;
 //    self.arrowIV.size = CGSizeMake(5, 9);
+    
+    if(model.level != 0){
+        self.levelLab.alpha = 1.0;
+        self.levelIV.alpha = 1.0;
+        self.levelLab.text = [NSString stringWithFormat:@"%ld",model.level];
+    }else{
+        self.levelLab.alpha = 0.0;
+        self.levelIV.alpha = 0.0;
+    }
+
     
     DLog(@"order_status = %ld",model.order_status);
     
@@ -226,8 +248,19 @@
         make.centerY.equalTo(weakSelf.headerIV.mas_centerY);
     }];
     
+    [self.levelIV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.userName.mas_right).with.offset(GetScaleWidth(5));
+        make.top.equalTo(weakSelf.bgView.mas_top).with.offset(GetScaleWidth(4));
+        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(30), GetScaleWidth(30)));
+    }];
+    
+    [self.levelLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(weakSelf.levelIV.mas_centerX);
+        make.centerY.equalTo(weakSelf.levelIV.mas_centerY).with.offset(-GetScaleWidth(4));
+    }];
+
     [self.arrowIV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.userName.mas_right).with.offset(11);
+        make.left.equalTo(weakSelf.levelIV.mas_right).with.offset(11);
         make.top.equalTo(weakSelf.bgView.mas_top).with.offset(13);
         make.size.mas_equalTo(CGSizeMake(GetScaleWidth(5), GetScaleWidth(9)));
     }];

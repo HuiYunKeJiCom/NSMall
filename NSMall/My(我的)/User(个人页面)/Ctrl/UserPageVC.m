@@ -551,13 +551,16 @@
 }
 
 -(void)delCommentWith:(NSIndexPath *)indexPath{
-    NSCommentItemModel *model = self.commentVM.commentTV.data[indexPath.section];
-    [GoodsDetailAPI delCommentWithParam:model.comment_id success:^{
-        DLog(@"删除评论成功");
-        [self getCommentByUserId:self.userId];
-    } faulre:^(NSError *error) {
-        
-    }];
+    if(self.commentVM.commentTV.data.count > indexPath.section){
+        NSCommentItemModel *model = self.commentVM.commentTV.data[indexPath.section];
+        [GoodsDetailAPI delCommentWithParam:model.comment_id success:^{
+            DLog(@"删除评论成功");
+            [self getCommentByUserId:self.userId];
+        } faulre:^(NSError *error) {
+            
+        }];
+    }
+    
 }
 
 -(void)didSelectWith:(NSIndexPath *)indexPath{

@@ -34,8 +34,10 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.arrowImgView.alpha = 0.0;
-    ADLMyInfoModel *infoModel = [self.data objectAtIndex:indexPath.section];
-    cell.myInfoModel = infoModel;
+    if(self.data.count > indexPath.section){
+        ADLMyInfoModel *infoModel = [self.data objectAtIndex:indexPath.section];
+        cell.myInfoModel = infoModel;
+    }    
     return cell;
 }
 

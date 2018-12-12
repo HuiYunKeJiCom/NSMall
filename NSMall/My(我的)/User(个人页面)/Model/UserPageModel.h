@@ -22,6 +22,7 @@
 @property (nonatomic,copy)NSString *hx_user_name;//环信用户名
 @property (nonatomic)int is_certification;//是否已实名认证【0=否，1=是】
 @property (nonatomic,copy)NSString *pic_img;//头像路径
+@property (nonatomic,assign)NSInteger level;//用户VIP等级
 @property (nonatomic)int sex;//性别【0=保密，1=男，2=女】
 @property (nonatomic,copy)NSString *telephone;//手机号
 @property (nonatomic)int product_number;//商品数

@@ -39,6 +39,7 @@
 @property (nonatomic,copy)NSString *has_wallet;//是否绑定了钱包【0=否，1=是】
 @property (nonatomic,copy)NSString *hx_user_name;//环信用户名
 @property (nonatomic,copy)NSString *hx_password;//环信密码
+@property (nonatomic,assign)NSInteger level;//用户VIP等级
 
 + (instancetype)userModel;//供全局使用的userModel，如果为空则从硬盘中归档导出，如果硬盘中没有则返回为空
 + (instancetype)modelFromUnarchive;//从硬盘归档出模型数据（全局可取出）

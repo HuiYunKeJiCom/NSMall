@@ -159,8 +159,12 @@ static ApplyViewController *controller = nil;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ApplyEntity *entity = [self.dataSource objectAtIndex:indexPath.row];
-    return [ApplyFriendCell heightWithContent:entity.reason];
+    if(self.dataSource.count > indexPath.row){
+        ApplyEntity *entity = [self.dataSource objectAtIndex:indexPath.row];
+        return [ApplyFriendCell heightWithContent:entity.reason];
+    }else{
+        return 0.01f;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -71,7 +71,8 @@
         btn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
         NSString *str = stringArr[i];
         [btn setTitle:str forState:UIControlStateNormal];
-        CGSize strsize = [str sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:14],NSFontAttributeName ,nil]];
+        CGSize strsize = [str sizeWithAttributes:@{[UIFont boldSystemFontOfSize:14]:NSFontAttributeName}];
+//        [NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:14],NSFontAttributeName ,nil]
         btn.width = strsize.width + margin;
         btn.height = strsize.height+ margin;
 

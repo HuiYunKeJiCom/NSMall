@@ -349,57 +349,58 @@
     if (cell == nil) {
         cell = [[LZCartTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"LZCartReusableCell"];
     }
-    
-    LZShopModel *shopModel = self.dataArray[indexPath.section];
-    LZGoodsModel *model = [shopModel.productList objectAtIndex:indexPath.row];
-    cell.model = model;
-    
-    __block typeof(cell)wsCell = cell;
-    
-    [cell numberAddWithBlock:^(NSInteger number) {
-        wsCell.lzNumber = number;
-        model.buy_number = number;
+    if(self.dataArray.count > indexPath.section){
+        LZShopModel *shopModel = self.dataArray[indexPath.section];
+        LZGoodsModel *model = [shopModel.productList objectAtIndex:indexPath.row];
+        cell.model = model;
+        __block typeof(cell)wsCell = cell;
         
-        //这里需要修改
-        [shopModel.productList replaceObjectAtIndex:indexPath.row withObject:model];
-        if ([self.selectedArray containsObject:model]) {
-            [self.selectedArray removeObject:model];
-            [self.selectedArray addObject:model];
+        [cell numberAddWithBlock:^(NSInteger number) {
+            wsCell.lzNumber = number;
+            model.buy_number = number;
+            
+            //这里需要修改
+            [shopModel.productList replaceObjectAtIndex:indexPath.row withObject:model];
+            if ([self.selectedArray containsObject:model]) {
+                [self.selectedArray removeObject:model];
+                [self.selectedArray addObject:model];
+                [self countPrice];
+            }
+        }];
+        
+        [cell numberCutWithBlock:^(NSInteger number) {
+            
+            wsCell.lzNumber = number;
+            model.buy_number = number;
+            //这里需要修改
+            [shopModel.productList replaceObjectAtIndex:indexPath.row withObject:model];
+            
+            //判断已选择数组里有无该对象,有就删除  重新添加
+            if ([self.selectedArray containsObject:model]) {
+                [self.selectedArray removeObject:model];
+                [self.selectedArray addObject:model];
+                [self countPrice];
+            }
+        }];
+        
+        [cell cellSelectedWithBlock:^(BOOL select) {
+            
+            model.select = select;
+            if (select) {
+                [self.selectedArray addObject:model];
+            } else {
+                [self.selectedArray removeObject:model];
+            }
+            
+            [self verityAllSelectState];
+            [self verityGroupSelectState:indexPath.section];
+            
             [self countPrice];
-        }
-    }];
-    
-    [cell numberCutWithBlock:^(NSInteger number) {
+        }];
         
-        wsCell.lzNumber = number;
-        model.buy_number = number;
-        //这里需要修改
-        [shopModel.productList replaceObjectAtIndex:indexPath.row withObject:model];
-        
-        //判断已选择数组里有无该对象,有就删除  重新添加
-        if ([self.selectedArray containsObject:model]) {
-            [self.selectedArray removeObject:model];
-            [self.selectedArray addObject:model];
-            [self countPrice];
-        }
-    }];
-    
-    [cell cellSelectedWithBlock:^(BOOL select) {
-        
-        model.select = select;
-        if (select) {
-            [self.selectedArray addObject:model];
-        } else {
-            [self.selectedArray removeObject:model];
-        }
-        
-        [self verityAllSelectState];
-        [self verityGroupSelectState:indexPath.section];
-        
-        [self countPrice];
-    }];
-    
-    [cell reloadDataWithModel:model];
+        [cell reloadDataWithModel:model];
+    }
+
     return cell;
 }
 
@@ -460,41 +461,44 @@
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定要删除该商品?删除后无法恢复!" preferredStyle:1];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
-            LZShopModel *shop = [self.dataArray objectAtIndex:indexPath.section];
-            LZGoodsModel *model = [shop.productList objectAtIndex:indexPath.row];
-
-            [CartAPI removeCartWithParam:model.cart_id success:^{
-                DLog(@"商品移除成功");
-                [shop.productList removeObjectAtIndex:indexPath.row];
-                //                    //    删除
-                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-                if (shop.productList.count == 0) {
-                    [self.dataArray removeObjectAtIndex:indexPath.section];
-                }
-                //判断删除的商品是否已选择
-                if ([self.selectedArray containsObject:model]) {
-                    //从已选中删除,重新计算价格
-                    [self.selectedArray removeObject:model];
-                    [self countPrice];
-                }
-                NSInteger count = 0;
-                for (LZShopModel *shop in self.dataArray) {
-                    count += shop.productList.count;
-                }
-                if (self.selectedArray.count == count) {
-                    _allSellectedButton.selected = YES;
-                } else {
-                    _allSellectedButton.selected = NO;
-                }
-                if (count == 0) {
-                    [self changeView];
-                }
-                //如果删除的时候数据紊乱,可延迟0.5s刷新一下
-                [self performSelector:@selector(reloadTable) withObject:nil afterDelay:0.5];
+            if(self.dataArray.count > indexPath.section){
+                LZShopModel *shop = [self.dataArray objectAtIndex:indexPath.section];
+                LZGoodsModel *model = [shop.productList objectAtIndex:indexPath.row];
                 
-            } faulre:^(NSError *error) {
-                DLog(@"商品移除失败");
-            }];
+                [CartAPI removeCartWithParam:model.cart_id success:^{
+                    DLog(@"商品移除成功");
+                    [shop.productList removeObjectAtIndex:indexPath.row];
+                    //                    //    删除
+                    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                    if (shop.productList.count == 0) {
+                        [self.dataArray removeObjectAtIndex:indexPath.section];
+                    }
+                    //判断删除的商品是否已选择
+                    if ([self.selectedArray containsObject:model]) {
+                        //从已选中删除,重新计算价格
+                        [self.selectedArray removeObject:model];
+                        [self countPrice];
+                    }
+                    NSInteger count = 0;
+                    for (LZShopModel *shop in self.dataArray) {
+                        count += shop.productList.count;
+                    }
+                    if (self.selectedArray.count == count) {
+                        _allSellectedButton.selected = YES;
+                    } else {
+                        _allSellectedButton.selected = NO;
+                    }
+                    if (count == 0) {
+                        [self changeView];
+                    }
+                    //如果删除的时候数据紊乱,可延迟0.5s刷新一下
+                    [self performSelector:@selector(reloadTable) withObject:nil afterDelay:0.5];
+                    
+                } faulre:^(NSError *error) {
+                    DLog(@"商品移除失败");
+                }];
+            }
+            
     }];
         
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];

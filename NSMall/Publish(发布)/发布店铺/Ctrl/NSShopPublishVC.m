@@ -220,9 +220,11 @@
         cell.deleteBtn.hidden = YES;
         cell.gifLable.hidden = YES;
     } else {
-        cell.imageView.image = _selectedPhotos[indexPath.row];
-        cell.asset = _selectedAssets[indexPath.row];
-        cell.deleteBtn.hidden = NO;
+        if(_selectedPhotos.count > indexPath.row){
+            cell.imageView.image = _selectedPhotos[indexPath.row];
+            cell.asset = _selectedAssets[indexPath.row];
+            cell.deleteBtn.hidden = NO;
+        }
     }
 
     cell.deleteBtn.tag = indexPath.row;
@@ -235,15 +237,18 @@
         [self pushTZImagePickerController];
     } else {
         // preview photos or video / 预览照片或者视频
-        id asset = _selectedAssets[indexPath.row];
-        BOOL isVideo = NO;
-        if ([asset isKindOfClass:[PHAsset class]]) {
-            PHAsset *phAsset = asset;
-            isVideo = phAsset.mediaType == PHAssetMediaTypeVideo;
-        } else if ([asset isKindOfClass:[ALAsset class]]) {
-            ALAsset *alAsset = asset;
-            isVideo = [[alAsset valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypeVideo];
+        if(_selectedAssets.count > indexPath.row){
+            id asset = _selectedAssets[indexPath.row];
+            BOOL isVideo = NO;
+            if ([asset isKindOfClass:[PHAsset class]]) {
+                PHAsset *phAsset = asset;
+                isVideo = phAsset.mediaType == PHAssetMediaTypeVideo;
+            } else if ([asset isKindOfClass:[ALAsset class]]) {
+                ALAsset *alAsset = asset;
+                isVideo = [[alAsset valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypeVideo];
+            }
         }
+        
             // preview photos / 预览照片
             TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithSelectedAssets:_selectedAssets selectedPhotos:_selectedPhotos index:indexPath.row];
             imagePickerVc.maxImagesCount = 1;
@@ -274,14 +279,18 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)sourceIndexPath didMoveToIndexPath:(NSIndexPath *)destinationIndexPath {
-    UIImage *image = _selectedPhotos[sourceIndexPath.item];
-    [_selectedPhotos removeObjectAtIndex:sourceIndexPath.item];
-    [_selectedPhotos insertObject:image atIndex:destinationIndexPath.item];
+    if(_selectedPhotos.count > sourceIndexPath.item){
+        UIImage *image = _selectedPhotos[sourceIndexPath.item];
+        [_selectedPhotos removeObjectAtIndex:sourceIndexPath.item];
+        [_selectedPhotos insertObject:image atIndex:destinationIndexPath.item];
+    }
     
-    id asset = _selectedAssets[sourceIndexPath.item];
-    [_selectedAssets removeObjectAtIndex:sourceIndexPath.item];
-    [_selectedAssets insertObject:asset atIndex:destinationIndexPath.item];
-    
+    if(_selectedAssets.count > sourceIndexPath.item){
+        id asset = _selectedAssets[sourceIndexPath.item];
+        [_selectedAssets removeObjectAtIndex:sourceIndexPath.item];
+        [_selectedAssets insertObject:asset atIndex:destinationIndexPath.item];
+    }
+
     [_collectionView reloadData];
 }
 
@@ -637,7 +646,6 @@
     switch (index) {
         case 0:{
             NSLog(@"点击了标签");
-            
             self.infoCell = [self.otherTableView cellForRowAtIndexPath:indexPath];
 
             CLTagsModel *model = [[CLTagsModel alloc] init];

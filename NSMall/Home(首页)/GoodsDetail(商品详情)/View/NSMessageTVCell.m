@@ -72,6 +72,24 @@
     
 }
 
+-(UIImageView *)levelIV{
+    if (!_levelIV) {
+        _levelIV = [[UIImageView alloc] init];
+        _levelIV.image = IMAGE(@"ico_level");
+        [_levelIV setContentMode:UIViewContentModeScaleAspectFit];
+    }
+    return _levelIV;
+}
+
+- (UILabel *)levelLab {
+    if (!_levelLab) {
+        _levelLab = [[UILabel alloc] init];
+        _levelLab.font = [UIFont boldSystemFontOfSize:14];
+        _levelLab.textColor = [UIColor whiteColor];
+    }
+    return _levelLab;
+}
+
 -(UILabel *)timeLb{
     if (!_timeLb) {
         _timeLb = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum13 TextColor:kGreyColor];
@@ -117,6 +135,17 @@
     
     [self.userIV sd_setImageWithURL:[NSURL URLWithString:messageModel.imagePath]];
     self.userNameLb.text = messageModel.userName;
+    
+    if(messageModel.level != 0){
+        self.levelLab.alpha = 1.0;
+        self.levelIV.alpha = 1.0;
+        self.levelLab.text = [NSString stringWithFormat:@"%ld",messageModel.level];
+    }else{
+        self.levelLab.alpha = 0.0;
+        self.levelIV.alpha = 0.0;
+    }
+
+    
     self.contentLb.text = messageModel.content;
     self.timeLb.text = messageModel.time;
     
@@ -144,6 +173,8 @@
     
     [self.bgView addSubview:self.userIV];
     [self.bgView addSubview:self.userNameLb];
+    [self.bgView addSubview:self.levelIV];
+    [self.bgView addSubview:self.levelLab];
     [self.bgView addSubview:self.contentLb];
     [self.bgView addSubview:self.timeLb];
     [self.bgView addSubview:self.delBtn];
@@ -171,6 +202,18 @@
         make.left.equalTo(weakSelf.userIV.mas_right).with.offset(GetScaleWidth(6));
         make.top.equalTo(weakSelf.contentView.mas_top).with.offset(GetScaleWidth(18));
     }];
+    
+    [self.levelIV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.userNameLb.mas_right).with.offset(GetScaleWidth(5));
+        make.top.equalTo(weakSelf.bgView.mas_top).with.offset(GetScaleWidth(12));
+        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(30), GetScaleWidth(30)));
+    }];
+    
+    [self.levelLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(weakSelf.levelIV.mas_centerX);
+        make.centerY.equalTo(weakSelf.levelIV.mas_centerY).with.offset(-GetScaleWidth(4));
+    }];
+
     
     [self.contentLb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.userIV.mas_right).with.offset(GetScaleWidth(6));

@@ -165,9 +165,11 @@
         if (cell == nil) {
             cell = [[NSGroupTVCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
+        if(self.dataSource.count > indexPath.row){
+            NSGroupModel *model = [self.dataSource objectAtIndex:indexPath.row];
+            cell.groupModel = model;
+        }
         
-        NSGroupModel *model = [self.dataSource objectAtIndex:indexPath.row];
-        cell.groupModel = model;
         return cell;
     }
         
@@ -245,48 +247,19 @@
         }
     } else {
 //        EMGroup *group = [self.dataSource objectAtIndex:indexPath.row];
-        NSGroupModel *groupModel = [self.dataSource objectAtIndex:indexPath.row];
         
-        ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:groupModel.group_id conversationType:EMConversationTypeGroupChat];
-        chatController.groupOwn = groupModel.owner;
-//        chatController.groupCount = groupModel.maxusers;
-        chatController.groupCount = groupModel.affiliations_count;
-//        NSString *titleStr = @"群聊";
-//        if (group.subject && group.subject.length > 0) {
-//            if([group.subject rangeOfString:@"groupName"].location !=NSNotFound){
-//                NSDictionary *dict = [self dictionaryWithJsonString:group.subject];
-//                if(dict[@"groupName"] && [[dict[@"groupName"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] isEqualToString:@"未命名"]){
-//                    NSLog(@"群组未命名");
-//
-//                    NSArray *memberArr = dict[@"jsonArray"];
-//
-//                    if(memberArr.count >3){
-//                        for(int i=0;i<3;i++){
-//                            NSDictionary *dictionary = memberArr[i];
-//                            if(i==0){
-//                                titleStr = [titleStr stringByAppendingFormat:@"%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-//                            }else{
-//                                titleStr = [titleStr stringByAppendingFormat:@"、%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-//                            }
-//                        }
-//                    }else{
-//                        for(int i=0;i<memberArr.count;i++){
-//                            NSDictionary *dictionary = memberArr[i];
-//                            if(i==0){
-//                                titleStr = [titleStr stringByAppendingFormat:@"%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-//                            }else{
-//                                titleStr = [titleStr stringByAppendingFormat:@"、%@", [dictionary[@"nick"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-//                            }
-//                        }
-//                    }
-//                }else if(dict[@"groupName"]){
-//                    titleStr = dict[@"groupName"];
-//                }
-//            }
-//        }
-        chatController.title = groupModel.group_name;
+        if(self.dataSource.count > indexPath.row){
+            NSGroupModel *groupModel = [self.dataSource objectAtIndex:indexPath.row];
+            
+            ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:groupModel.group_id conversationType:EMConversationTypeGroupChat];
+            chatController.groupOwn = groupModel.owner;
+            //        chatController.groupCount = groupModel.maxusers;
+            chatController.groupCount = groupModel.affiliations_count;
+            chatController.title = groupModel.group_name;
+            
+            [self.navigationController pushViewController:chatController animated:YES];
+        }
         
-        [self.navigationController pushViewController:chatController animated:YES];
     }
 }
 
@@ -365,11 +338,12 @@
         if (cell == nil) {
             cell = [[BaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-
-        EMGroup *group = [weakSelf.resultController.displaySource objectAtIndex:indexPath.row];
-        NSString *imageName = group.isPublic ? @"groupPublicHeader" : @"groupPrivateHeader";
-        cell.imageView.image = [UIImage imageNamed:imageName];
-        cell.textLabel.text = group.subject;
+        if(weakSelf.resultController.displaySource.count > indexPath.row){
+            EMGroup *group = [weakSelf.resultController.displaySource objectAtIndex:indexPath.row];
+            NSString *imageName = group.isPublic ? @"groupPublicHeader" : @"groupPrivateHeader";
+            cell.imageView.image = [UIImage imageNamed:imageName];
+            cell.textLabel.text = group.subject;
+        }
 
         return cell;
     }];
@@ -381,11 +355,13 @@
     [self.resultController setDidSelectRowAtIndexPathCompletion:^(UITableView *tableView, NSIndexPath *indexPath) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-        EMGroup *group = [weakSelf.resultController.displaySource objectAtIndex:indexPath.row];
-        UIViewController *chatVC = [[ChatViewController alloc] initWithConversationChatter:group.groupId conversationType:EMConversationTypeGroupChat];
-        chatVC.title = group.subject;
-        [weakSelf.navigationController pushViewController:chatVC animated:YES];
-                                               
+        if(weakSelf.resultController.displaySource.count > indexPath.row){
+            EMGroup *group = [weakSelf.resultController.displaySource objectAtIndex:indexPath.row];
+            UIViewController *chatVC = [[ChatViewController alloc] initWithConversationChatter:group.groupId conversationType:EMConversationTypeGroupChat];
+            chatVC.title = group.subject;
+            [weakSelf.navigationController pushViewController:chatVC animated:YES];
+        }
+                               
         [weakSelf cancelSearch];
     }];
     

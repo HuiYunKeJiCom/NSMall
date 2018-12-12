@@ -178,8 +178,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSPayViewTVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSPayViewTVCell"];
-    WalletItemModel *model = self.walletNameArr[indexPath.row];
-    cell.walletModel = model;
+    if(self.walletNameArr.count > indexPath.row){
+        WalletItemModel *model = self.walletNameArr[indexPath.row];
+        cell.walletModel = model;
+    }
+    
     if(indexPath.row ==self.row && cell.isSelected){
         cell.seclectIV.alpha = 1.0;
     }else{

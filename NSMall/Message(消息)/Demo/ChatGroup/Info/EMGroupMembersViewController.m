@@ -79,8 +79,10 @@
     }
     
     cell.imgView.image = [UIImage imageNamed:@"default_avatar"];
-    cell.leftLabel.text = [self.dataArray objectAtIndex:indexPath.row];
-    
+    if(self.dataArray.count > indexPath.row){
+        cell.leftLabel.text = [self.dataArray objectAtIndex:indexPath.row];
+    }
+
     return cell;
 }
 
@@ -173,7 +175,11 @@
 
 - (void)editActionsForRowAtIndexPath:(NSIndexPath *)indexPath actionIndex:(NSInteger)buttonIndex
 {
-    NSString *userName = [self.dataArray objectAtIndex:indexPath.row];
+    NSString *userName = @"";
+    if(self.dataArray > indexPath.row){
+        userName = [self.dataArray objectAtIndex:indexPath.row];
+    }
+    
     [self showHudInView:self.view hint:NSLocalizedString(@"wait", @"Pleae wait...")];
 
     __weak typeof(self) weakSelf = self;

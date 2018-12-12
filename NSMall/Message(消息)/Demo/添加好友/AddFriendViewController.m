@@ -134,7 +134,9 @@
     }
     
     cell.imageView.image = [UIImage imageNamed:@"chatListCellHead.png"];
-    cell.textLabel.text = [self.dataSource objectAtIndex:indexPath.row];
+    if(self.dataSource.count > indexPath.row){
+        cell.textLabel.text = [self.dataSource objectAtIndex:indexPath.row];
+    }
     
     return cell;
 }
@@ -150,7 +152,11 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.selectedIndexPath = indexPath;
-    NSString *buddyName = [self.dataSource objectAtIndex:indexPath.row];
+    NSString *buddyName = @"";
+    if(self.dataSource.count > indexPath.row){
+        buddyName = [self.dataSource objectAtIndex:indexPath.row];
+    }
+    
     if ([self didBuddyExist:buddyName]) {
         NSString *message = [NSString stringWithFormat:NSLocalizedString(@"friend.repeat", @"'%@'has been your friend!"), buddyName];
         
@@ -278,7 +284,10 @@
 - (void)sendFriendApplyAtIndexPath:(NSIndexPath *)indexPath
                            message:(NSString *)message
 {
-    NSString *buddyName = [self.dataSource objectAtIndex:indexPath.row];
+    NSString *buddyName = @"";
+    if(self.dataSource.count > indexPath.row){
+        buddyName = [self.dataSource objectAtIndex:indexPath.row];
+    }
     if (buddyName && buddyName.length > 0) {
         [self showHudInView:self.view hint:NSLocalizedString(@"friend.sendApply", @"sending application...")];
         EMError *error = [[EMClient sharedClient].contactManager addContact:buddyName message:message];

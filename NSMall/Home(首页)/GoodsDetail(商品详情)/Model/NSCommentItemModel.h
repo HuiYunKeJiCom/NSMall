@@ -22,5 +22,6 @@
 @property (nonatomic,copy)NSString *user_name;//评论人昵称
 @property (nonatomic,copy)NSString *user_avatar;//评论人头像
 @property (nonatomic,strong)NSArray *commentImageList;//评论图片
+@property (nonatomic,assign)NSInteger level;//用户VIP等级
 @property (nonatomic,strong)NSArray<NSReplyItemModel*> *replyList;//回复列表
 @end

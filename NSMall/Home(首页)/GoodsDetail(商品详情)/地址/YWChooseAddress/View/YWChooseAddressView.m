@@ -142,15 +142,25 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
     NSAreaItemModel * item;
     //省级别
     if([self.tableViews indexOfObject:tableView] == 0){
-        item = self.dataSouce[indexPath.row];
+        if(self.dataSouce.count > indexPath.row){
+            item = self.dataSouce[indexPath.row];
+        }
+        
     //市级别
     } else if ([self.tableViews indexOfObject:tableView] == 1){
-        item = self.cityDataSouce[indexPath.row];
+        if(self.cityDataSouce.count > indexPath.row){
+            item = self.cityDataSouce[indexPath.row];
+        }
+        
     //县级别
     } else if ([self.tableViews indexOfObject:tableView] == 2){
-        item = self.districtDataSouce[indexPath.row];
+        if(self.districtDataSouce.count > indexPath.row){
+            item = self.districtDataSouce[indexPath.row];
+        }
     }else if ([self.tableViews indexOfObject:tableView] == 3){
-        item = self.streetDataSouce[indexPath.row];
+        if(self.streetDataSouce.count > indexPath.row){
+            item = self.streetDataSouce[indexPath.row];
+        }
     }
     cell.item = item;
     return cell;
@@ -162,7 +172,11 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
     if([self.tableViews indexOfObject:tableView] == 0){
 
         //1.1 获取下一级别的数据源(市级别,如果是直辖市时,下级则为区级别)
-        NSAreaItemModel * provinceItem = self.dataSouce[indexPath.row];
+        NSAreaItemModel * provinceItem;
+        if(self.dataSouce.count > indexPath.row){
+            provinceItem = self.dataSouce[indexPath.row];
+        }
+        
         //这里需要修改
         GetAreaParam *param = [GetAreaParam new];
         param.parentId = provinceItem.ID;
@@ -215,12 +229,19 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
         //之前未选中省，第一次选择省
         [self addTopBarItem];
         [self addTableView];
-        NSAreaItemModel * item = self.dataSouce[indexPath.row];
+        NSAreaItemModel * item;
+        if(self.dataSouce.count > indexPath.row){
+            item = self.dataSouce[indexPath.row];
+        }
+        
         [self scrollToNextItem:item.name];
         
     } else if ([self.tableViews indexOfObject:tableView] == 1) {
         
-        NSAreaItemModel * cityItem = self.cityDataSouce[indexPath.row];
+        NSAreaItemModel * cityItem;
+        if(self.cityDataSouce.count > indexPath.row){
+            cityItem = self.cityDataSouce[indexPath.row];
+        }
         
         //这里需要修改
         GetAreaParam *param = [GetAreaParam new];
@@ -272,12 +293,20 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
         
         [self addTopBarItem];
         [self addTableView];
-        NSAreaItemModel * item = self.cityDataSouce[indexPath.row];
+        NSAreaItemModel * item;
+        if(self.cityDataSouce.count > indexPath.row){
+            item = self.cityDataSouce[indexPath.row];
+        }
+        
         [self scrollToNextItem:item.name];
         
     } else if ([self.tableViews indexOfObject:tableView] == 2) {
         
-        NSAreaItemModel * streetItem = self.districtDataSouce[indexPath.row];
+        NSAreaItemModel * streetItem;
+        if(self.districtDataSouce.count > indexPath.row){
+            streetItem = self.districtDataSouce[indexPath.row];
+        }
+        
         //这里需要修改
         GetAreaParam *param = [GetAreaParam new];
         param.parentId = streetItem.ID;
@@ -328,13 +357,21 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
         
         [self addTopBarItem];
         [self addTableView];
-        NSAreaItemModel * item = self.districtDataSouce[indexPath.row];
+        NSAreaItemModel * item;
+        if(self.districtDataSouce.count > indexPath.row){
+            item = self.districtDataSouce[indexPath.row];
+        }
+        
         [self scrollToNextItem:item.name];
         
 //        [self setUpAddress:item.name];
     }else if ([self.tableViews indexOfObject:tableView] == 3) {
         
-        NSAreaItemModel * item = self.streetDataSouce[indexPath.row];
+        NSAreaItemModel * item;
+        if(self.streetDataSouce.count > indexPath.row){
+            item = self.streetDataSouce[indexPath.row];
+        }
+        
         [self setUpAddress:item.name];
     }
     
@@ -345,19 +382,31 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSAreaItemModel * item;
     if([self.tableViews indexOfObject:tableView] == 0) {
-       item = self.dataSouce[indexPath.row];
+        if(self.dataSouce.count > indexPath.row){
+            item = self.dataSouce[indexPath.row];
+        }
+       
         self.provinceName = item.name;
         self.provinceId = item.ID;
     } else if ([self.tableViews indexOfObject:tableView] == 1) {
-       item = self.cityDataSouce[indexPath.row];
+        if(self.cityDataSouce.count > indexPath.row){
+            item = self.cityDataSouce[indexPath.row];
+        }
+       
         self.cityName = item.name;
         self.cityId = item.ID;
     } else if ([self.tableViews indexOfObject:tableView] == 2) {
-       item = self.districtDataSouce[indexPath.row];
+        if(self.districtDataSouce.count > indexPath.row){
+            item = self.districtDataSouce[indexPath.row];
+        }
+       
         self.districtName = item.name;
         self.districtId = item.ID;
     }else if ([self.tableViews indexOfObject:tableView] == 3) {
-        item = self.streetDataSouce[indexPath.row];
+        if(self.streetDataSouce.count > indexPath.row){
+            item = self.streetDataSouce[indexPath.row];
+        }
+        
         self.streetName = item.name;
         self.streetId = item.ID;
     }
@@ -370,13 +419,21 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
     
     NSAreaItemModel * item;
     if([self.tableViews indexOfObject:tableView] == 0) {
-        item = self.dataSouce[indexPath.row];
+        if(self.dataSouce.count > indexPath.row){
+            item = self.dataSouce[indexPath.row];
+        }
     } else if ([self.tableViews indexOfObject:tableView] == 1) {
-        item = self.cityDataSouce[indexPath.row];
+        if(self.cityDataSouce.count >indexPath.row){
+            item = self.cityDataSouce[indexPath.row];
+        }
     } else if ([self.tableViews indexOfObject:tableView] == 2) {
-        item = self.districtDataSouce[indexPath.row];
+        if(self.districtDataSouce.count > indexPath.row){
+            item = self.districtDataSouce[indexPath.row];
+        }
     }else if ([self.tableViews indexOfObject:tableView] == 3) {
-        item = self.streetDataSouce[indexPath.row];
+        if(self.streetDataSouce.count > indexPath.row){
+            item = self.streetDataSouce[indexPath.row];
+        }
     }
     item.isSelected = NO;
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];

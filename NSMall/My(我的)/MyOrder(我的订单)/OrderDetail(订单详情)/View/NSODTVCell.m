@@ -63,6 +63,27 @@
     userName.textColor = kBlackColor;
     [headView addSubview:userName];
 
+    if(orderDetailModel.level != 0){
+        UIImageView *levelIV = [[UIImageView alloc]init];
+        [levelIV setContentMode:UIViewContentModeScaleAspectFit];
+        levelIV.image = IMAGE(@"ico_level");
+        [headView addSubview:levelIV];
+        
+        UILabel *levelLab = [[UILabel alloc] init];
+        levelLab.font = [UIFont boldSystemFontOfSize:14];
+        levelLab.textColor = [UIColor whiteColor];
+        [headView addSubview:levelLab];
+        
+        levelIV.x = CGRectGetMaxX(userName.frame)+GetScaleWidth(5);
+        levelIV.y = 19-userSize.height*0.5;
+        levelIV.size = CGSizeMake(GetScaleWidth(30), GetScaleWidth(30));
+        
+        levelLab.centerX = CGRectGetMidX(levelIV.frame)-GetScaleWidth(5);
+        levelLab.y = 21-userSize.height*0.5;
+        levelLab.text = [NSString stringWithFormat:@"%ld",orderDetailModel.level];
+        [levelLab sizeToFit];
+    }
+    
     float height = 49.0;
     NSInteger buyNum = 0;
     for(int i=0;i<orderDetailModel.productList.count;i++){

@@ -89,9 +89,11 @@
         cell = [[NSShopTVCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSShopTVCell"];
     }
 //    WEAKSELF
-    NSShopListItemModel *model = self.shopTV.data[indexPath.section];
-    cell.model = model;
-    
+    if(self.shopTV.data.count > indexPath.section){
+        NSShopListItemModel *model = self.shopTV.data[indexPath.section];
+        cell.model = model;
+    }
+
     return cell;
     
 }

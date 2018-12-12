@@ -12,9 +12,12 @@
 @property (nonatomic, strong) UIView           *bgView;
 @property(nonatomic,strong)UIImageView *avatarView;/* 头像 */
 @property(nonatomic,strong)UILabel *nickLab;/* 昵称 */
+@property(nonatomic,strong)UIImageView *levelIV;/* VIP等级 */
+@property(nonatomic,strong)UILabel *levelLab;/* vip数字 */
 @property(nonatomic,strong)UILabel *content;/* 评论内容 */
 @property(nonatomic,strong)UILabel *timeLab;/* 评论日期 */
 @property(nonatomic,strong)UIButton *delBtn;/* 删除 */
+
 @end
 
 @implementation NSCommentTVCell
@@ -37,6 +40,8 @@
     [self addSubview:self.bgView];
     [self.bgView addSubview:self.avatarView];
     [self.bgView addSubview:self.nickLab];
+    [self.bgView addSubview:self.levelIV];
+    [self.bgView addSubview:self.levelIV];
     [self.bgView addSubview:self.content];
     [self.bgView addSubview:self.timeLab];
     [self.bgView addSubview:self.delBtn];
@@ -61,6 +66,16 @@
     self.content.text = model.content;
     self.timeLab.text = model.create_time;
     
+    if(model.level != 0){
+        self.levelLab.alpha = 1.0;
+        self.levelIV.alpha = 1.0;
+        self.levelLab.text = [NSString stringWithFormat:@"%ld",model.level];
+    }else{
+        self.levelLab.alpha = 0.0;
+        self.levelIV.alpha = 0.0;
+    }
+
+    
 }
 
 -(void)makeConstraints {
@@ -83,6 +98,18 @@
         make.left.equalTo(weakSelf.avatarView.mas_right).with.offset(10);
         make.centerY.equalTo(weakSelf.avatarView.mas_centerY);
     }];
+    
+    [self.levelIV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.nickLab.mas_right).with.offset(GetScaleWidth(5));
+        make.top.equalTo(weakSelf.bgView.mas_top).with.offset(GetScaleWidth(12));
+        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(30), GetScaleWidth(30)));
+    }];
+    
+    [self.levelLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(weakSelf.levelIV.mas_centerX);
+        make.centerY.equalTo(weakSelf.levelIV.mas_centerY).with.offset(-GetScaleWidth(4));
+    }];
+
     
     [self.content mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.nickLab.mas_left);
@@ -124,6 +151,24 @@
         _nickLab = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum14 TextColor:[UIColor blackColor]];
     }
     return _nickLab;
+}
+
+-(UIImageView *)levelIV{
+    if (!_levelIV) {
+        _levelIV = [[UIImageView alloc] init];
+        _levelIV.image = IMAGE(@"ico_level");
+        [_levelIV setContentMode:UIViewContentModeScaleAspectFit];
+    }
+    return _levelIV;
+}
+
+- (UILabel *)levelLab {
+    if (!_levelLab) {
+        _levelLab = [[UILabel alloc] init];
+        _levelLab.font = [UIFont boldSystemFontOfSize:14];
+        _levelLab.textColor = [UIColor whiteColor];
+    }
+    return _levelLab;
 }
 
 - (UILabel *)content {

@@ -213,8 +213,11 @@
         cell.avatarIV.image = [UIImage imageNamed:@"smiley_minus_btn_nor"];
         cell.nickLab.hidden = YES;
     }else{
-        cell.model = self.membersArr[indexPath.row];
-        cell.nickLab.hidden = NO;
+        if(self.membersArr.count > indexPath.row){
+            cell.model = self.membersArr[indexPath.row];
+            cell.nickLab.hidden = NO;
+        }
+        
     }
     
     WEAKSELF

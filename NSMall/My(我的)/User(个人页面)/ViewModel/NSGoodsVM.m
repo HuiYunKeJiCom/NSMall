@@ -83,20 +83,21 @@
         cell = [[NSGoodsShowCellTest alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSGoodsShowCellTest"];
     }
     WEAKSELF
-    ProductListItemModel *model = self.goodsTV.data[indexPath.section];
-    cell.productModel = model;
-    cell.likeBtnClickBlock = ^{
-        [weakSelf likeClickAtIndexPath:indexPath];
-    };
-    cell.commentBtnClickBlock = ^{
-        [weakSelf tableView:weakSelf.goodsTV didSelectRowAtIndexPath:indexPath];
-    };
-    cell.shareBtnClickBlock = ^{
-        [weakSelf showGoodsQRCode:indexPath];
-    };
-
-    return cell;
+    if(self.goodsTV.data.count > indexPath.section){
+        ProductListItemModel *model = self.goodsTV.data[indexPath.section];
+        cell.productModel = model;
+        cell.likeBtnClickBlock = ^{
+            [weakSelf likeClickAtIndexPath:indexPath];
+        };
+        cell.commentBtnClickBlock = ^{
+            [weakSelf tableView:weakSelf.goodsTV didSelectRowAtIndexPath:indexPath];
+        };
+        cell.shareBtnClickBlock = ^{
+            [weakSelf showGoodsQRCode:indexPath];
+        };
+    }
     
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

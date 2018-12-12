@@ -66,8 +66,9 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
     }
-    
-    cell.textLabel.text = [self.dataArray objectAtIndex:indexPath.row];
+    if(self.dataArray.count > indexPath.row){
+        cell.textLabel.text = [self.dataArray objectAtIndex:indexPath.row];
+    }
     
     return cell;
 }

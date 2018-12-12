@@ -223,22 +223,24 @@
         }
         
         NSArray *userSection = [self.dataArray objectAtIndex:(indexPath.section - 1)];
-        NSHuanXinUserModel *model = [userSection objectAtIndex:indexPath.row];
-        
-//        DLog(@"model = %@",model.nickname);
-        
-        UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.buddy];
-        
-        if (profileEntity) {
-            model.avatarURLPath = profileEntity.imageUrl;
-            model.nickname = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
-//            model.avatarURLPath = model.user_avatar;
-//            model.nickname = model.nick_name;
+        if(userSection.count > indexPath.row){
+            NSHuanXinUserModel *model = [userSection objectAtIndex:indexPath.row];
+            
+            //        DLog(@"model = %@",model.nickname);
+            
+            UserProfileEntity *profileEntity = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.buddy];
+            
+            if (profileEntity) {
+                model.avatarURLPath = profileEntity.imageUrl;
+                model.nickname = profileEntity.nickname == nil ? profileEntity.username : profileEntity.nickname;
+                //            model.avatarURLPath = model.user_avatar;
+                //            model.nickname = model.nick_name;
+            }
+            cell.indexPath = indexPath;
+            cell.delegate = self;
+            cell.model = model;
         }
-        cell.indexPath = indexPath;
-        cell.delegate = self;
-        cell.model = model;
-        
+
         return cell;
     }
 }

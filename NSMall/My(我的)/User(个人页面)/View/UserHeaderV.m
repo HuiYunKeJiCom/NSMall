@@ -13,6 +13,8 @@
 @property(nonatomic,strong)UIImageView *bgIV;/* 背景图 */
 @property(nonatomic,strong)UIImageView *headerIV;/* 头像 */
 @property(nonatomic,strong)UILabel *userNameL;/* 昵称 */
+@property(nonatomic,strong)UIImageView *levelIV;/* VIP等级 */
+@property(nonatomic,strong)UILabel *levelLab;/* vip数字 */
 @property(nonatomic,strong)UILabel *regeistDayL;/* 注册天数 */
 @property(nonatomic,strong)UIImageView *idenIV;/* 实名认证图片 */
 @property(nonatomic,strong)UILabel *idenLab;/* 实名认证 */
@@ -49,6 +51,16 @@
     self.userNameL = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum15 TextColor:kBlackColor];
     [self addSubview:self.userNameL];
     
+    self.levelIV = [[UIImageView alloc]init];
+    [self.levelIV setContentMode:UIViewContentModeScaleAspectFit];
+    self.levelIV.image = IMAGE(@"ico_level");
+    [self addSubview:self.levelIV];
+    
+    self.levelLab = [[UILabel alloc] init];
+    self.levelLab.font = [UIFont boldSystemFontOfSize:14];
+    self.levelLab.textColor = [UIColor whiteColor];
+    [self addSubview:self.levelLab];
+
     self.regeistDayL = [[UILabel alloc] initWithFrame:CGRectZero FontSize:kFontNum14 TextColor:kGreyColor];
     [self addSubview:self.regeistDayL];
     
@@ -92,6 +104,15 @@
     _userPageM = userPageM;
     
     self.userNameL.text = userPageM.nick_name;
+//    if(userPageM.level != 0){
+        self.levelLab.alpha = 1.0;
+        self.levelIV.alpha = 1.0;
+        self.levelLab.text = [NSString stringWithFormat:@"%ld",userPageM.level];
+//    }else{
+//        self.levelLab.alpha = 0.0;
+//        self.levelIV.alpha = 0.0;
+//    }
+
     self.regeistDayL.text = [NSString stringWithFormat:@"%@%@%@",NSLocalizedString(@"come NS", nil),userPageM.regeist_day,NSLocalizedString(@"!", nil)];
     self.idenLab.text = NSLocalizedString(@"user certify", nil);
     [self.headerIV sd_setImageWithURL:[NSURL URLWithString:userPageM.pic_img]];
@@ -122,6 +143,18 @@
             make.height.mas_equalTo(GetScaleWidth(13));
     
     }];
+    
+    [self.levelIV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.userNameL.mas_right).with.offset(GetScaleWidth(5));
+        make.top.equalTo(weakSelf.bgIV.mas_bottom).with.offset(GetScaleWidth(2));
+        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(30), GetScaleWidth(30)));
+    }];
+    
+    [self.levelLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(weakSelf.levelIV.mas_centerX);
+        make.centerY.equalTo(weakSelf.levelIV.mas_centerY).with.offset(-GetScaleWidth(4));
+    }];
+
     
     [self.regeistDayL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.mas_left).with.offset(GetScaleWidth(18));

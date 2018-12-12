@@ -30,6 +30,7 @@
 @property (nonatomic,copy)NSString *user_name;//卖家昵称
 @property (nonatomic,copy)NSString *user_avatar;//卖家头像
 @property (nonatomic,copy)NSString *week;//商品创建/更新时间所属周数
+@property (nonatomic,assign)NSInteger level;//用户VIP等级
 @property (nonatomic,strong)NSArray<NSString *> *productImageList;//商品图片
 
 @end

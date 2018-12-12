@@ -266,8 +266,10 @@
         cell.deleteBtn.hidden = YES;
         cell.gifLable.hidden = YES;
     } else {
-        if(_selectedAssets.count > indexPath.row){
+        if(_selectedPhotos.count > indexPath.row){
             cell.imageView.image = _selectedPhotos[indexPath.row];
+        }
+        if(_selectedAssets.count > indexPath.row){
             cell.asset = _selectedAssets[indexPath.row];
             cell.deleteBtn.hidden = NO;
         }
@@ -285,15 +287,18 @@
         [self pushTZImagePickerController];
     } else {
         // preview photos or video / 预览照片或者视频
-        id asset = _selectedAssets[indexPath.row];
-        BOOL isVideo = NO;
-        if ([asset isKindOfClass:[PHAsset class]]) {
-            PHAsset *phAsset = asset;
-            isVideo = phAsset.mediaType == PHAssetMediaTypeVideo;
-        } else if ([asset isKindOfClass:[ALAsset class]]) {
-            ALAsset *alAsset = asset;
-            isVideo = [[alAsset valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypeVideo];
+        if(_selectedAssets.count > indexPath.row){
+            id asset = _selectedAssets[indexPath.row];
+            BOOL isVideo = NO;
+            if ([asset isKindOfClass:[PHAsset class]]) {
+                PHAsset *phAsset = asset;
+                isVideo = phAsset.mediaType == PHAssetMediaTypeVideo;
+            } else if ([asset isKindOfClass:[ALAsset class]]) {
+                ALAsset *alAsset = asset;
+                isVideo = [[alAsset valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypeVideo];
+            }
         }
+        
         // preview photos / 预览照片
         TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithSelectedAssets:_selectedAssets selectedPhotos:_selectedPhotos index:indexPath.row];
         //    imagePickerVc.naviBgColor = [UIColor redColor];
@@ -325,13 +330,17 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)sourceIndexPath didMoveToIndexPath:(NSIndexPath *)destinationIndexPath {
-    UIImage *image = _selectedPhotos[sourceIndexPath.item];
-    [_selectedPhotos removeObjectAtIndex:sourceIndexPath.item];
-    [_selectedPhotos insertObject:image atIndex:destinationIndexPath.item];
+    if(_selectedPhotos.count > sourceIndexPath.item){
+        UIImage *image = _selectedPhotos[sourceIndexPath.item];
+        [_selectedPhotos removeObjectAtIndex:sourceIndexPath.item];
+        [_selectedPhotos insertObject:image atIndex:destinationIndexPath.item];
+    }
     
-    id asset = _selectedAssets[sourceIndexPath.item];
-    [_selectedAssets removeObjectAtIndex:sourceIndexPath.item];
-    [_selectedAssets insertObject:asset atIndex:destinationIndexPath.item];
+    if(_selectedAssets.count > sourceIndexPath.item){
+        id asset = _selectedAssets[sourceIndexPath.item];
+        [_selectedAssets removeObjectAtIndex:sourceIndexPath.item];
+        [_selectedAssets insertObject:asset atIndex:destinationIndexPath.item];
+    }
     
     [_collectionView reloadData];
 }
@@ -789,6 +798,7 @@
     for (int i=0;i<productModel.productImageList.count;i++) {
         NSString *imageUrl = productModel.productImageList[i];
         DLog(@"imageUrl = %@",imageUrl);
+        
         NSData *data = [NSData  dataWithContentsOfURL:[NSURL URLWithString:imageUrl]];
         UIImage *image =  [UIImage imageWithData:data];
         [_selectedPhotos addObject:image];

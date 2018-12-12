@@ -430,11 +430,12 @@
     
     [self hideTotalStoreViewWithAlpha];
     
-    NSStoreModel *storeModel = self.totalStoreV.storeList[indexPath.section];
-    NSClusterAnnotationView *clusterAnnotationView = [NSClusterAnnotationView new];
-    [self showShopInfoViewWithClusterAnnotationView:storeModel clusterAnnotationView:clusterAnnotationView];
+    if(self.totalStoreV.storeList.count > indexPath.section){
+        NSStoreModel *storeModel = self.totalStoreV.storeList[indexPath.section];
+        NSClusterAnnotationView *clusterAnnotationView = [NSClusterAnnotationView new];
+        [self showShopInfoViewWithClusterAnnotationView:storeModel clusterAnnotationView:clusterAnnotationView];
+    }
     
-
 }
 
 -(void)hideTotalStoreViewWithAlpha{

@@ -69,7 +69,10 @@
     }
     
     cell.avatarView.image = [UIImage imageNamed:@"EaseUIResource.bundle/user"];
-    cell.titleLabel.text = [self.dataArray objectAtIndex:indexPath.row];
+    if(self.dataArray.count > indexPath.row){
+        cell.titleLabel.text = [self.dataArray objectAtIndex:indexPath.row];
+    }
+    
     cell.indexPath = indexPath;
     
     return cell;
@@ -84,7 +87,12 @@
     }
     
     NSIndexPath *indexPath = _currentLongPressIndex;
-    NSString *userName = [self.dataArray objectAtIndex:indexPath.row];
+    
+    NSString *userName = @"";
+    if(self.dataArray.count > indexPath.row){
+        userName = [self.dataArray objectAtIndex:indexPath.row];
+    }
+    
     _currentLongPressIndex = nil;
     
     [self hideHud];

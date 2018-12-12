@@ -186,7 +186,7 @@
 
 -(void)editShopWith:(NSMyProductListItemModel *)model{
 //    NSMyProductListItemModel *model = self.goodsTable.data[indexPath.section];
-//    DLog(@"model = %@",model.mj_keyValues);
+    DLog(@"model = %@",model.mj_keyValues);
     NSGoodsEditVC *goodsEditVC = [NSGoodsEditVC new];
     [self.navigationController pushViewController:goodsEditVC animated:YES];
     [goodsEditVC getDataWithProductId:model];

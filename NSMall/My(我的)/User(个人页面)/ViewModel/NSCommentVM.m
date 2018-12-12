@@ -90,12 +90,14 @@
         cell = [[NSCommentTVCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSCommentTVCell"];
     }
     //    WEAKSELF
-    NSCommentItemModel *model = self.commentTV.data[indexPath.section];
-    cell.model = model;
-    cell.deleteBtnClickBlock = ^{
-        [self delCommentWith:indexPath];
-    };
-    
+    if(self.commentTV.data.count > indexPath.section){
+        NSCommentItemModel *model = self.commentTV.data[indexPath.section];
+        cell.model = model;
+        cell.deleteBtnClickBlock = ^{
+            [self delCommentWith:indexPath];
+        };
+    }
+
     return cell;
     
 }

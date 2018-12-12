@@ -21,4 +21,5 @@
 @property (nonatomic,copy)NSString *reply_user_id;//回复人ID
 @property (nonatomic,copy)NSString *reply_user_name;//回复人昵称
 @property (nonatomic,strong)NSString *reply_user_avatar;//回复人头像
+
 @end

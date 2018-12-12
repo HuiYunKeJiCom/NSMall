@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSString *time;
 @property(nonatomic,strong)NSString *commentId;/* 评论id */
 @property(nonatomic,strong)NSString *userId;/* 用户Id */
+@property (nonatomic,assign)NSInteger level;//用户VIP等级
 
-- (instancetype)initWithUserName:(NSString *)userName imagePath:(NSString *)imagePath content:(NSString *)content time:(NSString *)time commentId:(NSString *)commentId userId:(NSString *)userId;
+- (instancetype)initWithUserName:(NSString *)userName imagePath:(NSString *)imagePath content:(NSString *)content time:(NSString *)time commentId:(NSString *)commentId userId:(NSString *)userId level:(NSInteger)level;
 @end

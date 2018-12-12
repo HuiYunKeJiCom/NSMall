@@ -254,11 +254,14 @@
             cell = [[BaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
 
-        EMChatroom *chatroom = [weakSelf.resultController.displaySource objectAtIndex:indexPath.row];
-        NSString *imageName =  @"groupPublicHeader";
-        cell.imageView.image = [UIImage imageNamed:imageName];
-        cell.textLabel.text = chatroom.subject;
+        if(weakSelf.resultController.displaySource.count > indexPath.row){
+            EMChatroom *chatroom = [weakSelf.resultController.displaySource objectAtIndex:indexPath.row];
+            NSString *imageName =  @"groupPublicHeader";
+            cell.imageView.image = [UIImage imageNamed:imageName];
+            cell.textLabel.text = chatroom.subject;
 
+        }
+        
         return cell;
     }];
 

@@ -498,7 +498,7 @@
     [GoodsDetailAPI publishComment:param success:^(NSCommentItemModel * _Nullable result) {
         DLog(@"发布商品评论成功");
         
-        [self.messageTV.data insertObject:[[NSMessageModel alloc] initWithUserName:result.user_name imagePath:result.user_avatar content:result.content time:result.create_time commentId:result.comment_id userId:result.user_id] atIndex:0];
+        [self.messageTV.data insertObject:[[NSMessageModel alloc] initWithUserName:result.user_name imagePath:result.user_avatar content:result.content time:result.create_time commentId:result.comment_id userId:result.user_id level:result.level] atIndex:0];
         
         self.messageView.size = CGSizeMake(kScreenWidth, self.messageTV.data.count*GetScaleWidth(95)+GetScaleWidth(172));
         self.messageTV.size = CGSizeMake(kScreenWidth, self.messageTV.data.count*GetScaleWidth(95));
@@ -706,7 +706,7 @@
 //        weakSelf.messageTV.data = [NSMutableArray arrayWithArray:result.commentList];
         
         for (NSCommentItemModel *itemModel in result.commentList) {
-            [weakSelf.messageTV.data addObject:[[NSMessageModel alloc] initWithUserName:itemModel.user_name imagePath:itemModel.user_avatar content:itemModel.content time:itemModel.create_time commentId:itemModel.comment_id userId:itemModel.user_id]];
+            [weakSelf.messageTV.data addObject:[[NSMessageModel alloc] initWithUserName:itemModel.user_name imagePath:itemModel.user_avatar content:itemModel.content time:itemModel.create_time commentId:itemModel.comment_id userId:itemModel.user_id level:itemModel.level]];
         }
         self.messageView.size = CGSizeMake(kScreenWidth, result.commentList.count*GetScaleWidth(95)+GetScaleWidth(172));
         self.messageTV.size = CGSizeMake(kScreenWidth, result.commentList.count*GetScaleWidth(95));
@@ -732,32 +732,38 @@
 
 -(void)goToUserPageWithIndexPath:(NSIndexPath *)indexPath{
     DLog(@"跳转至个人页面");
-    NSMessageModel *model = self.messageTV.data[indexPath.section];
-    //跳转至个人页面
-    UserPageVC *userPageVC = [UserPageVC new];
-    [userPageVC setUpDataWithUserId:model.userId];
-    [self.navigationController pushViewController:userPageVC animated:YES];
+    if(self.messageTV.data.count > indexPath.section){
+        NSMessageModel *model = self.messageTV.data[indexPath.section];
+        //跳转至个人页面
+        UserPageVC *userPageVC = [UserPageVC new];
+        [userPageVC setUpDataWithUserId:model.userId];
+        [self.navigationController pushViewController:userPageVC animated:YES];
+    }
+    
 }
 
 -(void)removeComment{
     DLog(@"removeComment");
-    NSMessageModel *model = self.messageTV.data[self.deleteIndexPath.section];
-    
-    [GoodsDetailAPI delCommentWithParam:model.commentId success:^{
-        DLog(@"删除评论成功");
-        [self.messageTV.data removeObjectAtIndex:self.deleteIndexPath.section];
+    if(self.messageTV.data.count > self.deleteIndexPath.section){
+        NSMessageModel *model = self.messageTV.data[self.deleteIndexPath.section];
         
-        self.messageView.size = CGSizeMake(kScreenWidth, self.messageTV.data.count*GetScaleWidth(95)+GetScaleWidth(172));
-        self.messageTV.size = CGSizeMake(kScreenWidth, self.messageTV.data.count*GetScaleWidth(95));
-        self.SV.contentSize = CGSizeMake(self.SV.bounds.size.width, self.height+GetScaleWidth(203)+GetScaleWidth(40)+(self.messageTV.data.count)*GetScaleWidth(95));
-        self.noMoreV.y = CGRectGetMaxY(self.messageTV.frame);
-        
-        [self.messageTV reloadData];
-    } faulre:^(NSError *error) {
-        DLog(@"删除评论失败");
-        DLog(@"error = %@",error);
-    }];
+        [GoodsDetailAPI delCommentWithParam:model.commentId success:^{
+            DLog(@"删除评论成功");
+            [self.messageTV.data removeObjectAtIndex:self.deleteIndexPath.section];
+            
+            self.messageView.size = CGSizeMake(kScreenWidth, self.messageTV.data.count*GetScaleWidth(95)+GetScaleWidth(172));
+            self.messageTV.size = CGSizeMake(kScreenWidth, self.messageTV.data.count*GetScaleWidth(95));
+            self.SV.contentSize = CGSizeMake(self.SV.bounds.size.width, self.height+GetScaleWidth(203)+GetScaleWidth(40)+(self.messageTV.data.count)*GetScaleWidth(95));
+            self.noMoreV.y = CGRectGetMaxY(self.messageTV.frame);
+            
+            [self.messageTV reloadData];
+        } faulre:^(NSError *error) {
+            DLog(@"删除评论失败");
+            DLog(@"error = %@",error);
+        }];
 
+    }
+    
 }
 
 #pragma mark - UIAlertViewDelegate

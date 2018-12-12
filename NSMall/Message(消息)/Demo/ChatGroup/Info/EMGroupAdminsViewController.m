@@ -77,8 +77,10 @@
     }
     
     cell.imgView.image = [UIImage imageNamed:@"default_avatar"];
-    cell.leftLabel.text = [self.dataArray objectAtIndex:indexPath.row];
-    
+    if(self.dataArray.count > indexPath.row){
+        cell.leftLabel.text = [self.dataArray objectAtIndex:indexPath.row];
+    }
+
     return cell;
 }
 

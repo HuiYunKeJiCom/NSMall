@@ -152,8 +152,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSExpressTVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NSExpressTVCell"];
-    NSExpressModel *model = self.expressNameArr[indexPath.row];
-    cell.expressModel = model;
+    if(self.expressNameArr.count > indexPath.row){
+        NSExpressModel *model = self.expressNameArr[indexPath.row];
+        cell.expressModel = model;
+    }
     if(indexPath.row ==self.row && cell.isSelected){
         cell.seclectIV.alpha = 1.0;
     }else{

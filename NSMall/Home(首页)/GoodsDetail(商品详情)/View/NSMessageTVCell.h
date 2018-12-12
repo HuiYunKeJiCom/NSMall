@@ -12,6 +12,9 @@
 @interface NSMessageTVCell : BaseTableCell
 @property (strong, nonatomic) UIImageView    *userIV;
 @property (strong, nonatomic) UILabel        *userNameLb;
+@property(nonatomic,strong)UIImageView *levelIV;/* VIP等级 */
+@property(nonatomic,strong)UILabel *levelLab;/* vip数字 */
+
 @property (strong, nonatomic) UILabel        *contentLb;
 @property (strong, nonatomic) UILabel        *timeLb;
 

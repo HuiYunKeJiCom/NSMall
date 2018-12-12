@@ -183,10 +183,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     WEAKSELF
     if(tableView.tag == 10){
-        CategoryModel *model = self.leftTV.data[indexPath.row];
-        self.selectRow = indexPath.row;
-        self.rightTV.data =  [NSMutableArray arrayWithArray:model.children];
-        
+        if(self.leftTV.data.count > indexPath.row){
+            CategoryModel *model = self.leftTV.data[indexPath.row];
+            self.selectRow = indexPath.row;
+            self.rightTV.data =  [NSMutableArray arrayWithArray:model.children];
+        }
+
         if(self.dict[@"tableViewCell"]){
             NSSortLeftTVCell *lastCell = self.dict[@"tableViewCell"];
             CGRect lastFrame = lastCell.frame;
@@ -208,56 +210,59 @@
     }else{
         NSSortLeftTVCell *cell = [self.rightTV cellForRowAtIndexPath:indexPath];
         CGRect frame2 = cell.frame;
-        CategoryModel *rightModel = self.rightTV.data[indexPath.row];
-        if(rightModel.children.count>0){
-            if(indexPath.row != [self.dict[@"indexPath"] integerValue]){
-                NSSortLeftTVCell *lastCell = self.dict[@"tableViewCell"];
-                CGRect lastFrame = lastCell.frame;
-                float lastHeight = lastFrame.size.height-self.sortViewHeight-13;
-                [self.dict setValue:self.dict[@"indexPath"] forKey:@"lastIndexPath"];
-                [self.dict setValue:[NSNumber numberWithFloat:lastHeight] forKey:@"lastHeight"];
-                [self.dict setValue:cell forKey:@"lastTableViewCell"];
-                lastCell.isShow = NO;
-                for (UIView *view in lastCell.subviews) {
-                    if([view isKindOfClass:[NSAllSortView class]]){
-                        [view removeFromSuperview];
+        if(self.rightTV.data.count > indexPath.row){
+            CategoryModel *rightModel = self.rightTV.data[indexPath.row];
+            if(rightModel.children.count>0){
+                if(indexPath.row != [self.dict[@"indexPath"] integerValue]){
+                    NSSortLeftTVCell *lastCell = self.dict[@"tableViewCell"];
+                    CGRect lastFrame = lastCell.frame;
+                    float lastHeight = lastFrame.size.height-self.sortViewHeight-13;
+                    [self.dict setValue:self.dict[@"indexPath"] forKey:@"lastIndexPath"];
+                    [self.dict setValue:[NSNumber numberWithFloat:lastHeight] forKey:@"lastHeight"];
+                    [self.dict setValue:cell forKey:@"lastTableViewCell"];
+                    lastCell.isShow = NO;
+                    for (UIView *view in lastCell.subviews) {
+                        if([view isKindOfClass:[NSAllSortView class]]){
+                            [view removeFromSuperview];
+                        }
                     }
+                    
+                    NSAllSortView *allView = [[NSAllSortView alloc] init];
+                    allView.dataArr = rightModel.children;
+                    allView.tbDelegate = self;
+                    self.sortViewHeight = [allView getHeight];
+                    allView.x = 0;
+                    allView.y = frame2.size.height;
+                    allView.size = CGSizeMake(frame2.size.width, self.sortViewHeight+13);
+                    [cell addSubview:allView];
+                    
+                    float height = self.sortViewHeight+13+frame2.size.height;
+                    [self.dict setValue:[NSNumber numberWithInteger:indexPath.row] forKey:@"indexPath"];
+                    [self.dict setValue:[NSNumber numberWithFloat:height] forKey:@"height"];
+                    [self.dict setValue:cell forKey:@"tableViewCell"];
+                    cell.isShow = YES;
+                    [self.rightTV reloadData];
                 }
-                
-                NSAllSortView *allView = [[NSAllSortView alloc] init];
-                allView.dataArr = rightModel.children;
-                allView.tbDelegate = self;
-                self.sortViewHeight = [allView getHeight];
-                allView.x = 0;
-                allView.y = frame2.size.height;
-                allView.size = CGSizeMake(frame2.size.width, self.sortViewHeight+13);
-                [cell addSubview:allView];
-                
-                float height = self.sortViewHeight+13+frame2.size.height;
-                [self.dict setValue:[NSNumber numberWithInteger:indexPath.row] forKey:@"indexPath"];
-                [self.dict setValue:[NSNumber numberWithFloat:height] forKey:@"height"];
-                [self.dict setValue:cell forKey:@"tableViewCell"];
-                cell.isShow = YES;
-                [self.rightTV reloadData];
-            }
-//            cell.isSelected = YES;
-        }else{
-            if(self.dict[@"tableViewCell"]){
-                NSSortLeftTVCell *lastCell = self.dict[@"tableViewCell"];
-                CGRect lastFrame = lastCell.frame;
-                float lastHeight = lastFrame.size.height-self.sortViewHeight-13;
-                [self.dict setValue:self.dict[@"indexPath"] forKey:@"indexPath"];
-                [self.dict setValue:[NSNumber numberWithFloat:lastHeight] forKey:@"height"];
-                [self.dict setValue:lastCell forKey:@"tableViewCell"];
-                lastCell.isShow = NO;
-                
-                for (UIView *view in lastCell.subviews) {
-                    if([view isKindOfClass:[NSAllSortView class]]){
-                        [view removeFromSuperview];
+                //            cell.isSelected = YES;
+            }else{
+                if(self.dict[@"tableViewCell"]){
+                    NSSortLeftTVCell *lastCell = self.dict[@"tableViewCell"];
+                    CGRect lastFrame = lastCell.frame;
+                    float lastHeight = lastFrame.size.height-self.sortViewHeight-13;
+                    [self.dict setValue:self.dict[@"indexPath"] forKey:@"indexPath"];
+                    [self.dict setValue:[NSNumber numberWithFloat:lastHeight] forKey:@"height"];
+                    [self.dict setValue:lastCell forKey:@"tableViewCell"];
+                    lastCell.isShow = NO;
+                    
+                    for (UIView *view in lastCell.subviews) {
+                        if([view isKindOfClass:[NSAllSortView class]]){
+                            [view removeFromSuperview];
+                        }
                     }
+                    [self.dict removeAllObjects];
                 }
-                [self.dict removeAllObjects];
-            }
+        }
+        
             
             [self.rightTV reloadData];
 //            cell.isSelected = YES;

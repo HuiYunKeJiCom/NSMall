@@ -16,6 +16,7 @@
 @property (copy,nonatomic)NSString *user_id;/* 卖家用户id */
 @property (copy,nonatomic)NSString *user_name;/* 卖家昵称 */
 @property (copy,nonatomic)NSString *user_avatar;/* 卖家头像路径 */
+@property (nonatomic,assign)NSInteger level;//用户VIP等级
 @property (strong,nonatomic)NSMutableArray <LZGoodsModel *> *productList;
 
 @property (nonatomic)double sum_price;/* 单个商家订单总金额（诺一股）【包含运费】 */

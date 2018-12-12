@@ -96,13 +96,15 @@
         cell.showAccessoryViewInDelete = YES;
     }
     
-    EMGroupSharedFile *file = [self.dataArray objectAtIndex:indexPath.row];
-    cell.leftLabel.text = file.fileName;
-    if (file.fileName.length == 0) {
-        cell.leftLabel.text = file.fileId;
+    if(self.dataArray.count > indexPath.row){
+        EMGroupSharedFile *file = [self.dataArray objectAtIndex:indexPath.row];
+        cell.leftLabel.text = file.fileName;
+        if (file.fileName.length == 0) {
+            cell.leftLabel.text = file.fileId;
+        }
+        cell.rightLabel.text = [NSString stringWithFormat:@"%.2lf MB",(float)file.fileSize/(1024*1024)];
     }
-    cell.rightLabel.text = [NSString stringWithFormat:@"%.2lf MB",(float)file.fileSize/(1024*1024)];
-    
+
     return cell;
 }
 
@@ -131,38 +133,41 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    EMGroupSharedFile *file = [self.dataArray objectAtIndex:indexPath.row];
-    
-    NSString *filePath = NSHomeDirectory();
-    filePath = [NSString stringWithFormat:@"%@/Library/appdata/download",filePath];
-    NSFileManager *fm = [NSFileManager defaultManager];
-    if(![fm fileExistsAtPath:filePath]) {
-        [fm createDirectoryAtPath:filePath
-      withIntermediateDirectories:YES
-                       attributes:nil
-                            error:nil];
+   
+    if(self.dataArray.count > indexPath.row){
+        EMGroupSharedFile *file = [self.dataArray objectAtIndex:indexPath.row];
+        
+        NSString *filePath = NSHomeDirectory();
+        filePath = [NSString stringWithFormat:@"%@/Library/appdata/download",filePath];
+        NSFileManager *fm = [NSFileManager defaultManager];
+        if(![fm fileExistsAtPath:filePath]) {
+            [fm createDirectoryAtPath:filePath
+          withIntermediateDirectories:YES
+                           attributes:nil
+                                error:nil];
+        }
+        NSString *fileName = file.fileName.length > 0 ? file.fileName : file.fileId;
+        filePath = [NSString stringWithFormat:@"%@/%@", filePath, fileName];
+        
+        if ([fm fileExistsAtPath:filePath]) {
+            NSURL *url = [NSURL fileURLWithPath:filePath];
+            UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[url] applicationActivities:nil];
+            activityVC.excludedActivityTypes = @[UIActivityTypeMessage, UIActivityTypeMail, UIActivityTypeSaveToCameraRoll, UIActivityTypeAirDrop];
+            [self presentViewController:activityVC animated:YES completion:nil];
+        } else {
+            __weak typeof(self) weakSelf = self;
+            [self showHudInView:self.view hint:NSLocalizedString(@"group.download", @"Downloading ...")];
+            [[EMClient sharedClient].groupManager downloadGroupSharedFileWithId:_group.groupId filePath:filePath sharedFileId:file.fileId progress:^(int progress) {
+                // NSLog(@"%d",progress);
+            } completion:^(EMGroup *aGroup, EMError *aError) {
+                [weakSelf hideHud];
+                if (aError) {
+                    [weakSelf showHint:[NSString stringWithFormat:@"%@%@",NSLocalizedString(@"group.downloadFail", @"fail to download share file"), aError.errorDescription]];
+                }
+            }];
+        }
     }
-    NSString *fileName = file.fileName.length > 0 ? file.fileName : file.fileId;
-    filePath = [NSString stringWithFormat:@"%@/%@", filePath, fileName];
     
-    if ([fm fileExistsAtPath:filePath]) {
-        NSURL *url = [NSURL fileURLWithPath:filePath];
-        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[url] applicationActivities:nil];
-        activityVC.excludedActivityTypes = @[UIActivityTypeMessage, UIActivityTypeMail, UIActivityTypeSaveToCameraRoll, UIActivityTypeAirDrop];
-        [self presentViewController:activityVC animated:YES completion:nil];
-    } else {
-        __weak typeof(self) weakSelf = self;
-        [self showHudInView:self.view hint:NSLocalizedString(@"group.download", @"Downloading ...")];
-        [[EMClient sharedClient].groupManager downloadGroupSharedFileWithId:_group.groupId filePath:filePath sharedFileId:file.fileId progress:^(int progress) {
-            // NSLog(@"%d",progress);
-        } completion:^(EMGroup *aGroup, EMError *aError) {
-            [weakSelf hideHud];
-            if (aError) {
-                [weakSelf showHint:[NSString stringWithFormat:@"%@%@",NSLocalizedString(@"group.downloadFail", @"fail to download share file"), aError.errorDescription]];
-            }
-        }];
-    }
 }
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -216,26 +221,29 @@
 
 - (void)deleteCellAction:(NSIndexPath *)aIndexPath
 {
-    EMGroupSharedFile *file = [self.dataArray objectAtIndex:aIndexPath.row];
-    
-    [self showHudInView:self.view hint:NSLocalizedString(@"wait", @"Pleae wait...")];
-    
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        EMError *error = nil;
-        weakSelf.group = [[EMClient sharedClient].groupManager removeGroupSharedFileWithId:weakSelf.group.groupId sharedFileId:file.fileId error:&error];
+    if(self.dataArray.count > aIndexPath.row){
+        EMGroupSharedFile *file = [self.dataArray objectAtIndex:aIndexPath.row];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf hideHud];
-            if (!error) {
-                [weakSelf.dataArray removeObject:file];
-                [weakSelf.tableView reloadData];
-            }
-            else {
-                [weakSelf showHint:error.errorDescription];
-            }
+        [self showHudInView:self.view hint:NSLocalizedString(@"wait", @"Pleae wait...")];
+        
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            EMError *error = nil;
+            weakSelf.group = [[EMClient sharedClient].groupManager removeGroupSharedFileWithId:weakSelf.group.groupId sharedFileId:file.fileId error:&error];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf hideHud];
+                if (!error) {
+                    [weakSelf.dataArray removeObject:file];
+                    [weakSelf.tableView reloadData];
+                }
+                else {
+                    [weakSelf showHint:error.errorDescription];
+                }
+            });
         });
-    });
+    }
+    
 }
 
 - (id)setupCellEditActions:(NSIndexPath *)aIndexPath

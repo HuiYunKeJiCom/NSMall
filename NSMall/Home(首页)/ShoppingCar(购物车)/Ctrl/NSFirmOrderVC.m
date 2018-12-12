@@ -174,9 +174,13 @@
     if(indexPath.section == 0){
         return GetScaleWidth(65);
     }else{
-        LZShopModel *shopModel = self.goodsTable.data[indexPath.section-1];
-//        DLog(@"cellHeight = %.2f",shopModel.cellHeight);
-        return shopModel.cellHeight;
+        if(self.goodsTable.data.count > indexPath.section-1){
+            LZShopModel *shopModel = self.goodsTable.data[indexPath.section-1];
+            //        DLog(@"cellHeight = %.2f",shopModel.cellHeight);
+            return shopModel.cellHeight;
+        }else{
+            return 0.01f;
+        }
     }
 }
 

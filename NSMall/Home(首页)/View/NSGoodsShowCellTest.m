@@ -13,6 +13,8 @@
 @property (nonatomic, strong) UIView           *bgView;
 @property(nonatomic,strong)UIImageView *headerIV;/* 发布者头像 */
 @property(nonatomic,strong)UILabel *userName;/* 用户名 */
+@property(nonatomic,strong)UIImageView *levelIV;/* VIP等级 */
+@property(nonatomic,strong)UILabel *levelLab;/* vip数字 */
 @property(nonatomic,strong)UILabel *timeLab;/* 时间标签 */
 @property(nonatomic,strong)UILabel *priceLab;/* 价格 */
 @property(nonatomic,strong)UIScrollView *imageSV;/* 图片滚动 */
@@ -56,6 +58,16 @@
     self.userName.font = [UIFont systemFontOfSize:kFontNum13];
     self.userName.textColor = [UIColor blackColor];
     [self.bgView addSubview:self.userName];
+    
+    self.levelIV = [[UIImageView alloc]init];
+    [self.levelIV setContentMode:UIViewContentModeScaleAspectFit];
+    self.levelIV.image = IMAGE(@"ico_level");
+    [self.bgView addSubview:self.levelIV];
+  
+    self.levelLab = [[UILabel alloc] init];
+    self.levelLab.font = [UIFont boldSystemFontOfSize:14];
+    self.levelLab.textColor = [UIColor whiteColor];
+    [self.bgView addSubview:self.levelLab];
     
     self.timeLab = [[UILabel alloc] init];
     self.timeLab.font = [UIFont systemFontOfSize:kFontNum13];
@@ -129,6 +141,17 @@
         make.top.equalTo(weakSelf.bgView.mas_top).with.offset(GetScaleWidth(21));
     }];
     
+    [self.levelIV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.userName.mas_right).with.offset(GetScaleWidth(5));
+        make.top.equalTo(weakSelf.bgView.mas_top).with.offset(GetScaleWidth(12));
+        make.size.mas_equalTo(CGSizeMake(GetScaleWidth(30), GetScaleWidth(30)));
+    }];
+    
+    [self.levelLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(weakSelf.levelIV.mas_centerX);
+        make.centerY.equalTo(weakSelf.levelIV.mas_centerY).with.offset(-GetScaleWidth(4));
+    }];
+    
     [self.timeLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.headerIV.mas_right).with.offset(GetScaleWidth(6));
         make.top.equalTo(weakSelf.userName.mas_bottom).with.offset(GetScaleWidth(6));
@@ -190,6 +213,15 @@
 //    self.headerIV.backgroundColor = [UIColor greenColor];
     
     self.userName.text = productModel.user_name;
+    if(productModel.level != 0){
+        self.levelLab.alpha = 1.0;
+        self.levelIV.alpha = 1.0;
+        self.levelLab.text = [NSString stringWithFormat:@"%ld",productModel.level];
+    }else{
+        self.levelLab.alpha = 0.0;
+        self.levelIV.alpha = 0.0;
+    }
+    
     self.timeLab.text = productModel.update_time;
 
     self.priceLab.text = [NSString stringWithFormat:@"N%.2f",[productModel.show_price floatValue]];

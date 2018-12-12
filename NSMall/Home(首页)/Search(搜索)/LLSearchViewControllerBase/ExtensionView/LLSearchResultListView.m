@@ -55,7 +55,9 @@ static CGFloat const RowHeight = 44.f;
     [cell.contentView addSubview:line];
     
     cell.imageView.image = [UIImage imageNamed:@"base_search"];
-    cell.textLabel.text = self.resultArray[indexPath.row];
+    if(self.resultArray.count > indexPath.row){
+        cell.textLabel.text = self.resultArray[indexPath.row];
+    }
     cell.accessoryType = UITableViewCellAccessoryNone;
     return cell;
 }

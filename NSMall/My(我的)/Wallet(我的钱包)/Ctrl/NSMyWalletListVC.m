@@ -213,9 +213,12 @@
 // 进入编辑模式，按下出现的编辑按钮后,进行删除操作
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        WalletItemModel *model = self.walletTable.data[indexPath.section];
-        self.param.walletId = model.wallet_id;
-        [self showInputPwView:model.wallet_id];
+        if(self.walletTable.data.count > indexPath.section){
+            WalletItemModel *model = self.walletTable.data[indexPath.section];
+            self.param.walletId = model.wallet_id;
+            [self showInputPwView:model.wallet_id];
+        }
+        
 //        param.tradePassword =
     }
 }

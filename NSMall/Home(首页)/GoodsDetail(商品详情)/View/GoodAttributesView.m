@@ -155,7 +155,8 @@
     CGFloat one_btnY = CGRectGetMaxY(line1.frame) + 20;
     for (int i = 0; i < attrValueArr0.count ; i++) {
         NSString *btnTittle = ((GoodAttrValueModel *)attrValueArr0[i]).attr_value;
-        CGSize size = [btnTittle sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:kButtonTextFont, NSFontAttributeName, nil]];
+        CGSize size = [btnTittle sizeWithAttributes:@{kButtonTextFont:NSFontAttributeName}];
+//        [NSDictionary dictionaryWithObjectsAndKeys:kButtonTextFont, NSFontAttributeName, nil]
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitle:btnTittle forState:UIControlStateNormal];
         btn.titleLabel.font=[UIFont boldSystemFontOfSize:13];

@@ -26,6 +26,9 @@
 		182B5C162113078800B72CC7 /* NSGoodsItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182B5C152113078800B72CC7 /* NSGoodsItemModel.m */; };
 		182DC49120905E3C0066E667 /* ADOrderTopToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DC49020905E3C0066E667 /* ADOrderTopToolView.m */; };
 		182E8E6A20EF0E3A00ECFCA4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182E8E6C20EF0E3A00ECFCA4 /* Localizable.strings */; };
+		1831BDAD21BF97A900173473 /* XTGuidePagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BDA921BF97A900173473 /* XTGuidePagesViewController.m */; };
+		1831BDAE21BF97A900173473 /* CALayer+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BDAA21BF97A900173473 /* CALayer+Transition.m */; };
+		1831BDB221BF981B00173473 /* NSShopEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BDB121BF981B00173473 /* NSShopEditVC.m */; };
 		1831CA6420C788CC00F00BAF /* NSBuyNowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831CA6320C788CC00F00BAF /* NSBuyNowModel.m */; };
 		1831CA6720C78F7500F00BAF /* NSNewFirmOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831CA6620C78F7500F00BAF /* NSNewFirmOrderVC.m */; };
 		1831CA6A20C7B33D00F00BAF /* NSNewFirmOrderTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831CA6920C7B33D00F00BAF /* NSNewFirmOrderTVCell.m */; };
@@ -204,9 +207,6 @@
 		18925D23215247B100DE88FA /* NSInvitationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18925D22215247B000DE88FA /* NSInvitationCell.m */; };
 		18925D26215399D400DE88FA /* AppVersionParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 18925D24215399D400DE88FA /* AppVersionParam.m */; };
 		18925D2921539A8700DE88FA /* AppVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18925D2721539A8600DE88FA /* AppVersionModel.m */; };
-		18925D2C21539B0A00DE88FA /* NSShopEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18925D2B21539B0A00DE88FA /* NSShopEditVC.m */; };
-		18925D3121539BAF00DE88FA /* CALayer+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18925D2E21539BAE00DE88FA /* CALayer+Transition.m */; };
-		18925D3221539BAF00DE88FA /* XTGuidePagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18925D2F21539BAE00DE88FA /* XTGuidePagesViewController.m */; };
 		18999B2120DA4C58003BCF23 /* NSOrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18999B2020DA4C58003BCF23 /* NSOrderDetailVC.m */; };
 		1899B7B620B57643002FF2A8 /* NSLikeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1899B7B520B57643002FF2A8 /* NSLikeModel.m */; };
 		18A7AB7920ADAAFC009FC725 /* NSMyGoodsListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A7AB7820ADAAFC009FC725 /* NSMyGoodsListVC.m */; };
@@ -524,6 +524,12 @@
 		182E8E6720EF0DB900ECFCA4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		182E8E6B20EF0E3A00ECFCA4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		182E8E6D20EF0E4300ECFCA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1831BDA921BF97A900173473 /* XTGuidePagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTGuidePagesViewController.m; sourceTree = "<group>"; };
+		1831BDAA21BF97A900173473 /* CALayer+Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Transition.m"; sourceTree = "<group>"; };
+		1831BDAB21BF97A900173473 /* XTGuidePagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTGuidePagesViewController.h; sourceTree = "<group>"; };
+		1831BDAC21BF97A900173473 /* CALayer+Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Transition.h"; sourceTree = "<group>"; };
+		1831BDB021BF981B00173473 /* NSShopEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSShopEditVC.h; sourceTree = "<group>"; };
+		1831BDB121BF981B00173473 /* NSShopEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSShopEditVC.m; sourceTree = "<group>"; };
 		1831CA6220C788CC00F00BAF /* NSBuyNowModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSBuyNowModel.h; sourceTree = "<group>"; };
 		1831CA6320C788CC00F00BAF /* NSBuyNowModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSBuyNowModel.m; sourceTree = "<group>"; };
 		1831CA6520C78F7500F00BAF /* NSNewFirmOrderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSNewFirmOrderVC.h; sourceTree = "<group>"; };
@@ -882,12 +888,6 @@
 		18925D25215399D400DE88FA /* AppVersionParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppVersionParam.h; sourceTree = "<group>"; };
 		18925D2721539A8600DE88FA /* AppVersionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppVersionModel.m; sourceTree = "<group>"; };
 		18925D2821539A8600DE88FA /* AppVersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppVersionModel.h; sourceTree = "<group>"; };
-		18925D2A21539B0A00DE88FA /* NSShopEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSShopEditVC.h; sourceTree = "<group>"; };
-		18925D2B21539B0A00DE88FA /* NSShopEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSShopEditVC.m; sourceTree = "<group>"; };
-		18925D2D21539BAE00DE88FA /* XTGuidePagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTGuidePagesViewController.h; sourceTree = "<group>"; };
-		18925D2E21539BAE00DE88FA /* CALayer+Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Transition.m"; sourceTree = "<group>"; };
-		18925D2F21539BAE00DE88FA /* XTGuidePagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTGuidePagesViewController.m; sourceTree = "<group>"; };
-		18925D3021539BAE00DE88FA /* CALayer+Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Transition.h"; sourceTree = "<group>"; };
 		18999B1F20DA4C58003BCF23 /* NSOrderDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSOrderDetailVC.h; sourceTree = "<group>"; };
 		18999B2020DA4C58003BCF23 /* NSOrderDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSOrderDetailVC.m; sourceTree = "<group>"; };
 		1899B7B420B57643002FF2A8 /* NSLikeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSLikeModel.h; sourceTree = "<group>"; };
@@ -1455,7 +1455,7 @@
 		18230F61208D790B00D3E55F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1868F6A220FEEC8F000BB6EB /* XTGuidePageViewController */,
+				1831BDA821BF97A900173473 /* XTGuidePageViewController */,
 				1874525520EDF69600A67D70 /* EMAlertView */,
 				1874524920EDF52C00A67D70 /* SlimeRefresh */,
 				1874523920EDAFA200A67D70 /* TTGlobalUICommon */,
@@ -1626,6 +1626,26 @@
 				1840433F2099FB0600685F80 /* ADLChangePhoneViewController.m */,
 			);
 			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		1831BDA821BF97A900173473 /* XTGuidePageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1831BDA921BF97A900173473 /* XTGuidePagesViewController.m */,
+				1831BDAA21BF97A900173473 /* CALayer+Transition.m */,
+				1831BDAB21BF97A900173473 /* XTGuidePagesViewController.h */,
+				1831BDAC21BF97A900173473 /* CALayer+Transition.h */,
+			);
+			path = XTGuidePageViewController;
+			sourceTree = "<group>";
+		};
+		1831BDAF21BF981B00173473 /* 编辑店铺 */ = {
+			isa = PBXGroup;
+			children = (
+				1831BDB021BF981B00173473 /* NSShopEditVC.h */,
+				1831BDB121BF981B00173473 /* NSShopEditVC.m */,
+			);
+			path = "编辑店铺";
 			sourceTree = "<group>";
 		};
 		18335F7320BBEF52006264EF /* Param */ = {
@@ -2117,28 +2137,6 @@
 			path = UIButton;
 			sourceTree = "<group>";
 		};
-		1868F6A220FEEC8F000BB6EB /* XTGuidePageViewController */ = {
-			isa = PBXGroup;
-			children = (
-				18925D3021539BAE00DE88FA /* CALayer+Transition.h */,
-				18925D2E21539BAE00DE88FA /* CALayer+Transition.m */,
-				18925D2D21539BAE00DE88FA /* XTGuidePagesViewController.h */,
-				18925D2F21539BAE00DE88FA /* XTGuidePagesViewController.m */,
-			);
-			name = XTGuidePageViewController;
-			path = ../../Desktop/NSMall/Classes/XTGuidePageViewController;
-			sourceTree = "<group>";
-		};
-		1868F6AF20FEEFA1000BB6EB /* 编辑店铺 */ = {
-			isa = PBXGroup;
-			children = (
-				18925D2A21539B0A00DE88FA /* NSShopEditVC.h */,
-				18925D2B21539B0A00DE88FA /* NSShopEditVC.m */,
-			);
-			name = "编辑店铺";
-			path = "../../../../Desktop/NSMall/NSMall/My(我的)/Shop(我的店铺)/编辑店铺";
-			sourceTree = "<group>";
-		};
 		1868F6B320FEEFC8000BB6EB /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -2603,9 +2601,9 @@
 			children = (
 				187DE33C20FF222C0098BC95 /* UpdatePwdParam.h */,
 				187DE33D20FF222C0098BC95 /* CertificationParam.m */,
+				187DE34020FF222C0098BC95 /* GetListParam.h */,
 				187DE33E20FF222C0098BC95 /* GetListParam.m */,
 				187DE33F20FF222C0098BC95 /* UpdatePwdParam.m */,
-				187DE34020FF222C0098BC95 /* GetListParam.h */,
 				187DE34120FF222C0098BC95 /* CertificationParam.h */,
 			);
 			path = Param;
@@ -2792,11 +2790,11 @@
 		18A7AB7120AD8B85009FC725 /* Shop(我的店铺) */ = {
 			isa = PBXGroup;
 			children = (
+				1831BDAF21BF981B00173473 /* 编辑店铺 */,
 				1868F6BB20FEEFC8000BB6EB /* API */,
 				1868F6BE20FEEFC9000BB6EB /* Ctrl */,
 				1868F6B620FEEFC8000BB6EB /* Model */,
 				1868F6B320FEEFC8000BB6EB /* View */,
-				1868F6AF20FEEFA1000BB6EB /* 编辑店铺 */,
 			);
 			path = "Shop(我的店铺)";
 			sourceTree = "<group>";
@@ -4686,6 +4684,7 @@
 				188CC643207F5430007D749E /* Resources */,
 				995CCE5E04EEA43B8F254FCA /* [CP] Embed Pods Frameworks */,
 				BF2C41296E9892523DE93657 /* [CP] Copy Pods Resources */,
+				18A6538821AE474F00A8B103 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -4752,6 +4751,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		18A6538821AE474F00A8B103 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n#\n# Copyright 2016 Bugly, Tencent. All rights reserved.\n#\n# V1.4.0\n#\n# 2016.08.03\n#\n#\n#\n######################################################\n# 1. 脚本集成到Xcode工程的Target\n######################################################\n#\n# --- Copy the SCRIPT to the Run Script of Build Phases in the Xcode project ---\n#\n# #\nBUGLY_APP_ID=\"f01e247410\"\n# #\nBUGLY_APP_KEY=\"41e18687-72ba-4fbe-969f-ab863821726c\"\n# #\nBUNDLE_IDENTIFIER=\"com.huiyun.NSMall\"\n# #\nUPLOAD_DSYM_ONLY=1\n#\n# # 脚本默认配置的版本格式为CFBundleShortVersionString(CFBundleVersion),  如果你修改默认的版本格式, 请设置此变量, 如果不想修改, 请忽略此设置\n# CUSTOMIZED_APP_VERSION=\"\"\n#\n# # Debug模式编译是否上传，1＝上传 0＝不上传，默认不上传\n# UPLOAD_DEBUG_SYMBOLS=0\n#\n# # 模拟器编译是否上传，1=上传 0=不上传，默认不上传\n# UPLOAD_SIMULATOR_SYMBOLS=0\n#\n# #只有Archive操作时上传, 1=支持Archive上传 0=所有Release模式编译都上传\n# UPLOAD_ARCHIVE_ONLY=0\n#\n# #\n# source dSYMUpload.sh\n#\n# --- END OF SCRIPT ---\n#\n#\n#\n#\n#######################################################\n# 2. 脚本根据输入参数处理\n#######################################################\n#\n# #命令行下输入应用基本信息, .dSYM文件的父目录路径, 输出文件目录即可\n#\n# sh dSYMUpload.sh <bugly_app_id> <bugly_app_key> <app_bundle_identifier> <app_version> <dSYM_src_dir> <bSYMBOL_dest_dir>\n#\n# #\n#\n# #注意:\n# # 1. dSYMUpload.sh会调用buglySymboliOS.jar进行.dSYM解析，所以依赖Java运行时环境\n# # 2. dSYMUpload.sh和buglySymboliOS.jar的文件路径需一致\n#\n#\n\n#\n# --- CONTENT OF SCRIPT ---\n#\n\n# Bugly服务域名\nBUGLY_DSYM_UPLOAD_DOMAIN=\"api.bugly.qq.com\"\n\n# 注意jar工具的路径跟dSYMUpload.sh脚本路径一致, 请务必保证jar路径的正确性\nBUGLY_SYMBOL_JAR_PATH=\"dsymtool/buglySymboliOS.jar\"\n# 查找添加到系统目录的jar工具\nif [ ! -f \"${BUGLY_SYMBOL_JAR_PATH}\" ]; then\nBUGLY_SYMBOL_JAR_PATH=\"$HOME/bin/buglySymboliOS.jar\"\nfi\n\n# 打印错误信息\nfunction exitWithMessage(){\necho \"--------------------------------\"\necho \"${1}\"\necho \"--------------------------------\"\nexit ${2}\n}\n\n# 上传bSYMBOL文件\nfunction dSYMUpload() {\nP_APP_ID=\"$1\"\nP_APP_KEY=\"$2\"\nP_APP_BUNDLE_ID=\"$3\"\nP_APP_VERSION=\"$4\"\nP_BSYMBOL_ZIP_FILE=\"$5\"\n\n#\nP_BSYMBOL_ZIP_FILE_NAME=${P_BSYMBOL_ZIP_FILE##*/}\nP_BSYMBOL_ZIP_FILE_NAME=${P_BSYMBOL_ZIP_FILE_NAME//&/_}\nP_BSYMBOL_ZIP_FILE_NAME=\"${P_BSYMBOL_ZIP_FILE_NAME// /_}\"\n\nDSYM_UPLOAD_URL=\"https://${BUGLY_DSYM_UPLOAD_DOMAIN}/openapi/file/upload/symbol?app_id=${P_APP_ID}&app_key=${P_APP_KEY}\"\necho \"dSYM upload url: ${DSYM_UPLOAD_URL}\"\n\necho \"-----------------------------\"\nSTATUS=$(/usr/bin/curl -k \"${DSYM_UPLOAD_URL}\" --form \"api_version=1\" --form \"app_id=${P_APP_ID}\" --form \"app_key=${P_APP_KEY}\" --form \"symbolType=2\"  --form \"bundleId=${BUNDLE_IDENTIFIER}\" --form \"productVersion=${BUGLY_APP_VERSION}\" --form \"fileName=${P_BSYMBOL_ZIP_FILE_NAME}\" --form \"file=@${P_BSYMBOL_ZIP_FILE}\" --verbose)\necho \"-----------------------------\"\n\nUPLOAD_RESULT=\"FAILTURE\"\necho \"Bugly server response: ${STATUS}\"\nif [ ! \"${STATUS}\" ]; then\necho \"Error: Failed to upload the zip archive file.\"\nelif [[ \"${STATUS}\" == *\"{\\\"reponseCode\\\":\\\"0\\\"}\"* ]]; then\necho \"Success to upload the dSYM for the app [${BUNDLE_IDENTIFIER} ${BUGLY_APP_VERSION}]\"\nUPLOAD_RESULT=\"SUCCESS\"\nelse\necho \"Error: Failed to upload the zip archive file to Bugly.\"\nfi\n\n#Remove temp dSYM archive\n#echo \"Remove temporary zip archive: ${DSYM_ZIP_FPATH}\"\n#/bin/rm -f \"${DSYM_ZIP_FPATH}\"\n\nif [ \"$?\" -ne 0 ]; then\nexitWithMessage \"Error: Failed to remove temporary zip archive.\" 0\nfi\n\necho \"--------------------------------\"\necho \"${UPLOAD_RESULT} - dSYM upload complete.\"\n\nif [[ \"${UPLOAD_RESULT}\" == \"FAILTURE\" ]]; then\necho \"--------------------------------\"\necho \"Failed to upload the dSYM\"\necho \"Please check the script and try it again.\"\nfi\n}\n\n# .dSYM解析为bSYMBOL文件\nfunction dSYMParse() {\nDSYM_FILE=\"$1\"\nDSYM_SYMBOL_FILE=\"$2\"\n\necho \"--------------------------------\"\necho \"Extract symbol info from .dSYM file. to ${DSYM_SYMBOL_FILE}\"\n(/usr/bin/java -Xms512m -Xmx1024m -Dfile.encoding=UTF8 -jar \"${BUGLY_SYMBOL_JAR_PATH}\" -i \"${DSYM_FILE}\" -o \"${DSYM_SYMBOL_FILE}\" ) || exitWithMessage \"Error: Failed to extract symbols.\" 1\necho \"--------------------------------\"\n\n}\n\n# 执行\nfunction run() {\n\nCONFIG_BUGLY_APP_ID=\"$1\"\nCONFIG_BUGLY_APP_KEY=\"$2\"\n\nCONFIG_BUGLY_APP_BUNDLE_IDENTIFIER=\"$3\"\nCONFIG_BUGLY_APP_VERSION=\"$4\"\nCONFIG_DSYM_SOURCE_DIR=\"$5\"\nCONFIG_DSYM_DEST_DIR=\"$6\"\nCONFIG_UPLOAD_DSYM_ONLY=\"$7\"\n\n# 检查必须参数是否设置\nif [ ! \"${CONFIG_BUGLY_APP_ID}\" ]; then\nexitWithMessage \"Error: Bugly App ID not defined. Please set 'BUGLY_APP_ID' \" 0\nfi\n\nif [[ \"${CONFIG_BUGLY_APP_ID}\" == *\"App ID\"* ]]; then\nexitWithMessage \"Error: Bugly App ID not defined.\" 0\nfi\n\nif [ ! \"${CONFIG_BUGLY_APP_KEY}\" ]; then\nexitWithMessage \"Error: Bugly App Key not defined.\" 0\nfi\n\nif [ ! \"${CONFIG_BUGLY_APP_BUNDLE_IDENTIFIER}\" ]; then\nexitWithMessage \"Error: Bundle Identifier not defined.\" 0\nfi\n\nif [ ! \"${CONFIG_BUGLY_APP_VERSION}\" ]; then\nexitWithMessage \"Error: App Version not defined.\" 0\nfi\n\nif [ ! -e \"${CONFIG_DSYM_SOURCE_DIR}\" ]; then\nexitWithMessage \"Error: Invalid dir ${CONFIG_DSYM_SOURCE_DIR}\" 0\nfi\n\nif [ ! \"${CONFIG_DSYM_DEST_DIR}\" ]; then\nexitWithMessage \"Error: Invalid dir ${CONFIG_DSYM_DEST_DIR}\" 0\nfi\n\nif [ ! -e \"${CONFIG_DSYM_DEST_DIR}\" ]; then\nmkdir ${CONFIG_DSYM_DEST_DIR}\nfi\n\nDSYM_FOLDER=\"${CONFIG_DSYM_SOURCE_DIR}\"\nIFS=$'\\n'\n\necho \"Scaning dSYM FOLDER: ${DSYM_FOLDER} ...\"\nRET=\"F\"\n\n#\nfor dsymFile in $(find \"$DSYM_FOLDER\" -name '*.dSYM'); do\nRET=\"T\"\necho \"Found dSYM file: $dsymFile\"\n\nDSYM_FILE_NAME=${dsymFile##*/}\nDSYM_SYMBOL_ZIP_FILE_NAME=\"${DSYM_FILE_NAME}.zip\"\nDSYM_SYMBOL_ZIP_FILE_NAME=\"${DSYM_SYMBOL_ZIP_FILE_NAME// /_}\"\nDSYM_SYMBOL_ZIP_FILE=${CONFIG_DSYM_DEST_DIR}/${DSYM_SYMBOL_ZIP_FILE_NAME}\n\nif [ $CONFIG_UPLOAD_DSYM_ONLY -eq 1 ]; then\nif [ -e $DSYM_SYMBOL_ZIP_FILE ]; then\nrm -f $DSYM_SYMBOL_ZIP_FILE\nfi\n# 如果只上传dSYM，直接压缩dSYM目录\nzip -r -j $DSYM_SYMBOL_ZIP_FILE $dsymFile -x *.plist\nelse\n# 使用符号表工具来生成Symbol文件\ndSYMParse $dsymFile $DSYM_SYMBOL_ZIP_FILE\nfi\n\n# 上传\ndSYMUpload $CONFIG_BUGLY_APP_ID $CONFIG_BUGLY_APP_KEY $CONFIG_BUGLY_APP_BUNDLE_IDENTIFIER $CONFIG_BUGLY_APP_VERSION $DSYM_SYMBOL_ZIP_FILE\ndone\n\nif [ $RET = \"F\" ]; then\nexitWithMessage \"No .dSYM found in ${DSYM_FOLDER}\" 0\nfi\n}\n\n# 在Xcode工程中执行\nfunction runInXcode(){\necho \"Uploading dSYM to Bugly in Xcode ...\"\n\necho \"Info.Plist : ${INFOPLIST_FILE}\"\n\nBUNDLE_VERSION=$(/usr/libexec/PlistBuddy -c 'Print CFBundleVersion' \"${INFOPLIST_FILE}\")\nBUNDLE_SHORT_VERSION=$(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' \"${INFOPLIST_FILE}\")\n\n# 组装Bugly默认识别的版本信息(格式为CFBundleShortVersionString(CFBundleVersion), 例如: 1.0(1))\nif [ ! \"${CUSTOMIZED_APP_VERSION}\" ]; then\nBUGLY_APP_VERSION=\"${BUNDLE_SHORT_VERSION}(${BUNDLE_VERSION})\"\nelse\nBUGLY_APP_VERSION=\"${CUSTOMIZED_APP_VERSION}\"\nfi\n\necho \"--------------------------------\"\necho \"Prepare application information.\"\necho \"--------------------------------\"\n\necho \"Product Name: ${PRODUCT_NAME}\"\necho \"Bundle Identifier: ${BUNDLE_IDENTIFIER}\"\necho \"Version: ${BUNDLE_SHORT_VERSION}\"\necho \"Build: ${BUNDLE_VERSION}\"\n\necho \"Bugly App ID: ${BUGLY_APP_ID}\"\necho \"Bugly App key: ${BUGLY_APP_KEY}\"\necho \"Bugly App Version: ${BUGLY_APP_VERSION}\"\n\necho \"--------------------------------\"\necho \"Check the arguments ...\"\n\n##检查模拟器编译是否允许上传符号\nif [ \"$EFFECTIVE_PLATFORM_NAME\" == \"-iphonesimulator\" ]; then\nif [ $UPLOAD_SIMULATOR_SYMBOLS -eq 0 ]; then\nexitWithMessage \"Warning: Build for simulator and skipping to upload. \\nYou can modify 'UPLOAD_SIMULATOR_SYMBOLS' to 1 in the script.\" 1\nfi\nfi\n\n##检查是否是Release模式编译\nif [ \"${CONFIGURATION=}\" == \"Debug\" ]; then\nif [ $UPLOAD_DEBUG_SYMBOLS -eq 0 ]; then\nexitWithMessage \"Warning: Build for debug mode and skipping to upload. \\nYou can modify 'UPLOAD_DEBUG_SYMBOLS' to 1 in the script.\" 1\nfi\nfi\n\n##检查是否Archive操作\nif [ $UPLOAD_ARCHIVE_ONLY -eq 1 ]; then\nif [[ \"$TARGET_BUILD_DIR\" == *\"/Archive\"* ]]; then\necho \"Archive the package\"\nelse\nexitWithMessage \"Warning: Build for NOT Archive mode and skipping to upload. \\nYou can modify 'UPLOAD_ARCHIVE_ONLY' to 0 in the script.\" 0\nfi\nfi\n\n#\nrun ${BUGLY_APP_ID} ${BUGLY_APP_KEY} ${BUNDLE_IDENTIFIER} ${BUGLY_APP_VERSION} ${DWARF_DSYM_FOLDER_PATH} ${BUILD_DIR}/BuglySymbolTemp ${UPLOAD_DSYM_ONLY}\n}\n\n# 根据Xcode的环境变量判断是否处于Xcode环境\nINFO_PLIST_FILE=\"${INFOPLIST_FILE}\"\n\nBuildInXcode=\"F\"\nif [ -f \"${INFO_PLIST_FILE}\" ]; then\nBuildInXcode=\"T\"\nfi\n\nif [ $BuildInXcode = \"T\" ]; then\nrunInXcode\nelse\necho \"\\nUsage: dSYMUpload.sh <bugly_app_id> <bugly_app_key> <app_bundle_identifier> <app_version> <dSYM_src_dir> <bSYMBOL_dest_dir> [upload_dsym_only]\\n\"\n# 你可以在此处直接设置BuglyAppID和BuglyAppKey，排除不常变参数的输入\nBUGLY_APP_ID=\"$1\"\nBUGLY_APP_KEY=\"$2\"\nBUNDLE_IDENTIFIER=\"$3\"\nBUGLY_APP_VERSION=\"$4\"\nDWARF_DSYM_FOLDER_PATH=\"$5\"\nSYMBOL_OUTPUT_PATH=\"$6\"\nUPLOAD_DSYM_ONLY=$7\nrun ${BUGLY_APP_ID} ${BUGLY_APP_KEY} ${BUNDLE_IDENTIFIER} ${BUGLY_APP_VERSION} ${DWARF_DSYM_FOLDER_PATH} ${SYMBOL_OUTPUT_PATH} ${UPLOAD_DSYM_ONLY}\nfi\n";
+		};
 		33BEC6C02B5D9431EF18A9F1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4893,6 +4909,7 @@
 				1819B65620A71DC8009EAF87 /* NSSecondaryCategoryVC.m in Sources */,
 				18C3D0C520A3DD76000FCE7F /* NSString+Extension.m in Sources */,
 				18E3A44E20B2E5D900F847ED /* GoodsPublishAPI.m in Sources */,
+				1831BDAE21BF97A900173473 /* CALayer+Transition.m in Sources */,
 				1868F76120FEF391000BB6EB /* EMDingMessageHelper.m in Sources */,
 				1868F78020FEF391000BB6EB /* GroupSettingViewController.m in Sources */,
 				182B5C132112F89200B72CC7 /* NSGoodsEditVC.m in Sources */,
@@ -4957,13 +4974,13 @@
 				18B017A220A67B9600826EA4 /* SetDefaultAddressParam.m in Sources */,
 				184F0619209FE81A00768418 /* NSInfoCustomCell.m in Sources */,
 				18D0C0B020AC0D01007F0784 /* TDSegmentView.m in Sources */,
+				1831BDAD21BF97A900173473 /* XTGuidePagesViewController.m in Sources */,
 				184043412099FB0600685F80 /* ADLChangePhoneViewController.m in Sources */,
 				18230F66208D793F00D3E55F /* BaseViewCtrl.m in Sources */,
 				1874D5C120AAD50A0004B1AF /* NSFunctionCell.m in Sources */,
 				18AA1CF02121202B00BA5C81 /* NSRPRecordTVCell.m in Sources */,
 				182DC49120905E3C0066E667 /* ADOrderTopToolView.m in Sources */,
 				18B6D98521200B9500D0F999 /* NSRPListModel.m in Sources */,
-				18925D3221539BAF00DE88FA /* XTGuidePagesViewController.m in Sources */,
 				18DB5D3A20E21876000E99E6 /* FivePageSelectBar.m in Sources */,
 				181A9F322106FB9400334F7C /* NSHuanXinUserModel.m in Sources */,
 				18C3D08020A2F0FA000FCE7F /* SaveLabelParam.m in Sources */,
@@ -5133,8 +5150,8 @@
 				182926D02105F8AA00061634 /* NSFriendItemModel.m in Sources */,
 				187400E12138E1680024683E /* AEIconView.m in Sources */,
 				1868F78D20FEF391000BB6EB /* ApplyViewController.m in Sources */,
+				1831BDB221BF981B00173473 /* NSShopEditVC.m in Sources */,
 				18DD1588208DEA960006475D /* ADLMyInfoModel.m in Sources */,
-				18925D2C21539B0A00DE88FA /* NSShopEditVC.m in Sources */,
 				18D0C0A920AC0D01007F0784 /* TDUserCertifySubVCBasic.m in Sources */,
 				1874D5BE20AABFDA0004B1AF /* NSCarouselView.m in Sources */,
 				1829FD2321352E84002109E1 /* NSGroupDetailVC.m in Sources */,
@@ -5212,7 +5229,6 @@
 				18DD2F2320B9336500521B61 /* NSSortListVC.m in Sources */,
 				18E3A41720B2625200F847ED /* NSWaitPayBuyVC.m in Sources */,
 				18B6491C211D27DD00F8CDAA /* NSSendRPParam.m in Sources */,
-				18925D3121539BAF00DE88FA /* CALayer+Transition.m in Sources */,
 				18D0C0AE20AC0D01007F0784 /* TDUserCertifyViewCtrl.m in Sources */,
 				1878477020AEC46A00AC0E0F /* NSCollectionListVC.m in Sources */,
 				18925D2921539A8700DE88FA /* AppVersionModel.m in Sources */,

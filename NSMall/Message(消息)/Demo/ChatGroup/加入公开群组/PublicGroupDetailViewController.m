@@ -162,7 +162,8 @@
         return 50;
     }
     else{
-        NSDictionary * attrs = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:15.0], NSFontAttributeName,nil];
+        NSDictionary * attrs = @{[UIFont systemFontOfSize:15.0]:NSFontAttributeName};
+//        [NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:15.0], NSFontAttributeName,nil];
         CGSize size = [_group.description boundingRectWithSize:CGSizeMake(220, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
         
         return size.height > 30 ? (20 + size.height) : 50;

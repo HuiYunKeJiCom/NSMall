@@ -30,9 +30,10 @@
             cell = [[NSInfoCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NSInfoCustomCell"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-    
-            ADLMyInfoModel *infoModel = [self.data objectAtIndex:indexPath.section];
-            cell.myInfoModel = infoModel;
+    if(self.data.count > indexPath.section){
+        ADLMyInfoModel *infoModel = [self.data objectAtIndex:indexPath.section];
+        cell.myInfoModel = infoModel;
+    }
         return cell;
 }
 

@@ -88,7 +88,9 @@
     }
     
     cell.imgView.image = [UIImage imageNamed:@"default_avatar"];
-    cell.leftLabel.text = [self.dataArray objectAtIndex:indexPath.row];
+    if(self.dataArray.count > indexPath.row){
+        cell.leftLabel.text = [self.dataArray objectAtIndex:indexPath.row];
+    }
     
     if (indexPath == self.selectedIndexPath) {
         cell.accessoryView = self.selectedView;
@@ -133,7 +135,11 @@
 {
     if (self.selectedIndexPath) {
         [self showHudInView:self.view hint:@"Hold on ..."];
-        NSString *newOwner = [self.dataArray objectAtIndex:self.selectedIndexPath.row];
+        
+        NSString *newOwner = @"";
+        if(self.dataArray.count > self.selectedIndexPath.row){
+            newOwner = [self.dataArray objectAtIndex:self.selectedIndexPath.row];
+        }
         
         __weak typeof(self) weakSelf = self;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(){

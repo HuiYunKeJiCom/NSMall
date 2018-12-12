@@ -9,7 +9,7 @@
 #import "NSMessageModel.h"
 
 @implementation NSMessageModel
-- (instancetype)initWithUserName:(NSString *)userName imagePath:(NSString *)imagePath content:(NSString *)content time:(NSString *)time commentId:(NSString *)commentId userId:(NSString *)userId{
+- (instancetype)initWithUserName:(NSString *)userName imagePath:(NSString *)imagePath content:(NSString *)content time:(NSString *)time commentId:(NSString *)commentId userId:(NSString *)userId level:(NSInteger)level{
     if (self = [super init]) {
         
         _userName = userName;
@@ -18,6 +18,7 @@
         _time = time;
         _commentId = commentId;
         _userId = userId;
+        _level = level;
     }
     
     return self;

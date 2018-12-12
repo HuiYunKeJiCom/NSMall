@@ -123,8 +123,12 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSOrderListItemModel *orderItemModel = self.allOrderTable.data[indexPath.section];
-    return orderItemModel.cellHeight;
+    if(self.allOrderTable.data.count > indexPath.section){
+        NSOrderListItemModel *orderItemModel = self.allOrderTable.data[indexPath.section];
+        return orderItemModel.cellHeight;
+    }else{
+        return 0.01f;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -143,15 +147,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     DLog(@"跳转到订单详情");
-    
+    if(self.allOrderTable.data.count > indexPath.section){
     NSOrderListItemModel *model = self.allOrderTable.data[indexPath.section];
-    
     
     //跳转到订单详情
     NSOrderDetailVC *orderDetailVC = [NSOrderDetailVC new];
     [orderDetailVC loadDataWithType:@"0" andOrderID:model.order_id];
     [self.navigationController pushViewController:orderDetailVC animated:YES];
-    
+    }
 }
 
 - (void)baseTableVIew:(BaseTableView *)tableView refresh:(BOOL)flag {

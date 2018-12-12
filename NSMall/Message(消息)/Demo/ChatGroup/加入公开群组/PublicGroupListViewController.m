@@ -183,10 +183,13 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    EMGroup *group = [self.dataSource objectAtIndex:indexPath.row];
-    PublicGroupDetailViewController *detailController = [[PublicGroupDetailViewController alloc] initWithGroupId:group.groupId];
-    detailController.title = group.subject;
-    [self.navigationController pushViewController:detailController animated:YES];
+    if(self.dataSource.count > indexPath.row){
+        EMGroup *group = [self.dataSource objectAtIndex:indexPath.row];
+        PublicGroupDetailViewController *detailController = [[PublicGroupDetailViewController alloc] initWithGroupId:group.groupId];
+        detailController.title = group.subject;
+        [self.navigationController pushViewController:detailController animated:YES];
+    }
+    
 }
 
 #pragma mark - EMSearchControllerDelegate
@@ -279,11 +282,12 @@
         if (cell == nil) {
             cell = [[BaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-
-        EMGroup *group = [weakSelf.resultController.displaySource objectAtIndex:indexPath.row];
-        NSString *imageName = group.isPublic ? @"groupPublicHeader" : @"groupPrivateHeader";
-        cell.imageView.image = [UIImage imageNamed:imageName];
-        cell.textLabel.text = group.subject;
+        if(weakSelf.resultController.displaySource.count > indexPath.row){
+            EMGroup *group = [weakSelf.resultController.displaySource objectAtIndex:indexPath.row];
+            NSString *imageName = group.isPublic ? @"groupPublicHeader" : @"groupPrivateHeader";
+            cell.imageView.image = [UIImage imageNamed:imageName];
+            cell.textLabel.text = group.subject;
+        }
 
         return cell;
     }];
@@ -296,11 +300,13 @@
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         [weakSelf.searchController.searchBar endEditing:YES];
 
-        EMGroup *group = [weakSelf.resultController.displaySource objectAtIndex:indexPath.row];
-        PublicGroupDetailViewController *detailController = [[PublicGroupDetailViewController alloc] initWithGroupId:group.groupId];
-        detailController.title = group.subject;
-        [weakSelf.navigationController pushViewController:detailController animated:YES];
-        
+        if(weakSelf.resultController.displaySource.count > indexPath.row){
+            EMGroup *group = [weakSelf.resultController.displaySource objectAtIndex:indexPath.row];
+            PublicGroupDetailViewController *detailController = [[PublicGroupDetailViewController alloc] initWithGroupId:group.groupId];
+            detailController.title = group.subject;
+            [weakSelf.navigationController pushViewController:detailController animated:YES];
+        }
+
         [weakSelf cancelSearch];
     }];
     

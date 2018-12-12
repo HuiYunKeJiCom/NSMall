@@ -124,8 +124,13 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLogListModel *logListModel = self.goodsTable.data[indexPath.section];
-    return logListModel.cellHeight;
+    if(self.goodsTable.data.count > indexPath.section){
+        NSLogListModel *logListModel = self.goodsTable.data[indexPath.section];
+        return logListModel.cellHeight;
+    }else{
+        return 0.01f;
+    }
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

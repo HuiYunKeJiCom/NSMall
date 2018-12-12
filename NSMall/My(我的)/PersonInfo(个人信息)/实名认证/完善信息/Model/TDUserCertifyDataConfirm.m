@@ -45,23 +45,43 @@ static NSString* const userCertifyConfirmText2 = @"根据\"反洗钱法\"及相�
 }
 
 - (CGFloat) heightForRowAtIndexPath:(NSIndexPath*)indexPath {
-    NSString* text = self.dataSource[indexPath.row].text;
-    CGFloat width = kScreenWidth - 40;
-    CGSize size = KTextSize(text, width, 13);
-    NSString* title = self.dataSource[indexPath.row].title;
-    return size.height + 14 + 5 + 10 + 14 + 20 + (title && title.length > 0 ? 20 : 0);
+    if(self.dataSource.count > indexPath.row){
+        NSString* text = self.dataSource[indexPath.row].text;
+        CGFloat width = kScreenWidth - 40;
+        CGSize size = KTextSize(text, width, 13);
+        NSString* title = self.dataSource[indexPath.row].title;
+        return size.height + 14 + 5 + 10 + 14 + 20 + (title && title.length > 0 ? 20 : 0);
+    }else{
+        return 0.01f;
+    }
+    
 }
 
 - (NSString*) titleForRowAtIndexPath:(NSIndexPath*)indexPath {
-    return self.dataSource[indexPath.row].title;
+    if(self.dataSource.count > indexPath.row){
+        return self.dataSource[indexPath.row].title;
+    }else{
+        return @"";
+    }
+    
 }
 
 - (NSString*) textForRowAtIndexPath:(NSIndexPath*)indexPath {
-    return self.dataSource[indexPath.row].text;
+    if(self.dataSource.count > indexPath.row){
+        return self.dataSource[indexPath.row].text;
+    }else{
+        return @"";
+    }
+    
 }
 
 - (TDUserDertifyConfirmState) confirmStateForRowAtIndexPath:(NSIndexPath*)indexPath {
-    return self.dataSource[indexPath.row].state;
+    if(self.dataSource.count > indexPath.row){
+        return self.dataSource[indexPath.row].state;
+    }else{
+        return @"";
+    }
+    
 }
 
 - (void)updateConfirmState:(TDUserDertifyConfirmState)state atIndexPath:(NSIndexPath *)indexPath {
